@@ -1,5 +1,5 @@
 # pi-multimodal-ad
-
+ while starting to work on code : source ~/thesis/.venv/bin/activate
 This repository contains the research work and experimental implementations developed as part of a Master's thesis focused on physics-informed multi-modal transformer architectures for robust industrial anomaly detection.
 
 ## Dataset Information
