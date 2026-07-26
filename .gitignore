@@ -1,3 +1,49 @@
+# Large dataset folder (Intel Robotic Welding raw data)
+# Note: data_sample/ IS tracked for small manifest samples
+data/Full Dataset/
+
+# Large multimodal files (video, audio, sensor, archive formats)
+*.avi
+*.mp4
+*.mov
+*.mkv
+*.flac
+*.wav
+*.mp3
+*.xlsx
+*.xls
+*.csv
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.h5
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.tdms
+*.parquet
+
+# Local configs and environment
+.env
+.env.local
+local_config.yaml
+
+# Python
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+
+
+
+
+
+
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -205,3 +251,26 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Project-specific: ignore raw dataset folder if copied into repo and large multimodal formats
+/Full Dataset/
+Full Dataset/
+
+# Large multimodal raw formats
+*.avi
+*.mp4
+*.mov
+*.flac
+*.wav
+*.tdms
+*.mat
+*.npy
+
+# Archives and checkpoints
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Manifests folder (if generated locally). Keep committed manifests in a different folder or add an explicit allow rule.
+manifests/
