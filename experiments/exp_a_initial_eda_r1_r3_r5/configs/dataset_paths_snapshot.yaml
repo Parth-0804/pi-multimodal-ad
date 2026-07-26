@@ -1,0 +1,21 @@
+# Example dataset paths
+train: data_sample/train_manifest.csv
+validation: data_sample/val_manifest.csv
+test: data_sample/test_manifest.csv
+
+# Intel Robotic Welding dataset (local, not on GitHub)
+# Raw dataset location: data/Full Dataset/
+# Generated manifest output: data_sample/intel_welding_manifest.csv
+#
+# Set environment variable before running manifest generation:
+#   $env:INTEL_WELDING_DATA_ROOT = 'data/Full Dataset'  # PowerShell (relative to repo root)
+#
+# Or use absolute path:
+#   $env:INTEL_WELDING_DATA_ROOT = 'G:/My Drive/00_Masterarbeit/02_Git_WS/pi-multimodal-ad/data/Full Dataset'
+#
+# In Python, read the variable:
+#   import os
+#   root = os.environ.get('INTEL_WELDING_DATA_ROOT', 'data/Full Dataset')
+
+intel_welding_dataset_root: data/Full Dataset
+intel_welding_manifest_output: data_sample/intel_welding_manifest.csv

@@ -1,28 +1,44 @@
+#!/usr/bin/env python3
 """
 PHM North America 2026
-Robust EXP-A High-Frequency Downloader
+Robust EXP-B High-Frequency Downloader
 
-Downloads:
-    Exp-A_HDF5_Run-1.zip  -> Early lifecycle
-    Exp-A_HDF5_Run-3.zip  -> Intermediate lifecycle
-    Exp-A_HDF5_Run-5.zip  -> Late lifecycle
+PURPOSE
+-------
+Download all available high-frequency EXP-B run archives.
+
+Existing EXP-A and EXP-F files are NOT touched.
+
+The script automatically checks:
+
+    Exp-B_HDF5_Run-1.zip
+    Exp-B_HDF5_Run-2.zip
+    Exp-B_HDF5_Run-3.zip
+    ...
+
+and downloads every valid EXP-B archive that exists.
 
 Destination:
     /home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment
 
-IMPORTANT:
-This script DOES NOT use a copied Windows sharing_sid.
+FEATURES
+--------
+- Downloads EXP-B only
+- Does not touch EXP-A or EXP-F
+- Automatically discovers available EXP-B runs
+- VM creates its own Synology sharing_sid
+- 1-byte probe before full download
+- Validates application/octet-stream
+- Reads exact file size using Content-Range
+- Uses .part while downloading
+- Resumes interrupted downloads
+- Creates a fresh Synology session on retries
+- Verifies ZIP signature
+- Verifies exact final size
+- Skips already-complete EXP-B files
+- Stops scanning after several consecutive missing runs
 
-Instead:
-    1. The VM opens the Synology public share.
-    2. Synology gives the VM its own sharing_sid.
-    3. The script verifies the requested file with a 1-byte probe.
-    4. It confirms the real multi-GB ZIP exists.
-    5. curl downloads the file.
-    6. Interrupted downloads are resumed.
-    7. A fresh Synology session is created when retrying.
-
-No Python packages are required.
+No additional Python packages required.
 Only curl is required.
 """
 
@@ -34,6 +50,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from dataclasses import dataclass
 from pathlib import Path
 
 
@@ -47,17 +64,30 @@ SHARE_ID = "uIrAvzqEh"
 
 SHARE_URL = f"{HOST}/sharing/{SHARE_ID}"
 
-OUTPUT_DIR = Path(
+
+# ------------------------------------------------------------
+# Repository paths
+# ------------------------------------------------------------
+
+PROJECT_ROOT = Path(
     "/home/student/Master_Thesis_WS/"
-    "pi-multimodal-ad/"
-    "gtc-data-experiment"
+    "pi-multimodal-ad"
 )
 
-COOKIE_FILE = Path(
-    "/home/student/Master_Thesis_WS/"
-    "pi-multimodal-ad/"
-    "synology_cookies.txt"
+OUTPUT_DIR = (
+    PROJECT_ROOT
+    / "gtc-data-experiment"
 )
+
+COOKIE_FILE = (
+    PROJECT_ROOT
+    / "synology_cookies.txt"
+)
+
+
+# ------------------------------------------------------------
+# Browser identity
+# ------------------------------------------------------------
 
 USER_AGENT = (
     "Mozilla/5.0 (X11; Linux x86_64) "
@@ -66,65 +96,165 @@ USER_AGENT = (
     "Chrome/150.0.0.0 Safari/537.36"
 )
 
-RUNS = [1, 3, 5]
 
-# Anything smaller than 1 GiB is definitely not one
-# of our ~19 GB high-frequency archives.
+# ------------------------------------------------------------
+# File validation
+# ------------------------------------------------------------
+
+# HF archives should be large.
+# Anything smaller than 1 GiB is suspicious.
 MIN_VALID_FILE_SIZE = 1 * 1024**3
+
+
+# ------------------------------------------------------------
+# Retry behaviour
+# ------------------------------------------------------------
 
 RETRY_DELAY = 10
 
 
+# ------------------------------------------------------------
+# EXP-B automatic discovery
+# ------------------------------------------------------------
+
+EXPERIMENT = "B"
+
+# We do NOT assume the number of runs.
+#
+# The script checks Run-1 ... Run-20.
+# It stops earlier after several consecutive missing runs.
+MAX_RUN_TO_SCAN = 20
+
+# Example:
+#
+# Run-1 valid
+# Run-2 valid
+# ...
+# Run-8 valid
+# Run-9 missing
+# Run-10 missing
+# Run-11 missing
+#
+# -> stop scanning
+CONSECUTIVE_MISSING_TO_STOP = 3
+
+
 # ============================================================
-# UTILITIES
+# DATA CLASS
+# ============================================================
+
+@dataclass(frozen=True)
+class DownloadItem:
+
+    experiment: str
+    run: int
+
+    @property
+    def experiment_folder(self) -> str:
+
+        return f"EXP-{self.experiment}"
+
+    @property
+    def filename(self) -> str:
+
+        return (
+            f"Exp-{self.experiment}_"
+            f"HDF5_Run-{self.run}.zip"
+        )
+
+    @property
+    def remote_path(self) -> str:
+
+        return (
+            f"/train/high-frequency/"
+            f"{self.experiment_folder}/"
+            f"{self.filename}"
+        )
+
+
+# ============================================================
+# GENERAL UTILITIES
 # ============================================================
 
 def gib(value: int) -> float:
-    """Convert bytes to GiB."""
+    """
+    Convert bytes to GiB.
+    """
+
     return value / (1024**3)
 
 
 def require_curl() -> None:
-    """Verify that curl is installed."""
+    """
+    Verify that curl is installed.
+    """
 
     if shutil.which("curl") is None:
-        print("\nERROR: curl is not installed.")
-        print("\nInstall it with:\n")
+
+        print()
+        print("ERROR: curl is not installed.")
+
+        print()
+        print("Install it with:")
+
+        print()
         print("sudo apt update")
         print("sudo apt install -y curl")
+
         sys.exit(1)
 
 
-def get_filename(run: int) -> str:
-    return f"Exp-A_HDF5_Run-{run}.zip"
+def has_zip_signature(path: Path) -> bool:
+    """
+    ZIP archives normally begin with the bytes 'PK'.
+
+    This detects common Synology failure responses where
+    JSON or HTML is saved instead of the actual ZIP.
+    """
+
+    if not path.exists():
+
+        return False
+
+    if path.stat().st_size < 2:
+
+        return False
+
+    with path.open("rb") as handle:
+
+        signature = handle.read(2)
+
+    return signature == b"PK"
 
 
-def get_remote_path(run: int) -> str:
-    return (
-        f"/train/high-frequency/EXP-A/"
-        f"Exp-A_HDF5_Run-{run}.zip"
+# ============================================================
+# BUILD SYNOLOGY DOWNLOAD URL
+# ============================================================
+
+def build_download_url(
+    item: DownloadItem,
+) -> str:
+    """
+    Build the Synology direct-download URL.
+
+    Synology uses a hexadecimal representation of
+    the remote path as the dlink parameter.
+    """
+
+    dlink = (
+        item.remote_path
+        .encode("utf-8")
+        .hex()
     )
 
-
-def build_download_url(run: int) -> str:
-    """
-    Build the Synology download URL in exactly the same
-    format observed in Chrome DevTools.
-    """
-
-    filename = get_filename(run)
-    remote_path = get_remote_path(run)
-
-    # Synology dlink is the hexadecimal representation
-    # of the remote path.
-    dlink = remote_path.encode("utf-8").hex()
-
-    no_cache = int(time.time() * 1000)
+    no_cache = int(
+        time.time() * 1000
+    )
 
     return (
         f"{HOST}"
         f"/fsdownload/webapi/file_download.cgi/"
-        f"{filename}"
+        f"{item.filename}"
         f"?dlink=%22{dlink}%22"
         f"&noCache={no_cache}"
         f"&_sharing_id=%22{SHARE_ID}%22"
@@ -137,21 +267,22 @@ def build_download_url(run: int) -> str:
 
 
 # ============================================================
-# CREATE VM SYNOLOGY SESSION
+# CREATE VM-SIDE SYNOLOGY SESSION
 # ============================================================
 
 def create_fresh_session() -> None:
     """
-    Open the public Synology sharing page from the VM.
+    Open the public Synology share directly from the VM.
 
-    This creates a VM-specific sharing_sid and stores
-    it inside COOKIE_FILE.
+    Synology then creates a sharing_sid specifically
+    for this VM.
     """
 
-    print("\nCreating fresh Synology sharing session...")
+    print()
+    print("Creating fresh Synology sharing session...")
 
-    # Remove previous session.
     if COOKIE_FILE.exists():
+
         COOKIE_FILE.unlink()
 
     command = [
@@ -165,7 +296,7 @@ def create_fresh_session() -> None:
         "-c",
         str(COOKIE_FILE),
 
-        # Read cookies too
+        # Read cookies
         "-b",
         str(COOKIE_FILE),
 
@@ -178,21 +309,29 @@ def create_fresh_session() -> None:
         "/dev/null",
     ]
 
-    result = subprocess.run(command)
+    result = subprocess.run(
+        command
+    )
 
     if result.returncode != 0:
+
         raise RuntimeError(
-            "Could not open the Synology public sharing page."
+            "Could not open the Synology "
+            "public sharing page."
         )
 
     if not COOKIE_FILE.exists():
+
         raise RuntimeError(
-            "Synology did not create a cookie file."
+            "Synology did not create "
+            "a cookie file."
         )
 
-    cookie_text = COOKIE_FILE.read_text(
-        encoding="utf-8",
-        errors="replace",
+    cookie_text = (
+        COOKIE_FILE.read_text(
+            encoding="utf-8",
+            errors="replace",
+        )
     )
 
     match = re.search(
@@ -201,15 +340,16 @@ def create_fresh_session() -> None:
     )
 
     if not match:
+
         raise RuntimeError(
-            "Synology page opened, but no sharing_sid "
-            "was returned."
+            "Synology page opened, but "
+            "no sharing_sid was returned."
         )
 
     sid = match.group(1)
 
     print(
-        f"Session established: "
+        "Session established: "
         f"sharing_sid={sid[:8]}..."
     )
 
@@ -218,50 +358,77 @@ def create_fresh_session() -> None:
 # PROBE FILE
 # ============================================================
 
-def probe_file(run: int) -> int:
+def probe_file(
+    item: DownloadItem,
+) -> int | None:
     """
-    Request only ONE BYTE from the ZIP.
+    Request only ONE BYTE.
 
-    Expected response:
+    A valid archive should return something like:
 
         HTTP 206
         Content-Type: application/octet-stream
         Content-Range: bytes 0-0/TOTAL_SIZE
 
-    This lets us know the exact total size BEFORE
-    attempting the full download.
+    Returns:
+        expected file size in bytes
+
+    Returns None:
+        when the requested EXP-B run apparently
+        does not exist.
+
+    This function intentionally avoids crashing when
+    auto-discovering EXP-B runs.
     """
 
-    filename = get_filename(run)
-    url = build_download_url(run)
+    url = build_download_url(
+        item
+    )
 
     print()
-    print("=" * 76)
-    print(f"PROBING: {filename}")
-    print("=" * 76)
+    print("=" * 78)
+
+    print(
+        f"PROBING: "
+        f"{item.experiment_folder} "
+        f"Run-{item.run}"
+    )
+
+    print(
+        f"FILE   : {item.filename}"
+    )
+
+    print("=" * 78)
 
     with tempfile.TemporaryDirectory() as temp_dir:
 
-        headers_file = Path(temp_dir) / "headers.txt"
-        probe_file = Path(temp_dir) / "probe.bin"
+        temp_dir = Path(temp_dir)
+
+        headers_file = (
+            temp_dir
+            / "headers.txt"
+        )
+
+        probe_output = (
+            temp_dir
+            / "probe.bin"
+        )
 
         command = [
             "curl",
 
             "-sS",
             "-L",
-            "--fail",
 
-            # Only request first byte
+            # Request first byte only
             "--range",
             "0-0",
 
-            # Safety: never allow this probe to download
-            # an unexpectedly large response.
+            # Never allow the probe response
+            # to become unexpectedly large
             "--max-filesize",
             "1048576",
 
-            # VM Synology session
             "-b",
             str(COOKIE_FILE),
 
@@ -274,32 +441,50 @@ def probe_file(run: int) -> int:
             "--user-agent",
             USER_AGENT,
 
-            # Save headers
             "-D",
             str(headers_file),
 
-            # Save first byte
             "-o",
-            str(probe_file),
+            str(probe_output),
 
             url,
         ]
 
-        result = subprocess.run(command)
-
-        if result.returncode != 0:
-            raise RuntimeError(
-                "File probe failed."
-            )
-
-        headers = headers_file.read_text(
-            encoding="utf-8",
-            errors="replace",
+        result = subprocess.run(
+            command
         )
 
-    # --------------------------------------------------------
-    # Parse headers
-    # --------------------------------------------------------
+        # ----------------------------------------------------
+        # Could not even perform request
+        # ----------------------------------------------------
+
+        if result.returncode != 0:
+
+            print(
+                "Probe request failed."
+            )
+
+            return None
+
+        if not headers_file.exists():
+
+            print(
+                "No headers returned."
+            )
+
+            return None
+
+        headers = (
+            headers_file.read_text(
+                encoding="utf-8",
+                errors="replace",
+            )
+        )
+
+
+    # ========================================================
+    # PARSE RESPONSE HEADERS
+    # ========================================================
 
     http_matches = re.findall(
         r"HTTP/\S+\s+(\d+)",
@@ -307,23 +492,26 @@ def probe_file(run: int) -> int:
         flags=re.IGNORECASE,
     )
 
-    content_type_matches = re.findall(
+    type_matches = re.findall(
         r"content-type:\s*([^\r\n]+)",
         headers,
         flags=re.IGNORECASE,
     )
 
-    content_range_matches = re.findall(
-        r"content-range:\s*bytes\s+\d+-\d+/(\d+)",
+    range_matches = re.findall(
+        r"content-range:\s*bytes\s+"
+        r"\d+-\d+/(\d+)",
         headers,
         flags=re.IGNORECASE,
     )
 
-    content_disposition_matches = re.findall(
-        r"content-disposition:\s*([^\r\n]+)",
+    disposition_matches = re.findall(
+        r"content-disposition:\s*"
+        r"([^\r\n]+)",
         headers,
         flags=re.IGNORECASE,
     )
+
 
     status = (
         http_matches[-1]
@@ -332,53 +520,68 @@ def probe_file(run: int) -> int:
     )
 
     content_type = (
-        content_type_matches[-1].strip()
-        if content_type_matches
+        type_matches[-1].strip()
+        if type_matches
         else "UNKNOWN"
     )
 
-    print(f"HTTP status        : {status}")
-    print(f"Content-Type       : {content_type}")
 
-    if content_disposition_matches:
+    print(
+        f"HTTP status        : {status}"
+    )
+
+    print(
+        f"Content-Type       : {content_type}"
+    )
+
+
+    if disposition_matches:
+
         print(
             "Content-Disposition: "
-            f"{content_disposition_matches[-1]}"
+            f"{disposition_matches[-1]}"
         )
 
-    # --------------------------------------------------------
-    # Reject Synology JSON response
-    # --------------------------------------------------------
 
-    if "application/json" in content_type.lower():
+    # ========================================================
+    # DETECT NONEXISTENT / INVALID RUN
+    # ========================================================
 
-        raise RuntimeError(
-            "Synology returned JSON instead of the ZIP.\n"
-            "The sharing session is invalid."
+    if (
+        "application/octet-stream"
+        not in content_type.lower()
+    ):
+
+        print(
+            f"Run-{item.run} does not appear "
+            "to be a valid HF archive."
         )
 
-    if "application/octet-stream" not in content_type.lower():
+        return None
 
-        raise RuntimeError(
-            f"Unexpected Content-Type: {content_type}"
+
+    if not range_matches:
+
+        print(
+            "No Content-Range returned."
         )
 
-    # --------------------------------------------------------
-    # Need Content-Range to determine full size
-    # --------------------------------------------------------
-
-    if not content_range_matches:
-
-        print("\nRAW HEADERS:")
-        print(headers[:3000])
-
-        raise RuntimeError(
-            "No Content-Range returned by Synology."
+        print(
+            f"Run-{item.run} will be treated "
+            "as unavailable."
         )
+
+        return None
+
+
+    # ========================================================
+    # VALID FILE FOUND
+    # ========================================================
 
     expected_size = int(
-        content_range_matches[-1]
+        range_matches[-1]
     )
+
 
     print(
         f"Expected file size : "
@@ -390,96 +593,121 @@ def probe_file(run: int) -> int:
         f"{gib(expected_size):.2f} GiB"
     )
 
+
     if expected_size < MIN_VALID_FILE_SIZE:
 
-        raise RuntimeError(
-            "Reported file is unexpectedly small."
+        print(
+            "File is unexpectedly small."
         )
 
-    print("Probe result       : VALID ✓")
+        print(
+            "Treating this run as invalid."
+        )
+
+        return None
+
+
+    print(
+        "Probe result       : VALID ✓"
+    )
+
 
     return expected_size
 
 
 # ============================================================
-# CHECK ZIP SIGNATURE
+# DOWNLOAD ONE EXP-B ARCHIVE
 # ============================================================
 
-def has_zip_signature(path: Path) -> bool:
-
-    if not path.exists():
-        return False
-
-    if path.stat().st_size < 2:
-        return False
-
-    with path.open("rb") as f:
-        return f.read(2) == b"PK"
-
-
-# ============================================================
-# DOWNLOAD ONE RUN
-# ============================================================
-
-def download_run(
-    run: int,
+def download_item(
+    item: DownloadItem,
     expected_size: int,
 ) -> None:
 
-    filename = get_filename(run)
+    final_path = (
+        OUTPUT_DIR
+        / item.filename
+    )
 
-    final_path = OUTPUT_DIR / filename
+    part_path = (
+        OUTPUT_DIR
+        / f"{item.filename}.part"
+    )
 
-    # Keep partial download separate.
-    part_path = OUTPUT_DIR / f"{filename}.part"
 
-    # --------------------------------------------------------
-    # Handle old broken files
-    # --------------------------------------------------------
+    # ========================================================
+    # CHECK FINAL FILE
+    # ========================================================
 
     if final_path.exists():
 
-        size = final_path.stat().st_size
+        size = (
+            final_path.stat().st_size
+        )
 
         if (
             size == expected_size
-            and has_zip_signature(final_path)
+            and has_zip_signature(
+                final_path
+            )
         ):
+
             print()
             print(
-                f"Already complete: {filename} "
-                f"({gib(size):.2f} GiB)"
+                "SKIPPING — already complete:"
             )
+
+            print(
+                f"{item.filename}"
+            )
+
+            print(
+                f"Size: {gib(size):.2f} GiB"
+            )
+
             return
+
 
         print()
         print(
-            f"Removing old invalid/incomplete final file:"
+            "Existing final file is "
+            "invalid or incomplete."
         )
-        print(final_path)
+
         print(
-            f"Size: {size / 1024**2:.2f} MiB"
+            f"File: {final_path}"
+        )
+
+        print(
+            f"Current size: "
+            f"{gib(size):.2f} GiB"
+        )
+
+        print(
+            "Removing invalid final file."
         )
 
         final_path.unlink()
 
-    # --------------------------------------------------------
-    # Validate existing .part file
-    # --------------------------------------------------------
+
+    # ========================================================
+    # CHECK EXISTING PARTIAL DOWNLOAD
+    # ========================================================
 
     if part_path.exists():
 
-        part_size = part_path.stat().st_size
+        part_size = (
+            part_path.stat().st_size
+        )
 
-        if not has_zip_signature(part_path):
+        if not has_zip_signature(
+            part_path
+        ):
 
             print()
             print(
-                "Existing .part file is not a ZIP."
-            )
-
-            print(
-                "It is probably the old Synology JSON response."
+                "Existing .part file is "
+                "not a valid ZIP response."
             )
 
             print(
@@ -492,7 +720,7 @@ def download_run(
 
             print()
             print(
-                f"Partial real ZIP detected:"
+                "Partial ZIP detected:"
             )
 
             print(
@@ -504,15 +732,18 @@ def download_run(
                 "Download will resume."
             )
 
+
     # ========================================================
     # DOWNLOAD / RETRY LOOP
     # ========================================================
 
     attempt = 0
 
+
     while True:
 
         attempt += 1
+
 
         current_size = (
             part_path.stat().st_size
@@ -520,46 +751,79 @@ def download_run(
             else 0
         )
 
+
         if current_size == expected_size:
 
             break
 
+
+        if current_size > expected_size:
+
+            raise RuntimeError(
+                f"{item.filename} is already "
+                "larger than expected.\n"
+                f"Expected: {expected_size:,}\n"
+                f"Actual:   {current_size:,}"
+            )
+
+
         print()
-        print("=" * 76)
-        print(f"DOWNLOADING: {filename}")
-        print(f"Attempt    : {attempt}")
+        print("=" * 78)
+
         print(
-            f"Current    : "
+            f"DOWNLOADING : {item.filename}"
+        )
+
+        print(
+            f"EXPERIMENT  : "
+            f"{item.experiment_folder}"
+        )
+
+        print(
+            f"RUN         : {item.run}"
+        )
+
+        print(
+            f"ATTEMPT     : {attempt}"
+        )
+
+        print(
+            f"CURRENT     : "
             f"{gib(current_size):.2f} GiB"
         )
+
         print(
-            f"Expected   : "
+            f"EXPECTED    : "
             f"{gib(expected_size):.2f} GiB"
         )
-        print("=" * 76)
+
+        print("=" * 78)
+
 
         # ----------------------------------------------------
-        # Fresh session before each attempt
+        # Fresh session on every outer retry
         # ----------------------------------------------------
 
         create_fresh_session()
 
-        url = build_download_url(run)
+
+        url = build_download_url(
+            item
+        )
+
 
         command = [
             "curl",
 
             "-L",
 
-            # HTTP 4xx/5xx = failure
             "--fail",
 
-            # Resume partial file
+            # Resume existing .part
             "-C",
             "-",
 
-            # A few retries using current session.
-            # Outer Python loop creates a NEW session afterward.
+            # Retry temporary failures
             "--retry",
             "5",
 
@@ -571,14 +835,14 @@ def download_run(
             "--connect-timeout",
             "30",
 
-            # Detect dead connection
+            # Detect dead/very slow connections
             "--speed-time",
             "60",
 
             "--speed-limit",
             "1024",
 
-            # VM cookie
+            # Synology cookies
             "-b",
             str(COOKIE_FILE),
 
@@ -599,11 +863,15 @@ def download_run(
             url,
         ]
 
-        result = subprocess.run(command)
 
-        # ----------------------------------------------------
-        # Inspect what exists after curl
-        # ----------------------------------------------------
+        result = subprocess.run(
+            command
+        )
+
+
+        # ====================================================
+        # CHECK RESULT
+        # ====================================================
 
         if not part_path.exists():
 
@@ -613,19 +881,29 @@ def download_run(
             )
 
             print(
-                f"Retrying in {RETRY_DELAY}s..."
+                f"Retrying in "
+                f"{RETRY_DELAY} seconds..."
             )
 
-            time.sleep(RETRY_DELAY)
+            time.sleep(
+                RETRY_DELAY
+            )
+
             continue
 
-        current_size = part_path.stat().st_size
+
+        current_size = (
+            part_path.stat().st_size
+        )
+
 
         # ----------------------------------------------------
-        # Detect JSON/HTML fake response
+        # Detect JSON / HTML response
         # ----------------------------------------------------
 
-        if not has_zip_signature(part_path):
+        if not has_zip_signature(
+            part_path
+        ):
 
             print()
             print(
@@ -633,41 +911,63 @@ def download_run(
             )
 
             print(
-                "Synology returned something other than "
-                "the ZIP."
+                "Synology returned something "
+                "other than the ZIP."
             )
 
             print(
-                "Deleting invalid response and refreshing "
-                "the sharing session."
+                "Deleting invalid response."
             )
 
             part_path.unlink()
 
-            time.sleep(RETRY_DELAY)
+            print(
+                f"Retrying in "
+                f"{RETRY_DELAY} seconds..."
+            )
+
+            time.sleep(
+                RETRY_DELAY
+            )
+
             continue
+
 
         print()
         print(
-            f"Current downloaded size: "
+            "Current downloaded size: "
             f"{gib(current_size):.2f} GiB"
         )
 
+
         # ----------------------------------------------------
-        # Exact completion check
+        # Complete
         # ----------------------------------------------------
 
         if current_size == expected_size:
 
             break
 
+
+        # ----------------------------------------------------
+        # Too large = corruption
+        # ----------------------------------------------------
+
         if current_size > expected_size:
 
             raise RuntimeError(
-                f"{filename} became larger than expected.\n"
-                f"Expected: {expected_size}\n"
-                f"Actual:   {current_size}"
+                f"{item.filename} became "
+                "larger than expected.\n"
+                f"Expected: "
+                f"{expected_size:,} bytes\n"
+                f"Actual:   "
+                f"{current_size:,} bytes"
             )
+
+
+        # ----------------------------------------------------
+        # Still incomplete
+        # ----------------------------------------------------
 
         print()
         print(
@@ -675,42 +975,341 @@ def download_run(
         )
 
         print(
-            "Refreshing Synology session and resuming "
-            f"in {RETRY_DELAY}s..."
+            "Refreshing Synology session "
+            "and resuming in "
+            f"{RETRY_DELAY} seconds..."
         )
 
-        time.sleep(RETRY_DELAY)
+        time.sleep(
+            RETRY_DELAY
+        )
+
 
     # ========================================================
     # FINAL VALIDATION
     # ========================================================
 
-    final_size = part_path.stat().st_size
+    final_size = (
+        part_path.stat().st_size
+    )
+
 
     if final_size != expected_size:
 
         raise RuntimeError(
-            "Final file size does not match expected size."
+            f"Final size mismatch for "
+            f"{item.filename}.\n"
+            f"Expected: {expected_size:,}\n"
+            f"Actual:   {final_size:,}"
         )
 
-    if not has_zip_signature(part_path):
+
+    if not has_zip_signature(
+        part_path
+    ):
 
         raise RuntimeError(
-            "Final file does not have ZIP signature."
+            "Final file does not have "
+            "a ZIP signature:\n"
+            f"{item.filename}"
         )
 
-    # Rename only after successful validation.
-    part_path.rename(final_path)
+
+    # --------------------------------------------------------
+    # Promote .part -> .zip
+    # --------------------------------------------------------
+
+    part_path.rename(
+        final_path
+    )
+
 
     print()
-    print("=" * 76)
-    print("DOWNLOAD COMPLETE ✓")
-    print("=" * 76)
-    print(f"File : {filename}")
+    print("=" * 78)
+
     print(
-        f"Size : {gib(final_size):.2f} GiB"
+        "DOWNLOAD COMPLETE ✓"
     )
-    print(f"Path : {final_path}")
+
+    print("=" * 78)
+
+    print(
+        f"Experiment : "
+        f"{item.experiment_folder}"
+    )
+
+    print(
+        f"Run        : {item.run}"
+    )
+
+    print(
+        f"File       : {item.filename}"
+    )
+
+    print(
+        f"Size       : "
+        f"{gib(final_size):.2f} GiB"
+    )
+
+    print(
+        f"Path       : {final_path}"
+    )
+
+
+# ============================================================
+# EXP-B AUTO DISCOVERY + DOWNLOAD
+# ============================================================
+
+def discover_and_download_exp_b() -> (
+    list[tuple[DownloadItem, int]]
+):
+
+    completed: list[
+        tuple[DownloadItem, int]
+    ] = []
+
+
+    missing_in_a_row = 0
+
+
+    print()
+    print("=" * 78)
+
+    print(
+        "AUTO-DISCOVERING EXP-B RUNS"
+    )
+
+    print("=" * 78)
+
+
+    for run in range(
+        1,
+        MAX_RUN_TO_SCAN + 1,
+    ):
+
+        item = DownloadItem(
+            EXPERIMENT,
+            run,
+        )
+
+
+        print()
+        print("#" * 78)
+
+        print(
+            f"CHECKING "
+            f"EXP-{EXPERIMENT} "
+            f"RUN-{run}"
+        )
+
+        print("#" * 78)
+
+
+        # ----------------------------------------------------
+        # Fresh session for probe
+        # ----------------------------------------------------
+
+        try:
+
+            create_fresh_session()
+
+            expected_size = probe_file(
+                item
+            )
+
+        except Exception as error:
+
+            print()
+            print(
+                "Probe encountered an error:"
+            )
+
+            print(
+                error
+            )
+
+            print()
+            print(
+                "Creating one fresh session "
+                "and retrying probe..."
+            )
+
+
+            try:
+
+                create_fresh_session()
+
+                expected_size = probe_file(
+                    item
+                )
+
+            except Exception as second_error:
+
+                print(
+                    "Second probe failed:"
+                )
+
+                print(
+                    second_error
+                )
+
+                expected_size = None
+
+
+        # ====================================================
+        # RUN NOT FOUND
+        # ====================================================
+
+        if expected_size is None:
+
+            missing_in_a_row += 1
+
+            print()
+            print(
+                f"EXP-B Run-{run} "
+                "not available."
+            )
+
+            print(
+                "Consecutive unavailable runs: "
+                f"{missing_in_a_row}/"
+                f"{CONSECUTIVE_MISSING_TO_STOP}"
+            )
+
+
+            if (
+                missing_in_a_row
+                >=
+                CONSECUTIVE_MISSING_TO_STOP
+            ):
+
+                print()
+                print("=" * 78)
+
+                print(
+                    "No further EXP-B runs "
+                    "appear to be available."
+                )
+
+                print(
+                    "Stopping automatic scan."
+                )
+
+                print("=" * 78)
+
+                break
+
+
+            continue
+
+
+        # ====================================================
+        # VALID RUN FOUND
+        # ====================================================
+
+        missing_in_a_row = 0
+
+
+        download_item(
+            item,
+            expected_size,
+        )
+
+
+        completed.append(
+            (
+                item,
+                expected_size,
+            )
+        )
+
+
+    return completed
+
+
+# ============================================================
+# LOCAL SUMMARY
+# ============================================================
+
+def print_local_dataset_summary() -> None:
+    """
+    Display all EXP-A, EXP-B and EXP-F HF archives
+    currently present in the dataset directory.
+    """
+
+    print()
+    print()
+    print("=" * 78)
+
+    print(
+        "LOCAL HIGH-FREQUENCY DATASET SUMMARY"
+    )
+
+    print("=" * 78)
+
+
+    total_bytes = 0
+
+
+    for experiment in [
+        "A",
+        "B",
+        "F",
+    ]:
+
+        files = sorted(
+            OUTPUT_DIR.glob(
+                f"Exp-{experiment}_"
+                "HDF5_Run-*.zip"
+            )
+        )
+
+
+        if not files:
+
+            continue
+
+
+        print()
+        print(
+            f"EXP-{experiment}:"
+        )
+
+
+        experiment_total = 0
+
+
+        for path in files:
+
+            size = (
+                path.stat().st_size
+            )
+
+            experiment_total += size
+            total_bytes += size
+
+
+            print(
+                f"  {path.name:<32} "
+                f"{gib(size):>8.2f} GiB"
+            )
+
+
+        print(
+            f"  {'EXP-' + experiment + ' TOTAL':<32} "
+            f"{gib(experiment_total):>8.2f} GiB"
+        )
+
+
+    print()
+    print("-" * 78)
+
+    print(
+        f"{'TOTAL A + B + F':<34}"
+        f"{gib(total_bytes):>8.2f} GiB"
+    )
+
+    print("=" * 78)
 
 
 # ============================================================
@@ -721,119 +1320,214 @@ def main() -> None:
 
     require_curl()
 
+
     OUTPUT_DIR.mkdir(
         parents=True,
         exist_ok=True,
     )
 
-    print()
-    print("=" * 76)
-    print("PHM NORTH AMERICA 2026")
-    print("EXP-A ROBUST HIGH-FREQUENCY DOWNLOADER")
-    print("=" * 76)
 
     print()
-    print("Lifecycle sample:")
-    print("  Run-1 -> Early lifecycle")
-    print("  Run-3 -> Intermediate lifecycle")
-    print("  Run-5 -> Late lifecycle")
+    print("=" * 78)
 
-    print()
-    print("Destination:")
-    print(OUTPUT_DIR)
+    print(
+        "PHM NORTH AMERICA 2026"
+    )
+
+    print(
+        "EXP-B HIGH-FREQUENCY DOWNLOADER"
+    )
+
+    print("=" * 78)
+
 
     print()
     print(
-        "Synology authentication:"
+        "Target:"
     )
+
     print(
-        "VM creates its OWN sharing_sid automatically."
+        "  EXP-B high-frequency runs only"
     )
 
-    # --------------------------------------------------------
-    # DOWNLOAD RUNS SEQUENTIALLY
-    # --------------------------------------------------------
 
-    for run in RUNS:
+    print()
+    print(
+        "Existing EXP-A / EXP-F:"
+    )
 
-        # Create fresh VM session.
-        create_fresh_session()
+    print(
+        "  LEFT UNTOUCHED ✓"
+    )
 
-        # Confirm actual file exists and get exact size.
-        expected_size = probe_file(run)
 
-        # Download / resume.
-        download_run(
-            run,
-            expected_size,
+    print()
+    print(
+        "Destination:"
+    )
+
+    print(
+        OUTPUT_DIR
+    )
+
+
+    print()
+    print(
+        "Automatic scan:"
+    )
+
+    print(
+        f"  Run-1 → Run-{MAX_RUN_TO_SCAN}"
+    )
+
+
+    print(
+        "  Stop after "
+        f"{CONSECUTIVE_MISSING_TO_STOP} "
+        "consecutive unavailable runs"
+    )
+
+
+    print()
+    print(
+        "Starting EXP-B discovery..."
+    )
+
+
+    completed = (
+        discover_and_download_exp_b()
+    )
+
+
+    # ========================================================
+    # EXP-B SUMMARY
+    # ========================================================
+
+    print()
+    print()
+    print("=" * 78)
+
+    print(
+        "EXP-B DOWNLOAD PROCESS COMPLETE"
+    )
+
+    print("=" * 78)
+
+
+    if completed:
+
+        print()
+        print(
+            "Valid EXP-B archives found:"
         )
 
-    # ========================================================
-    # SUMMARY
-    # ========================================================
 
-    print()
-    print()
-    print("=" * 76)
-    print("ALL SELECTED RUNS COMPLETE")
-    print("=" * 76)
+        for item, expected_size in completed:
 
-    total = 0
-
-    for run in RUNS:
-
-        filename = get_filename(run)
-        path = OUTPUT_DIR / filename
-
-        if path.exists():
-
-            size = path.stat().st_size
-            total += size
-
-            print(
-                f"{filename:<30}"
-                f"{gib(size):>8.2f} GiB"
+            path = (
+                OUTPUT_DIR
+                / item.filename
             )
 
-    print("-" * 76)
 
-    print(
-        f"{'TOTAL':<30}"
-        f"{gib(total):>8.2f} GiB"
-    )
+            if path.exists():
+
+                size = (
+                    path.stat().st_size
+                )
+
+                print(
+                    f"  Run-{item.run:<2} "
+                    f"{item.filename:<30} "
+                    f"{gib(size):>7.2f} GiB"
+                )
+
+
+    else:
+
+        print()
+        print(
+            "No valid EXP-B archives "
+            "were downloaded/found."
+        )
+
+
+    # ========================================================
+    # FULL LOCAL A/B/F SUMMARY
+    # ========================================================
+
+    print_local_dataset_summary()
+
 
     print()
-    print("Dataset:")
-    print(OUTPUT_DIR)
+    print(
+        "Dataset location:"
+    )
 
+    print(
+        OUTPUT_DIR
+    )
+
+
+# ============================================================
+# ENTRY POINT
+# ============================================================
 
 if __name__ == "__main__":
 
     try:
+
         main()
+
 
     except KeyboardInterrupt:
 
         print()
         print()
-        print("Stopped manually.")
+
         print(
-            "Partial .part file has been preserved."
+            "Stopped manually."
         )
 
         print(
-            "Run this script again to resume."
+            "Any valid .part file has "
+            "been preserved."
+        )
+
+        print(
+            "Run download.py again "
+            "to resume."
         )
 
         sys.exit(130)
+
 
     except Exception as error:
 
         print()
         print()
-        print("=" * 76)
-        print("ERROR")
-        print("=" * 76)
-        print(error)
+
+        print("=" * 78)
+
+        print(
+            "ERROR"
+        )
+
+        print("=" * 78)
+
+        print(
+            error
+        )
+
+        print()
+        print(
+            "Any valid .part file has "
+            "been preserved."
+        )
+
+        print(
+            "Run download.py again "
+            "after resolving the issue."
+        )
 
         sys.exit(1)
