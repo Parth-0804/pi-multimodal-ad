@@ -1,0 +1,69 @@
+schema_version: 1.0.0
+experiment_config:
+  schema_version: 1.0.0
+  study: phm2026_rtdetr_regression
+  seed: 20260814
+  output_root: runs/phm2026_rtdetr_regression
+  dataset_config: configs/datasets/phm2026.yaml
+  source_runs:
+    inventory:
+      run_id: 20260813T202043619114Z-ad7f9832
+      directory: runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832
+      artifacts:
+        tables/asset_inventory.parquet: 3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e
+        tables/archive_members.parquet: 01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d
+    model_dataset:
+      run_id: 20260814T013357354377Z-6b068cab
+      directory: runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab
+      artifacts:
+        tables/model_sample_manifest.parquet: 8cc50418016ce5fd492ae973c99549c538971a382b74db17f52c6aa9968b2144
+        tables/split_manifest.parquet: 6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359
+        reports/split_validation.json: 5d636c458701f609b3965a7711394e9355eaa22203a0ac8634d5e2d8bde6708e
+    target:
+      run_id: 20260814T012054997053Z-e195f6d9
+      directory: runs/phm2026_image_target/20260814T012054997053Z-e195f6d9
+      artifacts:
+        tables/run_damage_targets.parquet: b0e0116dc3df840d550aec25082b427cb056c0573f66f3c6ad0ccd843cc41277
+        tables/per_tooth_damage.parquet: de90a684d65656c29f1757534d0cd8f7c1c53d7298961867c54698019f838f29
+        reports/target_quality_report.json: 893b305272b97dfac78d39e6b3f7904e759148f8134025655ed875034c527a5c
+    naive:
+      run_id: 20260814T015914190145Z-4423f1fa
+      directory: runs/phm2026_evaluation/20260814T015914190145Z-4423f1fa
+      artifacts:
+        tables/baseline_metrics.parquet: 9f9c9a8bbbba5d23da7a3ae09d9dff094b6b6fd5809bfdf55eac51fe8bbd9539
+        tables/baseline_predictions.parquet: 4c9e44ee3161f6f4c5d2873d98d1661ef83af50cf502a5e682b4f2347bcefd84
+  model:
+    formulation: rtdetr_derived_frozen_encoder_scalar_regression
+    library: ultralytics
+    checkpoint_name: rtdetr-l.pt
+    checkpoint_url: https://github.com/ultralytics/assets/releases/download/v8.3.0/rtdetr-l.pt
+    checkpoint_sha256: 6de60b10d4bc566f00cda0f5b4d64afe4b66d48dc9695d2171effb7859d8e73f
+    checkpoint_size_bytes: 66511432
+    image_size: 640
+    feature_layers:
+    - 21
+    - 24
+    - 27
+    feature_dimension: 768
+    hidden_dimension: 128
+    dropout: 0.1
+    device: 0
+  training:
+    max_epochs: 30
+    patience: 5
+    batch_size: 32
+    learning_rate: 0.001
+    weight_decay: 0.0001
+    tiny_overfit_steps: 100
+    tiny_overfit_size: 8
+    num_workers: 0
+  storage_limits:
+    max_total_new_artifacts_bytes: 32212254720
+    minimum_free_bytes: 26843545600
+target_status: PASS_PROVISIONAL_FOR_ENGINEERING_BASELINE
+execution:
+  device: cuda:0
+  encoder_frozen: true
+  training_performed: true
+  test_used_for_tuning: false
+  starting_free_bytes: 79903797248

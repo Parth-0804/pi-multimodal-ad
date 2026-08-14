@@ -512,7 +512,14 @@ Save metrics, predictions, figures, and Markdown report under the RT-DETR experi
 
 # Epic 4 — PatchTST sensor baseline
 
-## P4.1 — Select the PatchTST regression/forecasting formulation
+## P4.1–P4.5 initial baseline completed (2026-08-14)
+
+The explicitly authorized initial sensor-only baseline is complete. Bounded LF extraction run `20260814T121146792755Z-4016432b` produced 7,124 traceable minute rows, 7,119 timestamp-verified sequence inputs, and 20 independent experiment/run samples. Canonical model run `20260814T121641338050Z-433d4154` used EXP-B train, EXP-A validation, and EXP-F test without random splitting. Professor package `20260814T122147349749Z-44877f9f` reports a retained negative result: raw-target EXP-F PatchTST MAE 1.011 pp (N=8), worse than training mean/median at 0.680 pp. Target version `phm2026_image_damage_v2` remains provisional. See `P4_PATCHTST_BASELINE_CHECKPOINT.md`.
+
+The prompts below remain the historical task specifications. Do not rerun or tune the initial baseline against EXP-F. Any complex PatchTST follow-up requires a separate authorization, expert target review, and pre-registered EXP-B/EXP-A-only choices.
+
+
+## P4.1 — Select the PatchTST regression/forecasting formulation — COMPLETE
 
 **Outcome:** A precise definition of sensor input, temporal horizon, and scalar output.
 
@@ -531,7 +538,7 @@ For each, specify selected raw/derived channels, input history duration, resampl
 Write an architecture decision record plus a tensor-flow table from HDF5 signals through synchronization, windowing, normalization, patching, Transformer encoder, and regression/forecast head. Choose the simplest scientifically valid baseline supported by evidence. Do not implement training. Report decision, evidence, changed file, and unresolved questions. Do not commit or push.
 ```
 
-## P4.2 — Implement sensor preprocessing and window construction
+## P4.2 — Implement sensor preprocessing and window construction — COMPLETE
 
 **Outcome:** Leakage-safe PatchTST inputs that preserve relevant temporal information.
 
@@ -555,7 +562,7 @@ Keep HDF5 paths and PHM channel aliases in PHM2026Adapter. The generic windowing
 Create deterministic plots comparing representative raw, resampled, normalized, and patched windows. Add synthetic tests for irregular timestamps, missing channels, NaN/Inf, insufficient history, boundary/horizon leakage, variable sample rates, and deterministic windows. Run a limited PHM smoke build. Report files, shapes, memory/runtime behavior, tests, and blockers. Do not train, commit, or push.
 ```
 
-## P4.3 — Implement the PatchTST dataset loader and model output contract
+## P4.3 — Implement the PatchTST dataset loader and model output contract — COMPLETE
 
 **Outcome:** A tested B x C x L input and approved regression/forecasting output.
 
@@ -573,7 +580,7 @@ Add tests for loader determinism, split isolation, output shape, finite forward 
 Report files, batch/model tensor shapes, parameter count, tests, dependency details, and blockers. Do not run full training, commit, or push.
 ```
 
-## P4.4 — Train a reproducible PatchTST baseline
+## P4.4 — Train a reproducible PatchTST baseline — COMPLETE
 
 **Outcome:** A traceable PHM sensor experiment with comparison against persistence.
 
@@ -591,7 +598,7 @@ During validation, compare against mean/median and persistence baselines using t
 Report commands, runtime, hardware, sample/window counts, best validation result, output files, warnings, and blockers. Do not commit or push.
 ```
 
-## P4.5 — Evaluate overall PatchTST performance and real-world validity
+## P4.5 — Evaluate overall PatchTST performance and real-world validity — COMPLETE
 
 **Outcome:** The professor can see actual model performance and whether it translates into a plausible maintenance use case.
 

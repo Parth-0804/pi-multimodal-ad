@@ -1,0 +1,283 @@
+{
+  "command": [
+    "scripts/build_rtdetr_pseudo_boxes.py"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_rtdetr_pseudo_boxes.yaml",
+    "sha256": "3fa0f794722a1216a1dc77c290b9a134bb899024213b51ed6d432c2695c94e42"
+  },
+  "git": {
+    "commit": "d3ce4808abfa8abb0aaad58d7b458defd0c7c5d0",
+    "dirty": true
+  },
+  "input_roots": [
+    "runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832",
+    "runs/phm2026_image_target/20260814T012054997053Z-e195f6d9",
+    "runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab",
+    "gtc-data-experiment"
+  ],
+  "output_root": "runs/phm2026_rtdetr_pseudo_boxes/20260814T040854991567Z-3fa0f794",
+  "packages": {
+    "Pillow": "12.3.0",
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.11.1",
+    "numpy": "2.4.6",
+    "opencv-python-headless": "5.0.0.93",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "tables/annotation_image_manifest.csv",
+      "role": "annotation_image_manifest",
+      "sha256": "5e5a0795cb8ecbb3237eab30a815d874d68512cb532f83b5336d5d18843b2fe4",
+      "size_bytes": 1220672
+    },
+    {
+      "path": "tables/annotation_image_manifest.parquet",
+      "role": "annotation_image_manifest",
+      "sha256": "2ad4251a856757426aa75c7e9785ca7fbcd70edd6c2ebfd98be00e34661ccb87",
+      "size_bytes": 586079
+    },
+    {
+      "path": "tables/annotation_manifest.csv",
+      "role": "annotation_manifest",
+      "sha256": "c46b98c2d79e592070891c4a95c2610723af8819df96d4a4d49885ee504bd435",
+      "size_bytes": 31563264
+    },
+    {
+      "path": "tables/annotation_manifest.parquet",
+      "role": "annotation_manifest",
+      "sha256": "42d43c2ed35026853a1eee54922e55ed6b93c1eae52cbe308b248f251e381641",
+      "size_bytes": 1567575
+    },
+    {
+      "path": "tables/component_decisions.csv",
+      "role": "component_decisions",
+      "sha256": "657e46a1a5f341dc8baf748ea886dac1a7984cb4247924783017e03d9d126fa6",
+      "size_bytes": 159248541
+    },
+    {
+      "path": "tables/component_decisions.parquet",
+      "role": "component_decisions",
+      "sha256": "d8fd4b042209fa58bd3a54f9153b15d711e31d653b6d4888c738f91cd4cba10b",
+      "size_bytes": 1720280
+    },
+    {
+      "path": "tables/human_review_queue.csv",
+      "role": "human_review_queue",
+      "sha256": "8a720177c90943ee46f473a7920274d78f6eb336b63d128b0663e2eb2f3dc718",
+      "size_bytes": 1233711
+    },
+    {
+      "path": "tables/human_review_queue.parquet",
+      "role": "human_review_queue",
+      "sha256": "931bd2f7d262b5f201388950e6006a0498358986c04099bc93d33603b568b2bb",
+      "size_bytes": 589489
+    },
+    {
+      "path": "tables/annotation_summary.csv",
+      "role": "annotation_summary",
+      "sha256": "551a77e70b19a63fda381bae4093fac65d431dcfcd6de6cf93f3e00eb53c1211",
+      "size_bytes": 1390
+    },
+    {
+      "path": "tables/annotation_summary.parquet",
+      "role": "annotation_summary",
+      "sha256": "87524716bc8695135c12f3b003f24cd13d57922467105fe8dfcaad8a7b94ed7d",
+      "size_bytes": 4753
+    },
+    {
+      "path": "tables/coco_annotations.json",
+      "role": "coco_annotations",
+      "sha256": "738627b858940550b1f73f78e6d59e4bc733e76a20853e043ae9bea7ea9ccd12",
+      "size_bytes": 8300521
+    },
+    {
+      "path": "config/ultralytics_dataset.yaml",
+      "role": "ultralytics_dataset_config",
+      "sha256": "7d92bf688b185dd7670b893e2e809d0a77d0def6a9b5e6c44f1258ef21779eb1",
+      "size_bytes": 172
+    },
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_config",
+      "sha256": "3aabea3347e60a029c0fbdfc83812abfc181370e3a4aca6094372de88b7a17da",
+      "size_bytes": 3160
+    },
+    {
+      "path": "manifests/inputs.json",
+      "role": "input_manifest",
+      "sha256": "c9555aff5a63e521652408f1a02ad005cb8cd657f7f8dae13f6f66716335f0c9",
+      "size_bytes": 3545
+    },
+    {
+      "path": "reports/annotation_quality.json",
+      "role": "annotation_quality",
+      "sha256": "dba902e14bda7f96fdd93288ce377e799f4cadfad7a699d5ef5328c1a77b0cc4",
+      "size_bytes": 454
+    },
+    {
+      "path": "reports/HUMAN_PSEUDO_BOX_REVIEW_GUIDE.md",
+      "role": "human_review_guide",
+      "sha256": "2cf8c4578873532191085e7d4e5375ad553924b9d191accde31cbf7b9125de00",
+      "size_bytes": 621
+    },
+    {
+      "path": "tables/plot_source_dataset_annotation_funnel.csv",
+      "role": "plot_source",
+      "sha256": "ad436793110a2162d3164b19100e1db40e802a797d1f1f24ea5e8bdd45c50cc0",
+      "size_bytes": 76
+    },
+    {
+      "path": "tables/plot_source_dataset_annotation_funnel.parquet",
+      "role": "plot_source",
+      "sha256": "9879675ab50b429be028875d479dba9c17efaab108ef0abf7e494a05ef84c9cb",
+      "size_bytes": 1788
+    },
+    {
+      "path": "figures/dataset_annotation_funnel.png",
+      "role": "figure",
+      "sha256": "6d645387829619f9902307153a82d57bb97b856808c3e57b0f1c667f117cabae",
+      "size_bytes": 98135
+    },
+    {
+      "path": "figures/dataset_annotation_funnel.svg",
+      "role": "figure",
+      "sha256": "87305415622b5842bdecaa77651c8bcb9779aeefc9dddd323e9b67f334a9b6c9",
+      "size_bytes": 37371
+    },
+    {
+      "path": "tables/plot_source_box_count_by_split_view_role.csv",
+      "role": "plot_source",
+      "sha256": "569f4c950e05686b71ba86005f45b44636f0560b001c3b4096a16192c656bc9b",
+      "size_bytes": 170
+    },
+    {
+      "path": "tables/plot_source_box_count_by_split_view_role.parquet",
+      "role": "plot_source",
+      "sha256": "bb12983d1a0a0a9cf7bdf1613649eecdbcb30403a6f249c06f1add9610f65e0b",
+      "size_bytes": 2380
+    },
+    {
+      "path": "figures/box_count_by_split_view_role.png",
+      "role": "figure",
+      "sha256": "741c2aeb656832382ae8fd978dc2c432ea62ad41f113ed7bb233cd47fbe3f3c8",
+      "size_bytes": 75808
+    },
+    {
+      "path": "figures/box_count_by_split_view_role.svg",
+      "role": "figure",
+      "sha256": "dde702a6a0188863b1d40f0411799ce99c4d385a2568d02fe7f8d2185c36abb4",
+      "size_bytes": 32284
+    },
+    {
+      "path": "tables/plot_source_box_area_distribution.csv",
+      "role": "plot_source",
+      "sha256": "3c8e961fabede9aaa18efc243d80613dbda8520a73594dd813b028dc7c180404",
+      "size_bytes": 2183801
+    },
+    {
+      "path": "tables/plot_source_box_area_distribution.parquet",
+      "role": "plot_source",
+      "sha256": "22de314b15a1c24190bdd3db91bac197212fb1b74f27e0fdc4e14d91ca8ae366",
+      "size_bytes": 296575
+    },
+    {
+      "path": "figures/box_area_distribution.png",
+      "role": "figure",
+      "sha256": "ff7615d79830d6cd94389acf1bb2dfe702495dfaaeb4f72a282aff5990e32da0",
+      "size_bytes": 97654
+    },
+    {
+      "path": "figures/box_area_distribution.svg",
+      "role": "figure",
+      "sha256": "bc922c50c8d8a3f5b6701961f9ebcdfa1a25d9a6a155e21cc43deb2d07db1c13",
+      "size_bytes": 55882
+    },
+    {
+      "path": "figures/annotation_contact_sheet.png",
+      "role": "annotation_contact_sheet",
+      "sha256": "ea2f48d78026f48ba3bc69ecd5ba454b6c759a1b105e26b65d966e63c5e31bf5",
+      "size_bytes": 991042
+    },
+    {
+      "path": "figures/annotation_contact_sheet.jpg",
+      "role": "annotation_contact_sheet",
+      "sha256": "33febaa24656514dce1f3dbf31cee442afa87c6439333c4e75b1dd077f5deaa9",
+      "size_bytes": 212969
+    },
+    {
+      "path": "tables/plot_source_annotation_contact_sheet.csv",
+      "role": "plot_source",
+      "sha256": "2f242cf4c921f25f9c9e19c447022eb4f022d8d746cbbfa681eddc92e265fd38",
+      "size_bytes": 929
+    },
+    {
+      "path": "tables/plot_source_annotation_contact_sheet.parquet",
+      "role": "plot_source",
+      "sha256": "14426c5f69486d3e3a6b7a9b1a2350376042f8ed1caecb780e02feb82a4cb492",
+      "size_bytes": 6116
+    },
+    {
+      "path": "manifests/materialized_cache.csv",
+      "role": "materialized_cache_manifest",
+      "sha256": "869827363e90a560aeb86a02d766409e4e9b11baacc0ff39a034418a75b0ea23",
+      "size_bytes": 353481
+    },
+    {
+      "path": "manifests/materialized_cache.parquet",
+      "role": "materialized_cache_manifest",
+      "sha256": "14f080a1c98d7ec21d3b9fc1fc83609ce2ca29d230c988a4834fd2456e7b5595",
+      "size_bytes": 266677
+    },
+    {
+      "path": "reports/pseudo_box_report.md",
+      "role": "pseudo_box_report",
+      "sha256": "aa40bff1f23cb31b4aa111e212b708a373d3fc979b0e79f695c6d5bf167858f0",
+      "size_bytes": 600
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260814T040854991567Z-3fa0f794",
+  "schema_version": "1.0.0",
+  "seed": 20260814,
+  "source_runs": [
+    {
+      "artifacts": {
+        "tables/archive_members.parquet": "01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d",
+        "tables/asset_inventory.parquet": "3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832",
+      "name": "inventory",
+      "run_id": "20260813T202043619114Z-ad7f9832"
+    },
+    {
+      "artifacts": {
+        "config/resolved_config.yaml": "872a54ee307f3b16274655632036b9d452ad9f0434e0a6a750d38f30f3f1f7b9",
+        "reports/target_quality_report.json": "893b305272b97dfac78d39e6b3f7904e759148f8134025655ed875034c527a5c",
+        "tables/image_manifest.parquet": "970eb991fb425f46c188658f4a4c28a2414d68aed27bb71e3ea53ee573667e0f",
+        "tables/per_tooth_damage.parquet": "de90a684d65656c29f1757534d0cd8f7c1c53d7298961867c54698019f838f29",
+        "tables/run_damage_targets.parquet": "b0e0116dc3df840d550aec25082b427cb056c0573f66f3c6ad0ccd843cc41277"
+      },
+      "directory": "runs/phm2026_image_target/20260814T012054997053Z-e195f6d9",
+      "name": "target",
+      "run_id": "20260814T012054997053Z-e195f6d9"
+    },
+    {
+      "artifacts": {
+        "reports/split_validation.json": "5d636c458701f609b3965a7711394e9355eaa22203a0ac8634d5e2d8bde6708e",
+        "tables/model_sample_manifest.parquet": "8cc50418016ce5fd492ae973c99549c538971a382b74db17f52c6aa9968b2144",
+        "tables/split_manifest.parquet": "6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359"
+      },
+      "directory": "runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab",
+      "name": "model_dataset",
+      "run_id": "20260814T013357354377Z-6b068cab"
+    }
+  ],
+  "study": "phm2026_rtdetr_pseudo_boxes",
+  "timestamp_utc": "2026-08-14T04:08:54.991567+00:00"
+}

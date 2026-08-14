@@ -1,0 +1,229 @@
+{
+  "command": [
+    "scripts/audit_target.py"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_target_audit.yaml",
+    "sha256": "170ed954d00fc987c3a51f11065796f94a615b7f0a819722a84f47074ed255c3"
+  },
+  "git": {
+    "commit": "d3ce4808abfa8abb0aaad58d7b458defd0c7c5d0",
+    "dirty": true
+  },
+  "input_roots": [
+    "runs/phm2026_dataset_description/20260813T212734652736Z-f7c665fd",
+    "runs/phm2026_dataset_description/20260813T215718624432Z-bd9395ad",
+    "runs/phm2026_dataset_description/20260813T223944047252Z-d6474ff4"
+  ],
+  "output_root": "runs/phm2026_target_audit/20260814T003646307262Z-170ed954",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.11.1",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "995c362d994aea85cd163feb0fd873de97131b6a0ef1964e87e1f9c309e7c25b",
+      "size_bytes": 9788
+    },
+    {
+      "path": "manifests/inputs.json",
+      "role": "input_manifest",
+      "sha256": "67ae0280d9e41585c1cafd805042e7340b6910322be4c8bd90910f1a43d19442",
+      "size_bytes": 3193
+    },
+    {
+      "path": "tables/target_audit.csv",
+      "role": "target_audit",
+      "sha256": "32c274a899092e99c90db6faab9aec480753967b8904d37601d717fbfa28675c",
+      "size_bytes": 12978
+    },
+    {
+      "path": "tables/candidate_target_comparison_matrix.csv",
+      "role": "candidate_target_comparison_matrix_source_csv",
+      "sha256": "cd127e58997439245289f0102b2e8998d2547491add58f763b7edf9495b2de01",
+      "size_bytes": 3619
+    },
+    {
+      "path": "tables/candidate_evidence_completeness.csv",
+      "role": "candidate_evidence_completeness_source_csv",
+      "sha256": "d132d9ae838bbd55c2273a6cec34deab6b40710b84d650cd386f5de118ad5776",
+      "size_bytes": 439
+    },
+    {
+      "path": "tables/candidate_missingness.csv",
+      "role": "candidate_missingness_source_csv",
+      "sha256": "81f811e6785e3d85a1c9fef87ddf5736a141070b95708ba2fc00be682f4a0194",
+      "size_bytes": 803
+    },
+    {
+      "path": "tables/candidate_inference_availability.csv",
+      "role": "candidate_inference_availability_source_csv",
+      "sha256": "8e688a295e455aa148be849e452f5eafc6074324c2fa3ae22e159295986be827",
+      "size_bytes": 485
+    },
+    {
+      "path": "tables/candidate_image_pairing_coverage.csv",
+      "role": "candidate_image_pairing_coverage_source_csv",
+      "sha256": "88878a14234e6a12a6ca172c9ccf00fa1a5ba22883ae82340fd30bbd51e50921",
+      "size_bytes": 814
+    },
+    {
+      "path": "tables/six_hour_interpretation_decision.csv",
+      "role": "six_hour_interpretation_decision_source_csv",
+      "sha256": "76042557e6495fe65f96899b98d1483ce4bc566ccf697d59b0bf780897b771df",
+      "size_bytes": 172
+    },
+    {
+      "path": "tables/artifact_source_index.csv",
+      "role": "artifact_source_index",
+      "sha256": "512dcf15fdb028e1edfb0de03fa277bef9514b651ac952854cc125e5607f122c",
+      "size_bytes": 841
+    },
+    {
+      "path": "reports/target_candidates.md",
+      "role": "target_candidates",
+      "sha256": "6e9772301246de25f46d66677c1c53d58b7c2381291ca2bac6f38bef04518b23",
+      "size_bytes": 3304
+    },
+    {
+      "path": "reports/target_definition.md",
+      "role": "target_definition",
+      "sha256": "f9f1d3d151628594d11df46627a39bca652e7669d2bb4c9eab5b688c7452b6d1",
+      "size_bytes": 1744
+    },
+    {
+      "path": "reports/target_figure_index.md",
+      "role": "target_figure_index",
+      "sha256": "a1fb1d836c00be6a24adfc7a34f2e365e8bb3e03ba767ef8494d06d63cb1e57d",
+      "size_bytes": 1299
+    },
+    {
+      "path": "reports/target_blockers.json",
+      "role": "target_blockers",
+      "sha256": "a3e9dc25d584a595f9a8b6abbce882d41272eeebe665682d76cf8b55a89c1af8",
+      "size_bytes": 1443
+    },
+    {
+      "path": "reports/target_audit_summary.json",
+      "role": "target_audit_summary",
+      "sha256": "0728213f1c19d0dac7508d4fc19620da4693c36337a5b7b730a0b62139db8104",
+      "size_bytes": 256
+    },
+    {
+      "path": "figures/candidate_target_comparison_matrix.png",
+      "role": "candidate_target_comparison_matrix_png",
+      "sha256": "1e39a934ff800cf7f604b3a39db79341c75d342a703efab659655b66e8480938",
+      "size_bytes": 308348
+    },
+    {
+      "path": "figures/candidate_target_comparison_matrix.svg",
+      "role": "candidate_target_comparison_matrix_svg",
+      "sha256": "fb8c5d1965525414368410cefb89dd1a7bd78a79a4cfe137eabcf0d655f4327c",
+      "size_bytes": 76234
+    },
+    {
+      "path": "figures/candidate_evidence_completeness.png",
+      "role": "candidate_evidence_completeness_png",
+      "sha256": "5fe99b1f9e20cd1637c6eddc448316e7744af43435791f65aa13a62f6acc6ee0",
+      "size_bytes": 127893
+    },
+    {
+      "path": "figures/candidate_evidence_completeness.svg",
+      "role": "candidate_evidence_completeness_svg",
+      "sha256": "38cc505f88542aeb64f611338ae369b427a2784a73cc23d1057dc1ba7384c1b8",
+      "size_bytes": 49086
+    },
+    {
+      "path": "figures/candidate_missingness.png",
+      "role": "candidate_missingness_png",
+      "sha256": "77b967f7406bb96a07f307a308021eb73863a88b0e5dea5fa2ce07f795cf8b5c",
+      "size_bytes": 296976
+    },
+    {
+      "path": "figures/candidate_missingness.svg",
+      "role": "candidate_missingness_svg",
+      "sha256": "00ea503201004e4a4f620211bf0ec5a59b9ac6dd1227a739b30d068bad06f28f",
+      "size_bytes": 75854
+    },
+    {
+      "path": "figures/candidate_inference_availability.png",
+      "role": "candidate_inference_availability_png",
+      "sha256": "f26649a3dafc7fffa4df5020330cabaa8d134cb484de07969b83a35606c54e6f",
+      "size_bytes": 156340
+    },
+    {
+      "path": "figures/candidate_inference_availability.svg",
+      "role": "candidate_inference_availability_svg",
+      "sha256": "f49c66721aa2e6a62196dc379ec29de8036be7abd2cc900a92ba4b6780c2aea4",
+      "size_bytes": 49339
+    },
+    {
+      "path": "figures/candidate_image_pairing_coverage.png",
+      "role": "candidate_image_pairing_coverage_png",
+      "sha256": "fb96c394c20f086ccf79482252f5c61e24528c113d1cb27d7c2a810b2b75099c",
+      "size_bytes": 275903
+    },
+    {
+      "path": "figures/candidate_image_pairing_coverage.svg",
+      "role": "candidate_image_pairing_coverage_svg",
+      "sha256": "17abc6da78518725ac5f2bc0b49bd00a5a3aab280070f7b6e2953b25197d8c49",
+      "size_bytes": 89369
+    },
+    {
+      "path": "figures/six_hour_interpretation_decision.png",
+      "role": "six_hour_interpretation_decision_png",
+      "sha256": "e26a0a46b8f92e914f34a3e945b7a88393fbac20e5a4f9e7521fa23c1b8862e6",
+      "size_bytes": 95193
+    },
+    {
+      "path": "figures/six_hour_interpretation_decision.svg",
+      "role": "six_hour_interpretation_decision_svg",
+      "sha256": "84bad846add9655af3277dd483ae09f882e22f2a835d13d1d30959834c783346",
+      "size_bytes": 40074
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260814T003646307262Z-170ed954",
+  "schema_version": "1.0.0",
+  "seed": 20260814,
+  "source_runs": [
+    {
+      "artifacts": {
+        "reports/sensor_summary.json": "1e3bb106e94ab873b5ed601fc76a767ad95e793b498bce680301457961df4654",
+        "tables/sensor_profile.parquet": "922693091a8be4558f1eb74e512ae8a85ea1fd7f368143d86cde02de9d430322"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T212734652736Z-f7c665fd",
+      "name": "sensor_profile",
+      "run_id": "20260813T212734652736Z-f7c665fd"
+    },
+    {
+      "artifacts": {
+        "reports/image_summary.json": "d9f6807b34b19a68383f934727eefdaaeefe5fc39415f1c3b4593d7c19174649",
+        "tables/image_profile.parquet": "c4b1f68dd428be558bbe433574ed2ac7bacd943d0e58afc020e5673818ec55cc"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T215718624432Z-bd9395ad",
+      "name": "image_profile",
+      "run_id": "20260813T215718624432Z-bd9395ad"
+    },
+    {
+      "artifacts": {
+        "reports/alignment_blockers.json": "f774ecea6dc00129561092843ab188570590d6b7261e38ca49df896b9b9d3341",
+        "reports/alignment_summary.md": "1fcb4920d8b63d5799342132e1be721d51dfde1da8f2973aba9eced1d8aa19b6",
+        "tables/candidate_targets.parquet": "dd23be0f705d60152136ed2877dfde867978c40cf7bec6cf4b356b08e6a8d0e8"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T223944047252Z-d6474ff4",
+      "name": "alignment_audit",
+      "run_id": "20260813T223944047252Z-d6474ff4"
+    }
+  ],
+  "study": "phm2026_target_audit",
+  "timestamp_utc": "2026-08-14T00:36:46.307262+00:00"
+}

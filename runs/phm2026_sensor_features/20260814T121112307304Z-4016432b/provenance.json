@@ -1,0 +1,187 @@
+{
+  "command": [
+    "scripts/build_sensor_features.py",
+    "--config",
+    "configs/experiments/phm2026_sensor_features.yaml"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_sensor_features.yaml",
+    "sha256": "4016432b3d5fb1013a0e0384784cfbc76530a00d78c79bb63df8ccfeced34b93"
+  },
+  "git": {
+    "commit": "1b97d018343837be5b3fbf78cfbb5ef11a310677",
+    "dirty": true
+  },
+  "input_roots": [
+    "gtc-data-experiment"
+  ],
+  "output_root": "runs/phm2026_sensor_features/20260814T121112307304Z-4016432b",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "h5py": "3.16.0",
+    "matplotlib": "3.11.1",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "9f72ec400099316353875d35a22053146ea3c0c47f09a05fc116387313b8935c",
+      "size_bytes": 3005
+    },
+    {
+      "path": "manifests/inputs.json",
+      "role": "input_manifest",
+      "sha256": "9151cbf4f44ed84592e1c65d529a833f37a1219d05cffa7af2f8a66972418d9c",
+      "size_bytes": 2163
+    },
+    {
+      "path": "tables/minute_feature_table.csv",
+      "role": "minute_feature_table",
+      "sha256": "b560462d86b0a08308943ba1383a582e3e5e78355c009e6031ab95b5de6913a4",
+      "size_bytes": 641215
+    },
+    {
+      "path": "tables/minute_feature_table.parquet",
+      "role": "minute_feature_table",
+      "sha256": "02f877836c10beb27f373717b0b47888c181a00c57fb09c253259050bae68730",
+      "size_bytes": 277794
+    },
+    {
+      "path": "tables/sensor_run_sequences.csv",
+      "role": "sensor_run_sequences",
+      "sha256": "b077928fe65bcc5e23badf0ba605c4c301865a993e92487824964d126acf65a3",
+      "size_bytes": 32118
+    },
+    {
+      "path": "tables/sensor_run_sequences.parquet",
+      "role": "sensor_run_sequences",
+      "sha256": "556fd7929bbc0fe31f804a1edb8e1698675b3fe7d32d096dba6c5aa565a8612c",
+      "size_bytes": 49920
+    },
+    {
+      "path": "tables/channel_evidence.csv",
+      "role": "channel_evidence",
+      "sha256": "86a1d22e87bd2b29b21a1a283c0f9344447d9b7fe6bb1871df16ac7200a0ba21",
+      "size_bytes": 594162
+    },
+    {
+      "path": "tables/channel_evidence.parquet",
+      "role": "channel_evidence",
+      "sha256": "8e93964a763655b5739dead96ba1a016bf25c715ab4e717208aeea624455f605",
+      "size_bytes": 33626
+    },
+    {
+      "path": "tables/channel_availability.csv",
+      "role": "channel_availability",
+      "sha256": "edd59cd901e652e877a8c4d688d027a603afa8be8f63b42b33a88cdb106a330e",
+      "size_bytes": 809
+    },
+    {
+      "path": "tables/channel_availability.parquet",
+      "role": "channel_availability",
+      "sha256": "74f00312fe99818bfd501916615e7aabbf229229ab4d0c58878b8b40df4177cb",
+      "size_bytes": 5231
+    },
+    {
+      "path": "reports/feature_schema.json",
+      "role": "feature_schema",
+      "sha256": "5a78b0a85bf1f7a95f71d13e3cdd55cda0e3de49d5f6fa9cb0ee40fb2e009701",
+      "size_bytes": 1866
+    },
+    {
+      "path": "reports/warnings.json",
+      "role": "warnings",
+      "sha256": "d36d93cbbb9e7940fed6e33774b815f06bbf3e8b0a425d728119e1b8c16a1248",
+      "size_bytes": 488
+    },
+    {
+      "path": "reports/sensor_feature_summary.json",
+      "role": "sensor_feature_summary",
+      "sha256": "f2baa0f21ebf65a8d9a1b8d6d6023691dd3719f9146663ba9355debdff2d6f22",
+      "size_bytes": 815
+    },
+    {
+      "path": "reports/raw_source_invariance.json",
+      "role": "raw_source_invariance",
+      "sha256": "0195a30a401ecb2bd19e16607b78117cb4db98956883aff017d8a805e34c20c1",
+      "size_bytes": 453
+    },
+    {
+      "path": "tables/plot_source_sequence_length_by_run.csv",
+      "role": "plot_source",
+      "sha256": "05266cf00803898e567abbdd1f89926b0f596332fe1baac9b002b0bc2ae23d1f",
+      "size_bytes": 104
+    },
+    {
+      "path": "figures/sequence_length_by_run.png",
+      "role": "figure",
+      "sha256": "696c3a213973e599e816e4180d24f4707dcaa91e9688a5377339799f3bf211cd",
+      "size_bytes": 81363
+    },
+    {
+      "path": "figures/sequence_length_by_run.svg",
+      "role": "figure",
+      "sha256": "0da864a1bd4d90e4639692865f3be432101b67ce4e2a9a497b62926f6cc82e50",
+      "size_bytes": 30830
+    },
+    {
+      "path": "tables/plot_source_channel_availability_by_run.csv",
+      "role": "plot_source",
+      "sha256": "b2ec701ecea4bb4c6f58ad9e0612efc696184c564d5aee7fb4a3eb9169114c9b",
+      "size_bytes": 273
+    },
+    {
+      "path": "figures/channel_availability_by_run.png",
+      "role": "figure",
+      "sha256": "95bbf3b3055d614cbc863fd534cde322ba46d9cc49142c56e2814f5b2f5a45b5",
+      "size_bytes": 110115
+    },
+    {
+      "path": "figures/channel_availability_by_run.svg",
+      "role": "figure",
+      "sha256": "b49d80f5ecfcf67ae43c8284ffb0bc77cf10cd979121914cb8a226d9dcff21f4",
+      "size_bytes": 40009
+    },
+    {
+      "path": "reports/sensor_feature_report.md",
+      "role": "feature_report",
+      "sha256": "2479244cb24ef5847985c2d0bf0993612b795fdef57e2083a6651f8280e4a29d",
+      "size_bytes": 747
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260814T121112307304Z-4016432b",
+  "schema_version": "1.0.0",
+  "seed": 20260814,
+  "source_runs": [
+    {
+      "artifact_path": "tables/archive_members.parquet",
+      "artifact_sha256": "01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d",
+      "artifact_size_bytes": 812078,
+      "source_run_directory": "runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832",
+      "source_run_id": "20260813T202043619114Z-ad7f9832"
+    },
+    {
+      "artifact_path": "tables/run_damage_targets.parquet",
+      "artifact_sha256": "b0e0116dc3df840d550aec25082b427cb056c0573f66f3c6ad0ccd843cc41277",
+      "artifact_size_bytes": 14140,
+      "source_run_directory": "runs/phm2026_image_target/20260814T012054997053Z-e195f6d9",
+      "source_run_id": "20260814T012054997053Z-e195f6d9"
+    },
+    {
+      "artifact_path": "tables/split_manifest.parquet",
+      "artifact_sha256": "6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359",
+      "artifact_size_bytes": 74137,
+      "source_run_directory": "runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab",
+      "source_run_id": "20260814T013357354377Z-6b068cab"
+    }
+  ],
+  "study": "phm2026_sensor_features",
+  "timestamp_utc": "2026-08-14T12:11:12.307304+00:00"
+}

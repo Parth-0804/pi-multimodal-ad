@@ -1,0 +1,124 @@
+schema_version: 1.0.0
+experiment_config:
+  schema_version: 1.0.0
+  study: phm2026_patchtst_baseline
+  seed: 20260814
+  output_root: runs/phm2026_patchtst_baseline
+  source_runs:
+    sensor_features:
+      run_id: 20260814T121146792755Z-4016432b
+      directory: runs/phm2026_sensor_features/20260814T121146792755Z-4016432b
+      artifacts:
+        tables/minute_feature_table.parquet: 74a1170ff8facd81e38459e84a9396f5c828e1934325dea8a00836508f6de7a0
+        tables/sensor_run_sequences.parquet: eee61b0628c6bb0984d6c68141f97408ec4523a56e427ea20cbf72e4e53069e8
+        reports/feature_schema.json: 5a78b0a85bf1f7a95f71d13e3cdd55cda0e3de49d5f6fa9cb0ee40fb2e009701
+    target:
+      run_id: 20260814T012054997053Z-e195f6d9
+      directory: runs/phm2026_image_target/20260814T012054997053Z-e195f6d9
+      artifacts:
+        tables/run_damage_targets.parquet: b0e0116dc3df840d550aec25082b427cb056c0573f66f3c6ad0ccd843cc41277
+    model_dataset:
+      run_id: 20260814T013357354377Z-6b068cab
+      directory: runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab
+      artifacts:
+        tables/split_manifest.parquet: 6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359
+        reports/split_validation.json: 5d636c458701f609b3965a7711394e9355eaa22203a0ac8634d5e2d8bde6708e
+    image_regression:
+      run_id: 20260814T020338751021Z-d0f225c8
+      directory: runs/phm2026_rtdetr_regression/20260814T020338751021Z-d0f225c8
+      artifacts:
+        tables/run_predictions.parquet: b9c0e93d9a7fd65af944a677dc1a286ef041e833e725425095a2d0e086c8b42e
+  feature_names:
+  - rpm
+  - torque
+  - temperature
+  - axial_rms
+  - radial_rms
+  - fm4
+  - na4
+  - m6a
+  - alr
+  channel_statistics:
+  - mean
+  - std
+  - median
+  - min
+  - max
+  - last
+  - slope_per_sample
+  include_channel_missingness_masks: true
+  target: &id001
+    primary: raw_top3_mean_pct
+    secondary: causal_monotonic_top3_mean_pct
+    definition_version: phm2026_image_damage_v2
+    status: provisional_pending_human_review
+    unit: percentage_points_visible_flank_candidate_area
+    task: current_end_of_run_damage_state_estimation
+  split:
+    train: EXP-B
+    validation: EXP-A
+    test: EXP-F
+    random_split_used: false
+  model:
+    input_channels: 72
+    patch_length: 16
+    patch_stride: 8
+    d_model: 32
+    n_heads: 4
+    encoder_layers: 2
+    feedforward_dimension: 64
+    dropout: 0.1
+    head_hidden_dimension: 64
+  training:
+    device: cuda:0
+    max_epochs: 80
+    patience: 10
+    batch_size: 4
+    learning_rate: 0.001
+    weight_decay: 0.0001
+    tiny_overfit_steps: 80
+  ridge:
+    alpha_candidates:
+    - 0.01
+    - 0.1
+    - 1.0
+    - 10.0
+    - 100.0
+  storage_limits:
+    minimum_free_bytes: 53687091200
+    maximum_new_artifacts_bytes: 536870912
+execution:
+  sequence_count: 20
+  split_counts:
+    test: 8
+    train: 7
+    validation: 5
+  feature_count: 72
+  sequence_lengths:
+    EXP-A/run-1: 372
+    EXP-A/run-2: 372
+    EXP-A/run-3: 371
+    EXP-A/run-4: 341
+    EXP-A/run-5: 377
+    EXP-B/run-1: 372
+    EXP-B/run-2: 372
+    EXP-B/run-3: 371
+    EXP-B/run-4: 372
+    EXP-B/run-5: 371
+    EXP-B/run-6: 372
+    EXP-B/run-7: 145
+    EXP-F/run-1: 373
+    EXP-F/run-2: 443
+    EXP-F/run-3: 372
+    EXP-F/run-4: 526
+    EXP-F/run-5: 381
+    EXP-F/run-6: 371
+    EXP-F/run-7: 73
+    EXP-F/run-8: 372
+  device: cuda:0
+  free_bytes: 75278553088
+  target: *id001
+  would_write: true
+  test_used_for_tuning: false
+model_device: cuda:0
+test_evaluated_after_validation_selection: true

@@ -1,0 +1,97 @@
+schema_version: 1.0.0
+experiment_config:
+  schema_version: 1.0.0
+  study: phm2026_sensor_features
+  seed: 20260814
+  output_root: runs/phm2026_sensor_features
+  dataset_config: configs/datasets/phm2026.yaml
+  source_runs:
+    inventory:
+      run_id: 20260813T202043619114Z-ad7f9832
+      directory: runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832
+      artifacts:
+        tables/archive_members.parquet: 01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d
+        tables/asset_inventory.parquet: 3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e
+    target:
+      run_id: 20260814T012054997053Z-e195f6d9
+      directory: runs/phm2026_image_target/20260814T012054997053Z-e195f6d9
+      artifacts:
+        tables/run_damage_targets.parquet: b0e0116dc3df840d550aec25082b427cb056c0573f66f3c6ad0ccd843cc41277
+    model_dataset:
+      run_id: 20260814T013357354377Z-6b068cab
+      directory: runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab
+      artifacts:
+        tables/sensor_file_manifest.parquet: 654fe686104a92c0e16a65335b6d73168f51e4a137c751e2610e6340d8bff839
+        tables/sensor_run_manifest.parquet: 87adb4874fe38c5be367b3caa0f6501737f5d3b1764746f107c86c76f2af1713
+        tables/split_manifest.parquet: 6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359
+  channels:
+  - name: rpm
+    hdf5_path: /Context/PAU Speed
+    role: operating_context
+    expected_unit: null
+  - name: torque
+    hdf5_path: /Context/PAU Torque
+    role: operating_context
+    expected_unit: null
+  - name: temperature
+    hdf5_path: /Context/Temperature
+    role: operating_context
+    expected_unit: null
+  - name: axial_rms
+    hdf5_path: /Context/Accel1 RMS
+    role: organizer_low_frequency_rms
+    expected_unit: null
+  - name: radial_rms
+    hdf5_path: /Context/Accel2 RMS
+    role: organizer_low_frequency_rms
+    expected_unit: null
+  - name: fm4
+    hdf5_path: /CI/FM4
+    role: condition_indicator
+    expected_unit: null
+  - name: na4
+    hdf5_path: /CI/NA4
+    role: condition_indicator
+    expected_unit: null
+  - name: m6a
+    hdf5_path: /CI/M6A
+    role: condition_indicator
+    expected_unit: null
+  - name: alr
+    hdf5_path: /CI/ALR
+    role: condition_indicator
+    expected_unit: null
+  split_by_experiment:
+    EXP-B: train
+    EXP-A: validation
+    EXP-F: test
+  extraction:
+    max_member_bytes: 16777216
+    max_values_per_channel: 100000
+    timestamp_attribute: wf_start_time
+    source_modality: low_frequency
+    separate_condition_indicator_archive_used: false
+    raw_high_frequency_used: false
+  storage_limits:
+    minimum_free_bytes: 53687091200
+    maximum_new_artifacts_bytes: 536870912
+dataset_config_sha256: 9a63e46fec0156567b4d09f1c4d2a57dc23dd1e54edc8014b1ac843c576c83a9
+execution:
+  container_count: 20
+  experiments:
+  - EXP-A
+  - EXP-B
+  - EXP-F
+  channels:
+  - rpm
+  - torque
+  - temperature
+  - axial_rms
+  - radial_rms
+  - fm4
+  - na4
+  - m6a
+  - alr
+  raw_high_frequency_used: false
+  would_write: true
+  free_bytes: 75306831872

@@ -37,4 +37,4 @@
 
 Current gate and organizer-corrected target semantics live in `docs/planning/PROJECT_STATE.md`. Missing organizer labels alone are not a blocker: the challenge requires a versioned image-derived target. Stop downstream work if that measurement fails its scientific/provisional gate.
 
-R4 pseudo-box, genuine-detector, and multitask runs are complete. Their labels and metrics remain provisional heuristic agreement, not physical-spall truth. Do not retune on EXP-F or begin PatchTST/sensor/fusion work without a new explicit authorization; the next scientific gate is expert review of the versioned masks, boxes, and tooth values.
+R4 image runs and the initial P4.1–P4.5 sensor-only PatchTST baseline are complete. All targets and pseudo-box metrics remain provisional rather than physical-spall truth. The canonical PatchTST did not beat constant baselines on EXP-F; never retune it against EXP-F. The next gate is expert target review plus separately authorized, pre-registered train/validation-only decisions before complex PatchTST or fusion.

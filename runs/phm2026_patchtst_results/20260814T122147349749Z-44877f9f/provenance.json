@@ -1,0 +1,451 @@
+{
+  "command": [
+    "scripts/generate_patchtst_results.py",
+    "--config",
+    "configs/experiments/phm2026_patchtst_results.yaml"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_patchtst_results.yaml",
+    "sha256": "44877f9fb8768f5713f6b0c85e75673208c760af7956e93f4b609bbb49da6b66"
+  },
+  "git": {
+    "commit": "1b97d018343837be5b3fbf78cfbb5ef11a310677",
+    "dirty": true
+  },
+  "input_roots": [],
+  "output_root": "runs/phm2026_patchtst_results/20260814T122147349749Z-44877f9f",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.11.1",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0",
+    "scipy": "1.18.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "1bd69b6162a93168270b12e7198a7234f1c07ef575184bad1cbdb0d8523c0f62",
+      "size_bytes": 2439
+    },
+    {
+      "path": "manifests/inputs.json",
+      "role": "input_manifest",
+      "sha256": "0eae4e1553b34fcc1a4556482c4602e1092879329bc40ae027d16ec3c06eb9de",
+      "size_bytes": 3929
+    },
+    {
+      "path": "tables/run_level_predictions.csv",
+      "role": "run_level_predictions",
+      "sha256": "eaad980a1e50282b7c7e23b59405b13dcf193a70685656b68304831fee57778f",
+      "size_bytes": 24925
+    },
+    {
+      "path": "tables/run_level_predictions.parquet",
+      "role": "run_level_predictions",
+      "sha256": "2a76aecc5c073282c4cfaf9782a6f3e6a56511b40d5508258a54db3e8a6f3707",
+      "size_bytes": 11964
+    },
+    {
+      "path": "tables/run_level_metrics_with_intervals.csv",
+      "role": "run_level_metrics_with_intervals",
+      "sha256": "39e03461b9d86684565c757875b3949f9791bd0a981a54c4bbab3b9298a99779",
+      "size_bytes": 11676
+    },
+    {
+      "path": "tables/run_level_metrics_with_intervals.parquet",
+      "role": "run_level_metrics_with_intervals",
+      "sha256": "9538ab2001b825e6595bf8b9379d170b5b389c4d4f56f54f37278d634c828d91",
+      "size_bytes": 18203
+    },
+    {
+      "path": "tables/matching_modality_comparison.csv",
+      "role": "matching_modality_comparison",
+      "sha256": "c0069f753def9b6d346f0e7c085a4e5b6ed7fde051c819f4a6c633846b1b7d40",
+      "size_bytes": 2677
+    },
+    {
+      "path": "tables/matching_modality_comparison.parquet",
+      "role": "matching_modality_comparison",
+      "sha256": "757cf5505160f1e0e7c181f6fb41a163d7df411274253acca83d8c173021f1f1",
+      "size_bytes": 16900
+    },
+    {
+      "path": "tables/sensor_run_sequences.csv",
+      "role": "sensor_run_sequences",
+      "sha256": "22cb28c90a865b65cd724670c206cf9685439753cfa9a55ab963b927f458993c",
+      "size_bytes": 600220
+    },
+    {
+      "path": "tables/sensor_run_sequences.parquet",
+      "role": "sensor_run_sequences",
+      "sha256": "eee61b0628c6bb0984d6c68141f97408ec4523a56e427ea20cbf72e4e53069e8",
+      "size_bytes": 483929
+    },
+    {
+      "path": "tables/channel_availability.csv",
+      "role": "channel_availability",
+      "sha256": "afa8f3445f67fa3905d5acdc07647200ac2cf5859e0ad6500a9c147a5fbcd219",
+      "size_bytes": 902
+    },
+    {
+      "path": "tables/channel_availability.parquet",
+      "role": "channel_availability",
+      "sha256": "d992cdd583bfc4bfb94f36f4e0ff8fca5344beea6b7434ff70d124b7c164c5cf",
+      "size_bytes": 5231
+    },
+    {
+      "path": "tables/plot_source_sensor_dataset_funnel.csv",
+      "role": "plot_source",
+      "sha256": "9cc294b8482d37aaf5bebdf1cb436b5bce0e9ca8650a33c3597b3d6dc0ba4271",
+      "size_bytes": 172
+    },
+    {
+      "path": "figures/sensor_dataset_funnel.png",
+      "role": "figure",
+      "sha256": "61dab8e0124035757adace7bbc0812dcebbb33a32302083c25f203d08f516fbc",
+      "size_bytes": 111820
+    },
+    {
+      "path": "figures/sensor_dataset_funnel.svg",
+      "role": "figure",
+      "sha256": "36466e316b49f3e2cf3a1fb13894d043f143876826a82540bc2ca61c71361c4f",
+      "size_bytes": 45672
+    },
+    {
+      "path": "tables/plot_source_minute_records_per_run.csv",
+      "role": "plot_source",
+      "sha256": "54b5325577f67a80076574fe2667b5ef6ff098c4edc668766e6e24b79b513dcf",
+      "size_bytes": 605
+    },
+    {
+      "path": "figures/minute_records_per_run.png",
+      "role": "figure",
+      "sha256": "7e04140bda5aee68335384ec956180444a1548c14c80614e64e961638e417847",
+      "size_bytes": 136610
+    },
+    {
+      "path": "figures/minute_records_per_run.svg",
+      "role": "figure",
+      "sha256": "117c20c521d0b18bb69a57799d6c17291e800b52de8fb08117781b0afe7e23c9",
+      "size_bytes": 53454
+    },
+    {
+      "path": "tables/plot_source_run_duration_distribution.csv",
+      "role": "plot_source",
+      "sha256": "1e7c16e2e3c2c7db530f5fc47a3e99a528d76c403665d5ac2fd88e96b09fbf06",
+      "size_bytes": 706
+    },
+    {
+      "path": "figures/run_duration_distribution.png",
+      "role": "figure",
+      "sha256": "b0a89180f0385ad6f6268b961a2a249390e8f02ddc225eaca11d0597d6e0f58b",
+      "size_bytes": 73224
+    },
+    {
+      "path": "figures/run_duration_distribution.svg",
+      "role": "figure",
+      "sha256": "02086f75aea9aa7a04b08ee0ca78c2fb9e67088f0ea1a128c603188426ea11d9",
+      "size_bytes": 36382
+    },
+    {
+      "path": "tables/plot_source_channel_availability_heatmap.csv",
+      "role": "plot_source",
+      "sha256": "1c04747ca741cf67c19a35af7be323ebaf18cb3be0614ac2a38398fe64a5ea0d",
+      "size_bytes": 4467
+    },
+    {
+      "path": "figures/channel_availability_heatmap.png",
+      "role": "figure",
+      "sha256": "9f1fdcebb8ec194db7dfaf53240703d72234b27da0f186d0b32cc37a9e66cda9",
+      "size_bytes": 186645
+    },
+    {
+      "path": "figures/channel_availability_heatmap.svg",
+      "role": "figure",
+      "sha256": "c17c60fb66a5eacd6836cb1908e5b29577dae14b0311e92dd11ea979e3515429",
+      "size_bytes": 62295
+    },
+    {
+      "path": "tables/plot_source_example_normalized_sensor_sequence.csv",
+      "role": "plot_source",
+      "sha256": "6bf9448c46cbc520b94769b6b986b01a5c66973f3f6e8c6da05865611ed9d5cd",
+      "size_bytes": 96559
+    },
+    {
+      "path": "figures/example_normalized_sensor_sequence.png",
+      "role": "figure",
+      "sha256": "c7bac4402b3572a9db481ebab16309d8db85f04232add95ed2c702081c3dcb8b",
+      "size_bytes": 182034
+    },
+    {
+      "path": "figures/example_normalized_sensor_sequence.svg",
+      "role": "figure",
+      "sha256": "1c0a6888c6707f02a7f0f652c79499e38f9bf825ee46b7bde1bfb93064a98baa",
+      "size_bytes": 58081
+    },
+    {
+      "path": "tables/plot_source_target_distribution_by_split.csv",
+      "role": "plot_source",
+      "sha256": "20f08160f841ae7a2f6917d0cf9f99b999842040fb846b21f3eed1342b3397bf",
+      "size_bytes": 1086
+    },
+    {
+      "path": "figures/target_distribution_by_split.png",
+      "role": "figure",
+      "sha256": "c59ca1e602d092c52009a56149cff775f6493caf1614415ca1ba1c4603e3a59f",
+      "size_bytes": 103873
+    },
+    {
+      "path": "figures/target_distribution_by_split.svg",
+      "role": "figure",
+      "sha256": "a415549edf5a62c6ce25d028504dea98c0de842849d775b3803b4e0679e0d81b",
+      "size_bytes": 35469
+    },
+    {
+      "path": "tables/plot_source_patchtst_architecture_tensor_shapes.csv",
+      "role": "plot_source",
+      "sha256": "99aa56368e04b970d75a17685647ecd786e45f5ec8733a8f469a82d8b12422f7",
+      "size_bytes": 299
+    },
+    {
+      "path": "figures/patchtst_architecture_tensor_shapes.png",
+      "role": "figure",
+      "sha256": "d67b9d9ae3cae42cb295a2da759b1ead4176f37034542440a6de0828c54b3438",
+      "size_bytes": 52330
+    },
+    {
+      "path": "figures/patchtst_architecture_tensor_shapes.svg",
+      "role": "figure",
+      "sha256": "e163ce8f7a0d9f3693e820fe06b86ae21840c205c79cec7805642b248b30840e",
+      "size_bytes": 36660
+    },
+    {
+      "path": "tables/plot_source_training_validation_loss.csv",
+      "role": "plot_source",
+      "sha256": "62ff1b0c45d3d99bd8b910e4486d025935073e48afb11e0ce796eb5579a530f5",
+      "size_bytes": 918
+    },
+    {
+      "path": "figures/training_validation_loss.png",
+      "role": "figure",
+      "sha256": "d3ec3f356ef9e74f0bf200ec792d9715384a348d9fdcdc0070642a039738238d",
+      "size_bytes": 155743
+    },
+    {
+      "path": "figures/training_validation_loss.svg",
+      "role": "figure",
+      "sha256": "6a5796e0d51a3c2bf474c6c712967c951ee477e209ac138cc76c465b11457063",
+      "size_bytes": 35234
+    },
+    {
+      "path": "tables/plot_source_prediction_vs_target_scatter.csv",
+      "role": "plot_source",
+      "sha256": "d83a430905f64657bd941bbc2285a55c525446aecd3087054d4734761326ce7d",
+      "size_bytes": 2757
+    },
+    {
+      "path": "figures/prediction_vs_target_scatter.png",
+      "role": "figure",
+      "sha256": "22413b75fd15952c964351a29ae0369587d6888e7077ca165f98a311e4d790c8",
+      "size_bytes": 133645
+    },
+    {
+      "path": "figures/prediction_vs_target_scatter.svg",
+      "role": "figure",
+      "sha256": "c7eb335782e39857150978297257d706ec6ccc96f8bc3805c9abd9df9afb9bc6",
+      "size_bytes": 35178
+    },
+    {
+      "path": "tables/plot_source_residual_vs_prediction.csv",
+      "role": "plot_source",
+      "sha256": "78ed4bafba827dfc6c13b39af7fffc95202dee8f3023ce056e64536596501be8",
+      "size_bytes": 2922
+    },
+    {
+      "path": "figures/residual_vs_prediction.png",
+      "role": "figure",
+      "sha256": "2f6c082dd9b9791cc5821c972de48020fc63e127f390a11551c71c4e44f43115",
+      "size_bytes": 94255
+    },
+    {
+      "path": "figures/residual_vs_prediction.svg",
+      "role": "figure",
+      "sha256": "261765ef27f30ddb946e3115b4299d8975cea24e2ada7692351353dbe0be821d",
+      "size_bytes": 36400
+    },
+    {
+      "path": "tables/plot_source_exp_f_target_prediction_trajectory.csv",
+      "role": "plot_source",
+      "sha256": "72ec1d3998b2dae2bf796a9496fec2d4ee7ffedbeb4df21f5dff2c9b043b51b4",
+      "size_bytes": 5859
+    },
+    {
+      "path": "figures/exp_f_target_prediction_trajectory.png",
+      "role": "figure",
+      "sha256": "f10aaceec8cabd1505c7e5ba7cc04ba002d87588e5bdeee3821cc815a3fe15d7",
+      "size_bytes": 166023
+    },
+    {
+      "path": "figures/exp_f_target_prediction_trajectory.svg",
+      "role": "figure",
+      "sha256": "6de811fd364534d00169f7e2cc6539d582bd3e5552a6e6a1ba341df1ab17ec84",
+      "size_bytes": 37387
+    },
+    {
+      "path": "tables/plot_source_sensor_baseline_comparison.csv",
+      "role": "plot_source",
+      "sha256": "beb916c83ec5d14db8fa70b79d71853670df649bfffa01abc24275db404dc3c6",
+      "size_bytes": 287
+    },
+    {
+      "path": "figures/sensor_baseline_comparison.png",
+      "role": "figure",
+      "sha256": "6a026ca27755585db316b6d5fce4cf044d9e25b0eb3b4f1571596008eb63d5ad",
+      "size_bytes": 137978
+    },
+    {
+      "path": "figures/sensor_baseline_comparison.svg",
+      "role": "figure",
+      "sha256": "385e7cf942941fb543fc5dcb842100fd5719166b2e54ad494a50d7883bfe95cb",
+      "size_bytes": 38517
+    },
+    {
+      "path": "tables/plot_source_image_rtdetr_vs_sensor_patchtst.csv",
+      "role": "plot_source",
+      "sha256": "568b8ccfa6e33608be33724b864f6443afec549f253a460d0d1e832286e596bf",
+      "size_bytes": 242
+    },
+    {
+      "path": "figures/image_rtdetr_vs_sensor_patchtst.png",
+      "role": "figure",
+      "sha256": "437d4fee833fb6a34e46b095ddafb897b8f537c40abba3fb4bd7f98c7ffe55a3",
+      "size_bytes": 126491
+    },
+    {
+      "path": "figures/image_rtdetr_vs_sensor_patchtst.svg",
+      "role": "figure",
+      "sha256": "795859d449b7b65d9552d0f14a73ecac6897285a2103e9ca01360cf1689153e2",
+      "size_bytes": 38175
+    },
+    {
+      "path": "reports/warnings.json",
+      "role": "warnings",
+      "sha256": "1aba334b8e0735f51ffbe6181b846add408b1deb76aa8edbafae54b1b5c86515",
+      "size_bytes": 446
+    },
+    {
+      "path": "reports/disk_usage.json",
+      "role": "disk_usage",
+      "sha256": "e0210d63768a25eeab3405123a3126658f48623954eeaf6353a94c1c349bea94",
+      "size_bytes": 164
+    },
+    {
+      "path": "reports/patchtst_results_summary.json",
+      "role": "patchtst_results_summary",
+      "sha256": "6e0922461973902f9f0c9eb9afaa730ad6d73a6fbcb095161bdb9f9698b5c229",
+      "size_bytes": 5373
+    },
+    {
+      "path": "reports/professor_patchtst_baseline.md",
+      "role": "professor_report",
+      "sha256": "f0d5cb167eafa14e778e27d85c9fdcd987744ac7038bb7cc5baba65d198020b5",
+      "size_bytes": 2649
+    },
+    {
+      "path": "reports/FIGURE_INDEX.md",
+      "role": "figure_index",
+      "sha256": "9e2ceb59c1d3d78327c06eebb349a6bca2d4f8ba141b8e36184a9dc9d59a1464",
+      "size_bytes": 1740
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260814T122147349749Z-44877f9f",
+  "schema_version": "1.0.0",
+  "seed": 20260814,
+  "source_runs": [
+    {
+      "artifact_path": "reports/sensor_feature_summary.json",
+      "artifact_sha256": "5a244abc2ee869f662855a8f975b3bd7edada21ca6d3b69fba74a8542527fd48",
+      "artifact_size_bytes": 1644,
+      "source_run_directory": "runs/phm2026_sensor_features/20260814T121146792755Z-4016432b",
+      "source_run_id": "20260814T121146792755Z-4016432b"
+    },
+    {
+      "artifact_path": "tables/channel_availability.parquet",
+      "artifact_sha256": "d992cdd583bfc4bfb94f36f4e0ff8fca5344beea6b7434ff70d124b7c164c5cf",
+      "artifact_size_bytes": 5231,
+      "source_run_directory": "runs/phm2026_sensor_features/20260814T121146792755Z-4016432b",
+      "source_run_id": "20260814T121146792755Z-4016432b"
+    },
+    {
+      "artifact_path": "tables/minute_feature_table.parquet",
+      "artifact_sha256": "74a1170ff8facd81e38459e84a9396f5c828e1934325dea8a00836508f6de7a0",
+      "artifact_size_bytes": 4004730,
+      "source_run_directory": "runs/phm2026_sensor_features/20260814T121146792755Z-4016432b",
+      "source_run_id": "20260814T121146792755Z-4016432b"
+    },
+    {
+      "artifact_path": "tables/sensor_run_sequences.parquet",
+      "artifact_sha256": "eee61b0628c6bb0984d6c68141f97408ec4523a56e427ea20cbf72e4e53069e8",
+      "artifact_size_bytes": 483929,
+      "source_run_directory": "runs/phm2026_sensor_features/20260814T121146792755Z-4016432b",
+      "source_run_id": "20260814T121146792755Z-4016432b"
+    },
+    {
+      "artifact_path": "reports/environment.json",
+      "artifact_sha256": "51a4e2e009e754829ca36190a4844d8c981bef67b9067690bf92195ba72ea3ce",
+      "artifact_size_bytes": 162,
+      "source_run_directory": "runs/phm2026_patchtst_baseline/20260814T121641338050Z-433d4154",
+      "source_run_id": "20260814T121641338050Z-433d4154"
+    },
+    {
+      "artifact_path": "reports/feature_normalizer.json",
+      "artifact_sha256": "0759dcc4cd869db026efa759f5ff047cc9977052958d68c21e7d3c7675fd6947",
+      "artifact_size_bytes": 6642,
+      "source_run_directory": "runs/phm2026_patchtst_baseline/20260814T121641338050Z-433d4154",
+      "source_run_id": "20260814T121641338050Z-433d4154"
+    },
+    {
+      "artifact_path": "reports/training_summary.json",
+      "artifact_sha256": "b4f463498cfbe6c6400f2558e2bbc1296da1b9753299960d6c3819e0199904b5",
+      "artifact_size_bytes": 353,
+      "source_run_directory": "runs/phm2026_patchtst_baseline/20260814T121641338050Z-433d4154",
+      "source_run_id": "20260814T121641338050Z-433d4154"
+    },
+    {
+      "artifact_path": "tables/architecture_tensor_shapes.parquet",
+      "artifact_sha256": "47f5d736657f3dbad6fd5edad0a021bb572468b304b2e70ea6a36538793e010f",
+      "artifact_size_bytes": 2513,
+      "source_run_directory": "runs/phm2026_patchtst_baseline/20260814T121641338050Z-433d4154",
+      "source_run_id": "20260814T121641338050Z-433d4154"
+    },
+    {
+      "artifact_path": "tables/predictions.parquet",
+      "artifact_sha256": "2a76aecc5c073282c4cfaf9782a6f3e6a56511b40d5508258a54db3e8a6f3707",
+      "artifact_size_bytes": 11964,
+      "source_run_directory": "runs/phm2026_patchtst_baseline/20260814T121641338050Z-433d4154",
+      "source_run_id": "20260814T121641338050Z-433d4154"
+    },
+    {
+      "artifact_path": "tables/training_history.parquet",
+      "artifact_sha256": "25150c19fc38c5528a070e9c58faa4066211a47ae9e5f9d9bbdcfc3343bedb13",
+      "artifact_size_bytes": 3496,
+      "source_run_directory": "runs/phm2026_patchtst_baseline/20260814T121641338050Z-433d4154",
+      "source_run_id": "20260814T121641338050Z-433d4154"
+    },
+    {
+      "artifact_path": "tables/run_predictions.parquet",
+      "artifact_sha256": "b9c0e93d9a7fd65af944a677dc1a286ef041e833e725425095a2d0e086c8b42e",
+      "artifact_size_bytes": 7676,
+      "source_run_directory": "runs/phm2026_rtdetr_regression/20260814T020338751021Z-d0f225c8",
+      "source_run_id": "20260814T020338751021Z-d0f225c8"
+    }
+  ],
+  "study": "phm2026_patchtst_results",
+  "timestamp_utc": "2026-08-14T12:21:47.349749+00:00"
+}

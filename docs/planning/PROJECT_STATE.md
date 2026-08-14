@@ -1,14 +1,14 @@
 # PHM project state
 
-`context_version: 3.0.0`
+`context_version: 3.1.0`
 `updated: 2026-08-14`
-`Git baseline: d3ce4808abfa on main...origin/main; dirty (pre-existing modified .gitignore and untracked in-progress PHM foundation, documentation, scripts, source, and tests); no staged changes observed before this document.`
+`Git baseline: 1b97d0183438 on main...origin/main; dirty (pre-existing modified .gitignore and untracked in-progress PHM foundation, documentation, scripts, source, and tests); no staged changes observed before this document.`
 
 ## Current objective and corrected formulation
 
 The official challenge page, accessed 2026-08-14, supersedes the earlier missing-label assumption: participants derive an image-based damage trajectory from the 28 post-run tooth images, then later train a sensor-only estimator. The current task is end-of-run current-state estimation. Six hours is the typical run, inspection, and output cadence (with 1–3-hour exceptions), not automatically a forecast horizon. Verified experiment + run + tooth identity is the non-temporal association; image UTC remains unverified but is unnecessary for authoritative post-run membership.
 
-T2.1–T2.3, frozen-encoder RT-DETR regression, R4 pseudo-box construction, a genuine detector, and a genuine multitask detector/scalar baseline are complete. The immediate gate is expert review of target version `phm2026_image_damage_v2` and its pseudo-boxes. PatchTST, sensor features, fusion, leaderboard work, and official test modelling have not begun.
+T2.1–T2.3, the R3/R4 image baselines, and the initial P4.1–P4.5 sensor-only PatchTST baseline are complete. The sensor baseline estimates current end-of-run state from bounded LF features; it is not forecasting. Its canonical EXP-F result did not beat the training-mean/median constants. The immediate gate is expert review of target version `phm2026_image_damage_v2` followed by pre-registered train/validation-only decisions before any complex PatchTST. Fusion, leaderboard work, and official test modelling have not begun.
 
 ## Completed work and primary evidence
 
@@ -19,6 +19,8 @@ T2.1–T2.3, frozen-encoder RT-DETR regression, R4 pseudo-box construction, a ge
 - **R4 pseudo-boxes:** 995 images / 30,628 connected-component pseudo-boxes in run `20260814T040854991567Z-3fa0f794`; see `R4_PSEUDO_BOX_CHECKPOINT.md`.
 - **R4 genuine detector:** run `20260814T043751107678Z-7f1e13af`; execution valid but pseudo-box agreement effectively failed; see `R4_RTDETR_DETECTION_CHECKPOINT.md`.
 - **R4 multitask RT-DETR:** run `20260814T050026535618Z-9b00f099`; professor package `20260814T051127631836Z-18a96ee3`; see `R4_RTDETR_MULTITASK_CHECKPOINT.md`.
+- **P4 sensor features:** canonical run `20260814T121146792755Z-4016432b` contains 7,124 LF minute records, 7,119 verified chronological inputs, five traceable timestamp exclusions, and 20 run sequences.
+- **P4 initial PatchTST:** model run `20260814T121641338050Z-433d4154`; professor package `20260814T122147349749Z-44877f9f`; see `P4_PATCHTST_BASELINE_CHECKPOINT.md`. EXP-F raw-target MAE was 1.011 pp (N=8), worse than the 0.680 pp constant baselines.
 - **F0.1–F0.3:** repository map, dataset-neutral contracts, PHM adapter,
   configuration validation, deterministic IDs/seeding, run manifests,
   provenance, and synthetic-fixture test infrastructure. See the
@@ -71,16 +73,17 @@ Never substitute “latest run.”
   filename timestamps, and 671 missing image timestamps. Sensor UTC evidence
   exists where explicitly recorded, but clocks are not comparable.
 - R4 materialized only the frozen 995-image modelling set in one bounded cache and retained 30,628 mask-derived candidate boxes. All 995 images were positive under the heuristic. This is complete pseudo-label replay, not expert annotation.
+- P4 processed all 7,124 low-frequency HDF5 run members without persisting raw arrays. Verified `wf_start_time` orders 7,119 records into 20 run sequences; five EXP-F records are excluded from sequences for missing timestamps, and no duplicate verified timestamps were found.
 
 ## Evidence boundaries
 
 | Status | What is supported | What it does not support |
 |---|---|---|
-| Complete | D1.1 ZIP central directories; D1.3 headers for 1,311 JPGs; R4 replay/cache/box validation for 995 model views | Full raw-payload integrity, expert labels, physical target validity |
+| Complete | D1.1 ZIP central directories; D1.3 headers for 1,311 JPGs; R4 replay/cache/box validation for 995 model views; P4 bounded LF extraction for 7,124 members and target joins for 20 runs | Full raw-payload integrity, expert labels, physical target validity |
 | Representative | D1.2 EXP-A Run-1-oriented sensor structure across one selected source per sensor modality | Exhaustive schema/rate/channel coverage over all EXP-A/B/F archives |
 | Sampled | D1.2 one-HF-member value statistics; D1.3 104 image pixel/quality/hash results | Whole-signal statistics or dataset-wide image quality/duplicates |
 | Provisional | 560 tooth values, 20 run targets, 30,628 pseudo-boxes, and RT-DETR pseudo-label metrics | Organizer ground truth or physical-spall accuracy |
-| Blocked/unknown | Expert mask/box validity, image UTC clock, compact all-run sensor features | Validated physical-spall claims, PatchTST, sensor-model or fusion claims |
+| Blocked/unknown | Expert mask/box validity, image UTC clock, complex sensor representation and fusion formulation | Validated physical-spall claims, robust sensor-model generalization or fusion claims |
 
 ## Scientific gates and blockers
 
@@ -88,8 +91,9 @@ Never substitute “latest run.”
 2. The implemented dark/horizontal candidate mask is a provisional pseudo-label; 560 tooth reviews are pending and A/B-versus-F imaging protocol bias is unresolved.
 3. Exact image UTC remains unverified, but run-level post-inspection association uses verified experiment/run membership and does not need temporal coercion.
 4. No verified spall boxes/classes exist. R4 detection metrics measure heuristic-mask agreement only. Model A had zero retained EXP-F detections at confidence 0.60; Model B had F1 0.002604 and mAP@0.50 0.000054 at confidence 0.01.
-5. Compact minute sensor features were not fabricated or extracted; T2.2 records 7,124 one-minute sources and 20 run windows, and a later streaming job is required.
-6. The multitask scalar head reached EXP-F view MAE 0.732990 pp (N=224), but raw run-top-3 MAE 1.627254 pp (N=8), worse than the frozen model's 1.347448 pp. Results remain engineering evidence only.
+5. P4 extracted bounded LF minute features for all 20 runs: 7,119 timestamp-verified records enter sequences and five remain auditable exclusions. Training-only preprocessing and the EXP-B/EXP-A/EXP-F split are persisted.
+6. The initial PatchTST raw run-target MAE is 1.011 pp on EXP-F (N=8), worse than training mean/median at 0.680 pp. Ridge is unstable. This is a retained negative result, not evidence that sensors lack damage information.
+7. The multitask image scalar head reached EXP-F view MAE 0.732990 pp (N=224), but raw run-top-3 MAE 1.627254 pp (N=8), worse than the frozen model's 1.347448 pp. Results remain engineering evidence only.
 
 ## Repository map
 
@@ -98,8 +102,8 @@ Never substitute “latest run.”
 | Immutable PHM input | `gtc-data-experiment/` — read-only archives; never extract in place or edit |
 | Excluded Intel input | `data/Full Dataset/` — never scan from PHM work |
 | PHM configuration | `configs/datasets/phm2026.yaml`; versioned `configs/experiments/phm2026_*.yaml` |
-| Thin CLI scripts | `scripts/profile_dataset.py`, `profile_sensors.py`, `profile_images.py`, `audit_alignment.py`, `describe_dataset.py` |
-| Reusable implementation | `src/pi_multimodal_ad/{data_contracts,datasets,profiling,targets,evaluation,models,utils}/` |
+| Thin CLI scripts | `scripts/profile_dataset.py`, `profile_sensors.py`, `profile_images.py`, `audit_alignment.py`, `describe_dataset.py`, `build_sensor_features.py`, `train_patchtst.py`, `generate_patchtst_results.py` |
+| Reusable implementation | `src/pi_multimodal_ad/{data_contracts,datasets,profiling,features,preprocessing,targets,evaluation,models,reporting,utils}/` |
 | Tests and safe data | `tests/unit/`; tiny synthetic-only `tests/fixtures/synthetic_multimodal/` |
 | Generated evidence | ignored `runs/phm2026_*/<run-id>/` with manifests, reports, tables, figures, provenance; R4 canonical IDs are listed above |
 | Protected historical study | `experiments/exp_a_initial_eda_r1_r3_r5/` — preserve unchanged, evidence/regression only |
@@ -127,6 +131,7 @@ Never substitute “latest run.”
 - Safe profiling: central-directory inventory, one-at-a-time archive I/O,
   HDF5/sensor profiling, image profiling, clock-domain-gated alignment, and
   dataset-description generation in `profiling/`.
+- Sensor baseline: bounded nested LF extraction, training-only time-series normalization, variable-length masks, PatchTST, run-level baselines, and professor reporting live under the features, preprocessing, models, evaluation, and reporting package directories.
 - Reproducibility: validated relative YAML loading, deterministic seeding,
   versioned non-overwriting runs, input/output manifests, and provenance in
   `utils/`.

@@ -1,0 +1,209 @@
+schema_version: 1.0.0
+task: T2.1
+classification: BLOCKED_REQUIRES_PROFESSOR_OR_PROVIDER_DECISION
+experiment_config:
+  schema_version: 1.0.0
+  study: phm2026_target_audit
+  dataset_config: configs/datasets/phm2026.yaml
+  seed: 20260814
+  output_root: runs/phm2026_target_audit
+  source_runs:
+    sensor_profile:
+      run_id: 20260813T212734652736Z-f7c665fd
+      directory: runs/phm2026_dataset_description/20260813T212734652736Z-f7c665fd
+      artifacts:
+        tables/sensor_profile.parquet: 922693091a8be4558f1eb74e512ae8a85ea1fd7f368143d86cde02de9d430322
+        reports/sensor_summary.json: 1e3bb106e94ab873b5ed601fc76a767ad95e793b498bce680301457961df4654
+    image_profile:
+      run_id: 20260813T215718624432Z-bd9395ad
+      directory: runs/phm2026_dataset_description/20260813T215718624432Z-bd9395ad
+      artifacts:
+        tables/image_profile.parquet: c4b1f68dd428be558bbe433574ed2ac7bacd943d0e58afc020e5673818ec55cc
+        reports/image_summary.json: d9f6807b34b19a68383f934727eefdaaeefe5fc39415f1c3b4593d7c19174649
+    alignment_audit:
+      run_id: 20260813T223944047252Z-d6474ff4
+      directory: runs/phm2026_dataset_description/20260813T223944047252Z-d6474ff4
+      artifacts:
+        tables/candidate_targets.parquet: dd23be0f705d60152136ed2877dfde867978c40cf7bec6cf4b356b08e6a8d0e8
+        reports/alignment_blockers.json: f774ecea6dc00129561092843ab188570590d6b7261e38ca49df896b9b9d3341
+        reports/alignment_summary.md: 1fcb4920d8b63d5799342132e1be721d51dfde1da8f2973aba9eced1d8aa19b6
+  local_documents:
+    historical_exp_a_notes:
+      path: experiments/exp_a_initial_eda_r1_r3_r5/EXPERIMENT_NOTES.md
+      sha256: 22c6fd85948232b1a6bfa06cfac7c51b90ab461dbdc2c481378dff7bd3c1f3cd
+      authority: historical_local_research_notes_not_provider_specification
+    dataset_scope_config:
+      path: configs/datasets/phm2026.yaml
+      sha256: 9a63e46fec0156567b4d09f1c4d2a57dc23dd1e54edc8014b1ac843c576c83a9
+      authority: repository_scope_and_unverified_target_status
+  target_audit:
+    classification_if_unresolved: BLOCKED_REQUIRES_PROFESSOR_OR_PROVIDER_DECISION
+    candidates:
+    - candidate_id: fm4
+      variable_name: FM4
+      physical_meaning: gear condition indicator; exact formula and target interpretation
+        are not documented in authoritative local evidence
+      unit: unknown
+      candidate_type: continuous
+      source_patterns:
+      - /CI/FM4
+      - /CI_4s/FM4
+      direct_or_derived: derived_indicator_formula_unverified
+      inference_availability: unknown
+      supporting_evidence: numeric HDF5 datasets exist under both CI path variants
+        in representative D1.2 coverage
+      contradicting_evidence: historical notes say condition indicators are not direct
+        damage percentages; no image pairing or six-hour target rule exists
+    - candidate_id: na4
+      variable_name: NA4
+      physical_meaning: gear condition indicator; exact formula and target interpretation
+        are not documented in authoritative local evidence
+      unit: unknown
+      candidate_type: continuous
+      source_patterns:
+      - /CI/NA4
+      - /CI_4s/NA4
+      direct_or_derived: derived_indicator_formula_unverified
+      inference_availability: unknown
+      supporting_evidence: numeric HDF5 datasets exist under both CI path variants
+        in representative D1.2 coverage
+      contradicting_evidence: historical notes say condition indicators are not direct
+        damage percentages; no image pairing or six-hour target rule exists
+    - candidate_id: m6a
+      variable_name: M6A
+      physical_meaning: gear condition indicator; exact formula and target interpretation
+        are not documented in authoritative local evidence
+      unit: unknown
+      candidate_type: continuous
+      source_patterns:
+      - /CI/M6A
+      - /CI_4s/M6A
+      direct_or_derived: derived_indicator_formula_unverified
+      inference_availability: unknown
+      supporting_evidence: numeric HDF5 datasets exist under both CI path variants
+        in representative D1.2 coverage
+      contradicting_evidence: historical notes say condition indicators are not direct
+        damage percentages; no image pairing or six-hour target rule exists
+    - candidate_id: alr
+      variable_name: ALR
+      physical_meaning: gear condition indicator; exact formula and target interpretation
+        are not documented in authoritative local evidence
+      unit: unknown
+      candidate_type: continuous
+      source_patterns:
+      - /CI/ALR
+      - /CI_4s/ALR
+      direct_or_derived: derived_indicator_formula_unverified
+      inference_availability: unknown
+      supporting_evidence: numeric HDF5 datasets exist under both CI path variants
+        in representative D1.2 coverage
+      contradicting_evidence: historical notes say condition indicators are not direct
+        damage percentages; no image pairing or six-hour target rule exists
+    - candidate_id: other_condition_indicators
+      variable_name: Other CI family
+      physical_meaning: derived signal diagnostics including RMS, kurtosis, crest,
+        FM0/M8A and related variants
+      unit: mixed_or_unknown
+      candidate_type: continuous_family
+      source_patterns:
+      - /CI/*
+      - /CI_4s/*
+      direct_or_derived: derived_indicator_family
+      inference_availability: unknown
+      supporting_evidence: representative D1.2 metadata lists multiple numeric CI
+        datasets
+      contradicting_evidence: no authoritative scalar selection, formula, physical
+        unit, target timing or image association
+    - candidate_id: operating_context
+      variable_name: PAU speed, torque and temperature
+      physical_meaning: operating conditions
+      unit: RPM|ft-lbf|degF
+      candidate_type: continuous_vector
+      source_patterns:
+      - /Context/PAU Speed
+      - /Context/PAU Torque
+      - /Context/Temperature
+      direct_or_derived: directly_recorded_context
+      inference_availability: likely_available_but_not_verified_for_target_use
+      supporting_evidence: representative D1.2 metadata records paths and units
+      contradicting_evidence: context is a confounder/input candidate, not an evidenced
+        damage or maintenance target
+    - candidate_id: vibration_level
+      variable_name: Vibration RMS / amplitude diagnostics
+      physical_meaning: vibration magnitude or derived signal statistic
+      unit: g_or_unknown_by_path
+      candidate_type: continuous
+      source_patterns:
+      - /Context/Accel1 RMS
+      - /Context/Accel2 RMS
+      - /CI/rms*
+      - /CI_4s/rms*
+      direct_or_derived: derived_from_vibration
+      inference_availability: unknown
+      supporting_evidence: representative D1.2 metadata records RMS paths and units
+        for context RMS
+      contradicting_evidence: no physical damage mapping, image association, target
+        timing or six-hour interpretation
+    - candidate_id: oil_particle_counts
+      variable_name: DM4500 / ICM2 particle bins
+      physical_meaning: oil particle counts by instrument bin
+      unit: number_of_particles
+      candidate_type: count_vector
+      source_patterns:
+      - /DM4500 Data/*
+      - /ICM2 Data/*
+      direct_or_derived: directly_recorded_instrument_bins
+      inference_availability: unknown
+      supporting_evidence: representative D1.2 metadata records instrument-bin paths
+        and units
+      contradicting_evidence: vector-valued bins with no approved scalar reduction,
+        timing, image pairing or six-hour rule
+    - candidate_id: quantitative_image_damage
+      variable_name: Quantitative tooth-damage measurement
+      physical_meaning: physical surface-loss, spall or damage extent
+      unit: unknown
+      candidate_type: continuous_or_ordinal_unknown
+      source_patterns: []
+      direct_or_derived: not_discovered
+      inference_availability: unknown
+      supporting_evidence: historical notes describe qualitative localized visual
+        changes
+      contradicting_evidence: D1.3 discovered no damage labels, boxes, masks, measurements
+        or annotation sidecars
+    - candidate_id: remaining_useful_life
+      variable_name: Remaining useful life
+      physical_meaning: time or cycles remaining to an authoritative failure criterion
+      unit: unknown
+      candidate_type: continuous_unknown
+      source_patterns: []
+      direct_or_derived: not_discovered
+      inference_availability: unknown
+      supporting_evidence: predictive-maintenance context makes RUL a conceptual option
+        only
+      contradicting_evidence: no failure criterion, RUL variable, unit, timestamp
+        or computation is present in local evidence
+    - candidate_id: lifecycle_identity
+      variable_name: Experiment, run or lifecycle stage
+      physical_meaning: administrative experiment/lifecycle identity
+      unit: none
+      candidate_type: categorical_or_ordinal_proxy
+      source_patterns: []
+      direct_or_derived: metadata_identity
+      inference_availability: available
+      supporting_evidence: experiment/run/stage identities are recorded
+      contradicting_evidence: project policy explicitly states these are not health,
+        damage, RUL or scalar target labels
+    - candidate_id: image_quality_proxy
+      variable_name: Image brightness, blur, darkness or exposure
+      physical_meaning: acquisition quality proxy
+      unit: normalized_or_algorithm_specific
+      candidate_type: continuous_proxy
+      source_patterns: []
+      direct_or_derived: derived_from_image_pixels
+      inference_availability: available_after_image_capture
+      supporting_evidence: D1.3 computed these for 104 deterministic images
+      contradicting_evidence: D1.3 explicitly states quality metrics are not damage
+        or health labels
+execution:
+  generated_artifacts_only: true
+  raw_archives_opened: false

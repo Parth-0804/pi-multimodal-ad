@@ -1,0 +1,24 @@
+schema_version: 1.0.0
+status: PROVISIONAL_PSEUDO_LABEL_AGREEMENT_ONLY
+source_run_ids:
+  target: 20260814T012054997053Z-e195f6d9
+  dataset: 20260814T013357354377Z-6b068cab
+  pseudo_boxes: 20260814T040854991567Z-3fa0f794
+  detector: 20260814T043751107678Z-7f1e13af
+  frozen_regression: 20260814T020338751021Z-d0f225c8
+  multitask: 20260814T050026535618Z-9b00f099
+funnel:
+- stage: discovered source images
+  count: 1311
+- stage: model-ready image views
+  count: 995
+- stage: tooth/run records
+  count: 560
+- stage: run targets
+  count: 20
+split_counts:
+  test/EXP-F: 224
+  train/EXP-B: 448
+  validation/EXP-A: 323
+exp_f_used_for_tuning: false
+multitask_exp_f_evaluation_passes: 1
