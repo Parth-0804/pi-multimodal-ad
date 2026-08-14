@@ -1,0 +1,527 @@
+{
+  "command": [
+    "scripts/derive_image_targets.py"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_image_target.yaml",
+    "sha256": "e7600a8a448db20a35df259ca5b9c1f28bf2346e5a62d08c338a7f8afeb2ccc8"
+  },
+  "git": {
+    "commit": "d3ce4808abfa8abb0aaad58d7b458defd0c7c5d0",
+    "dirty": true
+  },
+  "input_roots": [
+    "runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832",
+    "runs/phm2026_dataset_description/20260813T215718624432Z-bd9395ad",
+    "gtc-data-experiment"
+  ],
+  "output_root": "runs/phm2026_image_target/20260814T011051111606Z-e7600a8a",
+  "packages": {
+    "Pillow": "12.3.0",
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.11.1",
+    "numpy": "2.4.6",
+    "opencv-python-headless": "5.0.0.93",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "53df119c698d504d166e167a773e5a0bb2c664822af7953797f7bb67c2f3e30c",
+      "size_bytes": 1802
+    },
+    {
+      "path": "manifests/inputs.json",
+      "role": "input_manifest",
+      "sha256": "4a7262d00d9c694c59d7605d3f1cf46a6990e93b0b3eb313fd0e5e5074c88527",
+      "size_bytes": 1655
+    },
+    {
+      "path": "tables/image_manifest.csv",
+      "role": "image_manifest",
+      "sha256": "0cf73352607a3a87f5ec0f2ffff3399e75f1e3f6db67167975e595f1f172c157",
+      "size_bytes": 1075761
+    },
+    {
+      "path": "tables/image_manifest.parquet",
+      "role": "image_manifest",
+      "sha256": "186a916b5a29e286a5d85bea8bf5e9950f35b1aad4b15696e53794dbf9505e1a",
+      "size_bytes": 453824
+    },
+    {
+      "path": "tables/per_tooth_damage.csv",
+      "role": "per_tooth_damage",
+      "sha256": "b7b95ba886ad39d029996f6018975bd778a6f7c0ad1ad2323c33b29a4c741df4",
+      "size_bytes": 218594
+    },
+    {
+      "path": "tables/per_tooth_damage.parquet",
+      "role": "per_tooth_damage",
+      "sha256": "dc2082baa3f6d9633be6494a087fbf523fdb0278ad8b9c13cdea538e027ea8f6",
+      "size_bytes": 100236
+    },
+    {
+      "path": "tables/run_damage_targets.csv",
+      "role": "run_damage_targets",
+      "sha256": "b1d8534f338e9a72fbece68e99fff93c9199dc83f79d8852ebd315d162888b9f",
+      "size_bytes": 5125
+    },
+    {
+      "path": "tables/run_damage_targets.parquet",
+      "role": "run_damage_targets",
+      "sha256": "7278d920ca58dd4df8b83777ff8cd408985ff7382d8e8a00ca2c12913e3e1f58",
+      "size_bytes": 14078
+    },
+    {
+      "path": "tables/excluded_target_observations.csv",
+      "role": "excluded_target_observations",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "tables/excluded_target_observations.parquet",
+      "role": "excluded_target_observations",
+      "sha256": "2e836d6adff325aede8989ffcbc87094563445f1d0a4ba61dd92764ecca42844",
+      "size_bytes": 636
+    },
+    {
+      "path": "tables/human_review_queue.csv",
+      "role": "human_review_queue",
+      "sha256": "42d86ec22de90461f728c707535b35fd61838da65dcfc74bc56887197ba1a646",
+      "size_bytes": 225401
+    },
+    {
+      "path": "tables/human_review_queue.parquet",
+      "role": "human_review_queue",
+      "sha256": "b4a12806f113119e3db30114ddacb091045bd1f80974a48ca137b163a5ccfeaf",
+      "size_bytes": 103092
+    },
+    {
+      "path": "config/target_definition.yaml",
+      "role": "target_definition",
+      "sha256": "deb85d46e4072a01287d8579955b6de666f21eab8b4724d24c9f40556fa5d0ed",
+      "size_bytes": 536
+    },
+    {
+      "path": "reports/target_quality_report.json",
+      "role": "target_quality_report",
+      "sha256": "fd02ec04588922a86419488bd8f745bb4596fd7dbe5891ae06550667623a1547",
+      "size_bytes": 1139
+    },
+    {
+      "path": "manifests/target_provenance_manifest.json",
+      "role": "target_provenance_manifest",
+      "sha256": "acfa83ba994a203d37f68c8d3b40b9d29b1efe67e50e649f0ba410c4c4265ef2",
+      "size_bytes": 2462
+    },
+    {
+      "path": "reports/HUMAN_TARGET_REVIEW_GUIDE.md",
+      "role": "human_target_review_guide",
+      "sha256": "6e9236c40b35471d836664ae5cdd0b5596a765937c2dc61a56f86e08c7b2f70d",
+      "size_bytes": 948
+    },
+    {
+      "path": "tables/plot_source_valid_image_count_by_experiment_run.csv",
+      "role": "plot_source_valid_image_count_by_experiment_run",
+      "sha256": "729eade36f26ada75461fab3a89763b9206a8129036018cd6b2d272678e53a39",
+      "size_bytes": 253
+    },
+    {
+      "path": "tables/plot_source_tooth_coverage_by_run.csv",
+      "role": "plot_source_tooth_coverage_by_run",
+      "sha256": "b05cc57b75b0de08ed35e1adc3d098a7b521e9c8899565bc6125fd55498ccea6",
+      "size_bytes": 253
+    },
+    {
+      "path": "tables/plot_source_per_tooth_damage_heatmap.csv",
+      "role": "plot_source_per_tooth_damage_heatmap",
+      "sha256": "0719bf630ae4ea98f29553058f307faf084261b8abc02a6969df7cc0570611c3",
+      "size_bytes": 16812
+    },
+    {
+      "path": "tables/plot_source_raw_run_damage_trajectory.csv",
+      "role": "plot_source_raw_run_damage_trajectory",
+      "sha256": "30ea550ef7324e395cdf83d6d4ca681f654a431ffe6abe985aad41c38a26068b",
+      "size_bytes": 570
+    },
+    {
+      "path": "tables/plot_source_monotonic_run_damage_trajectory.csv",
+      "role": "plot_source_monotonic_run_damage_trajectory",
+      "sha256": "e354cae84b74a8c1fcd1720ed3339e668fb9e2b2d2aa1af55f5be6cc4c57049a",
+      "size_bytes": 585
+    },
+    {
+      "path": "tables/plot_source_aggregation_comparison.csv",
+      "role": "plot_source_aggregation_comparison",
+      "sha256": "9d77522dd4a9c5145923eab1a582fb4f90f262911983e72971ffddb58c71377a",
+      "size_bytes": 1756
+    },
+    {
+      "path": "tables/plot_source_target_distribution_by_experiment.csv",
+      "role": "plot_source_target_distribution_by_experiment",
+      "sha256": "30ea550ef7324e395cdf83d6d4ca681f654a431ffe6abe985aad41c38a26068b",
+      "size_bytes": 570
+    },
+    {
+      "path": "tables/plot_source_target_increments_by_run.csv",
+      "role": "plot_source_target_increments_by_run",
+      "sha256": "13ba9de6b29018e259326e63d0fcdb23ea077d15296760dadf2e7ac7bd8995ae",
+      "size_bytes": 532
+    },
+    {
+      "path": "tables/plot_source_missing_excluded_target_observations.csv",
+      "role": "plot_source_missing_excluded_target_observations",
+      "sha256": "7060f67e940046e1551dad115d5c7d026edb1511bea77b41da44780d8052f590",
+      "size_bytes": 690
+    },
+    {
+      "path": "tables/plot_source_segmentation_confidence_distribution.csv",
+      "role": "plot_source_segmentation_confidence_distribution",
+      "sha256": "8b55a5188aaaa0b92c8831c8ecd5e79076ad44edca41322c25c128f5aa928a9d",
+      "size_bytes": 15572
+    },
+    {
+      "path": "tables/plot_source_monotonic_corrections_applied.csv",
+      "role": "plot_source_monotonic_corrections_applied",
+      "sha256": "9cb6b89092742b09b53423c1b8dc69c97e07dc8e7608d1aee45e79a68f31f856",
+      "size_bytes": 486
+    },
+    {
+      "path": "tables/plot_source_target_definition_pipeline.csv",
+      "role": "plot_source_target_definition_pipeline",
+      "sha256": "68e114142957944383c60a596ad9d447138a56f8069674ab073ea11ac6e8a59c",
+      "size_bytes": 147
+    },
+    {
+      "path": "tables/plot_source_current_state_estimation_timeline.csv",
+      "role": "plot_source_current_state_estimation_timeline",
+      "sha256": "8610943ba29d7a2c0799ac1d42c0b51446c91edfe10e813dcbc3b25fc7488973",
+      "size_bytes": 101
+    },
+    {
+      "path": "tables/plot_source_representative_segmentation_overlay_montage.csv",
+      "role": "plot_source_representative_segmentation_overlay_montage",
+      "sha256": "275f55c8067ebbaa55612728c938f3587b137982836a3ec13b42794ef6a974d6",
+      "size_bytes": 722
+    },
+    {
+      "path": "figures/representative_segmentation_overlay_montage.png",
+      "role": "representative_segmentation_overlay_montage_png",
+      "sha256": "6010310fbfa929240420f3623d4dcd55783cdf49d7cb755a9b9387d6272a727c",
+      "size_bytes": 614092
+    },
+    {
+      "path": "figures/valid_image_count_by_experiment_run.png",
+      "role": "valid_image_count_by_experiment_run_png",
+      "sha256": "9d818f0528bd4546d52f80ee9edfd976bd2e569a99890bca728621c90d080a9d",
+      "size_bytes": 130801
+    },
+    {
+      "path": "figures/valid_image_count_by_experiment_run.svg",
+      "role": "valid_image_count_by_experiment_run_svg",
+      "sha256": "a907c7f1da606696d1d53e6baa7e7b1e7260130526e4003578562f5297938030",
+      "size_bytes": 51892
+    },
+    {
+      "path": "figures/tooth_coverage_by_run.png",
+      "role": "tooth_coverage_by_run_png",
+      "sha256": "1e357ed19448a26bbd53c614a3372050306034b320bcd6e6fc65dc2847ba2b64",
+      "size_bytes": 126839
+    },
+    {
+      "path": "figures/tooth_coverage_by_run.svg",
+      "role": "tooth_coverage_by_run_svg",
+      "sha256": "96c286e1a0dfca0836b847e9347d2dd4e9adf96e1612d4d9f490377c02fff2ac",
+      "size_bytes": 50974
+    },
+    {
+      "path": "figures/per_tooth_damage_heatmap.png",
+      "role": "per_tooth_damage_heatmap_png",
+      "sha256": "71e2fa178a71b1823c9ad3ddede7fac37a59c1df7143b10dc4c3b7066ea94151",
+      "size_bytes": 241923
+    },
+    {
+      "path": "figures/per_tooth_damage_heatmap.svg",
+      "role": "per_tooth_damage_heatmap_svg",
+      "sha256": "63101b9569f01852b5be7f7770e7f8b7c51d0072de2c68b44594bb63de45330d",
+      "size_bytes": 82620
+    },
+    {
+      "path": "figures/raw_run_damage_trajectory.png",
+      "role": "raw_run_damage_trajectory_png",
+      "sha256": "82dbf25364996187eeabbf5af5d9313700eeaf345aca5b53121eaf40a23e8205",
+      "size_bytes": 220531
+    },
+    {
+      "path": "figures/raw_run_damage_trajectory.svg",
+      "role": "raw_run_damage_trajectory_svg",
+      "sha256": "b132c31900ef49f5a1f0bb78f0767c71d2765d3b35f41b7f4a0a5928d00cf18a",
+      "size_bytes": 45686
+    },
+    {
+      "path": "figures/monotonic_run_damage_trajectory.png",
+      "role": "monotonic_run_damage_trajectory_png",
+      "sha256": "9d6134e507827fb1865bb8b2cfc7d100b6e932f96837050f3b4ff45a51f4b02e",
+      "size_bytes": 141413
+    },
+    {
+      "path": "figures/monotonic_run_damage_trajectory.svg",
+      "role": "monotonic_run_damage_trajectory_svg",
+      "sha256": "67b4f30749b62ca5c559b3acc46cd0f2ad5fb39472db011d114e0f78a5bf1b5f",
+      "size_bytes": 48283
+    },
+    {
+      "path": "figures/aggregation_comparison.png",
+      "role": "aggregation_comparison_png",
+      "sha256": "b11b30297df7db9a95ad606df4d91641cb7e6d17ce5d9153acb7af629255bcb0",
+      "size_bytes": 444072
+    },
+    {
+      "path": "figures/aggregation_comparison.svg",
+      "role": "aggregation_comparison_svg",
+      "sha256": "b2761cb8bd4d6c23d3804cc70c6fc3552d5dd2fd444b9015bce2c69e1cfbbbe0",
+      "size_bytes": 74370
+    },
+    {
+      "path": "figures/target_distribution_by_experiment.png",
+      "role": "target_distribution_by_experiment_png",
+      "sha256": "ec654191a3241b9c7c3d0c607813eb94d150f82198689f494b242f1d4287e60e",
+      "size_bytes": 87742
+    },
+    {
+      "path": "figures/target_distribution_by_experiment.svg",
+      "role": "target_distribution_by_experiment_svg",
+      "sha256": "6212369490167593ab5ab28dbea11c76b50801d8dbe6c400f526eff63af92df8",
+      "size_bytes": 32290
+    },
+    {
+      "path": "figures/target_increments_by_run.png",
+      "role": "target_increments_by_run_png",
+      "sha256": "fa53f340e189ef44eb5f6832a39bc6de876896e607a8bcf375c4bc1bbbf14e6f",
+      "size_bytes": 146712
+    },
+    {
+      "path": "figures/target_increments_by_run.svg",
+      "role": "target_increments_by_run_svg",
+      "sha256": "aac81fd09058c76663bf6fdae4a9bad9f8d7995d54252f9d9e32091665213e7b",
+      "size_bytes": 57050
+    },
+    {
+      "path": "figures/missing_excluded_target_observations.png",
+      "role": "missing_excluded_target_observations_png",
+      "sha256": "30b994d74d7c02505c9d792c6b439166883febe57d6f7a8ddcf67fc7847ad79b",
+      "size_bytes": 130501
+    },
+    {
+      "path": "figures/missing_excluded_target_observations.svg",
+      "role": "missing_excluded_target_observations_svg",
+      "sha256": "847c884bc7ac701c5584dba869222a4009c5eebc59b4f7ea55123c286af7868a",
+      "size_bytes": 51612
+    },
+    {
+      "path": "figures/segmentation_confidence_distribution.png",
+      "role": "segmentation_confidence_distribution_png",
+      "sha256": "fe3fac600af4104e7ac67b4901a4da377e864fa431249594dfed846247ed5b8e",
+      "size_bytes": 78437
+    },
+    {
+      "path": "figures/segmentation_confidence_distribution.svg",
+      "role": "segmentation_confidence_distribution_svg",
+      "sha256": "fe78899084a04977741412c2d1d2a1d38724877ad986b08f092dfa9177e69014",
+      "size_bytes": 36392
+    },
+    {
+      "path": "figures/monotonic_corrections_applied.png",
+      "role": "monotonic_corrections_applied_png",
+      "sha256": "ab23e52590d349579da04b0abe32cdfaef6eac791eae6b6cc79be949cd1af2eb",
+      "size_bytes": 127470
+    },
+    {
+      "path": "figures/monotonic_corrections_applied.svg",
+      "role": "monotonic_corrections_applied_svg",
+      "sha256": "e722229de92b484f3490eea6157450d81813e2ac046ecdb613672b63cbbb3bab",
+      "size_bytes": 52991
+    },
+    {
+      "path": "figures/target_definition_pipeline.png",
+      "role": "target_definition_pipeline_png",
+      "sha256": "55e68a59fb65e3e7718a76632c2e9dcccff844fbb7903d108922268e5ce7a505",
+      "size_bytes": 96738
+    },
+    {
+      "path": "figures/target_definition_pipeline.svg",
+      "role": "target_definition_pipeline_svg",
+      "sha256": "5abe9f040f18064ce6d52afa452b091a5a3051cc2bd556319973f6199cdce392",
+      "size_bytes": 33499
+    },
+    {
+      "path": "figures/current_state_estimation_timeline.png",
+      "role": "current_state_estimation_timeline_png",
+      "sha256": "f8abd2f42156b054ec2843f81b639744f7d67f7f8ca1d42050d3d740384996d8",
+      "size_bytes": 59912
+    },
+    {
+      "path": "figures/current_state_estimation_timeline.svg",
+      "role": "current_state_estimation_timeline_svg",
+      "sha256": "db76b81da1c2fda7b30ef6f4445040f392a21ac430d2bd6c0fd831266450a96e",
+      "size_bytes": 26976
+    },
+    {
+      "path": "figures/contact_sheets/exp-a_run_1.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "e3b1843198abd055886025093dfc4e5aee02c789876249e6e0a8a304b4a30fe4",
+      "size_bytes": 193758
+    },
+    {
+      "path": "figures/contact_sheets/exp-a_run_2.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "e7cb366712e18aaf8df8760b5408151b17b62e93950fe8c960ce84a2ae9e1c47",
+      "size_bytes": 196937
+    },
+    {
+      "path": "figures/contact_sheets/exp-a_run_3.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "335d538ac2a52d8ebd6b6709b5ee034c748ab0a5b48680734b8b201230b84efd",
+      "size_bytes": 188179
+    },
+    {
+      "path": "figures/contact_sheets/exp-a_run_4.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "f7880679116def964913a0275be1a0197ca377f8c24191b1bbbd2a3c0433922a",
+      "size_bytes": 193876
+    },
+    {
+      "path": "figures/contact_sheets/exp-a_run_5.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "8f1ae4081c1fb0b34a5411cf07f4d015081d8c8718a7a4ae1a14afdc4a3c8617",
+      "size_bytes": 204737
+    },
+    {
+      "path": "figures/contact_sheets/exp-b_run_1.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "d1274ce2e20a98a35ae728ebb3a97a128240facd9d17dfe109d75e196fec15b1",
+      "size_bytes": 196721
+    },
+    {
+      "path": "figures/contact_sheets/exp-b_run_2.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "80e3b01bd1cbcef4ee55503a00fb0889fbeaf571b07b433f61a368784dc352f7",
+      "size_bytes": 189880
+    },
+    {
+      "path": "figures/contact_sheets/exp-b_run_3.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "2c20bed8a965166d1475f1ad990b226b75cb86c205941a08d8024ddd5c66fa3c",
+      "size_bytes": 200316
+    },
+    {
+      "path": "figures/contact_sheets/exp-b_run_4.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "62ccf0bb407e46f52893c67659882530856473b98dddca31fc654b81a0f319a2",
+      "size_bytes": 201079
+    },
+    {
+      "path": "figures/contact_sheets/exp-b_run_5.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "ad227440d84eec37b0ae7c8778e445c1e2705a494bebf879d3e8ed89428dd131",
+      "size_bytes": 203984
+    },
+    {
+      "path": "figures/contact_sheets/exp-b_run_6.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "c685581749014e7de50ce1e69fb2ded0470e8a867f8a1c520d2c6e1d00b0e8f2",
+      "size_bytes": 202319
+    },
+    {
+      "path": "figures/contact_sheets/exp-b_run_7.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "4b2273720c7e8619446804517b10f31a5a6645ba7ede98342a2f2602e62003de",
+      "size_bytes": 202531
+    },
+    {
+      "path": "figures/contact_sheets/exp-f_run_1.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "1d2d6b210117ed1a6653fa31df92720f6c1b99055b94e1667c5bf6691a2b65bc",
+      "size_bytes": 190039
+    },
+    {
+      "path": "figures/contact_sheets/exp-f_run_2.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "5511c9a0b25ea7ab9d56881330a467f66ecba670b8ff90ee8e471ffbe94cdcae",
+      "size_bytes": 195076
+    },
+    {
+      "path": "figures/contact_sheets/exp-f_run_3.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "ecafe98ce5d9ea717ceef93b0639d43bf9336f47ba534b26dd375597fa1c6c8f",
+      "size_bytes": 193279
+    },
+    {
+      "path": "figures/contact_sheets/exp-f_run_4.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "d8212a8f7761ce39bc38e1594df858a7a2e3b54481b7439c809153cebdd9ead1",
+      "size_bytes": 198653
+    },
+    {
+      "path": "figures/contact_sheets/exp-f_run_5.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "7950ca93d1599be2595865e28ac5b086713e8cfc53e5973a4b34f44f123eac1b",
+      "size_bytes": 201053
+    },
+    {
+      "path": "figures/contact_sheets/exp-f_run_6.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "5283afa1fe5b17ae67860cf40573d1887a07dfd1af2c73b9786bdea7273126b7",
+      "size_bytes": 200133
+    },
+    {
+      "path": "figures/contact_sheets/exp-f_run_7.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "2c4215b3da679e77b0cca1a81d3651ae366babf24e042d6779619b6dc94b9a3e",
+      "size_bytes": 202109
+    },
+    {
+      "path": "figures/contact_sheets/exp-f_run_8.jpg",
+      "role": "per_run_contact_sheet",
+      "sha256": "2fa23290a92d1bc6940132a85e16df92343bc6387aae503935a75718f2065bc5",
+      "size_bytes": 207016
+    },
+    {
+      "path": "reports/target_figure_index.md",
+      "role": "target_figure_index",
+      "sha256": "393f8f94fd2a789eba0872f1c24c665f075ab24c97a5d7e28c141bb50bbad20f",
+      "size_bytes": 2378
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260814T011051111606Z-e7600a8a",
+  "schema_version": "1.0.0",
+  "seed": 20260814,
+  "source_runs": [
+    {
+      "artifacts": {
+        "tables/archive_members.parquet": "01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d",
+        "tables/asset_inventory.parquet": "3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832",
+      "name": "inventory",
+      "run_id": "20260813T202043619114Z-ad7f9832"
+    },
+    {
+      "artifacts": {
+        "reports/image_summary.json": "d9f6807b34b19a68383f934727eefdaaeefe5fc39415f1c3b4593d7c19174649",
+        "tables/image_profile.parquet": "c4b1f68dd428be558bbe433574ed2ac7bacd943d0e58afc020e5673818ec55cc"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T215718624432Z-bd9395ad",
+      "name": "images",
+      "run_id": "20260813T215718624432Z-bd9395ad"
+    }
+  ],
+  "study": "phm2026_image_target",
+  "timestamp_utc": "2026-08-14T01:10:51.111606+00:00"
+}

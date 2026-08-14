@@ -1,0 +1,46 @@
+{
+  "best_epoch": 2,
+  "cuda_available": true,
+  "cuda_version": "13.0",
+  "exp_f_test_evaluation_passes": 1,
+  "exp_f_used_for_tuning": false,
+  "frozen_detector_layer_count": 9,
+  "lambda_selection": {
+    "detection_loss": 40.12736129760742,
+    "detection_shared_gradient_norm": 136.41851806640625,
+    "lambda_regression": 58.261490281753986,
+    "raw_gradient_balance_ratio": 58.261490281753986,
+    "regression_loss": 0.7888671159744263,
+    "regression_shared_gradient_norm": 2.341486930847168,
+    "selection_evidence": "first deterministic EXP-B training batch only"
+  },
+  "nvidia_smi": "Tesla T4, 16384 MiB, 15930 MiB, 580.167.08",
+  "optimizer_groups": [
+    {
+      "learning_rate": 1e-05,
+      "name": "unfrozen_rtdetr",
+      "parameter_count": 25963235
+    },
+    {
+      "learning_rate": 0.0005,
+      "name": "scalar_head",
+      "parameter_count": 33025
+    }
+  ],
+  "parameter_summary": {
+    "detector_parameters": 32808131,
+    "detector_trainable_parameters": 25963235,
+    "scalar_head_parameters": 33025,
+    "scalar_head_trainable_parameters": 33025
+  },
+  "peak_cuda_memory_allocated_bytes": 2654548480,
+  "tiny_overfit": {
+    "final_smooth_l1": 0.44605696201324463,
+    "initial_smooth_l1": 1.0435446500778198,
+    "steps": 12,
+    "used_exp_f": false
+  },
+  "torch_version": "2.13.0+cu130",
+  "training_seconds": 160.62104125900032,
+  "ultralytics_version": "8.4.104"
+}

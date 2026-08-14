@@ -1,0 +1,115 @@
+{
+  "command": [
+    "scripts/profile_sensors.py",
+    "--mode",
+    "metadata",
+    "--limit-per-modality",
+    "1",
+    "--output-dir",
+    "runs/phm2026_dataset_description"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_dataset_description.yaml",
+    "sha256": "f7c665fd68b21d7cbde51bcc0e3509b187ed8458f86183bbd578c541ed6597be"
+  },
+  "git": {
+    "commit": "d3ce4808abfa8abb0aaad58d7b458defd0c7c5d0",
+    "dirty": true
+  },
+  "input_roots": [
+    "gtc-data-experiment"
+  ],
+  "output_root": "runs/phm2026_dataset_description/20260813T212734652736Z-f7c665fd",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "h5py": "3.16.0",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "26933a42af603afc22841519d9de0e12f546874f50639b819e6b355def9f06b3",
+      "size_bytes": 5443
+    },
+    {
+      "path": "manifests/inputs.json",
+      "role": "input_manifest",
+      "sha256": "3c8046ddbd725a6d56dfc88b2c46df123d3380a70dae9212f48c6e62166a7e58",
+      "size_bytes": 2568
+    },
+    {
+      "path": "tables/sensor_profile.csv",
+      "role": "sensor_profile_csv",
+      "sha256": "01aee9bb31cf124e7e1a94b918543aa76a578c0b2e1e1893eeccb662375a45bb",
+      "size_bytes": 33957105
+    },
+    {
+      "path": "tables/sensor_profile.parquet",
+      "role": "sensor_profile_parquet",
+      "sha256": "922693091a8be4558f1eb74e512ae8a85ea1fd7f368143d86cde02de9d430322",
+      "size_bytes": 4016394
+    },
+    {
+      "path": "tables/hdf5_members.csv",
+      "role": "hdf5_member_profile_csv",
+      "sha256": "38d3e6c0a84bbdbbab7f2b090d72f4f57beecc1a9ba84a817c8242108fa34300",
+      "size_bytes": 431552
+    },
+    {
+      "path": "tables/hdf5_members.parquet",
+      "role": "hdf5_member_profile_parquet",
+      "sha256": "454a331a81caebc26a5b7b046d229a599345490b7b258b08538e65717c209664",
+      "size_bytes": 93006
+    },
+    {
+      "path": "reports/hdf5_schema.json",
+      "role": "hdf5_schema",
+      "sha256": "cb678d869843ede481677753b1b9e7e4010beac2ced96d36dfdf2d6c68910237",
+      "size_bytes": 66936
+    },
+    {
+      "path": "reports/sensor_summary.json",
+      "role": "sensor_summary_json",
+      "sha256": "1e3bb106e94ab873b5ed601fc76a767ad95e793b498bce680301457961df4654",
+      "size_bytes": 26926
+    },
+    {
+      "path": "reports/sensor_summary.md",
+      "role": "sensor_summary_markdown",
+      "sha256": "fdcb86851f0ee3aa18ad7f3be4c9af7a9bb6f3e740a71b77698e8f40128f0685",
+      "size_bytes": 22139
+    },
+    {
+      "path": "reports/warnings.json",
+      "role": "warnings",
+      "sha256": "42b2b251a3063d5c01ceefa263850e14234f668dfb9ac14e22dc108a68eab47f",
+      "size_bytes": 153028
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260813T212734652736Z-f7c665fd",
+  "schema_version": "1.0.0",
+  "seed": 20260813,
+  "source_runs": [
+    {
+      "artifacts": {
+        "manifests/inputs.json": "444786ce1fdb121f0205e274b8c9f48cf3ef82513031269cbd69b7a8a8535ddb",
+        "manifests/outputs.json": "443dd9c0fde541d925e483e7f52a6766cfcfbc4fac801216b834d1553431f578",
+        "provenance.json": "25450b19798c6e8faed7b3494d255ce11350b02edb8fca380516b5e04ace6882",
+        "reports/summary.json": "f5db7f36aef8d9b86908388a48799024e9ac97d160a6b6d132c5fcebcdf0a013",
+        "tables/archive_members.parquet": "01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d",
+        "tables/asset_inventory.parquet": "3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832",
+      "run_id": "20260813T202043619114Z-ad7f9832"
+    }
+  ],
+  "study": "phm2026_dataset_description",
+  "timestamp_utc": "2026-08-13T21:27:34.652736+00:00"
+}

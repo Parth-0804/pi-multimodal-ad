@@ -1,0 +1,208 @@
+schema_version: 1.0.0
+study: phm2026_dataset_description
+task: D1.3
+experiment_config:
+  schema_version: 1.0.0
+  study: phm2026_dataset_description
+  dataset_config: configs/datasets/phm2026.yaml
+  seed: 20260813
+  output_root: runs/phm2026_dataset_description
+  inventory:
+    inspection_mode: zip_central_directory
+    extract_members: false
+    decompress_members: false
+    full_payload_hashing: false
+    duplicate_evidence:
+    - central_directory_sha256
+    - zip_crc32_and_uncompressed_size
+  source_runs:
+    asset_inventory:
+      run_id: 20260813T202043619114Z-ad7f9832
+      directory: runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832
+      artifacts:
+        tables/asset_inventory.parquet: 3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e
+        tables/archive_members.parquet: 01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d
+        reports/summary.json: f5db7f36aef8d9b86908388a48799024e9ac97d160a6b6d132c5fcebcdf0a013
+        manifests/inputs.json: 444786ce1fdb121f0205e274b8c9f48cf3ef82513031269cbd69b7a8a8535ddb
+        manifests/outputs.json: 443dd9c0fde541d925e483e7f52a6766cfcfbc4fac801216b834d1553431f578
+        provenance.json: 25450b19798c6e8faed7b3494d255ce11350b02edb8fca380516b5e04ace6882
+  sensor_profile:
+    default_mode: metadata
+    supported_modes:
+    - metadata
+    - sampled
+    - full
+    sample_points: 4096
+    max_block_bytes: 16777216
+    full_mode_requires_limit: true
+    expected_paths:
+      high_frequency:
+        required:
+        - /Vibration/Accel 1
+        - /Vibration/Accel 2
+        - /Context/PAU Speed
+        - /Context/PAU Torque
+        - /Context/Temperature
+        alternatives:
+          fm4:
+          - /CI/FM4
+          - /CI_4s/FM4
+          na4:
+          - /CI/NA4
+          - /CI_4s/NA4
+          m6a:
+          - /CI/M6A
+          - /CI_4s/M6A
+          alr:
+          - /CI/ALR
+          - /CI_4s/ALR
+  image_profile:
+    default_mode: header
+    supported_modes:
+    - header
+    - sampled
+    - full
+    sample_size: 104
+    max_member_bytes: 8388608
+    max_pixels: 50000000
+    near_duplicate_hamming: 4
+    full_mode_requires_limit: true
+dataset_config_path: configs/datasets/phm2026.yaml
+dataset_config_sha256: 9a63e46fec0156567b4d09f1c4d2a57dc23dd1e54edc8014b1ac843c576c83a9
+dataset_config:
+  schema_version: 1.0.0
+  dataset:
+    name: phm2026
+    data_root: gtc-data-experiment
+    excluded_repository_roots:
+    - data/Full Dataset
+  include:
+    experiments:
+      EXP-A:
+        runs:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+      EXP-B:
+        runs:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+      EXP-F:
+        runs:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+    modality_roots:
+      high_frequency:
+      - high_frequency/EXP A
+      - high_frequency/EXP B
+      - high_frequency/EXP F
+      low_frequency:
+      - low-frequency (CIs + Oil + Environment)
+      condition_indicator:
+      - low-frequency (CIs)
+      image:
+      - photos/EXP-A
+      - photos/EXP-B
+      - photos/EXP-F
+    file_extensions:
+    - .zip
+    expectation_mode_by_modality:
+      high_frequency: runs
+      low_frequency: experiments
+      condition_indicator: experiments
+      image: runs
+  exclude:
+    experiments: []
+    runs: []
+    path_globs:
+    - '**/*.part'
+  phm_rules:
+    hdf5_path_aliases:
+      vibration:
+      - /Vibration
+      operating_context:
+      - /Context
+      condition_indicator:
+      - /CI
+      - /CI_4s
+      oil:
+      - /Oil
+      environment:
+      - /Environment
+      timestamp:
+      - /Timestamp
+      - /Time
+    hdf5_attribute_aliases:
+      unit:
+      - unit_string
+      - NI_UnitDescription
+      - unit
+      - units
+      sampling_rate:
+      - sampling_rate
+      - sample_rate
+      - samplerate
+      - fs
+      - frequency
+      sampling_interval:
+      - wf_increment
+      start_timestamp:
+      - wf_start_time
+    sampling_frequency_policy:
+      recorded_attribute: preferred
+      derive_from_positive_interval: true
+      default_hz: null
+    photo_stage_aliases:
+      0 Hours - Test Start: test_start
+      Pre-Run: pre_run
+      Break-In: break_in
+      Break In: break_in
+    exp_a_run_2_duplicate_warning:
+      reported_overlap_with_run: 1
+      reported_overlapping_files: 311
+      independently_verified: false
+      default_policy: report_and_include
+  target:
+    status: unverified
+    enabled: false
+    target_name: null
+    physical_meaning: null
+    unit: null
+    timestamp_source: null
+    six_hour_interpretation: null
+    computation_version: null
+source_runs:
+  asset_inventory:
+    run_id: 20260813T202043619114Z-ad7f9832
+    directory: runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832
+    artifacts:
+      tables/asset_inventory.parquet: 3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e
+      tables/archive_members.parquet: 01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d
+      reports/summary.json: f5db7f36aef8d9b86908388a48799024e9ac97d160a6b6d132c5fcebcdf0a013
+      manifests/inputs.json: 444786ce1fdb121f0205e274b8c9f48cf3ef82513031269cbd69b7a8a8535ddb
+      manifests/outputs.json: 443dd9c0fde541d925e483e7f52a6766cfcfbc4fac801216b834d1553431f578
+      provenance.json: 25450b19798c6e8faed7b3494d255ce11350b02edb8fca380516b5e04ace6882
+execution:
+  mode: sampled
+  seed: 20260813
+  sample_size: 4
+  max_member_bytes: 8388608
+  max_pixels: 50000000
+  near_duplicate_hamming: 4
+  limit: 12
+  dry_run: false
+  data_root: gtc-data-experiment
+  output_root: runs/phm2026_dataset_description

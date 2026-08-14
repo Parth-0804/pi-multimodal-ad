@@ -1,0 +1,48 @@
+schema_version: 1.0.0
+study: phm2026_image_target
+dataset_config: configs/datasets/phm2026.yaml
+seed: 20260814
+output_root: runs/phm2026_image_target
+official_challenge:
+  url: https://data.phmsociety.org/phm-north-america-2026-conference-data-challenge/
+  accessed: '2026-08-14'
+source_runs:
+  inventory:
+    run_id: 20260813T202043619114Z-ad7f9832
+    directory: runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832
+    artifacts:
+      tables/asset_inventory.parquet: 3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e
+      tables/archive_members.parquet: 01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d
+  images:
+    run_id: 20260813T215718624432Z-bd9395ad
+    directory: runs/phm2026_dataset_description/20260813T215718624432Z-bd9395ad
+    artifacts:
+      tables/image_profile.parquet: c4b1f68dd428be558bbe433574ed2ac7bacd943d0e58afc020e5673818ec55cc
+      reports/image_summary.json: d9f6807b34b19a68383f934727eefdaaeefe5fc39415f1c3b4593d7c19174649
+target_definition:
+  version: phm2026_image_damage_v1
+  verification_status: provisional_pending_human_review
+  unit: percent_visible_flank_candidate_area
+  primary_run_target: top3_mean
+  monotonic_rule: causal_cumulative_max_within_experiment
+  minimum_valid_teeth: 28
+  damaged_tooth_threshold_pct: 2.0
+image_measurement:
+  roi_normalized_xyxy:
+  - 0.08
+  - 0.08
+  - 0.92
+  - 0.72
+  clahe_clip_limit: 2.0
+  background_sigma_pixels: 31.0
+  residual_z_threshold: 2.2
+  gradient_z_threshold: 2.0
+  minimum_component_fraction: 8.0e-05
+  camera_view_aggregation: maximum_candidate_ratio
+  max_member_bytes: 8388608
+  near_duplicate_hamming: 4
+  overlay_jpeg_quality: 88
+storage_limits:
+  max_overlay_cache_bytes: 12884901888
+  max_total_new_artifacts_bytes: 32212254720
+  minimum_free_bytes: 26843545600

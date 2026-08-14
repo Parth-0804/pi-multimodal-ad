@@ -1,0 +1,100 @@
+{
+  "command": [
+    "scripts/evaluate_naive_baselines.py"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_evaluation.yaml",
+    "sha256": "4423f1faf91d5ebfe5946b090b30e6d8f78d97251ab6c3b443986c9695b37787"
+  },
+  "git": {
+    "commit": "d3ce4808abfa8abb0aaad58d7b458defd0c7c5d0",
+    "dirty": true
+  },
+  "input_roots": [
+    "runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab"
+  ],
+  "output_root": "runs/phm2026_evaluation/20260814T015914190145Z-4423f1fa",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "2f82765589bcd99cc25ca92dc1c1ed2c4a3420002f15d41d3e7a4b8b6a0c5036",
+      "size_bytes": 670
+    },
+    {
+      "path": "manifests/inputs.json",
+      "role": "input_manifest",
+      "sha256": "e745e38959b6d5cc6c8f7596aef2460746c8d2b9f6fcd12f481588bd5777e84a",
+      "size_bytes": 1097
+    },
+    {
+      "path": "tables/baseline_predictions.csv",
+      "role": "baseline_predictions",
+      "sha256": "2d4ce8d12b99977426bed443d439cfe299a9702c2ab589f190769c55a4a30910",
+      "size_bytes": 705352
+    },
+    {
+      "path": "tables/baseline_predictions.parquet",
+      "role": "baseline_predictions",
+      "sha256": "4c9e44ee3161f6f4c5d2873d98d1661ef83af50cf502a5e682b4f2347bcefd84",
+      "size_bytes": 154229
+    },
+    {
+      "path": "tables/baseline_metrics.csv",
+      "role": "baseline_metrics",
+      "sha256": "82dc3648ec6f698204d2cba66890983f405013b1cde17582e39db314040c9984",
+      "size_bytes": 1608
+    },
+    {
+      "path": "tables/baseline_metrics.parquet",
+      "role": "baseline_metrics",
+      "sha256": "9f9c9a8bbbba5d23da7a3ae09d9dff094b6b6fd5809bfdf55eac51fe8bbd9539",
+      "size_bytes": 9976
+    },
+    {
+      "path": "reports/evaluation_contract.md",
+      "role": "evaluation_contract",
+      "sha256": "ef1ce4c375de58e4a5b38bd8e96d289758b2e310e79ac7e1d1a26f8cd154c013",
+      "size_bytes": 721
+    },
+    {
+      "path": "reports/real_world_validity_checklist.md",
+      "role": "real_world_validity_checklist",
+      "sha256": "d2c3d6b56f8f48b49d73fef2d3720e9bd76af973943bf3d242e0bc3da13e5e38",
+      "size_bytes": 603
+    },
+    {
+      "path": "reports/prediction_result_schema.json",
+      "role": "prediction_result_schema",
+      "sha256": "452ea428a2ae82502241ea90846e9793cdb95c814b19dfeca4daeb5548156e1b",
+      "size_bytes": 537
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260814T015914190145Z-4423f1fa",
+  "schema_version": "1.0.0",
+  "seed": 20260814,
+  "source_runs": [
+    {
+      "artifacts": {
+        "reports/split_validation.json": "5d636c458701f609b3965a7711394e9355eaa22203a0ac8634d5e2d8bde6708e",
+        "tables/model_sample_manifest.parquet": "8cc50418016ce5fd492ae973c99549c538971a382b74db17f52c6aa9968b2144",
+        "tables/split_manifest.parquet": "6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359"
+      },
+      "directory": "runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab",
+      "name": "model_dataset",
+      "run_id": "20260814T013357354377Z-6b068cab"
+    }
+  ],
+  "study": "phm2026_evaluation",
+  "timestamp_utc": "2026-08-14T01:59:14.190145+00:00"
+}

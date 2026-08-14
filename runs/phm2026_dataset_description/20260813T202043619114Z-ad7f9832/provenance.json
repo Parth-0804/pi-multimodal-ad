@@ -1,0 +1,88 @@
+{
+  "command": [
+    "scripts/profile_dataset.py"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_dataset_description.yaml",
+    "sha256": "ad7f9832748c750ad932494fec957274dd4413f6202debf94721dd238f31a553"
+  },
+  "git": {
+    "commit": "d3ce4808abfa8abb0aaad58d7b458defd0c7c5d0",
+    "dirty": true
+  },
+  "input_roots": [
+    "gtc-data-experiment"
+  ],
+  "output_root": "runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "c4508e95aba0794aa9f03eac8f2b491db74ff95744a17b5cbe7d3dd466bd290f",
+      "size_bytes": 2688
+    },
+    {
+      "path": "manifests/inputs.json",
+      "role": "input_manifest",
+      "sha256": "444786ce1fdb121f0205e274b8c9f48cf3ef82513031269cbd69b7a8a8535ddb",
+      "size_bytes": 17085
+    },
+    {
+      "path": "tables/asset_inventory.csv",
+      "role": "asset_inventory_csv",
+      "sha256": "6bda8a9fd0bdb3afb67df3056e9666923cd81934243ef2af2e4cd3b3b9909deb",
+      "size_bytes": 16728
+    },
+    {
+      "path": "tables/asset_inventory.parquet",
+      "role": "asset_inventory_parquet",
+      "sha256": "3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e",
+      "size_bytes": 24419
+    },
+    {
+      "path": "tables/archive_members.csv",
+      "role": "archive_member_inventory_csv",
+      "sha256": "ec99744bcc012f280157619e431190bda5d01d170ddb93b74c5b351d200ea7f4",
+      "size_bytes": 2860605
+    },
+    {
+      "path": "tables/archive_members.parquet",
+      "role": "archive_member_inventory_parquet",
+      "sha256": "01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d",
+      "size_bytes": 812078
+    },
+    {
+      "path": "reports/summary.json",
+      "role": "inventory_summary_json",
+      "sha256": "f5db7f36aef8d9b86908388a48799024e9ac97d160a6b6d132c5fcebcdf0a013",
+      "size_bytes": 8670
+    },
+    {
+      "path": "reports/summary.md",
+      "role": "inventory_summary_markdown",
+      "sha256": "b7342408a412c8fb4b56ded872fcbe9b50685b33b85af718dd0527f34449e7eb",
+      "size_bytes": 7830
+    },
+    {
+      "path": "reports/warnings.json",
+      "role": "warnings",
+      "sha256": "fb56c69849d77dd1afd94ea7d68394757cc2b08611fc9a2e89e4ebde7df6e10a",
+      "size_bytes": 5040
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260813T202043619114Z-ad7f9832",
+  "schema_version": "1.0.0",
+  "seed": 20260813,
+  "study": "phm2026_dataset_description",
+  "timestamp_utc": "2026-08-13T20:20:43.619114+00:00"
+}

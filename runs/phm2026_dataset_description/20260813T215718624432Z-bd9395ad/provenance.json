@@ -1,0 +1,138 @@
+{
+  "command": [
+    "scripts/profile_images.py",
+    "--mode",
+    "header",
+    "--output-dir",
+    "runs/phm2026_dataset_description"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_dataset_description.yaml",
+    "sha256": "bd9395adb20c4fe2e4932ea08a64fc453bead42677d1dc08f4ed5ac746cb7b6e"
+  },
+  "git": {
+    "commit": "d3ce4808abfa8abb0aaad58d7b458defd0c7c5d0",
+    "dirty": true
+  },
+  "input_roots": [
+    "gtc-data-experiment"
+  ],
+  "output_root": "runs/phm2026_dataset_description/20260813T215718624432Z-bd9395ad",
+  "packages": {
+    "Pillow": "12.3.0",
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.11.1",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "e685b628a29e84c735e6fcacdcf6620e06459eb256e398beaa31467c210cf7d6",
+      "size_bytes": 5663
+    },
+    {
+      "path": "manifests/inputs.json",
+      "role": "input_manifest",
+      "sha256": "39412b3501df0bb2337076c54599f9893787a8867dc75a29843cc15c1cf497f7",
+      "size_bytes": 599624
+    },
+    {
+      "path": "tables/image_profile.csv",
+      "role": "image_profile_csv",
+      "sha256": "81c6683a281087b02137e9b578c744836d080de6776da6dc12a1af379d683a01",
+      "size_bytes": 1513826
+    },
+    {
+      "path": "tables/image_profile.parquet",
+      "role": "image_profile_parquet",
+      "sha256": "c4b1f68dd428be558bbe433574ed2ac7bacd943d0e58afc020e5673818ec55cc",
+      "size_bytes": 502279
+    },
+    {
+      "path": "tables/image_near_duplicate_pairs.csv",
+      "role": "near_duplicate_pairs_csv",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "tables/image_near_duplicate_pairs.parquet",
+      "role": "near_duplicate_pairs_parquet",
+      "sha256": "2e836d6adff325aede8989ffcbc87094563445f1d0a4ba61dd92764ecca42844",
+      "size_bytes": 636
+    },
+    {
+      "path": "tables/contact_sheet_index.csv",
+      "role": "contact_sheet_index",
+      "sha256": "cde4f78cd383e9b76783afa93563e1f6f8aad1bd5de8a0f24c047b0df14bcc34",
+      "size_bytes": 4684
+    },
+    {
+      "path": "reports/image_schema.json",
+      "role": "image_schema",
+      "sha256": "031ace57f58f2c2e7c2d6241dc8e95d5dc9562ebcce2b883c97edf10a81b4e46",
+      "size_bytes": 256
+    },
+    {
+      "path": "reports/image_summary.json",
+      "role": "image_summary_json",
+      "sha256": "d9f6807b34b19a68383f934727eefdaaeefe5fc39415f1c3b4593d7c19174649",
+      "size_bytes": 27690
+    },
+    {
+      "path": "reports/image_summary.md",
+      "role": "image_summary_markdown",
+      "sha256": "6648024298042eb02f29cb22d2f69d7587c4a9aeeae2650662b6fac8b3da0d92",
+      "size_bytes": 1562
+    },
+    {
+      "path": "reports/warnings.json",
+      "role": "warnings",
+      "sha256": "9177d32fc8039973ffcbb09dc4a7c4d47ecd5c63c07dde9f40bb1bbd599ea40b",
+      "size_bytes": 48
+    },
+    {
+      "path": "figures/contact_sheet_representative.png",
+      "role": "representative_contact_sheet",
+      "sha256": "db90c3d69eef2bae2ab9f0fc0f8dfeae9a59055a042f493996de359aa24d0e47",
+      "size_bytes": 1181643
+    },
+    {
+      "path": "figures/contact_sheet_quality_outliers.png",
+      "role": "quality_outlier_contact_sheet",
+      "sha256": "f30c2fafce482adbc961523963b8cea0810b45fb7b09cce0d557dbb682568613",
+      "size_bytes": 3183
+    },
+    {
+      "path": "figures/image_shape_distribution.png",
+      "role": "image_shape_distribution",
+      "sha256": "63a27613efa1409d8d7ffc3118da453e090cbd177aeac0d8d142cbdd89f68d01",
+      "size_bytes": 20521
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260813T215718624432Z-bd9395ad",
+  "schema_version": "1.0.0",
+  "seed": 20260813,
+  "source_runs": [
+    {
+      "artifacts": {
+        "manifests/inputs.json": "444786ce1fdb121f0205e274b8c9f48cf3ef82513031269cbd69b7a8a8535ddb",
+        "manifests/outputs.json": "443dd9c0fde541d925e483e7f52a6766cfcfbc4fac801216b834d1553431f578",
+        "provenance.json": "25450b19798c6e8faed7b3494d255ce11350b02edb8fca380516b5e04ace6882",
+        "reports/summary.json": "f5db7f36aef8d9b86908388a48799024e9ac97d160a6b6d132c5fcebcdf0a013",
+        "tables/archive_members.parquet": "01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d",
+        "tables/asset_inventory.parquet": "3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832",
+      "run_id": "20260813T202043619114Z-ad7f9832"
+    }
+  ],
+  "study": "phm2026_dataset_description",
+  "timestamp_utc": "2026-08-13T21:57:18.624432+00:00"
+}

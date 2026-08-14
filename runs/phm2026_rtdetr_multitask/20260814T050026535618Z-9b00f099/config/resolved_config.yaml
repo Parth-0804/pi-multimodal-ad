@@ -1,0 +1,59 @@
+schema_version: 1.0.0
+status: PROVISIONAL_PSEUDO_TARGET_AGREEMENT_ONLY
+model:
+  architecture: rtdetr-l
+  formulation: genuine_rtdetr_detection_plus_shared_encoder_scalar_head
+  feature_layer: 27
+  feature_dimension: 256
+  scalar_hidden_dimension: 128
+  scalar_dropout: 0.1
+  image_size: 640
+  maximum_detections: 300
+  minimum_inference_confidence: 0.001
+training:
+  device: cuda
+  batch_size: 4
+  workers: 2
+  amp: true
+  frozen_detector_layers: 9
+  detector_learning_rate: 1.0e-05
+  scalar_head_learning_rate: 0.0005
+  weight_decay: 0.0005
+  maximum_epochs: 6
+  patience: 2
+  gradient_clip_norm: 10.0
+  lambda_balance_minimum: 0.1
+  lambda_balance_maximum: 100.0
+  tiny_overfit_steps: 12
+  tiny_overfit_batch_size: 2
+  augmentation:
+    horizontal_flip: true
+target_scaler:
+  fit_split: EXP-B/train only
+  mean: 2.0034357595340335
+  scale: 1.1516235350154962
+  unit: percent_visible_flank_candidate_area
+lambda_selection:
+  detection_loss: 40.12736129760742
+  regression_loss: 0.7888671159744263
+  detection_shared_gradient_norm: 136.41851806640625
+  regression_shared_gradient_norm: 2.341486930847168
+  raw_gradient_balance_ratio: 58.261490281753986
+  lambda_regression: 58.261490281753986
+  selection_evidence: first deterministic EXP-B training batch only
+tiny_overfit:
+  steps: 12
+  initial_smooth_l1: 1.0435446500778198
+  final_smooth_l1: 0.44605696201324463
+  used_exp_f: false
+selection:
+  best_epoch: 2
+  confidence_threshold: 0.01
+  selection_experiment: EXP-A
+  exp_f_used_for_tuning: false
+  exp_f_evaluation_passes: 1
+execution:
+  starting_free_bytes: 77411733504
+  training_seconds: 160.62104125900032
+  raw_archives_opened: false
+  raw_archives_modified: false

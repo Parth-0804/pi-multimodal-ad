@@ -1,0 +1,192 @@
+{
+  "command": [
+    "scripts/describe_dataset.py"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_dataset_description.yaml",
+    "sha256": "7d2070cf6f4e02d0b69b227ba68457fb4469074c6946bff4c6a6a5034e5ee2cc"
+  },
+  "git": {
+    "commit": "d3ce4808abfa8abb0aaad58d7b458defd0c7c5d0",
+    "dirty": true
+  },
+  "input_roots": [
+    "runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832",
+    "runs/phm2026_dataset_description/20260813T212734652736Z-f7c665fd",
+    "runs/phm2026_dataset_description/20260813T215718624432Z-bd9395ad",
+    "runs/phm2026_dataset_description/20260813T215756728445Z-bd9395ad",
+    "runs/phm2026_dataset_description/20260813T223944047252Z-d6474ff4"
+  ],
+  "output_root": "runs/phm2026_dataset_description/20260813T225042643949Z-7d2070cf",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.11.1",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "3b3dcf69ce0d8666af90e5ae8da1d75ff40c0ba2b8e3128adeed5879d21c8d11",
+      "size_bytes": 9938
+    },
+    {
+      "path": "manifests/inputs.json",
+      "role": "input_manifest",
+      "sha256": "64bfb393533a99b29e58392f7562498d9bf1901670bdfea59e92f5f4f50fc668",
+      "size_bytes": 11549
+    },
+    {
+      "path": "tables/dataset_at_a_glance.csv",
+      "role": "dataset_at_a_glance_csv",
+      "sha256": "a862d92d62460a2700706249d7c7e1aee6b641790e399e61eb0d5861ab087f59",
+      "size_bytes": 2299
+    },
+    {
+      "path": "tables/modality_coverage.csv",
+      "role": "modality_coverage_csv",
+      "sha256": "b3534ae0f825db41b6fd182af8c04204f488014dd3243b75cd7fb5cae29a2a60",
+      "size_bytes": 2248
+    },
+    {
+      "path": "tables/sensor_shape_summary.csv",
+      "role": "sensor_shape_summary_csv",
+      "sha256": "89616bd92bcf9765821ff114a893b1707c13bf4d5f2fecb4f0cebfdb481d8cdd",
+      "size_bytes": 82635
+    },
+    {
+      "path": "tables/image_shape_summary.csv",
+      "role": "image_shape_summary_csv",
+      "sha256": "57a1474c6866eaca7775cbb0f8d994a399bfbf84e66d289818910992e8e3b05e",
+      "size_bytes": 367
+    },
+    {
+      "path": "tables/clock_domain_summary.csv",
+      "role": "clock_domain_summary_csv",
+      "sha256": "f1192e9ee10d849f0e05d73a8b0902756d425737848fbbb69028c0476298c9ed",
+      "size_bytes": 1507
+    },
+    {
+      "path": "tables/unresolved_decisions.csv",
+      "role": "unresolved_decisions_csv",
+      "sha256": "9f5ee189b613abc81b2b40ac0d3531f0e1a5835ea6fb9aa90fc8aa7ac0308381",
+      "size_bytes": 2932
+    },
+    {
+      "path": "tables/blocked_traceability_example.csv",
+      "role": "blocked_traceability_example_csv",
+      "sha256": "8da3a1c9fbcdefb62a46638669f296182ca72e208b8dfc9ccb35e254ff0eef55",
+      "size_bytes": 1056
+    },
+    {
+      "path": "tables/artifact_source_index.csv",
+      "role": "artifact_source_index",
+      "sha256": "6aa4035d70f44012929160e5e92a5e684782977357217d347b101fd5fb83820e",
+      "size_bytes": 2776
+    },
+    {
+      "path": "reports/professor_dataset_description.md",
+      "role": "professor_dataset_description",
+      "sha256": "b87585a40ae4c661972461c5c3d14b5326efd46165f0b400d47c34366b456606",
+      "size_bytes": 8261
+    },
+    {
+      "path": "reports/dataset_description_summary.json",
+      "role": "dataset_description_summary",
+      "sha256": "5d9c6960758787994ae4f80f397bb16756fbbe21bef1cd2866561fabbd5e9ea0",
+      "size_bytes": 298
+    },
+    {
+      "path": "figures/modality_coverage.png",
+      "role": "modality_coverage_figure",
+      "sha256": "10768a601f23ac7d87dd057165022f75f432ff413fe273f6acf725d9de61e6bd",
+      "size_bytes": 45503
+    },
+    {
+      "path": "figures/clock_domain_summary.png",
+      "role": "clock_domain_summary_figure",
+      "sha256": "13f3206536814b20df3b668797645c6704c4b7b129ed8fb199313822ef80363b",
+      "size_bytes": 45362
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260813T225042643949Z-7d2070cf",
+  "schema_version": "1.0.0",
+  "seed": 20260813,
+  "source_runs": [
+    {
+      "artifacts": {
+        "manifests/inputs.json": "444786ce1fdb121f0205e274b8c9f48cf3ef82513031269cbd69b7a8a8535ddb",
+        "manifests/outputs.json": "443dd9c0fde541d925e483e7f52a6766cfcfbc4fac801216b834d1553431f578",
+        "provenance.json": "25450b19798c6e8faed7b3494d255ce11350b02edb8fca380516b5e04ace6882",
+        "reports/summary.json": "f5db7f36aef8d9b86908388a48799024e9ac97d160a6b6d132c5fcebcdf0a013",
+        "tables/archive_members.parquet": "01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d",
+        "tables/asset_inventory.parquet": "3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832",
+      "name": "asset_inventory",
+      "run_id": "20260813T202043619114Z-ad7f9832"
+    },
+    {
+      "artifacts": {
+        "manifests/inputs.json": "3c8046ddbd725a6d56dfc88b2c46df123d3380a70dae9212f48c6e62166a7e58",
+        "manifests/outputs.json": "04d72505571c892c1fe86a1b33aa914780fadf2d603cfa0c954c66be1c10c46a",
+        "provenance.json": "a6a56cffe8995c378c74fcd8bc79f650a575d937ddca7f102f32b0d2c3f14f7a",
+        "reports/hdf5_schema.json": "cb678d869843ede481677753b1b9e7e4010beac2ced96d36dfdf2d6c68910237",
+        "reports/sensor_summary.json": "1e3bb106e94ab873b5ed601fc76a767ad95e793b498bce680301457961df4654",
+        "tables/hdf5_members.parquet": "454a331a81caebc26a5b7b046d229a599345490b7b258b08538e65717c209664",
+        "tables/sensor_profile.parquet": "922693091a8be4558f1eb74e512ae8a85ea1fd7f368143d86cde02de9d430322"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T212734652736Z-f7c665fd",
+      "name": "sensor_profile",
+      "run_id": "20260813T212734652736Z-f7c665fd"
+    },
+    {
+      "artifacts": {
+        "manifests/inputs.json": "39412b3501df0bb2337076c54599f9893787a8867dc75a29843cc15c1cf497f7",
+        "manifests/outputs.json": "a12b4216cc39346a61c7fff5e9602ca5684fd4f8261d6caa2348d974235d3970",
+        "provenance.json": "ed0732d1ddf91a9b516e23c9c8a133706bda86e4badf8ef686d7a96c89534d46",
+        "reports/image_summary.json": "d9f6807b34b19a68383f934727eefdaaeefe5fc39415f1c3b4593d7c19174649",
+        "tables/image_profile.parquet": "c4b1f68dd428be558bbe433574ed2ac7bacd943d0e58afc020e5673818ec55cc"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T215718624432Z-bd9395ad",
+      "name": "image_profile",
+      "run_id": "20260813T215718624432Z-bd9395ad"
+    },
+    {
+      "artifacts": {
+        "manifests/inputs.json": "39412b3501df0bb2337076c54599f9893787a8867dc75a29843cc15c1cf497f7",
+        "manifests/outputs.json": "107184e07342c8c73539ee8a8f8939da43dcf3db005f949034698be3e1ca18f4",
+        "provenance.json": "ea146e7173b975ad5e62d674c297e51a0636c0eb0237a494918ff8bb8fd1ed57",
+        "reports/image_summary.json": "91a759f44eb29f68912938f4d2c8f78f33ecf9f95c9413dabff46aae9e88eda8",
+        "tables/image_profile.parquet": "a1965b274547ec2419da166b8ebbc32647f4aa65632001d94444103b2f383d5b"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T215756728445Z-bd9395ad",
+      "name": "image_quality_profile",
+      "run_id": "20260813T215756728445Z-bd9395ad"
+    },
+    {
+      "artifacts": {
+        "manifests/inputs.json": "a792842b284994696e6fb96c7619985fe6f73bc6a0de642df6a46d3c905410bb",
+        "manifests/outputs.json": "e1b1bd47b7c4047b57db1f9668384f5efb049317dfef64058ab367841a531ea5",
+        "provenance.json": "f0e5a459014e2293021d1020b9c60e35584d95d80aa42bf87883316d2f2c1305",
+        "reports/alignment_blockers.json": "f774ecea6dc00129561092843ab188570590d6b7261e38ca49df896b9b9d3341",
+        "reports/alignment_summary.json": "d63211282dd2a9eceaeaab4ba87a47582c6985c881741829858af356ff3e5782",
+        "tables/candidate_sample_traces.parquet": "6957fc36e954462542d9064c27ce6c92f0277ae9069eb5a526dde8663491c65c",
+        "tables/image_clock_audit.parquet": "fb309f1451a30a3b3e27db242154272bccdc91c29b48bea57a86da2bdfcd41f3",
+        "tables/modality_events.parquet": "fed30b19bd16ad8021f7f65e77944736cbd115b9b5bf7320e087d48f8d2335cb",
+        "tables/sensor_clock_audit.parquet": "83191eb6e37f168cbacc99996009d839e732999c176f7cfca10ed74f08785ce6",
+        "tables/source_artifact_index.csv": "699a19b18e103c26d2f32cc79f017269a3bb36dcadbb03c97ba60071022bd491"
+      },
+      "directory": "runs/phm2026_dataset_description/20260813T223944047252Z-d6474ff4",
+      "name": "alignment_audit",
+      "run_id": "20260813T223944047252Z-d6474ff4"
+    }
+  ],
+  "study": "phm2026_dataset_description",
+  "timestamp_utc": "2026-08-13T22:50:42.643949+00:00"
+}

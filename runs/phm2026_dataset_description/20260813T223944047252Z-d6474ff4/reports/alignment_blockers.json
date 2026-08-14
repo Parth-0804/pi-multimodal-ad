@@ -1,0 +1,27 @@
+{
+  "classification": "PARTIALLY_COMPLETE_BLOCKED_BY_UNVERIFIED_IMAGE_CLOCK_DOMAIN",
+  "clock_domain_status": "NOT_COMPUTABLE_CLOCK_DOMAIN_UNVERIFIED",
+  "image_clock_audit": {
+    "missing_timestamp_images": 671,
+    "timezone_policy": "local_naive_image_timestamps_are_not_converted_to_utc",
+    "timezone_unknown_images": 640,
+    "total_images": 1311,
+    "verified_utc_images": 0
+  },
+  "image_sensor_timestamps_comparable": false,
+  "join_cardinality_computable": false,
+  "missing_timestamp_status": "NOT_COMPUTABLE_TIMESTAMP_MISSING",
+  "nearest_temporal_matching_authorized": false,
+  "observed_evidence_status": "OBSERVED_FROM_DATA",
+  "required_to_unblock": [
+    "authoritative timezone for camera filename timestamps",
+    "evidence of camera/sensor clock synchronization or documented offset/drift",
+    "an authoritative non-temporal image-to-sensor pairing key if clocks are not comparable",
+    "scalar target definition including unit, timestamp, and six-hour interpretation"
+  ],
+  "schema_version": "1.0.0",
+  "sensor_clock_domain": "phm_hdf5_explicit_utc",
+  "six_hour_cross_modal_cadence": "UNRESOLVED",
+  "target_status": "NOT_COMPUTABLE_TARGET_UNRESOLVED",
+  "unknown_status": "UNKNOWN"
+}

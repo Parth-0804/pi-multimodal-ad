@@ -1,0 +1,11 @@
+schema_version: 1.0.0
+target_definition_version: phm2026_image_damage_v1
+status: PASS_PROVISIONAL_FOR_ENGINEERING_BASELINE
+unit: percent_visible_flank_candidate_area
+per_image: 100 * damage_candidate_pixels / fixed_visible_flank_roi_pixels
+per_tooth_multi_view: maximum candidate ratio across available views
+raw_run_target: mean of three largest per-tooth ratios
+monotonic_run_target: causal cumulative maximum of raw run target within experiment
+minimum_valid_teeth: 28
+human_verification_required: true
+organizer_ground_truth: false
