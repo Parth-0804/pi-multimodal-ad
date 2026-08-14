@@ -1,0 +1,52 @@
+schema_version: "1.0.0"
+study: phm2026_rtdetr_r4_results
+seed: 20260814
+output_root: runs/phm2026_rtdetr_r4_results
+source_runs:
+  target:
+    run_id: 20260814T012054997053Z-e195f6d9
+    directory: runs/phm2026_image_target/20260814T012054997053Z-e195f6d9
+    artifacts:
+      tables/image_manifest.parquet: 970eb991fb425f46c188658f4a4c28a2414d68aed27bb71e3ea53ee573667e0f
+      tables/per_tooth_damage.parquet: de90a684d65656c29f1757534d0cd8f7c1c53d7298961867c54698019f838f29
+      tables/run_damage_targets.parquet: b0e0116dc3df840d550aec25082b427cb056c0573f66f3c6ad0ccd843cc41277
+      reports/target_quality_report.json: 893b305272b97dfac78d39e6b3f7904e759148f8134025655ed875034c527a5c
+  dataset:
+    run_id: 20260814T013357354377Z-6b068cab
+    directory: runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab
+    artifacts:
+      tables/model_sample_manifest.parquet: 8cc50418016ce5fd492ae973c99549c538971a382b74db17f52c6aa9968b2144
+      tables/split_manifest.parquet: 6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359
+      reports/split_validation.json: 5d636c458701f609b3965a7711394e9355eaa22203a0ac8634d5e2d8bde6708e
+  pseudo_boxes:
+    run_id: 20260814T040854991567Z-3fa0f794
+    directory: runs/phm2026_rtdetr_pseudo_boxes/20260814T040854991567Z-3fa0f794
+    artifacts:
+      tables/annotation_image_manifest.parquet: 2ad4251a856757426aa75c7e9785ca7fbcd70edd6c2ebfd98be00e34661ccb87
+      tables/annotation_manifest.parquet: 42d43c2ed35026853a1eee54922e55ed6b93c1eae52cbe308b248f251e381641
+      reports/annotation_quality.json: dba902e14bda7f96fdd93288ce377e799f4cadfad7a699d5ef5328c1a77b0cc4
+      manifests/outputs.json: 6bff0d8eea1d31ab7bbcb6cba00a817f9b171b76ba88f1d3043b22331c1b8024
+  detector:
+    run_id: 20260814T043751107678Z-7f1e13af
+    directory: runs/phm2026_rtdetr_detection/20260814T043751107678Z-7f1e13af
+    artifacts:
+      checkpoints/best_detector.pt: 129d143cf7511fc4b0d95a0ffff064ac117e92e8a6eb5290c76d777d70fe7970
+      tables/detection_metrics.parquet: c0cd7b7d91b254f859d02f7a1f3bbef18b1bfbcfcf77caee450d8c7c7f805bb2
+      reports/environment_device.json: 8e20cad2663b4d8a37d6aa401b81de0b8d7a70c271ac182f4dd620aeaea94d69
+      manifests/outputs.json: 8da9eec1db9cd1589356b757bf05ff1055301d7bd158da0afde87df6714bd1e5
+  frozen_regression:
+    run_id: 20260814T020338751021Z-d0f225c8
+    directory: runs/phm2026_rtdetr_regression/20260814T020338751021Z-d0f225c8
+    artifacts:
+      tables/metrics.parquet: 181fcc1568dad6ce0f06665c84b254f5110b37498e2d8540d9ba3dd9779ff468
+      manifests/outputs.json: bd3ae8a517333a600d9ddc4855ef2af1bc83fba18390c4f8062f40933713a5c1
+  multitask:
+    run_id: 20260814T050026535618Z-9b00f099
+    directory: runs/phm2026_rtdetr_multitask/20260814T050026535618Z-9b00f099
+    artifacts:
+      checkpoints/best_multitask.pt: 7acc98726701925abd0a7c9d5c30e937943ce7acead53d75322374d4777c32c1
+      tables/detection_metrics.parquet: 78f3828b4867646eebaeeda1d4c324a0ac8867f80e2a9ac14c8f4b111f7055fa
+      tables/scalar_metrics.parquet: e3c3eba8ab1cf81ee3164def1a3cac8e3baa62afd21e07c78bef4cbc84df672e
+      tables/level_matched_model_comparison.parquet: 87dddba5988c165596196674372d5036aa577e8bcf2339cf22d96e4435773bcb
+      reports/environment_device.json: b80622022fb52329c577c0a0823766faa4b073b2cd75cd4577f2abc9b4933b4f
+      manifests/outputs.json: b716ca6ad1ef48995cf8b516a6d704a1de206f55d53c8900bc85816b5fcdf84a

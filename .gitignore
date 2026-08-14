@@ -1,6 +1,6 @@
 # Large dataset folder (Intel Robotic Welding raw data)
 # Note: data_sample/ IS tracked for small manifest samples
-data/Full Dataset/
+/data/Full Dataset/
 
 # Large multimodal files (video, audio, sensor, archive formats)
 *.avi
@@ -254,7 +254,6 @@ __marimo__/
 
 # Project-specific: ignore raw dataset folder if copied into repo and large multimodal formats
 /Full Dataset/
-Full Dataset/
 
 # Large multimodal raw formats
 *.avi
@@ -273,7 +272,7 @@ Full Dataset/
 *.7z
 
 # Manifests folder (if generated locally). Keep committed manifests in a different folder or add an explicit allow rule.
-manifests/
+/manifests/
 # ============================================================
 # PHM 2026 / GTC dataset
 # ============================================================
@@ -285,3 +284,115 @@ manifests/
 
 # Synology temporary authentication/session
 synology_cookies.txt
+
+# ============================================================
+# Thesis-specific tracking policy
+# ============================================================
+
+# Local environment and credentials
+/ma_thesis_env/
+.env.*
+*.env
+!.env.example
+!.env.template
+local_config.*
+!local_config.example.yaml
+!local_config.example.yml
+.netrc
+*.pem
+*.key
+*.p12
+*.pfx
+*.session
+*cookies*.txt
+credentials*.json
+*_credentials.json
+service-account*.json
+*_token.json
+!credentials.example.json
+!service-account.example.json
+
+# Local IDE and OS state
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo
+
+# Temporary work and generated execution outputs
+/runs/
+/outputs/
+/eda_outputs/
+/basic_eda_outputs/
+/tmp/
+/.scratch/
+/.image_cache/
+/wandb/
+/mlruns/
+/lightning_logs/
+
+# Additional model/export artifacts
+*.safetensors
+*.onnx
+
+# Preserve historical EXP-A numerical-output visibility state
+/experiments/exp_a_initial_eda_r1_r3_r5/outputs/**/*.csv
+
+# Intentional compact input manifests
+!data/manifests/
+!data/manifests/**/
+!data/manifests/**/*.csv
+!data/manifests/**/*.json
+!data/manifests/**/*.yaml
+!data/manifests/**/*.yml
+!data/manifests/**/*.md
+
+# Repository audit inventory
+!docs/repository_audit/REPO_FILE_INVENTORY.csv
+
+# Tiny synthetic test fixtures only
+!tests/fixtures/
+!tests/fixtures/**/
+!tests/fixtures/**/*.csv
+!tests/fixtures/**/*.json
+!tests/fixtures/**/*.yaml
+!tests/fixtures/**/*.yml
+!tests/fixtures/**/*.txt
+!tests/fixtures/**/*.zip
+!tests/fixtures/**/*.h5
+!tests/fixtures/**/*.hdf5
+!tests/fixtures/**/*.png
+!tests/fixtures/**/*.jpg
+!tests/fixtures/**/*.jpeg
+
+# Curated results: ignore by default, allow reviewed final artifacts
+/results/*
+!/results/final_tables/
+!/results/final_tables/**/
+!/results/final_tables/**/*.csv
+!/results/final_tables/**/*.tex
+!/results/final_tables/**/*.md
+!/results/final_figures/
+!/results/final_figures/**/
+!/results/final_figures/**/*.png
+!/results/final_figures/**/*.jpg
+!/results/final_figures/**/*.jpeg
+!/results/final_figures/**/*.svg
+!/results/final_figures/**/*.pdf
+!/results/reports/
+!/results/reports/**/
+!/results/reports/**/*.md
+!/results/reports/**/*.json
+!/results/reports/**/*.html
+!/results/reports/**/*.pdf
+!/results/provenance/
+!/results/provenance/**/
+!/results/provenance/**/*.json
+!/results/provenance/**/*.yaml
+!/results/provenance/**/*.yml
+!/results/provenance/**/*.md
+!/results/provenance/**/*.csv
+

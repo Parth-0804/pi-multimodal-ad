@@ -1,0 +1,14 @@
+schema_version: "1.0.0"
+study: phm2026_evaluation
+seed: 20260814
+output_root: runs/phm2026_evaluation
+source_run:
+  run_id: 20260814T013357354377Z-6b068cab
+  directory: runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab
+  artifacts:
+    tables/model_sample_manifest.parquet: 8cc50418016ce5fd492ae973c99549c538971a382b74db17f52c6aa9968b2144
+    tables/split_manifest.parquet: 6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359
+    reports/split_validation.json: 5d636c458701f609b3965a7711394e9355eaa22203a0ac8634d5e2d8bde6708e
+target_column: per_image_damage_candidate_pct
+target_unit: percent_visible_flank_candidate_area
+bootstrap_repetitions: 1000

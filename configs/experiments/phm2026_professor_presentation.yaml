@@ -1,0 +1,58 @@
+schema_version: "1.0.0"
+study: phm2026_professor_presentation
+seed: 20260814
+output_root: runs/phm2026_professor_presentation
+scope:
+  milestone: canonical_r3_frozen_encoder_regression
+  main_slide_count: 10
+  appendix_slide_count: 11
+  excluded_run_ids:
+    - 20260814T021046121152Z-d15163e7
+    - 20260814T021109387090Z-d15163e7
+source_runs:
+  dataset_evidence:
+    run_id: 20260814T003146326633Z-5ce0cb8d
+    directory: runs/phm2026_meeting_evidence/20260814T003146326633Z-5ce0cb8d
+    artifacts:
+      tables/image_counts_by_experiment.csv: fc201b526c3401def4ba6e28dbba53d37781ca939ceb0282d4b80ab8df2552a4
+      tables/image_timestamp_status.csv: f0c7cd3080e0e070f5dd3fb8758dbf3383b91b6ee397324e38f91720da0ebfcd
+      figures/image_timestamp_status.png: 9675b134a62dd199ce13505872c5009b24e27a55366a26e7cee719735ff675ce
+  target:
+    run_id: 20260814T012054997053Z-e195f6d9
+    directory: runs/phm2026_image_target/20260814T012054997053Z-e195f6d9
+    artifacts:
+      tables/image_manifest.parquet: 970eb991fb425f46c188658f4a4c28a2414d68aed27bb71e3ea53ee573667e0f
+      tables/per_tooth_damage.parquet: de90a684d65656c29f1757534d0cd8f7c1c53d7298961867c54698019f838f29
+      tables/run_damage_targets.parquet: b0e0116dc3df840d550aec25082b427cb056c0573f66f3c6ad0ccd843cc41277
+      figures/representative_segmentation_overlay_montage.png: 6bc22d5e28f398c72497d7b3de3318c86b48894724f2bf35aa6d232cdc9e85c2
+      tables/plot_source_representative_segmentation_overlay_montage.csv: 07bc6bc3475212a73d3fe577f24ce1cc69c0143ef67679bd178092c650479e67
+  model_dataset:
+    run_id: 20260814T013357354377Z-6b068cab
+    directory: runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab
+    artifacts:
+      tables/model_sample_manifest.parquet: 8cc50418016ce5fd492ae973c99549c538971a382b74db17f52c6aa9968b2144
+      tables/split_manifest.parquet: 6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359
+      reports/split_validation.json: 5d636c458701f609b3965a7711394e9355eaa22203a0ac8634d5e2d8bde6708e
+  naive:
+    run_id: 20260814T015914190145Z-4423f1fa
+    directory: runs/phm2026_evaluation/20260814T015914190145Z-4423f1fa
+    artifacts:
+      tables/baseline_metrics.parquet: 9f9c9a8bbbba5d23da7a3ae09d9dff094b6b6fd5809bfdf55eac51fe8bbd9539
+  rtdetr:
+    run_id: 20260814T020338751021Z-d0f225c8
+    directory: runs/phm2026_rtdetr_regression/20260814T020338751021Z-d0f225c8
+    artifacts:
+      tables/predictions.parquet: c26046e1dbc75f220d2edaeec90090b515b0d3402ef20f29cc7c9989e6a0ec20
+      tables/run_predictions.parquet: b9c0e93d9a7fd65af944a677dc1a286ef041e833e725425095a2d0e086c8b42e
+      tables/metrics.parquet: 181fcc1568dad6ce0f06665c84b254f5110b37498e2d8540d9ba3dd9779ff468
+      tables/training_history.parquet: c3dd5638bf3f7b89170ebf64103386c4ac64213184b5f678875b1aad2232ced2
+      tables/tensor_shapes.parquet: e08f2fd41642bf2c3651a423123029755bbf70bf0cb55bd9d33db0678345e43c
+      reports/environment_device.json: 914f12d4add113b80470225d3404c129069a515a2741dfef1bb60476e2910e1c
+      reports/training_summary.json: 7d4c44788dc42a071271b806e5df737a95d4935b17dad17c263c65b8ba1f5cce
+      figures/training_validation_loss.png: 4373dcadc979f8133099aa12d0457ff61a5976eb94e30e16aaba4fb14beeb669
+  final_results:
+    run_id: 20260814T021150456003Z-d15163e7
+    directory: runs/phm2026_rtdetr_results/20260814T021150456003Z-d15163e7
+    artifacts:
+      figures/best_worst_target_overlays.png: b950b772d2fe5284012649d6542b621101b5376cf0d049f670e564c11675fbc0
+      reports/final_overnight_report.md: 7575d6c6bad5c9455b018f29f3e0e6fd805c8eba8f9d1ab106428c28047f815f

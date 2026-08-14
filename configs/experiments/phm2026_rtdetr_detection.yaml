@@ -1,0 +1,73 @@
+schema_version: "1.0.0"
+study: phm2026_rtdetr_detection
+seed: 20260814
+output_root: runs/phm2026_rtdetr_detection
+source_runs:
+  pseudo_boxes:
+    run_id: 20260814T040854991567Z-3fa0f794
+    directory: runs/phm2026_rtdetr_pseudo_boxes/20260814T040854991567Z-3fa0f794
+    artifacts:
+      tables/annotation_image_manifest.parquet: 2ad4251a856757426aa75c7e9785ca7fbcd70edd6c2ebfd98be00e34661ccb87
+      tables/annotation_manifest.parquet: 42d43c2ed35026853a1eee54922e55ed6b93c1eae52cbe308b248f251e381641
+      tables/coco_annotations.json: 738627b858940550b1f73f78e6d59e4bc733e76a20853e043ae9bea7ea9ccd12
+      reports/annotation_quality.json: dba902e14bda7f96fdd93288ce377e799f4cadfad7a699d5ef5328c1a77b0cc4
+      manifests/materialized_cache.parquet: 14f080a1c98d7ec21d3b9fc1fc83609ce2ca29d230c988a4834fd2456e7b5595
+  pretrained:
+    run_id: 20260814T020338751021Z-d0f225c8
+    directory: runs/phm2026_rtdetr_regression/20260814T020338751021Z-d0f225c8
+    artifacts:
+      checkpoints/rtdetr-l.pt: 6de60b10d4bc566f00cda0f5b4d64afe4b66d48dc9695d2171effb7859d8e73f
+model:
+  library: ultralytics
+  version: 8.4.104
+  architecture: rtdetr-l
+  formulation: genuine_rtdetr_one_class_detection
+  class_name: damage_candidate
+  image_size: 640
+  device: 0
+  batch_size: 4
+  workers: 2
+  max_detections: 300
+  minimum_inference_confidence: 0.001
+training:
+  optimizer: AdamW
+  amp: true
+  deterministic: true
+  smoke:
+    epochs: 1
+    fraction: 0.03
+    batch_size: 2
+    frozen_layers: 28
+  warmup:
+    epochs: 1
+    learning_rate: 0.0005
+    frozen_layers: 21
+  finetune:
+    maximum_epochs: 8
+    patience: 3
+    learning_rate: 0.0001
+    final_learning_rate_fraction: 0.1
+    frozen_layers: 9
+    weight_decay: 0.0005
+  augmentation:
+    hsv_h: 0.0
+    hsv_s: 0.1
+    hsv_v: 0.1
+    degrees: 0.0
+    translate: 0.02
+    scale: 0.1
+    shear: 0.0
+    perspective: 0.0
+    flipud: 0.0
+    fliplr: 0.5
+    mosaic: 0.0
+    mixup: 0.0
+    cutmix: 0.0
+    erasing: 0.0
+validation_selection:
+  confidence_candidates: [0.01, 0.025, 0.05, 0.075, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6]
+  operating_iou: 0.5
+  test_evaluations: 1
+storage_limits:
+  minimum_free_bytes: 53687091200
+  maximum_new_artifacts_bytes: 32212254720

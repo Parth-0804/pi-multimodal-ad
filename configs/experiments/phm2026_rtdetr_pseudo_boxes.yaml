@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+study: phm2026_rtdetr_pseudo_boxes
+seed: 20260814
+output_root: runs/phm2026_rtdetr_pseudo_boxes
+dataset_config: configs/datasets/phm2026.yaml
+source_runs:
+  inventory:
+    run_id: 20260813T202043619114Z-ad7f9832
+    directory: runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832
+    artifacts:
+      tables/asset_inventory.parquet: 3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e
+      tables/archive_members.parquet: 01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d
+  target:
+    run_id: 20260814T012054997053Z-e195f6d9
+    directory: runs/phm2026_image_target/20260814T012054997053Z-e195f6d9
+    artifacts:
+      config/resolved_config.yaml: 872a54ee307f3b16274655632036b9d452ad9f0434e0a6a750d38f30f3f1f7b9
+      tables/image_manifest.parquet: 970eb991fb425f46c188658f4a4c28a2414d68aed27bb71e3ea53ee573667e0f
+      tables/per_tooth_damage.parquet: de90a684d65656c29f1757534d0cd8f7c1c53d7298961867c54698019f838f29
+      tables/run_damage_targets.parquet: b0e0116dc3df840d550aec25082b427cb056c0573f66f3c6ad0ccd843cc41277
+      reports/target_quality_report.json: 893b305272b97dfac78d39e6b3f7904e759148f8134025655ed875034c527a5c
+  model_dataset:
+    run_id: 20260814T013357354377Z-6b068cab
+    directory: runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab
+    artifacts:
+      tables/model_sample_manifest.parquet: 8cc50418016ce5fd492ae973c99549c538971a382b74db17f52c6aa9968b2144
+      tables/split_manifest.parquet: 6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359
+      reports/split_validation.json: 5d636c458701f609b3965a7711394e9355eaa22203a0ac8634d5e2d8bde6708e
+expected:
+  source_images: 1311
+  model_samples: 995
+  tooth_run_records: 560
+  run_targets: 20
+  split_counts:
+    train: 448
+    validation: 323
+    test: 224
+pseudo_boxes:
+  algorithm_version: phm2026_pseudo_boxes_v1_from_image_damage_v2
+  class_name: damage_candidate
+  parameters_selected_from: existing_target_formulation_only
+  exp_f_used_for_parameter_selection: false
+  whole_roi_fraction_threshold: 0.8
+  maximum_whole_roi_box_fraction: 0.5
+  minimum_positive_image_fraction: 0.05
+storage_limits:
+  max_image_cache_bytes: 12884901888
+  max_total_new_artifacts_bytes: 32212254720
+  minimum_free_bytes: 53687091200

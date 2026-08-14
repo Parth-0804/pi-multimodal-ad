@@ -1,0 +1,27 @@
+schema_version: "1.0.0"
+study: phm2026_model_dataset
+seed: 20260814
+output_root: runs/phm2026_model_dataset
+source_runs:
+  inventory:
+    run_id: 20260813T202043619114Z-ad7f9832
+    directory: runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832
+    artifacts:
+      tables/archive_members.parquet: 01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d
+  target:
+    run_id: 20260814T012054997053Z-e195f6d9
+    directory: runs/phm2026_image_target/20260814T012054997053Z-e195f6d9
+    artifacts:
+      tables/image_manifest.parquet: 970eb991fb425f46c188658f4a4c28a2414d68aed27bb71e3ea53ee573667e0f
+      tables/per_tooth_damage.parquet: de90a684d65656c29f1757534d0cd8f7c1c53d7298961867c54698019f838f29
+      tables/run_damage_targets.parquet: b0e0116dc3df840d550aec25082b427cb056c0573f66f3c6ad0ccd843cc41277
+      reports/target_quality_report.json: 893b305272b97dfac78d39e6b3f7904e759148f8134025655ed875034c527a5c
+target_definition_version: phm2026_image_damage_v2
+minimum_valid_teeth: 28
+canonical_development_split:
+  train: [EXP-B]
+  validation: [EXP-A]
+  test: [EXP-F]
+final_fit_split:
+  train: [EXP-A, EXP-B]
+  test: [EXP-F]
