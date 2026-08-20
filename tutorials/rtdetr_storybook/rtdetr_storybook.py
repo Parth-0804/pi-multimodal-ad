@@ -12,11 +12,20 @@ here is mistaken for thesis evidence or governed provenance.
 It does inference only — it loads a stock, COCO-pretrained RT-DETR model
 and never updates a single weight. No training happens in this file.
 
-It works on REAL PHM 2026 gear-tooth photos, paired with REAL provisional
-pseudo-box targets (both copied read-only from
-runs/phm2026_rtdetr_pseudo_boxes/<run-id>/ by make_demo_dataset.py). Those
-boxes are heuristic mask-derived candidates, NOT organizer ground truth and
-NOT expert-reviewed — see docs/planning/R4_PSEUDO_BOX_CHECKPOINT.md.
+It works on REAL PHM 2026 gear-tooth photos. Two loaders can supply them:
+
+  - make_raw_demo_dataset.py (preferred): opens the RAW, immutable
+    challenge archives directly (gtc-data-experiment/photos/...) and
+    derives provisional targets by re-running the real, pinned
+    phm2026_image_damage_v2 pipeline.
+  - make_demo_dataset.py (fallback, no raw-data access needed): copies
+    already-cached images + targets out of a prior pseudo-box run under
+    runs/phm2026_rtdetr_pseudo_boxes/<run-id>/.
+
+Either way, the resulting boxes are heuristic, mask-derived candidates —
+NOT organizer ground truth and NOT expert-reviewed. See docs/planning/
+T2_TARGET_FORMULATION_DECISION.md and docs/planning/
+R4_PSEUDO_BOX_CHECKPOINT.md.
 
 Because the model is the plain pretrained baseline (it has never seen a
 gear tooth), its raw guesses will use COCO's everyday object vocabulary
@@ -26,9 +35,19 @@ expected and is part of the lesson: it shows why the real pipeline
 useful for this task.
 
 ============================================================================
- THE STORY, IN FOUR STEPS
+ THE STORY, IN FIVE STEPS
 ============================================================================
 Think of the model as a small robot detective looking at a photo:
+
+  Step 0 - Getting the photo ready (preprocessing + target definition):
+    Before any detector runs, we have to decide what we're even looking
+    for. A raw PHM photo has no label at all. This step crops a fixed
+    "visible flank" region, evens out the lighting, and highlights dark
+    streaky patches — turning "a photo" into "a provisional measurement
+    of candidate damage". This step only runs if you built your demo data
+    with make_raw_demo_dataset.py and have opencv/pandas/pyyaml
+    installed; otherwise it's skipped with a note (the .md file already
+    carries the same result either way).
 
   Step 1 - The Eyes (backbone):
     The robot puts on several pairs of "magic glasses". Each pair is
@@ -107,6 +126,22 @@ try:
     from ultralytics import RTDETR
 except ImportError:
     _MISSING_DEPENDENCIES.append("ultralytics")
+
+# Step 0 (preprocessing/target-definition) is an optional extra: it reuses
+# the real, pinned phm2026_image_damage_v2 pipeline via the sibling
+# make_raw_demo_dataset.py module, which needs opencv-python/pandas/pyyaml
+# on top of everything above. Importing that module never raises — it
+# guards its own dependencies the same way this file does — so we can
+# simply check its _MISSING_DEPENDENCIES list to decide whether Step 0 can
+# run, and skip it gracefully otherwise.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    import make_raw_demo_dataset as raw_loader
+
+    _PREPROCESSING_AVAILABLE = not raw_loader._MISSING_DEPENDENCIES
+except ImportError:
+    raw_loader = None
+    _PREPROCESSING_AVAILABLE = False
 
 
 # ============================================================================
@@ -340,6 +375,49 @@ def _draw_boxes(image: "Image.Image", boxes: list[Box], color, label_prefix: str
 # ============================================================================
 
 
+def _save_preprocessing_panel(
+    original: "Image.Image",
+    mask: "np.ndarray",
+    roi_xyxy: tuple[int, int, int, int],
+    *,
+    metrics: dict,
+    path: Path,
+) -> None:
+    """Show the fixed ROI on the full photo, and the final candidate mask
+    (red) painted on top of just that ROI crop."""
+    x0, y0, x1, y1 = roi_xyxy
+    roi_crop = original.crop((x0, y0, x1, y1))
+    mask_crop = mask[y0:y1, x0:x1]
+
+    overlay = np.asarray(roi_crop).copy()
+    red_tint = np.zeros_like(overlay)
+    red_tint[..., 0] = 255
+    selected = mask_crop.astype(bool)
+    overlay[selected] = (0.45 * overlay[selected] + 0.55 * red_tint[selected]).astype(
+        "uint8"
+    )
+
+    fig, axes = plt.subplots(1, 2, figsize=(11, 5))
+    axes[0].imshow(original)
+    axes[0].add_patch(
+        plt.Rectangle(
+            (x0, y0), x1 - x0, y1 - y0, fill=False, edgecolor="lime", linewidth=2
+        )
+    )
+    axes[0].set_title("Full photo + fixed visible-flank ROI (green)")
+    axes[0].axis("off")
+    axes[1].imshow(overlay)
+    axes[1].set_title(
+        f"ROI crop, red = surviving candidate pixels "
+        f"({metrics['damage_candidate_area_pct']:.3f}% of ROI)"
+    )
+    axes[1].axis("off")
+    fig.suptitle("Step 0: Preprocessing + provisional target definition")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+
 def run_storybook_on_image(
     *,
     image_path: Path,
@@ -349,6 +427,7 @@ def run_storybook_on_image(
     confidence_threshold: float,
     max_boxes_drawn: int,
     output_dir: Path,
+    preprocessing_options: "ImageDamageOptions | None" = None,
 ) -> None:
     stem = image_path.stem
     image_output_dir = output_dir / stem
@@ -366,6 +445,39 @@ def run_storybook_on_image(
 
     with Image.open(image_path) as source:
         original_image = source.convert("RGB")
+
+    # ---------------- Step 0: Preprocessing + target definition ----------------
+    print("\nStep 0 - Getting the photo ready: a raw photo has no label at all, "
+          "so before any detector runs we crop a fixed region, even out the "
+          "lighting, and highlight dark streaky patches...")
+    if preprocessing_options is None or not _PREPROCESSING_AVAILABLE:
+        print("  (skipped: needs opencv-python/pandas/pyyaml — "
+              "pip install -r ../../requirements.txt to see this step live. "
+              "The .md file already carries the same result either way.)")
+    else:
+        rgb = np.asarray(original_image, dtype="uint8")
+        metrics, mask, roi_xyxy = raw_loader.measure_damage_candidate(
+            rgb, preprocessing_options
+        )
+        print(f"  Fixed visible-flank ROI (a constant box, not learned): "
+              f"{preprocessing_options.roi_normalized_xyxy} of the image.")
+        print(f"  After CLAHE contrast normalization, background subtraction, "
+              f"a robust z-score threshold (z >= "
+              f"{preprocessing_options.residual_z_threshold}), and keeping only "
+              f"wide 'horizontal' blobs: {metrics['component_count']} candidate "
+              f"patch(es) survived, covering "
+              f"{metrics['damage_candidate_area_pct']:.3f}% of the ROI.")
+        print(f"  This percentage IS the provisional target — see "
+              "docs/planning/T2_TARGET_FORMULATION_DECISION.md for exactly what "
+              "it does and doesn't mean yet (status: "
+              f"{metrics['measurement_status']}).")
+        _save_preprocessing_panel(
+            original_image,
+            mask,
+            roi_xyxy,
+            metrics=metrics,
+            path=image_output_dir / "step0_preprocessing.png",
+        )
 
     # --- Listen in on the Eyes, Brain, and Finder while the model looks. ---
     hooks = StorybookHooks(model.model)
@@ -509,12 +621,29 @@ def _require_dependencies() -> None:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
+    default_demo_dir = Path(__file__).resolve().parent / "raw_demo_data"
+    if not default_demo_dir.exists():
+        default_demo_dir = Path(__file__).resolve().parent / "demo_data"
     parser.add_argument(
         "--demo-dir",
         type=Path,
-        default=Path(__file__).resolve().parent / "demo_data",
-        help="Folder of paired image + .md files (default: ./demo_data, "
-        "created by make_demo_dataset.py).",
+        default=default_demo_dir,
+        help="Folder of paired image + .md files (default: ./raw_demo_data "
+        "if it exists, from make_raw_demo_dataset.py; otherwise "
+        "./demo_data from make_demo_dataset.py).",
+    )
+    parser.add_argument(
+        "--target-config",
+        type=Path,
+        default=None,
+        help="Pinned preprocessing/target config for Step 0 (default: "
+        "make_raw_demo_dataset.py's own default, "
+        "configs/experiments/phm2026_image_target.yaml).",
+    )
+    parser.add_argument(
+        "--no-preprocessing",
+        action="store_true",
+        help="Skip Step 0 even if opencv/pandas/pyyaml are installed.",
     )
     parser.add_argument(
         "--output-dir",
@@ -570,6 +699,16 @@ def main(argv: list[str] | None = None) -> int:
         )
         return 1
 
+    preprocessing_options = None
+    if not args.no_preprocessing and _PREPROCESSING_AVAILABLE:
+        config_path = args.target_config or raw_loader.TARGET_CONFIG_DEFAULT
+        preprocessing_options = raw_loader.load_pinned_image_measurement_options(
+            config_path
+        )
+        print(f"Step 0 preprocessing is available; using pinned config: {config_path}")
+    else:
+        print("Step 0 preprocessing will be skipped for every image (see notes below).")
+
     print("Loading the pretrained RT-DETR baseline (this is inference-only; "
           "no training happens in this script)...")
     model = RTDETR(args.weights)
@@ -583,6 +722,7 @@ def main(argv: list[str] | None = None) -> int:
             confidence_threshold=args.conf,
             max_boxes_drawn=args.max_boxes_drawn,
             output_dir=args.output_dir,
+            preprocessing_options=preprocessing_options,
         )
 
     print(f"\nAll done! Look inside {args.output_dir} for the step-by-step pictures.")
