@@ -6,8 +6,8 @@ pretrained RT-DETR inference; it does not train a PHM model or report PHM
 damage-prediction performance.
 
 ```bash
-ma_thesis_env/bin/python -B scripts/run_rtdetr_feasibility.py --dry-run
-ma_thesis_env/bin/python -B scripts/run_rtdetr_feasibility.py
+ma_thesis_env/bin/python -B scripts/training/run_rtdetr_feasibility.py --dry-run
+ma_thesis_env/bin/python -B scripts/training/run_rtdetr_feasibility.py
 ```
 
 Generated evidence belongs under the ignored, non-overwriting

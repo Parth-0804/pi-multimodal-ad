@@ -849,7 +849,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/train_rtdetr_multitask.py", *(argv or sys.argv[1:])],
+            command=["scripts/training/train_rtdetr_multitask.py", *(argv or sys.argv[1:])],
             input_roots=tuple(pinned.relative_directory for pinned in pins.values()),
             package_names=(
                 "torch",

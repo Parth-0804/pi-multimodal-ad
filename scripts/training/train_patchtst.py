@@ -178,7 +178,7 @@ def main(argv: list[str] | None = None) -> int:
             ),
             config=config,
             seed=int(data["seed"]),
-            command=("scripts/train_patchtst.py", "--config", config.relative_path),
+            command=("scripts/training/train_patchtst.py", "--config", config.relative_path),
             input_roots=(),
             package_names=(
                 "numpy",

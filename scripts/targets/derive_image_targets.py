@@ -169,7 +169,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/derive_image_targets.py", *(argv or sys.argv[1:])],
+            command=["scripts/targets/derive_image_targets.py", *(argv or sys.argv[1:])],
             input_roots=(
                 inventory.relative_directory,
                 images.relative_directory,

@@ -526,7 +526,7 @@ def test_image_run_writer_keeps_csv_parquet_schema_and_provenance_consistent(
         output_root=repository / "runs/synthetic_image_profile",
         config=config,
         seed=17,
-        command=("scripts/profile_images.py", "--mode", "full"),
+        command=("scripts/dataset/profile_images.py", "--mode", "full"),
         input_roots=("tests/synthetic",),
         now=datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC),
         package_names=(),

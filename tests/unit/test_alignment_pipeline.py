@@ -148,7 +148,7 @@ def test_blocked_pipeline_preserves_clock_status_and_never_creates_a_join(
         output_root=repository / "runs/synthetic_alignment_audit",
         config=config,
         seed=17,
-        command=("scripts/audit_alignment.py",),
+        command=("scripts/dataset/audit_alignment.py",),
         input_roots=("runs/synthetic-source",),
         now=datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC),
         package_names=(),

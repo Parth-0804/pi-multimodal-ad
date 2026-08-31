@@ -116,7 +116,7 @@ def main(argv: list[str] | None = None) -> int:
             config=config,
             seed=int(data["seed"]),
             command=(
-                "scripts/build_sensor_features.py",
+                "scripts/features/build_sensor_features.py",
                 "--config",
                 config.relative_path,
             ),

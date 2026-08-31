@@ -156,7 +156,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/train_rtdetr_regression.py", *(argv or sys.argv[1:])],
+            command=["scripts/training/train_rtdetr_regression.py", *(argv or sys.argv[1:])],
             input_roots=tuple(item.relative_directory for item in pinned.values())
             + (dataset_data["dataset"]["data_root"],),
             package_names=(

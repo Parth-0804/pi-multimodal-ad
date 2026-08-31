@@ -215,7 +215,7 @@ def main(argv: list[str] | None = None) -> int:
             config=config,
             seed=int(data["seed"]),
             command=[
-                "scripts/build_rtdetr_pseudo_boxes.py",
+                "scripts/targets/build_rtdetr_pseudo_boxes.py",
                 *(argv or sys.argv[1:]),
             ],
             input_roots=tuple(item.relative_directory for item in pinned.values())

@@ -228,7 +228,7 @@ def test_professor_report_regenerates_from_fixture_profiles(tmp_path: Path) -> N
         output_root=repository / "runs/synthetic_dataset_description",
         config=config,
         seed=17,
-        command=("scripts/describe_dataset.py",),
+        command=("scripts/dataset/describe_dataset.py",),
         input_roots=("runs/synthetic",),
         now=datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC),
         package_names=(),

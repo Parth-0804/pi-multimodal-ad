@@ -101,7 +101,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/build_model_dataset.py", *(argv or sys.argv[1:])],
+            command=["scripts/features/build_model_dataset.py", *(argv or sys.argv[1:])],
             input_roots=(inventory.relative_directory, target.relative_directory),
             source_runs=sources,
         )

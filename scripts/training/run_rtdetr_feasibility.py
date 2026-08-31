@@ -156,7 +156,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=options.seed,
-            command=["scripts/run_rtdetr_feasibility.py", *(argv or sys.argv[1:])],
+            command=["scripts/training/run_rtdetr_feasibility.py", *(argv or sys.argv[1:])],
             input_roots=(
                 pinned["image_profile"].relative_directory,
                 pinned["asset_inventory"].relative_directory,

@@ -116,7 +116,7 @@ def main(argv: list[str] | None = None) -> int:
             config=config,
             seed=int(data["seed"]),
             command=(
-                "scripts/generate_patchtst_results.py",
+                "scripts/results/generate_patchtst_results.py",
                 "--config",
                 config.relative_path,
             ),

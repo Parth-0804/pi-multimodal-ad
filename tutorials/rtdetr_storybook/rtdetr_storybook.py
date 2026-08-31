@@ -31,7 +31,7 @@ Because the model is the plain pretrained baseline (it has never seen a
 gear tooth), its raw guesses will use COCO's everyday object vocabulary
 (things like "car" or "person"), not "damage_candidate". That mismatch is
 expected and is part of the lesson: it shows why the real pipeline
-(scripts/train_rtdetr_detector.py) has to fine-tune the model before it is
+(scripts/training/train_rtdetr_detector.py) has to fine-tune the model before it is
 useful for this task.
 
 ============================================================================

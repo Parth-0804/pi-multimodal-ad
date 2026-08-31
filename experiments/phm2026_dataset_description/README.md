@@ -8,13 +8,13 @@ experiment definition.
 Run a configuration and path dry run:
 
 ```bash
-ma_thesis_env/bin/python -B scripts/profile_dataset.py --dry-run
+ma_thesis_env/bin/python -B scripts/dataset/profile_dataset.py --dry-run
 ```
 
 Run a bounded smoke inventory:
 
 ```bash
-ma_thesis_env/bin/python -B scripts/profile_dataset.py \
+ma_thesis_env/bin/python -B scripts/dataset/profile_dataset.py \
   --limit 2 \
   --output-dir runs/phm2026_dataset_description
 ```
@@ -22,7 +22,7 @@ ma_thesis_env/bin/python -B scripts/profile_dataset.py \
 Run the complete D1.1 archive inventory:
 
 ```bash
-ma_thesis_env/bin/python -B scripts/profile_dataset.py \
+ma_thesis_env/bin/python -B scripts/dataset/profile_dataset.py \
   --output-dir runs/phm2026_dataset_description
 ```
 
@@ -36,14 +36,14 @@ tables, warnings, a Markdown/JSON summary, and provenance.
 Validate the exact pinned D1.1 input and selection without opening raw payloads:
 
 ```bash
-ma_thesis_env/bin/python -B scripts/profile_sensors.py \
+ma_thesis_env/bin/python -B scripts/dataset/profile_sensors.py \
   --mode metadata --dry-run --limit-per-modality 1
 ```
 
 Run the representative one-source-per-modality metadata scan:
 
 ```bash
-ma_thesis_env/bin/python -B scripts/profile_sensors.py \
+ma_thesis_env/bin/python -B scripts/dataset/profile_sensors.py \
   --mode metadata --limit-per-modality 1 \
   --output-dir runs/phm2026_dataset_description
 ```
@@ -59,14 +59,14 @@ Validate the exact pinned D1.1 input without opening an image payload or
 writing output:
 
 ```bash
-ma_thesis_env/bin/python -B scripts/profile_images.py \
+ma_thesis_env/bin/python -B scripts/dataset/profile_images.py \
   --mode header --dry-run
 ```
 
 Run the complete bounded header scan:
 
 ```bash
-ma_thesis_env/bin/python -B scripts/profile_images.py \
+ma_thesis_env/bin/python -B scripts/dataset/profile_images.py \
   --mode header \
   --output-dir runs/phm2026_dataset_description
 ```
@@ -74,7 +74,7 @@ ma_thesis_env/bin/python -B scripts/profile_images.py \
 Run complete headers with the configured deterministic sampled-quality set:
 
 ```bash
-ma_thesis_env/bin/python -B scripts/profile_images.py \
+ma_thesis_env/bin/python -B scripts/dataset/profile_images.py \
   --mode sampled --sample-size 104 \
   --output-dir runs/phm2026_dataset_description
 ```

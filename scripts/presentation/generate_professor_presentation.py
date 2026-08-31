@@ -418,13 +418,13 @@ def _slides() -> list[SlideSpec]:
 
 def _figure(title: str, subtitle: str = "") -> plt.Figure:
     fig = plt.figure(figsize=SLIDE_SIZE, dpi=SLIDE_DPI, facecolor=WHITE)
-    wrapped_title = textwrap.fill(title, width=58)
+    wrapped_title = textwrap.fill(title, width=45)
     two_lines = "\n" in wrapped_title
     fig.text(
         0.055,
         0.965,
         wrapped_title,
-        fontsize=28,
+        fontsize=30,
         fontweight="bold",
         color=NAVY,
         va="top",
@@ -434,9 +434,7 @@ def _figure(title: str, subtitle: str = "") -> plt.Figure:
     divider_y = 0.812 if two_lines else 0.845
     if subtitle:
         fig.text(0.056, subtitle_y, subtitle, fontsize=13, color=TEAL, va="top")
-    line = plt.Line2D(
-        [0.055, 0.945], [divider_y, divider_y], color=GRID, linewidth=1.2
-    )
+    line = plt.Line2D([0.055, 0.945], [divider_y, divider_y], color=GRID, linewidth=1.2)
     fig.add_artist(line)
     return fig
 
@@ -1341,7 +1339,7 @@ def _render_slide(
         fig.text(
             0.75,
             0.12,
-            "Negative R² = poor absolute calibration; ρ=0.935 is smoothed, N=8",
+            "Negative R² = poor absolute calibration\nρ=0.935 is smoothed; N=8",
             ha="center",
             fontsize=12.5,
             color=TEST_RED,
@@ -2393,8 +2391,10 @@ def _asset_rows(
             )
         ],
     }
+    slide_lookup = {slide.number: slide for slide in _slides()}
     rows: list[dict[str, Any]] = []
     for slide_number, items in definitions.items():
+        slide = slide_lookup[slide_number]
         for role, path, table, run_id, status, caption, warning in items:
             path_text = (
                 rel(path)
@@ -2404,12 +2404,16 @@ def _asset_rows(
             rows.append(
                 {
                     "slide_number": slide_number,
+                    "slide_title": slide.title,
+                    "main_claim": slide.on_slide[0],
                     "asset_role": role,
                     "exact_asset_path": path_text,
                     "source_table": table,
                     "canonical_run_id": run_id,
                     "evidence_status": status,
                     "caption": caption,
+                    "crop_or_layout_instruction": slide.layout,
+                    "reason_visual_selected": caption,
                     "warning": warning,
                 }
             )
@@ -2493,6 +2497,20 @@ def _validation_text(run_id: str, slide_count: int) -> str:
 
 Run: `{run_id}`
 
+## Files created
+
+- `PHM_RTDETR_Professor_Update.pptx`
+- `PHM_RTDETR_Professor_Update.pdf`
+- `PRESENTATION_STORYBOARD.md`
+- `SLIDE_ASSET_MAP.csv`
+- `PROFESSOR_QA.md`
+- `SLIDE_CLAIM_EVIDENCE_MATRIX.csv`
+- `PRESENTATION_VALIDATION.md`
+- `rendered_slides/slide_01.png` through `slide_21.png`
+- `rendered_slides/contact_sheet.png`
+- `figures/*.png` and `figures/*.svg` with source tables under `tables/`
+- resolved configuration, input/output manifests and software provenance
+
 ## Automated checks
 
 - Slide count: **{slide_count}** total = **10 main + 11 appendix**.
@@ -2511,8 +2529,8 @@ Run: `{run_id}`
 ## Visual QA
 
 - Format: 16:9 light academic layout; consistent EXP-B train / EXP-A validation / EXP-F test colors.
-- Titles: conclusion-style and at least 30 pt in the rendered design.
-- Main body text: designed at 18 pt where used; compact table/footer text is smaller by necessity and reserved for evidence detail.
+- Titles: conclusion-style, wrapped where needed, and 30 pt in the rendered design.
+- Core callouts are projection-readable; compact metric-table, chart-label and footer text is smaller and reserved for exact evidence detail.
 - No observed clipping, poor contrast or unreadable main-slide element after rendered-slide/contact-sheet inspection.
 - Existing figures were visually inspected before selection. Dense canonical split, architecture and all-split scatter figures were replaced by simplified derivatives backed by the same source tables.
 - The deterministic best/worst appendix includes failure/uncertainty evidence rather than only successful masks.
@@ -2667,7 +2685,7 @@ def main(argv: list[str] | None = None) -> int:
             config=config,
             seed=int(cfg["seed"]),
             command=[
-                "scripts/generate_professor_presentation.py",
+                "scripts/presentation/generate_professor_presentation.py",
                 *(argv or sys.argv[1:]),
             ],
             input_roots=tuple(pin.relative_directory for pin in pins.values()),

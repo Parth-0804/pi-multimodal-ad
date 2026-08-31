@@ -184,7 +184,7 @@ def profile_dataset_main(argv: Sequence[str] | None = None) -> int:
                 ).as_posix(),
             },
         }
-        command = ["scripts/profile_dataset.py", *(argv or sys.argv[1:])]
+        command = ["scripts/dataset/profile_dataset.py", *(argv or sys.argv[1:])]
         run = create_run_context(
             study=study,
             output_root=output_root,
@@ -432,7 +432,7 @@ def profile_sensors_main(argv: Sequence[str] | None = None) -> int:
                 ).as_posix(),
             },
         }
-        command = ["scripts/profile_sensors.py", *(argv or sys.argv[1:])]
+        command = ["scripts/dataset/profile_sensors.py", *(argv or sys.argv[1:])]
         run = create_run_context(
             study=study,
             output_root=output_root,
@@ -654,7 +654,7 @@ def profile_images_main(argv: Sequence[str] | None = None) -> int:
                 ).as_posix(),
             },
         }
-        command = ["scripts/profile_images.py", *(argv or sys.argv[1:])]
+        command = ["scripts/dataset/profile_images.py", *(argv or sys.argv[1:])]
         run = create_run_context(
             study=study,
             output_root=output_root,
@@ -902,7 +902,7 @@ def audit_alignment_main(argv: Sequence[str] | None = None) -> int:
                 ).as_posix(),
             },
         }
-        command = ["scripts/audit_alignment.py", *(argv or sys.argv[1:])]
+        command = ["scripts/dataset/audit_alignment.py", *(argv or sys.argv[1:])]
         run = create_run_context(
             study=study,
             output_root=output_root,
@@ -1180,7 +1180,7 @@ def describe_dataset_main(argv: Sequence[str] | None = None) -> int:
                 ).as_posix(),
             },
         }
-        command = ["scripts/describe_dataset.py", *(argv or sys.argv[1:])]
+        command = ["scripts/dataset/describe_dataset.py", *(argv or sys.argv[1:])]
         run = create_run_context(
             study=study,
             output_root=output_root,

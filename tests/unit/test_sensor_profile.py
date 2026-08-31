@@ -454,7 +454,7 @@ def test_schema_variations_and_csv_parquet_writer_are_consistent(
         output_root=repository / "runs/synthetic_sensor_profile",
         config=config,
         seed=17,
-        command=("scripts/profile_sensors.py", "--mode", "metadata"),
+        command=("scripts/dataset/profile_sensors.py", "--mode", "metadata"),
         input_roots=("tests/synthetic",),
         now=datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC),
         package_names=(),

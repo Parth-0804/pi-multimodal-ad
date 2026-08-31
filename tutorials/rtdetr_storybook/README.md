@@ -112,7 +112,7 @@ genuinely valuable for the thesis, the real next steps (already scoped in
 of masks/boxes using the review guide the governed pipeline already
 generates (`HUMAN_PSEUDO_BOX_REVIEW_GUIDE.md` in a
 `phm2026_rtdetr_pseudo_boxes` run), (b) only *then* fine-tune RT-DETR for
-real on the reviewed boxes via `scripts/train_rtdetr_detector.py`, and (c)
+real on the reviewed boxes via `scripts/training/train_rtdetr_detector.py`, and (c)
 evaluate with a proper held-out split (the pipeline already uses
 EXP-B/train, EXP-A/validation, EXP-F/test — this tutorial's raw loader
 mirrors that same split for its 6-image demo, on purpose).
@@ -146,7 +146,7 @@ on this data. Its raw guesses will use everyday COCO object names, and
 will very likely **not** line up with the green "damage_candidate"
 boxes. That mismatch is expected, and is itself part of the lesson: it's
 exactly why the real, governed pipeline
-(`scripts/train_rtdetr_detector.py`) has to fine-tune RT-DETR on
+(`scripts/training/train_rtdetr_detector.py`) has to fine-tune RT-DETR on
 reviewed data before it becomes useful for this task.
 
 ## How to run it

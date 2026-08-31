@@ -2,9 +2,9 @@
 """Simple disk-space reporting script.
 
 Usage:
-  python3 scripts/check_disk_space.py         # check root '/'
-  python3 scripts/check_disk_space.py -p /home
-  python3 scripts/check_disk_space.py -a    # list all mounts (uses psutil or df)
+  python3 scripts/ops/check_disk_space.py         # check root '/'
+  python3 scripts/ops/check_disk_space.py -p /home
+  python3 scripts/ops/check_disk_space.py -a    # list all mounts (uses psutil or df)
 """
 from __future__ import annotations
 import shutil

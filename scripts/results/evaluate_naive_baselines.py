@@ -72,7 +72,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/evaluate_naive_baselines.py", *(argv or sys.argv[1:])],
+            command=["scripts/results/evaluate_naive_baselines.py", *(argv or sys.argv[1:])],
             input_roots=(pinned.relative_directory,),
             source_runs=(
                 {
