@@ -50,9 +50,22 @@ is the cheapest stage and the only one that is unambiguously mandatory.
    canonical runs can be reproduced from committed code. All 28 current runs
    carry `git.dirty: true` at commit `d3ce4808`; the thesis needs at least the
    two headline runs to be clean.
-4. **Pick the canonical image baseline** from R3 / R4-detector /
-   R4-multitask. They are not interchangeable — R4-multitask beats R3 at
-   image level (0.733 vs 0.894) and loses at run level (1.627 vs 1.347).
+4. **Canonical image baseline: R4-multitask** (decided 2026-09-11).
+
+   Chosen over R3 for its richer output — it emits detection boxes *and* a
+   scalar from a shared encoder, where R3 emits only a scalar. That matters
+   downstream: Stage 5 needs a teacher whose representation carries spatial
+   information, and Stage 4 needs per-tooth localisation.
+
+   **The tradeoff this accepts, which the thesis must state rather than
+   bury:** R4-multitask is *worse* than R3 at the run-level number, which is
+   the quantity the challenge actually scores (1.627 vs 1.347 pp). An examiner
+   will ask why the chosen image baseline loses at the scored quantity. The
+   answer has to be the one above — selected for downstream utility in a
+   multimodal pipeline, not for standalone run-level accuracy — and both
+   numbers must be reported side by side wherever either appears. The source
+   checkpoint already states that "a blanket improvement claim is not
+   supported"; that caveat travels with this choice.
 5. **Freeze the index:**
    ```bash
    python scripts/ops/build_thesis_run_index.py \
