@@ -135,6 +135,62 @@ def report_view_count_effect(teeth: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def report_within_tooth_spread(manifest_path: Path | None) -> pd.DataFrame:
+    """Compare aggregation rules over the same views of the same tooth.
+
+    Block 3 shows multi-view teeth scoring higher than single-view teeth, but
+    two different mechanisms produce that. Taking a maximum over ten draws
+    instead of one inflates the value even when the underlying damage is
+    identical; alternatively the operator may simply have photographed the
+    visibly damaged teeth more often, in which case those teeth really are
+    worse and the view count is downstream of the damage.
+
+    Comparing max against median across the *same* views separates them: the
+    max-median gap is the extremum effect alone, while a high median means the
+    tooth is genuinely damaged.
+    """
+
+    if manifest_path is None or not manifest_path.is_file():
+        return pd.DataFrame()
+    images = pd.read_parquet(manifest_path)
+    images = images[images.decoding_status.eq("ok")]
+    per_image = "damage_candidate_area_pct"
+    if per_image not in images.columns or "tooth_id" not in images.columns:
+        return pd.DataFrame()
+    images = images.dropna(subset=["tooth_id", "run"])
+
+    grouped = images.groupby(["experiment", "run", "tooth_id"])[per_image]
+    stats = grouped.agg(["count", "max", "median", "min"]).reset_index()
+    multi = stats[stats["count"] > 1]
+    if multi.empty:
+        return pd.DataFrame()
+
+    rows = []
+    for experiment, scoped in multi.groupby("experiment"):
+        single = stats[
+            stats.experiment.eq(experiment) & stats["count"].eq(1)
+        ]["max"]
+        rows.append(
+            {
+                "experiment": experiment,
+                "multi_view_teeth": int(len(scoped)),
+                "views_each": int(scoped["count"].median()),
+                "max_of_views": float(scoped["max"].mean()),
+                "median_of_views": float(scoped["median"].mean()),
+                "max_minus_median": float(
+                    (scoped["max"] - scoped["median"]).mean()
+                ),
+                "single_view_mean": float(single.mean()) if len(single) else np.nan,
+                "multi_median_vs_single": (
+                    float(scoped["median"].mean() - single.mean())
+                    if len(single)
+                    else np.nan
+                ),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -143,6 +199,14 @@ def main(argv: list[str] | None = None) -> int:
             "runs/phm2026_image_target/20260814T012054997053Z-e195f6d9"
             "/tables/per_tooth_damage.parquet"
         ),
+    )
+    parser.add_argument(
+        "--image-manifest",
+        default=(
+            "runs/phm2026_image_target/20260814T012054997053Z-e195f6d9"
+            "/tables/image_manifest.parquet"
+        ),
+        help="per-image table; needed to compare views of the same tooth",
     )
     parser.add_argument("--expected-teeth", type=int, default=28)
     parser.add_argument("--output", default="docs/thesis/PROFILE_DIAGNOSTICS.json")
@@ -205,7 +269,28 @@ def main(argv: list[str] | None = None) -> int:
 
     print()
     print("=" * 72)
-    print("4. PROFILE-HEAD CONSTANTS  (fitted on TRAIN only)")
+    print("4. WITHIN-TOOTH SPREAD — is the inflation statistical or real?")
+    print("=" * 72)
+    within = report_within_tooth_spread(
+        REPOSITORY_ROOT / args.image_manifest if args.image_manifest else None
+    )
+    if within.empty:
+        print("image manifest unavailable; skipped")
+    else:
+        print(within.to_string(index=False))
+        print()
+        print("For multi-view teeth only, comparing aggregation rules over the")
+        print("SAME views. max_minus_median is how much the max-across-views rule")
+        print("adds purely by taking an extremum over more draws.")
+        print()
+        print("If max_minus_median is close to the block-3 inflation, the effect")
+        print("is a measurement artefact. If multi-view teeth also have a high")
+        print("median, those teeth are genuinely more damaged and the extra")
+        print("photographs were a consequence of that, not a cause.")
+
+    print()
+    print("=" * 72)
+    print("5. PROFILE-HEAD CONSTANTS  (fitted on TRAIN only)")
     print("=" * 72)
     constants = fit_constants(profiles, expected_teeth=args.expected_teeth)
     print(f"profile_init_base     : {constants['profile_init_base']:.6f}")
@@ -227,6 +312,7 @@ def main(argv: list[str] | None = None) -> int:
                 "target_scale": scale.to_dict(orient="records"),
                 "top3_membership": membership.to_dict(orient="records"),
                 "view_count_effect": views.to_dict(orient="records"),
+                "within_tooth_spread": within.to_dict(orient="records"),
                 "profile_constants": constants,
             },
             indent=2,
