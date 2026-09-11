@@ -372,12 +372,12 @@ def aggregate_targets(
                 "experiment": experiment,
                 "run": run,
                 "tooth_id": tooth,
-                "per_tooth_damage_candidate_pct": max(values),
+                "per_tooth_damage_candidate_pct": float(np.median(values)),
                 "largest_connected_candidate_pct": float(
                     selected["largest_component_ratio_pct"]
                 ),
                 "view_count": len(views),
-                "view_aggregation": "maximum_candidate_ratio",
+                "view_aggregation": "median_candidate_ratio",
                 "selected_image_id": selected["image_id"],
                 "selected_overlay_path": selected["overlay_path"],
                 "segmentation_confidence": selected["segmentation_confidence"],

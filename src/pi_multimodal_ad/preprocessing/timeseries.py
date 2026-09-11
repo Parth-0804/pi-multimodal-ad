@@ -41,6 +41,55 @@ class RunSequence:
     target_raw: float
     target_monotonic: float
     minute_ids: tuple[str, ...]
+    target_profile: np.ndarray | None = None
+    """Sorted-ascending per-tooth damage vector for this run, when attached
+    via `attach_tooth_profiles`; None for sequences built without it."""
+
+
+def attach_tooth_profiles(
+    sequences: Sequence[RunSequence],
+    per_tooth_damage: pd.DataFrame,
+    *,
+    value_column: str = "per_tooth_damage_candidate_pct",
+    n_teeth: int = 28,
+) -> list[RunSequence]:
+    """Return sequences with `target_profile` set to the run's sorted tooth vector.
+
+    Every (experiment, run) group in `per_tooth_damage` must contain exactly
+    `n_teeth` rows; a group with a different count raises rather than
+    silently padding or truncating, since a short profile would misrepresent
+    which teeth were actually measured.
+    """
+
+    grouped = per_tooth_damage.groupby(["experiment", "run"])[value_column]
+    profiles: dict[tuple[str, int], np.ndarray] = {}
+    for (experiment, run_number), values in grouped:
+        if len(values) != n_teeth:
+            raise ValueError(
+                f"{experiment}/{run_number} has {len(values)} tooth rows, expected {n_teeth}"
+            )
+        profiles[(str(experiment), int(run_number))] = np.sort(
+            values.to_numpy(dtype=np.float32)
+        )
+    attached: list[RunSequence] = []
+    for sequence in sequences:
+        key = (sequence.experiment, sequence.run)
+        if key not in profiles:
+            raise ValueError(f"no tooth profile found for run {key}")
+        attached.append(
+            RunSequence(
+                sequence_id=sequence.sequence_id,
+                experiment=sequence.experiment,
+                run=sequence.run,
+                split=sequence.split,
+                values=sequence.values,
+                target_raw=sequence.target_raw,
+                target_monotonic=sequence.target_monotonic,
+                minute_ids=sequence.minute_ids,
+                target_profile=profiles[key],
+            )
+        )
+    return attached
 
 
 def fit_feature_normalizer(
@@ -147,7 +196,7 @@ def collate_run_sequences(
         length = sequence.values.shape[0]
         values[index, :length] = sequence.values
         mask[index, :length] = True
-    return {
+    batch: dict[str, Any] = {
         "inputs": torch.from_numpy(values),
         "time_mask": torch.from_numpy(mask),
         "targets_raw": torch.tensor(
@@ -162,3 +211,9 @@ def collate_run_sequences(
         "splits": [sequence.split for sequence in sequences],
         "lengths": [sequence.values.shape[0] for sequence in sequences],
     }
+    if all(sequence.target_profile is not None for sequence in sequences):
+        batch["targets_profile"] = torch.tensor(
+            np.stack([sequence.target_profile for sequence in sequences]),
+            dtype=torch.float32,
+        )
+    return batch
