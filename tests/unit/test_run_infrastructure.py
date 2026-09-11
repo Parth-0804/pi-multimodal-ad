@@ -155,3 +155,46 @@ def test_synthetic_multimodal_fixture_has_required_modalities() -> None:
         assert record["target_unit"] == "synthetic_unit"
         image_path = fixture_root / record["image"]
         assert image_path.read_text(encoding="ascii").startswith("P3\n2 2\n255\n")
+
+
+def _init_git_repository(root: Path) -> None:
+    import subprocess
+
+    for command in (
+        ["git", "init", "--quiet"],
+        ["git", "config", "user.email", "test@example.invalid"],
+        ["git", "config", "user.name", "Test"],
+        ["git", "add", "AGENTS.md"],
+        ["git", "commit", "--quiet", "-m", "initial"],
+    ):
+        subprocess.run(command, cwd=root, check=True, capture_output=True)
+
+
+def test_untracked_output_does_not_mark_the_run_as_code_dirty(
+    tmp_path: Path,
+) -> None:
+    """A new run directory is untracked by design; that is not a code change."""
+
+    from pi_multimodal_ad.utils.provenance import _git_state
+
+    root = _fake_repository(tmp_path)
+    (root / ".git").rmdir()
+    _init_git_repository(root)
+
+    commit, dirty, untracked = _git_state(root)
+    assert commit is not None
+    assert dirty is False
+    assert untracked is False
+
+    # Untracked run output must not be reported as a tracked modification.
+    (root / "runs").mkdir()
+    (root / "runs" / "result.json").write_text("{}\n", encoding="utf-8")
+    commit, dirty, untracked = _git_state(root)
+    assert dirty is False
+    assert untracked is True
+
+    # An edit to a tracked file must still be reported as dirty.
+    (root / "AGENTS.md").write_text("modified\n", encoding="utf-8")
+    commit, dirty, untracked = _git_state(root)
+    assert dirty is True
+    assert untracked is True

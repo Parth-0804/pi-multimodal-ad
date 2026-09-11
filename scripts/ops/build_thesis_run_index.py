@@ -37,6 +37,8 @@ class RunRecord:
     command: tuple[str, ...]
     git_commit: str | None
     git_dirty: bool | None
+    git_untracked_present: bool | None
+    schema_version: str
     config_path: str
     config_sha256: str
     seed: int | None
@@ -79,6 +81,8 @@ def load_runs(runs_root: Path) -> list[RunRecord]:
                 command=tuple(payload.get("command") or ()),
                 git_commit=git.get("commit"),
                 git_dirty=git.get("dirty"),
+                git_untracked_present=git.get("untracked_present"),
+                schema_version=str(payload.get("schema_version", "")),
                 config_path=str(config.get("path", "")),
                 config_sha256=str(config.get("sha256", "")),
                 seed=payload.get("seed"),
@@ -123,7 +127,20 @@ def render_index(
         for source_id in record.source_run_ids:
             consumers[source_id].append(record.run_id)
 
-    dirty = [record for record in records if record.git_dirty]
+    # Provenance before schema 1.1.0 collapsed "modified tracked file" and
+    # "untracked file present" into one flag. Every run writes a new untracked
+    # output directory, so that flag reads true after almost any run and cannot
+    # be read as evidence that the code was uncommitted.
+    ambiguous = [
+        record
+        for record in records
+        if record.git_dirty and record.git_untracked_present is None
+    ]
+    dirty = [
+        record
+        for record in records
+        if record.git_dirty and record.git_untracked_present is not None
+    ]
     by_study: dict[str, list[RunRecord]] = defaultdict(list)
     for record in records:
         by_study[record.study].append(record)
@@ -141,7 +158,8 @@ def render_index(
         f"- Runs indexed: **{len(records)}**",
         f"- Studies: **{len(by_study)}**",
         f"- Marked canonical: **{len(canonical)}**",
-        f"- Produced from a modified (dirty) working tree: **{len(dirty)}**",
+        f"- Tracked code modified at run time (schema >= 1.1.0): **{len(dirty)}**",
+        f"- Git state unresolvable (schema < 1.1.0): **{len(ambiguous)}**",
         f"- Still pinned by a config (must not be archived): **{len(pinned)}**",
         "",
     ]
@@ -159,14 +177,34 @@ def render_index(
 
     if dirty:
         lines += [
-            "## ⚠ Runs produced from a modified working tree",
+            "## ⚠ Runs with modified tracked code",
             "",
-            "`git.dirty` was true when these ran, so the committed code does not",
-            "fully describe what produced them. Any number cited from these needs",
-            "either a clean re-run or an explicit caveat in the thesis.",
+            "A tracked source file was modified when these ran, so the committed",
+            "code does not fully describe what produced them. Any number cited",
+            "from these needs a clean re-run or an explicit caveat.",
             "",
         ]
         for record in dirty:
+            lines.append(
+                f"- `{record.study}` / `{record.run_id}` "
+                f"(commit `{(record.git_commit or '?')[:8]}`)"
+            )
+        lines.append("")
+
+    if ambiguous:
+        lines += [
+            "## Runs whose git state cannot be resolved",
+            "",
+            "These predate provenance schema 1.1.0, which collapsed *modified",
+            "tracked file* and *untracked file present* into a single `dirty`",
+            "flag. Because every run writes a new untracked output directory,",
+            "that flag reads true after almost any run. For these runs it is",
+            "therefore **not** evidence that the code was uncommitted — it is",
+            "simply uninformative in both directions. Reproducibility has to be",
+            "established by re-running, not read off the record.",
+            "",
+        ]
+        for record in ambiguous:
             lines.append(
                 f"- `{record.study}` / `{record.run_id}` "
                 f"(commit `{(record.git_commit or '?')[:8]}`)"
@@ -336,7 +374,14 @@ def main(argv: list[str] | None = None) -> int:
     )
     print(f"indexed {len(records)} run(s) -> {args.output}")
     print(f"  canonical: {len(canonical)}")
-    print(f"  dirty-tree: {sum(1 for r in records if r.git_dirty)}")
+    resolved_dirty = sum(
+        1 for r in records if r.git_dirty and r.git_untracked_present is not None
+    )
+    unresolvable = sum(
+        1 for r in records if r.git_dirty and r.git_untracked_present is None
+    )
+    print(f"  tracked code modified: {resolved_dirty}")
+    print(f"  git state unresolvable (pre-1.1.0 provenance): {unresolvable}")
     print(f"  config-pinned (protected): {len(pinned)}")
 
     if args.archive_to:

@@ -10,14 +10,19 @@ added retroactively.
 - Runs indexed: **28**
 - Studies: **14**
 - Marked canonical: **0**
-- Produced from a modified (dirty) working tree: **28**
+- Tracked code modified at run time (schema >= 1.1.0): **0**
+- Git state unresolvable (schema < 1.1.0): **28**
 - Still pinned by a config (must not be archived): **18**
 
-## ⚠ Runs produced from a modified working tree
+## Runs whose git state cannot be resolved
 
-`git.dirty` was true when these ran, so the committed code does not
-fully describe what produced them. Any number cited from these needs
-either a clean re-run or an explicit caveat in the thesis.
+These predate provenance schema 1.1.0, which collapsed *modified
+tracked file* and *untracked file present* into a single `dirty`
+flag. Because every run writes a new untracked output directory,
+that flag reads true after almost any run. For these runs it is
+therefore **not** evidence that the code was uncommitted — it is
+simply uninformative in both directions. Reproducibility has to be
+established by re-running, not read off the record.
 
 - `phm2026_dataset_description` / `20260813T201944173814Z-ad7f9832` (commit `d3ce4808`)
 - `phm2026_dataset_description` / `20260813T202043619114Z-ad7f9832` (commit `d3ce4808`)

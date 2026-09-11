@@ -17,7 +17,7 @@ import yaml
 
 from .config import ConfigError, ResolvedConfig
 
-RUN_SCHEMA_VERSION = "1.0.0"
+RUN_SCHEMA_VERSION = "1.1.0"
 
 
 def _json_text(value: object) -> str:
@@ -31,7 +31,17 @@ def _relative_to_root(path: Path, root: Path, *, field: str) -> str:
         raise ConfigError(f"{field}: path must be inside the repository") from exc
 
 
-def _git_state(repository_root: Path) -> tuple[str | None, bool | None]:
+def _git_state(
+    repository_root: Path,
+) -> tuple[str | None, bool | None, bool | None]:
+    """Return the commit plus tracked-modification and untracked-file state.
+
+    These are reported separately because every run writes a new, initially
+    untracked directory under the output root. Collapsing both into one flag
+    made it read true after essentially any run, which said nothing about
+    whether the code that produced the run was committed.
+    """
+
     try:
         commit = subprocess.run(
             ["git", "rev-parse", "--verify", "HEAD"],
@@ -48,8 +58,17 @@ def _git_state(repository_root: Path) -> tuple[str | None, bool | None]:
             text=True,
         ).stdout
     except (OSError, subprocess.CalledProcessError):
-        return None, None
-    return commit, bool(status)
+        return None, None, None
+    tracked_dirty = False
+    untracked_present = False
+    for line in status.splitlines():
+        if not line.strip():
+            continue
+        if line.startswith("??"):
+            untracked_present = True
+        else:
+            tracked_dirty = True
+    return commit, tracked_dirty, untracked_present
 
 
 def _package_versions(names: Iterable[str]) -> dict[str, str | None]:
@@ -83,6 +102,7 @@ class RunContext:
     input_roots: tuple[str, ...]
     git_commit: str | None
     git_dirty: bool | None
+    git_untracked_present: bool | None
     package_versions: Mapping[str, str | None]
     source_runs: tuple[Mapping[str, Any], ...]
 
@@ -124,7 +144,11 @@ class RunContext:
             "run_id": self.run_id,
             "study": self.study,
             "timestamp_utc": self.timestamp_utc,
-            "git": {"commit": self.git_commit, "dirty": self.git_dirty},
+            "git": {
+                "commit": self.git_commit,
+                "dirty": self.git_dirty,
+                "untracked_present": self.git_untracked_present,
+            },
             "command": list(self.command),
             "config": {
                 "path": self.config.relative_path,
@@ -189,7 +213,7 @@ def create_run_context(
         raise ValueError("run timestamp must be timezone-aware")
     timestamp = timestamp.astimezone(timezone.utc)
     run_id = f"{timestamp.strftime('%Y%m%dT%H%M%S%fZ')}-{config.sha256[:8]}"
-    commit, dirty = _git_state(root)
+    commit, dirty, untracked_present = _git_state(root)
     return RunContext(
         repository_root=root,
         run_directory=resolved_output_root / run_id,
@@ -202,6 +226,7 @@ def create_run_context(
         input_roots=tuple(input_roots),
         git_commit=commit,
         git_dirty=dirty,
+        git_untracked_present=untracked_present,
         package_versions=_package_versions(package_names),
         source_runs=tuple(dict(source) for source in source_runs),
     )
