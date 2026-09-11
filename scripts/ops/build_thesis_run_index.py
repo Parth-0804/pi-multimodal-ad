@@ -262,16 +262,46 @@ def archive(
     pinned: dict[str, str],
     archive_root: Path,
     apply: bool,
+    protect_latest: bool = True,
 ) -> int:
-    movable: list[RunRecord] = []
+    """Relocate superseded runs.
+
+    Selection is an inverse allowlist, so the protections decide everything.
+    Config-pinning protects a run because something still *depends* on it,
+    which is a functional guarantee and says nothing about whether the run is
+    scientifically current — a stale run can be pinned and a freshly produced
+    one unpinned. `protect_latest` covers that gap by never auto-archiving
+    the newest run of a study, which is the one most likely to be the current
+    result rather than a superseded duplicate.
+    """
+
+    latest_per_study: dict[str, str] = {}
     for record in records:
-        if record.run_id in canonical:
-            continue
-        if record.relative_directory in pinned:
-            continue
+        latest_per_study[record.study] = record.run_id
+
+    movable: list[RunRecord] = []
+    protected: list[tuple[RunRecord, str]] = []
+    for record in records:
         if archive_root.name in record.directory.parts:
             continue
+        if record.run_id in canonical:
+            protected.append((record, "marked canonical"))
+            continue
+        if record.relative_directory in pinned:
+            protected.append(
+                (record, f"pinned by {pinned[record.relative_directory]}")
+            )
+            continue
+        if protect_latest and latest_per_study.get(record.study) == record.run_id:
+            protected.append((record, "newest run of its study"))
+            continue
         movable.append(record)
+
+    if protected:
+        print(f"protected from archiving ({len(protected)}):")
+        for record, reason in protected:
+            print(f"  {record.study}/{record.run_id} — {reason}")
+        print()
 
     if not movable:
         print("nothing to archive: every run is canonical or config-pinned")
@@ -346,6 +376,11 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="actually move files; without it archiving is a dry run",
     )
+    parser.add_argument(
+        "--no-protect-latest",
+        action="store_true",
+        help="allow archiving the newest run of a study (protected by default)",
+    )
     args = parser.parse_args(argv)
 
     runs_root = REPOSITORY_ROOT / args.runs_root
@@ -392,6 +427,7 @@ def main(argv: list[str] | None = None) -> int:
             pinned=pinned,
             archive_root=REPOSITORY_ROOT / args.archive_to,
             apply=args.apply,
+            protect_latest=not args.no_protect_latest,
         )
     return 0
 
