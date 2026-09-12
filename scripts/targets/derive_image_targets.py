@@ -151,6 +151,11 @@ def main(argv: list[str] | None = None) -> int:
             near_duplicate_hamming=int(image_options["near_duplicate_hamming"]),
             max_member_bytes=int(image_options["max_member_bytes"]),
             overlay_jpeg_quality=int(image_options["overlay_jpeg_quality"]),
+            target_definition_version=str(target_options["version"]),
+            view_selection=str(image_options["camera_view_aggregation"]),
+            excluded_tooth_ids=tuple(
+                int(tooth) for tooth in target_options.get("excluded_tooth_ids", [])
+            ),
         )
         output_root = config.resolve_repository_path(
             args.output_dir or data["output_root"], field="output_root"

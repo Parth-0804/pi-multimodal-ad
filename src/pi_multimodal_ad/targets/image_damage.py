@@ -42,6 +42,13 @@ TARGET_DEFINITION_VERSION = "phm2026_image_damage_v2"
 TARGET_STATUS = "PASS_PROVISIONAL_FOR_ENGINEERING_BASELINE"
 
 
+VIEW_SELECTION_RULES = (
+    "maximum_candidate_ratio",
+    "median_candidate_ratio",
+    "single_deterministic_view",
+)
+
+
 @dataclass(frozen=True, slots=True)
 class ImageDamageOptions:
     roi_normalized_xyxy: tuple[float, float, float, float]
@@ -55,6 +62,18 @@ class ImageDamageOptions:
     near_duplicate_hamming: int
     max_member_bytes: int
     overlay_jpeg_quality: int
+    target_definition_version: str = TARGET_DEFINITION_VERSION
+    view_selection: str = "median_candidate_ratio"
+    excluded_tooth_ids: tuple[int, ...] = ()
+    """Tooth indices removed from the target entirely, in every experiment.
+
+    v3 drops teeth 1-4 because in EXP-A/B tooth index and image role are
+    perfectly confounded: teeth 1-4 have only `camera_sequence` close-ups and
+    teeth 5-28 only `canonical_tooth` wide shots, so no tooth is measured both
+    ways and no calibration between the two roles can be fitted. Dropping them
+    removes the confound at source. EXP-F is unaffected: teeth 1-4 take 0 of
+    24 top-3 slots there.
+    """
 
     def __post_init__(self) -> None:
         x0, y0, x1, y1 = self.roi_normalized_xyxy
@@ -64,6 +83,13 @@ class ImageDamageOptions:
             raise ValueError("minimum_valid_teeth must be in [1, 28]")
         if not 0 <= self.near_duplicate_hamming <= 64:
             raise ValueError("near_duplicate_hamming must be in [0, 64]")
+        if self.view_selection not in VIEW_SELECTION_RULES:
+            raise ValueError(
+                f"view_selection must be one of {VIEW_SELECTION_RULES}, "
+                f"got {self.view_selection!r}"
+            )
+        if any(not 1 <= tooth <= 28 for tooth in self.excluded_tooth_ids):
+            raise ValueError("excluded_tooth_ids must be tooth indices in [1, 28]")
 
 
 def _robust_z(values: np.ndarray) -> np.ndarray:
@@ -270,7 +296,7 @@ def profile_target_images(
         source = sources.get(str(source_row["source_member_id"]))
         base = {
             "schema_version": TARGET_SCHEMA_VERSION,
-            "target_definition_version": TARGET_DEFINITION_VERSION,
+            "target_definition_version": options.target_definition_version,
             "image_id": image_id,
             "source_member_id": source_row["source_member_id"],
             "experiment": source_row["experiment"],
@@ -349,35 +375,59 @@ def aggregate_targets(
         for row in image_rows
         if row.get("decoding_status") == "ok" and pd.notna(row.get("run"))
     ]
+    excluded = set(options.excluded_tooth_ids)
     grouped: dict[tuple[str, int, int], list[Mapping[str, Any]]] = defaultdict(list)
     for row in run_images:
-        grouped[(str(row["experiment"]), int(row["run"]), int(row["tooth_id"]))].append(
-            row
-        )
+        tooth_id = int(row["tooth_id"])
+        if tooth_id in excluded:
+            continue
+        grouped[(str(row["experiment"]), int(row["run"]), tooth_id)].append(row)
     teeth: list[dict[str, Any]] = []
     for (experiment, run, tooth), views in sorted(grouped.items()):
-        selected = max(
-            views,
-            key=lambda row: (
-                float(row["damage_candidate_area_pct"]),
-                str(row["image_id"]),
-            ),
-        )
         values = [float(row["damage_candidate_area_pct"]) for row in views]
+        if options.view_selection == "single_deterministic_view":
+            # One view per tooth in every experiment, so no tooth is measured
+            # by a protocol no other tooth gets: the canonical_tooth wide shot
+            # where one exists, otherwise the earliest camera_sequence close-up
+            # by its embedded WIN_YYYYMMDD_HH_MM_SS capture timestamp.
+            canonical = [
+                row for row in views if row.get("image_type") == "canonical_tooth"
+            ]
+            selected = min(
+                canonical or views,
+                key=lambda row: (
+                    str(row.get("timestamp_text") or ""),
+                    str(row["image_id"]),
+                ),
+            )
+            value = float(selected["damage_candidate_area_pct"])
+        else:
+            selected = max(
+                views,
+                key=lambda row: (
+                    float(row["damage_candidate_area_pct"]),
+                    str(row["image_id"]),
+                ),
+            )
+            value = (
+                float(np.median(values))
+                if options.view_selection == "median_candidate_ratio"
+                else float(max(values))
+            )
         teeth.append(
             {
                 "schema_version": TARGET_SCHEMA_VERSION,
-                "target_definition_version": TARGET_DEFINITION_VERSION,
+                "target_definition_version": options.target_definition_version,
                 "target_verification_status": "provisional_pending_human_review",
                 "experiment": experiment,
                 "run": run,
                 "tooth_id": tooth,
-                "per_tooth_damage_candidate_pct": float(np.median(values)),
+                "per_tooth_damage_candidate_pct": value,
                 "largest_connected_candidate_pct": float(
                     selected["largest_component_ratio_pct"]
                 ),
                 "view_count": len(views),
-                "view_aggregation": "median_candidate_ratio",
+                "view_aggregation": options.view_selection,
                 "selected_image_id": selected["image_id"],
                 "selected_overlay_path": selected["overlay_path"],
                 "segmentation_confidence": selected["segmentation_confidence"],
@@ -403,13 +453,13 @@ def aggregate_targets(
         targets.append(
             {
                 "schema_version": TARGET_SCHEMA_VERSION,
-                "target_definition_version": TARGET_DEFINITION_VERSION,
+                "target_definition_version": options.target_definition_version,
                 "target_verification_status": "provisional_pending_human_review",
                 "experiment": experiment,
                 "run": run,
                 "valid_tooth_count": valid_teeth,
                 "minimum_required_teeth": options.minimum_valid_teeth,
-                "inspection_complete": valid_teeth == 28,
+                "inspection_complete": valid_teeth == 28 - len(excluded),
                 "raw_top1_pct": values[0] if values else np.nan,
                 "raw_top3_mean_pct": raw_top3,
                 "causal_monotonic_top3_mean_pct": cumulative[experiment],
@@ -626,13 +676,23 @@ def write_target_run(
     for name, frame in frames.items():
         for path in _write_frame(frame, run.run_directory / f"tables/{name}"):
             artifacts.append(run.artifact(path, role=name))
+    definition_version = str(
+        resolved_config["target_definition"].get("version", TARGET_DEFINITION_VERSION)
+    )
     target_definition = {
         "schema_version": TARGET_SCHEMA_VERSION,
-        "target_definition_version": TARGET_DEFINITION_VERSION,
+        "target_definition_version": definition_version,
         "status": TARGET_STATUS,
         "unit": "percent_visible_flank_candidate_area",
         "per_image": "100 * damage_candidate_pixels / fixed_visible_flank_roi_pixels",
-        "per_tooth_multi_view": "maximum candidate ratio across available views",
+        "per_tooth_multi_view": str(
+        resolved_config["image_measurement"].get(
+            "camera_view_aggregation", "maximum_candidate_ratio"
+        )
+    ),
+        "excluded_tooth_ids": list(
+            resolved_config["target_definition"].get("excluded_tooth_ids", [])
+        ),
         "raw_run_target": "mean of three largest per-tooth ratios",
         "monotonic_run_target": "causal cumulative maximum of raw run target within experiment",
         "minimum_valid_teeth": resolved_config["target_definition"][
@@ -652,7 +712,7 @@ def write_target_run(
     report = {
         "schema_version": TARGET_SCHEMA_VERSION,
         "classification": TARGET_STATUS,
-        "target_definition_version": TARGET_DEFINITION_VERSION,
+        "target_definition_version": definition_version,
         "image_record_count": len(images),
         "decoded_image_count": int(images.decoding_status.eq("ok").sum()),
         "excluded_image_count": int(images.decoding_status.ne("ok").sum()),
