@@ -1,0 +1,167 @@
+{
+  "source_table": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/tables/per_tooth_damage.parquet",
+  "target_scale": [
+    {
+      "experiment": "EXP-A",
+      "split": "validation",
+      "count": 5,
+      "mean": 5.230667630344515,
+      "std": 1.009386393524566,
+      "min": 4.199509658036082,
+      "max": 6.702521151311594
+    },
+    {
+      "experiment": "EXP-B",
+      "split": "train",
+      "count": 7,
+      "mean": 4.477895133224413,
+      "std": 1.0655296794670568,
+      "min": 3.3097799129855594,
+      "max": 6.211442257273642
+    },
+    {
+      "experiment": "EXP-F",
+      "split": "test",
+      "count": 8,
+      "mean": 4.852660034295594,
+      "std": 0.8241284912998785,
+      "min": 3.8326318325468023,
+      "max": 6.1745957513144285
+    }
+  ],
+  "top3_membership": [
+    {
+      "experiment": "EXP-A",
+      "sum": 0,
+      "count": 15,
+      "share_teeth_1_to_4": 0.0,
+      "base_rate": 0.14285714285714285
+    },
+    {
+      "experiment": "EXP-B",
+      "sum": 0,
+      "count": 21,
+      "share_teeth_1_to_4": 0.0,
+      "base_rate": 0.14285714285714285
+    },
+    {
+      "experiment": "EXP-F",
+      "sum": 0,
+      "count": 24,
+      "share_teeth_1_to_4": 0.0,
+      "base_rate": 0.14285714285714285
+    }
+  ],
+  "view_count_effect": [
+    {
+      "experiment": "EXP-A",
+      "multi_view_teeth": 2,
+      "multi_view_mean": 5.504442838314698,
+      "single_view_teeth": 118,
+      "single_view_mean": 3.4165336565449267,
+      "inflation_pp": 2.087909181769771
+    },
+    {
+      "experiment": "EXP-B",
+      "multi_view_teeth": 0,
+      "multi_view_mean": NaN,
+      "single_view_teeth": 168,
+      "single_view_mean": 2.3653113428526886,
+      "inflation_pp": NaN
+    },
+    {
+      "experiment": "EXP-F",
+      "multi_view_teeth": 0,
+      "multi_view_mean": NaN,
+      "single_view_teeth": 192,
+      "single_view_mean": 2.9589484751215225,
+      "inflation_pp": NaN
+    }
+  ],
+  "within_tooth_spread": [
+    {
+      "experiment": "EXP-A",
+      "multi_view_teeth": 22,
+      "views_each": 10,
+      "max_of_views": 4.8318871723914025,
+      "median_of_views": 3.1355887002330602,
+      "max_minus_median": 1.6962984721583423,
+      "single_view_mean": 3.4165336565449262,
+      "multi_median_vs_single": -0.280944956311866
+    },
+    {
+      "experiment": "EXP-B",
+      "multi_view_teeth": 28,
+      "views_each": 10,
+      "max_of_views": 3.2646905197179414,
+      "median_of_views": 1.6584845153570973,
+      "max_minus_median": 1.6062060043608448,
+      "single_view_mean": 2.3653113428526886,
+      "multi_median_vs_single": -0.7068268274955913
+    }
+  ],
+  "profile_constants": {
+    "fitted_on": {
+      "split": "train",
+      "experiments": [
+        "EXP-B"
+      ],
+      "run_count": 7,
+      "teeth_per_run": 24
+    },
+    "profile_init_base": 0.7944511591465376,
+    "profile_init_steps": [
+      0.19948131456995888,
+      0.2012062169368407,
+      0.11809507613257453,
+      0.11756059934283636,
+      0.10050593087028648,
+      0.10474530358889012,
+      0.07917544807983123,
+      0.11981997849945647,
+      0.1021093612395001,
+      0.03593141691011681,
+      0.13151773187485993,
+      0.058002878886344256,
+      0.1494227043310845,
+      0.06871670908063887,
+      0.178976841363645,
+      0.18873104277636354,
+      0.09796716611903022,
+      0.17349845426883004,
+      0.24489969449792603,
+      0.3142966467655035,
+      0.22366638930560612,
+      0.5151627421088749,
+      0.9950257216955061
+    ],
+    "profile_target_mean": 2.365311342852689,
+    "profile_target_scale": 1.3065097003604282,
+    "mean_profile": [
+      0.7944511591465376,
+      0.9939324737164965,
+      1.1951386906533372,
+      1.3132337667859117,
+      1.430794366128748,
+      1.5313002969990346,
+      1.6360456005879247,
+      1.715221048667756,
+      1.8350410271672124,
+      1.9371503884067125,
+      1.9730818053168293,
+      2.1045995371916892,
+      2.1626024160780335,
+      2.312025120409118,
+      2.380741829489757,
+      2.559718670853402,
+      2.7484497136297654,
+      2.8464168797487956,
+      3.0199153340176257,
+      3.2648150285155517,
+      3.5791116752810552,
+      3.8027780645866613,
+      4.317940806695536,
+      5.312966528391042
+    ]
+  }
+}

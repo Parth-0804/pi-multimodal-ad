@@ -1,0 +1,74 @@
+{
+  "channel_statistics": [
+    "mean",
+    "std",
+    "median",
+    "min",
+    "max",
+    "last",
+    "slope_per_sample"
+  ],
+  "channels": [
+    {
+      "expected_unit": null,
+      "hdf5_path": "/Context/PAU Speed",
+      "name": "rpm",
+      "role": "operating_context"
+    },
+    {
+      "expected_unit": null,
+      "hdf5_path": "/Context/PAU Torque",
+      "name": "torque",
+      "role": "operating_context"
+    },
+    {
+      "expected_unit": null,
+      "hdf5_path": "/Context/Temperature",
+      "name": "temperature",
+      "role": "operating_context"
+    },
+    {
+      "expected_unit": null,
+      "hdf5_path": "/Context/Accel1 RMS",
+      "name": "axial_rms",
+      "role": "organizer_low_frequency_rms"
+    },
+    {
+      "expected_unit": null,
+      "hdf5_path": "/Context/Accel2 RMS",
+      "name": "radial_rms",
+      "role": "organizer_low_frequency_rms"
+    },
+    {
+      "expected_unit": null,
+      "hdf5_path": "/CI/FM4",
+      "name": "fm4",
+      "role": "condition_indicator"
+    },
+    {
+      "expected_unit": null,
+      "hdf5_path": "/CI/NA4",
+      "name": "na4",
+      "role": "condition_indicator"
+    },
+    {
+      "expected_unit": null,
+      "hdf5_path": "/CI/M6A",
+      "name": "m6a",
+      "role": "condition_indicator"
+    },
+    {
+      "expected_unit": null,
+      "hdf5_path": "/CI/ALR",
+      "name": "alr",
+      "role": "condition_indicator"
+    }
+  ],
+  "chronology": "verified UTC wf_start_time; archive order is not used for modelling",
+  "missingness": "explicit boolean mask per configured channel",
+  "raw_high_frequency_used": false,
+  "row_unit": "one nested low-frequency HDF5 member (officially approximately one minute)",
+  "schema_version": "1.0.0",
+  "separate_ci_archive_used": false,
+  "slope_unit": "value per within-file sample index; not physical time because within-file cadence is not verified"
+}

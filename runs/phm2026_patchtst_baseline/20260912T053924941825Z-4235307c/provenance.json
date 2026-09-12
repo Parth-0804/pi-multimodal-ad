@@ -1,0 +1,75 @@
+{
+  "command": [
+    "scripts/training/train_late_fusion.py",
+    "--device",
+    "cpu"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_fusion_latefusion.yaml",
+    "sha256": "4235307cdc66a5182d1c23136548042c4c41bf85cd9cb84b58b9fda11d389e7e"
+  },
+  "git": {
+    "commit": "8c4ae3111c83d8f263c44496bb64a0b04c0fae60",
+    "dirty": false,
+    "untracked_present": true
+  },
+  "input_roots": [
+    "runs/phm2026_sensor_features/20260912T053550461436Z-69f2e5ee"
+  ],
+  "output_root": "runs/phm2026_patchtst_baseline/20260912T053924941825Z-4235307c",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0",
+    "scikit-learn": "1.7.2",
+    "torch": "2.13.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "7fd5ce49f2f870b064730845ca75e393a254585eab3e4c49af584febdd1ac1d0",
+      "size_bytes": 2522
+    },
+    {
+      "path": "tables/variant_validation.csv",
+      "role": "variant_validation",
+      "sha256": "9b6cbad49891ab5ae11b982c93a78c2b733c4c48072d55f3b78353cfe4e262ae",
+      "size_bytes": 1523
+    },
+    {
+      "path": "tables/variant_validation.parquet",
+      "role": "variant_validation",
+      "sha256": "4fe5ee245bfe1343f7779e30367d7c79f5664b49f03d6ea7adc7b6cee88cf1ed",
+      "size_bytes": 8488
+    },
+    {
+      "path": "reports/late_fusion_summary.json",
+      "role": "summary",
+      "sha256": "8676cf92cf6176e76e3c2eab103406d2d5c956742f22f99cda889c1f5b8fb20c",
+      "size_bytes": 4812
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260912T053924941825Z-4235307c",
+  "schema_version": "1.1.0",
+  "seed": 20260814,
+  "source_runs": [
+    {
+      "artifacts": {
+        "reports/feature_schema.json": "5a78b0a85bf1f7a95f71d13e3cdd55cda0e3de49d5f6fa9cb0ee40fb2e009701",
+        "tables/minute_feature_table.parquet": "65199a97e0bff0419b4eaa4a6f1cc14e1bf10e4919856ef51bca81b2ad0f3256",
+        "tables/sensor_run_sequences.parquet": "867e51332647bf4a8254c38057ee910583208033c476dd7db4c024e05d5ea2e5"
+      },
+      "directory": "runs/phm2026_sensor_features/20260912T053550461436Z-69f2e5ee",
+      "name": "sensor_features",
+      "run_id": "20260912T053550461436Z-69f2e5ee"
+    }
+  ],
+  "study": "phm2026_patchtst_baseline",
+  "timestamp_utc": "2026-09-12T05:39:24.941825+00:00"
+}
