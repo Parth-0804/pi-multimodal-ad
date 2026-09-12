@@ -1,0 +1,70 @@
+{
+  "command": [
+    "scripts/results/rescore_monotonic.py"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_monotonic_rescoring.yaml",
+    "sha256": "c0b86e1662005187534dcdd8fc1f8ff412a76df0531aab779e1d6b59d0b607ff"
+  },
+  "git": {
+    "commit": "246024367e8b8a0b2463274115d760fb579ef50c",
+    "dirty": false,
+    "untracked_present": true
+  },
+  "input_roots": [
+    "runs/phm2026_patchtst_baseline/20260911T193200607744Z-433d4154"
+  ],
+  "output_root": "runs/phm2026_monotonic_rescoring/20260912T053108724500Z-c0b86e16",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0",
+    "scikit-learn": "1.7.2"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "1dd28b6b9a9cca4acee375e4f0aa6308f045021ce902e622d49f146e6cd438bb",
+      "size_bytes": 554
+    },
+    {
+      "path": "tables/monotonic_rescoring.csv",
+      "role": "monotonic_rescoring",
+      "sha256": "728e134855810941c09437a690bdcf81bf6e5704eb2a8a9ff0a8904c6279260d",
+      "size_bytes": 4855
+    },
+    {
+      "path": "tables/monotonic_rescoring.parquet",
+      "role": "monotonic_rescoring",
+      "sha256": "fd67b27f93899e8e364e8bee741eaf1aadb38c83e1f7b4953a4bb8f34ec9698f",
+      "size_bytes": 9425
+    },
+    {
+      "path": "reports/monotonic_rescoring.json",
+      "role": "summary",
+      "sha256": "de1f6c3e27ffc56673fefb96e59e75b6feff906ad96508f396474116a5f531a6",
+      "size_bytes": 12568
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260912T053108724500Z-c0b86e16",
+  "schema_version": "1.1.0",
+  "seed": 20260912,
+  "source_runs": [
+    {
+      "artifacts": {
+        "tables/predictions.parquet": "ae48d13b22c73b54bf3618f6de57481a486dc7c54bc141240fde161a8fde97ce"
+      },
+      "directory": "runs/phm2026_patchtst_baseline/20260911T193200607744Z-433d4154",
+      "name": "patchtst",
+      "run_id": "20260911T193200607744Z-433d4154"
+    }
+  ],
+  "study": "phm2026_monotonic_rescoring",
+  "timestamp_utc": "2026-09-12T05:31:08.724500+00:00"
+}
