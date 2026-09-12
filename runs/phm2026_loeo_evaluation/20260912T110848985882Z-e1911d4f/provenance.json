@@ -1,0 +1,87 @@
+{
+  "command": [
+    "scripts/results/loeo_evaluation.py",
+    "--device",
+    "cpu"
+  ],
+  "config": {
+    "path": "configs/experiments/phm2026_fusion_latefusion.yaml",
+    "sha256": "e1911d4f1cfe0f0708f17bc8172651f1ed063ba86a25de186a86e81405d90a3c"
+  },
+  "git": {
+    "commit": "c699cbd9727ed33f34f1785172db163eb74b071f",
+    "dirty": false,
+    "untracked_present": true
+  },
+  "input_roots": [
+    "runs/phm2026_sensor_features/20260912T053550461436Z-69f2e5ee"
+  ],
+  "output_root": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "pyarrow": "24.0.0",
+    "scikit-learn": "1.7.2",
+    "torch": "2.13.0"
+  },
+  "produced_artifacts": [
+    {
+      "path": "config/resolved_config.yaml",
+      "role": "resolved_configuration",
+      "sha256": "e708f5842be3467022eb4d2bbc4b5905621a509e189c0b1a4b94915b9b31278a",
+      "size_bytes": 2522
+    },
+    {
+      "path": "tables/loeo_predictions.csv",
+      "role": "loeo_predictions",
+      "sha256": "b455864466c0aed759756c674d373d30c9f70905cdbb55e7c00ab53b565b72f4",
+      "size_bytes": 5261
+    },
+    {
+      "path": "tables/loeo_predictions.parquet",
+      "role": "loeo_predictions",
+      "sha256": "cb93100f915f3602992e74e431e5c6203442a546904b6f67e96ee7f7393e87a2",
+      "size_bytes": 4720
+    },
+    {
+      "path": "tables/loeo_summary.csv",
+      "role": "loeo_summary",
+      "sha256": "387bad00da06600723ce97acb96285e25a8aab18d513b2f613f23e407a7e670f",
+      "size_bytes": 535
+    },
+    {
+      "path": "tables/loeo_summary.parquet",
+      "role": "loeo_summary",
+      "sha256": "90896113b418462d3264dd577ac1b815f9f0d8cce62d29fbab4f0ef20ed6200c",
+      "size_bytes": 4841
+    },
+    {
+      "path": "reports/loeo_summary.json",
+      "role": "summary",
+      "sha256": "cdb36301a281d8258ae9955303f2f6f5b9c3660fdd9160e8f9be66e6afb7cc56",
+      "size_bytes": 2346
+    }
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.3"
+  },
+  "run_id": "20260912T110848985882Z-e1911d4f",
+  "schema_version": "1.1.0",
+  "seed": 20260814,
+  "source_runs": [
+    {
+      "artifacts": {
+        "reports/feature_schema.json": "5a78b0a85bf1f7a95f71d13e3cdd55cda0e3de49d5f6fa9cb0ee40fb2e009701",
+        "tables/minute_feature_table.parquet": "65199a97e0bff0419b4eaa4a6f1cc14e1bf10e4919856ef51bca81b2ad0f3256",
+        "tables/sensor_run_sequences.parquet": "867e51332647bf4a8254c38057ee910583208033c476dd7db4c024e05d5ea2e5"
+      },
+      "directory": "runs/phm2026_sensor_features/20260912T053550461436Z-69f2e5ee",
+      "name": "sensor_features",
+      "run_id": "20260912T053550461436Z-69f2e5ee"
+    }
+  ],
+  "study": "phm2026_loeo_evaluation",
+  "timestamp_utc": "2026-09-12T11:08:48.985882+00:00"
+}

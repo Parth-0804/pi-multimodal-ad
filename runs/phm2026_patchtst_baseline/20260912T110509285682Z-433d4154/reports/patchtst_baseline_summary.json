@@ -1,0 +1,21 @@
+{
+  "formulation": "sensor_only_patchtst_style_run_regression",
+  "limitations": [
+    "Only low-frequency/context/condition-indicator summaries are used; raw HF vibration is out of this initial baseline.",
+    "The image-derived target remains provisional and is not physical ground truth.",
+    "Twenty run-level samples make neural-model estimates high variance.",
+    "EXP-A Run 2 is retained despite the organizer overlap warning and is reported non-destructively."
+  ],
+  "prediction_task": "current end-of-run damage-state estimation, not forecasting",
+  "primary_target": "raw_top3_mean_pct",
+  "schema_version": "1.0.0",
+  "sequence_count": 20,
+  "split": {
+    "test": "EXP-F",
+    "train": "EXP-B",
+    "validation": "EXP-A"
+  },
+  "target_status": "provisional_pending_human_review",
+  "test_run_count": 8,
+  "test_used_for_tuning": false
+}
