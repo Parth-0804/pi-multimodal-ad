@@ -183,7 +183,7 @@ def main(argv: list[str] | None = None) -> int:
         idx = group_column_indices(feature_columns, bases)
         assigned |= set(idx)
         status = "EMPTY — no channel in the pipeline" if not idx else f"{len(idx)} columns"
-        print(f"  {name:26s} bases={list(bases) or '[]':32s} {status}")
+        print(f"  {name:26s} bases={str(list(bases)):32s} {status}")
     unassigned = [feature_columns[i] for i in range(len(feature_columns)) if i not in assigned]
     print(f"  unassigned columns: {len(unassigned)} {unassigned}")
     print(f"  total {len(feature_columns)} columns; non-empty groups used: {list(groups)}\n")
