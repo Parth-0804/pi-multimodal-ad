@@ -192,3 +192,95 @@ Images sampled from the **unsampled middle**, roughly 1.5–4.8 pp. Around 20
 images spread across that band, blinded the same way, would show whether
 agreement declines gradually or breaks at a particular value. Nothing in the
 present set can substitute for that.
+
+## Does the disagreement clustering have a photometric cause?
+
+**No. This is a null result, and it closes the item.** Four statistics were
+computed over the damage heuristic's own ROI for all 480 selected images in
+the v3 target: mean intensity, RMS contrast, saturated-pixel fraction
+(>250 or <5, as a glare/shadow proxy) and Laplacian variance (focus proxy).
+Per-image values are in `docs/thesis/PHOTOMETRICS.csv`. Nothing was fitted and
+the target was not touched.
+
+### 1. Per-run means
+
+No run is a meaningful photometric outlier. Two runs trip a |z| > 2 rule —
+EXP-B run 5 and EXP-F run 8 — but both trip it only on saturated fraction,
+and that quantity is negligible everywhere:
+
+| | value |
+|---|---|
+| median saturated fraction, all 480 images | **0** |
+| worst run average (EXP-F run 8) | 2.30e-03 = **0.23%** of ROI pixels |
+| worst single image anywhere | 1.30e-02 = **1.3%** of ROI pixels |
+
+A z-score on a quantity that is zero for 303 of 480 images amplifies noise
+rather than detecting glare. Both flags are artifacts and neither represents a
+photographically unusual run. On the three statistics that do vary
+meaningfully — intensity, contrast, focus — every run in every experiment
+sits within 2 SD of its experiment mean.
+
+Note also that a 2 SD rule over 5, 7 and 8 runs is weak by construction.
+
+### 2. The two disagreement runs, within their own experiment
+
+**Neither stands out on anything.**
+
+| run | mean intensity | RMS contrast | saturated fraction | Laplacian variance |
+|---|---|---|---|---|
+| EXP-B run 4 | z = +0.19 (rank 5/7) | z = +0.51 (6/7) | z = +0.65 (6/7) | z = −0.00 (5/7) |
+| EXP-F run 5 | z = +0.11 (rank 6/8) | z = −0.63 (3/8) | z = −0.51 (3/8) | z = +0.31 (5/8) |
+
+Every |z| is at or below 0.65 and every rank is mid-pack. The two runs holding
+half the blind-validation disagreements are photometrically unremarkable.
+
+### 3. Photometric statistic vs damage score, within experiment (Spearman)
+
+| statistic | EXP-A | EXP-B | EXP-F |
+|---|---|---|---|
+| mean intensity | −0.205 | −0.219 | −0.209 |
+| RMS contrast | −0.410 | +0.108 | −0.012 |
+| saturated fraction | −0.026 | +0.017 | +0.217 |
+| Laplacian variance | −0.161 | −0.205 | +0.272 |
+
+Most of these are weak and inconsistent in sign across experiments, which is
+what no real dependence looks like. Two things are worth recording anyway:
+
+- **Mean intensity is the one consistent effect**: −0.205, −0.219, −0.209 in
+  all three experiments. A darker ROI yields a higher damage score. That is
+  mechanically expected, since the heuristic counts dark elongated pixels, but
+  it does mean the score is *partly* a brightness measurement. At |rho| ≈ 0.21
+  it is a minor contribution, not a confound that invalidates the label.
+- **EXP-A's RMS contrast at −0.410** is the largest single value in the table,
+  but it does not replicate (+0.108 and −0.012 elsewhere), so it reads as one
+  experiment's idiosyncrasy rather than a general property.
+
+### 4. Overlap
+
+| | |
+|---|---|
+| photometrically flagged | EXP-B run 5, EXP-F run 8 *(both artifacts, see §1)* |
+| runs holding the disagreements | EXP-B run 4, EXP-F run 5 |
+| **overlap** | **none** |
+
+The flagged runs are different runs from the disputed ones, in both
+experiments — adjacent ones, which is a coincidence rather than a pattern.
+
+### Conclusion
+
+The hypothesis that per-run photographic conditions explain the disagreement
+clustering is **not supported**. The disputed runs are photometrically ordinary
+and the photometrically unusual runs are not disputed.
+
+That makes chance the better explanation, and the arithmetic is consistent with
+it. At the observed base disagreement rate of 12/42 = 0.286, EXP-B run 4 going
+3-for-3 has p = 0.023 and EXP-F run 5 going 3-of-4 has p = 0.073 — but **18
+distinct (experiment, run) groups** are present among the 42 images, so roughly
+0.9 groups would be expected to clear p < 0.05 by chance alone. Observing one
+is exactly what chance predicts.
+
+The run-level clustering noted earlier in this document should therefore be
+read as **unexplained and probably chance**, not as evidence of a per-run
+photographic effect. The earlier caveat still stands on its own terms: the
+odd/even split test cannot separate run-level damage from run-level lighting.
+This check looked for such a lighting effect directly and did not find one.
