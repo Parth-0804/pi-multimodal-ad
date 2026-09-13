@@ -97,9 +97,14 @@ def main(argv: list[str] | None = None) -> int:
                         choices=("per_minute", "per_run"))
     parser.add_argument("--stage", default="calibration",
                         choices=("calibration", "grid"))
+    parser.add_argument("--alphas", type=float, nargs="*", default=None,
+                        help="override the alpha grid; used to extend it upward")
     parser.add_argument("--out", default=None)
     args = parser.parse_args(argv)
 
+    global ALPHAS
+    if args.alphas:
+        ALPHAS = tuple(args.alphas)
     skeleton = task_c.real_skeleton()
     print(f"ALL NUMBERS SYNTHETIC. noise_model={args.noise_model}, "
           f"{len(skeleton)} runs, seeds={SEEDS}\n")
