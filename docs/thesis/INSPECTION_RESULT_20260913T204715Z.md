@@ -97,3 +97,98 @@ dark elongated features that are not spall.
 
 Note the verdict band: 78.9% fell 1.1 points short of the 80% threshold for
 "tracks visible damage", a margin of a single image.
+
+## Where does reliability fall off? — descriptive binning
+
+**Short answer: this set cannot show that, and the reason is structural rather
+than small-sample.** The selection took the 7 highest and 7 lowest scores per
+experiment, so the middle of the score range was never photographed into the
+set. There are **zero images between 1.534 and 4.777 pp**. Any apparent
+"falloff" between the two clusters is a jump across an unsampled gap, not a
+measured transition.
+
+### 1. Bin counts
+
+Fixed bins:
+
+| bin (pp) | n | agreement (unsure excluded) | unsure | group content |
+|---|---|---|---|---|
+| 0.0 – 2.0 | 21 | 18/21 = **85.7%** | 0 | all low |
+| 2.0 – 5.0 | 3 | 1/1 | 2 | all high, all EXP-B |
+| 5.0 + | 18 | 11/16 = **68.8%** | 2 | all high |
+
+Quartiles of the observed range (0.285–8.793, width 2.127):
+
+| quartile | n | agreement | unsure |
+|---|---|---|---|
+| Q1 0.28–2.41 | 21 | 18/21 | 0 |
+| **Q2 2.41–4.54** | **0** | — | — |
+| Q3 4.54–6.67 | 17 | 10/14 | 3 |
+| Q4 6.67–8.79 | 4 | 2/3 | 1 |
+
+One quartile is empty and another holds three images. The bins are too sparse
+and too unevenly placed to locate a transition.
+
+### 2. Highest score with high agreement / lowest with falloff
+
+Not answerable as posed. Agreement is 85.7% across the whole low cluster
+(0.285–1.534) and 68.8% across the whole high cluster (4.777–8.793), with
+nothing in between. The most that can be said is that agreement is higher
+below 1.534 than above 4.777.
+
+Within the high cluster, agreement does **not** decline with score. Ordered by
+score, with `x` marking a disagreement including unsure:
+
+```
+.  x  x  .  .  x  x  .  x  x  .  .  x  .  .  .  .  .  .  x  x
+4.78 ------------------------------------------------> 8.79
+```
+
+Disagreements sit at the **bottom** of the high range (4.94, 5.00, 5.28, 5.53,
+5.60, 5.69, 5.83) and at the **extreme top** (7.42, 8.79), while 5.84–7.23 is
+almost entirely correct. That is not a monotone falloff, so the requested
+summary sentence of the form "agreement is high below approximately X pp and
+falls off above it" **does not apply and is not offered**.
+
+### 3. Do the UNSURE calls cluster?
+
+Partly. The four unsure scores are **4.943, 4.995, 5.829, 8.793**. Two are
+adjacent and are the second- and third-lowest scores in the entire high group,
+which is consistent with hesitation just inside the damaged class. The other
+two are not: one mid-range, and one is the single highest score in the set.
+
+### 4. Do misclassifications cluster by experiment, or by run?
+
+**By run, clearly; by experiment, not at all.**
+
+By experiment, disagreements are almost perfectly flat — EXP-A 4/14,
+EXP-B 5/14, EXP-F 3/14. This is the same conclusion the confound check reached
+from the other direction: experiment identity is not driving the errors.
+
+By run, they concentrate sharply:
+
+| run | disagreements / images from that run |
+|---|---|
+| **EXP-B run 4** | **3 of 3** |
+| **EXP-F run 5** | **3 of 4** |
+| EXP-B run 1 | 1 of 3 |
+| EXP-B run 5 | 1 of 2 |
+| EXP-A run 4 | 1 of 4 |
+| EXP-A runs 2, 3, 5 | 1 each |
+
+Every image drawn from EXP-B run 4 was disputed, and three of four from EXP-F
+run 5. Six of the twelve disagreements come from those two runs alone.
+
+That is the most actionable thing in this section. It points at per-run
+photographic conditions — a lighting or focus change in one inspection session
+— rather than at the score being wrong across the board. It also matches the
+limitation recorded for the odd/even split test: that analysis separates
+per-photo noise from run-level effects but cannot distinguish run-level damage
+from run-level lighting, and this is what a run-level effect looks like.
+
+### What would answer the original question
+
+Images sampled from the **unsampled middle**, roughly 1.5–4.8 pp. Around 20
+images spread across that band, blinded the same way, would show whether
+agreement declines gradually or breaks at a particular value. Nothing in the
+present set can substitute for that.
