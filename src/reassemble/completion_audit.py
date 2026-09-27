@@ -140,15 +140,10 @@ def seal(c):
     final=read(root/'results.json');preserved=preservation(c);storage()
     reports=Path('artifacts/reassemble/reports');status='REASSEMBLE STUDY COMPLETE\n\n'
     status+='All authorized core phases are finished; audio and physical-object modelling have completed feasibility exclusions. No core experiment is pending.\n\n'
-    status+='1. **Completion:** Section 3, modality dropout, audio gate, efficiency, object feasibility, final synthesis and audit are complete.\n'
-    for i,key in enumerate(['SQ1','SQ2','SQ3','SQ4'],2):status+=f'{i}. **{key}:** '+final['SQ'][key]+'\n'
-    status+='6. **Architecture:** retain learned static fusion F2 as the clean reference; uniform fusion is a simple alternative. Adaptive results are corruption-family-specific.\n'
-    status+='7. **Modality dropout:** '+read(root/'synthesis_context.json')['dropout_answer']+'\n'
-    status+='8. **Audio:** '+final['audio_decision']+'; AST and tri-modal modelling intentionally not run.\n'
-    status+='9. **Object OOD:** '+final['object_decision']+'.\n'
-    status+='10. **Validation:** numerical/source consistency, 14 figure pairs, protected-file checks, REASSEMBLE tests, dependency check and whitespace check passed. See `'+str(root/'validation.json')+'` and `claim_review.json`.\n'
-    status+='11. **Handoff:** `artifacts/reassemble/reports/FINAL_REASSEMBLE_HANDOFF.md`; figures/tables in `'+str(root)+'`; reproducibility configuration `configs/reassemble/completion.json`.\n'
-    status+='12. **Optional future work only:** independent cohort/site evaluation, trustworthy audio clock anchors, validated physical-object IDs, and new architectures under a fresh preregistration. No additional tuning is required to complete this study.\n'
+    context=read(root/'synthesis_context.json')
+    summaries=[('Strongest unimodal representation','Engineered sensor statistics; PatchTST remains a bounded negative architecture result.'),('Clean fusion','SIMPLE FUSION SUFFICIENT; learned static F2 is the primary reference, with uniform fusion a simple alternative.'),('Robustness',context['robustness_answer']),('Modality dropout',context['dropout_answer']),('Audio',final['audio_decision']+'; AST/tri-modal modelling intentionally excluded.'),('SQ1',final['SQ']['SQ1']),('SQ2',final['SQ']['SQ2']),('SQ3',final['SQ']['SQ3']),('SQ4',final['SQ']['SQ4']),('Main RQ',context['main_RQ']),('Main limitations','Adaptive reuse of the same cohort/folds, recording/scene/day/object dependence, artificial single-realization corruptions, retrospective classification, unverified audio timing and VM-specific timing. '+final['object_decision']+' for physical-object OOD.'),('Optional future work only','Independent cohort/site evaluation, trustworthy audio anchors, reliable object identity, and any new architecture under a fresh preregistration. No further tuning is required to complete this study.')]
+    for i,(name,value) in enumerate(summaries,1):status+=f'{i}. **{name}:** '+value+'\n'
+    status+='\nValidation: all numerical/source, preservation, test, dependency and claim checks passed. Evidence: `'+str(root/'validation.json')+'`; main handoff: `artifacts/reassemble/reports/FINAL_REASSEMBLE_HANDOFF.md`; figures/tables: `'+str(root)+'`. Configuration: `configs/reassemble/completion.json`.\n'
     write(root/'seal.json',{'timestamp_UTC':datetime.now(timezone.utc).isoformat(),'preservation':preserved,'claim_review':review,'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'status':'complete'})
     with (reports/'REASSEMBLE_COMPLETION_STATUS.md').open('x') as f:f.write(status)
     Path('docs/reassemble/AUTONOMOUS_CONTINUATION.md').write_text('# REASSEMBLE — completed handoff\n\n'+status+'\nNo worker should be restarted. Final audit is sealed. Historical evidence and raw data are unchanged. All source implementations are under `src/reassemble/`; scripts 12–22 implement this completion sequence.\n')
