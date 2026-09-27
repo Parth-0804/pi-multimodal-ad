@@ -28,11 +28,11 @@ def figures(root,frame,s1,s1b,s2,robust,dropout,audio,efficiency,source_paths):
             x=.2+i*3.7;rect=FancyBboxPatch((x,.7),3.1,2.7,boxstyle='round,pad=.15',fc=['#e7eef7','#e8f3ec','#f7eee6'][i],ec='#555');ax.add_patch(rect)
             ax.text(x+1.55,3.0,title,ha='center',weight='bold');ax.text(x+1.55,1.9,body,ha='center',va='center',linespacing=1.6)
             if i<2:ax.annotate('',xy=(x+3.55,2),xytext=(x+3.25,2),arrowprops={'arrowstyle':'->','lw':2})
-        save(fig,name,caption,source_paths,'Research design / Discussion')
+        save(fig,name,caption,source_paths+['runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json',str(Path(root)/'tables/10_dataset_summary.csv')],'Research design / Discussion')
     diagram('01_two_study_design',[('PHM — Study 1','Continuous damage estimation\nProvisional image-derived target\n20 run-level units\nMAE / RMSE / Spearman'),('REASSEMBLE — Study 2','Execution-failure classification\n4,530 segments / 148 recordings\nAUROC / AUPRC / calibration\nDemonstrated complementarity'),('Shared methodology','Validate targets and signal\nGroup-disjoint evaluation\nStart with simple fusion\nTest degraded modalities')],'Two task-specific studies investigate conditions for meaningful fusion; metric scales are not directly comparable.')
     counts=frame.groupby(['action','failure']).size().unstack(fill_value=0).reindex(['pick','insert','remove','place'])
     fig,ax=plt.subplots(figsize=(7,4));ax.bar(counts.index,counts[0],label='Success',color='#72a5be');ax.bar(counts.index,counts[1],bottom=counts[0],label='Failure',color='#d95f02');ax.set_ylabel('Segments');ax.legend();ax.set_title('Primary cohort: 4,530 segments, 509 failures, 148 recordings')
-    save(fig,'02_cohort', 'Action and outcome support in the frozen primary cohort; segments are clustered within recordings.',source_paths[:1],'Dataset')
+    save(fig,'02_cohort', 'Action and outcome support in the frozen primary cohort; segments are clustered within recordings.',[str(Path(root)/'tables/10_dataset_summary.csv')],'Dataset')
     def metric_plot(name,data,caption,sources):
         fig,axes=plt.subplots(1,2,figsize=(11,4));names=list(data)
         for ax,metric in zip(axes,['AUROC','AUPRC']):
@@ -52,7 +52,7 @@ def figures(root,frame,s1,s1b,s2,robust,dropout,audio,efficiency,source_paths):
     weights=__import__('json').loads((Path(source_paths[2]).parent/'gate_weights.json').read_text())
     fig,ax=plt.subplots(figsize=(8,4));actions=['pick','insert','remove','place'];x=np.arange(4)
     for i,m in enumerate(['F4','F5','F6']):ax.bar(x+(i-1)*.25,[weights[m]['by_action'][a]['visual_mean'] for a in actions],width=.25,label=LABELS[m],color=COLORS[m])
-    ax.set_xticks(x,actions);ax.set_ylabel('Mean visual weight');ax.set_ylim(0,1);ax.legend();save(fig,'06_weights_by_action','Clean modality allocation varies by action; allocation differences do not establish causal process value.',source_paths[2:3])
+    ax.set_xticks(x,actions);ax.set_ylabel('Mean visual weight');ax.set_ylim(0,1);ax.legend();save(fig,'06_weights_by_action','Clean modality allocation varies by action; allocation differences do not establish causal process value.',[str(Path(source_paths[2]).parent/'gate_weights.json')])
     conditions=robust['conditions']
     for prefix,families in [('07_visual_corruptions',['V1','V2','V3']),('08_sensor_corruptions',['S1','S2','S3'])]:
         fig,axes=plt.subplots(1,3,figsize=(12,3.5))
@@ -83,7 +83,7 @@ def figures(root,frame,s1,s1b,s2,robust,dropout,audio,efficiency,source_paths):
     for m,e in efficiency['models'].items():
         ap=dropout['conditions']['clean']['metrics']['AUPRC']['estimate'] if m=='D6' else s2['metrics'][m]['AUPRC']['estimate']
         ax.scatter(e['sequential_component_sum_seconds']*1000,ap,color=COLORS[m]);ax.annotate(LABELS[m],(e['sequential_component_sum_seconds']*1000,ap),xytext=(4,4),textcoords='offset points',fontsize=8)
-    ax.set_xscale('log');ax.set_xlabel('Estimated sequential component-sum latency (ms, warm VM)');ax.set_ylabel('Clean AUPRC');save(fig,'12_efficiency','Task-specific accuracy/cost trade-off. Latency is a sum of measured warm components on this VM, not production end-to-end timing.',source_paths[5:6],'Practical usability')
+    ax.set_xscale('log');ax.set_xlabel('Estimated sequential component-sum latency (ms, warm VM)');ax.set_ylabel('Clean AUPRC');save(fig,'12_efficiency','Task-specific accuracy/cost trade-off. Latency is a sum of measured warm components on this VM, not production end-to-end timing.',[source_paths[2],source_paths[4],source_paths[5]],'Practical usability')
     fig,ax=plt.subplots(figsize=(8,4));names=list(audio['streams']);x=np.arange(len(names))
     ax.bar(x-.15,[audio['streams'][n]['nominal_valid_percent'] for n in names],.3,label='Nominal coverage');ax.bar(x+.15,[100*audio['streams'][n]['verified_segments']/4530 for n in names],.3,label='Verified segment timing');ax.set_xticks(x,names);ax.set_ylabel('Primary segments (%)');ax.legend();save(fig,'13_audio_gate','Nominal overlap is distinct from trustworthy segment alignment. Audio modelling was excluded by the timing gate, not by a negative predictive result.',source_paths[6:7],'Dataset limitations')
     diagram('14_cross_study_conditions',[('Prerequisites','Valid target / task definition\nDeployable modality signal\nIndependent evaluation units'),('Fusion evidence','Establish complementarity\nCompare simple references\nSeparate gain from complexity'),('Robustness evidence','Induce modality degradation\nMeasure weight response\nRequire predictive benefit')],'Cross-study synthesis: establish modality informativeness and complementarity before architectural complexity; flat low-signal degradation is not robustness.')
