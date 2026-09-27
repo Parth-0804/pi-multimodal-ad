@@ -8,7 +8,7 @@ import h5py
 import joblib
 from sklearn.linear_model import LogisticRegression
 from threadpoolctl import threadpool_limits
-from .completion_common import config,read,write,storage,seed_for,progress
+from .completion_common import config,read,write,storage,seed_for,progress,claim
 from .section1_features import cohort,statistics,sha
 from .section1_models import load_features,Standardizer,sigmoid
 from .alignment import timestamps_1d,interval_indices,resample_progress,sensor_quality
@@ -72,6 +72,9 @@ def main():
     for count,(rid,rows) in enumerate(frame.groupby('recording_id',sort=True)):
         path=out/(rid+'.npz')
         if path.exists():assert sha(path)==read(path.with_suffix('.json'))['sha256'];continue
+        lock=claim(path)
+        if lock is None:continue
+        if path.exists():lock.close();continue
         storage();started=time.perf_counter();checkpoint=checkpoints[int(fold[rows.index[0]])]
         raw=Path(base['data_root'])/'raw/data'/recordings.loc[rid,'filename']
         with h5py.File(raw,'r') as h:
@@ -104,7 +107,8 @@ def main():
                     quality_difference=max(quality_difference,float(np.nanmax(abs(quality[j,i]-expected))))
         np.savez_compressed(path,row_index=rows.index.to_numpy(),statistics=stats,quality=quality,names=np.asarray(names))
         write(path.with_suffix('.json'),{'sha256':sha(path),'clean_statistics_max_difference':statistics_difference,'clean_quality_max_difference':quality_difference,'expected_NaN_statistic_warnings':warning_count,'seconds':time.perf_counter()-started,'conditions':names})
-        progress(f'Section 3 sensor faults: {count+1}/148 recordings complete')
+        lock.close()
+        progress(f'Section 3 sensor faults: completed recording ordinal {count+1}/148')
     progress('Section 3 sensor corruption extraction complete')
 
 if __name__=='__main__':main()

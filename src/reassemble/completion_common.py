@@ -43,3 +43,12 @@ def progress(stage):
         'Remaining order: Section 3 → modality dropout → audio gate → efficiency/object feasibility → final package and audit.\n'
         'Never delete raw or historical files. Stop new jobs below 20 GiB.\n')
     print(now, stage, flush=True)
+
+
+def claim(path):
+    import fcntl
+    stream=Path(str(path)+'.lock').open('a')
+    try:fcntl.flock(stream,fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        stream.close();return None
+    return stream

@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import pandas as pd
 import torch
-from .completion_common import config, read, write, storage, seed_for, progress
+from .completion_common import config, read, write, storage, seed_for, progress, claim
 from .section1_features import cohort, load_visual, sha
 
 
@@ -40,7 +40,7 @@ def pooled_frames(images, processor, model):
 def main():
     c = config(); s = read('configs/reassemble/section3_corruptions.json'); base = read('configs/reassemble/section1.json')
     run = Path(s['run_dir']); out = run/'visual'; out.mkdir(exist_ok=True)
-    storage(); torch.set_num_threads(c['cpu_threads']); cv2.setNumThreads(1)
+    storage(); torch.set_num_threads(2); cv2.setNumThreads(1)
     torch.use_deterministic_algorithms(True); torch.backends.cudnn.benchmark=False
     frame = cohort(base); recordings = pd.read_parquet(Path(base['audit_run'])/'recordings.parquet').set_index('recording_id')
     processor, model, _ = load_visual(base)
@@ -50,6 +50,9 @@ def main():
         path = out/(rid+'.npz')
         if path.exists():
             assert sha(path)==read(path.with_suffix('.json'))['sha256']; continue
+        lock=claim(path)
+        if lock is None:continue
+        if path.exists():lock.close();continue
         storage(); started=time.perf_counter()
         source = Path(base['run_dir'])/'features'/(rid+'.npz')
         with np.load(source) as z:
@@ -85,7 +88,8 @@ def main():
         cap.release()
         np.savez_compressed(path,row_index=rows.index.to_numpy(),features=features,quality=quality,names=np.asarray(names))
         write(path.with_suffix('.json'),{'sha256':sha(path),'input_sha256':sha(source),'conditions':names,'clean_max_feature_difference':clean_difference,'clean_max_quality_difference':quality_difference,'seconds':time.perf_counter()-started,'segments':len(rows)})
-        progress(f'Section 3 visual corruptions: {count+1}/148 recordings complete')
+        lock.close()
+        progress(f'Section 3 visual corruptions: completed recording ordinal {count+1}/148')
     progress('Section 3 visual feature extraction complete')
 
 if __name__=='__main__':main()
