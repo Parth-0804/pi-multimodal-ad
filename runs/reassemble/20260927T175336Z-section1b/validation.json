@@ -1,0 +1,83 @@
+{
+  "utc": "2026-09-27T19:14:45.802825+00:00",
+  "command": "ma_thesis_env/bin/python -B scripts/reassemble/08_validate_section1b.py",
+  "implementation_commit": "06f93d1309fac1117a6014f4145bf4cedb8b4985",
+  "section1_manifest_entries_unchanged": 857,
+  "protected_entries_metadata_unchanged": 68745,
+  "protected_check": "lstat: size, mtime_ns, mode; no credential contents read",
+  "raw_hdf5_metadata_unchanged": 149,
+  "raw_check": "stat only: size and mtime_ns; no source payload read",
+  "retained_git_blob_bytes": 14047735808,
+  "sensor_control_runs_validated": 20,
+  "inner_branch_partitions_validated": 20,
+  "branch_parity": [
+    {
+      "fold": 0,
+      "branch": "rtdetr",
+      "max_probability_difference": 0.0
+    },
+    {
+      "fold": 0,
+      "branch": "sensor_statistics",
+      "max_probability_difference": 0.0
+    },
+    {
+      "fold": 1,
+      "branch": "rtdetr",
+      "max_probability_difference": 0.0
+    },
+    {
+      "fold": 1,
+      "branch": "sensor_statistics",
+      "max_probability_difference": 0.0
+    },
+    {
+      "fold": 2,
+      "branch": "rtdetr",
+      "max_probability_difference": 0.0
+    },
+    {
+      "fold": 2,
+      "branch": "sensor_statistics",
+      "max_probability_difference": 0.0
+    },
+    {
+      "fold": 3,
+      "branch": "rtdetr",
+      "max_probability_difference": 0.0
+    },
+    {
+      "fold": 3,
+      "branch": "sensor_statistics",
+      "max_probability_difference": 0.0
+    },
+    {
+      "fold": 4,
+      "branch": "rtdetr",
+      "max_probability_difference": 0.0
+    },
+    {
+      "fold": 4,
+      "branch": "sensor_statistics",
+      "max_probability_difference": 0.0
+    }
+  ],
+  "outer_predictions": 4530,
+  "tests": {
+    "prior_preexecution_result": "47 passed in 7.18s",
+    "scope": "tests/reassemble; includes six Section1B tests"
+  },
+  "pip_check": "No broken requirements found.",
+  "git_diff_check": "passed",
+  "runtime_warning_scan": "no Traceback, ConvergenceWarning or RuntimeWarning in successful run",
+  "free_bytes": 102083817472,
+  "versions": {
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "scipy": "1.18.0",
+    "scikit-learn": "1.7.2",
+    "torch": "2.13.0",
+    "threadpoolctl": "3.6.0"
+  },
+  "limitations": "Cluster bootstrap conditions on fitted models; same-cohort adaptive exploratory follow-up; 19 permutations give minimum p=0.05."
+}
