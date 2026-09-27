@@ -1,5 +1,3 @@
-# REASSEMBLE — completed handoff
-
 REASSEMBLE STUDY COMPLETE
 
 All authorized core phases are finished; audio and physical-object modelling have completed feasibility exclusions. No core experiment is pending.
@@ -18,5 +16,3 @@ All authorized core phases are finished; audio and physical-object modelling hav
 12. **Optional future work only:** Independent cohort/site evaluation, trustworthy audio anchors, reliable object identity, and any new architecture under a fresh preregistration. No further tuning is required to complete this study.
 
 Validation: all numerical/source, preservation, test, dependency and claim checks passed. Evidence: `runs/reassemble/20260927T204649Z-final-synthesis/validation.json`; main handoff: `artifacts/reassemble/reports/FINAL_REASSEMBLE_HANDOFF.md`; figures/tables: `runs/reassemble/20260927T204649Z-final-synthesis`. Configuration: `configs/reassemble/completion.json`.
-
-No worker should be restarted. Final audit is sealed. Historical evidence and raw data are unchanged. All source implementations are under `src/reassemble/`; scripts 12–22 implement this completion sequence.

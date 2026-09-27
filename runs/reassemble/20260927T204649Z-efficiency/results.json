@@ -1,0 +1,458 @@
+{
+  "models": {
+    "U1": {
+      "total_parameters": 223,
+      "trainable_parameters": 223,
+      "checkpoint_bytes_mean": 41412.666666666664,
+      "preprocessing_seconds": 0.026167141765472482,
+      "inference_seconds": 9.954859347393115e-05,
+      "sequential_component_sum_seconds": 0.026266690358946413,
+      "estimated_sequential_throughput_per_second": 38.07103165014472,
+      "estimated_segments_per_second": 38.07103165014472,
+      "CPU_threads": 4,
+      "GPU_required": false,
+      "benchmark_peak_GPU_allocated_bytes": 0
+    },
+    "U2": {
+      "total_parameters": 11305059,
+      "trainable_parameters": 114947,
+      "checkpoint_bytes_mean": 81376617.0,
+      "preprocessing_seconds": 0.39106110938139155,
+      "inference_seconds": 0.08735408330006371,
+      "sequential_component_sum_seconds": 0.47841519268145527,
+      "estimated_sequential_throughput_per_second": 2.090234623183953,
+      "estimated_segments_per_second": 2.090234623183953,
+      "CPU_threads": 4,
+      "GPU_required": true,
+      "benchmark_peak_GPU_allocated_bytes": 1416854528
+    },
+    "F1": {
+      "total_parameters": 11305282,
+      "trainable_parameters": 115170,
+      "fusion_parameters": 0,
+      "checkpoint_bytes_mean": 81418029.66666667,
+      "preprocessing_seconds": 0.417228251146864,
+      "inference_seconds": 0.08745966966676255,
+      "sequential_component_sum_seconds": 0.5046879208136267,
+      "cached_branch_fusion_overhead_seconds": 6.037773224913205e-06,
+      "estimated_sequential_throughput_per_second": 1.9814224964763607,
+      "estimated_segments_per_second": 1.9814224964763607,
+      "CPU_threads": 4,
+      "GPU_required": true,
+      "benchmark_peak_GPU_allocated_bytes": 1416854528
+    },
+    "F2": {
+      "total_parameters": 11305285,
+      "trainable_parameters": 115173,
+      "fusion_parameters": 3,
+      "checkpoint_bytes_mean": 81418053.66666667,
+      "preprocessing_seconds": 0.417228251146864,
+      "inference_seconds": 0.08746466219015324,
+      "sequential_component_sum_seconds": 0.5046929133370174,
+      "cached_branch_fusion_overhead_seconds": 1.1030296615596549e-05,
+      "estimated_sequential_throughput_per_second": 1.981402895848139,
+      "estimated_segments_per_second": 1.981402895848139,
+      "CPU_threads": 4,
+      "GPU_required": true,
+      "benchmark_peak_GPU_allocated_bytes": 1416854528
+    },
+    "F5": {
+      "total_parameters": 11307256,
+      "trainable_parameters": 117144,
+      "fusion_parameters": 1974,
+      "checkpoint_bytes_mean": 81436494.66666667,
+      "preprocessing_seconds": 0.4762859698795687,
+      "inference_seconds": 0.08775181153973488,
+      "sequential_component_sum_seconds": 0.5640377814193037,
+      "cached_branch_fusion_overhead_seconds": 0.0002981796461972408,
+      "estimated_sequential_throughput_per_second": 1.772930879707513,
+      "estimated_segments_per_second": 1.772930879707513,
+      "CPU_threads": 4,
+      "GPU_required": true,
+      "benchmark_peak_GPU_allocated_bytes": 1416854528
+    },
+    "F6": {
+      "total_parameters": 11307448,
+      "trainable_parameters": 117336,
+      "fusion_parameters": 2166,
+      "checkpoint_bytes_mean": 81435790.66666667,
+      "preprocessing_seconds": 0.4762859698795687,
+      "inference_seconds": 0.08773541899747216,
+      "sequential_component_sum_seconds": 0.564021388877041,
+      "cached_branch_fusion_overhead_seconds": 0.00028178710393452394,
+      "estimated_sequential_throughput_per_second": 1.7729824076193041,
+      "estimated_segments_per_second": 1.7729824076193041,
+      "CPU_threads": 4,
+      "GPU_required": true,
+      "benchmark_peak_GPU_allocated_bytes": 1416854528
+    },
+    "D6": {
+      "total_parameters": 11307448,
+      "trainable_parameters": 117336,
+      "fusion_parameters": 2166,
+      "checkpoint_bytes_mean": 81437044.66666667,
+      "preprocessing_seconds": 0.4762859698795687,
+      "inference_seconds": 0.08773016510342133,
+      "sequential_component_sum_seconds": 0.5640161349829901,
+      "cached_branch_fusion_overhead_seconds": 0.00027653320988368555,
+      "estimated_sequential_throughput_per_second": 1.7729989232137102,
+      "estimated_segments_per_second": 1.7729989232137102,
+      "CPU_threads": 4,
+      "GPU_required": true,
+      "benchmark_peak_GPU_allocated_bytes": 1416854528
+    }
+  },
+  "measurements": [
+    {
+      "recording_id": "2025-01-11-11-21-44",
+      "segment_id": "1",
+      "fold": 3,
+      "sensor_preprocessing": {
+        "mean_seconds": 0.030875950200424995,
+        "std_seconds": 0.00017589835387295838,
+        "median_seconds": 0.03084774599847151,
+        "repetitions": 10,
+        "warmup": 2,
+        "throughput_per_second": 32.38766721376029
+      },
+      "sensor_head": {
+        "mean_seconds": 9.837581033934839e-05,
+        "std_seconds": 5.7337880513225375e-06,
+        "median_seconds": 9.546650107949972e-05,
+        "repetitions": 100,
+        "warmup": 10,
+        "throughput_per_second": 10165.100511502671
+      },
+      "sensor_quality": {
+        "mean_seconds": 0.06366811100160703,
+        "std_seconds": 0.001456109558586419,
+        "median_seconds": 0.06289556599222124,
+        "repetitions": 5,
+        "warmup": 1,
+        "throughput_per_second": 15.70644996794014
+      },
+      "video_decode": {
+        "mean_seconds": 0.3182349770019452,
+        "std_seconds": 0.0035718842142380353,
+        "median_seconds": 0.316352170004393,
+        "repetitions": 3,
+        "warmup": 1,
+        "throughput_per_second": 3.1423321516097444
+      },
+      "visual_preprocessing": {
+        "mean_seconds": 0.11058350360253826,
+        "std_seconds": 0.0012378235084921062,
+        "median_seconds": 0.11060527600056957,
+        "repetitions": 5,
+        "warmup": 2,
+        "throughput_per_second": 9.042940107904545
+      },
+      "visual_inference": {
+        "mean_seconds": 0.08721947830053978,
+        "std_seconds": 0.000256897802068859,
+        "median_seconds": 0.08721282549959142,
+        "repetitions": 10,
+        "warmup": 3,
+        "throughput_per_second": 11.465328840356195
+      },
+      "visual_quality": {
+        "mean_seconds": 0.0034471801976906137,
+        "std_seconds": 9.582821926201771e-05,
+        "median_seconds": 0.0034304080036235973,
+        "repetitions": 5,
+        "warmup": 2,
+        "throughput_per_second": 290.09217466204257
+      },
+      "fusion_overhead": {
+        "F1": {
+          "mean_seconds": 6.182965298648924e-06,
+          "std_seconds": 6.455393850542378e-06,
+          "median_seconds": 5.509995389729738e-06,
+          "repetitions": 200,
+          "warmup": 20,
+          "throughput_per_second": 161734.69390464085
+        },
+        "F2": {
+          "mean_seconds": 1.0504099991521798e-05,
+          "std_seconds": 1.6909946677831563e-06,
+          "median_seconds": 1.0160001693293452e-05,
+          "repetitions": 200,
+          "warmup": 20,
+          "throughput_per_second": 95200.92162176032
+        },
+        "F5": {
+          "mean_seconds": 0.0002691371693799738,
+          "std_seconds": 1.9555796048483833e-05,
+          "median_seconds": 0.000264043002971448,
+          "repetitions": 100,
+          "warmup": 10,
+          "throughput_per_second": 3715.577459270139
+        },
+        "F6": {
+          "mean_seconds": 0.0002836218099400867,
+          "std_seconds": 1.8604189910460442e-05,
+          "median_seconds": 0.0002779334972728975,
+          "repetitions": 100,
+          "warmup": 10,
+          "throughput_per_second": 3525.8219394737084
+        },
+        "D6": {
+          "mean_seconds": 0.00026309433014830573,
+          "std_seconds": 1.4855739717547682e-05,
+          "median_seconds": 0.0002556015024310909,
+          "repetitions": 100,
+          "warmup": 10,
+          "throughput_per_second": 3800.9180944199825
+        }
+      },
+      "gate_parameters": {
+        "F5": 1974,
+        "F6": 2166,
+        "D6": 2166
+      },
+      "gate_checkpoint_bytes": {
+        "F5": 18465,
+        "F6": 19233,
+        "D6": 20487
+      },
+      "sensor_checkpoint_bytes": 41410,
+      "visual_head_bytes": 472465
+    },
+    {
+      "recording_id": "2025-01-11-14-09-00",
+      "segment_id": "1",
+      "fold": 3,
+      "sensor_preprocessing": {
+        "mean_seconds": 0.035598481097258626,
+        "std_seconds": 0.0002496041697207375,
+        "median_seconds": 0.03557261300011305,
+        "repetitions": 10,
+        "warmup": 2,
+        "throughput_per_second": 28.091086169319965
+      },
+      "sensor_head": {
+        "mean_seconds": 0.0001019819505745545,
+        "std_seconds": 1.1180989663274013e-05,
+        "median_seconds": 9.897850395645946e-05,
+        "repetitions": 100,
+        "warmup": 10,
+        "throughput_per_second": 9805.65673009896
+      },
+      "sensor_quality": {
+        "mean_seconds": 0.0758281946007628,
+        "std_seconds": 0.000511615459571082,
+        "median_seconds": 0.0755583449936239,
+        "repetitions": 5,
+        "warmup": 1,
+        "throughput_per_second": 13.187706832069827
+      },
+      "video_decode": {
+        "mean_seconds": 0.26561626566399354,
+        "std_seconds": 0.0009196393108952314,
+        "median_seconds": 0.26607736699224915,
+        "repetitions": 3,
+        "warmup": 1,
+        "throughput_per_second": 3.764829678258511
+      },
+      "visual_preprocessing": {
+        "mean_seconds": 0.1060976538050454,
+        "std_seconds": 0.0002455539566743728,
+        "median_seconds": 0.10600634399452247,
+        "repetitions": 5,
+        "warmup": 2,
+        "throughput_per_second": 9.425279109729434
+      },
+      "visual_inference": {
+        "mean_seconds": 0.08732960199704394,
+        "std_seconds": 0.0003278305737039211,
+        "median_seconds": 0.08722538049914874,
+        "repetitions": 10,
+        "warmup": 3,
+        "throughput_per_second": 11.450870920422258
+      },
+      "visual_quality": {
+        "mean_seconds": 0.0033354835992213338,
+        "std_seconds": 6.192566525638744e-05,
+        "median_seconds": 0.0033264210069319233,
+        "repetitions": 5,
+        "warmup": 2,
+        "throughput_per_second": 299.80660082797266
+      },
+      "fusion_overhead": {
+        "F1": {
+          "mean_seconds": 5.717165040550754e-06,
+          "std_seconds": 1.2951784625625166e-06,
+          "median_seconds": 5.5209966376423836e-06,
+          "repetitions": 200,
+          "warmup": 20,
+          "throughput_per_second": 174911.86504276018
+        },
+        "F2": {
+          "mean_seconds": 1.0582780232653022e-05,
+          "std_seconds": 1.595857579351485e-06,
+          "median_seconds": 1.0249001206830144e-05,
+          "repetitions": 200,
+          "warmup": 20,
+          "throughput_per_second": 94493.12732721349
+        },
+        "F5": {
+          "mean_seconds": 0.0002617939001356717,
+          "std_seconds": 1.3396952964982513e-05,
+          "median_seconds": 0.00025340750289615244,
+          "repetitions": 100,
+          "warmup": 10,
+          "throughput_per_second": 3819.7987022683164
+        },
+        "F6": {
+          "mean_seconds": 0.0002649790709256195,
+          "std_seconds": 2.7426675113058046e-05,
+          "median_seconds": 0.00025390850350959226,
+          "repetitions": 100,
+          "warmup": 10,
+          "throughput_per_second": 3773.882958026913
+        },
+        "D6": {
+          "mean_seconds": 0.00026330384935135953,
+          "std_seconds": 1.6377325184703427e-05,
+          "median_seconds": 0.0002538129992899485,
+          "repetitions": 100,
+          "warmup": 10,
+          "throughput_per_second": 3797.8935836428805
+        }
+      },
+      "gate_parameters": {
+        "F5": 1974,
+        "F6": 2166,
+        "D6": 2166
+      },
+      "gate_checkpoint_bytes": {
+        "F5": 18465,
+        "F6": 19233,
+        "D6": 20487
+      },
+      "sensor_checkpoint_bytes": 41410,
+      "visual_head_bytes": 472465
+    },
+    {
+      "recording_id": "2025-01-14-11-50-46",
+      "segment_id": "1",
+      "fold": 0,
+      "sensor_preprocessing": {
+        "mean_seconds": 0.012026993998733814,
+        "std_seconds": 6.224799480502289e-05,
+        "median_seconds": 0.012047008000081405,
+        "repetitions": 10,
+        "warmup": 2,
+        "throughput_per_second": 83.14629574981734
+      },
+      "sensor_head": {
+        "mean_seconds": 9.828801950789056e-05,
+        "std_seconds": 6.732444147296651e-06,
+        "median_seconds": 9.528599184704944e-05,
+        "repetitions": 100,
+        "warmup": 10,
+        "throughput_per_second": 10174.179976428562
+      },
+      "sensor_quality": {
+        "mean_seconds": 0.026499791396781804,
+        "std_seconds": 0.00010301404219514901,
+        "median_seconds": 0.026489445997867733,
+        "repetitions": 5,
+        "warmup": 1,
+        "throughput_per_second": 37.73614610873663
+      },
+      "video_decode": {
+        "mean_seconds": 0.26511273966752924,
+        "std_seconds": 0.0008285665167181366,
+        "median_seconds": 0.2654498719930416,
+        "repetitions": 3,
+        "warmup": 1,
+        "throughput_per_second": 3.7719801819183534
+      },
+      "visual_preprocessing": {
+        "mean_seconds": 0.10753818840312306,
+        "std_seconds": 0.00042132450164144176,
+        "median_seconds": 0.10774085599405225,
+        "repetitions": 5,
+        "warmup": 2,
+        "throughput_per_second": 9.299022187832938
+      },
+      "visual_inference": {
+        "mean_seconds": 0.08751316960260738,
+        "std_seconds": 0.0004233947046817284,
+        "median_seconds": 0.08740758649946656,
+        "repetitions": 10,
+        "warmup": 3,
+        "throughput_per_second": 11.426851576065024
+      },
+      "visual_quality": {
+        "mean_seconds": 0.0043943954020505775,
+        "std_seconds": 0.0006004536552889244,
+        "median_seconds": 0.0040177269984269515,
+        "repetitions": 5,
+        "warmup": 2,
+        "throughput_per_second": 227.5625901878027
+      },
+      "fusion_overhead": {
+        "F1": {
+          "mean_seconds": 6.213189335539937e-06,
+          "std_seconds": 3.906622440021282e-06,
+          "median_seconds": 5.5415002861991525e-06,
+          "repetitions": 200,
+          "warmup": 20,
+          "throughput_per_second": 160947.936075265
+        },
+        "F2": {
+          "mean_seconds": 1.2004009622614831e-05,
+          "std_seconds": 3.17266221537705e-06,
+          "median_seconds": 1.048899139277637e-05,
+          "repetitions": 200,
+          "warmup": 20,
+          "throughput_per_second": 83305.49803259573
+        },
+        "F5": {
+          "mean_seconds": 0.0003636078690760769,
+          "std_seconds": 8.754977086535524e-05,
+          "median_seconds": 0.00033572949905646965,
+          "repetitions": 100,
+          "warmup": 10,
+          "throughput_per_second": 2750.215506999306
+        },
+        "F6": {
+          "mean_seconds": 0.00029676043093786577,
+          "std_seconds": 3.585534615566857e-05,
+          "median_seconds": 0.0002883540000766516,
+          "repetitions": 100,
+          "warmup": 10,
+          "throughput_per_second": 3369.7214849016545
+        },
+        "D6": {
+          "mean_seconds": 0.00030320145015139133,
+          "std_seconds": 3.9502456504658005e-05,
+          "median_seconds": 0.0002900219988077879,
+          "repetitions": 100,
+          "warmup": 10,
+          "throughput_per_second": 3298.1372598999465
+        }
+      },
+      "gate_parameters": {
+        "F5": 1974,
+        "F6": 1086,
+        "D6": 1086
+      },
+      "gate_checkpoint_bytes": {
+        "F5": 18465,
+        "F6": 14817,
+        "D6": 16071
+      },
+      "sensor_checkpoint_bytes": 41418,
+      "visual_head_bytes": 472465
+    }
+  ],
+  "GPU": "Tesla T4",
+  "peak_GPU_allocated_bytes": 1416854528,
+  "peak_GPU_reserved_bytes": 2329935872,
+  "CPU_threads": 4,
+  "timing_scope": "warm VM measurements on 3 deterministic segments from distinct recordings; raw sensor arrays already in RAM; video decoding from existing cache measured separately; sequential component sums are estimates, not measured production end-to-end latency",
+  "checkpoint_scope": "RT-DETR source safetensors includes unused detection components; bytes reflect stored deployment source plus heads. Gate parameter totals use maximum ensemble size over all five outer folds. Frozen backbone contributes total but not trainable parameters. Trainable means fitted somewhere in pipeline, not fine-tuned in robustness."
+}

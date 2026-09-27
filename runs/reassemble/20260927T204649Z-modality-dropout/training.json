@@ -1,0 +1,224 @@
+{
+  "thresholds": {
+    "0": 0.14,
+    "1": 0.13,
+    "2": 0.13,
+    "3": 0.14,
+    "4": 0.14
+  },
+  "cost": {
+    "0": {
+      "settings": {
+        "hidden": 8,
+        "epochs": 40,
+        "lr": 0.003,
+        "weight_decay": 0.001
+      },
+      "fits": [
+        {
+          "mask_counts": [
+            22536,
+            22644,
+            105900
+          ],
+          "training_seconds": 2.8280105190060567,
+          "seed": 20261026
+        },
+        {
+          "mask_counts": [
+            22606,
+            22638,
+            105836
+          ],
+          "training_seconds": 2.7764264790021116,
+          "seed": 20261027
+        },
+        {
+          "mask_counts": [
+            22377,
+            22450,
+            106253
+          ],
+          "training_seconds": 2.9546971039962955,
+          "seed": 20261028
+        }
+      ]
+    },
+    "1": {
+      "settings": {
+        "hidden": 16,
+        "epochs": 40,
+        "lr": 0.003,
+        "weight_decay": 0.001
+      },
+      "fits": [
+        {
+          "mask_counts": [
+            21513,
+            21562,
+            99565
+          ],
+          "training_seconds": 2.616544905002229,
+          "seed": 20262026
+        },
+        {
+          "mask_counts": [
+            21418,
+            21341,
+            99881
+          ],
+          "training_seconds": 2.6382980549969943,
+          "seed": 20262027
+        },
+        {
+          "mask_counts": [
+            21324,
+            21670,
+            99646
+          ],
+          "training_seconds": 2.6259883439925034,
+          "seed": 20262028
+        }
+      ]
+    },
+    "2": {
+      "settings": {
+        "hidden": 16,
+        "epochs": 40,
+        "lr": 0.003,
+        "weight_decay": 0.001
+      },
+      "fits": [
+        {
+          "mask_counts": [
+            20949,
+            20834,
+            97937
+          ],
+          "training_seconds": 2.6393354180036113,
+          "seed": 20263026
+        },
+        {
+          "mask_counts": [
+            20926,
+            20824,
+            97970
+          ],
+          "training_seconds": 2.6021122310048668,
+          "seed": 20263027
+        },
+        {
+          "mask_counts": [
+            20866,
+            20980,
+            97874
+          ],
+          "training_seconds": 2.59427582299395,
+          "seed": 20263028
+        }
+      ]
+    },
+    "3": {
+      "settings": {
+        "hidden": 16,
+        "epochs": 40,
+        "lr": 0.003,
+        "weight_decay": 0.001
+      },
+      "fits": [
+        {
+          "mask_counts": [
+            21974,
+            21628,
+            101358
+          ],
+          "training_seconds": 2.8264153839991195,
+          "seed": 20264026
+        },
+        {
+          "mask_counts": [
+            21964,
+            21828,
+            101168
+          ],
+          "training_seconds": 2.8319928660057485,
+          "seed": 20264027
+        },
+        {
+          "mask_counts": [
+            21705,
+            21756,
+            101499
+          ],
+          "training_seconds": 2.8259055170055944,
+          "seed": 20264028
+        }
+      ]
+    },
+    "4": {
+      "settings": {
+        "hidden": 16,
+        "epochs": 40,
+        "lr": 0.003,
+        "weight_decay": 0.001
+      },
+      "fits": [
+        {
+          "mask_counts": [
+            21990,
+            21965,
+            102445
+          ],
+          "training_seconds": 2.8151603169972077,
+          "seed": 20265026
+        },
+        {
+          "mask_counts": [
+            22060,
+            21935,
+            102405
+          ],
+          "training_seconds": 2.757820022990927,
+          "seed": 20265027
+        },
+        {
+          "mask_counts": [
+            21662,
+            21765,
+            102973
+          ],
+          "training_seconds": 2.7614955870085396,
+          "seed": 20265028
+        }
+      ]
+    }
+  },
+  "mask_probabilities": {
+    "model": "F6",
+    "fallback": "F5 only if structural correctness fails without invalidating pipeline",
+    "visual_missing": 0.15,
+    "sensor_missing": 0.15,
+    "both_present": 0.7,
+    "both_missing": 0,
+    "seeds": [
+      20260927,
+      20260928,
+      20260929
+    ],
+    "architecture_settings": "reuse each fold Section 2 clean-selected F6 config; no new hyperparameter search; frozen branch inner probabilities, same normalization/loss, re-estimate threshold only on frozen inner OOF training folds",
+    "test_conditions": [
+      "clean",
+      "V4",
+      "S5",
+      "V1_0.02",
+      "V1_0.05",
+      "V1_0.1",
+      "S1_0.1",
+      "S1_0.5",
+      "S1_1.0",
+      "V2_2.0",
+      "S2_0.3"
+    ]
+  },
+  "single_missing_gradient": "zero by construction; test confirms exact surviving-branch predictions"
+}

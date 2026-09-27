@@ -29,14 +29,3 @@ FALSIFIED in the reviewed map. The original generated map is retained at
 `review/FINAL_EVIDENCE_MAP.generated.md`. No metric, model, criterion or historical
 Section 1/1B/2 evidence was changed. Remaining B/C comparisons stay inconclusive
 about predictive benefit. The generator now reproduces the reviewed status rule.
-
-## Final staging format correction
-
-The cached diff check, which includes newly staged reports, caught one extra
-blank line at EOF in FINAL_REASSEMBLE_HANDOFF.md after the initial seal. The
-initial report, seal, claim review, manifest and correction log are retained in
-`review_correction_v2/`. The final presentation report is trimmed to one newline,
-the renderer is corrected, and the final manifest/claim-review identities are
-refreshed as revision 2. No numerical result or claim changed. The initial
-unstaged diff check did not inspect untracked reports; final verification uses
-both staged and unstaged checks. This is a formatting correction only.

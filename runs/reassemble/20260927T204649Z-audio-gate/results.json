@@ -1,0 +1,52 @@
+{
+  "streams": {
+    "hama1_audio": {
+      "segments": 4530,
+      "decodable": 4477,
+      "nominal_valid_segments": 4408,
+      "nominal_valid_percent": 97.30684326710816,
+      "nominal_valid_failures": 491,
+      "nominal_valid_failure_percent": 96.46365422396856,
+      "nominal_valid_recordings": 148,
+      "verified_segments": 0,
+      "verified_failures": 0,
+      "verified_recordings": 0,
+      "reported_vs_decoded_frame_mismatch_recordings": 63,
+      "nearly_silent_segments": 0
+    },
+    "hama2_audio": {
+      "segments": 4530,
+      "decodable": 4435,
+      "nominal_valid_segments": 4358,
+      "nominal_valid_percent": 96.20309050772627,
+      "nominal_valid_failures": 486,
+      "nominal_valid_failure_percent": 95.48133595284872,
+      "nominal_valid_recordings": 148,
+      "verified_segments": 0,
+      "verified_failures": 0,
+      "verified_recordings": 0,
+      "reported_vs_decoded_frame_mismatch_recordings": 52,
+      "nearly_silent_segments": 0
+    },
+    "hand_audio": {
+      "segments": 4530,
+      "decodable": 4530,
+      "nominal_valid_segments": 4530,
+      "nominal_valid_percent": 100.0,
+      "nominal_valid_failures": 509,
+      "nominal_valid_failure_percent": 100.0,
+      "nominal_valid_recordings": 148,
+      "verified_segments": 0,
+      "verified_failures": 0,
+      "verified_recordings": 0,
+      "reported_vs_decoded_frame_mismatch_recordings": 148,
+      "nearly_silent_segments": 0
+    }
+  },
+  "recordings_audited": 148,
+  "nonempty_audio_attribute_recordings": [],
+  "alignment_requirement": "Reliable segment start/end transfer is sufficient; frame-perfect alignment and per-sample timestamps are not required. No independently documented start offset/drift or segment anchor was found in available evidence.",
+  "decoding_evidence": "Reuse prior full-stream decoding and per-segment checks from immutable inventory; raw sizes/mtime and audited-record hashes verified. Header inspection repeated now; no new audio payload cache.",
+  "decision": "AUDIO NOT INCLUDED \u2014 SEGMENT-ALIGNMENT OR COVERAGE PRECONDITION FAILED",
+  "reason": "Nominal origin is inferred from the earliest non-audio timestamp, not a measured audio clock mapping. Decoder-reported and actually decoded sample counts can disagree. Nominal overlap does not establish correct action-segment association."
+}

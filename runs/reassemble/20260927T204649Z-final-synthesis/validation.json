@@ -1,0 +1,70 @@
+{
+  "preservation": {
+    "prior_manifests": {
+      "runs/reassemble/20260927T154732Z-section1/final_output_manifest.json": 857,
+      "runs/reassemble/20260927T175336Z-section1b/output_manifest.json": 330,
+      "runs/reassemble/20260927T192852Z-section2/output_manifest.json": 1378
+    },
+    "protected_metadata_unchanged": 68745,
+    "raw_metadata_unchanged": 149,
+    "historical_git_blob_retained": "284ccffbfe2b61f2abc91d97f5db0d0ee7abd628",
+    "scope": "SHA256 prior evidence; lstat protected PHM/environment; size/mtime raw HDF5. Raw payloads were read-only; full raw rehash not repeated."
+  },
+  "free_GiB": 94.76913070678711,
+  "timestamp_UTC": "2026-09-27T22:25:16.657280+00:00",
+  "git_commit": "338ad8e2a81d65fc67e52234276925effb6406a8",
+  "checks": {
+    "pytest": {
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "tests/reassemble",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": ".............................................................            [100%]\n61 passed in 8.79s\n",
+      "stderr": ""
+    },
+    "pip_check": {
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n",
+      "stderr": ""
+    },
+    "git_diff_check": {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "extraction_counts": {
+    "visual": 148,
+    "sensor": 148
+  },
+  "expected_dropout_NaN_warnings": 158550,
+  "metric_source_equalities": 1416,
+  "dropout_checkpoints": 75,
+  "dropout_training_mask_counts": [
+    1303769,
+    1304014,
+    6089817
+  ],
+  "figures": 14,
+  "required_reports": 11,
+  "claim_inventory_entries": 76,
+  "claim_review": "pending independent narrative inspection before seal",
+  "scientific_validation": "passed"
+}

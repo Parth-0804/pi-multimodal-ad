@@ -1,0 +1,202 @@
+[
+  {
+    "name": "01_two_study_design",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/01_two_study_design.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/01_two_study_design.png"
+    ],
+    "caption": "Two task-specific studies investigate conditions for meaningful fusion; metric scales are not directly comparable.",
+    "sources": [
+      "runs/reassemble/20260927T154732Z-section1/assessment/results.json",
+      "runs/reassemble/20260927T175336Z-section1b/assessment/results.json",
+      "runs/reassemble/20260927T192852Z-section2/assessment/results.json",
+      "runs/reassemble/20260927T204649Z-section3/results.json",
+      "runs/reassemble/20260927T204649Z-modality-dropout/results.json",
+      "runs/reassemble/20260927T204649Z-efficiency/results.json",
+      "runs/reassemble/20260927T204649Z-audio-gate/results.json",
+      "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json",
+      "runs/reassemble/20260927T204649Z-final-synthesis/tables/10_dataset_summary.csv"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Research design / Discussion"
+  },
+  {
+    "name": "02_cohort",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/02_cohort.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/02_cohort.png"
+    ],
+    "caption": "Action and outcome support in the frozen primary cohort; segments are clustered within recordings.",
+    "sources": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/tables/10_dataset_summary.csv"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Dataset"
+  },
+  {
+    "name": "03_unimodal",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/03_unimodal.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/03_unimodal.png"
+    ],
+    "caption": "Unimodal discrimination with recording-clustered 95% intervals. Statistical sensors outperform the tested PatchTST; this is not a universal Transformer claim.",
+    "sources": [
+      "runs/reassemble/20260927T154732Z-section1/assessment/results.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Results"
+  },
+  {
+    "name": "04_complementarity",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/04_complementarity.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/04_complementarity.png"
+    ],
+    "caption": "Frozen OOF correctness overlap. Visual-only correct failures number 97 across 61 recordings. The oracle is diagnostic, not deployable.",
+    "sources": [
+      "runs/reassemble/20260927T175336Z-section1b/assessment/results.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Results"
+  },
+  {
+    "name": "05_clean_fusion",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/05_clean_fusion.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/05_clean_fusion.png"
+    ],
+    "caption": "Clean fusion comparison. No adaptive gate establishes incremental value over F2; intervals condition on fitted models.",
+    "sources": [
+      "runs/reassemble/20260927T192852Z-section2/assessment/results.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Results"
+  },
+  {
+    "name": "06_weights_by_action",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/06_weights_by_action.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/06_weights_by_action.png"
+    ],
+    "caption": "Clean modality allocation varies by action; allocation differences do not establish causal process value.",
+    "sources": [
+      "runs/reassemble/20260927T192852Z-section2/assessment/gate_weights.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Results"
+  },
+  {
+    "name": "07_visual_corruptions",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/07_visual_corruptions.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/07_visual_corruptions.png"
+    ],
+    "caption": "Clean-trained model AUPRC under single-modality degradation. Shading shows marginal recording-cluster 95% intervals; one deterministic corruption realization per condition.",
+    "sources": [
+      "runs/reassemble/20260927T204649Z-section3/results.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Results"
+  },
+  {
+    "name": "08_sensor_corruptions",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/08_sensor_corruptions.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/08_sensor_corruptions.png"
+    ],
+    "caption": "Clean-trained model AUPRC under single-modality degradation. Shading shows marginal recording-cluster 95% intervals; one deterministic corruption realization per condition.",
+    "sources": [
+      "runs/reassemble/20260927T204649Z-section3/results.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Results"
+  },
+  {
+    "name": "09_missing_modalities",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/09_missing_modalities.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/09_missing_modalities.png"
+    ],
+    "caption": "All fusion models fall back to the remaining branch. Unavailable unimodal models abstain and have no metric bar.",
+    "sources": [
+      "runs/reassemble/20260927T204649Z-section3/results.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Results"
+  },
+  {
+    "name": "10_gate_response",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/10_gate_response.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/10_gate_response.png"
+    ],
+    "caption": "Measured gate response, without forced monotonicity. Lower degraded-modality weight alone is insufficient to establish predictive robustness.",
+    "sources": [
+      "runs/reassemble/20260927T204649Z-section3/results.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Results"
+  },
+  {
+    "name": "11_dropout_tradeoff",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/11_dropout_tradeoff.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/11_dropout_tradeoff.png"
+    ],
+    "caption": "Clean and degraded performance trade-off from one preregistered modality-dropout variant. Exact zero under complete modality loss follows from the architecture.",
+    "sources": [
+      "runs/reassemble/20260927T204649Z-modality-dropout/results.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Results"
+  },
+  {
+    "name": "12_efficiency",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/12_efficiency.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/12_efficiency.png"
+    ],
+    "caption": "Task-specific accuracy/cost trade-off. Latency is a sum of measured warm components on this VM, not production end-to-end timing.",
+    "sources": [
+      "runs/reassemble/20260927T192852Z-section2/assessment/results.json",
+      "runs/reassemble/20260927T204649Z-modality-dropout/results.json",
+      "runs/reassemble/20260927T204649Z-efficiency/results.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Practical usability"
+  },
+  {
+    "name": "13_audio_gate",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/13_audio_gate.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/13_audio_gate.png"
+    ],
+    "caption": "Nominal overlap is distinct from trustworthy segment alignment. Audio modelling was excluded by the timing gate, not by a negative predictive result.",
+    "sources": [
+      "runs/reassemble/20260927T204649Z-audio-gate/results.json"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Dataset limitations"
+  },
+  {
+    "name": "14_cross_study_conditions",
+    "outputs": [
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/14_cross_study_conditions.pdf",
+      "runs/reassemble/20260927T204649Z-final-synthesis/figures/14_cross_study_conditions.png"
+    ],
+    "caption": "Cross-study synthesis: establish modality informativeness and complementarity before architectural complexity; flat low-signal degradation is not robustness.",
+    "sources": [
+      "runs/reassemble/20260927T154732Z-section1/assessment/results.json",
+      "runs/reassemble/20260927T175336Z-section1b/assessment/results.json",
+      "runs/reassemble/20260927T192852Z-section2/assessment/results.json",
+      "runs/reassemble/20260927T204649Z-section3/results.json",
+      "runs/reassemble/20260927T204649Z-modality-dropout/results.json",
+      "runs/reassemble/20260927T204649Z-efficiency/results.json",
+      "runs/reassemble/20260927T204649Z-audio-gate/results.json",
+      "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json",
+      "runs/reassemble/20260927T204649Z-final-synthesis/tables/10_dataset_summary.csv"
+    ],
+    "script": "scripts/reassemble/20_completion_synthesis.py",
+    "chapter": "Research design / Discussion"
+  }
+]

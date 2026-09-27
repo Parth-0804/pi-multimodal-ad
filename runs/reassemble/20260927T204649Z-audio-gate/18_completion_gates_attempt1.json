@@ -1,0 +1,248 @@
+{
+  "command": [
+    "ma_thesis_env/bin/python",
+    "-B",
+    "scripts/reassemble/18_completion_gates.py"
+  ],
+  "timestamp_UTC": "2026-09-27T22:24:25.117882+00:00",
+  "git_commit": "338ad8e2a81d65fc67e52234276925effb6406a8",
+  "dirty_tracked_paths": [
+    "docs/reassemble/AUTONOMOUS_CONTINUATION.md"
+  ],
+  "configuration": {
+    "seed": 20260927,
+    "runs": {
+      "completion-preflight": "runs/reassemble/20260927T204649Z-completion-preflight",
+      "section3": "runs/reassemble/20260927T204649Z-section3",
+      "modality-dropout": "runs/reassemble/20260927T204649Z-modality-dropout",
+      "audio-gate": "runs/reassemble/20260927T204649Z-audio-gate",
+      "efficiency": "runs/reassemble/20260927T204649Z-efficiency",
+      "object-feasibility": "runs/reassemble/20260927T204649Z-object-feasibility",
+      "final-synthesis": "runs/reassemble/20260927T204649Z-final-synthesis"
+    },
+    "section1": "runs/reassemble/20260927T154732Z-section1",
+    "section1b": "runs/reassemble/20260927T175336Z-section1b",
+    "section2": "runs/reassemble/20260927T192852Z-section2",
+    "data_root": "../datasets/REASSEMBLE",
+    "bootstrap_replicates": 2000,
+    "minimum_free_GiB": 20,
+    "cpu_threads": 4,
+    "blas_threads": 16
+  },
+  "corruptions": {
+    "seed": 20260927,
+    "run_dir": "runs/reassemble/20260927T204649Z-section3",
+    "models": [
+      "U1",
+      "U2",
+      "F1",
+      "F2",
+      "F5",
+      "F6"
+    ],
+    "conditions": [
+      {
+        "name": "clean",
+        "family": "clean",
+        "severity": 0
+      },
+      {
+        "name": "V1_0.02",
+        "family": "V1",
+        "severity": 0.02
+      },
+      {
+        "name": "V1_0.05",
+        "family": "V1",
+        "severity": 0.05
+      },
+      {
+        "name": "V1_0.1",
+        "family": "V1",
+        "severity": 0.1
+      },
+      {
+        "name": "V2_1.0",
+        "family": "V2",
+        "severity": 1.0
+      },
+      {
+        "name": "V2_2.0",
+        "family": "V2",
+        "severity": 2.0
+      },
+      {
+        "name": "V2_4.0",
+        "family": "V2",
+        "severity": 4.0
+      },
+      {
+        "name": "V3_0.1",
+        "family": "V3",
+        "severity": 0.1
+      },
+      {
+        "name": "V3_0.3",
+        "family": "V3",
+        "severity": 0.3
+      },
+      {
+        "name": "V3_0.5",
+        "family": "V3",
+        "severity": 0.5
+      },
+      {
+        "name": "S1_0.1",
+        "family": "S1",
+        "severity": 0.1
+      },
+      {
+        "name": "S1_0.5",
+        "family": "S1",
+        "severity": 0.5
+      },
+      {
+        "name": "S1_1.0",
+        "family": "S1",
+        "severity": 1.0
+      },
+      {
+        "name": "S2_0.1",
+        "family": "S2",
+        "severity": 0.1
+      },
+      {
+        "name": "S2_0.3",
+        "family": "S2",
+        "severity": 0.3
+      },
+      {
+        "name": "S2_0.5",
+        "family": "S2",
+        "severity": 0.5
+      },
+      {
+        "name": "S3_0.1",
+        "family": "S3",
+        "severity": 0.1
+      },
+      {
+        "name": "S3_0.3",
+        "family": "S3",
+        "severity": 0.3
+      },
+      {
+        "name": "S3_0.5",
+        "family": "S3",
+        "severity": 0.5
+      },
+      {
+        "name": "V4",
+        "family": "V4",
+        "severity": 1
+      },
+      {
+        "name": "S4",
+        "family": "S4",
+        "severity": 1
+      },
+      {
+        "name": "S5",
+        "family": "S5",
+        "severity": 1
+      }
+    ],
+    "sensor_noise_scale": "outer-training resampled per-channel population std; float64 over all finite 512-position training values",
+    "stuck_value": "outer-training per-channel median; first six force/torque channels only",
+    "sensor_domain": "raw in-segment samples, then exact frozen resample_progress and statistics; timestamp arrays unchanged",
+    "quality": "same 36 frozen fields recomputed on corrupted images/raw sensor samples with original formulas; unchanged-modality fields reused; train scalers unchanged",
+    "thresholds": "frozen clean model thresholds for all conditions; complete fusion modality loss adopts remaining unimodal branch threshold",
+    "missing_unimodal": "unavailable unimodal sensor/visual model abstains; metrics null rather than fabricated chance predictions",
+    "missing_fusion": "all fusion probabilities equal remaining calibrated branch probability; F1/F2 renormalization convention bypasses learned intercept when only one branch available; gates masked exactly",
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 20310927,
+    "mechanism": "ordered severity Spearman (descriptive, repeated segments not independent); paired recording CI for degraded-modality weight shift; both expected direction and outcome required",
+    "positive_claim": "For a family/gate: high-severity mean degraded-weight shift upper95<0 and negative Spearman; paired AP degradation advantage lower95>0 and AUROC degradation advantage lower95>-0.01. Marginal intervals; family-specific exploratory claims only. Require high-severity absolute AP difference vs F2 lower95>0 for an absolute superiority claim. No selection/tuning from these outcomes.",
+    "dropout": {
+      "model": "F6",
+      "fallback": "F5 only if structural correctness fails without invalidating pipeline",
+      "visual_missing": 0.15,
+      "sensor_missing": 0.15,
+      "both_present": 0.7,
+      "both_missing": 0,
+      "seeds": [
+        20260927,
+        20260928,
+        20260929
+      ],
+      "architecture_settings": "reuse each fold Section 2 clean-selected F6 config; no new hyperparameter search; frozen branch inner probabilities, same normalization/loss, re-estimate threshold only on frozen inner OOF training folds",
+      "test_conditions": [
+        "clean",
+        "V4",
+        "S5",
+        "V1_0.02",
+        "V1_0.05",
+        "V1_0.1",
+        "S1_0.1",
+        "S1_0.5",
+        "S1_1.0",
+        "V2_2.0",
+        "S2_0.3"
+      ]
+    },
+    "optional_combined": "not planned; single-modality suite answers mechanism question without further exploration",
+    "visual_noise": "float32 BGR pixels /255 after decoding, Gaussian noise then clip [0,1], round*255 to uint8, before RT-DETR preprocessing; independent seeded draws per original frame index",
+    "visual_blur": "OpenCV GaussianBlur sigmaX=sigmaY, kernel 2*ceil(3*sigma)+1, BORDER_REFLECT_101, native resolution before preprocessing",
+    "frame_dropout": "drop round(16*fraction): 2/5/8 frames using seeded permutation; omit dropped frames, pool retained clean per-frame embeddings; quality valid/failed ratios reference original 16 requested frames",
+    "channel_dropout": "drop round(22*fraction): 2/7/11 channels without replacement, NaN raw interval values, retain timestamps; whole-stream quality recalculated",
+    "temporal_dropout": "one contiguous normalized-progress block of specified fractional length; start uniform in [0,1-fraction], all sensor channels; NaN samples in block; no extrapolation across gap",
+    "seed_derivation": "SHA256 first 8 bytes little-endian of global_seed|recording_id|segment_id|family|severity; visual noise additionally original frame index; no labels"
+  },
+  "versions": {
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "torch": "2.13.0",
+    "transformers": "5.14.1",
+    "scipy": "1.18.0",
+    "matplotlib": "3.11.1",
+    "h5py": "3.16.0"
+  },
+  "script_sha256": "f36895e83801b2f798385b95a706d3470790b6ed112b32a262facf2f8ec70870",
+  "source_hashes": {
+    "src/reassemble/__init__.py": "ed07fc6228c4598c5d946de031365c3f5cb6b692d248140212b412122c8c3328",
+    "src/reassemble/acquire.py": "2edd158c6348b963f2774679dfa975512af37189cff8151899a7b80ea80a052a",
+    "src/reassemble/alignment.py": "a67aac281efb5107b7c0b8fec61c74233b416e7507fe9a5d7e83436fb08ab5c2",
+    "src/reassemble/audit_report.py": "6fd14d3e117e820211be53733f7840911a214346ffc9fb9d896b2f3e2750c572",
+    "src/reassemble/cluster_metrics.py": "dd49467425b69bf1b5f631e37078c3dfabc7765d317a6c0287bf3689560d652d",
+    "src/reassemble/completion_audit.py": "3d56b92f33b885f2313ea8771c951b2b2879f11f1f00743838527da022c525b9",
+    "src/reassemble/completion_common.py": "d61ed9650e1fc7aca53075bbe3c6de70a3f8bf0e4fa645d8f6cbb83e37746a7e",
+    "src/reassemble/completion_efficiency.py": "1700b688209c67c032e77ad3f4efa67eb390d35fc1382762bf0c1d2540f0c89a",
+    "src/reassemble/completion_figures.py": "c8c7f8770fde93e87739b86cc4441ece824a9ab5035ad52651d339bc0f07c84f",
+    "src/reassemble/completion_gates.py": "88dda61ac26f14ca0dcca13322e894bf5410aa3c9f6d1185a1d8b3e37c776d0b",
+    "src/reassemble/completion_narrative.py": "c6134a99c177c7b119bd9c8a204ab3d3f51fc30583dd5edf2365bfada0558b37",
+    "src/reassemble/completion_synthesis.py": "e17510faea784817585a5e5571c13a792776f6332880dd28f79de963bf5dc2ce",
+    "src/reassemble/inventory.py": "b56fd03f1c795959b4ebf9b1b12423faa34cdddda6ca4205027c1f5696b30d6d",
+    "src/reassemble/media.py": "5912f94cc2d8b31f8812adefca1291bf9b1dd4436889470caa52e711b697c26d",
+    "src/reassemble/modality_dropout.py": "24c984155e54ee616625916a71fc517c2705b64022e88dc7ce9a568966583068",
+    "src/reassemble/section1_features.py": "0aba08d10b9b080e77ac499649d5a3c2defc9e40d291713c08919a4e6a07bee0",
+    "src/reassemble/section1_models.py": "b421b295b984908423876018ed02cd519a8ce60d1162a0ee60d64ade18aded66",
+    "src/reassemble/section1_report.py": "b9a31223407d5a1eda7e2520e9715efb0463d278654bdc10bd9d1b1c074a5395",
+    "src/reassemble/section1b.py": "66c30cb81814ca0eac9fa2829c94366f5643736a3cabae6b776742d9f635b141",
+    "src/reassemble/section1b_report.py": "3f35da8a471b40503b8bcf9c8065a1647a9d177ec8ecbd2b27ab9480229805bf",
+    "src/reassemble/section2.py": "707b60138573fa9a4a711fe88cb931168397aa49f9ee62182281c532240d98db",
+    "src/reassemble/section2_data.py": "6b4d3481fa97f090158bbb45b8d1167c7fad4f91bcdaab3a9bc1f28705dda6d5",
+    "src/reassemble/section2_models.py": "52befc1014f2af254c5ed2abd6fb7670c23fa6d7492f67ed5163d9372e9bfd09",
+    "src/reassemble/section2_report.py": "239b01cf7bb75f3d74fdc3be52514bcc1a725779dbafa5989c112599f854896b",
+    "src/reassemble/section3_evaluate.py": "1269698aaec7f268f2fd902d9b4088db7950b1c3bc0ac7b5e75eb5c1d6241f49",
+    "src/reassemble/section3_report.py": "2e441285bffb7d704b192e2e9bb9af9090b01d14292fdb514665b9bd2d6ff045",
+    "src/reassemble/section3_sensor.py": "0b1cb7b1294d81fcf5b8fc3b9a599b618f42726dfa41d588ef9d4f1973e1bf99",
+    "src/reassemble/section3_visual.py": "ed6c4699ed71f14870920b4342aa01163520712649af7699ccd6a5b8969994b9",
+    "src/reassemble/splits.py": "7d71b22193df3a206306c524247299ff00c5dab483158d29a360422eddb7407e"
+  },
+  "inputs": [
+    "Frozen Section 1/1B/2 manifests; raw identifiers in inventory recordings.parquet; strictly downstream artifacts from preceding phase"
+  ],
+  "raw_input_root": "../datasets/REASSEMBLE/raw/data",
+  "warnings": "Expected missing-channel NaN warnings counted in sensor metadata. Prior intentional extraction interruptions retained in logs."
+}
