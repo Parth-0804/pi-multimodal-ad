@@ -33,3 +33,27 @@ def test_single_available_branch_has_zero_gate_gradient():
     assert torch.equal(value,logits[:,0]) and torch.equal(w,availability)
     torch.nn.functional.binary_cross_entropy_with_logits(value,torch.ones(5)).backward()
     assert all(torch.count_nonzero(p.grad)==0 for p in model.parameters())
+
+
+def test_vectorized_cluster_metrics_match_sklearn_with_ties_and_zero_weights():
+    from reassemble.cluster_metrics import weighted_metrics
+    from reassemble.section1_report import metrics
+    rng=np.random.default_rng(77);y=np.arange(70)%4==0;p=np.round(rng.uniform(0,1,70),1);hard=p>=.4
+    w=rng.integers(0,4,(9,70)).astype(float)
+    expected=np.stack([metrics(y,p,hard,row) for row in w])
+    assert np.allclose(weighted_metrics(y,p,hard,w,chunk=3),expected,atol=1e-12,rtol=1e-12)
+
+
+def test_frozen_gate_missing_branch_is_exact_and_ignores_its_quality():
+    from reassemble.section3_evaluate import gate_predict
+    rng=np.random.default_rng(19);quality=rng.normal(size=(4,36)).astype('float32')
+    probs=np.array([[.2,.7],[.3,.8],[.4,.9],[.5,.6]])
+    action=np.eye(4,dtype='float32');availability=np.array([[0,1],[1,0],[0,1],[1,0]],dtype='float32')
+    model=DecisionGate(42,8)
+    checkpoint={'normalizers':{'quality':{'mean':[0.]*36,'std':[1.]*36}},'settings':{'hidden':8},'state_dict':model.state_dict()}
+    p,w=gate_predict(checkpoint,'F6',probs,quality,action,availability)
+    assert np.array_equal(p,np.array([.7,.3,.9,.5]))
+    assert np.array_equal(w,availability)
+    quality[availability[:,0]==0,:6]=np.nan;quality[availability[:,1]==0,6:]=1e9
+    q,v=gate_predict(checkpoint,'F6',probs,quality,action,availability)
+    assert np.array_equal(p,q) and np.array_equal(w,v)
