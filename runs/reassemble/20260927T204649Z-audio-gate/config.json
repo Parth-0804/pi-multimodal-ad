@@ -1,0 +1,24 @@
+{
+  "phase": "audio-gate",
+  "completion": {
+    "seed": 20260927,
+    "runs": {
+      "completion-preflight": "runs/reassemble/20260927T204649Z-completion-preflight",
+      "section3": "runs/reassemble/20260927T204649Z-section3",
+      "modality-dropout": "runs/reassemble/20260927T204649Z-modality-dropout",
+      "audio-gate": "runs/reassemble/20260927T204649Z-audio-gate",
+      "efficiency": "runs/reassemble/20260927T204649Z-efficiency",
+      "object-feasibility": "runs/reassemble/20260927T204649Z-object-feasibility",
+      "final-synthesis": "runs/reassemble/20260927T204649Z-final-synthesis"
+    },
+    "section1": "runs/reassemble/20260927T154732Z-section1",
+    "section1b": "runs/reassemble/20260927T175336Z-section1b",
+    "section2": "runs/reassemble/20260927T192852Z-section2",
+    "data_root": "../datasets/REASSEMBLE",
+    "bootstrap_replicates": 2000,
+    "minimum_free_GiB": 20,
+    "cpu_threads": 4,
+    "blas_threads": 16
+  },
+  "corruption_configuration": "configs/reassemble/section3_corruptions.json"
+}
