@@ -10,3 +10,5 @@ Synthetic two-epoch forward/backward training passed for both neural branches;
 no experimental outcomes were used for these implementation smoke checks.
 
 Pinned image processor inspected: do_normalize=False despite generic model-card wording; actual shipped processor is authoritative. RGB resized to640x640 and divided by255. No preprocessing change made.
+
+Preservation check initially used stat against an lstat snapshot, incorrectly comparing three Python symlink targets. Rechecked using lstat: all 68,745 protected entries and all149 raw H5 metadata unchanged. No source/input modification occurred.

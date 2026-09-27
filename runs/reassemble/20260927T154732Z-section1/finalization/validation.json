@@ -1,0 +1,26 @@
+{
+  "timestamp_utc": "2026-09-27T17:29:28.464174+00:00",
+  "models_and_controls": 44,
+  "outer_assessments": 220,
+  "outer_predictions_per_model": 4530,
+  "all_prediction_labels_and_folds_verified": true,
+  "frozen_config_protocol_splits_and_training_sources_match": true,
+  "original_output_manifest_entries_verified": 849,
+  "tests_passed": 41,
+  "pip_check": "PASS",
+  "preservation": "../preservation_validation.json",
+  "free_bytes": 102098087936,
+  "warnings_in_training_logs": 0,
+  "decision": "FUSION CONDITIONAL \u2014 EVIDENCE REQUIRES REVIEW",
+  "training_implementation_git_commit": "852a12376b24f6b2d5084a625331c499808c38f4",
+  "commands": [
+    "ma_thesis_env/bin/python -B scripts/reassemble/03_section1_features.py",
+    "ma_thesis_env/bin/python -B scripts/reassemble/06_section1_driver.py",
+    "ma_thesis_env/bin/python -B scripts/reassemble/04_section1_train.py --config configs/reassemble/section1.json",
+    "ma_thesis_env/bin/python -B scripts/reassemble/05_section1_report.py --config configs/reassemble/section1.json",
+    "ma_thesis_env/bin/python -B -m pytest -q tests/reassemble",
+    "ma_thesis_env/bin/python -B -m pip check",
+    "git diff --check"
+  ],
+  "reproduction_limit": "Synthetic and integrity tests passed; independent full retraining reproduction not performed."
+}
