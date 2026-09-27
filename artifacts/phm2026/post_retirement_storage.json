@@ -1,0 +1,57 @@
+{
+  "timestamp_utc": "2026-09-27T13:37:16.712454+00:00",
+  "free_bytes": 433111760896,
+  "free_GiB": 403.36676025390625,
+  "decision": "PREFERRED STORAGE PASS",
+  "minimum_GiB": 160,
+  "preferred_GiB": 200,
+  "commands": [
+    {
+      "argv": [
+        "df",
+        "-h"
+      ],
+      "exit_code": 0,
+      "stdout": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/root       495G   92G  404G  19% /\ntmpfs            32G     0   32G   0% /dev/shm\ntmpfs            13G  992K   13G   1% /run\ntmpfs           5.0M     0  5.0M   0% /run/lock\nefivarfs        256K  123K  129K  49% /sys/firmware/efi/efivars\n/dev/sda16      881M  142M  677M  18% /boot\n/dev/sda15      105M  6.2M   99M   6% /boot/efi\ntmpfs           6.3G  8.0K  6.3G   1% /run/user/1001\n"
+    },
+    {
+      "argv": [
+        "df",
+        "-BG"
+      ],
+      "exit_code": 0,
+      "stdout": "Filesystem     1G-blocks  Used Available Use% Mounted on\n/dev/root           495G   92G      404G  19% /\ntmpfs                32G    0G       32G   0% /dev/shm\ntmpfs                13G    1G       13G   1% /run\ntmpfs                 1G    0G        1G   0% /run/lock\nefivarfs              1G    1G        1G  49% /sys/firmware/efi/efivars\n/dev/sda16            1G    1G        1G  18% /boot\n/dev/sda15            1G    1G        1G   6% /boot/efi\ntmpfs                 7G    1G        7G   1% /run/user/1001\n"
+    },
+    {
+      "argv": [
+        "df",
+        "-i",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "Filesystem       Inodes  IUsed    IFree IUse% Mounted on\n/dev/root      66977792 378631 66599161    1% /\n"
+    },
+    {
+      "argv": [
+        "findmnt",
+        "-T",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad",
+        "-o",
+        "SOURCE,FSTYPE,TARGET"
+      ],
+      "exit_code": 0,
+      "stdout": "SOURCE    FSTYPE TARGET\n/dev/sda1 ext4   /\n"
+    },
+    {
+      "argv": [
+        "du",
+        "-sh",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad"
+      ],
+      "exit_code": 0,
+      "stdout": "51G\t/home/student/Master_Thesis_WS/pi-multimodal-ad\n"
+    }
+  ],
+  "dataset_downloaded": false,
+  "raw_target_absent": true
+}
