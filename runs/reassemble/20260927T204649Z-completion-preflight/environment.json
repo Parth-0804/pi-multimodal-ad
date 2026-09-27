@@ -1,0 +1,32 @@
+{
+  "git status --short": {
+    "returncode": 0,
+    "stdout": "?? artifacts/intel_welding/\n?? artifacts/reassemble/audits/STORAGE_PREFLIGHT.md\n?? artifacts/reassemble/audits/STORAGE_TRIAGE.md\n?? artifacts/reassemble/audits/storage_runs/\n?? artifacts/reassemble/audits/triage_runs/\n?? configs/intel_welding/\n?? configs/reassemble/completion.json\n?? docs/intel_welding/FOUNDATION_PROTOCOL_ADDENDUM.md\n?? docs/intel_welding/FOUNDATION_RUNBOOK.md\n?? docs/intel_welding/RESULTS_REVIEW.md\n?? docs/intel_welding/context_baseline_specification.md\n?? runs/reassemble/20260927T134437Z/acquisition.json\n?? runs/reassemble/20260927T134437Z/acquisition_progress.json\n?? runs/reassemble/20260927T134437Z/archive_inventory.json\n?? runs/reassemble/20260927T134437Z/config.json\n?? runs/reassemble/20260927T134437Z/environment.json\n?? runs/reassemble/20260927T134437Z/official_record.json\n?? runs/reassemble/20260927T134437Z/official_record_download.json\n?? runs/reassemble/20260927T134437Z/upstream_reference.json\n?? runs/reassemble/20260927T141645Z-inventory/reports_v2/\n?? runs/reassemble/20260927T154732Z-section1/previous_continuation.md\n?? scripts/intel_welding/01_inventory.py\n?? scripts/intel_welding/02_label_audit.py\n?? scripts/intel_welding/03_make_split.py\n?? scripts/intel_welding/04_foundations.py\n?? scripts/intel_welding/05_foundation_report.py\n?? tests/unit/test_intel_foundations.py\n",
+    "stderr": ""
+  },
+  "git log -1 --oneline": {
+    "returncode": 0,
+    "stdout": "d16c251 results: record clean fusion comparison and static reference recommendation\n",
+    "stderr": ""
+  },
+  "git diff --check": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "df -h": {
+    "returncode": 0,
+    "stdout": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/root       495G  400G   96G  81% /\ntmpfs            32G     0   32G   0% /dev/shm\ntmpfs            13G  992K   13G   1% /run\ntmpfs           5.0M     0  5.0M   0% /run/lock\nefivarfs        256K  123K  129K  49% /sys/firmware/efi/efivars\n/dev/sda16      881M  142M  677M  18% /boot\n/dev/sda15      105M  6.2M   99M   6% /boot/efi\ntmpfs           6.3G  8.0K  6.3G   1% /run/user/1001\n",
+    "stderr": ""
+  },
+  "nvidia-smi": {
+    "returncode": 0,
+    "stdout": "Sun Sep 27 22:46:50 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.167.08             Driver Version: 580.167.08     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  Tesla T4                       On  |   00000000:06:10.0 Off |                  Off |\n| N/A   33C    P8              9W /   70W |       0MiB /  16384MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n",
+    "stderr": ""
+  },
+  "free -h": {
+    "returncode": 0,
+    "stdout": "               total        used        free      shared  buff/cache   available\nMem:            62Gi       4.2Gi       2.7Gi       4.9Mi        56Gi        58Gi\nSwap:             0B          0B          0B\n",
+    "stderr": ""
+  }
+}
