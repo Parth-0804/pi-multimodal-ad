@@ -19,7 +19,7 @@ while True:
         assert 'Traceback (most recent call last)' not in p.read_text(),f'Inspect failed worker {p}; completed checkpoints retained'
     storage();time.sleep(30)
 progress('All 296 recording-condition caches ready; running the remaining phases')
-sequence=[('section3','14_section3_evaluate',s3/'predictions/S5.json'),('section3','16_section3_report',s3/'results.json'),('modality-dropout','17_modality_dropout',Path(c['runs']['modality-dropout'])/'results.json'),('audio-gate','18_completion_gates',Path(c['runs']['object-feasibility'])/'results.json'),('efficiency','19_completion_efficiency',Path(c['runs']['efficiency'])/'results.json'),('final-synthesis','20_completion_synthesis',root/'synthesis_context.json'),('final-synthesis','21_completion_audit',root/'validation.json')]
+sequence=[('section3','14_section3_evaluate',s3/'predictions/S5.json'),('section3','16_section3_report',s3/'results.json'),('modality-dropout','17_modality_dropout',Path(c['runs']['modality-dropout'])/'results.json'),('audio-gate','18_completion_gates',Path(c['runs']['object-feasibility'])/'results.json'),('efficiency','19_completion_efficiency',Path(c['runs']['efficiency'])/'results.json'),('final-synthesis','20_completion_synthesis',Path('artifacts/reassemble/reports/THESIS_STORYLINE_ADDENDUM.md')),('final-synthesis','21_completion_audit',root/'validation.json')]
 versions={name:importlib.metadata.version(name) for name in ['numpy','pandas','scikit-learn','torch','transformers','scipy','matplotlib','h5py']}
 for phase,script,done in sequence:
     if done.exists():print('Already checkpointed:',script,flush=True);continue

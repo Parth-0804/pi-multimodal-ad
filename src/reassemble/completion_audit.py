@@ -4,6 +4,7 @@ from datetime import datetime,timezone
 import argparse
 import importlib.metadata
 import json
+import joblib
 import re
 import subprocess
 import sys
@@ -82,6 +83,9 @@ def audit(c):
     mask_counts=np.zeros(3,dtype=int)
     for outer in split['folds']:
         k=outer['fold'];tr=np.flatnonzero(frame.recording_id.isin(outer['train_recordings']));te=np.flatnonzero(frame.recording_id.isin(outer['test_recordings']))
+        sensor_path=s3/'branches'/f'sensor_fold{k}.joblib';sensor=joblib.load(sensor_path);sensor_meta=read(sensor_path.with_suffix('.json'))
+        assert sha(sensor_path)==sensor_meta['sha256'] and sensor_meta['max_frozen_probability_difference']<=1e-5
+        assert np.array_equal(sensor['train_rows'],tr) and np.array_equal(sensor['test_rows'],te)
         with np.load(Path(c['section1b'])/'stacking'/f'outer{k}.npz') as z:
             assert np.array_equal(z['train_rows'],tr) and np.array_equal(z['test_rows'],te)
         seen=[]
