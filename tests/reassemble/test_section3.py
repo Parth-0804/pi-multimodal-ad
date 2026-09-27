@@ -57,3 +57,17 @@ def test_frozen_gate_missing_branch_is_exact_and_ignores_its_quality():
     quality[availability[:,0]==0,:6]=np.nan;quality[availability[:,1]==0,6:]=1e9
     q,v=gate_predict(checkpoint,'F6',probs,quality,action,availability)
     assert np.array_equal(p,q) and np.array_equal(w,v)
+
+
+def test_dropout_fit_checkpoints_and_resumes_identically(tmp_path):
+    import pytest
+    from reassemble.modality_dropout import fit_dropout
+    if not torch.cuda.is_available():pytest.skip('CUDA required by the frozen gate fitting implementation')
+    torch.set_num_threads(2)
+    rng=np.random.default_rng(29);probability=rng.uniform(.1,.9,(40,2));quality=rng.normal(size=(40,36)).astype('float32');action=np.eye(4,dtype='float32')[np.arange(40)%4];labels=np.arange(40)%3==0
+    settings={'hidden':8,'epochs':2,'lr':.003,'weight_decay':.001};path=tmp_path/'synthetic_gate.pt'
+    p,cp=fit_dropout(probability,quality,action,labels,probability[:4],quality[:4],action[:4],settings,71,path)
+    q,resumed=fit_dropout(probability,quality,action,labels,probability[:4],quality[:4],action[:4],settings,71,path)
+    assert np.array_equal(p,q) and np.isfinite(p).all()
+    assert sum(cp['mask_counts'])==80 and all(n>0 for n in cp['mask_counts'])
+    assert resumed['seed']==71 and len(cp['loss_by_epoch'])==2
