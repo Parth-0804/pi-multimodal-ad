@@ -9,6 +9,7 @@ from .completion_common import write
 
 
 LABELS={'U1':'Sensor statistics','U2':'RT-DETR','F1':'Uniform late','F2':'Learned static','F3':'Concatenation','F4':'Process gate','F5':'Quality gate','F6':'Process + quality','D6':'Modality dropout'}
+LABELS.update({'action_only':'Action only','sensor_statistics':'Sensor statistics','rtdetr':'RT-DETR','patchtst':'PatchTST'})
 COLORS={'U1':'#333333','U2':'#888888','F1':'#66a61e','F2':'#1b9e77','F3':'#e6ab02','F4':'#7570b3','F5':'#d95f02','F6':'#e7298a','D6':'#1f78b4'}
 
 
@@ -82,7 +83,7 @@ def figures(root,frame,s1,s1b,s2,robust,dropout,audio,efficiency,source_paths):
     fig,ax=plt.subplots(figsize=(8,4))
     for m,e in efficiency['models'].items():
         ap=dropout['conditions']['clean']['metrics']['AUPRC']['estimate'] if m=='D6' else s2['metrics'][m]['AUPRC']['estimate']
-        ax.scatter(e['sequential_component_sum_seconds']*1000,ap,color=COLORS[m]);ax.annotate(LABELS[m],(e['sequential_component_sum_seconds']*1000,ap),xytext=(4,4),textcoords='offset points',fontsize=8)
+        ax.scatter(e['sequential_component_sum_seconds']*1000,ap,color=COLORS[m]);ax.annotate(LABELS[m],(e['sequential_component_sum_seconds']*1000,ap),xytext={'F1':(8,-30),'F2':(8,25),'F5':(8,5),'F6':(8,-15),'D6':(-105,15)}.get(m,(4,4)),textcoords='offset points',fontsize=8,arrowprops={'arrowstyle':'-','color':COLORS[m],'lw':.5})
     ax.set_xscale('log');ax.set_xlabel('Estimated sequential component-sum latency (ms, warm VM)');ax.set_ylabel('Clean AUPRC');save(fig,'12_efficiency','Task-specific accuracy/cost trade-off. Latency is a sum of measured warm components on this VM, not production end-to-end timing.',[source_paths[2],source_paths[4],source_paths[5]],'Practical usability')
     fig,ax=plt.subplots(figsize=(8,4));names=list(audio['streams']);x=np.arange(len(names))
     ax.bar(x-.15,[audio['streams'][n]['nominal_valid_percent'] for n in names],.3,label='Nominal coverage');ax.bar(x+.15,[100*audio['streams'][n]['verified_segments']/4530 for n in names],.3,label='Verified segment timing');ax.set_xticks(x,names);ax.set_ylabel('Primary segments (%)');ax.legend();save(fig,'13_audio_gate','Nominal overlap is distinct from trustworthy segment alignment. Audio modelling was excluded by the timing gate, not by a negative predictive result.',source_paths[6:7],'Dataset limitations')
