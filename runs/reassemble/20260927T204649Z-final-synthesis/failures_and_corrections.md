@@ -18,3 +18,14 @@
   separately in the Section 3 run's `failures_and_corrections.md`.
 - Further execution corrections, if any, will be appended here and their original
   attempt logs retained. No historical Section 1/1B/2 output is overwritten.
+
+## Final claim review correction
+
+The initial generated evidence map used a generic INCONCLUSIVE status for all
+non-positive robustness classes. Four noise comparisons (V1/F5, V1/F6, S1/F5,
+S1/F6) have negative paired AP and degradation-advantage intervals and a failed
+adaptation criterion, so their tested positive robustness hypothesis is marked
+FALSIFIED in the reviewed map. The original generated map is retained at
+`review/FINAL_EVIDENCE_MAP.generated.md`. No metric, model, criterion or historical
+Section 1/1B/2 evidence was changed. Remaining B/C comparisons stay inconclusive
+about predictive benefit. The generator now reproduces the reviewed status rule.

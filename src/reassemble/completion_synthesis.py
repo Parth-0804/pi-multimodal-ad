@@ -163,7 +163,7 @@ def main():
     for family,models in robust['mechanism'].items():
         for model,x in models.items():
             condition=x['high_severity'];v=robust['conditions'][condition]['degradation_advantage'][model+'-F2']['AUPRC']
-            claim(family+'/'+model+' robustness','SQ3','Section 3','Δ AP degradation advantage',f"{v['estimate']:.4f}",fmt(v),source_paths[3],'[VERIFIED]' if x['classification']=='ROBUSTNESS-A' else '[INCONCLUSIVE]',x['classification']+' for this tested family','Single seeded realization; relative and absolute outcomes differ')
+            claim(family+'/'+model+' robustness','SQ3','Section 3','Δ AP degradation advantage',f"{v['estimate']:.4f}",fmt(v),source_paths[3],'[VERIFIED]' if x['classification']=='ROBUSTNESS-A' else '[FALSIFIED]' if x['classification']=='ROBUSTNESS-D' else '[INCONCLUSIVE]',x['classification']+' for this tested family','Single seeded realization; relative and absolute outcomes differ')
     claim('Modality-dropout trade-off','SQ3','Robust training','Clean Δ AUPRC',f"{dclean['estimate']:.4f}",fmt(dclean),source_paths[4],'[VERIFIED]',dropout_answer,'One fixed gate family/settings')
     claim('Audio exclusion','SQ1','Audio timing gate','Verified segment intervals',0,'No independently verified mapping',source_paths[6],'[NOT RUN — GATE FAILED]',safe[6],'Not a claim of absent audio signal')
     claim('Practical cost','SQ4','Warm VM benchmark','Component-sum latency',f"{eff['models']['F2']['sequential_component_sum_seconds']*1000:.2f} ms",'Repeated warm timings; three segments',source_paths[5],'[VERIFIED]','Visual extraction dominates this measured pipeline','Not production end-to-end latency')
