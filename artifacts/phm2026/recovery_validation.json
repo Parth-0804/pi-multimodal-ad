@@ -1,0 +1,102 @@
+{
+  "gate_D1": "PASS",
+  "gate_D2": "PENDING_GIT_CHECKPOINT",
+  "manifest_files": 53,
+  "official_archives": 52,
+  "repository_code_files": 1,
+  "total_raw_bytes": 381481909715,
+  "raw_manifest_sha256": "669b5c897662d0f33ed8800fab57db630ee87a5c8ed2345517079c84f6d8662f",
+  "recovery_manifest_sha256": "d5e7e209f1bfb177415679ae25f71d6aa458ff6b646766d9d9b4374f36fd3a14",
+  "offline_tests": {
+    "passed": 22,
+    "command": "ma_thesis_env/bin/python -B -m pytest -q tests/unit/test_phm_download.py"
+  },
+  "cli_checks": [
+    {
+      "name": "help",
+      "command": [
+        "python",
+        "-B",
+        "download.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stdout_lines": 24,
+      "stderr": "Provenance: artifacts/phm2026/downloads/20260927T132800741395Z-be39c601.json\n"
+    },
+    {
+      "name": "list",
+      "command": [
+        "python",
+        "-B",
+        "download.py",
+        "--list"
+      ],
+      "exit_code": 0,
+      "stdout_lines": 53,
+      "stderr": "Provenance: artifacts/phm2026/downloads/20260927T132810444884Z-5fdcd374.json\n"
+    },
+    {
+      "name": "dry_run",
+      "command": [
+        "python",
+        "-B",
+        "download.py",
+        "--experiments",
+        "A",
+        "B",
+        "F",
+        "--dry-run"
+      ],
+      "exit_code": 0,
+      "stdout_lines": 53,
+      "stderr": "Provenance: artifacts/phm2026/downloads/20260927T132819725969Z-0561a140.json\n"
+    },
+    {
+      "name": "transfer_test",
+      "command": [
+        "python",
+        "-B",
+        "download.py",
+        "--experiments",
+        "A",
+        "B",
+        "F",
+        "--transfer-test"
+      ],
+      "exit_code": 0,
+      "stdout_lines": 53,
+      "stderr": "Provenance: artifacts/phm2026/downloads/20260927T132830871252Z-01a769f8.json\n"
+    }
+  ],
+  "evidence": {
+    "help": {
+      "path": "artifacts/phm2026/downloads/20260927T132800741395Z-be39c601.json",
+      "sha256": "8e3cf69ba01dc067a1503c890d35539bcee32beb5a4e4019fbb7cab861085267"
+    },
+    "list": {
+      "path": "artifacts/phm2026/downloads/20260927T132810444884Z-5fdcd374.json",
+      "sha256": "2fba795d45c1e18404387c6c34fce1134fb902382fc7558f2105f32401e279a7"
+    },
+    "dry_run": {
+      "path": "artifacts/phm2026/downloads/20260927T132819725969Z-0561a140.json",
+      "sha256": "c1497c4c4712cf99cc131383d6b1beef0c4feee1b9aa4dad170e4e81254b15ba"
+    },
+    "transfer_test": {
+      "path": "artifacts/phm2026/downloads/20260927T132830871252Z-01a769f8.json",
+      "sha256": "4bd3079cc0aa636ed58a2b37fe9b218421eb80559ddad5e481525aaea6959f8d"
+    }
+  },
+  "transfer_test": {
+    "source_path": "/train/high-frequency/EXP-A/Exp-A_HDF5_Run-1.zip",
+    "bytes": 1048576,
+    "sha256": "d7de323460f46307ae03e667034552a9ec5a92afd55cad0fccfd85acc6f5de09",
+    "range_total": 20807599520,
+    "http_status": 206,
+    "matches_local_prefix": true
+  },
+  "official_share_url": "https://gtc-data.synology.me:51111/sharing/uIrAvzqEh",
+  "default_target": "gtc-data-experiment",
+  "preserved_code": "scripts/phm2026/legacy_inspect_dataset.py",
+  "approval_note": "User expressly authorized raw-tree retirement only after both gates pass; redacted legacy-code inspection subsequently approved."
+}

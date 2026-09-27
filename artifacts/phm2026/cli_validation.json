@@ -1,0 +1,58 @@
+[
+  {
+    "name": "help",
+    "command": [
+      "python",
+      "-B",
+      "download.py",
+      "--help"
+    ],
+    "exit_code": 0,
+    "stdout_lines": 24,
+    "stderr": "Provenance: artifacts/phm2026/downloads/20260927T132800741395Z-be39c601.json\n"
+  },
+  {
+    "name": "list",
+    "command": [
+      "python",
+      "-B",
+      "download.py",
+      "--list"
+    ],
+    "exit_code": 0,
+    "stdout_lines": 53,
+    "stderr": "Provenance: artifacts/phm2026/downloads/20260927T132810444884Z-5fdcd374.json\n"
+  },
+  {
+    "name": "dry_run",
+    "command": [
+      "python",
+      "-B",
+      "download.py",
+      "--experiments",
+      "A",
+      "B",
+      "F",
+      "--dry-run"
+    ],
+    "exit_code": 0,
+    "stdout_lines": 53,
+    "stderr": "Provenance: artifacts/phm2026/downloads/20260927T132819725969Z-0561a140.json\n"
+  },
+  {
+    "name": "transfer_test",
+    "command": [
+      "python",
+      "-B",
+      "download.py",
+      "--experiments",
+      "A",
+      "B",
+      "F",
+      "--transfer-test"
+    ],
+    "exit_code": 0,
+    "stdout_lines": 53,
+    "stderr": "Provenance: artifacts/phm2026/downloads/20260927T132830871252Z-01a769f8.json\n"
+  }
+]
