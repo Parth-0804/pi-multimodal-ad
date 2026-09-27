@@ -67,13 +67,13 @@ HTML_TEMPLATE = """<!doctype html>
 <style>
   :root { color-scheme: dark; }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  body { margin:0; background:#111; color:#eee; font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-         display:flex; flex-direction:column; min-height:100vh; }
+  body { margin:0; background:#111; color:#eee; font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
   header { padding:8px 12px; background:#181818; border-bottom:1px solid #2a2a2a; }
   .warn { color:#e8b339; font-size:13px; }
   .progress { font-variant-numeric:tabular-nums; font-weight:600; }
-  main { flex:1; display:flex; align-items:center; justify-content:center; padding:8px; min-height:0; }
-  img { max-width:100%; max-height:100%; object-fit:contain; display:block; border-radius:4px; }
+  main { display:block; padding:8px; text-align:center; }
+  img { width:100%; height:auto; max-height:62vh; object-fit:contain; display:block;
+        margin:0 auto; border-radius:4px; background:#000; min-height:120px; }
   footer { padding:10px 12px calc(10px + env(safe-area-inset-bottom)); background:#181818; border-top:1px solid #2a2a2a; }
   .row { display:flex; gap:8px; }
   button { flex:1; padding:16px 8px; font-size:15px; font-weight:650; letter-spacing:.02em;
@@ -89,6 +89,7 @@ HTML_TEMPLATE = """<!doctype html>
 </style>
 </head>
 <body>
+<div id="err" style="display:none;background:#7a1f1f;color:#fff;padding:10px;font:13px monospace;white-space:pre-wrap"></div>
 <header>
   <div class="warn">Work is held in memory only. If you close or reload this page before finishing, everything is lost.</div>
   <div class="progress" id="progress"></div>
@@ -115,6 +116,13 @@ HTML_TEMPLATE = """<!doctype html>
   <textarea id="out" readonly></textarea>
 </div>
 <script>
+window.onerror = function (message, source, line, column) {
+  var box = document.getElementById('err');
+  box.style.display = 'block';
+  box.textContent = 'ERROR: ' + message + '\\nline ' + line + ':' + column +
+    '\\nTell Claude this text.';
+  return false;
+};
 const CROPS = __CROPS__;
 const FULLS = __FULLS__;
 
@@ -187,7 +195,7 @@ $('bBack').onclick    = () => { if (pos > 0) { accrue(); pos--; showingFull = fa
 $('bFull').onclick    = () => { accrue(); showingFull = !showingFull; render(); };
 $('bReview').onclick  = () => {
   $('done').style.display = 'none';
-  $('stage').style.display = 'flex';
+  $('stage').style.display = 'block';
   $('controls').style.display = 'block';
   render();
 };
@@ -234,7 +242,9 @@ def build_html(root: Path, out: Path, *, crop_width: int, crop_quality: int,
         raise SystemExit(f"crops are not a uniform size: {sizes}")
 
     def as_array(values: list[str]) -> str:
-        return "[" + ",".join(f'"{v}"' for v in values) + "]"
+        # One entry per line. A single 2.6 MB line is enough to defeat some
+        # mobile parsers, which is what broke the first build.
+        return "[\n" + ",\n".join(f'"{v}"' for v in values) + "\n]"
 
     html = (HTML_TEMPLATE
             .replace("__CROPS__", as_array(crop_uris))
@@ -266,10 +276,10 @@ def build_zip(root: Path, out: Path, *, full_width: int, full_quality: int) -> l
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default="scratch/blind_inspection")
-    parser.add_argument("--crop-width", type=int, default=1200)
-    parser.add_argument("--crop-quality", type=int, default=80)
-    parser.add_argument("--html-full-width", type=int, default=800)
-    parser.add_argument("--html-full-quality", type=int, default=65)
+    parser.add_argument("--crop-width", type=int, default=900)
+    parser.add_argument("--crop-quality", type=int, default=72)
+    parser.add_argument("--html-full-width", type=int, default=480)
+    parser.add_argument("--html-full-quality", type=int, default=50)
     parser.add_argument("--zip-full-width", type=int, default=1600)
     parser.add_argument("--zip-full-quality", type=int, default=80)
     args = parser.parse_args(argv)
