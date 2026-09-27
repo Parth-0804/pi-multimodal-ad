@@ -1,0 +1,41 @@
+{
+  "timestamp_utc": "2026-09-27T15:28:39.138035+00:00",
+  "baseline_git_commit": "f03e53ae19d701a491515e723fe49db745d41f85",
+  "dirty_working_tree": true,
+  "checkpoint_subject": "feat: acquire and audit REASSEMBLE Study 2 prerequisites",
+  "source_sha256": {
+    "configs/reassemble/audit.json": "d7aa06acc5c37693613ed2d24bfbacc349e79d399770caecbd1709cc0958077c",
+    "docs/reassemble/AUDIT_METHODS.md": "394bfdc96686a8c0b1f2b8e61017607d268fbdea6ef58f743b404191b2c711f6",
+    "docs/reassemble/CONTINUATION.md": "24b5a235055caf33040879064e948c84e91acefc2ed8a91486af999a0bb5d5d3",
+    "docs/reassemble/MASTER_SPECIFICATION.md": "6c0bfe8746dafc5d7d947c8f777085aa5e504ca539463a78207db1e625977e70",
+    "docs/reassemble/PHASE_A_B_RUNBOOK.md": "239c011a2007adc8953f654e102b0eee401a24c2bf8fdd3fbf796338592be897",
+    "docs/reassemble/RESEARCH_CONTRACT.md": "b18d061134fc57059c0cba6c242681288c868a3d88dc226ea41fbce0e18d4326",
+    "scripts/reassemble/00_acquire.py": "1cedcf1492f8a92fa0e97f0b6e30350d5d2d98ee5e389b75ad61407521de0f2d",
+    "scripts/reassemble/01_inventory.py": "f0ff636b8d7cfdf6c57901da83f5b53b5fb39c02d75559a51bda4a0db75908eb",
+    "scripts/reassemble/01_inventory_during_extraction.py": "a27b19e5453cd95543f506c6b78a32ba469165ead3e94f86544a3e57fa8fae30",
+    "scripts/reassemble/02_audit.py": "b51ce88ec49b57e02b800fa0c5fb22bb241f80a75feb052fe97233d9f9716e61",
+    "src/reassemble/__init__.py": "ed07fc6228c4598c5d946de031365c3f5cb6b692d248140212b412122c8c3328",
+    "src/reassemble/acquire.py": "2edd158c6348b963f2774679dfa975512af37189cff8151899a7b80ea80a052a",
+    "src/reassemble/alignment.py": "a67aac281efb5107b7c0b8fec61c74233b416e7507fe9a5d7e83436fb08ab5c2",
+    "src/reassemble/audit_report.py": "6fd14d3e117e820211be53733f7840911a214346ffc9fb9d896b2f3e2750c572",
+    "src/reassemble/inventory.py": "b56fd03f1c795959b4ebf9b1b12423faa34cdddda6ca4205027c1f5696b30d6d",
+    "src/reassemble/media.py": "5912f94cc2d8b31f8812adefca1291bf9b1dd4436889470caa52e711b697c26d",
+    "src/reassemble/splits.py": "7d71b22193df3a206306c524247299ff00c5dab483158d29a360422eddb7407e",
+    "tests/reassemble/test_alignment.py": "fae6377d9832e3ca77c1d94e83e5aab7e2debe5469cd75b43bdf18aa52318d43",
+    "tests/reassemble/test_inventory.py": "8a9c047a0f8dd6181f13ba34e4090abf0f03c0a7e1878ebcf68a6c02db748af5",
+    "tests/reassemble/test_splits.py": "16bb54a4e7709fe5ef753de1a816c8a30d5c6d02244345225228f70150f0b64c"
+  },
+  "environment": "environment.json",
+  "input_manifest": "input_manifest.json",
+  "methodology": "docs/reassemble/AUDIT_METHODS.md",
+  "initial_inventory_provenance": "provenance.json",
+  "validation": "artifacts/reassemble/audits/validation.json",
+  "commands": [
+    "ma_thesis_env/bin/python -B scripts/reassemble/00_acquire.py --run-dir runs/reassemble/20260927T134437Z",
+    "ma_thesis_env/bin/python -B scripts/reassemble/01_inventory_during_extraction.py --run-dir runs/reassemble/20260927T141645Z-inventory --acquisition-run runs/reassemble/20260927T134437Z --workers 3",
+    "ma_thesis_env/bin/python -B scripts/reassemble/01_inventory.py --run-dir runs/reassemble/20260927T141645Z-inventory --workers 3",
+    "ma_thesis_env/bin/python -B scripts/reassemble/02_audit.py --run-dir runs/reassemble/20260927T141645Z-inventory --output-dir runs/reassemble/20260927T141645Z-inventory/reports_v2 --derived-dir runs/reassemble/20260927T141645Z-inventory/tables_v2"
+  ],
+  "models_trained": 0,
+  "reproduction_status": "Completed first execution; independent clean reproduction not yet performed."
+}

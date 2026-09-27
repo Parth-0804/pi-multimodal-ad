@@ -1,0 +1,54 @@
+[
+  {
+    "gate": "G0 STORAGE",
+    "status": "PASS",
+    "evidence": "403.36 GiB before download >=160",
+    "artifact": "runs/reassemble/20260927T141645Z-inventory/acquisition.json"
+  },
+  {
+    "gate": "G1 DOWNLOAD CHECKSUM",
+    "status": "PASS",
+    "evidence": "All four official MD5 values matched; all three ZIP CRC tests passed before extraction",
+    "artifact": "runs/reassemble/20260927T141645Z-inventory/acquisition.json"
+  },
+  {
+    "gate": "G2 LABEL SUPPORT",
+    "status": "PASS",
+    "evidence": {
+      "segments": 4551,
+      "failures": 516,
+      "successes": 4035,
+      "recordings": 149,
+      "failure_recordings": 131,
+      "success_recordings": 148
+    },
+    "artifact": "label_audit.md"
+  },
+  {
+    "gate": "G3 MODALITY COMPLETENESS",
+    "status": "PASS",
+    "evidence": {
+      "selected": "visual_sensor",
+      "segments": 4530,
+      "failures": 509,
+      "successes": 4021,
+      "recordings": 148,
+      "failure_recordings": 130,
+      "success_recordings": 147,
+      "audio": "CONDITIONAL; secondary only"
+    },
+    "artifact": "modality_selection.json"
+  },
+  {
+    "gate": "G4 GROUP LEAKAGE",
+    "status": "PASS",
+    "evidence": {
+      "split_error": null,
+      "overlapping_acquisition_pairs": 0,
+      "exact_recording_duplicates": 0,
+      "combined_sensor_duplicates": 0,
+      "models_trained": 0
+    },
+    "artifact": "leakage_audit.json"
+  }
+]

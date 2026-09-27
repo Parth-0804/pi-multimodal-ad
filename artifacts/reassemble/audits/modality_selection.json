@@ -1,0 +1,64 @@
+{
+  "primary_camera": "hand",
+  "camera_usable_counts": {
+    "hama1": 4550,
+    "hama2": 4550,
+    "hand": 4542
+  },
+  "candidate_microphone": "hand_audio",
+  "audio_nominal_counts": {
+    "hama1_audio": 4424,
+    "hama2_audio": 4374,
+    "hand_audio": 4551
+  },
+  "audio_primary_eligible": false,
+  "audio_verified_counts": {
+    "hama1_audio": 0,
+    "hama2_audio": 0,
+    "hand_audio": 0
+  },
+  "audio_reason": "Decoded sample clock lacks sufficient verified timing/support; primary audio deferred. Nominal zero-based quality measured using official visualization convention.",
+  "selection_rule": "Coverage, decoding and overlap first; within 1 percentage point prefer wrist/hand proximity, otherwise lexical name; no model performance.",
+  "cohort": "visual_sensor",
+  "sensor_streams": [
+    "measured_force",
+    "measured_torque",
+    "gripper_positions",
+    "joint_efforts",
+    "joint_velocities"
+  ],
+  "support": {
+    "all_annotations": {
+      "segments": 4863,
+      "failures": 517,
+      "successes": 4346,
+      "recordings": 149,
+      "failure_recordings": 131,
+      "success_recordings": 149
+    },
+    "primary_actions": {
+      "segments": 4551,
+      "failures": 516,
+      "successes": 4035,
+      "recordings": 149,
+      "failure_recordings": 131,
+      "success_recordings": 148
+    },
+    "dual_complete": {
+      "segments": 4530,
+      "failures": 509,
+      "successes": 4021,
+      "recordings": 148,
+      "failure_recordings": 130,
+      "success_recordings": 147
+    },
+    "tri_complete": {
+      "segments": 0,
+      "failures": 0,
+      "successes": 0,
+      "recordings": 0,
+      "failure_recordings": 0,
+      "success_recordings": 0
+    }
+  }
+}
