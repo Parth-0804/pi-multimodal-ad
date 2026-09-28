@@ -72,3 +72,34 @@ def test_corruption_weights_scaling_and_namespaces():
     assert corruption_seed(c,row,cond)==corruption_seed(c,row,cond)
     assert corruption_seed(c,row,cond)!=corruption_seed(c,row,{**cond,'split':'validation'})
     assert len(visual_conditions())==41 and len(sensor_conditions('test'))==46
+
+def test_robust_refit_does_not_use_assessment_labels(tmp_path):
+    from reassemble.additional_improvements.robust_fusion import fit
+    torch.set_num_threads(1)
+    rng=np.random.default_rng(2);n=24;p=rng.uniform(.05,.95,(9,n,2));u=rng.normal(size=(9,n,42)).astype(np.float32);u[:,:,-2:]=1
+    def bank(rows):return dict(rows=rows,p=p[:,rows],u=u[:,rows],names=np.array(['clean']+[f'v{i}' for i in range(8)]),branch_thresholds=np.full((len(rows),2),.5))
+    train=bank(np.arange(16));valid=bank(np.arange(16,24));y=np.arange(n)%2;changed=y.copy();changed[16:]=1-changed[16:]
+    for kind in ['F2','F6','A-ADAPTIVE']:
+        first,info=fit(tmp_path/(kind+'_first'),kind,True,train,valid,y,17,.1,2 if kind!='F2' else None)
+        second,_=fit(tmp_path/(kind+'_second'),kind,True,train,valid,changed,17,.1,2 if kind!='F2' else None)
+        assert np.array_equal(first['p'],second['p'])
+        assert np.isfinite(first['p']).all()
+
+
+def test_sensor_corruptions_preserve_full_stream_gap_semantics():
+    from reassemble.additional_improvements.corruptions import sensor_features,corruption_seed
+    from reassemble.section3_sensor import corrupt_stream
+    from reassemble.completion_common import seed_for
+    from reassemble.section1_features import statistics
+    from reassemble.alignment import resample_progress
+    t=np.r_[np.arange(20)*.01, .3+np.arange(20)*.1]
+    x=np.column_stack([np.sin(t+i) for i in range(22)])
+    row=pd.Series(dict(recording_id='r',segment_id='s',start=.29,end=1.51))
+    c={'seed':20260927};c2={'quality_sensor':['finite_fraction','resampled_finite_fraction','interpolation_fraction','within_segment_mad_outlier_fraction','constant_channels','missing_channels']}
+    condition=dict(split='train',family='S1',severity=.2,realization=0)
+    sigma=np.ones(22);median=np.zeros(22)
+    actual,_,_=sensor_features(c,c2,row,{'all':(t,x)},condition,sigma,median)
+    seed=corruption_seed(c,row,condition)
+    changed=corrupt_stream(x,t,row.start,row.end,'S1',.2,seed_for(seed,'all'),sigma,median,np.array([],int),0,0.)
+    expected=statistics(resample_progress(t,changed,row.start,row.end,512,5).astype(np.float32))
+    assert np.array_equal(actual,expected,equal_nan=True)

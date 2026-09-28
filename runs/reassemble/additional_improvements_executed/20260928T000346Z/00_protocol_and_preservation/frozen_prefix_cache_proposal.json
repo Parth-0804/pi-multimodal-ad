@@ -1,0 +1,21 @@
+{
+  "proposal_only": true,
+  "not_authorized_or_used_in_fits": true,
+  "changed_architecture": false,
+  "lossless_storage": true,
+  "only_cached": "unchanged frozen prefix activations before trainable encoder.stages.3, plus earlier spatial means",
+  "trainable_stage": "recomputed with gradients at every update",
+  "synthetic_CPU_prediction_max_abs": 0.0,
+  "synthetic_CPU_gradient_max_abs": 0.0,
+  "sample_shape": [
+    1,
+    256,
+    40,
+    40
+  ],
+  "sample_dtype": "torch.float32",
+  "sample_compressed_bytes": 640971,
+  "cohort_estimated_compressed_GiB": 43.26699122786522,
+  "cohort_uncompressed_GiB": 110.69938659667969,
+  "required_additional_validation": "GPU autocast forward/gradient parity and multi-recording cache estimate before any use"
+}
