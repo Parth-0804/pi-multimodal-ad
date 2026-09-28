@@ -18,11 +18,13 @@ def main():
     c=config();root=Path(c['run_dir']);out=root/'05_final_comparison';states={name:read(root/name/'status.json') for name in TASKS}
     assert not any(v['state'] in ['not_started','running'] for v in states.values()),'Pending work: cannot finalize yet'
     completed=all(v['state']=='complete' for v in states.values());status='ADDITIONAL IMPROVEMENTS EXECUTED — EXPLORATORY RESULTS READY FOR REVIEW' if completed else 'ADDITIONAL IMPROVEMENTS PARTIALLY EXECUTED — BLOCKERS DOCUMENTED'
-    base=read(c['section1_config']);frame=cohort(base);y=frame.failure.to_numpy(int);contrasts={};registry=[];clean=[];source_reports=[]
+    base=read(c['section1_config']);frame=cohort(base);y=frame.failure.to_numpy(int);contrasts={};secondary={};registry=[];clean=[];source_reports=[]
     for task,relative,key in PRINCIPAL:
         path=root/TASKS[task-1]/relative
         if not path.exists():continue
         result=read(path);contrasts[key]=dict(task=task,**result['contrasts'][key],source=identity(path))
+        for other,record in result['contrasts'].items():
+            if other!=key:secondary[other]=dict(task=task,**record,source=identity(path))
         for name,record in result['models'].items():
             clean.append(dict(task=task,model=name,**{m:record['metrics'][m]['estimate'] for m in METRICS}))
             registry.append(dict(task=task,variant=name,source=identity(path),status='executed',folds=record['folds'],seeds=record['seeds']))
@@ -38,6 +40,7 @@ def main():
         path=root/TASKS[task-1]/relative
         if path.exists():
             result=read(path)
+            for key,record in result['contrasts'].items():secondary[key]=dict(task=task,**record,source=identity(path))
             for name,record in result['models'].items():
                 if name not in ['V-FT','S-HYBRID']:continue
                 clean.append(dict(task=task,model=name,**{m:record['metrics'][m]['estimate'] for m in METRICS}));registry.append(dict(task=task,variant=name,status='executed',source=identity(path),folds=record['folds'],seeds=record['seeds']))
@@ -64,7 +67,7 @@ def main():
     write(out/'validation.json',validation)
     commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();gitstate=subprocess.check_output(['git','status','--short','--branch','--untracked-files=all'],text=True)
     source=[identity(p) for p in sorted(Path('src/reassemble/additional_improvements').glob('*.py'))]
-    write(out/'results_summary.json',dict(label=c['status_label'],status=status,primary_contrasts=contrasts,task_statuses=states,cohort=dict(segments=len(frame),failures=int(y.sum()),recordings=frame.recording_id.nunique()),git_commit=commit,git_state=gitstate,sources=source,configuration=identity('configs/reassemble/additional_improvements/execution.json')))
+    write(out/'results_summary.json',dict(label=c['status_label'],status=status,primary_contrasts=contrasts,secondary_contrasts=secondary,task_statuses=states,cohort=dict(segments=len(frame),failures=int(y.sum()),recordings=frame.recording_id.nunique()),git_commit=commit,git_state=gitstate,sources=source,configuration=identity('configs/reassemble/additional_improvements/execution.json')))
     rows=[];sentences=[]
     for name,r in contrasts.items():
         ap=r['metrics']['AUPRC'];au=r['metrics']['AUROC'];rows.append([r['task'],name,f'{ap["estimate"]:+.4f} [{ap["lower_95"]:+.4f},{ap["upper_95"]:+.4f}]',f'{au["estimate"]:+.4f} [{au["lower_95"]:+.4f},{au["upper_95"]:+.4f}]',r['AP_interpretation']])
@@ -78,6 +81,17 @@ def main():
     text='# Additional improvements executed — handoff\n\n'+status+'\n\nADDITIONAL EXPLORATORY EXPERIMENTS. Original study remains completed evidence.\n\n'
     text+='Why these follow-ups: temporal averaging may discard visual order (Task1); the original PatchTST selected its six-epoch ceiling (Task2); successful F2 and unsuccessful original F6 differ in fusion link, motivating bounded adjustments around F2 (Task3); clean-only training may explain poor degradation handling, requiring exposure-matched static and adaptive controls (Task4). None was assumed to win.\n\n'
     text+=summary_table+'\n'
+    secondary_rows=[]
+    for name,record in secondary.items():
+        v=record['metrics']['AUPRC'];secondary_rows.append([name,f'{v["estimate"]:+.4f} [{v["lower_95"]:+.4f},{v["upper_95"]:+.4f}]',record['AP_interpretation']])
+    text+='Secondary comparisons (kept separate from the four frozen principal contrasts):\n\n'+table(['Contrast','ΔAP,95%','Interpretation'],secondary_rows)+'\n'
+    fold_rows=[]
+    for name,record in contrasts.items():
+        values=list(record.get('fold_differences',{}).values())
+        if values:fold_rows.append([name,str(sum(v['AUPRC']>0 for v in values))+'/5',', '.join(f'{v["AUPRC"]:+.4f}' for v in values)])
+    text+=table(['Primary contrast','Positive AP folds','Fold AP changes'],fold_rows)+'\n'
+    text+='Metric trade-offs: the completed anchored clean comparison improves AP but reduces failure recall and increases ECE relative to A0; the temporal visual result also has higher ECE than its mean control. The longer PatchTST remains below statistics on AP and AUROC. These limitations accompany the improvements. All eight point metrics and intervals remain available in the individual reports.\n\n'
+
     text+='Historical references and matched controls are both retained. Exact configurations, selected/refit epochs, learning curves, predictions, all eight metrics, per-seed/per-fold results, compute costs, diagnostics and limitations are in the four task reports and machine-readable sources below. AP means average precision; all intervals are marginal and conditional on fitted models. Task4 additionally resamples realization indices and averages per-realization metrics, not noisy predictions. The prespecified .01 AP reference is not an industrial requirement.\n\n'
     text+='Thesis-safe result sentences:\n\n'+''.join('- '+sentence+'\n' for sentence in sentences)+'\n'
     text+='Original conclusions remain tied to their original tested procedures and budgets. Longer training can qualify the scope of the earlier PatchTST negative finding, but cannot change its recorded result. A successful new anchored form would extend the original clean-fusion comparison, not retroactively make original F6 successful. Reliability adaptation requires both predictive gain over equally augmented static fusion and appropriate coefficient response; structural missing-modality fallback is not learned recovery.\n\n'
@@ -98,6 +112,7 @@ def main():
             if r['task']==task:
                 v=r['metrics']['AUPRC'];tag='[INCONCLUSIVE]' if r['AP_interpretation']=='inconclusive difference' else '[OBSERVED RESULT]';storyline+=f'{tag} {name}: ΔAP {v["estimate"]:+.4f},95% [{v["lower_95"]:+.4f},{v["upper_95"]:+.4f}].\n\n'
         storyline+='ALTERNATIVE EXPLANATIONS: same-cohort outcome-informed design, finite seeds and recording-cluster uncertainty; no independent confirmation.\n\nCONSEQUENCE: '+consequence+'\n\n'
+    storyline+='[VERIFIED EXECUTION] Completion states are verified by retained predictions, per-fit identities and validation.json; pending or blocked tasks are identified explicitly in the status report.\n\n'
     storyline+='[CORRECTED] Failed attempts and numerical/engineering corrections are listed in the executed handoff. [NOT RUN] Automatic combination of whichever interventions perform best; new architectures/budgets; audio; object-OOD; PHM experiments.\n'
     (root/'reports/ADDITIONAL_IMPROVEMENTS_STORYLINE_ADDENDUM.md').write_text(storyline)
     (root/'reports/ADDITIONAL_IMPROVEMENTS_STATUS.md').write_text('# Additional improvements status\n\n'+status+'\n\n'+''.join(f'- {name}: **{state["state"]}** — {state["stage"]}.\n' for name,state in states.items())+'\nSee executed handoff, storyline addendum, results_summary.json and validation.json. No automatic next model is authorized. Stop after this extension.\n')

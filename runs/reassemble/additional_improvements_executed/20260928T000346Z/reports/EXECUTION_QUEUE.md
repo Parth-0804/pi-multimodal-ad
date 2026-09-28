@@ -18,7 +18,7 @@ frozen-prefix extraction (running) → raw pixel corruption bank → partition-s
 visual scoring → wait for sensor banks → matched fusion fits → sealed historical
 reference scoring → Task4 report.
 
-Chain B: strict nested sensor hybrid (running) → Task2 report → wait for approved
+Chain B: strict nested sensor hybrid (running) → Task2 report (including selected S-6 checkpoint retention repair) → wait for approved
 cache or documented pixel fallback → bounded final-stage fine-tuning → Task1
 report. Then final independent numerical/preservation audit and consolidation.
 
@@ -67,3 +67,5 @@ updates automatically; this file describes dependencies and resume commands.
 
 Finalization writes the three requested handoffs plus final comparison registry,
 metrics and manifests. No winner combination or extra experiment is authorized.
+
+Checkpoint retention review: S-6 selected3/6 logits were saved correctly, but some inner checkpoint files held an alternative best epoch1–6. Task2 report now recovers only missing selected states through one fixed same-budget replay, with saved-logit parity required. This does not change reported predictions or selection. See checkpoint_retention_correction.md.

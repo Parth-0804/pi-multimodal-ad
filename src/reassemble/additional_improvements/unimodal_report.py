@@ -13,6 +13,9 @@ from .fit_summaries import summarize
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--task',type=int,choices=[1,2],required=True);args=parser.parse_args();c=config();root=Path(c['run_dir']);name='01_temporal_visual' if args.task==1 else '02_patchtst_training_budget';task=root/name
+    if args.task==2 and (task/'hybrid_comparison/results.json').exists():
+        from .checkpoint_retention import recover_selected_short_states
+        recover_selected_short_states()
     frame=cohort(read(c['section1_config']));y=frame.failure.to_numpy(int);result=read(task/'comparison/results.json')
     variants=['V-MEAN','V-TEMP','V-NOPOS'] if args.task==1 else ['S-6','S-LONG'];epochrows=[];seedrows=[];historyrows=[];orderrows=[];compute=[]
     fig,axes=plt.subplots(2,len(variants),figsize=(5*len(variants),7),squeeze=False)
@@ -71,7 +74,7 @@ def main():
     else:
         if (task/'hybrid_comparison/results.json').exists():
             hybrid=read(task/'hybrid_comparison/results.json');r=hybrid['contrasts']['S-HYBRID minus S-STATS'];v=r['metrics']['AUPRC'];text+=f'Secondary S-HYBRID−S-STATS: ΔAP {v["estimate"]:+.4f},95% [{v["lower_95"]:+.4f},{v["upper_95"]:+.4f}]; {r["AP_interpretation"]}.\n\n'
-            text+='The C1 logistic hybrid uses calibrated S-LONG and statistics with nested branch predictions; even its inner threshold predictions use deeper training-only branch selection/calibration. These are two representations of one sensor modality. It does not replace the statistics branch in Tasks3/4.\n';complete=True
+            text+='The C1 logistic hybrid uses calibrated S-LONG and statistics with nested branch predictions; even its inner threshold predictions use deeper training-only branch selection/calibration. These are two representations of one sensor modality. Selected S-6 inner checkpoints are retained via reuse or one deterministic replay to the already-selected3/6 epoch, requiring parity with saved logits; original predictions are untouched (selected_S6_checkpoint_retention.json). It does not replace the statistics branch in Tasks3/4.\n';complete=True
         else:text+='[NOT RUN / INCOMPLETE] S-HYBRID comparison is pending; no incremental temporal-sensor claim is supported yet.\n';complete=False
     text+='\nInterpretation is bounded by matched controls, seed/fold variation and paired intervals. Report supported improvements, deteriorations and inconclusive effects equally. This outcome-informed same-cohort extension is not independent confirmation. No winning changes are automatically combined. Exact protocol/config, implementation commits and artifact manifests are under the new root only; completed original study files and external Reasoning Record are unchanged.\n'
     target=root/'reports'/('01_TEMPORAL_VISUAL_RESULTS.md' if args.task==1 else '02_PATCHTST_BUDGET_RESULTS.md');target.write_text(text)

@@ -1,0 +1,13 @@
+{
+  "maximum_real_GPU_jobs": 2,
+  "profiles": [
+    "parallel_resource_audit.json",
+    "parallel_resource_audit_visual_heads.json",
+    "../01_temporal_visual/finetune_gradient_audit.json"
+  ],
+  "conservative_total_GPU_GiB": 8,
+  "reserved_GPU_GiB_at_least": 4,
+  "total_GPU_GiB": 16,
+  "CPU": "two GPU jobs4threads each, four sensor workers one BLAS thread each; cached FT adds two I/O threads; at most14/16 nominal CPUthreads",
+  "rationale": "Measured independent model memory fits with ample reserve; all numerical seeds and budgets unchanged. No third real GPU job."
+}

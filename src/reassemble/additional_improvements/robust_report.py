@@ -55,7 +55,7 @@ def main():
                         ii=fold==k;v=np.mean([metrics(y[ii],seeds[label]['p'][s,i,ii],seeds[label]['hard'][s,i,ii]) for i in indices],axis=0);seedfoldrows.append(dict(condition=condition,model=label,seed=c['seeds'][s],fold=k,**dict(zip(METRICS,v))))
             if label in weights:
                 changed=weights[label][indices].mean((0,1));clean=weights[label][0].mean(0)
-                coefficient.append(dict(condition=condition,model=label,visual=float(changed[0]),sensor=float(changed[1]),visual_change=float(changed[0]-clean[0]),sensor_change=float(changed[1]-clean[1]),interpretation='softmax gate weight' if label.endswith('F6') else 'effective probability-input logit coefficient'))
+                coefficient.append(dict(condition=condition,model=label,visual=float(changed[0]),sensor=float(changed[1]),visual_change=float(changed[0]-clean[0]),sensor_change=float(changed[1]-clean[1]),used_for_prediction=not condition.startswith('test_missing_'),fallback_note='Structural surviving-branch override; these pre-override coefficients do not describe the output' if condition.startswith('test_missing_') else '',interpretation='softmax gate weight' if label.endswith('F6') else 'effective probability-input logit coefficient'))
         progress(4,f'Hierarchical paired evaluation: {condition} complete')
     comparisons={};rows=[]
     for condition in groups:
