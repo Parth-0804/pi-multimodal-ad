@@ -1,0 +1,8 @@
+{
+  "deviation": "New small fusion MLPs ran on CPU with one PyTorch thread, while visual feature extraction used GPU. The protocol's default new-neural thread count was four.",
+  "reason": "Small fixed fusion networks execute efficiently on CPU and avoid competing with the visual backbone.",
+  "scope": "A-CONSTANT and A-ADAPTIVE, identically for all folds/seeds/penalties. F2 refits retained16BLASthreads for historical probability parity.",
+  "scientific_settings_changed": false,
+  "evidence": "Source used for completed Task3 is preserved in commit484bd35; per-fit source hashes and histories are retained.",
+  "interpretation": "Report this execution difference; it does not create independent confirmation or eliminate numerical/training uncertainty."
+}

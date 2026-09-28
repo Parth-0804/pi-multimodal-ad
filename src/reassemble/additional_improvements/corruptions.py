@@ -79,6 +79,8 @@ class SensorSource:
     def segment(self,row):
         if row.recording_id!=self.rid:
             path=Path(self.base['data_root'])/'raw/data'/self.records.loc[row.recording_id,'filename']
+            stat=path.stat();record=self.records.loc[row.recording_id]
+            assert stat.st_size==int(record['size_bytes']) and stat.st_mtime_ns==int(record['mtime_ns']),('PROTECTED RAW INPUT CHANGED',str(path))
             with h5py.File(path,'r') as h:self.streams={n:(timestamps_1d(h['timestamps'][n][()]),np.asarray(h['robot_state'][n][()],dtype=np.float64)) for n in self.base['sensor']['channels']}
             self.rid=row.recording_id
         # Keep full stream: original gap rules estimate native_dt globally.

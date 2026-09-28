@@ -1,0 +1,13 @@
+{
+  "approved": true,
+  "user_reply": "Allow verified frozen-prefix caching",
+  "utc_recorded": "2026-09-28T01:07:00.896555+00:00",
+  "conditions": [
+    "GPU prediction/gradient parity",
+    "lossless unchanged prefix only",
+    "trainable stage recomputed with gradients at every update",
+    "storage reserve remains30GiB",
+    "no architecture or budget change"
+  ],
+  "scope": "Override original pixel-recomputation requirement only for unchanged prefix; final pooled feature caches remain invalid for adapted stage"
+}

@@ -86,7 +86,7 @@ def gradient_audit(base,root):
 
 def fit(path,source,processor,base,checkpoint_path,y,train,valid,seed,epochs=None):
     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True);c=config();options=c['finetune']
-    signature=hashlib.sha256(json.dumps(dict(code=sha(__file__),initial=identity(checkpoint_path),train=train.tolist(),valid=valid.tolist(),seed=seed,epochs=epochs,options=options),sort_keys=True).encode()).hexdigest()
+    signature=hashlib.sha256(json.dumps(dict(code=sha(__file__),prefix_code=sha(Path(__file__).with_name('prefix_cache.py')) if hasattr(source,'values') else None,cache_manifest=identity(source.folder/'complete.json') if hasattr(source,'folder') else None,initial=identity(checkpoint_path),train=train.tolist(),valid=valid.tolist(),seed=seed,epochs=epochs,options=options,input_mode=type(source).__name__),sort_keys=True).encode()).hexdigest()
     if path.with_suffix('.json').exists():
         info=read(path.with_suffix('.json'));assert info['signature']==signature
         with np.load(path.with_suffix('.npz')) as z:return {key:z[key] for key in z.files},info
@@ -101,11 +101,16 @@ def fit(path,source,processor,base,checkpoint_path,y,train,valid,seed,epochs=Non
 def _fit(path,source,processor,base,checkpoint_path,y,train,valid,seed,epochs,micro,signature):
     storage();c=config();options=c['finetune'];torch.manual_seed(seed);started=time.perf_counter()
     _,backbone,_=load_visual(base);checkpoint=torch.load(checkpoint_path,map_location='cpu',weights_only=True)
-    model=FineTunedVisual(backbone,checkpoint).cuda();head=list(model.head.parameters());stage=list(model.backbone.encoder.stages[3].parameters())
+    if hasattr(source,'values'):
+        from .prefix_cache import CachedFineTunedVisual
+        model=CachedFineTunedVisual(backbone,checkpoint).cuda()
+    else:model=FineTunedVisual(backbone,checkpoint).cuda()
+    head=list(model.head.parameters());stage=list(model.backbone.encoder.stages[3].parameters())
     optimizer=torch.optim.AdamW([{'params':head,'lr':options['head_lr']},{'params':stage,'lr':options['pretrained_lr']}],weight_decay=options['weight_decay'])
     amp=torch.amp.GradScaler('cuda');ratio=float((len(train)-y[train].sum())/y[train].sum())
     criterion=torch.nn.BCEWithLogitsLoss(pos_weight=torch.tensor(ratio,device='cuda'));rng=np.random.default_rng(seed)
     def pixels(rows):
+        if hasattr(source,'values'):return source.values(rows)
         images=[image for row in rows for image in source.images(int(row))]
         return processor(images=images,return_tensors='pt')['pixel_values'].reshape(len(rows),16,3,640,640).cuda()
     def predict(rows,order=None):
@@ -113,7 +118,7 @@ def _fit(path,source,processor,base,checkpoint_path,y,train,valid,seed,epochs,mi
         with torch.inference_mode():
             for chunk in np.array_split(rows,max(1,int(np.ceil(len(rows)/micro)))):
                 x=pixels(chunk)
-                if order is not None:x=x[:,order]
+                if order is not None:x=tuple(v[:,order] for v in x) if isinstance(x,tuple) else x[:,order]
                 outputs.append(model(x).cpu().numpy())
         return np.concatenate(outputs)
     best=-np.inf;best_epoch=0;history=[];maximum=epochs or options['max_epochs'];best_state=None;best_raw=None
@@ -142,14 +147,20 @@ def _fit(path,source,processor,base,checkpoint_path,y,train,valid,seed,epochs,mi
     # Only adapted stage + head and scaler need storage; immutable prefix remains pinned.
     compact={k:v for k,v in best_state.items() if k.startswith('head.') or k.startswith('backbone.encoder.stages.3.') or k in ['mean','std']}
     torch.save(dict(state_dict=compact,initial=identity(checkpoint_path),epoch=best_epoch,seed=seed),path.with_suffix('.pt'))
-    info=dict(signature=signature,initial=identity(checkpoint_path),seed=seed,train_rows=train.tolist(),assessment_rows=valid.tolist(),best_epoch=best_epoch,stopped_epoch=epoch,cap_reached=epoch==maximum,history=history,microbatch=micro,effective_batch=128,seconds=time.perf_counter()-started,checkpoint=identity(path.with_suffix('.pt')),predictions=identity(path.with_suffix('.npz')))
+    info=dict(signature=signature,initial=identity(checkpoint_path),seed=seed,train_rows=train.tolist(),assessment_rows=valid.tolist(),best_epoch=best_epoch,stopped_epoch=epoch,cap_reached=epoch==maximum,history=history,input_mode=type(source).__name__,microbatch=micro,effective_batch=128,seconds=time.perf_counter()-started,checkpoint=identity(path.with_suffix('.pt')),predictions=identity(path.with_suffix('.npz')))
     write(path.with_suffix('.json'),info);del model,optimizer,backbone;gc.collect();torch.cuda.empty_cache();return result,info
 
 def main():
     c=setup();c,base,frame,arrays,splits=inputs();root=Path(c['run_dir'])/'01_temporal_visual';audit=gradient_audit(base,root)
     if not audit['supported']:
         progress(1,'V-FT blocked: synthetic memory test failed down to microbatch1; frozen variants retained','partially_blocked');return
-    source=PixelSource(base,frame);processor,backbone,_=load_visual(base);del backbone;torch.cuda.empty_cache()
+    processor,backbone,_=load_visual(base);del backbone;torch.cuda.empty_cache()
+    if (root/'frozen_prefix/complete.json').exists():
+        from .prefix_cache import PrefixSource
+        assert read(Path(c['run_dir'])/'00_protocol_and_preservation/prefix_cache_authorization.json')['approved']
+        assert read(Path(c['run_dir'])/'00_protocol_and_preservation/frozen_prefix_GPU_equivalence.json')['passed']
+        source=PrefixSource(root/'frozen_prefix',base,frame,processor)
+    else:source=PixelSource(base,frame)
     y=frame.failure.to_numpy(int);n=len(y);seed_p=np.full((3,n),np.nan);seed_hard=np.zeros((3,n),int);p=np.full(n,np.nan);hard=np.zeros(n,int);fold=np.full(n,-1);reverse=np.full(n,np.nan);permuted=np.full(n,np.nan)
     for outer in splits['folds']:
         k=outer['fold'];plan=index_plan(frame,outer);tr=np.flatnonzero(frame.recording_id.isin(outer['train_recordings']));te=np.flatnonzero(frame.recording_id.isin(outer['test_recordings']));guard_partition(frame,tr,te,plan);fold[te]=k
