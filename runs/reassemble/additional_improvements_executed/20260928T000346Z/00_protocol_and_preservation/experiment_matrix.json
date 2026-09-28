@@ -1,0 +1,167 @@
+{
+  "label": "ADDITIONAL EXPLORATORY EXPERIMENTS",
+  "config": {
+    "run_dir": "runs/reassemble/additional_improvements_executed/20260928T000346Z",
+    "seed": 20260927,
+    "seeds": [
+      20260927,
+      20260928,
+      20260929
+    ],
+    "section1_config": "configs/reassemble/section1.json",
+    "section1b_config": "configs/reassemble/section1b.json",
+    "section2_config": "configs/reassemble/section2.json",
+    "completed_config": "configs/reassemble/completion.json",
+    "data_root": "../datasets/REASSEMBLE",
+    "threads": 4,
+    "blas_threads": 16,
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 20400928,
+    "minimum_free_GiB": 20,
+    "large_cache_minimum_free_GiB": 30,
+    "neural": {
+      "max_epochs": 100,
+      "minimum_epochs": 10,
+      "patience": 12,
+      "batch_size": 128,
+      "lr": 0.001,
+      "weight_decay": 0.001,
+      "gradient_clip": 1.0
+    },
+    "temporal": {
+      "projection": 128,
+      "heads": 4,
+      "layers": 1,
+      "ffn": 256,
+      "dropout": 0.1,
+      "position": "fixed sinusoidal",
+      "normalization": "training segment-mean moments; shared with V-MEAN"
+    },
+    "finetune": {
+      "max_epochs": 20,
+      "patience": 5,
+      "pretrained_lr": 1e-05,
+      "head_lr": 0.0001,
+      "weight_decay": 0.001,
+      "batch_size": 128,
+      "initial_microbatch": 2,
+      "maximum_OOM_reductions": 2,
+      "BN": "running statistics frozen"
+    },
+    "adaptation": {
+      "hidden": 16,
+      "lambdas": [
+        0.01,
+        0.1,
+        1.0
+      ],
+      "max_epochs": 100,
+      "minimum_epochs": 10,
+      "patience": 12,
+      "lr": 0.003,
+      "weight_decay": 0.001,
+      "gradient_clip": 1.0,
+      "batch_size": 128
+    },
+    "corruption_training": {
+      "mixture": [
+        0.5,
+        0.25,
+        0.25
+      ],
+      "realizations": 4,
+      "visual_sigma": [
+        0.01,
+        0.08
+      ],
+      "sensor_alpha": [
+        0.05,
+        0.8
+      ],
+      "test_realizations": 5,
+      "selection_weights": [
+        0.5,
+        0.25,
+        0.25
+      ],
+      "F6_hidden": 16,
+      "static_C": 1.0,
+      "noninferiority_AP_margin": 0.01
+    },
+    "practical_AP_reference": 0.01,
+    "status_label": "ADDITIONAL EXPLORATORY EXPERIMENTS",
+    "wall_time_limit_hours": null
+  },
+  "cohort": {
+    "segments": 4530,
+    "failures": 509,
+    "recordings": 148
+  },
+  "primary_contrasts": [
+    "V-TEMP minus V-MEAN clean AP",
+    "S-LONG minus S-6 clean AP",
+    "A-ADAPTIVE minus A0 clean AP",
+    "augmented A-ADAPTIVE minus augmented F2, equal mean of six seen-family test APs"
+  ],
+  "task1": [
+    "V-HIST",
+    "V-MEAN",
+    "V-TEMP",
+    "V-NOPOS",
+    "V-FT"
+  ],
+  "task2": [
+    "S-HIST",
+    "S-6",
+    "S-LONG",
+    "S-STATS",
+    "S-HYBRID"
+  ],
+  "task3": [
+    "A0",
+    "A-CONSTANT",
+    "A-ADAPTIVE"
+  ],
+  "task4": [
+    "clean F2",
+    "augmented F2",
+    "clean F6",
+    "augmented F6",
+    "clean A-ADAPTIVE",
+    "augmented A-ADAPTIVE"
+  ],
+  "frozen_reference_paths": [
+    {
+      "path": "configs/reassemble/section1.json",
+      "sha256": "dd3e29d2bcd61caadcbc0bd18a95a2a0c6b1cb6aba7f31fbd906a681a319bbea",
+      "bytes": 2383
+    },
+    {
+      "path": "configs/reassemble/section1b.json",
+      "sha256": "12613220f0a1d29569d1cd28ea5f42a21b941ded40966680769da48ae4b4d3f7",
+      "bytes": 1883
+    },
+    {
+      "path": "configs/reassemble/section2.json",
+      "sha256": "d30ea44f13a72bc257155449a1f31ffd06c69bf72f79285dd9ff161e392d4e0f",
+      "bytes": 3022
+    },
+    {
+      "path": "configs/reassemble/section3_corruptions.json",
+      "sha256": "1a438cb7df47f4609aaf87a5c794ce60c9bcc47ee9b063aa16cd6e7fcf82c47e",
+      "bytes": 5550
+    },
+    {
+      "path": "configs/reassemble/completion.json",
+      "sha256": "3abc7fb80a1f63b7d4dd86cf122b044a34dca7650965ae145e951f343761290e",
+      "bytes": 868
+    },
+    {
+      "path": "artifacts/reassemble/audits/nested_splits.json",
+      "sha256": "56dd1f32282a5771e16f780180e3cf62aa2684ae8e855ffd441418f91f14a668",
+      "bytes": 111163
+    }
+  ],
+  "wall_time_authorization": "User: No additional limit; use the plan\u2019s bounds",
+  "configuration_frozen_before_new_performance": true
+}
