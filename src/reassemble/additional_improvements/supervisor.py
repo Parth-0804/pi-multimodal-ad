@@ -69,6 +69,7 @@ def main():
     write(root/'supervisor_state.json',dict(pid=os.getpid(),state='waiting_for_primary_jobs',started_UTC=datetime.now(timezone.utc).isoformat()),replace=True)
     try:
         wait_existing(root)
+        write(root/'supervisor_state.json',dict(pid=os.getpid(),state='running_bounded_queue',UTC=datetime.now(timezone.utc).isoformat()),replace=True)
         # Empirical profiles: PatchTST0.55GiB + arrays; frozen backbone2.3GiB;
         # FT2.72GiB. Two GPU processes reserve at least4GiB on16GiB T4.
         write(root/'00_protocol_and_preservation/parallel_resource_schedule.json',dict(maximum_real_GPU_jobs=2,profiles=['parallel_resource_audit.json','parallel_resource_audit_visual_heads.json','../01_temporal_visual/finetune_gradient_audit.json'],

@@ -69,3 +69,5 @@ Finalization writes the three requested handoffs plus final comparison registry,
 metrics and manifests. No winner combination or extra experiment is authorized.
 
 Checkpoint retention review: S-6 selected3/6 logits were saved correctly, but some inner checkpoint files held an alternative best epoch1–6. Task2 report now recovers only missing selected states through one fixed same-budget replay, with saved-logit parity required. This does not change reported predictions or selection. See checkpoint_retention_correction.md.
+
+Latest reporting/provenance-repair commit: efd5b6c. All70 REASSEMBLE tests passed; extension9 passed again after reporting changes; pip check and git diff --check passed. Cache ten-sample conservative estimate43.723GiB passed30GiB-reserve rule. Interim checkpoint counts are not scientific outcomes. Supervisor-state bookkeeping was corrected from stale waiting status to running; no jobs restarted.
