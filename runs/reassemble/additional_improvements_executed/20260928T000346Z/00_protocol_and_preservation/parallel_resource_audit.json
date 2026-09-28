@@ -1,0 +1,13 @@
+{
+  "operation": "Original PatchTST synthetic batch128 forward/backward, no real labels",
+  "available_before_bytes": 14173274112,
+  "total_bytes": 16703356928,
+  "process_peak_bytes": 551292416,
+  "seconds": 0.29332597700704355,
+  "synthetic_loss": 0.6936103701591492,
+  "finite_gradients": true,
+  "parallel_permitted": true,
+  "cpu_threads_total": 8,
+  "cpu_cores": 16,
+  "reason": "Feature extraction uses <=4 CPU threads and ~2.3GiB GPU; bounded PatchTST process measured here; sum leaves at least4GiB GPU headroom. At most these two GPU jobs; all later GPU jobs serial."
+}

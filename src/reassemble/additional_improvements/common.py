@@ -23,7 +23,7 @@ def write(path, value, replace=False):
     if path.exists() and not replace:
         assert read(path) == value, f'Immutable result already exists: {path}'
         return
-    tmp = path.with_suffix(path.suffix + '.writing')
+    tmp = path.with_suffix(path.suffix + f'.writing.{os.getpid()}')
     tmp.write_text(json.dumps(value, indent=2, allow_nan=False) + '\n')
     tmp.replace(path)
 
