@@ -7,6 +7,7 @@ from reassemble.section1_features import cohort
 from reassemble.section1_report import metrics,METRICS,table
 from reassemble.cluster_metrics import draws,weighted_metrics,intervals
 from .common import config,read,write,progress
+from .fit_summaries import summarize
 
 LABELS=['clean_F2','augmented_F2','clean_F6','augmented_F6','clean_A-ADAPTIVE','augmented_A-ADAPTIVE','HIST_F2','HIST_F6','TASK3_A']
 
@@ -33,12 +34,14 @@ def main():
     groups={}
     for i,name in enumerate(names):groups.setdefault(re.sub(r'_r\d+$','',str(name)),[]).append(i)
     bootstrap=draws(frame.recording_id.to_numpy(),c['bootstrap_replicates'],c['bootstrap_seed']);B=len(bootstrap);rng=np.random.default_rng(c['bootstrap_seed']+100)
-    outputs={};boot={};points={};absolute=[];foldrows=[];seedrows=[];coefficient=[]
+    outputs={};boot={};points={};absolute=[];foldrows=[];seedrows=[];seedfoldrows=[];replicaterows=[];coefficient=[]
     for condition,indices in groups.items():
         outputs[condition]={};r=len(indices);sample=rng.integers(r,size=(B,r)) if r>1 else np.zeros((B,1),int)
         for label,values in predictions.items():
             if (condition=='test_missing_visual' and label=='U_VISUAL') or (condition=='test_missing_sensor' and label=='U_SENSOR'):continue
-            point=np.mean([metrics(y,values['p'][i],values['hard'][i]) for i in indices],axis=0)
+            realized=[metrics(y,values['p'][i],values['hard'][i]) for i in indices]
+            for i,v in zip(indices,realized):replicaterows.append(dict(condition=condition,realization=str(names[i]),model=label,**dict(zip(METRICS,v))))
+            point=np.mean(realized,axis=0)
             replicate=np.stack([weighted_metrics(y,values['p'][i],values['hard'][i],bootstrap) for i in indices])
             conditional=np.mean(replicate[sample,np.arange(B)[:,None]],axis=1)
             points[condition,label]=point;boot[condition,label]=conditional
@@ -48,6 +51,8 @@ def main():
             if label in seeds:
                 for s in range(len(seeds[label]['p'])):
                     v=np.mean([metrics(y,seeds[label]['p'][s,i],seeds[label]['hard'][s,i]) for i in indices],axis=0);seedrows.append(dict(condition=condition,model=label,seed=c['seeds'][s],**dict(zip(METRICS,v))))
+                    for k in range(5):
+                        ii=fold==k;v=np.mean([metrics(y[ii],seeds[label]['p'][s,i,ii],seeds[label]['hard'][s,i,ii]) for i in indices],axis=0);seedfoldrows.append(dict(condition=condition,model=label,seed=c['seeds'][s],fold=k,**dict(zip(METRICS,v))))
             if label in weights:
                 changed=weights[label][indices].mean((0,1));clean=weights[label][0].mean(0)
                 coefficient.append(dict(condition=condition,model=label,visual=float(changed[0]),sensor=float(changed[1]),visual_change=float(changed[0]-clean[0]),sensor_change=float(changed[1]-clean[1]),interpretation='softmax gate weight' if label.endswith('F6') else 'effective probability-input logit coefficient'))
@@ -80,7 +85,8 @@ def main():
     result=dict(metric_note='AUPRC means average precision',absolute=outputs,paired=comparisons,primary_seen_family_contrast=primary,clean_noninferiority=ni,
                 uncertainty='2000 paired recording bootstrap draws; additionally sample realization indices within each condition, identical draws for all models. Average per-realization metrics, not probabilities. Deterministic conditions have one realization. Conditional on fits; marginal 95%; not independent confirmation or retraining uncertainty.',seen_conditions=seen)
     write(task/'results.json',result)
-    for name,data in [('absolute_metrics',absolute),('paired_comparisons',rows),('per_fold_metrics',foldrows),('per_seed_metrics',seedrows),('weight_coefficient_response',coefficient)]:pd.DataFrame(data).to_csv(task/(name+'.csv'),index=False)
+    for name,data in [('absolute_metrics',absolute),('paired_comparisons',rows),('per_fold_metrics',foldrows),('per_seed_metrics',seedrows),('per_seed_fold_metrics',seedfoldrows),('per_realization_metrics',replicaterows),('weight_coefficient_response',coefficient)]:pd.DataFrame(data).to_csv(task/(name+'.csv'),index=False)
+    fit_summary=summarize(task,'robust')
     ap=primary['AUPRC'];status='supported improvement' if ap['lower_95']>0 else ('supported deterioration' if ap['upper_95']<0 else 'inconclusive difference')
     text='# Task 4 — exposure-matched corruption training\n\nADDITIONAL EXPLORATORY EXPERIMENTS. [VERIFIED EXECUTION]\n\n'
     text+='Question: does exposure to partial degradation improve robustness, and does adaptation beat static fusion with the same exposure? Branch architectures, original fit procedures, cohort and folds are unchanged.\n\n'
@@ -93,6 +99,7 @@ def main():
         effect=comparisons[condition].get('augmented_A-ADAPTIVE minus augmented_F2');v=effect['AUPRC'];rows.append([condition,f'{outputs[condition]["clean_F2"]["AUPRC"]["estimate"]:.4f}',f'{outputs[condition]["augmented_F2"]["AUPRC"]["estimate"]:.4f}',f'{outputs[condition]["augmented_A-ADAPTIVE"]["AUPRC"]["estimate"]:.4f}',f'{v["estimate"]:+.4f} [{v["lower_95"]:+.4f},{v["upper_95"]:+.4f}]'])
     text+=table(['Condition','clean F2 AP','augmented F2 AP','augmented adaptive AP','adaptive−augmented static ΔAP,95%'],rows)
     text+='\nClean non-inferiority uses a prospectively fixed .01 AP margin. A confidence interval crossing zero does not establish equivalence or non-inferiority; see the explicit lower-bound decisions in `results.json`. Adaptation claims require both appropriate coefficient response and advantage over equally exposed static fusion. Isolated favorable cells do not establish a general robustness claim.\n\n'
+    text+=f'Learning curves and compute: matched_learning_curves.csv/.png/.pdf and matched_fit_compute.csv, covering {fit_summary["fits"]} neural fits and {fit_summary["seconds"]:.1f} summed fit-seconds. Static logistic fits have no epoch curve; their solver configuration and runtimes are in fits/*.json. Per-realization and per-seed/fold results are retained separately.\n\n'
     text+='Limitations: same outcome-informed cohort; marginal intervals across many reported cells; fixed fitted models; finite seed/realization bank; artificial faults are not a representative industrial deployment distribution. Historical models remain additional sealed references, without rewriting historical conclusions. No changes from Tasks1/2 are inserted into this task.\n'
     (root/'reports/04_CORRUPTION_TRAINING_RESULTS.md').write_text(text)
     progress(4,'Matched corruption fits, all conditions, hierarchical uncertainty and report complete','complete')

@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from reassemble.section1_features import cohort
 from reassemble.section1_report import metrics,METRICS,table
 from .common import config,read,write,progress,identity
+from .fit_summaries import summarize
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--task',type=int,choices=[1,2],required=True);args=parser.parse_args();c=config();root=Path(c['run_dir']);name='01_temporal_visual' if args.task==1 else '02_patchtst_training_budget';task=root/name
@@ -59,7 +60,8 @@ def main():
     if args.task==1:
         text+='Fixed-weight reversal/permutation results are in `order_diagnostic_metrics.csv`; non-positional invariance tests precede execution. Score changes alone do not establish useful temporal reasoning. A temporal-order claim additionally requires V-TEMP improvement relative to V-NOPOS; improvement only against V-MEAN may reflect capacity.\n\n'
         if (task/'finetune_comparison/results.json').exists():
-            ft=read(task/'finetune_comparison/results.json');text+='V-FT is separately evaluated after at most20 additional epochs/patience5, final spatial stage only, backbone lr1e-5/head lr1e-4, frozen BatchNorm running statistics. Synthetic memory/gradient audit is `finetune_gradient_audit.json`. It adds supervised adaptation and compute.\n\n'
+            summarize(task,'finetune')
+            ft=read(task/'finetune_comparison/results.json');text+='V-FT is separately evaluated after at most20 additional epochs/patience5, final spatial stage only, backbone lr1e-5/head lr1e-4, frozen BatchNorm running statistics. Synthetic memory/gradient audit is `finetune_gradient_audit.json`. It adds supervised adaptation and compute. Frozen-prefix caching was explicitly approved after exact GPU prediction/gradient parity; only unchanged stages are cached, with the adapted final stage recomputed on every update. See PROTOCOL_AMENDMENT_01_FROZEN_PREFIX_CACHE.md, finetune_learning_curves.csv/.png/.pdf and finetune_fit_compute.csv.\n\n'
             for key,r in ft['contrasts'].items():
                 v=r['metrics']['AUPRC'];text+=f'- {key}: ΔAP {v["estimate"]:+.4f},95% [{v["lower_95"]:+.4f},{v["upper_95"]:+.4f}]; {r["AP_interpretation"]}.\n'
             complete=True

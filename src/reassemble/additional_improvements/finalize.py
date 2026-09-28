@@ -10,6 +10,7 @@ from reassemble.section2_data import verify_manifest
 from reassemble.section1_features import cohort,sha
 from reassemble.section1_report import metrics,METRICS,table
 from .common import config,read,write,identity,TASKS
+from .numerical_audit import audit as numerical_audit
 
 PRINCIPAL=[(1,'comparison/results.json','V-TEMP minus V-MEAN'),(2,'comparison/results.json','S-LONG minus S-6'),(3,'comparison/results.json','A-ADAPTIVE minus A0')]
 
@@ -58,7 +59,8 @@ def main():
         process=subprocess.run(command,text=True,capture_output=True,env={**__import__('os').environ,'PYTHONPATH':'src'})
         record=dict(command=command,returncode=process.returncode,stdout=process.stdout,stderr=process.stderr);command_checks.append(record)
         if process.returncode:write(out/'validation_failed.json',dict(checks=command_checks));raise RuntimeError('Required validation failed')
-    validation=dict(preservation=preserved,checks=command_checks,prediction_integrity=validations,dependency_check='Existing environment pip check passed; no dependency changes made',timestamp_UTC=datetime.now(timezone.utc).isoformat())
+    numerical=numerical_audit(c,frame)
+    validation=dict(preservation=preserved,checks=command_checks,prediction_integrity=validations,numerical_recalculation=numerical,dependency_check='Existing environment pip check passed; no dependency changes made',timestamp_UTC=datetime.now(timezone.utc).isoformat())
     write(out/'validation.json',validation)
     commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();gitstate=subprocess.check_output(['git','status','--short','--branch','--untracked-files=all'],text=True)
     source=[identity(p) for p in sorted(Path('src/reassemble/additional_improvements').glob('*.py'))]
