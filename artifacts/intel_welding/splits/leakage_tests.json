@@ -1,0 +1,50 @@
+[
+  {
+    "check": "dev \u2229 test sessions empty",
+    "pass": true,
+    "detail": "",
+    "kind": "test"
+  },
+  {
+    "check": "every CV fold train \u2229 val empty",
+    "pass": true,
+    "detail": "5 folds",
+    "kind": "test"
+  },
+  {
+    "check": "no test session in any CV fold",
+    "pass": true,
+    "detail": "",
+    "kind": "test"
+  },
+  {
+    "check": "no duplicate audio content across dev/test",
+    "pass": true,
+    "detail": "0 hashes span partitions; 0 span sessions",
+    "kind": "test"
+  },
+  {
+    "check": "no duplicate video content across dev/test",
+    "pass": true,
+    "detail": "0 hashes span partitions; 0 span sessions",
+    "kind": "test"
+  },
+  {
+    "check": "no duplicate sensor content across dev/test",
+    "pass": true,
+    "detail": "0 hashes span partitions; 0 span sessions",
+    "kind": "test"
+  },
+  {
+    "check": "sample IDs unique",
+    "pass": true,
+    "detail": "",
+    "kind": "test"
+  },
+  {
+    "check": "directory name encodes category",
+    "pass": true,
+    "detail": "100% of rows carry the category word in DIRECTORY. This is how the label is defined, not a partition leak; it is recorded as a HARD CONSTRAINT that no path component may ever be used as a feature",
+    "kind": "note"
+  }
+]

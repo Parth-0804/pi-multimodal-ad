@@ -1,0 +1,68 @@
+[
+  {
+    "command": "df -h",
+    "exit_code": 0,
+    "stdout": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/root       495G  447G   49G  91% /\ntmpfs            32G     0   32G   0% /dev/shm\ntmpfs            13G  992K   13G   1% /run\ntmpfs           5.0M     0  5.0M   0% /run/lock\nefivarfs        256K  123K  129K  49% /sys/firmware/efi/efivars\n/dev/sda16      881M  142M  677M  18% /boot\n/dev/sda15      105M  6.2M   99M   6% /boot/efi\ntmpfs           6.3G  8.0K  6.3G   1% /run/user/1001\n",
+    "stderr": ""
+  },
+  {
+    "command": "df -BG",
+    "exit_code": 0,
+    "stdout": "Filesystem     1G-blocks  Used Available Use% Mounted on\n/dev/root           495G  447G       49G  91% /\ntmpfs                32G    0G       32G   0% /dev/shm\ntmpfs                13G    1G       13G   1% /run\ntmpfs                 1G    0G        1G   0% /run/lock\nefivarfs              1G    1G        1G  49% /sys/firmware/efi/efivars\n/dev/sda16            1G    1G        1G  18% /boot\n/dev/sda15            1G    1G        1G   6% /boot/efi\ntmpfs                 7G    1G        7G   1% /run/user/1001\n",
+    "stderr": ""
+  },
+  {
+    "command": "df -i",
+    "exit_code": 0,
+    "stdout": "Filesystem       Inodes  IUsed    IFree IUse% Mounted on\n/dev/root      66977792 378467 66599325    1% /\ntmpfs           8221918      1  8221917    1% /dev/shm\ntmpfs            819200    809   818391    1% /run\ntmpfs           8221918      2  8221916    1% /run/lock\nefivarfs              0      0        0     - /sys/firmware/efi/efivars\n/dev/sda16        58496    605    57891    2% /boot\n/dev/sda15            0      0        0     - /boot/efi\ntmpfs           1644383     36  1644347    1% /run/user/1001\n",
+    "stderr": ""
+  },
+  {
+    "command": "lsblk -f",
+    "exit_code": 0,
+    "stdout": "NAME    FSTYPE  FSVER            LABEL           UUID                                 FSAVAIL FSUSE% MOUNTPOINTS\nsda                                                                                                  \n\u251c\u2500sda1  ext4    1.0              cloudimg-rootfs 0d4bbbd1-29c7-4f5b-a154-667ab7106f8a   48.1G    90% /\n\u251c\u2500sda14                                                                                              \n\u251c\u2500sda15 vfat    FAT32            UEFI            55BC-B2C7                              98.2M     6% /boot/efi\n\u2514\u2500sda16 ext4    1.0              BOOT            5897163b-af0c-4a92-b0be-22b2d3ac7a10    677M    16% /boot\nsr0     iso9660 Joliet Extension cidata          2026-09-27-00-12-53-00                              \n",
+    "stderr": ""
+  },
+  {
+    "command": "du -x -h --max-depth=1 . | sort -h",
+    "exit_code": 0,
+    "stdout": "8.0K\t./.github\n44K\t./.pytest_cache\n56K\t./archive\n120K\t./configs\n592K\t./docs\n840K\t./tests\n1.4M\t./scripts\n2.0M\t./src\n2.4M\t./artifacts\n6.6M\t./presentation_assets\n49M\t./scratch\n112M\t./tutorials\n353M\t./experiments\n3.9G\t./runs\n6.8G\t./ma_thesis_env\n15G\t./.git\n26G\t./data\n356G\t./gtc-data-experiment\n406G\t.\n",
+    "stderr": ""
+  },
+  {
+    "command": "du -sh .git",
+    "exit_code": 0,
+    "stdout": "15G\t.git\n",
+    "stderr": ""
+  },
+  {
+    "command": "git count-objects -vH",
+    "exit_code": 0,
+    "stdout": "count: 6512\nsize: 1.69 GiB\nin-pack: 29\npacks: 2\nsize-pack: 12.82 GiB\nprune-packable: 0\ngarbage: 0\nsize-garbage: 0 bytes\n",
+    "stderr": ""
+  },
+  {
+    "command": "git status --short",
+    "exit_code": 0,
+    "stdout": "?? artifacts/\n?? configs/intel_welding/\n?? docs/intel_welding/FOUNDATION_PROTOCOL_ADDENDUM.md\n?? docs/intel_welding/FOUNDATION_RUNBOOK.md\n?? docs/intel_welding/RESULTS_REVIEW.md\n?? docs/intel_welding/context_baseline_specification.md\n?? scripts/intel_welding/01_inventory.py\n?? scripts/intel_welding/02_label_audit.py\n?? scripts/intel_welding/03_make_split.py\n?? scripts/intel_welding/04_foundations.py\n?? scripts/intel_welding/05_foundation_report.py\n?? tests/unit/test_intel_foundations.py\n",
+    "stderr": ""
+  },
+  {
+    "command": "git diff --check",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": "git diff --stat",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": "ma_thesis_env/bin/python -B -m pip check",
+    "exit_code": 0,
+    "stdout": "No broken requirements found.\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "timestamp_utc": "20260927T124429Z",
+  "git_commit": "ea4a76f64887fd590fd1f93cc83a726192dcfecb",
+  "scope": "diagnostic storage triage only",
+  "script_sha256": "9a4875b369abc152e8fcd0b773bab67b6981b8c6d14f3982d9d6b6c911f0de6b",
+  "metadata_scan_script_sha256": "c1eded1274bb38ca90dc4f7bb89d8de1bed5106beb567853326c80547d50fa7b",
+  "read_only_methods": [
+    "lstat/st_blocks",
+    "git ls-files",
+    "git check-ignore",
+    "git cat-file metadata",
+    "git rev-list --objects --all",
+    "SHA256 four selected checkpoint files and resolved configs"
+  ],
+  "thresholds_GiB": [
+    160,
+    200
+  ],
+  "actions_performed": {
+    "delete": false,
+    "move": false,
+    "compress": false,
+    "download": false,
+    "git_gc": false,
+    "train": false
+  }
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "command": "pwd",
+    "exit_code": 0,
+    "stdout": "/home/student/Master_Thesis_WS/pi-multimodal-ad\n",
+    "stderr": ""
+  },
+  {
+    "command": "df -h",
+    "exit_code": 0,
+    "stdout": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/root       495G  447G   49G  91% /\ntmpfs            32G     0   32G   0% /dev/shm\ntmpfs            13G  992K   13G   1% /run\ntmpfs           5.0M     0  5.0M   0% /run/lock\nefivarfs        256K  123K  129K  49% /sys/firmware/efi/efivars\n/dev/sda16      881M  142M  677M  18% /boot\n/dev/sda15      105M  6.2M   99M   6% /boot/efi\ntmpfs           6.3G  8.0K  6.3G   1% /run/user/1001\n",
+    "stderr": ""
+  },
+  {
+    "command": "df -BG",
+    "exit_code": 0,
+    "stdout": "Filesystem     1G-blocks  Used Available Use% Mounted on\n/dev/root           495G  447G       49G  91% /\ntmpfs                32G    0G       32G   0% /dev/shm\ntmpfs                13G    1G       13G   1% /run\ntmpfs                 1G    0G        1G   0% /run/lock\nefivarfs              1G    1G        1G  49% /sys/firmware/efi/efivars\n/dev/sda16            1G    1G        1G  18% /boot\n/dev/sda15            1G    1G        1G   6% /boot/efi\ntmpfs                 7G    1G        7G   1% /run/user/1001\n",
+    "stderr": ""
+  },
+  {
+    "command": "df -i",
+    "exit_code": 0,
+    "stdout": "Filesystem       Inodes  IUsed    IFree IUse% Mounted on\n/dev/root      66977792 378438 66599354    1% /\ntmpfs           8221918      1  8221917    1% /dev/shm\ntmpfs            819200    809   818391    1% /run\ntmpfs           8221918      2  8221916    1% /run/lock\nefivarfs              0      0        0     - /sys/firmware/efi/efivars\n/dev/sda16        58496    605    57891    2% /boot\n/dev/sda15            0      0        0     - /boot/efi\ntmpfs           1644383     36  1644347    1% /run/user/1001\n",
+    "stderr": ""
+  },
+  {
+    "command": "lsblk -f",
+    "exit_code": 0,
+    "stdout": "NAME    FSTYPE  FSVER            LABEL           UUID                                 FSAVAIL FSUSE% MOUNTPOINTS\nsda                                                                                                  \n\u251c\u2500sda1  ext4    1.0              cloudimg-rootfs 0d4bbbd1-29c7-4f5b-a154-667ab7106f8a   48.1G    90% /\n\u251c\u2500sda14                                                                                              \n\u251c\u2500sda15 vfat    FAT32            UEFI            55BC-B2C7                              98.2M     6% /boot/efi\n\u2514\u2500sda16 ext4    1.0              BOOT            5897163b-af0c-4a92-b0be-22b2d3ac7a10    677M    16% /boot\nsr0     iso9660 Joliet Extension cidata          2026-09-27-00-12-53-00                              \n",
+    "stderr": ""
+  },
+  {
+    "command": "du -sh /home/student/Master_Thesis_WS/pi-multimodal-ad",
+    "exit_code": 0,
+    "stdout": "406G\t/home/student/Master_Thesis_WS/pi-multimodal-ad\n",
+    "stderr": ""
+  },
+  {
+    "command": "du -h --max-depth=1 /home/student/Master_Thesis_WS/pi-multimodal-ad | sort -h",
+    "exit_code": 0,
+    "stdout": "8.0K\t/home/student/Master_Thesis_WS/pi-multimodal-ad/.github\n44K\t/home/student/Master_Thesis_WS/pi-multimodal-ad/.pytest_cache\n56K\t/home/student/Master_Thesis_WS/pi-multimodal-ad/archive\n120K\t/home/student/Master_Thesis_WS/pi-multimodal-ad/configs\n592K\t/home/student/Master_Thesis_WS/pi-multimodal-ad/docs\n840K\t/home/student/Master_Thesis_WS/pi-multimodal-ad/tests\n1.4M\t/home/student/Master_Thesis_WS/pi-multimodal-ad/scripts\n2.0M\t/home/student/Master_Thesis_WS/pi-multimodal-ad/src\n2.3M\t/home/student/Master_Thesis_WS/pi-multimodal-ad/artifacts\n6.6M\t/home/student/Master_Thesis_WS/pi-multimodal-ad/presentation_assets\n49M\t/home/student/Master_Thesis_WS/pi-multimodal-ad/scratch\n112M\t/home/student/Master_Thesis_WS/pi-multimodal-ad/tutorials\n353M\t/home/student/Master_Thesis_WS/pi-multimodal-ad/experiments\n3.9G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/runs\n6.8G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env\n15G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/.git\n26G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/data\n356G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment\n406G\t/home/student/Master_Thesis_WS/pi-multimodal-ad\n",
+    "stderr": ""
+  },
+  {
+    "command": "du -ah /home/student/Master_Thesis_WS | sort -h | tail -20",
+    "exit_code": 0,
+    "stdout": "20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP B/Exp-B_HDF5_Run-1.zip\n20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP B/Exp-B_HDF5_Run-2.zip\n20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP B/Exp-B_HDF5_Run-3.zip\n20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP B/Exp-B_HDF5_Run-4.zip\n20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP B/Exp-B_HDF5_Run-5.zip\n20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP B/Exp-B_HDF5_Run-6.zip\n20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP F/Exp-F_HDF5_Run-1.zip\n20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP F/Exp-F_HDF5_Run-3.zip\n20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP F/Exp-F_HDF5_Run-5.zip\n20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP F/Exp-F_HDF5_Run-6.zip\n20G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP F/Exp-F_HDF5_Run-8.zip\n26G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/data\n26G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/data/Full Dataset\n96G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP A\n123G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP B\n137G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency/EXP F\n355G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment/high_frequency\n356G\t/home/student/Master_Thesis_WS/pi-multimodal-ad/gtc-data-experiment\n406G\t/home/student/Master_Thesis_WS/pi-multimodal-ad\n413G\t/home/student/Master_Thesis_WS\n",
+    "stderr": ""
+  },
+  {
+    "command": "nvidia-smi",
+    "exit_code": 0,
+    "stdout": "Sun Sep 27 14:33:58 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.167.08             Driver Version: 580.167.08     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  Tesla T4                       On  |   00000000:06:10.0 Off |                  Off |\n| N/A   33C    P0             28W /   70W |       0MiB /  16384MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n",
+    "stderr": ""
+  },
+  {
+    "command": "free -h",
+    "exit_code": 0,
+    "stdout": "               total        used        free      shared  buff/cache   available\nMem:            62Gi       3.5Gi       933Mi       4.9Mi        59Gi        59Gi\nSwap:             0B          0B          0B\n",
+    "stderr": ""
+  },
+  {
+    "command": "nproc",
+    "exit_code": 0,
+    "stdout": "16\n",
+    "stderr": ""
+  },
+  {
+    "command": "ma_thesis_env/bin/python -B -m pip check",
+    "exit_code": 0,
+    "stdout": "No broken requirements found.\n",
+    "stderr": ""
+  },
+  {
+    "command": "git diff --check",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": "git diff --stat",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]
