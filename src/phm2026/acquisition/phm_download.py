@@ -24,7 +24,9 @@ import urllib.parse
 import urllib.request
 import uuid
 
-REPO = Path(__file__).resolve().parents[3]
+from ..repository_paths import find_repository_root
+
+REPO = find_repository_root(Path(__file__))
 OFFICIAL_PAGE = 'https://data.phmsociety.org/phm-north-america-2026-conference-data-challenge/'
 DEFAULT_SHARE = 'https://gtc-data.synology.me:51111/sharing/uIrAvzqEh'
 COMPONENTS = ('all', 'high_frequency', 'low_frequency', 'condition_indicators', 'oil_environment', 'photos', 'other')

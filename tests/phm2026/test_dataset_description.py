@@ -6,11 +6,11 @@ from pathlib import Path
 
 import pandas as pd
 
-from pi_multimodal_ad.profiling.dataset_description import (
+from phm2026.profiling.dataset_description import (
     build_dataset_description,
     write_dataset_description_run,
 )
-from pi_multimodal_ad.utils import create_run_context, load_yaml_config
+from phm2026.utils import create_run_context, load_yaml_config
 
 UTC = timezone.utc
 
@@ -228,7 +228,7 @@ def test_professor_report_regenerates_from_fixture_profiles(tmp_path: Path) -> N
         output_root=repository / "runs/synthetic_dataset_description",
         config=config,
         seed=17,
-        command=("scripts/dataset/describe_dataset.py",),
+        command=("scripts/phm2026/dataset/describe_dataset.py",),
         input_roots=("runs/synthetic",),
         now=datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC),
         package_names=(),

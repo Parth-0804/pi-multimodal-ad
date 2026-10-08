@@ -6,7 +6,7 @@
 ============================================================================
 This is a TUTORIAL, not part of the governed PHM 2026 thesis pipeline
 (see AGENTS.md / docs/planning/PROJECT_STATE.md). It lives outside
-src/pi_multimodal_ad, scripts/, configs/, and runs/ on purpose, so nothing
+src/phm2026, scripts/, configs/, and runs/ on purpose, so nothing
 here is mistaken for thesis evidence or governed provenance.
 
 It does inference only — it loads a stock, COCO-pretrained RT-DETR model
@@ -31,7 +31,7 @@ Because the model is the plain pretrained baseline (it has never seen a
 gear tooth), its raw guesses will use COCO's everyday object vocabulary
 (things like "car" or "person"), not "damage_candidate". That mismatch is
 expected and is part of the lesson: it shows why the real pipeline
-(scripts/training/train_rtdetr_detector.py) has to fine-tune the model before it is
+(scripts/phm2026/training/train_rtdetr_detector.py) has to fine-tune the model before it is
 useful for this task.
 
 ============================================================================

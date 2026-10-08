@@ -17,17 +17,17 @@ from sklearn.linear_model import Ridge
 import torch
 from torch import nn
 
-from ..evaluation.regression import regression_metrics
-from ..preprocessing.timeseries import RunSequence, collate_run_sequences
-from ..reporting.common import (
+from phm2026.evaluation.regression import regression_metrics
+from phm2026.preprocessing.timeseries import RunSequence, collate_run_sequences
+from phm2026.reporting.common import (
     ACADEMIC_COLORS,
     apply_academic_style,
     finalize_run,
     json_text,
     save_figure_pair,
 )
-from ..utils.provenance import ArtifactRecord, RunContext
-from .patchtst import PatchTSTConfig, PatchTSTRegressor
+from phm2026.utils.provenance import ArtifactRecord, RunContext
+from phm2026.models.patchtst.model import PatchTSTConfig, PatchTSTRegressor
 
 PATCHTST_RESULT_SCHEMA_VERSION = "1.0.0"
 TARGET_UNIT = "percentage_points_visible_flank_candidate_area"

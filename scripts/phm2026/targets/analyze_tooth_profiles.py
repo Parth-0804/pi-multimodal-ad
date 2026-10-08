@@ -19,6 +19,12 @@ Writes nothing outside the report path; fitting is read-only.
 
 from __future__ import annotations
 
+# Source-tree entry point; no installed package is required.
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+
+
 import argparse
 import json
 from pathlib import Path
@@ -27,7 +33,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
+REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
 
 SPLIT_BY_EXPERIMENT = {"EXP-B": "train", "EXP-A": "validation", "EXP-F": "test"}
 VALUE = "per_tooth_damage_candidate_pct"

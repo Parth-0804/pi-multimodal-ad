@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import torch
 
-from pi_multimodal_ad.models.patchtst import PatchTSTConfig, PatchTSTRegressor
+from phm2026.models.patchtst.model import PatchTSTConfig, PatchTSTRegressor
 
 
 def test_patch_shapes_masked_pooling_and_output() -> None:

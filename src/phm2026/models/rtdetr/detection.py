@@ -14,14 +14,14 @@ import numpy as np
 import pandas as pd
 from PIL import Image, ImageDraw, ImageFont
 
-from ..reporting.common import (
+from phm2026.reporting.common import (
     ACADEMIC_COLORS,
     apply_academic_style,
     finalize_run,
     json_text,
     save_figure_pair,
 )
-from ..utils.provenance import ArtifactRecord, RunContext
+from phm2026.utils.provenance import ArtifactRecord, RunContext
 
 DETECTION_SCHEMA_VERSION = "1.0.0"
 DETECTION_STATUS = "PROVISIONAL_PSEUDO_BOX_AGREEMENT_ONLY"

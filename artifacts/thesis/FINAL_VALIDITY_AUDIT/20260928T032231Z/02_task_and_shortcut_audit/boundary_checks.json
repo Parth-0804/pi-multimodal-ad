@@ -1,0 +1,757 @@
+{
+  "status": "COMPLETED_WITH_TASK_LIMITATIONS",
+  "recordings": 148,
+  "stream_segment_checks": 27180,
+  "saved_visual_frame_selections_verified": 4530,
+  "beyond_end_samples": 0,
+  "before_start_samples": 0,
+  "adjacent_overlap_or_shared_endpoint_count": 47,
+  "positive_overlap_count": 14,
+  "interval_convention": "closed [start,end]; endpoint can legitimately be shared if annotations touch",
+  "sensor_values_not_reread": "Only raw timestamp arrays were read; sensor windows/counts and frame indices independently checked, exact historical signal extraction execution inferred from sealed source/cache.",
+  "whole_recording_timing_dependency": "native_dt uses median diff of whole-recording timestamp arrays for gap policy; no values outside segment interpolated. This timing metadata dependency is not an online causal preprocessing proof.",
+  "semantic_boundary_limit": "Whether an annotation includes trailing idle, intended outcome or next-action content cannot be established from timestamps alone; human boundary review pending.",
+  "label_filter": "same extraction functions for successes/failures; primary action and dual-complete filter based on audit availability, not correctness; selected complete-cohort conditioning remains a limitation",
+  "raw_metadata": [
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-13-57-17.h5",
+      "bytes": 382120140,
+      "mtime_ns": 1790518712518262433
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-13-59-54.h5",
+      "bytes": 3268349083,
+      "mtime_ns": 1790518303536585348
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-14-11-58.h5",
+      "bytes": 1802541010,
+      "mtime_ns": 1790518573315570081
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-14-28-47.h5",
+      "bytes": 3083371092,
+      "mtime_ns": 1790518292230299066
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-14-40-21.h5",
+      "bytes": 1616602437,
+      "mtime_ns": 1790518558207172358
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-14-47-32.h5",
+      "bytes": 1830219506,
+      "mtime_ns": 1790519222900088972
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-14-57-02.h5",
+      "bytes": 1223824262,
+      "mtime_ns": 1790518577543681501
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-15-02-21.h5",
+      "bytes": 1442083499,
+      "mtime_ns": 1790519097911673534
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-15-08-11.h5",
+      "bytes": 303154613,
+      "mtime_ns": 1790518988622699924
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-15-18-29.h5",
+      "bytes": 2493347265,
+      "mtime_ns": 1790519003333099373
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-15-27-49.h5",
+      "bytes": 638989160,
+      "mtime_ns": 1790518886778942285
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-15-30-21.h5",
+      "bytes": 2010820296,
+      "mtime_ns": 1790518865139358277
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-15-37-27.h5",
+      "bytes": 2725492040,
+      "mtime_ns": 1790518489011359551
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-15-46-39.h5",
+      "bytes": 567291591,
+      "mtime_ns": 1790518992339800833
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-15-49-10.h5",
+      "bytes": 2366932129,
+      "mtime_ns": 1790518338928485367
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-16-44-57.h5",
+      "bytes": 3309374356,
+      "mtime_ns": 1790519051553410558
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-16-55-42.h5",
+      "bytes": 2207257578,
+      "mtime_ns": 1790518527168357366
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-17-03-05.h5",
+      "bytes": 3596796616,
+      "mtime_ns": 1790518884026867972
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-17-14-59.h5",
+      "bytes": 2131263990,
+      "mtime_ns": 1790518643746432315
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-17-23-07.h5",
+      "bytes": 3128882436,
+      "mtime_ns": 1790518415722456893
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-17-34-18.h5",
+      "bytes": 1746130972,
+      "mtime_ns": 1790519142067878536
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-17-40-57.h5",
+      "bytes": 1099350159,
+      "mtime_ns": 1790518716615371797
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-17-51-35.h5",
+      "bytes": 2575814219,
+      "mtime_ns": 1790518770064801676
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-18-00-33.h5",
+      "bytes": 1875566503,
+      "mtime_ns": 1790519022327615542
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-18-08-36.h5",
+      "bytes": 2530007432,
+      "mtime_ns": 1790518567206409182
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-18-18-47.h5",
+      "bytes": 601959210,
+      "mtime_ns": 1790518601146304380
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-18-21-40.h5",
+      "bytes": 1760209539,
+      "mtime_ns": 1790518955394798653
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-18-34-34.h5",
+      "bytes": 1897803328,
+      "mtime_ns": 1790519181894966950
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-18-41-38.h5",
+      "bytes": 897860450,
+      "mtime_ns": 1790518916921756955
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-18-44-37.h5",
+      "bytes": 1978562065,
+      "mtime_ns": 1790518760414543091
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-18-52-39.h5",
+      "bytes": 2566237483,
+      "mtime_ns": 1790518435193960507
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-19-06-44.h5",
+      "bytes": 1729515061,
+      "mtime_ns": 1790518752661335471
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-19-14-15.h5",
+      "bytes": 182430491,
+      "mtime_ns": 1790518458257558829
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-19-15-33.h5",
+      "bytes": 2385708909,
+      "mtime_ns": 1790518620147806914
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-19-24-18.h5",
+      "bytes": 1233126679,
+      "mtime_ns": 1790518468210817622
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-09-19-28-18.h5",
+      "bytes": 680000833,
+      "mtime_ns": 1790518384223645298
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-15-28-50.h5",
+      "bytes": 1194577758,
+      "mtime_ns": 1790518647920543080
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-15-34-33.h5",
+      "bytes": 1478556134,
+      "mtime_ns": 1790518913617667590
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-15-39-56.h5",
+      "bytes": 133675078,
+      "mtime_ns": 1790518470569879011
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-15-40-55.h5",
+      "bytes": 2131094625,
+      "mtime_ns": 1790518789850332395
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-15-49-06.h5",
+      "bytes": 3032145536,
+      "mtime_ns": 1790519120097278734
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-15-59-54.h5",
+      "bytes": 1647138964,
+      "mtime_ns": 1790519238135506203
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-16-19-15.h5",
+      "bytes": 3057422102,
+      "mtime_ns": 1790518448999318419
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-16-29-00.h5",
+      "bytes": 436249476,
+      "mtime_ns": 1790518370605295646
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-16-30-49.h5",
+      "bytes": 1899589409,
+      "mtime_ns": 1790518346138669419
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-16-37-45.h5",
+      "bytes": 2788600595,
+      "mtime_ns": 1790518552403019741
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-16-47-15.h5",
+      "bytes": 1845443553,
+      "mtime_ns": 1790519210320744617
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-17-10-38.h5",
+      "bytes": 2345254686,
+      "mtime_ns": 1790519164024478402
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-17-19-03.h5",
+      "bytes": 1603647908,
+      "mtime_ns": 1790518858083168005
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-17-25-29.h5",
+      "bytes": 3050575599,
+      "mtime_ns": 1790518599034248581
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-17-36-05.h5",
+      "bytes": 1600748730,
+      "mtime_ns": 1790518870849512311
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-17-54-09.h5",
+      "bytes": 3019482301,
+      "mtime_ns": 1790518663711962499
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-18-03-36.h5",
+      "bytes": 2197010826,
+      "mtime_ns": 1790519155355241502
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-18-12-06.h5",
+      "bytes": 3244181497,
+      "mtime_ns": 1790518782172126351
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-18-23-40.h5",
+      "bytes": 1879604370,
+      "mtime_ns": 1790518700918953011
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-18-31-44.h5",
+      "bytes": 2646890187,
+      "mtime_ns": 1790518393127874324
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-10-18-41-18.h5",
+      "bytes": 1642470636,
+      "mtime_ns": 1790519187861130115
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-11-12-32.h5",
+      "bytes": 3000652984,
+      "mtime_ns": 1790519039780090178
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-11-21-44.h5",
+      "bytes": 2052225741,
+      "mtime_ns": 1790518535894586201
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-11-29-58.h5",
+      "bytes": 1161264847,
+      "mtime_ns": 1790518921345876638
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-11-35-53.h5",
+      "bytes": 1376410768,
+      "mtime_ns": 1790518308177703039
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-11-51-20.h5",
+      "bytes": 1187641676,
+      "mtime_ns": 1790519172634713756
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-11-55-48.h5",
+      "bytes": 840934992,
+      "mtime_ns": 1790518438216038797
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-11-59-40.h5",
+      "bytes": 2576251000,
+      "mtime_ns": 1790518479610114434
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-12-22-42.h5",
+      "bytes": 2135338651,
+      "mtime_ns": 1790518741007023607
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-13-42-45.h5",
+      "bytes": 648715712,
+      "mtime_ns": 1790518719148439429
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-13-46-54.h5",
+      "bytes": 2009386634,
+      "mtime_ns": 1790518315025876885
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-13-55-45.h5",
+      "bytes": 376933355,
+      "mtime_ns": 1790518537293622911
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-13-59-43.h5",
+      "bytes": 1046694398,
+      "mtime_ns": 1790518901323335209
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-14-04-40.h5",
+      "bytes": 508163673,
+      "mtime_ns": 1790518470107866986
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-14-09-00.h5",
+      "bytes": 1505842772,
+      "mtime_ns": 1790518677950341175
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-14-14-43.h5",
+      "bytes": 2006214246,
+      "mtime_ns": 1790519203551559366
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-14-22-09.h5",
+      "bytes": 1690374606,
+      "mtime_ns": 1790518464130711494
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-14-35-33.h5",
+      "bytes": 1242248068,
+      "mtime_ns": 1790519092744532651
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-14-40-46.h5",
+      "bytes": 601925940,
+      "mtime_ns": 1790519174849774313
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-14-43-37.h5",
+      "bytes": 102449944,
+      "mtime_ns": 1790519072277974894
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-14-45-48.h5",
+      "bytes": 1901970690,
+      "mtime_ns": 1790518908063517405
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-14-54-27.h5",
+      "bytes": 1489474411,
+      "mtime_ns": 1790518457623542356
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-14-59-16.h5",
+      "bytes": 381511180,
+      "mtime_ns": 1790519073681013116
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-15-02-03.h5",
+      "bytes": 2849788808,
+      "mtime_ns": 1790518710967221041
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-15-10-57.h5",
+      "bytes": 2019101212,
+      "mtime_ns": 1790518519655160530
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-15-18-22.h5",
+      "bytes": 2332023867,
+      "mtime_ns": 1790518727875672549
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-15-27-19.h5",
+      "bytes": 1279621445,
+      "mtime_ns": 1790518397354983162
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-15-32-26.h5",
+      "bytes": 292429147,
+      "mtime_ns": 1790519121256310364
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-11-15-35-08.h5",
+      "bytes": 904787849,
+      "mtime_ns": 1790518452343405221
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-09-43-29.h5",
+      "bytes": 2430490206,
+      "mtime_ns": 1790518632806142207
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-09-51-50.h5",
+      "bytes": 1615026006,
+      "mtime_ns": 1790518513011986634
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-10-05-22.h5",
+      "bytes": 3132829709,
+      "mtime_ns": 1790518588348966467
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-10-14-56.h5",
+      "bytes": 2184367969,
+      "mtime_ns": 1790518359041999362
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-10-51-29.h5",
+      "bytes": 2932237713,
+      "mtime_ns": 1790518932053166409
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-11-01-25.h5",
+      "bytes": 1703564681,
+      "mtime_ns": 1790518672235189122
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-11-07-43.h5",
+      "bytes": 3039806256,
+      "mtime_ns": 1790518503903748437
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-11-16-17.h5",
+      "bytes": 779730941,
+      "mtime_ns": 1790518369065256153
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-11-18-57.h5",
+      "bytes": 1157012353,
+      "mtime_ns": 1790518681913446659
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-11-23-17.h5",
+      "bytes": 2181798322,
+      "mtime_ns": 1790519082130243335
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-11-31-57.h5",
+      "bytes": 1488324716,
+      "mtime_ns": 1790518987450668109
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-11-37-50.h5",
+      "bytes": 1440364101,
+      "mtime_ns": 1790519147312021769
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-11-44-13.h5",
+      "bytes": 2519930267,
+      "mtime_ns": 1790518964475044803
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-11-52-19.h5",
+      "bytes": 1532643713,
+      "mtime_ns": 1790519215810894892
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-14-57-37.h5",
+      "bytes": 2526968945,
+      "mtime_ns": 1790518835276553573
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-15-06-09.h5",
+      "bytes": 1218238744,
+      "mtime_ns": 1790519168330596099
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-15-11-07.h5",
+      "bytes": 1919725112,
+      "mtime_ns": 1790518688876632082
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-15-18-12.h5",
+      "bytes": 1069600034,
+      "mtime_ns": 1790518636545241325
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-15-50-28.h5",
+      "bytes": 2742541882,
+      "mtime_ns": 1790518325576145140
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-15-58-56.h5",
+      "bytes": 1618997237,
+      "mtime_ns": 1790519088005403461
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-16-06-01.h5",
+      "bytes": 2690166422,
+      "mtime_ns": 1790518816840057514
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-16-14-09.h5",
+      "bytes": 1637989451,
+      "mtime_ns": 1790518841007707894
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-16-19-55.h5",
+      "bytes": 2876686269,
+      "mtime_ns": 1790518897293226302
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-16-27-57.h5",
+      "bytes": 1481491385,
+      "mtime_ns": 1790518981829515552
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-16-45-31.h5",
+      "bytes": 2545584956,
+      "mtime_ns": 1790519232191343397
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-16-52-33.h5",
+      "bytes": 1350539762,
+      "mtime_ns": 1790518693905766070
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-16-57-41.h5",
+      "bytes": 948412740,
+      "mtime_ns": 1790518507483842032
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-17-02-10.h5",
+      "bytes": 1355669125,
+      "mtime_ns": 1790518331011283534
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-17-34-32.h5",
+      "bytes": 1660694262,
+      "mtime_ns": 1790518610125541737
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-17-40-45.h5",
+      "bytes": 1003655666,
+      "mtime_ns": 1790518604583395211
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-17-46-07.h5",
+      "bytes": 1539725497,
+      "mtime_ns": 1790518949011625681
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-17-51-11.h5",
+      "bytes": 159616702,
+      "mtime_ns": 1790518989218716103
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-17-52-32.h5",
+      "bytes": 1567406910,
+      "mtime_ns": 1790518733299817517
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-17-57-45.h5",
+      "bytes": 2731321653,
+      "mtime_ns": 1790519071805962036
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-18-06-08.h5",
+      "bytes": 981122644,
+      "mtime_ns": 1790518976431369083
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-18-16-38.h5",
+      "bytes": 3209818358,
+      "mtime_ns": 1790519015079418524
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-18-25-52.h5",
+      "bytes": 2679754704,
+      "mtime_ns": 1790519061952693676
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-18-32-31.h5",
+      "bytes": 2173244164,
+      "mtime_ns": 1790518366530191166
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-18-40-21.h5",
+      "bytes": 1065461577,
+      "mtime_ns": 1790519195238331912
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-18-45-09.h5",
+      "bytes": 3165892683,
+      "mtime_ns": 1790518943380473134
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-18-53-43.h5",
+      "bytes": 1500248969,
+      "mtime_ns": 1790518351484806035
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-18-59-44.h5",
+      "bytes": 977369378,
+      "mtime_ns": 1790519191434227848
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-19-04-46.h5",
+      "bytes": 261423980,
+      "mtime_ns": 1790518990255744254
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-19-08-03.h5",
+      "bytes": 1808669666,
+      "mtime_ns": 1790518796434509168
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-19-14-28.h5",
+      "bytes": 1664911328,
+      "mtime_ns": 1790519135336694725
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-19-19-46.h5",
+      "bytes": 3013899911,
+      "mtime_ns": 1790518381897585522
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-13-19-29-01.h5",
+      "bytes": 1507232215,
+      "mtime_ns": 1790518493908487350
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-09-57-36.h5",
+      "bytes": 2299602009,
+      "mtime_ns": 1790518972907273483
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-10-05-38.h5",
+      "bytes": 1300223425,
+      "mtime_ns": 1790518624690927205
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-10-28-24.h5",
+      "bytes": 1362584481,
+      "mtime_ns": 1790518746209162780
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-10-34-43.h5",
+      "bytes": 2381628330,
+      "mtime_ns": 1790518825840299605
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-10-49-57.h5",
+      "bytes": 1308855377,
+      "mtime_ns": 1790518541777740610
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-10-54-26.h5",
+      "bytes": 391059914,
+      "mtime_ns": 1790519129419533178
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-10-57-14.h5",
+      "bytes": 3123151042,
+      "mtime_ns": 1790518852129007512
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-11-06-43.h5",
+      "bytes": 1711781696,
+      "mtime_ns": 1790519028493783196
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-11-19-51.h5",
+      "bytes": 2794293475,
+      "mtime_ns": 1790518425952721312
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-11-28-33.h5",
+      "bytes": 473143263,
+      "mtime_ns": 1790518994082848159
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-11-30-33.h5",
+      "bytes": 1067089543,
+      "mtime_ns": 1790518651545639309
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-11-36-55.h5",
+      "bytes": 3085984132,
+      "mtime_ns": 1790518807462805433
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-11-45-36.h5",
+      "bytes": 1883923588,
+      "mtime_ns": 1790519127925492393
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-11-50-46.h5",
+      "bytes": 695991766,
+      "mtime_ns": 1790518666142027095
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-11-53-50.h5",
+      "bytes": 3009363210,
+      "mtime_ns": 1790519108619965584
+    },
+    {
+      "path": "../datasets/REASSEMBLE/raw/data/2025-01-14-12-05-01.h5",
+      "bytes": 1819979888,
+      "mtime_ns": 1790518403283135915
+    }
+  ]
+}

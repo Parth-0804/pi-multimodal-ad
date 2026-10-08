@@ -1,0 +1,7 @@
+# Correction after first Task 4 restart attempt
+
+The visual worker stopped before generating new corruption outputs because common.write compared the saved JSON image_mean/image_std lists with the equivalent in-memory tuples returned by the pinned processor. metadata_check.json shows raw equality false but exact JSON-roundtrip equality true. Repository, pinned revision, model/config/preprocessor hashes and all numerical preprocessing values match. This was a persistence-representation issue, not a changed model or performance discrepancy.
+
+The separate Task4 worker now passes metadata through the same JSON conversion used for persistence before immutable comparison. It preserves model.json byte-for-byte, and still rejects any unequal persisted value. No original output or shared common.py/fitting implementation was edited. The regression test first demonstrates the original tuple/list rejection, then verifies reuse without changing bytes/mtime, and verifies rejection of genuinely different values. Three recovery tests passed. No tolerance was relaxed, and no old metadata file was overwritten to make the check pass.
+
+The failed visual attempt and logs are preserved. Its sensor workers were asked to finish their current units and stop; their newly committed banks will be reused by the next attempt. The next attempt launches only after the original coordinator releases its lock. Task1 stays paused.

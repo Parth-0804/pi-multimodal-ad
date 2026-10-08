@@ -1,0 +1,1 @@
+Task 4 only. Continuation after documented JSON tuple/list equality correction. See ../20260928T174834Z/RESUMPTION_NOTES.md, CORRECTION.md and metadata_check.json. All scientific configurations/budgets remain fixed. First attempt CPU banks are reused after graceful unit completion. Task 1 remains paused; Tasks 2/3 stay complete.

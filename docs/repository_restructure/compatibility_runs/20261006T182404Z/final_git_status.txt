@@ -1,0 +1,990 @@
+## main...origin/main [ahead 38]
+ M AGENTS.md
+ M README.md
+ M REPO_MAP.md
+A  artifacts/intel_welding/audits/GATE_0_DATA_ACCESS.md
+A  artifacts/intel_welding/audits/PHASE_1_GATE_REPORT.md
+A  artifacts/intel_welding/audits/alignment_audit.md
+A  artifacts/intel_welding/audits/context_shortcut_audit.md
+A  artifacts/intel_welding/audits/context_shortcut_metrics.json
+A  artifacts/intel_welding/audits/dataset_integrity.md
+A  artifacts/intel_welding/audits/dataset_summary.json
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114653957275Z/config.json
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/GATE_0_DATA_ACCESS.md
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/PHASE_1_GATE_REPORT.md
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/alignment_audit.md
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/config.json
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/dataset_integrity.md
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/dataset_summary.json
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/decoder_warnings.json
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/label_session_process_audit.md
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/leakage_tests.json
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/output_manifest.json
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/provenance.json
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/report_output_manifest.json
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/split_disposition.json
+A  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/split_disposition.md
+A  artifacts/intel_welding/splits/development_sessions.txt
+A  artifacts/intel_welding/splits/final_test_sessions.txt
+A  artifacts/intel_welding/splits/leakage_tests.json
+A  artifacts/intel_welding/splits/split_manifest.json
+A  artifacts/reassemble/audits/STORAGE_PREFLIGHT.md
+A  artifacts/reassemble/audits/STORAGE_TRIAGE.md
+A  artifacts/reassemble/audits/storage_runs/20260927T123356Z/STORAGE_PREFLIGHT.md
+A  artifacts/reassemble/audits/storage_runs/20260927T123356Z/command_results.json
+A  artifacts/reassemble/audits/storage_runs/20260927T123356Z/official_metadata.json
+A  artifacts/reassemble/audits/storage_runs/20260927T123356Z/output_manifest.json
+A  artifacts/reassemble/audits/storage_runs/20260927T123356Z/provenance.json
+A  artifacts/reassemble/audits/storage_runs/20260927T123356Z/search_and_locations.json
+A  artifacts/reassemble/audits/triage_runs/20260927T124429Z/STORAGE_TRIAGE.md
+A  artifacts/reassemble/audits/triage_runs/20260927T124429Z/command_results.json
+A  artifacts/reassemble/audits/triage_runs/20260927T124429Z/duplicate_evidence.json
+A  artifacts/reassemble/audits/triage_runs/20260927T124429Z/git_objects.json
+A  artifacts/reassemble/audits/triage_runs/20260927T124429Z/large_subdirectories.json
+A  artifacts/reassemble/audits/triage_runs/20260927T124429Z/output_manifest.json
+A  artifacts/reassemble/audits/triage_runs/20260927T124429Z/provenance.json
+A  artifacts/reassemble/audits/triage_runs/20260927T124429Z/storage_summary.json
+A  artifacts/reassemble/audits/triage_runs/20260927T124429Z/volumes.json
+A  configs/intel_welding/foundations.json
+A  docs/intel_welding/FOUNDATION_PROTOCOL_ADDENDUM.md
+AM docs/intel_welding/FOUNDATION_RUNBOOK.md
+A  docs/intel_welding/RESULTS_REVIEW.md
+A  docs/intel_welding/context_baseline_specification.md
+ M docs/phm2026/RAW_DATA_RECOVERY.md
+A  docs/reassemble/ADDITIONAL_IMPROVEMENTS_EXECUTION_PROMPT.md
+ M download.py
+A  runs/reassemble/20260927T134437Z/acquisition.json
+A  runs/reassemble/20260927T134437Z/acquisition_progress.json
+A  runs/reassemble/20260927T134437Z/archive_inventory.json
+A  runs/reassemble/20260927T134437Z/config.json
+A  runs/reassemble/20260927T134437Z/environment.json
+A  runs/reassemble/20260927T134437Z/official_record.json
+A  runs/reassemble/20260927T134437Z/official_record_download.json
+A  runs/reassemble/20260927T134437Z/upstream_reference.json
+A  runs/reassemble/20260927T141645Z-inventory/reports_v2/PHASE_A_B_GATE_REPORT.md
+A  runs/reassemble/20260927T141645Z-inventory/reports_v2/gates.json
+A  runs/reassemble/20260927T141645Z-inventory/reports_v2/inventory.md
+A  runs/reassemble/20260927T141645Z-inventory/reports_v2/known_issues.json
+A  runs/reassemble/20260927T141645Z-inventory/reports_v2/label_audit.md
+A  runs/reassemble/20260927T141645Z-inventory/reports_v2/leakage_audit.json
+A  runs/reassemble/20260927T141645Z-inventory/reports_v2/modality_selection.json
+A  runs/reassemble/20260927T141645Z-inventory/reports_v2/nested_splits.json
+A  runs/reassemble/20260927T141645Z-inventory/reports_v2/storage_actual.md
+A  runs/reassemble/20260927T154732Z-section1/previous_continuation.md
+AM runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/frozen_prefix_cache_attempt0.json
+A  runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/recover_original_branches_attempt0.json
+A  runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/strict_sensor_hybrid_attempt0.json
+A  runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/learning_curves.pdf
+A  runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/learning_curves.png
+MM runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/status.json
+A  runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/learning_curves.pdf
+A  runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/learning_curves.png
+MM runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/status.json
+MM runs/reassemble/additional_improvements_executed/20260928T000346Z/04_corruption_training/status.json
+MM runs/reassemble/additional_improvements_executed/20260928T000346Z/reports/CONTINUATION.md
+ M runs/reassemble/additional_improvements_executed/20260928T000346Z/reports/EXECUTION_QUEUE.md
+MM runs/reassemble/additional_improvements_executed/20260928T000346Z/status.json
+AM runs/reassemble/additional_improvements_executed/20260928T000346Z/supervisor_state.json
+A  scripts/intel_welding/01_inventory.py
+A  scripts/intel_welding/02_label_audit.py
+A  scripts/intel_welding/03_make_split.py
+A  scripts/intel_welding/04_foundations.py
+A  scripts/intel_welding/05_foundation_report.py
+ M scripts/paderborn/common.py
+RM scripts/dataset/audit_alignment.py -> scripts/phm2026/dataset/audit_alignment.py
+RM scripts/dataset/describe_dataset.py -> scripts/phm2026/dataset/describe_dataset.py
+RM scripts/dataset/generate_dataset_evidence.py -> scripts/phm2026/dataset/generate_dataset_evidence.py
+RM scripts/dataset/profile_dataset.py -> scripts/phm2026/dataset/profile_dataset.py
+RM scripts/dataset/profile_images.py -> scripts/phm2026/dataset/profile_images.py
+RM scripts/dataset/profile_sensors.py -> scripts/phm2026/dataset/profile_sensors.py
+RM scripts/features/build_model_dataset.py -> scripts/phm2026/features/build_model_dataset.py
+RM scripts/features/build_sensor_features.py -> scripts/phm2026/features/build_sensor_features.py
+RM scripts/results/analyze_photometrics.py -> scripts/phm2026/results/analyze_photometrics.py
+RM scripts/results/analyze_teacher_identity.py -> scripts/phm2026/results/analyze_teacher_identity.py
+R  scripts/results/anomalydino_sweep.py -> scripts/phm2026/results/anomalydino_sweep.py
+RM scripts/results/anomalydino_validated.py -> scripts/phm2026/results/anomalydino_validated.py
+RM scripts/results/closing_task_c.py -> scripts/phm2026/results/closing_task_c.py
+RM scripts/results/closing_task_c3_retest.py -> scripts/phm2026/results/closing_task_c3_retest.py
+RM scripts/results/closing_tasks_a_b.py -> scripts/phm2026/results/closing_tasks_a_b.py
+RM scripts/results/diagnose_signal_and_monotonicity.py -> scripts/phm2026/results/diagnose_signal_and_monotonicity.py
+RM scripts/results/evaluate_naive_baselines.py -> scripts/phm2026/results/evaluate_naive_baselines.py
+RM scripts/results/generate_patchtst_results.py -> scripts/phm2026/results/generate_patchtst_results.py
+RM scripts/results/generate_rtdetr_r4_results.py -> scripts/phm2026/results/generate_rtdetr_r4_results.py
+RM scripts/results/generate_rtdetr_results.py -> scripts/phm2026/results/generate_rtdetr_results.py
+RM scripts/results/loeo_evaluation.py -> scripts/phm2026/results/loeo_evaluation.py
+RM scripts/results/monotonic_null_test.py -> scripts/phm2026/results/monotonic_null_test.py
+RM scripts/results/rescore_monotonic.py -> scripts/phm2026/results/rescore_monotonic.py
+RM scripts/results/sq2_sq3_fusion.py -> scripts/phm2026/results/sq2_sq3_fusion.py
+RM scripts/results/verify_target_constants.py -> scripts/phm2026/results/verify_target_constants.py
+RM scripts/targets/analyze_tooth_profiles.py -> scripts/phm2026/targets/analyze_tooth_profiles.py
+RM scripts/targets/audit_target.py -> scripts/phm2026/targets/audit_target.py
+RM scripts/targets/build_rtdetr_pseudo_boxes.py -> scripts/phm2026/targets/build_rtdetr_pseudo_boxes.py
+RM scripts/targets/derive_image_targets.py -> scripts/phm2026/targets/derive_image_targets.py
+R  scripts/targets/ingest_blind_inspection.py -> scripts/phm2026/targets/ingest_blind_inspection.py
+R  scripts/targets/package_blind_inspection.py -> scripts/phm2026/targets/package_blind_inspection.py
+RM scripts/targets/prepare_blind_inspection.py -> scripts/phm2026/targets/prepare_blind_inspection.py
+R  scripts/targets/score_blind_inspection.py -> scripts/phm2026/targets/score_blind_inspection.py
+RM scripts/training/run_rtdetr_feasibility.py -> scripts/phm2026/training/run_rtdetr_feasibility.py
+RM scripts/training/train_late_fusion.py -> scripts/phm2026/training/train_late_fusion.py
+RM scripts/training/train_patchtst.py -> scripts/phm2026/training/train_patchtst.py
+RM scripts/training/train_rtdetr_detector.py -> scripts/phm2026/training/train_rtdetr_detector.py
+RM scripts/training/train_rtdetr_multitask.py -> scripts/phm2026/training/train_rtdetr_multitask.py
+RM scripts/training/train_rtdetr_regression.py -> scripts/phm2026/training/train_rtdetr_regression.py
+ M scripts/presentation/generate_professor_presentation.py
+ M scripts/rawvib/l1_screen.py
+R  src/pi_multimodal_ad/__init__.py -> src/phm2026/__init__.py
+R  src/pi_multimodal_ad/acquisition/__init__.py -> src/phm2026/acquisition/__init__.py
+RM src/pi_multimodal_ad/acquisition/phm_download.py -> src/phm2026/acquisition/phm_download.py
+RM src/pi_multimodal_ad/cli.py -> src/phm2026/cli.py
+R  src/pi_multimodal_ad/data_contracts/__init__.py -> src/phm2026/data_contracts/__init__.py
+R  src/pi_multimodal_ad/data_contracts/identifiers.py -> src/phm2026/data_contracts/identifiers.py
+R  src/pi_multimodal_ad/data_contracts/records.py -> src/phm2026/data_contracts/records.py
+R  src/pi_multimodal_ad/data_contracts/validation.py -> src/phm2026/data_contracts/validation.py
+R  src/pi_multimodal_ad/datasets/__init__.py -> src/phm2026/datasets/__init__.py
+R  src/pi_multimodal_ad/datasets/base.py -> src/phm2026/datasets/base.py
+R  src/pi_multimodal_ad/datasets/phm2026.py -> src/phm2026/datasets/phm2026.py
+R  src/pi_multimodal_ad/evaluation/__init__.py -> src/phm2026/evaluation/__init__.py
+R  src/pi_multimodal_ad/evaluation/monotonic.py -> src/phm2026/evaluation/monotonic.py
+R  src/pi_multimodal_ad/evaluation/regression.py -> src/phm2026/evaluation/regression.py
+R  src/pi_multimodal_ad/evaluation/sensor_regression.py -> src/phm2026/evaluation/sensor_regression.py
+R  src/pi_multimodal_ad/features/__init__.py -> src/phm2026/features/__init__.py
+R  src/pi_multimodal_ad/features/sensor_feature_run.py -> src/phm2026/features/sensor_feature_run.py
+R  src/pi_multimodal_ad/features/sensor_minutes.py -> src/phm2026/features/sensor_minutes.py
+RM src/pi_multimodal_ad/models/late_fusion.py -> src/phm2026/fusion/late_fusion.py
+RM src/pi_multimodal_ad/models/modality_fusion.py -> src/phm2026/fusion/modality_fusion.py
+RM src/pi_multimodal_ad/models/__init__.py -> src/phm2026/models/__init__.py
+R  src/pi_multimodal_ad/models/patchtst.py -> src/phm2026/models/patchtst/model.py
+RM src/pi_multimodal_ad/models/patchtst_regression.py -> src/phm2026/models/patchtst/regression.py
+RM src/pi_multimodal_ad/models/rtdetr_detection.py -> src/phm2026/models/rtdetr/detection.py
+RM src/pi_multimodal_ad/models/rtdetr_feasibility.py -> src/phm2026/models/rtdetr/feasibility.py
+R  src/pi_multimodal_ad/models/rtdetr_multitask.py -> src/phm2026/models/rtdetr/multitask.py
+RM src/pi_multimodal_ad/models/rtdetr_regression.py -> src/phm2026/models/rtdetr/regression.py
+R  src/pi_multimodal_ad/preprocessing/__init__.py -> src/phm2026/preprocessing/__init__.py
+R  src/pi_multimodal_ad/preprocessing/timeseries.py -> src/phm2026/preprocessing/timeseries.py
+R  src/pi_multimodal_ad/profiling/__init__.py -> src/phm2026/profiling/__init__.py
+R  src/pi_multimodal_ad/profiling/alignment.py -> src/phm2026/profiling/alignment.py
+R  src/pi_multimodal_ad/profiling/alignment_artifacts.py -> src/phm2026/profiling/alignment_artifacts.py
+R  src/pi_multimodal_ad/profiling/alignment_pipeline.py -> src/phm2026/profiling/alignment_pipeline.py
+R  src/pi_multimodal_ad/profiling/archive_io.py -> src/phm2026/profiling/archive_io.py
+R  src/pi_multimodal_ad/profiling/assets.py -> src/phm2026/profiling/assets.py
+R  src/pi_multimodal_ad/profiling/dataset_description.py -> src/phm2026/profiling/dataset_description.py
+R  src/pi_multimodal_ad/profiling/images.py -> src/phm2026/profiling/images.py
+R  src/pi_multimodal_ad/profiling/sensors.py -> src/phm2026/profiling/sensors.py
+R  src/pi_multimodal_ad/reporting/__init__.py -> src/phm2026/reporting/__init__.py
+R  src/pi_multimodal_ad/reporting/common.py -> src/phm2026/reporting/common.py
+R  src/pi_multimodal_ad/reporting/dataset_evidence.py -> src/phm2026/reporting/dataset_evidence.py
+R  src/pi_multimodal_ad/reporting/patchtst_results.py -> src/phm2026/reporting/patchtst_results.py
+R  src/pi_multimodal_ad/reporting/target_audit.py -> src/phm2026/reporting/target_audit.py
+R  src/pi_multimodal_ad/targets/__init__.py -> src/phm2026/targets/__init__.py
+R  src/pi_multimodal_ad/targets/image_damage.py -> src/phm2026/targets/image_damage.py
+R  src/pi_multimodal_ad/targets/model_dataset.py -> src/phm2026/targets/model_dataset.py
+R  src/pi_multimodal_ad/targets/pseudo_boxes.py -> src/phm2026/targets/pseudo_boxes.py
+R  src/pi_multimodal_ad/utils/__init__.py -> src/phm2026/utils/__init__.py
+R  src/pi_multimodal_ad/utils/artifacts.py -> src/phm2026/utils/artifacts.py
+RM src/pi_multimodal_ad/utils/config.py -> src/phm2026/utils/config.py
+R  src/pi_multimodal_ad/utils/provenance.py -> src/phm2026/utils/provenance.py
+R  src/pi_multimodal_ad/utils/seeding.py -> src/phm2026/utils/seeding.py
+R  src/pi_multimodal_ad/utils/splitting.py -> src/phm2026/utils/splitting.py
+ M src/reassemble/additional_improvements/finetune.py
+ M src/reassemble/additional_improvements/fit_summaries.py
+ M src/reassemble/additional_improvements/hybrid.py
+ M src/reassemble/additional_improvements/unimodal_report.py
+A  tests/intel_welding/test_intel_foundations.py
+R  tests/unit/test_ops_scripts.py -> tests/ops/test_ops_scripts.py
+R  tests/unit/conftest.py -> tests/phm2026/conftest.py
+RM tests/unit/test_alignment.py -> tests/phm2026/test_alignment.py
+RM tests/unit/test_alignment_pipeline.py -> tests/phm2026/test_alignment_pipeline.py
+RM tests/unit/test_archive_io.py -> tests/phm2026/test_archive_io.py
+RM tests/unit/test_asset_inventory.py -> tests/phm2026/test_asset_inventory.py
+RM tests/unit/test_data_contracts.py -> tests/phm2026/test_data_contracts.py
+RM tests/unit/test_dataset_description.py -> tests/phm2026/test_dataset_description.py
+RM tests/unit/test_image_damage_target.py -> tests/phm2026/test_image_damage_target.py
+RM tests/unit/test_image_profile.py -> tests/phm2026/test_image_profile.py
+RM tests/unit/test_late_fusion.py -> tests/phm2026/test_late_fusion.py
+RM tests/unit/test_meeting_evidence.py -> tests/phm2026/test_meeting_evidence.py
+RM tests/unit/test_model_dataset.py -> tests/phm2026/test_model_dataset.py
+RM tests/unit/test_monotonic.py -> tests/phm2026/test_monotonic.py
+RM tests/unit/test_patchtst.py -> tests/phm2026/test_patchtst.py
+RM tests/unit/test_phm2026_adapter.py -> tests/phm2026/test_phm2026_adapter.py
+RM tests/unit/test_phm_download.py -> tests/phm2026/test_phm_download.py
+RM tests/unit/test_pinned_artifacts.py -> tests/phm2026/test_pinned_artifacts.py
+RM tests/unit/test_pseudo_boxes.py -> tests/phm2026/test_pseudo_boxes.py
+RM tests/unit/test_regression_evaluation.py -> tests/phm2026/test_regression_evaluation.py
+RM tests/unit/test_rtdetr_detection.py -> tests/phm2026/test_rtdetr_detection.py
+RM tests/unit/test_rtdetr_feasibility.py -> tests/phm2026/test_rtdetr_feasibility.py
+RM tests/unit/test_rtdetr_multitask.py -> tests/phm2026/test_rtdetr_multitask.py
+RM tests/unit/test_rtdetr_regression.py -> tests/phm2026/test_rtdetr_regression.py
+RM tests/unit/test_run_infrastructure.py -> tests/phm2026/test_run_infrastructure.py
+RM tests/unit/test_sensor_minute_features.py -> tests/phm2026/test_sensor_minute_features.py
+RM tests/unit/test_sensor_profile.py -> tests/phm2026/test_sensor_profile.py
+RM tests/unit/test_sensor_regression_evaluation.py -> tests/phm2026/test_sensor_regression_evaluation.py
+RM tests/unit/test_target_audit.py -> tests/phm2026/test_target_audit.py
+RM tests/unit/test_target_definition_v3.py -> tests/phm2026/test_target_definition_v3.py
+RM tests/unit/test_timeseries_preprocessing.py -> tests/phm2026/test_timeseries_preprocessing.py
+ M tutorials/final_baseline_rtdetr/scripts/phase4_01_threshold_and_geometry.py
+ M tutorials/final_baseline_rtdetr/scripts/phase4_02_calibration_and_slicing.py
+ M tutorials/final_baseline_rtdetr/scripts/phase4_03_error_taxonomy.py
+ M tutorials/patchtst_freq_baseline/features.py
+ M tutorials/patchtst_freq_baseline/model.py
+ M tutorials/patchtst_freq_baseline/reader.py
+ M tutorials/patchtst_freq_baseline/train.py
+ M tutorials/rtdetr_storybook/README.md
+ M tutorials/rtdetr_storybook/make_raw_demo_dataset.py
+ M tutorials/rtdetr_storybook/rtdetr_storybook.py
+?? artifacts/phm2026/downloads/20261005T130258188699Z-a8b31e9c.json
+?? artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_EXECUTED_HANDOFF.md
+?? artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md
+?? artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_STORYLINE_ADDENDUM.md
+?? artifacts/reassemble/reports/BOUNDARY_AWARE_VISUAL_POOLING_HANDOFF.md
+?? artifacts/reassemble/reports/BOUNDARY_AWARE_VISUAL_STATUS.md
+?? artifacts/reassemble/reports/BOUNDARY_AWARE_VISUAL_STORYLINE_ADDENDUM.md
+?? artifacts/reassemble/reports/EXECUTION_QUEUE.md
+?? artifacts/thesis/EXPOSE_COMPLIANCE_SUMMARY.json
+?? artifacts/thesis/FINAL_REPRODUCIBILITY_AUDIT.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/AUDIT_PROTOCOL.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/CORRECTIONS.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/EXECUTION_PROMPT.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_config.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/scripts/thesis/final_validity_audit/__init__.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/scripts/thesis/final_validity_audit/common.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/scripts/thesis/final_validity_audit/diagnostics.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/scripts/thesis/final_validity_audit/finalize.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/scripts/thesis/final_validity_audit/human_review.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/scripts/thesis/final_validity_audit/metrics.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/scripts/thesis/final_validity_audit/numerical.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/scripts/thesis/final_validity_audit/overlap_followup.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/scripts/thesis/final_validity_audit/scope_boundary.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/scripts/thesis/final_validity_audit/seal.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/tests/thesis/final_validity_audit/test_diagnostics.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/tests/thesis/final_validity_audit/test_human_review.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/audit_source/tests/thesis/final_validity_audit/test_metrics_identity.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/check_registry.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/environment.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/preflight.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/protocol_freeze.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/script_revisions/annotation_overlap_followup.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/script_revisions/diagnostics_before_fitting.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/script_revisions/final_manifest_seal.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/script_revisions/final_synthesis.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/script_revisions/human_preparation_before_sample.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/script_revisions/numerical_before_results.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/script_revisions/scope_before_trace.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/sealed_source_validation.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/00_protocol/source_manifest.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/01_independent_result_check/01_INDEPENDENT_RESULT_CHECK.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/01_independent_result_check/complete_loss_invariants.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/01_independent_result_check/discrepancies.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/01_independent_result_check/fitting_scope_checks.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/01_independent_result_check/fitting_scope_trace.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/01_independent_result_check/identity_checks.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/01_independent_result_check/numerical_status.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/02_task_and_shortcut_audit/02_TASK_AND_SHORTCUT_AUDIT.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/02_task_and_shortcut_audit/ANNOTATION_ADJUDICATION_REQUEST.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/02_task_and_shortcut_audit/BOUNDARY_FINDINGS.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/02_task_and_shortcut_audit/DIAGNOSTIC_RESULTS.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/02_task_and_shortcut_audit/boundary_checks.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/02_task_and_shortcut_audit/diagnostic_fitting_scope.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/02_task_and_shortcut_audit/overlap_followup.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/02_task_and_shortcut_audit/primary_overlap_identity_check.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/03_sensitivity_and_operating_points/03_SENSITIVITY_AND_OPERATING_POINTS.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/03_sensitivity_and_operating_points/paired_sensitivity.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/04_human_review/HUMAN_REVIEW_STATUS.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/04_human_review/REVIEWER_INSTRUCTIONS.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/04_human_review/review_export_manifest.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/04_human_review/submissions/2026-09-29T151804.919866_0000_8bd29f60/ADJUDICATION_REQUEST.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/04_human_review/submissions/2026-09-29T151804.919866_0000_8bd29f60/HUMAN_REVIEW_RECEIPT.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/04_human_review/submissions/2026-09-29T151804.919866_0000_8bd29f60/RECEIPT_VALIDATION.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/04_human_review/submissions/2026-09-29T151804.919866_0000_8bd29f60/analysis.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/04_human_review/submissions/2026-09-29T151804.919866_0000_8bd29f60/receipt_checker.py
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/04_human_review/submissions/2026-09-29T151804.919866_0000_8bd29f60/submission_output_manifest.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/05_final_review/AUDIT_STATUS.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/05_final_review/FINAL_VALIDITY_AUDIT_HANDOFF.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/05_final_review/VALIDITY_STORYLINE_ADDENDUM.md
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/05_final_review/check_registry_results.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/05_final_review/manifest_validation.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/05_final_review/output_manifest.initial.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/05_final_review/output_manifest.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/05_final_review/validation.json
+?? artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/CONTINUATION.md
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/REVIEWER_INSTRUCTIONS.md
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/START_HERE.md
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R002f00189cf94033.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R00cd46decf81ab83.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R04cb296fff980df5.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R06d6fea4bf934e49.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R0e8c33404fe45512.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R0f33e74498a53548.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R0f7162928d83c68c.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R11c25c4b78d92e15.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R148f01f8e1c2794b.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R158c1fc864ed3fcd.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R16036f721bbdcea2.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R1816bc870686e3c8.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R193863f1b522ec34.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R1dbae5365de0a959.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R2136d9c67056e704.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R2a2d608b26febf06.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R2beb25fdca623900.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R32d5696faeb931fa.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R33079e536c8dad6d.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R35b38dad44ef0ada.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R39449b3fccb7797b.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R3bade6c828625f95.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R42d66a5216d26a6a.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R48acb5422568d792.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R4b9bef4ef9c20fec.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R4fa504a7210bffad.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R5107ba011a7c2177.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R5b8a761a75321126.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R60d53048f92d168a.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R629f7b65e8e4c95d.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R6f9644cb126bd53a.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R71afb3b1b88867b3.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R7295841afb1447a3.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R763887c1aacc45b8.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R7c8889c269bf0817.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R7edfb2f1de483946.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R92672520499cdf83.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/R9b3d0711e0c90071.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Ra4f232e4c9d85070.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Ra64038093264525d.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Radbd99b1392eac49.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rafb561c64b5bb94b.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rafe88f613145a9c2.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Raffb58089bc6e311.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rb294299a3cdb7d30.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rb2df304695778daf.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rb73b7f52a306520a.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rb8360616d842bde4.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rb868b9930667d051.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rbac2cc679f02a938.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rcdce5c44c90ddee5.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rcea0f86be64ef849.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rd123528026d42f41.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rd2407c84f3eaf8a7.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rd9c44ea6d862d3ab.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Re249748340afbd4f.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Re567ebe46c3106ef.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Re9bad0ae7a60b6a5.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rea01b2388662f25c.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rea60874825760372.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rf100dffc9e9a2830.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rf80f2e8e94e5a652.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rfa37ade536130303.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/clips/Rfbef6a0f5dac0cd6.webm
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/interface_validation.json
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/manifest.json
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/review_A.html
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/review_B.html
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/source/build.py
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z/source/review.html
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z_HANDOFF.md
+?? artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z_validation.json
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/02_ingestion_and_pending_adjudication/ADJUDICATION_REQUEST.md
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/02_ingestion_and_pending_adjudication/HUMAN_REVIEW_RECEIPT.md
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/02_ingestion_and_pending_adjudication/RECEIPT_VALIDATION.json
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/02_ingestion_and_pending_adjudication/analysis.json
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/02_ingestion_and_pending_adjudication/receipt_checker.py
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/02_ingestion_and_pending_adjudication/submission_output_manifest.json
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/03_available_storyline_documents/FINAL_CLAIM_MATRIX.md
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/03_available_storyline_documents/ORIGINAL_DOCUMENT_SEARCH.json
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/03_available_storyline_documents/THESIS_STORYLINE_ADDENDUM.md
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/03_available_storyline_documents/VALIDITY_STORYLINE_ADDENDUM.md
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/04_exploratory_status_snapshot/02_PATCHTST_BUDGET_RESULTS.md
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/04_exploratory_status_snapshot/03_STATIC_ANCHORED_ADAPTATION_RESULTS.md
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/04_exploratory_status_snapshot/CURRENT_EXECUTION.md
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/04_exploratory_status_snapshot/status.json
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/README.md
+?? artifacts/thesis/REVIEW_RESULTS_BUNDLE/20260929T152809Z/bundle_manifest.json
+?? artifacts/thesis/documentation_build_config.json
+?? docs/REPOSITORY_FOLDER_STRUCTURE_20260929T135756Z.md
+?? docs/reassemble/DAILY_RESET_RECOVERY_PLAN_20260928.md
+?? docs/repository_restructure/.gitignore
+?? docs/repository_restructure/COMPATIBILITY_CONTINUATION.md
+?? docs/repository_restructure/COMPATIBILITY_CONTRACT.md
+?? docs/repository_restructure/COMPATIBILITY_VALIDATION.md
+?? docs/repository_restructure/CONTINUATION.md
+?? docs/repository_restructure/CORRECTIONS.md
+?? docs/repository_restructure/FINAL_STRUCTURE.md
+?? docs/repository_restructure/MIGRATION_PLAN.md
+?? docs/repository_restructure/VALIDATION_REPORT.md
+?? docs/repository_restructure/ast_equivalence.json
+?? docs/repository_restructure/cli_checks.json
+?? docs/repository_restructure/compatibility_matrix.csv
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/CONTINUATION.md
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_dataset_audit_alignment.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_dataset_describe_dataset.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_dataset_generate_dataset_evidence.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_dataset_profile_dataset.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_dataset_profile_images.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_dataset_profile_sensors.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_features_build_model_dataset.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_features_build_sensor_features.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_analyze_photometrics.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_analyze_teacher_identity.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_anomalydino_sweep.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_anomalydino_validated.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_closing_task_c.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_closing_task_c3_retest.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_closing_tasks_a_b.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_diagnose_signal_and_monotonicity.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_evaluate_naive_baselines.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_generate_patchtst_results.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_generate_rtdetr_r4_results.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_generate_rtdetr_results.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_loeo_evaluation.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_monotonic_null_test.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_rescore_monotonic.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_sq2_sq3_fusion.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_results_verify_target_constants.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_targets_analyze_tooth_profiles.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_targets_audit_target.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_targets_build_rtdetr_pseudo_boxes.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_targets_derive_image_targets.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_targets_ingest_blind_inspection.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_targets_package_blind_inspection.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_targets_prepare_blind_inspection.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_targets_score_blind_inspection.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_training_run_rtdetr_feasibility.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_training_train_late_fusion.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_training_train_patchtst.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_training_train_rtdetr_detector.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_training_train_rtdetr_multitask.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_results/scripts_training_train_rtdetr_regression.py.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/cli_summary.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/command_manifest.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/compile_check.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/configuration_snapshot.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/creation_record.py
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/dependency_preservation_check.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/editable_installation_files.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/final_git_cached_diff_stat.txt
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/final_git_diff_stat.txt
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/final_git_status.txt
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/git_preservation_check.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/global_git_check_summary.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/input_manifest.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/interfaces.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/matrix_summary.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/output_manifest.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/preservation_check.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/preservation_checker_record.py
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/provenance.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/source_change_check.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/static_audit_record.py
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/static_path_execution_serialization_audit.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/status.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/task_checks.json
+?? docs/repository_restructure/compatibility_runs/20261006T182404Z/task_manifest.json
+?? docs/repository_restructure/current_source_identities.json
+?? docs/repository_restructure/edits.jsonl
+?? docs/repository_restructure/final_git_diff_stat.txt
+?? docs/repository_restructure/final_git_status.txt
+?? docs/repository_restructure/final_staged_diff_stat.txt
+?? docs/repository_restructure/git_checks.json
+?? docs/repository_restructure/import_compile_check.json
+?? docs/repository_restructure/legacy_reference_audit.csv
+?? docs/repository_restructure/migration_commands.py
+?? docs/repository_restructure/moves.jsonl
+?? docs/repository_restructure/output_manifest.json
+?? docs/repository_restructure/path_mapping.csv
+?? docs/repository_restructure/preservation_check.json
+?? docs/repository_restructure/provenance.json
+?? docs/repository_restructure/reference_audit_scope.json
+?? docs/repository_restructure/software_versions.json
+?? docs/repository_restructure/source_changes.json
+?? docs/repository_restructure/unchanged_domain_and_config_check.json
+?? docs/repository_restructure/validate_migration.py
+?? docs/repository_restructure/validation_summary.json
+?? docs/thesis/DOCUMENTATION_CONTINUATION.md
+?? docs/thesis/EXPOSE_TO_FINAL_THESIS_MATRIX.md
+?? docs/thesis/FINAL_CLAIM_MATRIX.md
+?? docs/thesis/FINAL_THESIS_REPRODUCIBILITY.md
+?? docs/thesis/FINAL_VALIDITY_AUDIT_EXECUTION_PROMPT.md
+?? pyproject.toml
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/visual_corruption_bank_attempt0.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/runtime_estimate_20260928T0234Z.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/runtime_estimate_prefix_loading.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner0_seed20260927/micro2/committed.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner0_seed20260928/micro2/committed.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner1_seed20260927/micro2/committed.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner2_seed20260927/micro2/committed.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner3_seed20260927/micro2/committed.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/refit_seed20260927/micro2/committed.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/visual_worker.lock
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/hybrid_comparison/results.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/hybrid_outer0.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/hybrid_outer1.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/hybrid_outer2.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/hybrid_outer3.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/hybrid_outer4.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/selected_S6_checkpoint_retention.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/04_corruption_training/matched_learning_curves.pdf
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/04_corruption_training/matched_learning_curves.png
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/04_corruption_training/results.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/DOCUMENT_REVIEW_CORRECTION.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/SCOPE_DECISION.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/compute_summary.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/consolidation_source.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/consolidation_source_reviewed.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/draft_preserved/ADDITIONAL_IMPROVEMENTS_EXECUTED_HANDOFF.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/draft_preserved/output_manifest.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/draft_preserved/package_manifest.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/experiment_registry.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/failed_attempts_and_corrections.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/historical_preservation.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/numerical_validation.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/output_manifest.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/package_manifest.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/preservation_before.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/provenance.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/reports/02_PATCHTST_BUDGET_RESULTS.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/reports/03_STATIC_ANCHORED_ADAPTATION_RESULTS.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/reports/04_CORRUPTION_TRAINING_RESULTS.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/reports/ADDITIONAL_IMPROVEMENTS_EXECUTED_HANDOFF.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/reports/ADDITIONAL_IMPROVEMENTS_STORYLINE_ADDENDUM.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/reports/EXECUTION_QUEUE.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/results_summary.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/validation.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/RECOVERY_NOTES.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/launch.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/preflight.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/__init__.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/anchored.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/branch_banks.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/checkpoint_retention.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/common.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/corruptions.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/finalize.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/finetune.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/fit_summaries.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/historical_robustness.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/hybrid.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/models.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/neural.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/numerical_audit.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/prefix_cache.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/reporting.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/resume_io.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/robust_fusion.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/robust_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/sensor_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/supervisor.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/task3_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/unimodal.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/unimodal_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source/visual_features.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/source_changes.diff
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T101350Z/status.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/completion_manifest.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/launch.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/preflight.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/report/02_PATCHTST_BUDGET_RESULTS.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/report/learning_curves.pdf
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/report/learning_curves.png
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/__init__.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/anchored.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/branch_banks.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/checkpoint_retention.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/common.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/corruptions.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/finalize.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/finetune.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/fit_summaries.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/historical_robustness.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/hybrid.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/models.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/neural.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/numerical_audit.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/prefix_cache.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/reporting.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/resume_io.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/robust_fusion.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/robust_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/sensor_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/supervisor.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/task3_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/unimodal.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/unimodal_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source/visual_features.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/source_changes.diff
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/sensor_task2/20260928T140922Z/status.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/CORRECTION.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/RESUMPTION_NOTES.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/launch.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/metadata_check.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/preflight.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/sensor0.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/sensor1.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/sensor2.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/sensor3.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/__init__.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/anchored.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/branch_banks.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/checkpoint_retention.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/common.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/corruption_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/corruptions.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/finalize.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/finetune.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/fit_summaries.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/historical_robustness.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/hybrid.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/models.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/neural.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/numerical_audit.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/prefix_cache.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/reporting.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/resume_io.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/robust_fusion.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/robust_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/sensor_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/supervisor.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/task3_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/training_recovery.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/unimodal.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/unimodal_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/visual_features.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/source/visual_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/status.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T174834Z/visual.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/EXTERNAL_STAGE_HANDOFF.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/RESUMPTION_NOTES.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/activation_check.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/external_visual.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/external_visual_launch.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/external_visual_source/branch_banks.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/external_visual_source/common.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/external_visual_source/corruption_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/external_visual_source/corruptions.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/external_visual_source/task4_external.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/launch.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/preflight.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/sensor0.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/sensor1.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/sensor2.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/sensor3.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/__init__.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/anchored.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/branch_banks.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/checkpoint_retention.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/common.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/corruption_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/corruptions.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/finalize.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/finetune.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/fit_summaries.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/historical_robustness.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/hybrid.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/models.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/neural.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/numerical_audit.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/prefix_cache.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/reporting.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/resume_io.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/robust_fusion.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/robust_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/sensor_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/supervisor.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/task3_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/task4_external.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/training_recovery.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/unimodal.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/unimodal_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/visual_features.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/source/visual_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/status.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260928T175233Z/visual.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/completion_manifest.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/fusion.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/launch.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/preflight.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/references.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/report.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/score.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/sensor0.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/sensor1.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/sensor2.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/sensor3.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/__init__.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/anchored.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/branch_banks.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/checkpoint_retention.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/common.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/corruption_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/corruptions.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/finalize.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/finetune.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/fit_summaries.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/historical_robustness.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/hybrid.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/models.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/neural.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/numerical_audit.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/prefix_cache.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/reporting.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/resume_io.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/robust_fusion.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/robust_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/sensor_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/supervisor.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/task3_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/task4_external.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/training_recovery.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/unimodal.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/unimodal_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/visual_features.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/source/visual_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/status.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/task4/20260929T135624Z/visual.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/RECOVERY_AMENDMENT.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/cache_validation.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/launch.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/preflight.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/__init__.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/anchored.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/branch_banks.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/checkpoint_retention.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/common.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/corruptions.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/finalize.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/finetune.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/fit_summaries.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/historical_robustness.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/hybrid.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/models.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/neural.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/numerical_audit.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/prefix_cache.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/reporting.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/resume_io.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/robust_fusion.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/robust_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/sensor_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/supervisor.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/task3_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/training_recovery.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/unimodal.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/unimodal_report.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/visual_features.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source/visual_resume.py
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/source_changes.diff
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/recovery/visual_task1/20260928T141034Z/status.json
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/reports/04_CORRUPTION_TRAINING_RESULTS.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/reports/CURRENT_EXECUTION.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/reports/SENSOR_EXECUTION.md
+?? runs/reassemble/additional_improvements_executed/20260928T000346Z/reports/VISUAL_EXECUTION.md
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/BOUNDARY_AWARE_VISUAL_POOLING_HANDOFF.md
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/BOUNDARY_AWARE_VISUAL_STATUS.md
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/BOUNDARY_AWARE_VISUAL_STORYLINE_ADDENDUM.md
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/CONTINUATION.md
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/CORRECTIONS.md
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/REQUEST.md
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/cache_preflight.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/config.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/control_fold0_parity.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/control_fold1_parity.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/control_fold2_parity.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/control_fold3_parity.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/control_fold4_parity.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/control_parity.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/execution.lock
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/fusion/input_identities.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/fusion/results.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/launch.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/learning_curves.png
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/output_manifest.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/predictions/V0.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/predictions/V1.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/predictions/V2.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/predictions/V3.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/predictions/V4.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/predictions/V5.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/preservation_after.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/preservation_before.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/protocol.md
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/registration.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/results.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/runtime.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/prepare_boundary_visual.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/alignment.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/boundary_visual/__init__.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/boundary_visual/common.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/boundary_visual/models.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/boundary_visual/preflight.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/boundary_visual/report.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/boundary_visual/runner.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/boundary_visual/training.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/cluster_metrics.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/section1_features.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/section1_models.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/section1_report.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source/src/reassemble/section1b.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/alignment.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/boundary_visual/__init__.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/boundary_visual/common.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/boundary_visual/models.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/boundary_visual/preflight.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/boundary_visual/report.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/boundary_visual/runner.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/boundary_visual/training.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/cluster_metrics.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/section1_features.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/section1_models.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/section1_report.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_revision1/src/reassemble/section1b.py
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_signature.initial.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/source_signature.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/status.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/task4_dependency_complete.json
+?? runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual/validation_before_queue.json
+?? runs/thesis/documentation/20260928T025444Z/configuration_snapshot.json
+?? runs/thesis/documentation/20260928T025444Z/documentation_owner.json
+?? runs/thesis/documentation/20260928T025444Z/documentation_validation.json
+?? runs/thesis/documentation/20260928T025444Z/final_documentation_check.json
+?? runs/thesis/documentation/20260928T025444Z/original_document_search.json
+?? runs/thesis/documentation/20260928T025444Z/preflight.json
+?? runs/thesis/documentation/20260928T025444Z/preservation_before.json
+?? runs/thesis/documentation/20260928T025444Z/source_manifest.json
+?? runs/thesis/documentation/20260928T025444Z/user_documentation_request.txt
+?? scripts/dataset/audit_alignment.py
+?? scripts/dataset/describe_dataset.py
+?? scripts/dataset/generate_dataset_evidence.py
+?? scripts/dataset/profile_dataset.py
+?? scripts/dataset/profile_images.py
+?? scripts/dataset/profile_sensors.py
+?? scripts/features/build_model_dataset.py
+?? scripts/features/build_sensor_features.py
+?? scripts/reassemble/close_additional_improvements.py
+?? scripts/reassemble/prepare_boundary_visual.py
+?? scripts/results/analyze_photometrics.py
+?? scripts/results/analyze_teacher_identity.py
+?? scripts/results/anomalydino_sweep.py
+?? scripts/results/anomalydino_validated.py
+?? scripts/results/closing_task_c.py
+?? scripts/results/closing_task_c3_retest.py
+?? scripts/results/closing_tasks_a_b.py
+?? scripts/results/diagnose_signal_and_monotonicity.py
+?? scripts/results/evaluate_naive_baselines.py
+?? scripts/results/generate_patchtst_results.py
+?? scripts/results/generate_rtdetr_r4_results.py
+?? scripts/results/generate_rtdetr_results.py
+?? scripts/results/loeo_evaluation.py
+?? scripts/results/monotonic_null_test.py
+?? scripts/results/rescore_monotonic.py
+?? scripts/results/sq2_sq3_fusion.py
+?? scripts/results/verify_target_constants.py
+?? scripts/targets/analyze_tooth_profiles.py
+?? scripts/targets/audit_target.py
+?? scripts/targets/build_rtdetr_pseudo_boxes.py
+?? scripts/targets/derive_image_targets.py
+?? scripts/targets/ingest_blind_inspection.py
+?? scripts/targets/package_blind_inspection.py
+?? scripts/targets/prepare_blind_inspection.py
+?? scripts/targets/score_blind_inspection.py
+?? scripts/thesis/build_final_documentation.py
+?? scripts/thesis/final_validity_audit/__init__.py
+?? scripts/thesis/final_validity_audit/common.py
+?? scripts/thesis/final_validity_audit/diagnostics.py
+?? scripts/thesis/final_validity_audit/finalize.py
+?? scripts/thesis/final_validity_audit/human_review.py
+?? scripts/thesis/final_validity_audit/metrics.py
+?? scripts/thesis/final_validity_audit/numerical.py
+?? scripts/thesis/final_validity_audit/overlap_followup.py
+?? scripts/thesis/final_validity_audit/scope_boundary.py
+?? scripts/thesis/final_validity_audit/seal.py
+?? scripts/thesis/review_interface/build.py
+?? scripts/thesis/review_interface/review.html
+?? scripts/training/run_rtdetr_feasibility.py
+?? scripts/training/train_late_fusion.py
+?? scripts/training/train_patchtst.py
+?? scripts/training/train_rtdetr_detector.py
+?? scripts/training/train_rtdetr_multitask.py
+?? scripts/training/train_rtdetr_regression.py
+?? src/intel_welding/README.md
+?? src/phm2026/README.md
+?? src/phm2026/fusion/__init__.py
+?? src/phm2026/models/patchtst/__init__.py
+?? src/phm2026/models/rtdetr/__init__.py
+?? src/phm2026/repository_paths.py
+?? src/pi_multimodal_ad/README.md
+?? src/pi_multimodal_ad/__init__.py
+?? src/pi_multimodal_ad/_forward.py
+?? src/pi_multimodal_ad/_mapping.py
+?? src/pi_multimodal_ad/acquisition/__init__.py
+?? src/pi_multimodal_ad/acquisition/phm_download.py
+?? src/pi_multimodal_ad/cli.py
+?? src/pi_multimodal_ad/data_contracts/__init__.py
+?? src/pi_multimodal_ad/data_contracts/identifiers.py
+?? src/pi_multimodal_ad/data_contracts/records.py
+?? src/pi_multimodal_ad/data_contracts/validation.py
+?? src/pi_multimodal_ad/datasets/__init__.py
+?? src/pi_multimodal_ad/datasets/base.py
+?? src/pi_multimodal_ad/datasets/phm2026.py
+?? src/pi_multimodal_ad/evaluation/__init__.py
+?? src/pi_multimodal_ad/evaluation/monotonic.py
+?? src/pi_multimodal_ad/evaluation/regression.py
+?? src/pi_multimodal_ad/evaluation/sensor_regression.py
+?? src/pi_multimodal_ad/features/__init__.py
+?? src/pi_multimodal_ad/features/sensor_feature_run.py
+?? src/pi_multimodal_ad/features/sensor_minutes.py
+?? src/pi_multimodal_ad/models/__init__.py
+?? src/pi_multimodal_ad/models/late_fusion.py
+?? src/pi_multimodal_ad/models/modality_fusion.py
+?? src/pi_multimodal_ad/models/patchtst.py
+?? src/pi_multimodal_ad/models/patchtst_regression.py
+?? src/pi_multimodal_ad/models/rtdetr_detection.py
+?? src/pi_multimodal_ad/models/rtdetr_feasibility.py
+?? src/pi_multimodal_ad/models/rtdetr_multitask.py
+?? src/pi_multimodal_ad/models/rtdetr_regression.py
+?? src/pi_multimodal_ad/preprocessing/__init__.py
+?? src/pi_multimodal_ad/preprocessing/timeseries.py
+?? src/pi_multimodal_ad/profiling/__init__.py
+?? src/pi_multimodal_ad/profiling/alignment.py
+?? src/pi_multimodal_ad/profiling/alignment_artifacts.py
+?? src/pi_multimodal_ad/profiling/alignment_pipeline.py
+?? src/pi_multimodal_ad/profiling/archive_io.py
+?? src/pi_multimodal_ad/profiling/assets.py
+?? src/pi_multimodal_ad/profiling/dataset_description.py
+?? src/pi_multimodal_ad/profiling/images.py
+?? src/pi_multimodal_ad/profiling/sensors.py
+?? src/pi_multimodal_ad/reporting/__init__.py
+?? src/pi_multimodal_ad/reporting/common.py
+?? src/pi_multimodal_ad/reporting/dataset_evidence.py
+?? src/pi_multimodal_ad/reporting/patchtst_results.py
+?? src/pi_multimodal_ad/reporting/target_audit.py
+?? src/pi_multimodal_ad/targets/__init__.py
+?? src/pi_multimodal_ad/targets/image_damage.py
+?? src/pi_multimodal_ad/targets/model_dataset.py
+?? src/pi_multimodal_ad/targets/pseudo_boxes.py
+?? src/pi_multimodal_ad/utils/__init__.py
+?? src/pi_multimodal_ad/utils/artifacts.py
+?? src/pi_multimodal_ad/utils/config.py
+?? src/pi_multimodal_ad/utils/provenance.py
+?? src/pi_multimodal_ad/utils/seeding.py
+?? src/pi_multimodal_ad/utils/splitting.py
+?? src/reassemble/additional_improvements/corruption_resume.py
+?? src/reassemble/additional_improvements/resume_io.py
+?? src/reassemble/additional_improvements/sensor_resume.py
+?? src/reassemble/additional_improvements/task4_external.py
+?? src/reassemble/additional_improvements/training_recovery.py
+?? src/reassemble/additional_improvements/visual_resume.py
+?? src/reassemble/boundary_visual/__init__.py
+?? src/reassemble/boundary_visual/common.py
+?? src/reassemble/boundary_visual/models.py
+?? src/reassemble/boundary_visual/preflight.py
+?? src/reassemble/boundary_visual/report.py
+?? src/reassemble/boundary_visual/runner.py
+?? src/reassemble/boundary_visual/training.py
+?? src/shared/README.md
+?? tests/compatibility/test_cli.py
+?? tests/compatibility/test_interfaces.py
+?? tests/compatibility/test_paths.py
+?? tests/reassemble/additional_improvements/test_corruption_resume.py
+?? tests/reassemble/additional_improvements/test_resume.py
+?? tests/reassemble/additional_improvements/test_training_recovery.py
+?? tests/reassemble/boundary_visual/test_protocol.py
+?? tests/thesis/final_validity_audit/test_diagnostics.py
+?? tests/thesis/final_validity_audit/test_human_review.py
+?? tests/thesis/final_validity_audit/test_metrics_identity.py

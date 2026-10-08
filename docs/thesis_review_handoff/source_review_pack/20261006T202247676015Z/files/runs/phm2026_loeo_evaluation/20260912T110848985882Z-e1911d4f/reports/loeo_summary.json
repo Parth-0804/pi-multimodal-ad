@@ -1,0 +1,87 @@
+{
+  "bootstrap": {
+    "draws": 10000,
+    "kind": "clustered by run"
+  },
+  "caveats": [
+    "rtdetr_r4_image_NOT_loeo was trained on EXP-B and is not a LOEO row; it has no EXP-B predictions at all and covers only EXP-A and EXP-F."
+  ],
+  "folds": {
+    "EXP-A": {
+      "train": "EXP-F",
+      "validate": "EXP-B"
+    },
+    "EXP-B": {
+      "train": "EXP-F",
+      "validate": "EXP-A"
+    },
+    "EXP-F": {
+      "train": "EXP-B",
+      "validate": "EXP-A"
+    }
+  },
+  "frozen_hyperparameters": {
+    "batch_size": 4,
+    "learning_rate": 0.001,
+    "max_epochs": 80,
+    "patience": 10,
+    "weight_decay": 0.0001
+  },
+  "paired_deltas_vs_constant": {
+    "fused_all_three": {
+      "ci95_high": 0.22776872733970052,
+      "ci95_low": -0.19618942966580705,
+      "excludes_zero": false,
+      "mean_delta_vs_constant": 0.017667653625834525,
+      "n_runs": 20
+    },
+    "patchtst_single_encoder": {
+      "ci95_high": 0.3559133110071165,
+      "ci95_low": -0.08542261362924271,
+      "excludes_zero": false,
+      "mean_delta_vs_constant": 0.13583753267238213,
+      "n_runs": 20
+    }
+  },
+  "protocol": "leave-one-experiment-out; larger remaining experiment trains, smaller validates",
+  "schema_version": "1.0.0",
+  "summary": [
+    {
+      "mae": 0.8041562656268664,
+      "mae_ci95_high": 1.036024249986334,
+      "mae_ci95_low": 0.5768670948301519,
+      "model": "constant_train_mean",
+      "n_runs": 20,
+      "rmse": 0.960808477881087,
+      "spearman": -0.03539961627023944
+    },
+    {
+      "mae": 0.8237856498447172,
+      "mae_ci95_high": 1.1014949376499086,
+      "mae_ci95_low": 0.5527117311990568,
+      "model": "fused_all_three",
+      "n_runs": 20,
+      "rmse": 1.033217414248919,
+      "spearman": -0.1045505903195781
+    },
+    {
+      "mae": 0.9414550857205523,
+      "mae_ci95_high": 1.2264327550741583,
+      "mae_ci95_low": 0.6754331663779581,
+      "model": "patchtst_single_encoder",
+      "n_runs": 20,
+      "rmse": 1.1337431162987606,
+      "spearman": -0.2053403680377325
+    },
+    {
+      "mae": 1.8264112771415422,
+      "mae_ci95_high": 2.220911840249875,
+      "mae_ci95_low": 1.4583549246067595,
+      "model": "rtdetr_r4_image_NOT_loeo",
+      "n_runs": 13,
+      "rmse": 1.9595117503977078,
+      "spearman": 0.6593406593406593
+    }
+  ],
+  "target_definition_version": "phm2026_image_damage_v3"
+}

@@ -10,7 +10,7 @@ New to this repository? Start with **[`REPO_MAP.md`](REPO_MAP.md)** — a
 one-page index of every top-level directory, what's active vs. historical,
 and where to find things.
 
-## What's actually being worked on
+## PHM study background
 
 Two independent, unfused baseline models, one per modality:
 
@@ -26,6 +26,21 @@ until each unimodal baseline is scientifically stable — see
 `tutorials/patchtst_freq_baseline/` and `tutorials/final_baseline_rtdetr/`
 for the most recent causal analysis of why each one currently underperforms,
 and what would need to change before combining them.
+
+## Domain navigation
+
+- PHM implementation: [`src/phm2026/README.md`](src/phm2026/README.md); entry points `scripts/phm2026/`.
+- Intel Welding: [`src/intel_welding/README.md`](src/intel_welding/README.md); implemented audits `scripts/intel_welding/`.
+- REASSEMBLE is a separate assembly-failure research domain: `src/reassemble/`, `scripts/reassemble/`, `configs/reassemble/`, `tests/reassemble/`. Its completed evidence remains under `runs/reassemble/` and `artifacts/reassemble/`.
+- Thesis validation/synthesis: `scripts/thesis/`, `tests/thesis/`, `artifacts/thesis/`.
+- Repository maintenance: `scripts/ops/`, `tests/ops/`.
+- Shared admission policy: [`src/shared/README.md`](src/shared/README.md); no shared implementation was justified.
+
+The PHM background above is preserved study context, not a statement that later REASSEMBLE work is unfinished. Current REASSEMBLE closure is recorded in `artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md`.
+
+Legacy imports (`pi_multimodal_ad.*`) and former PHM script paths are supported through thin forwarding. See [COMPATIBILITY_CONTRACT.md](docs/repository_restructure/COMPATIBILITY_CONTRACT.md) and [COMPATIBILITY_VALIDATION.md](docs/repository_restructure/COMPATIBILITY_VALIDATION.md).
+
+Migration map, checks and preserved historical paths: [`FINAL_STRUCTURE.md`](docs/repository_restructure/FINAL_STRUCTURE.md).
 
 ## Governance — read this before changing anything structural
 
@@ -43,22 +58,33 @@ Related policy docs:
 
 ## Quickstart
 
-This project is not pip-installable (no `pyproject.toml`/`setup.py`
-currently); scripts add `src/` to `sys.path` themselves.
+The existing environment supports an editable install through `pyproject.toml`:
+
+```bash
+PIP_NO_INDEX=1 ma_thesis_env/bin/python -B -m pip install --no-build-isolation --no-deps -e .
+```
+
+This installs the project only, without changing scientific dependencies. Canonical and legacy imports then work without manually setting `PYTHONPATH`; scripts also retain their source-tree bootstraps.
 
 ```bash
 # Activate the project environment (see requirements.txt for the full stack:
 # numpy/pandas/scipy/scikit-learn, transformers/accelerate, PyTorch, etc.)
-source ma_thesis_env/bin/activate   # or: python -m venv + pip install -r requirements.txt
+source ma_thesis_env/bin/activate
 
 # Run any pipeline stage from repo root, e.g.:
-ma_thesis_env/bin/python -B scripts/dataset/profile_dataset.py --dry-run
-ma_thesis_env/bin/python -B scripts/training/train_patchtst.py --config configs/experiments/phm2026_patchtst_baseline.yaml
+ma_thesis_env/bin/python -B scripts/phm2026/dataset/profile_dataset.py --dry-run
+ma_thesis_env/bin/python -B scripts/phm2026/training/train_patchtst.py --help
 ```
 
 Every run writes to a new, timestamped, non-overwriting directory under
 `runs/<experiment_name>/<timestamp>-<hash>/` with its own config snapshot,
 manifests, figures, and report — never in place, never overwriting history.
+
+Fixture tests (no experiment reruns):
+
+```bash
+OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 ma_thesis_env/bin/python -B -m pytest tests --import-mode=importlib -p no:cacheprovider -q
+```
 
 ## Raw data
 

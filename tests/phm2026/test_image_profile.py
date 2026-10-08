@@ -11,12 +11,12 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 
-from pi_multimodal_ad.datasets.base import (
+from phm2026.datasets.base import (
     AssetIdentity,
     BaseDatasetAdapter,
     ImageSourceIdentity,
 )
-from pi_multimodal_ad.profiling.images import (
+from phm2026.profiling.images import (
     ImageProfileOptions,
     ImageSource,
     build_image_schema,
@@ -24,7 +24,7 @@ from pi_multimodal_ad.profiling.images import (
     select_quality_source_ids,
     write_image_run,
 )
-from pi_multimodal_ad.utils import create_run_context, load_yaml_config
+from phm2026.utils import create_run_context, load_yaml_config
 
 UTC = timezone.utc
 
@@ -526,7 +526,7 @@ def test_image_run_writer_keeps_csv_parquet_schema_and_provenance_consistent(
         output_root=repository / "runs/synthetic_image_profile",
         config=config,
         seed=17,
-        command=("scripts/dataset/profile_images.py", "--mode", "full"),
+        command=("scripts/phm2026/dataset/profile_images.py", "--mode", "full"),
         input_roots=("tests/synthetic",),
         now=datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC),
         package_names=(),

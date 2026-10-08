@@ -1,0 +1,2345 @@
+{
+  "schema_version": 1,
+  "status": "THESIS REPRODUCIBILITY PACKAGE READY WITH DOCUMENTED GAPS",
+  "freeze": {
+    "timestamp_UTC": "2026-09-28T03:20:13.725378+00:00",
+    "git_commit": "8d4e7a9378cb51ffc3cd7b9be1e2785efc02d792",
+    "git_status": "## main...origin/main [ahead 38]\nA  artifacts/intel_welding/audits/GATE_0_DATA_ACCESS.md\nA  artifacts/intel_welding/audits/PHASE_1_GATE_REPORT.md\nA  artifacts/intel_welding/audits/alignment_audit.md\nA  artifacts/intel_welding/audits/context_shortcut_audit.md\nA  artifacts/intel_welding/audits/context_shortcut_metrics.json\nA  artifacts/intel_welding/audits/dataset_integrity.md\nA  artifacts/intel_welding/audits/dataset_summary.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114653957275Z/config.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/GATE_0_DATA_ACCESS.md\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/PHASE_1_GATE_REPORT.md\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/alignment_audit.md\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/config.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/dataset_integrity.md\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/dataset_summary.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/decoder_warnings.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/label_session_process_audit.md\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/leakage_tests.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/output_manifest.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/provenance.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/report_output_manifest.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/split_disposition.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/split_disposition.md\nA  artifacts/intel_welding/splits/development_sessions.txt\nA  artifacts/intel_welding/splits/final_test_sessions.txt\nA  artifacts/intel_welding/splits/leakage_tests.json\nA  artifacts/intel_welding/splits/split_manifest.json\nA  artifacts/reassemble/audits/STORAGE_PREFLIGHT.md\nA  artifacts/reassemble/audits/STORAGE_TRIAGE.md\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/STORAGE_PREFLIGHT.md\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/command_results.json\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/official_metadata.json\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/output_manifest.json\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/provenance.json\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/search_and_locations.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/STORAGE_TRIAGE.md\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/command_results.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/duplicate_evidence.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/git_objects.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/large_subdirectories.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/output_manifest.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/provenance.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/storage_summary.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/volumes.json\nA  configs/intel_welding/foundations.json\nA  docs/intel_welding/FOUNDATION_PROTOCOL_ADDENDUM.md\nA  docs/intel_welding/FOUNDATION_RUNBOOK.md\nA  docs/intel_welding/RESULTS_REVIEW.md\nA  docs/intel_welding/context_baseline_specification.md\nA  docs/reassemble/ADDITIONAL_IMPROVEMENTS_EXECUTION_PROMPT.md\nA  runs/reassemble/20260927T134437Z/acquisition.json\nA  runs/reassemble/20260927T134437Z/acquisition_progress.json\nA  runs/reassemble/20260927T134437Z/archive_inventory.json\nA  runs/reassemble/20260927T134437Z/config.json\nA  runs/reassemble/20260927T134437Z/environment.json\nA  runs/reassemble/20260927T134437Z/official_record.json\nA  runs/reassemble/20260927T134437Z/official_record_download.json\nA  runs/reassemble/20260927T134437Z/upstream_reference.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/PHASE_A_B_GATE_REPORT.md\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/gates.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/inventory.md\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/known_issues.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/label_audit.md\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/leakage_audit.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/modality_selection.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/nested_splits.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/storage_actual.md\nA  runs/reassemble/20260927T154732Z-section1/previous_continuation.md\nAM runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/frozen_prefix_cache_attempt0.json\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/recover_original_branches_attempt0.json\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/strict_sensor_hybrid_attempt0.json\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/learning_curves.pdf\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/learning_curves.png\nMM runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/status.json\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/learning_curves.pdf\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/learning_curves.png\nMM runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/status.json\nMM runs/reassemble/additional_improvements_executed/20260928T000346Z/04_corruption_training/status.json\nMM runs/reassemble/additional_improvements_executed/20260928T000346Z/reports/CONTINUATION.md\n M runs/reassemble/additional_improvements_executed/20260928T000346Z/reports/EXECUTION_QUEUE.md\nMM runs/reassemble/additional_improvements_executed/20260928T000346Z/status.json\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/supervisor_state.json\nA  scripts/intel_welding/01_inventory.py\nA  scripts/intel_welding/02_label_audit.py\nA  scripts/intel_welding/03_make_split.py\nA  scripts/intel_welding/04_foundations.py\nA  scripts/intel_welding/05_foundation_report.py\nA  tests/unit/test_intel_foundations.py\n?? artifacts/thesis/EXPOSE_COMPLIANCE_SUMMARY.json\n?? artifacts/thesis/FINAL_REPRODUCIBILITY_AUDIT.json\n?? artifacts/thesis/documentation_build_config.json\n?? docs/thesis/DOCUMENTATION_CONTINUATION.md\n?? docs/thesis/EXPOSE_TO_FINAL_THESIS_MATRIX.md\n?? docs/thesis/FINAL_CLAIM_MATRIX.md\n?? docs/thesis/FINAL_THESIS_REPRODUCIBILITY.md\n?? docs/thesis/FINAL_VALIDITY_AUDIT_EXECUTION_PROMPT.md\n?? runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/visual_corruption_bank_attempt0.json\n?? runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/runtime_estimate_20260928T0234Z.json\n?? runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/runtime_estimate_prefix_loading.json\n?? runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/hybrid_outer0.json\n?? runs/thesis/documentation/20260928T025444Z/configuration_snapshot.json\n?? runs/thesis/documentation/20260928T025444Z/documentation_owner.json\n?? runs/thesis/documentation/20260928T025444Z/documentation_validation.json\n?? runs/thesis/documentation/20260928T025444Z/original_document_search.json\n?? runs/thesis/documentation/20260928T025444Z/preflight.json\n?? runs/thesis/documentation/20260928T025444Z/preservation_before.json\n?? runs/thesis/documentation/20260928T025444Z/source_manifest.json\n?? runs/thesis/documentation/20260928T025444Z/user_documentation_request.txt\n?? scripts/thesis/build_final_documentation.py\n",
+    "git_diff_stat": " .../execution_logs/frozen_prefix_cache_attempt0.json       |  4 +++-\n .../20260928T000346Z/01_temporal_visual/status.json        |  4 ++--\n .../02_patchtst_training_budget/status.json                |  4 ++--\n .../20260928T000346Z/04_corruption_training/status.json    |  4 ++--\n .../20260928T000346Z/reports/CONTINUATION.md               |  6 +++---\n .../20260928T000346Z/reports/EXECUTION_QUEUE.md            |  4 ++++\n .../20260928T000346Z/status.json                           | 14 +++++++-------\n 7 files changed, 23 insertions(+), 17 deletions(-)\n",
+    "command": "PYTHONPATH=src ma_thesis_env/bin/python -B scripts/thesis/build_final_documentation.py --resume",
+    "documentation_run": "runs/thesis/documentation/20260928T025444Z",
+    "start_environment": {
+      "timestamp_UTC": "2026-09-28T02:54:44.147736+00:00",
+      "git_commit": "8d4e7a9378cb51ffc3cd7b9be1e2785efc02d792",
+      "git_status": "## main...origin/main [ahead 38]\nA  artifacts/intel_welding/audits/GATE_0_DATA_ACCESS.md\nA  artifacts/intel_welding/audits/PHASE_1_GATE_REPORT.md\nA  artifacts/intel_welding/audits/alignment_audit.md\nA  artifacts/intel_welding/audits/context_shortcut_audit.md\nA  artifacts/intel_welding/audits/context_shortcut_metrics.json\nA  artifacts/intel_welding/audits/dataset_integrity.md\nA  artifacts/intel_welding/audits/dataset_summary.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114653957275Z/config.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/GATE_0_DATA_ACCESS.md\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/PHASE_1_GATE_REPORT.md\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/alignment_audit.md\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/config.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/dataset_integrity.md\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/dataset_summary.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/decoder_warnings.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/label_session_process_audit.md\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/leakage_tests.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/output_manifest.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/provenance.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/report_output_manifest.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/split_disposition.json\nA  artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/split_disposition.md\nA  artifacts/intel_welding/splits/development_sessions.txt\nA  artifacts/intel_welding/splits/final_test_sessions.txt\nA  artifacts/intel_welding/splits/leakage_tests.json\nA  artifacts/intel_welding/splits/split_manifest.json\nA  artifacts/reassemble/audits/STORAGE_PREFLIGHT.md\nA  artifacts/reassemble/audits/STORAGE_TRIAGE.md\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/STORAGE_PREFLIGHT.md\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/command_results.json\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/official_metadata.json\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/output_manifest.json\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/provenance.json\nA  artifacts/reassemble/audits/storage_runs/20260927T123356Z/search_and_locations.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/STORAGE_TRIAGE.md\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/command_results.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/duplicate_evidence.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/git_objects.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/large_subdirectories.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/output_manifest.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/provenance.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/storage_summary.json\nA  artifacts/reassemble/audits/triage_runs/20260927T124429Z/volumes.json\nA  configs/intel_welding/foundations.json\nA  docs/intel_welding/FOUNDATION_PROTOCOL_ADDENDUM.md\nA  docs/intel_welding/FOUNDATION_RUNBOOK.md\nA  docs/intel_welding/RESULTS_REVIEW.md\nA  docs/intel_welding/context_baseline_specification.md\nA  docs/reassemble/ADDITIONAL_IMPROVEMENTS_EXECUTION_PROMPT.md\nA  runs/reassemble/20260927T134437Z/acquisition.json\nA  runs/reassemble/20260927T134437Z/acquisition_progress.json\nA  runs/reassemble/20260927T134437Z/archive_inventory.json\nA  runs/reassemble/20260927T134437Z/config.json\nA  runs/reassemble/20260927T134437Z/environment.json\nA  runs/reassemble/20260927T134437Z/official_record.json\nA  runs/reassemble/20260927T134437Z/official_record_download.json\nA  runs/reassemble/20260927T134437Z/upstream_reference.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/PHASE_A_B_GATE_REPORT.md\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/gates.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/inventory.md\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/known_issues.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/label_audit.md\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/leakage_audit.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/modality_selection.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/nested_splits.json\nA  runs/reassemble/20260927T141645Z-inventory/reports_v2/storage_actual.md\nA  runs/reassemble/20260927T154732Z-section1/previous_continuation.md\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/frozen_prefix_cache_attempt0.json\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/recover_original_branches_attempt0.json\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/execution_logs/strict_sensor_hybrid_attempt0.json\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/learning_curves.pdf\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/learning_curves.png\nMM runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/status.json\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/learning_curves.pdf\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/learning_curves.png\nMM runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/status.json\nMM runs/reassemble/additional_improvements_executed/20260928T000346Z/04_corruption_training/status.json\nMM runs/reassemble/additional_improvements_executed/20260928T000346Z/reports/CONTINUATION.md\n M runs/reassemble/additional_improvements_executed/20260928T000346Z/reports/EXECUTION_QUEUE.md\nMM runs/reassemble/additional_improvements_executed/20260928T000346Z/status.json\nA  runs/reassemble/additional_improvements_executed/20260928T000346Z/supervisor_state.json\nA  scripts/intel_welding/01_inventory.py\nA  scripts/intel_welding/02_label_audit.py\nA  scripts/intel_welding/03_make_split.py\nA  scripts/intel_welding/04_foundations.py\nA  scripts/intel_welding/05_foundation_report.py\nA  tests/unit/test_intel_foundations.py\n?? artifacts/thesis/documentation_build_config.json\n?? runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/runtime_estimate_20260928T0234Z.json\n?? runs/reassemble/additional_improvements_executed/20260928T000346Z/00_protocol_and_preservation/runtime_estimate_prefix_loading.json\n?? runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/hybrid_outer0.json\n",
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "torch": "2.13.0+cu130",
+      "torch_cuda": "13.0",
+      "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+      "GPU": "Tesla T4, 580.167.08, 16384 MiB",
+      "commands": "Read-only metadata and source inspection; no model execution in this documentation task."
+    }
+  },
+  "headline_results": [
+    {
+      "claim": "P01/P07: PHM LOEO and separately labelled image reference",
+      "run": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f",
+      "configs": [
+        "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/config/resolved_config.yaml"
+      ],
+      "predictions_or_observations": [
+        "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/loeo_predictions.parquet"
+      ],
+      "metric_sources": [
+        "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json"
+      ],
+      "figures_or_tables": [
+        "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/loeo_summary.csv"
+      ],
+      "scripts": [
+        "scripts/results/loeo_evaluation.py"
+      ],
+      "commit_identity": "c699cbd9727ed33f34f1785172db163eb74b071f (run provenance)",
+      "status": "REPRODUCIBLE FROM RETAINED ARTIFACTS",
+      "limitation": "Recompute reported metrics from retained predictions. No LOEO trained-state files identified. Snapshot retains a stale v2 target string and fixed split; source target artifact is v3 and evaluator/report explicitly override to LOEO. Preserve these historical metadata defects."
+    },
+    {
+      "claim": "P02: PHM v3 target identity",
+      "run": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3",
+      "configs": [
+        "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/config/resolved_config.yaml",
+        "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/config/target_definition.yaml"
+      ],
+      "predictions_or_observations": [
+        "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/tables/per_tooth_damage.parquet",
+        "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/tables/run_damage_targets.parquet"
+      ],
+      "metric_sources": [
+        "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/reports/target_quality_report.json",
+        "docs/thesis/TARGET_VERSION_LEDGER.md"
+      ],
+      "figures_or_tables": [
+        "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/figures/per_tooth_damage_heatmap.svg",
+        "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/figures/target_definition_pipeline.svg"
+      ],
+      "scripts": [
+        "scripts/targets/derive_image_targets.py"
+      ],
+      "commit_identity": "246024367e8b8a0b2463274115d760fb579ef50c (run provenance)",
+      "status": "REPRODUCIBLE FROM RETAINED ARTIFACTS",
+      "limitation": "Retained target/quality tables can be inspected; rederivation from original archives requires recovery. Image heuristic is provisional, not verified damage truth."
+    },
+    {
+      "claim": "P03/P10: selected-image validation",
+      "run": "docs/thesis",
+      "configs": [
+        "docs/thesis/INSPECTION_RESULT_20260913T204715Z.md",
+        "docs/thesis/ANOMALYDINO_RESULT_20260913T215556Z.md"
+      ],
+      "predictions_or_observations": [
+        "docs/thesis/ANOMALYDINO_VALIDATED.csv",
+        "docs/thesis/ANOMALYDINO_SCORES.csv"
+      ],
+      "metric_sources": [
+        "docs/thesis/INSPECTION_RESULT_20260913T204715Z.md",
+        "docs/thesis/ANOMALYDINO_RESULT_20260913T215556Z.md"
+      ],
+      "figures_or_tables": [
+        "docs/thesis/ANOMALYDINO_SWEEP.csv"
+      ],
+      "scripts": [
+        "scripts/results/anomalydino_validated.py",
+        "scripts/results/anomalydino_sweep.py"
+      ],
+      "commit_identity": "183a8d29cd5a43705c77ac876b6ae31404955406 (inspection evidence commit)",
+      "status": "REPRODUCIBLE FROM RETAINED ARTIFACTS",
+      "limitation": "Selected sample/one observer; human judgement cannot be algorithmically recreated. Retained labels/scores support numerical inspection only."
+    },
+    {
+      "claim": "P04/P05: raw/TSA and bounded signal diagnostics",
+      "run": "data/rawvib",
+      "configs": [
+        "scripts/rawvib/l1_screen.py",
+        "scripts/rawvib/sector_screen.py"
+      ],
+      "predictions_or_observations": [
+        "data/rawvib/file_features.parquet",
+        "data/rawvib/sector_file_features.parquet",
+        "data/rawvib/tsa_index.parquet",
+        "data/rawvib/tsa_arrays.npz"
+      ],
+      "metric_sources": [
+        "data/rawvib/l1_screen.json",
+        "data/rawvib/sector_screen.json",
+        "docs/thesis/RAW_VIB_20260927T095726Z.md",
+        "docs/thesis/TOOTH_SECTOR_20260927T102354Z.md"
+      ],
+      "figures_or_tables": [
+        "docs/thesis/RAW_VIB_20260927T095726Z.md",
+        "docs/thesis/TOOTH_SECTOR_20260927T102354Z.md"
+      ],
+      "scripts": [
+        "scripts/rawvib/angular_features.py",
+        "scripts/rawvib/save_tsa.py",
+        "scripts/rawvib/sector_features.py",
+        "scripts/rawvib/l1_screen.py",
+        "scripts/rawvib/sector_screen.py"
+      ],
+      "commit_identity": "1a4a03a27b2c55a70c014c891c11f6559c0938a7 (retained report commit)",
+      "status": "REPRODUCIBLE FROM RETAINED ARTIFACTS",
+      "limitation": "Feature-level screens can be audited from retained data. Original TSA correspondence aggregate is reported; full raw-to-organizer waveform recomputation requires retired archives. No standalone config snapshot for these scripts; use defaults/commands recorded in the reports at the identified revision."
+    },
+    {
+      "claim": "PHM raw-to-feature reconstruction",
+      "run": "gtc-data-experiment",
+      "configs": [
+        "configs/phm2026/download_manifest.json",
+        "configs/datasets/phm2026.yaml"
+      ],
+      "predictions_or_observations": [
+        "artifacts/phm2026/raw_data_manifest.json"
+      ],
+      "metric_sources": [
+        "docs/phm2026/RAW_DATA_RECOVERY.md",
+        "artifacts/phm2026/PHM_RAW_RETIREMENT_REPORT.md"
+      ],
+      "figures_or_tables": [
+        "docs/phm2026/RAW_DATA_RECOVERY.md"
+      ],
+      "scripts": [
+        "src/pi_multimodal_ad/acquisition/phm_download.py"
+      ],
+      "commit_identity": "d634251 recovery implementation; 78394d7f9349f5f6858dabe1f3a796a48911bb57 pre-retirement",
+      "status": "REQUIRES RAW DATA RE-DOWNLOAD",
+      "limitation": "Original archives were previously retired with approval. No download performed here; historical remote verification is not a guarantee of present availability."
+    },
+    {
+      "claim": "P06: synthetic positive-control independent numerical rerun",
+      "run": "docs/thesis",
+      "configs": [
+        "scripts/results/closing_task_c.py"
+      ],
+      "predictions_or_observations": [],
+      "metric_sources": [
+        "docs/thesis/CLOSING_TASK_C_SYNTHETIC.json",
+        "docs/thesis/CLOSING_EXPERIMENTS_20260912T171608Z.md"
+      ],
+      "figures_or_tables": [
+        "docs/thesis/CLOSING_EXPERIMENTS_20260912T171608Z.md"
+      ],
+      "scripts": [
+        "scripts/results/closing_task_c.py"
+      ],
+      "commit_identity": "9a79c613f2a10e85d077bc4d0c1e30c7cba93c88 (aggregate evidence commit)",
+      "status": "REQUIRES MODEL RETRAINING",
+      "limitation": "Per-seed aggregate metrics and code retained; per-run predictions and checkpoints not identified. Existing result is documented, not independently regenerated."
+    },
+    {
+      "claim": "P11: PHM sensor-submodality fusion numerical rerun",
+      "run": "docs/thesis",
+      "configs": [
+        "scripts/results/sq2_sq3_fusion.py"
+      ],
+      "predictions_or_observations": [],
+      "metric_sources": [
+        "docs/thesis/SQ2_SQ3_RESULTS.json"
+      ],
+      "figures_or_tables": [
+        "docs/thesis/SQ2_SQ3_RESULTS.json"
+      ],
+      "scripts": [
+        "scripts/results/sq2_sq3_fusion.py"
+      ],
+      "commit_identity": "45eeed0f35c9c043697220d344dcead586ea9919 (aggregate evidence commit)",
+      "status": "REQUIRES MODEL RETRAINING",
+      "limitation": "Aggregate metrics/code retained; per-run fitted-model predictions not identified. Do not reconstruct absent artifacts silently."
+    },
+    {
+      "claim": "R01/R03: core unimodal comparison",
+      "run": "runs/reassemble/20260927T154732Z-section1",
+      "configs": [
+        "runs/reassemble/20260927T154732Z-section1/config.json"
+      ],
+      "predictions_or_observations": [
+        "runs/reassemble/20260927T154732Z-section1/predictions/sensor_statistics_perm00.npz",
+        "runs/reassemble/20260927T154732Z-section1/predictions/patchtst_perm00.npz",
+        "runs/reassemble/20260927T154732Z-section1/predictions/rtdetr_perm00.npz"
+      ],
+      "metric_sources": [
+        "runs/reassemble/20260927T154732Z-section1/assessment/results.json"
+      ],
+      "figures_or_tables": [
+        "runs/reassemble/20260927T204649Z-final-synthesis/figures/03_unimodal.pdf",
+        "runs/reassemble/20260927T204649Z-final-synthesis/tables/01_master_clean_metrics.csv"
+      ],
+      "scripts": [
+        "scripts/reassemble/05_section1_report.py",
+        "scripts/reassemble/20_completion_synthesis.py"
+      ],
+      "commit_identity": "852a12376b24f6b2d5084a625331c499808c38f4 training; 08d498d evidence",
+      "status": "REPRODUCIBLE FROM RETAINED ARTIFACTS",
+      "limitation": "Manifest verifies fitted artifacts; numerical checks use retained predictions. No independent training reproduction claimed."
+    },
+    {
+      "claim": "R02/R04/R05: sensor control, complementarity and incremental fusion",
+      "run": "runs/reassemble/20260927T175336Z-section1b",
+      "configs": [
+        "runs/reassemble/20260927T175336Z-section1b/config.json"
+      ],
+      "predictions_or_observations": [
+        "runs/reassemble/20260927T175336Z-section1b/stacking/oof.npz"
+      ],
+      "metric_sources": [
+        "runs/reassemble/20260927T175336Z-section1b/assessment/results.json"
+      ],
+      "figures_or_tables": [
+        "runs/reassemble/20260927T204649Z-final-synthesis/figures/04_complementarity.pdf",
+        "runs/reassemble/20260927T204649Z-final-synthesis/tables/12_clean_paired.csv"
+      ],
+      "scripts": [
+        "scripts/reassemble/07_section1b.py",
+        "scripts/reassemble/20_completion_synthesis.py"
+      ],
+      "commit_identity": "06f93d1309fac1117a6014f4145bf4cedb8b4985 implementation; 4089b02 evidence",
+      "status": "REPRODUCIBLE FROM RETAINED ARTIFACTS",
+      "limitation": "19 structured-null prediction sets and all nested fits retained via output_manifest.json; outer stacker train/test rows checked. Four of five fold AP effects positive; all leave-one-fold-out AP effects positive."
+    },
+    {
+      "claim": "R05–R07/R14: clean fusion and calibration",
+      "run": "runs/reassemble/20260927T192852Z-section2",
+      "configs": [
+        "runs/reassemble/20260927T192852Z-section2/config.json"
+      ],
+      "predictions_or_observations": [
+        "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz"
+      ],
+      "metric_sources": [
+        "runs/reassemble/20260927T192852Z-section2/assessment/results.json"
+      ],
+      "figures_or_tables": [
+        "runs/reassemble/20260927T204649Z-final-synthesis/figures/05_clean_fusion.pdf",
+        "runs/reassemble/20260927T204649Z-final-synthesis/tables/01_master_clean_metrics.csv",
+        "runs/reassemble/20260927T204649Z-final-synthesis/tables/12_clean_paired.csv"
+      ],
+      "scripts": [
+        "scripts/reassemble/09_section2.py",
+        "scripts/reassemble/20_completion_synthesis.py"
+      ],
+      "commit_identity": "e65d1dac83111ae167a23cd05a889a0fa74fd8f0 implementation",
+      "status": "REPRODUCIBLE FROM RETAINED ARTIFACTS",
+      "limitation": "inputs/ retains strict nested branch predictions; fits/ retains per-seed checkpoints; source identities in implementation.json. No fresh final-test claim."
+    },
+    {
+      "claim": "R08–R10: original corruption and missingness",
+      "run": "runs/reassemble/20260927T204649Z-section3",
+      "configs": [
+        "runs/reassemble/20260927T204649Z-section3/config.json",
+        "configs/reassemble/section3_corruptions.json"
+      ],
+      "predictions_or_observations": [
+        "runs/reassemble/20260927T204649Z-section3/predictions/clean.npz",
+        "runs/reassemble/20260927T204649Z-section3/predictions/V4.npz",
+        "runs/reassemble/20260927T204649Z-section3/predictions/S5.npz"
+      ],
+      "metric_sources": [
+        "runs/reassemble/20260927T204649Z-section3/results.json"
+      ],
+      "figures_or_tables": [
+        "runs/reassemble/20260927T204649Z-final-synthesis/figures/07_visual_corruptions.pdf",
+        "runs/reassemble/20260927T204649Z-final-synthesis/figures/08_sensor_corruptions.pdf",
+        "runs/reassemble/20260927T204649Z-final-synthesis/figures/09_missing_modalities.pdf",
+        "runs/reassemble/20260927T204649Z-final-synthesis/figures/10_gate_response.pdf",
+        "runs/reassemble/20260927T204649Z-final-synthesis/tables/03_robustness_paired.csv"
+      ],
+      "scripts": [
+        "scripts/reassemble/16_section3_report.py",
+        "scripts/reassemble/20_completion_synthesis.py"
+      ],
+      "commit_identity": "dd56773d0fb7e5df986301eaf873e03bd1124d31 seal; e952269bb34f29a239b0d6a267e1a53adc18acf7 final evidence",
+      "status": "REPRODUCIBLE FROM RETAINED ARTIFACTS",
+      "limitation": "All 22 condition prediction paths, source/feature hashes and model artifacts retained in run manifest. Conditional on one fixed realization per condition."
+    },
+    {
+      "claim": "R10/R11: modality dropout",
+      "run": "runs/reassemble/20260927T204649Z-modality-dropout",
+      "configs": [
+        "runs/reassemble/20260927T204649Z-modality-dropout/config.json",
+        "configs/reassemble/section3_corruptions.json"
+      ],
+      "predictions_or_observations": [
+        "runs/reassemble/20260927T204649Z-modality-dropout/predictions/clean.npz"
+      ],
+      "metric_sources": [
+        "runs/reassemble/20260927T204649Z-modality-dropout/results.json"
+      ],
+      "figures_or_tables": [
+        "runs/reassemble/20260927T204649Z-final-synthesis/figures/11_dropout_tradeoff.pdf",
+        "runs/reassemble/20260927T204649Z-final-synthesis/tables/07_modality_dropout.csv"
+      ],
+      "scripts": [
+        "scripts/reassemble/17_modality_dropout.py",
+        "scripts/reassemble/20_completion_synthesis.py"
+      ],
+      "commit_identity": "dd56773d0fb7e5df986301eaf873e03bd1124d31 seal; e952269 final evidence",
+      "status": "REPRODUCIBLE FROM RETAINED ARTIFACTS",
+      "limitation": "Per-seed fits and condition predictions retained; completed training comparison, exact missingness still structural."
+    },
+    {
+      "claim": "R12: audio feasibility",
+      "run": "runs/reassemble/20260927T204649Z-audio-gate",
+      "configs": [
+        "runs/reassemble/20260927T204649Z-audio-gate/config.json"
+      ],
+      "predictions_or_observations": [
+        "runs/reassemble/20260927T204649Z-audio-gate/clock_metadata.json",
+        "runs/reassemble/20260927T204649Z-audio-gate/segment_coverage.csv"
+      ],
+      "metric_sources": [
+        "runs/reassemble/20260927T204649Z-audio-gate/results.json"
+      ],
+      "figures_or_tables": [
+        "runs/reassemble/20260927T204649Z-final-synthesis/figures/13_audio_gate.pdf",
+        "runs/reassemble/20260927T204649Z-final-synthesis/tables/08_audio_gate.csv"
+      ],
+      "scripts": [
+        "scripts/reassemble/18_completion_gates.py",
+        "scripts/reassemble/20_completion_synthesis.py"
+      ],
+      "commit_identity": "e952269bb34f29a239b0d6a267e1a53adc18acf7 final evidence",
+      "status": "DOCUMENTATION ONLY",
+      "limitation": "A completed feasibility audit, not an audio-model result. No predictions/checkpoints should exist for unrun AST/trimodal experiments."
+    },
+    {
+      "claim": "R13: physical-object OOD feasibility",
+      "run": "runs/reassemble/20260927T204649Z-object-feasibility",
+      "configs": [
+        "runs/reassemble/20260927T204649Z-object-feasibility/config.json"
+      ],
+      "predictions_or_observations": [],
+      "metric_sources": [
+        "runs/reassemble/20260927T204649Z-object-feasibility/results.json"
+      ],
+      "figures_or_tables": [
+        "artifacts/reassemble/reports/OBJECT_GENERALIZATION_FEASIBILITY.md"
+      ],
+      "scripts": [
+        "scripts/reassemble/18_completion_gates.py"
+      ],
+      "commit_identity": "e952269bb34f29a239b0d6a267e1a53adc18acf7 final evidence",
+      "status": "DOCUMENTATION ONLY",
+      "limitation": "Graph/identity evidence retained; no admissible physical-instance OOD predictions or trained OOD models."
+    },
+    {
+      "claim": "R15/R16: efficiency and modularity",
+      "run": "runs/reassemble/20260927T204649Z-efficiency",
+      "configs": [
+        "runs/reassemble/20260927T204649Z-efficiency/config.json"
+      ],
+      "predictions_or_observations": [
+        "runs/reassemble/20260927T204649Z-efficiency/results.json"
+      ],
+      "metric_sources": [
+        "runs/reassemble/20260927T204649Z-efficiency/results.json"
+      ],
+      "figures_or_tables": [
+        "runs/reassemble/20260927T204649Z-final-synthesis/figures/12_efficiency.pdf",
+        "runs/reassemble/20260927T204649Z-final-synthesis/tables/09_efficiency.csv"
+      ],
+      "scripts": [
+        "scripts/reassemble/19_completion_efficiency.py",
+        "scripts/reassemble/20_completion_synthesis.py"
+      ],
+      "commit_identity": "e952269bb34f29a239b0d6a267e1a53adc18acf7 final evidence",
+      "status": "REPRODUCIBLE FROM RETAINED ARTIFACTS",
+      "limitation": "Retained component repetitions permit aggregation, not identical hardware timing. No inference benchmark rerun during this freeze."
+    },
+    {
+      "claim": "E01/E02/E03: completed exploratory comparisons only",
+      "run": "runs/reassemble/additional_improvements_executed/20260928T000346Z",
+      "configs": [
+        "configs/reassemble/additional_improvements/execution.json"
+      ],
+      "predictions_or_observations": [
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/V-MEAN_predictions.npz",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/V-TEMP_predictions.npz",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/V-NOPOS_predictions.npz",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/S-6_predictions.npz",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/S-LONG_predictions.npz",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/03_static_anchored_adaptation/predictions.npz"
+      ],
+      "metric_sources": [
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/comparison/results.json",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/comparison/results.json",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/03_static_anchored_adaptation/comparison/results.json"
+      ],
+      "figures_or_tables": [
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/comparison/metrics.csv",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/comparison/metrics.csv",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/03_static_anchored_adaptation/comparison/metrics.csv"
+      ],
+      "scripts": [
+        "scripts/thesis/build_final_documentation.py"
+      ],
+      "commit_identity": "8d4e7a9378cb51ffc3cd7b9be1e2785efc02d792 documentation-start HEAD; comparison source identity remains in extension manifests",
+      "status": "DOCUMENTATION ONLY",
+      "limitation": "Metric JSON snapshots are hashed here; this freeze does not seal the ongoing extension. Fine-tuning, hybrid and repeated-corruption refinements are not accepted as final results here. No final combined winner model."
+    },
+    {
+      "claim": "I01: Intel audit/no-go",
+      "run": "artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z",
+      "configs": [
+        "docs/intel_welding/research_contract.md"
+      ],
+      "predictions_or_observations": [],
+      "metric_sources": [
+        "artifacts/intel_welding/audits/PHASE_1_GATE_REPORT.md"
+      ],
+      "figures_or_tables": [
+        "artifacts/intel_welding/audits/PHASE_1_GATE_REPORT.md"
+      ],
+      "scripts": [],
+      "commit_identity": "Read-only report identity in source manifest; no new model execution commit asserted",
+      "status": "DOCUMENTATION ONLY",
+      "limitation": "Completed session/exposure audit, not a trained Intel model result; no protected replacement holdout was established."
+    },
+    {
+      "claim": "Approved exposé / external PHM master Reasoning Record",
+      "run": "unlocated",
+      "configs": [],
+      "predictions_or_observations": [],
+      "metric_sources": [],
+      "figures_or_tables": [],
+      "scripts": [],
+      "commit_identity": "Unverified",
+      "status": "BLOCKED / MISSING",
+      "limitation": "Accessible local document names, attachments, repository references and Git history were searched. RQ is only a repository proxy; exact original compliance and external-record reconciliation await the originals."
+    }
+  ],
+  "gaps": [
+    "Approved original exposé and external PHM master Reasoning Record unlocated; correspondence provisional.",
+    "PHM raw archives absent after authorized retirement; recovery requires re-download, not performed here.",
+    "Synthetic positive-control and PHM sensor-fusion per-run predictions/checkpoints not identified; numerical retraining reproduction is not claimed.",
+    "PHM LOEO snapshot contains stale v2/fixed-split descriptive fields; verified input artifacts are v3 and evaluator/results implement LOEO. Preserve and disclose, do not silently rewrite.",
+    "PHM stored paired ΔMAE is a bootstrap-mean estimator, distinct from the direct difference of displayed MAEs.",
+    "No independent full-training reproduction, prospective deployment validation or fresh untouched final holdout supplied by this documentation task.",
+    "Exploratory extension remains active outside this freeze; completed subcomparisons do not mean all four tasks finished.",
+    "Current working tree is not clean: active extension status files and pre-existing unrelated work coexist with new documentation; hashes freeze this package, not the entire moving workspace."
+  ],
+  "checks": {
+    "source_files_exist": true,
+    "source_inventory": [
+      {
+        "path": "../datasets/REASSEMBLE/cache/section1_models/ac77a11ff0170a41b771c03264987f8ce2b0d753/config.json",
+        "type": "file",
+        "size_bytes": 5267,
+        "sha256": "8493be71f51a1c0a741f8f71ec151039227579379de7bcba047c0470d9320c3c"
+      },
+      {
+        "path": "artifacts/intel_welding/audits/PHASE_1_GATE_REPORT.md",
+        "type": "file",
+        "size_bytes": 8202,
+        "sha256": "9d9ad0e7b8107b63901e332029ef6a8db69e45bc513f8d36ae6c111980a88e41"
+      },
+      {
+        "path": "artifacts/phm2026/PHM_RAW_RETIREMENT_REPORT.md",
+        "type": "file",
+        "size_bytes": 5754,
+        "sha256": "ca2253b403e9008ed0490d9cce3d4503c22c665f0a10b17a518a55209cb8f2ae"
+      },
+      {
+        "path": "artifacts/phm2026/raw_data_manifest.json",
+        "type": "file",
+        "size_bytes": 21438,
+        "sha256": "669b5c897662d0f33ed8800fab57db630ee87a5c8ed2345517079c84f6d8662f"
+      },
+      {
+        "path": "artifacts/reassemble/audits/nested_splits.json",
+        "type": "file",
+        "size_bytes": 111163,
+        "sha256": "56dd1f32282a5771e16f780180e3cf62aa2684ae8e855ffd441418f91f14a668"
+      },
+      {
+        "path": "artifacts/reassemble/reports/AUDIO_FEASIBILITY_HANDOFF.md",
+        "type": "file",
+        "size_bytes": 1124,
+        "sha256": "6a532aa82787a4fce961224e44c438558f5307ede51ddc7e3ad9fba9715167c7"
+      },
+      {
+        "path": "artifacts/reassemble/reports/CROSS_STUDY_SYNTHESIS_HANDOFF.md",
+        "type": "file",
+        "size_bytes": 4947,
+        "sha256": "6fe647edb28b7822ad97f13f6d1b544365d16dbe8a98864900b9ef0162dadd0a"
+      },
+      {
+        "path": "artifacts/reassemble/reports/EFFICIENCY_HANDOFF.md",
+        "type": "file",
+        "size_bytes": 1863,
+        "sha256": "dbc62f33c626e1c2d41409b83ad60764a8b1baf0d41924f6d2d63a262169938d"
+      },
+      {
+        "path": "artifacts/reassemble/reports/FINAL_EVIDENCE_MAP.md",
+        "type": "file",
+        "size_bytes": 6333,
+        "sha256": "86539ccdbc84d738fbc7b6f296ea44b301b06c7989d4425cd2f881c80219d688"
+      },
+      {
+        "path": "artifacts/reassemble/reports/FINAL_REASSEMBLE_HANDOFF.md",
+        "type": "file",
+        "size_bytes": 28214,
+        "sha256": "fc6e0f26c9749462a3492cb848ce1148e85fe8932a3629d63ef60bc73b693e37"
+      },
+      {
+        "path": "artifacts/reassemble/reports/MODALITY_DROPOUT_HANDOFF.md",
+        "type": "file",
+        "size_bytes": 1339,
+        "sha256": "2006040a93b1e744721fe20cb82f06d1edc9e86c1b1660af5b5492469e3188a6"
+      },
+      {
+        "path": "artifacts/reassemble/reports/OBJECT_GENERALIZATION_FEASIBILITY.md",
+        "type": "file",
+        "size_bytes": 1174,
+        "sha256": "068b05ce50a60081aca66941f4a64cea3ab94ef43af3c96586016d422e64e213"
+      },
+      {
+        "path": "artifacts/reassemble/reports/SECTION_1B_FUSION_ADMISSIBILITY_HANDOFF.md",
+        "type": "file",
+        "size_bytes": 13054,
+        "sha256": "1d164bf7201473dc949383225becb38ac9bb4d1dfd937c1771b3eaf2897d99f5"
+      },
+      {
+        "path": "artifacts/reassemble/reports/SECTION_1_UNIMODAL_HANDOFF.md",
+        "type": "file",
+        "size_bytes": 10569,
+        "sha256": "a6e8d04e18e6e3cbc0dae20fb1c1ca9d658891a3319f6b2e9b3ff6a6a340cce7"
+      },
+      {
+        "path": "artifacts/reassemble/reports/SECTION_2_FUSION_HANDOFF.md",
+        "type": "file",
+        "size_bytes": 28465,
+        "sha256": "fdad704292c5b66c7f5f51826a041810ed3d7182aae44ec9c66f07f4a484f086"
+      },
+      {
+        "path": "artifacts/reassemble/reports/SECTION_3_ROBUSTNESS_HANDOFF.md",
+        "type": "file",
+        "size_bytes": 13856,
+        "sha256": "5fdfcd304a3e426963b689f6c584706d6fd14fd3046123238561c467cae4372f"
+      },
+      {
+        "path": "artifacts/reassemble/reports/THESIS_STORYLINE_ADDENDUM.md",
+        "type": "file",
+        "size_bytes": 13808,
+        "sha256": "4b168da1ead920562bbe832ab59ff8a4398c12e386fbd34ffc45780349b06d4f"
+      },
+      {
+        "path": "artifacts/thesis/documentation_build_config.json",
+        "type": "file",
+        "size_bytes": 380,
+        "sha256": "87e5329d0b5e47c13712901ac3d7e53187eb802e77e5289a5668f1afb175a4de"
+      },
+      {
+        "path": "configs/datasets/phm2026.yaml",
+        "type": "file",
+        "size_bytes": 1920,
+        "sha256": "9a63e46fec0156567b4d09f1c4d2a57dc23dd1e54edc8014b1ac843c576c83a9"
+      },
+      {
+        "path": "configs/phm2026/download_manifest.json",
+        "type": "file",
+        "size_bytes": 27472,
+        "sha256": "d5e7e209f1bfb177415679ae25f71d6aa458ff6b646766d9d9b4374f36fd3a14"
+      },
+      {
+        "path": "configs/reassemble/additional_improvements/execution.json",
+        "type": "file",
+        "size_bytes": 2040,
+        "sha256": "23bacc53c5bc78953964896fb48a9882a1e03026377caf81fa3b7b7cdc314b73"
+      },
+      {
+        "path": "configs/reassemble/section3_corruptions.json",
+        "type": "file",
+        "size_bytes": 5550,
+        "sha256": "1a438cb7df47f4609aaf87a5c794ce60c9bcc47ee9b063aa16cd6e7fcf82c47e"
+      },
+      {
+        "path": "data/rawvib/file_features.parquet",
+        "type": "file",
+        "size_bytes": 332682,
+        "sha256": "a95dfe36cb4914a61ddecb3c47fa21e2af655ca0c91aae5252f13b71431b714d"
+      },
+      {
+        "path": "data/rawvib/l1_screen.json",
+        "type": "file",
+        "size_bytes": 1847,
+        "sha256": "59455d3df9cb1648f3560cc653c79234022ec5985a5b506399fa0e87e24f4d24"
+      },
+      {
+        "path": "data/rawvib/sector_file_features.parquet",
+        "type": "file",
+        "size_bytes": 906751,
+        "sha256": "523de5b5e1afdb2bb7f102353e23b41a4c3c42e4c39df4006e4c23197a30467d"
+      },
+      {
+        "path": "data/rawvib/sector_screen.json",
+        "type": "file",
+        "size_bytes": 5297,
+        "sha256": "a261187e2889fb126e4615fcf5244142016498ec393a30b80c82e60e9dcab7a3"
+      },
+      {
+        "path": "data/rawvib/tsa_arrays.npz",
+        "type": "file",
+        "size_bytes": 57090020,
+        "sha256": "f2d9839b796878dbfebbbd3e232a26d8e346dac114b076269811a94b7ba9dff3"
+      },
+      {
+        "path": "data/rawvib/tsa_index.parquet",
+        "type": "file",
+        "size_bytes": 7658,
+        "sha256": "1c805844d5e40ca73c8de4c0c3432102a04605a8ef46ebc4ecd8559086d5dbe1"
+      },
+      {
+        "path": "docs/intel_welding/research_contract.md",
+        "type": "file",
+        "size_bytes": 8144,
+        "sha256": "5dbfeb81585d91ecef9d1b7f9d4087126172674a71fb295b601d044308f3022b"
+      },
+      {
+        "path": "docs/phm2026/RAW_DATA_RECOVERY.md",
+        "type": "file",
+        "size_bytes": 9211,
+        "sha256": "63b297b9ac13fc2ccbef8b5dd11aa4267fd3a3850337b6ae86dccb9647c5e697"
+      },
+      {
+        "path": "docs/thesis/ANOMALYDINO_RESULT_20260913T215556Z.md",
+        "type": "file",
+        "size_bytes": 9004,
+        "sha256": "d8dbc4ce069f5bc0133f672b67b7c425861d3a9f201724aeca76cde68f3743b8"
+      },
+      {
+        "path": "docs/thesis/ANOMALYDINO_SCORES.csv",
+        "type": "file",
+        "size_bytes": 19167,
+        "sha256": "a6733821738b3ef69c342cd32e66f77a7263b286848cdf131d43a50c4c49de2f"
+      },
+      {
+        "path": "docs/thesis/ANOMALYDINO_SWEEP.csv",
+        "type": "file",
+        "size_bytes": 937,
+        "sha256": "c534f2dbc3d8e01d7e201889a4b5d681699296556bd132a1624fc018b63a8beb"
+      },
+      {
+        "path": "docs/thesis/ANOMALYDINO_VALIDATED.csv",
+        "type": "file",
+        "size_bytes": 3689,
+        "sha256": "02355dde4948ff8db70edc6cfcfc606ee355cfe4f7ad3f9aef21921a753db068"
+      },
+      {
+        "path": "docs/thesis/CLOSING_EXPERIMENTS_20260912T171608Z.md",
+        "type": "file",
+        "size_bytes": 10525,
+        "sha256": "b4398d41ed54800425afe5e51e0687e185c26deb9b8ce21c14007a64e56c74b7"
+      },
+      {
+        "path": "docs/thesis/CLOSING_TASK_C_SYNTHETIC.json",
+        "type": "file",
+        "size_bytes": 9781,
+        "sha256": "1f3e98820961bdf674ae009e55dd0448941b12dba4ae922d611e046b111dcfcb"
+      },
+      {
+        "path": "docs/thesis/FUSION_RESULTS_20260912T111025Z.md",
+        "type": "file",
+        "size_bytes": 9323,
+        "sha256": "a9ce40f7ec8e77b17e3c96d7e4d265bc698fa9dffa68f0b52377e4fe1a0c1329"
+      },
+      {
+        "path": "docs/thesis/INSPECTION_RESULT_20260913T204715Z.md",
+        "type": "file",
+        "size_bytes": 13002,
+        "sha256": "c3fd9f42babd99634d8d8b6f695ef0d4f0e46f10988816c4c35010209a961806"
+      },
+      {
+        "path": "docs/thesis/PREREGISTRATION_20260912T053329Z.md",
+        "type": "file",
+        "size_bytes": 5114,
+        "sha256": "5502e18b212f958eb6f4509a5f6b9ad696655a61cea229ddfe9a8844ed25425b"
+      },
+      {
+        "path": "docs/thesis/PROFILE_DIAGNOSTICS_V3.json",
+        "type": "file",
+        "size_bytes": 4220,
+        "sha256": "9aaec8b8ec67283b2ab2db8c978ff524d9fa55be60afa2b14014664a3f9dc41b"
+      },
+      {
+        "path": "docs/thesis/RAW_VIB_20260927T095726Z.md",
+        "type": "file",
+        "size_bytes": 13641,
+        "sha256": "3e5f1d642663fdc1e9f74db8159fc0fbe2b6dd96c037445f74a81ec829f974a5"
+      },
+      {
+        "path": "docs/thesis/SQ2_SQ3_RESULTS.json",
+        "type": "file",
+        "size_bytes": 12278,
+        "sha256": "0a5794e388ca7a169dfce9d40231c605124ac4c227f6b6f4552f4c95a5abd9b6"
+      },
+      {
+        "path": "docs/thesis/TARGET_VERSION_LEDGER.md",
+        "type": "file",
+        "size_bytes": 11559,
+        "sha256": "2830b463b727a659f631fe47a55eeb2bd72ee6edcf089ed0580f4c181c2eccdf"
+      },
+      {
+        "path": "docs/thesis/TOOTH_SECTOR_20260927T102354Z.md",
+        "type": "file",
+        "size_bytes": 12954,
+        "sha256": "261ae8742bd89ace68392dd10ffd443c16d9ad925641c7e247caad84aa998f3e"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/config/resolved_config.yaml",
+        "type": "file",
+        "size_bytes": 1849,
+        "sha256": "c7d22e3f139fd5536c5f799a2464f09e9c40417c2c969625a2613e85680a72c8"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/config/target_definition.yaml",
+        "type": "file",
+        "size_bytes": 551,
+        "sha256": "89b961bea351dfc664450ef37fa8e8d800f35f571d5fa942a6904e68f5355860"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/figures/per_tooth_damage_heatmap.svg",
+        "type": "file",
+        "size_bytes": 79911,
+        "sha256": "0516e09ac6075b2cd1ae62de96bbeeed6b5946f4a1adaccd80371c263fd30197"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/figures/target_definition_pipeline.svg",
+        "type": "file",
+        "size_bytes": 33499,
+        "sha256": "e35cf0945d84475c5ee51a54c6f03fc71649caa4f9acbb003150e47a5eec7b22"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/manifests/inputs.json",
+        "type": "file",
+        "size_bytes": 1655,
+        "sha256": "0cbfde032590a3abbd75f4fe89efa81b7072bbc30fd835f3207beb45e793d6a6"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/manifests/outputs.json",
+        "type": "file",
+        "size_bytes": 18074,
+        "sha256": "8b700028ebd8d23056870fba453cc5d26e1d9e61eb62c4d7a6bfe3d954e5a418"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/manifests/target_provenance_manifest.json",
+        "type": "file",
+        "size_bytes": 2511,
+        "sha256": "e770d1f09693d522e70becacd5b51f4fb9fad9457c8707eecfcff311ba9d7979"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/provenance.json",
+        "type": "file",
+        "size_bytes": 19856,
+        "sha256": "647a7544767ee563286a11b4772c34ea36a412b19d3665e275aeb9fc696d48c4"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/reports/target_quality_report.json",
+        "type": "file",
+        "size_bytes": 1140,
+        "sha256": "b0106faa2cfc617fef9e7b5acf3b3d51816b66147014f9d4959b6e47e8bf754a"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/tables/per_tooth_damage.parquet",
+        "type": "file",
+        "size_bytes": 87588,
+        "sha256": "2dec6ae2c9a598f1f629bb064b2346a1a126a07b5bef130b39b8e693a160b2cb"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/tables/run_damage_targets.parquet",
+        "type": "file",
+        "size_bytes": 14149,
+        "sha256": "e5e098e01822307791138b83c015307ae74a5b2fdaf80957e413170a343e92f1"
+      },
+      {
+        "path": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/config/resolved_config.yaml",
+        "type": "file",
+        "size_bytes": 2522,
+        "sha256": "e708f5842be3467022eb4d2bbc4b5905621a509e189c0b1a4b94915b9b31278a"
+      },
+      {
+        "path": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/manifests/outputs.json",
+        "type": "file",
+        "size_bytes": 1475,
+        "sha256": "7ab4ee58cce687647386d35c69ab4c89b068de817cfde75d779571a033803b14"
+      },
+      {
+        "path": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/provenance.json",
+        "type": "file",
+        "size_bytes": 2773,
+        "sha256": "81e7368e33067325702dcf3cb29040bfd05bb409b8fbf23d54948292290aa3e5"
+      },
+      {
+        "path": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json",
+        "type": "file",
+        "size_bytes": 2346,
+        "sha256": "cdb36301a281d8258ae9955303f2f6f5b9c3660fdd9160e8f9be66e6afb7cc56"
+      },
+      {
+        "path": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/loeo_predictions.parquet",
+        "type": "file",
+        "size_bytes": 4720,
+        "sha256": "cb93100f915f3602992e74e431e5c6203442a546904b6f67e96ee7f7393e87a2"
+      },
+      {
+        "path": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/loeo_summary.csv",
+        "type": "file",
+        "size_bytes": 535,
+        "sha256": "387bad00da06600723ce97acb96285e25a8aab18d513b2f613f23e407a7e670f"
+      },
+      {
+        "path": "runs/reassemble/20260927T134437Z/acquisition.json",
+        "type": "file",
+        "size_bytes": 1165,
+        "sha256": "2d178a0a60e0cd0351e70cefd7361d4a03130a4e1abc2201f0c180661cb5419c"
+      },
+      {
+        "path": "runs/reassemble/20260927T134437Z/official_record.json",
+        "type": "file",
+        "size_bytes": 34471,
+        "sha256": "3a22562fe00339d7bde2d8b211534a454807587873fb4567a3e29e2cd2b581df"
+      },
+      {
+        "path": "runs/reassemble/20260927T141645Z-inventory/recordings.parquet",
+        "type": "file",
+        "size_bytes": 380920,
+        "sha256": "cd37575b63a0539aff55b70276065d7a39818121804808497b33baad3c06477e"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/assessment/results.json",
+        "type": "file",
+        "size_bytes": 52007,
+        "sha256": "90fbb2a24a3e3c52a84ef6a58a925265f1f8a3ea45613bdc711a3cf483d1bc3a"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/cohort.parquet",
+        "type": "file",
+        "size_bytes": 86530,
+        "sha256": "ef224314224a1bdff8ee5f01bcea64f03458a30026011cd0b2096a105ff81aea"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/config.json",
+        "type": "file",
+        "size_bytes": 2383,
+        "sha256": "dd3e29d2bcd61caadcbc0bd18a95a2a0c6b1cb6aba7f31fbd906a681a319bbea"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/final_output_manifest.json",
+        "type": "file",
+        "size_bytes": 181865,
+        "sha256": "d8fbd33176fd90b64d3883b42e84658a9657aae8237bc63a6dae5c5c68d170bb"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/nested_splits.json",
+        "type": "file",
+        "size_bytes": 111163,
+        "sha256": "56dd1f32282a5771e16f780180e3cf62aa2684ae8e855ffd441418f91f14a668"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/output_manifest.json",
+        "type": "file",
+        "size_bytes": 180287,
+        "sha256": "3689354b1ae77f91084743322448867e3d694b17f721f96d72ab0d9080676e5f"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/predictions/patchtst_perm00.npz",
+        "type": "file",
+        "size_bytes": 1181488,
+        "sha256": "2ff53f7ae05e2221dee164bb26726b3a6e85a92dd65e79d198a685c6f0de46da"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/predictions/rtdetr_perm00.npz",
+        "type": "file",
+        "size_bytes": 1294632,
+        "sha256": "5a8c656571b44e35ecdba5dbc24cc96291e4183a6c750bc53745719838b769d8"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/predictions/sensor_statistics_perm00.npz",
+        "type": "file",
+        "size_bytes": 75111,
+        "sha256": "7113f40880df7b839dd3d1fb7522cb712f7dfcae74d6c1be182f982cf1bf5e1e"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/pretrained_model.json",
+        "type": "file",
+        "size_bytes": 1068,
+        "sha256": "1394ff2aff76784b91a1209837fa06cecd0fdc0b29fc574345c9ab3424d5ba2e"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/provenance.json",
+        "type": "file",
+        "size_bytes": 484,
+        "sha256": "e704a82d06afcdb91ed6527f7b1bd3d12c079a7c7d54856481d75e80ce66a201"
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/training_implementation.json",
+        "type": "file",
+        "size_bytes": 656,
+        "sha256": "682b73f4180b557ce8e479c1ff8663f85edaa1e365e0b35931f1526980cd4bef"
+      },
+      {
+        "path": "runs/reassemble/20260927T175336Z-section1b/assessment/results.json",
+        "type": "file",
+        "size_bytes": 16300,
+        "sha256": "0eeb2917ae32819477221585b388057d7ea36591d35025c29555f131bb5a044b"
+      },
+      {
+        "path": "runs/reassemble/20260927T175336Z-section1b/config.json",
+        "type": "file",
+        "size_bytes": 1883,
+        "sha256": "12613220f0a1d29569d1cd28ea5f42a21b941ded40966680769da48ae4b4d3f7"
+      },
+      {
+        "path": "runs/reassemble/20260927T175336Z-section1b/implementation.json",
+        "type": "file",
+        "size_bytes": 957,
+        "sha256": "17bd0ee6145bb5c93f0971efc9a673da9d55a6c1b6c24d176afd3f61132248a3"
+      },
+      {
+        "path": "runs/reassemble/20260927T175336Z-section1b/output_manifest.json",
+        "type": "file",
+        "size_bytes": 76099,
+        "sha256": "223db41c547c51de4ed31215168a8c7b69c62a5a23d2ef9825bc6e8ca9302878"
+      },
+      {
+        "path": "runs/reassemble/20260927T175336Z-section1b/provenance.json",
+        "type": "file",
+        "size_bytes": 619,
+        "sha256": "e5feccd34c15d9c19c8e0cefc42b904c0e49c9a0d7de477e03454a136d476e9f"
+      },
+      {
+        "path": "runs/reassemble/20260927T175336Z-section1b/stacking/oof.npz",
+        "type": "file",
+        "size_bytes": 37309,
+        "sha256": "14b4901674b9a00494137a38720ede6e3cdb5af4fa3c94d3487488c6e2f640a1"
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/assessment/gate_weights.json",
+        "type": "file",
+        "size_bytes": 231312,
+        "sha256": "561a0c6010f2a836518ec007667db8429f77b6efff63d8ea86db6f7d5472768c"
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/assessment/results.json",
+        "type": "file",
+        "size_bytes": 44384,
+        "sha256": "991aaf33708a8c795a9f0d7ee3e9665788dd98c347752e1a87affdf3746956c6"
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/config.json",
+        "type": "file",
+        "size_bytes": 3022,
+        "sha256": "d30ea44f13a72bc257155449a1f31ffd06c69bf72f79285dd9ff161e392d4e0f"
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/implementation.json",
+        "type": "file",
+        "size_bytes": 32062,
+        "sha256": "70d8f3ed064bcbf45e7f5c46e3fc546ac952d96d7dc8d64a8d71ed4e693e0494"
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/output_manifest.json",
+        "type": "file",
+        "size_bytes": 286085,
+        "sha256": "9088d31fa3468bbfe484f3fb14666b4900d1747adf180b73497c766738d01163"
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+        "type": "file",
+        "size_bytes": 1032769,
+        "sha256": "e2ca736b2dccdb33a1dfc0cf33c2001a3b69cdb2d8ef82d5241c4f34b740995a"
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/provenance.json",
+        "type": "file",
+        "size_bytes": 513,
+        "sha256": "e7c7390c7bb849e744338b299d12bc384207c5990f48c5f398ece2303689d53a"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-audio-gate/clock_metadata.json",
+        "type": "file",
+        "size_bytes": 101087,
+        "sha256": "40fceb2629691c70bb9f14b06ab17201713fd1c7ec2114912bf20f0d31acc320"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-audio-gate/config.json",
+        "type": "file",
+        "size_bytes": 1029,
+        "sha256": "777db1da19bcb16f6c7967ec98ebd8556e0eedf5a834a75c05bedac0f7a2adcf"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-audio-gate/output_manifest.json",
+        "type": "file",
+        "size_bytes": 1160,
+        "sha256": "a88924f1f232d83c37517542596d6fea83c4055065c181e8e3bef2e9abe82f3b"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-audio-gate/results.json",
+        "type": "file",
+        "size_bytes": 2338,
+        "sha256": "e3c0e71998ecbb0b7ebc56a9321bc993260395ea949c762a3b3254811ce7860e"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-audio-gate/segment_coverage.csv",
+        "type": "file",
+        "size_bytes": 1472897,
+        "sha256": "19aa1437a943385b78f9b8a2104601f7967f07ab435395fdf86bd4129cd76b61"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-efficiency/config.json",
+        "type": "file",
+        "size_bytes": 1029,
+        "sha256": "31c688b6b1ecef8a734f894f05f848c4b76092bc3b0a21dc7ecaecb45cd2431e"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-efficiency/output_manifest.json",
+        "type": "file",
+        "size_bytes": 764,
+        "sha256": "4db8466a9a405a0e93c9fde5b7194f1307c51ea7f12e3d9777bb5a8b51d725e1"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-efficiency/results.json",
+        "type": "file",
+        "size_bytes": 16326,
+        "sha256": "8b192a6111daeb934b5adc4fb3fdc30bb30344267aa0fdb465570d999ff0c1d5"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figure_index.json",
+        "type": "file",
+        "size_bytes": 9548,
+        "sha256": "5378c3f6d9e3af6f8ce55d99525adaa43c432812684b124c897c1878236a51f3"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/01_two_study_design.pdf",
+        "type": "file",
+        "size_bytes": 28512,
+        "sha256": "4290bd259e13e6b30c9eacb9e5bd12854854182c2d728f4ffcc8b43c36ac8dfe"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/01_two_study_design.png",
+        "type": "file",
+        "size_bytes": 116553,
+        "sha256": "0a2403b6ed409b215a925b2a51c45df5c915e422e277d2f2ddefcf5564058522"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/02_cohort.pdf",
+        "type": "file",
+        "size_bytes": 14797,
+        "sha256": "1e1fda0bfc07aab60c7106e2b0c67b9ea44503636caeea229084a1c49d863a3f"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/02_cohort.png",
+        "type": "file",
+        "size_bytes": 54602,
+        "sha256": "bc041bd9c2958c6ecfa879179a80e8cda992dcf3239d4ac5a86b5164bd012c55"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/03_unimodal.pdf",
+        "type": "file",
+        "size_bytes": 15415,
+        "sha256": "93d7d6875657a8c55675831bae004d20abf02bc5a40e74a6e22f68db20246fbc"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/03_unimodal.png",
+        "type": "file",
+        "size_bytes": 66365,
+        "sha256": "712ccf9247568023dad219daaf207e77f886041de2dae0be0adf76b1067aebd5"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/04_complementarity.pdf",
+        "type": "file",
+        "size_bytes": 14231,
+        "sha256": "ec5605d3287ca6c7a4a759cab622157cab285dfbff104cbb6d8a910a671e24c7"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/04_complementarity.png",
+        "type": "file",
+        "size_bytes": 70862,
+        "sha256": "cca07b24d7a9e58604f800031067740796ca0e045b3ce84b72bc0b4e828f9791"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/05_clean_fusion.pdf",
+        "type": "file",
+        "size_bytes": 20013,
+        "sha256": "4eb4974d17b451cfeada0488477e1fc27f988cc68e70ab16b6cddcb1896389dd"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/05_clean_fusion.png",
+        "type": "file",
+        "size_bytes": 104888,
+        "sha256": "b0d8d5728db649c7559f4f2a331af3c5089827d30784b2fcbbd148ecf7dbfccc"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/06_weights_by_action.pdf",
+        "type": "file",
+        "size_bytes": 13360,
+        "sha256": "d53a089d3610c9cafd20765ab4f09378a7f69b7c00b67a043a91ffbff1232a48"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/06_weights_by_action.png",
+        "type": "file",
+        "size_bytes": 45613,
+        "sha256": "3d38119e27ab9591c1004007f43738948a39a010340036266b78fd0d168b0dd4"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/07_visual_corruptions.pdf",
+        "type": "file",
+        "size_bytes": 24633,
+        "sha256": "e43ce1812aefdc287ac6b94dbc8a9d4915493525b44cad7f2216b186fdafc129"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/07_visual_corruptions.png",
+        "type": "file",
+        "size_bytes": 275127,
+        "sha256": "463bbc91ff1f0e285b738b17e2e808d843ec241feef224e631d333c6467d6742"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/08_sensor_corruptions.pdf",
+        "type": "file",
+        "size_bytes": 24061,
+        "sha256": "5205b74ea1de721bf2ef025b320eb4732667bec92c3d537bcb13298010e56c8f"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/08_sensor_corruptions.png",
+        "type": "file",
+        "size_bytes": 393377,
+        "sha256": "c7697eb2d82b5486f04f6783a5e64cb546388ae1721f303926fd612478fe42d1"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/09_missing_modalities.pdf",
+        "type": "file",
+        "size_bytes": 15130,
+        "sha256": "e2d5a6020c54ba274f73925acfc2cdc31e22092959d070f331f54c5de105bdc6"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/09_missing_modalities.png",
+        "type": "file",
+        "size_bytes": 48789,
+        "sha256": "52e4f3b2ae81bd786d07cab51a5bbe3bc84e0902e5c147e50102bcc6069786c0"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/10_gate_response.pdf",
+        "type": "file",
+        "size_bytes": 20572,
+        "sha256": "82cfa4ec4a0237eebac5ba147fd2c22a6f51ff6c8eeb3f53d027defb854ee6df"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/10_gate_response.png",
+        "type": "file",
+        "size_bytes": 236328,
+        "sha256": "de754bd910ed1484868c49f8c92e19d8e489cbc177eb89cdfebd7091ae54d32d"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/11_dropout_tradeoff.pdf",
+        "type": "file",
+        "size_bytes": 16617,
+        "sha256": "02d1132f4486127eea02c7a9565731c6bf1477d03ec8175750a8db15b87c9544"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/11_dropout_tradeoff.png",
+        "type": "file",
+        "size_bytes": 59218,
+        "sha256": "3b266c748bae91e90937eaf95b39c844d7c675a2d34e2f0e566a3de01ed685cc"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/12_efficiency.pdf",
+        "type": "file",
+        "size_bytes": 19459,
+        "sha256": "38a6aecc81b2e8b8ce1c5d62c0517a568f793b3c88f9adc64d993b2fb760a795"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/12_efficiency.png",
+        "type": "file",
+        "size_bytes": 80970,
+        "sha256": "dfd5d9cbed7dba5b11007d0061d81231f96fa8606e312aabc6cb50c0bafd1830"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/13_audio_gate.pdf",
+        "type": "file",
+        "size_bytes": 14357,
+        "sha256": "5837e5c49907a63f8f93f764c1b84e0dd31016b402a5d89c30494ee9fdb0f074"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/13_audio_gate.png",
+        "type": "file",
+        "size_bytes": 47992,
+        "sha256": "303fb6da106af4823776393f6ea06703c032f54beb4b778e8764c8753c3fb6dd"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/14_cross_study_conditions.pdf",
+        "type": "file",
+        "size_bytes": 21081,
+        "sha256": "0d3bf62d2c7420e498620e8993cb51a7a0de8f662e05323801e44e3c07e40cc1"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/figures/14_cross_study_conditions.png",
+        "type": "file",
+        "size_bytes": 93855,
+        "sha256": "b92aa5ca68e77c6f6ecfe29dca621d63a340c441e6a140d256d5a77d64cec67d"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/output_manifest.json",
+        "type": "file",
+        "size_bytes": 26992,
+        "sha256": "ca5fc38a63d5da9769e316f491785f95e33cd8556e8c397f520009f73725b0bb"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/seal.json",
+        "type": "file",
+        "size_bytes": 83742,
+        "sha256": "df2717f0c9277091cea0210c8f4c684cf43f064ffd2bc6e92fcec2b1a9c339d0"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/01_master_clean_metrics.csv",
+        "type": "file",
+        "size_bytes": 7934,
+        "sha256": "5c81c22e69ad59c0811619ea677a5e41180be2b5f8744476bca50a2361d10bbc"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/01_master_clean_metrics.md",
+        "type": "file",
+        "size_bytes": 2073,
+        "sha256": "fd8d31f628ca46d4f9edbcfcdd7ea37807ff2431925a4889ba78f58b8149fb35"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/02_robustness_detailed.csv",
+        "type": "file",
+        "size_bytes": 66987,
+        "sha256": "1aaf6074856dfbd638590114ef6475f3e8d9f0f986fed159e87b3e93ec8e097b"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/03_robustness_paired.csv",
+        "type": "file",
+        "size_bytes": 107819,
+        "sha256": "ddc66532e93dffd4d5ab9afdfa0ce3cc399a5dd60e38e588acf1b6a77458e549"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/04_missing_modality.csv",
+        "type": "file",
+        "size_bytes": 8667,
+        "sha256": "4e2540a1cb9856531b05bf81c6696333d3db558f32b77b5a34ed950dcabf561d"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/05_gate_response.csv",
+        "type": "file",
+        "size_bytes": 5453,
+        "sha256": "5dfb41d6491ef5125d21321a0fd7523deed86fd237b3a6f2d9b9e6e834534102"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/06_robustness_summary.csv",
+        "type": "file",
+        "size_bytes": 2530,
+        "sha256": "b9092cfb78e2ea52f3287b4c9dbf5f7ea0c93675b91dde0bf5cd1d1abc20cf85"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/07_modality_dropout.csv",
+        "type": "file",
+        "size_bytes": 2521,
+        "sha256": "4229074bed744baa220d1729225777913955832ca4e060b58e3aaa89c91e931d"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/08_audio_gate.csv",
+        "type": "file",
+        "size_bytes": 496,
+        "sha256": "27bcb8658ee0baba01b86e7344a0884f468562716dc486a5710ff64404942a91"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/09_efficiency.csv",
+        "type": "file",
+        "size_bytes": 1506,
+        "sha256": "7d323da874b517463530ac1f7a7e17c6364753ec9ab6708d3e7f55329cbce18e"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/10_dataset_summary.csv",
+        "type": "file",
+        "size_bytes": 122,
+        "sha256": "e16ea8c98d0df9b9698eb0dcb603fb82694a5a52345ad5a4ef3e154e04937fae"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/11_evaluation_protocol.csv",
+        "type": "file",
+        "size_bytes": 542,
+        "sha256": "f0615b6202df67e001461e2bbabf267eb601d40796716af515a81df7e8585d65"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/12_clean_paired.csv",
+        "type": "file",
+        "size_bytes": 6018,
+        "sha256": "441a0a4f36bc037943ec0e8072df7d8d88d6a82ec25937dd1f590bc28336b4b4"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/13_final_RQ_matrix.csv",
+        "type": "file",
+        "size_bytes": 1988,
+        "sha256": "6d754e285039038a02ea2dff0b2859773cc3389f3297a81e41d0080cbb1eb8ce"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/robustness_S1.csv",
+        "type": "file",
+        "size_bytes": 12694,
+        "sha256": "777de0998d652f4a6853fb14d03cb56edeac298da0c1b197a52c3f17c8c2ffb0"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/robustness_S2.csv",
+        "type": "file",
+        "size_bytes": 12721,
+        "sha256": "03a73e8ddc45fae87026874ce3f5a36ab8ca86e18ed934c73cec540822813e0a"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/robustness_S3.csv",
+        "type": "file",
+        "size_bytes": 12736,
+        "sha256": "1b6612b5d39bfdb084ec7e13273b1a24b81f27367ac0015ce986e28b589585b4"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/robustness_S4.csv",
+        "type": "file",
+        "size_bytes": 6459,
+        "sha256": "f69c4dd5dcf8fb10eff5d6b6c9757319efcae272f9340b3be6f0163069734a65"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/robustness_V1.csv",
+        "type": "file",
+        "size_bytes": 12095,
+        "sha256": "6366b276ed7fb72490e3cd531dee279e4f200204ba67710d7ed480c2a1f7cbe0"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/robustness_V2.csv",
+        "type": "file",
+        "size_bytes": 12728,
+        "sha256": "264cc318be0e5c130164120b36e1345cc7275b3524653615a94aceb35d6cd957"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-final-synthesis/tables/robustness_V3.csv",
+        "type": "file",
+        "size_bytes": 12753,
+        "sha256": "478e095931f2144843e359c334d3f12910c3970a541d7908ae86f83e5e5ce60c"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-modality-dropout/config.json",
+        "type": "file",
+        "size_bytes": 1035,
+        "sha256": "1ff48d75181c4c4ed37b75ea89e0908229f8a11d0e1ab6c8cb1dc60aae285446"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-modality-dropout/output_manifest.json",
+        "type": "file",
+        "size_bytes": 18927,
+        "sha256": "fedaabb18ef878cb6db925418fedf848bb3ecd5b42ca0c14192c45c74887b64f"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-modality-dropout/predictions/clean.npz",
+        "type": "file",
+        "size_bytes": 240494,
+        "sha256": "b152aff34ec1f860ac2301996949c493a5fb500b86de681667b92fc14df629f7"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-modality-dropout/results.json",
+        "type": "file",
+        "size_bytes": 47722,
+        "sha256": "c42197224322ac76662acb8acfae64de1440b723a37c2af4170a8c657540c9fb"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-object-feasibility/config.json",
+        "type": "file",
+        "size_bytes": 1037,
+        "sha256": "7579479458cd0d76ce5ac8bdf55fe64aae1d03fd7697e96edfa0fef03ee6d7a2"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-object-feasibility/implementation.json",
+        "type": "file",
+        "size_bytes": 11064,
+        "sha256": "dd7e368788d1afde8572552406abe73999d3e3d1534c6cb0d05ee291d37b25e2"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-object-feasibility/output_manifest.json",
+        "type": "file",
+        "size_bytes": 972,
+        "sha256": "792513da7983cdb7ed852b41b3b8df58cf6dacb7eeb0a3e144f9ea5663b86868"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-object-feasibility/results.json",
+        "type": "file",
+        "size_bytes": 2646,
+        "sha256": "ac2d3dec1c7126b982f331b8ff80975ca3ecda616908260c7c74cfe6d75f93c6"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-section3/config.json",
+        "type": "file",
+        "size_bytes": 5550,
+        "sha256": "1a438cb7df47f4609aaf87a5c794ce60c9bcc47ee9b063aa16cd6e7fcf82c47e"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-section3/output_manifest.json",
+        "type": "file",
+        "size_bytes": 144181,
+        "sha256": "3dbab4ed04cc7be786cd00b72e067636d5c2d8419e5657568fd99704f2b9f119"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-section3/predictions/S5.npz",
+        "type": "file",
+        "size_bytes": 595671,
+        "sha256": "2ca2c33fec1d825a263c8016866619862f0a57ac28db8184d8d2ed884ac7058f"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-section3/predictions/V4.npz",
+        "type": "file",
+        "size_bytes": 595312,
+        "sha256": "bff87bf9b20b332cbbf9cc5f732dd04d38b8b96af435f7c57b154da6da338b80"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-section3/predictions/clean.npz",
+        "type": "file",
+        "size_bytes": 856503,
+        "sha256": "e47acac99a5f7ebd82d61f5b35fa7634b6379a30a65f97555379d2021e5177c8"
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-section3/results.json",
+        "type": "file",
+        "size_bytes": 578596,
+        "sha256": "4e2e94cbc258ee4bc554321edb7e8b73cccaeb2d7599b8bff39d2c3d36c4d76d"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/V-MEAN_predictions.npz",
+        "type": "file",
+        "size_bytes": 182287,
+        "sha256": "930376a3cf4acca894a6331ebba843c64064cb8fe133db82f790b4dd52529d44"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/V-NOPOS_predictions.npz",
+        "type": "file",
+        "size_bytes": 181726,
+        "sha256": "f26cfaeed52fa56db3d7a395967ae65277180b4ba303123d2daf90f452d303a3"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/V-TEMP_predictions.npz",
+        "type": "file",
+        "size_bytes": 181827,
+        "sha256": "7beb06b42fc8b738274c4931bc7c600517a64e04e7d6ca93c6b807e27d50350e"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/comparison/metrics.csv",
+        "type": "file",
+        "size_bytes": 738,
+        "sha256": "2e4bb31abce4d2e8f9530cb4ef8ae8705ba89fa37dcdcae1be00acde98cfa10d"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/comparison/results.json",
+        "type": "file",
+        "size_bytes": 26782,
+        "sha256": "1cfa5cd94f9c587cf1b3a1a91c7871fcf2bed0cdc6b8f675cff5d44c0509f74d"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/S-6_predictions.npz",
+        "type": "file",
+        "size_bytes": 143964,
+        "sha256": "5aa27d21517fd0ffb0b7719ba179130d5ea51312f174f03797149e4d3880392a"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/S-LONG_predictions.npz",
+        "type": "file",
+        "size_bytes": 143997,
+        "sha256": "83504bf8033aaf8b321a066001b85dde7cae8411831c2b9c310dd06eca420998"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/comparison/metrics.csv",
+        "type": "file",
+        "size_bytes": 736,
+        "sha256": "a831c8c064014feccd6d63accb550222ae09ce079539d9458325f7f59cbbd35b"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/comparison/results.json",
+        "type": "file",
+        "size_bytes": 25780,
+        "sha256": "0d70e8647d01869a25b03c87dda88eaf809d458d10410854f697ff55ab1daa3f"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/03_static_anchored_adaptation/comparison/metrics.csv",
+        "type": "file",
+        "size_bytes": 577,
+        "sha256": "d43949033ee057fce828e70e3ec2a5858444056b6422cede67ec99e985bc1251"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/03_static_anchored_adaptation/comparison/results.json",
+        "type": "file",
+        "size_bytes": 23700,
+        "sha256": "8d0770113f512eb51ba42ddecf350111bd22a9a90e379e94c7dc1cace877d2c9"
+      },
+      {
+        "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/03_static_anchored_adaptation/predictions.npz",
+        "type": "file",
+        "size_bytes": 306490,
+        "sha256": "0afb97e13927d1bd47896383c2f27d482384c293ed1d9fb8f9888b893c209213"
+      },
+      {
+        "path": "runs/thesis/documentation/20260928T025444Z/user_documentation_request.txt",
+        "type": "file",
+        "size_bytes": 5878,
+        "sha256": "e25290aed5a33ad6c4debd67e61d95c1735b2036611998420f39ea1ca37d3419"
+      },
+      {
+        "path": "scripts/rawvib/angular_features.py",
+        "type": "file",
+        "size_bytes": 11624,
+        "sha256": "6301b5bd5f91153275d6da50a98081153350faf01d0ffa77706bc5d37ff86210"
+      },
+      {
+        "path": "scripts/rawvib/l1_screen.py",
+        "type": "file",
+        "size_bytes": 8262,
+        "sha256": "a9641bbd5f696c55aa67227b5763c3c2436bf21db2daf7ccb81a89b735ee6dd4"
+      },
+      {
+        "path": "scripts/rawvib/save_tsa.py",
+        "type": "file",
+        "size_bytes": 4393,
+        "sha256": "64dba039757f5b4ee0fd9af6e59d439fd7951e717f1dc383fd8ed57b0f22faf8"
+      },
+      {
+        "path": "scripts/rawvib/sector_features.py",
+        "type": "file",
+        "size_bytes": 4710,
+        "sha256": "e5ef483232237cabf9193444b70f89870c21cb4e81ce4feff9b24c6ba458b96d"
+      },
+      {
+        "path": "scripts/rawvib/sector_screen.py",
+        "type": "file",
+        "size_bytes": 9538,
+        "sha256": "e9c595f74a490ea52fcf11626868dc91a6fe33527015db3083f43255655cff8d"
+      },
+      {
+        "path": "scripts/reassemble/05_section1_report.py",
+        "type": "file",
+        "size_bytes": 177,
+        "sha256": "ea92235fb430e038a364af5d571908cdf98829d8f89912366b8724142a2d248e"
+      },
+      {
+        "path": "scripts/reassemble/07_section1b.py",
+        "type": "file",
+        "size_bytes": 171,
+        "sha256": "f2d5b3585904f258193c539d7e09f10f2b0634c4618c3d633a7e729e6e654eb8"
+      },
+      {
+        "path": "scripts/reassemble/09_section2.py",
+        "type": "file",
+        "size_bytes": 180,
+        "sha256": "92d41d19667f2d63b989c57befe28212aa911b6f60a91f3a570b8f05ba3c515f"
+      },
+      {
+        "path": "scripts/reassemble/16_section3_report.py",
+        "type": "file",
+        "size_bytes": 279,
+        "sha256": "986cbd398e8e05a7bc92684a93fda85d1f209793275fb7fd8f4685d0fbc8e7d6"
+      },
+      {
+        "path": "scripts/reassemble/17_modality_dropout.py",
+        "type": "file",
+        "size_bytes": 276,
+        "sha256": "cfdc06202ef9fee8af7e1f69ad4a170fc9800c2486ae91be404ddc169c1a7eb3"
+      },
+      {
+        "path": "scripts/reassemble/18_completion_gates.py",
+        "type": "file",
+        "size_bytes": 178,
+        "sha256": "f36895e83801b2f798385b95a706d3470790b6ed112b32a262facf2f8ec70870"
+      },
+      {
+        "path": "scripts/reassemble/19_completion_efficiency.py",
+        "type": "file",
+        "size_bytes": 183,
+        "sha256": "a06d82ec761d278291bcea46a1c9114565e0c84112b43076068d3ad4f13f1456"
+      },
+      {
+        "path": "scripts/reassemble/20_completion_synthesis.py",
+        "type": "file",
+        "size_bytes": 182,
+        "sha256": "fcac26832058b3565cf46b1d3b3cdde85bc8a962afcce2cb322c37200addeef6"
+      },
+      {
+        "path": "scripts/results/anomalydino_sweep.py",
+        "type": "file",
+        "size_bytes": 8911,
+        "sha256": "91d41815c7725169b8a208e7519c21299bed67e6fe16bc186df171296aec031f"
+      },
+      {
+        "path": "scripts/results/anomalydino_validated.py",
+        "type": "file",
+        "size_bytes": 11162,
+        "sha256": "a0a1ae4ebe32ad685e451421715ecfb67b9496cff8a55d0bd84c18ac09398848"
+      },
+      {
+        "path": "scripts/results/closing_task_c.py",
+        "type": "file",
+        "size_bytes": 12893,
+        "sha256": "00eb574b75129e67d00016d954742b0e390cd5298df1f108143632f6eca4d34e"
+      },
+      {
+        "path": "scripts/results/loeo_evaluation.py",
+        "type": "file",
+        "size_bytes": 15182,
+        "sha256": "b3982f1f28ea20a4bb062995af44e15b2b5de915669df7f1a163831a308a5e0a"
+      },
+      {
+        "path": "scripts/results/sq2_sq3_fusion.py",
+        "type": "file",
+        "size_bytes": 12578,
+        "sha256": "7f1eea3773995a75fc89eef7b27df8f689bbe11f6fcf2a4989331646924bd979"
+      },
+      {
+        "path": "scripts/targets/derive_image_targets.py",
+        "type": "file",
+        "size_bytes": 8917,
+        "sha256": "6321d521cd1040337c59b20b7db8e9a15a6ce6a7f8f37ba810a532169bd657fa"
+      },
+      {
+        "path": "scripts/thesis/build_final_documentation.py",
+        "type": "file",
+        "size_bytes": 91362,
+        "sha256": "d951f57a20cf58dbba6d15f8efbd36603fd1cd679a228425298ea6a10116d968"
+      },
+      {
+        "path": "src/pi_multimodal_ad/acquisition/phm_download.py",
+        "type": "file",
+        "size_bytes": 27465,
+        "sha256": "3586886b30534bf15d72cc6f35b4a1563601353b36d0d3248d7934209bf94a9b"
+      },
+      {
+        "path": "src/reassemble/section1_features.py",
+        "type": "file",
+        "size_bytes": 6452,
+        "sha256": "0aba08d10b9b080e77ac499649d5a3c2defc9e40d291713c08919a4e6a07bee0"
+      }
+    ],
+    "parsed_configs": [
+      "configs/datasets/phm2026.yaml",
+      "configs/phm2026/download_manifest.json",
+      "configs/reassemble/additional_improvements/execution.json",
+      "configs/reassemble/section3_corruptions.json",
+      "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/config/resolved_config.yaml",
+      "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/config/target_definition.yaml",
+      "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/config/resolved_config.yaml",
+      "runs/reassemble/20260927T154732Z-section1/config.json",
+      "runs/reassemble/20260927T175336Z-section1b/config.json",
+      "runs/reassemble/20260927T192852Z-section2/config.json",
+      "runs/reassemble/20260927T204649Z-audio-gate/config.json",
+      "runs/reassemble/20260927T204649Z-efficiency/config.json",
+      "runs/reassemble/20260927T204649Z-modality-dropout/config.json",
+      "runs/reassemble/20260927T204649Z-object-feasibility/config.json",
+      "runs/reassemble/20260927T204649Z-section3/config.json"
+    ],
+    "PHM_output_manifests": [
+      {
+        "path": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/manifests/outputs.json",
+        "entries_verified": 7
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/manifests/outputs.json",
+        "entries_verified": 79
+      }
+    ],
+    "PHM_resolved_input_identities": [
+      {
+        "path": "runs/phm2026_sensor_features/20260912T053550461436Z-69f2e5ee/tables/minute_feature_table.parquet",
+        "sha256": "65199a97e0bff0419b4eaa4a6f1cc14e1bf10e4919856ef51bca81b2ad0f3256"
+      },
+      {
+        "path": "runs/phm2026_sensor_features/20260912T053550461436Z-69f2e5ee/tables/sensor_run_sequences.parquet",
+        "sha256": "867e51332647bf4a8254c38057ee910583208033c476dd7db4c024e05d5ea2e5"
+      },
+      {
+        "path": "runs/phm2026_sensor_features/20260912T053550461436Z-69f2e5ee/reports/feature_schema.json",
+        "sha256": "5a78b0a85bf1f7a95f71d13e3cdd55cda0e3de49d5f6fa9cb0ee40fb2e009701"
+      },
+      {
+        "path": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/tables/run_damage_targets.parquet",
+        "sha256": "e5e098e01822307791138b83c015307ae74a5b2fdaf80957e413170a343e92f1"
+      },
+      {
+        "path": "runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab/tables/split_manifest.parquet",
+        "sha256": "6463b00cafa8785708b1a32b13901077f7b9eef1e177c54f7fc6e0a6137d4359"
+      },
+      {
+        "path": "runs/phm2026_model_dataset/20260814T013357354377Z-6b068cab/reports/split_validation.json",
+        "sha256": "5d636c458701f609b3965a7711394e9355eaa22203a0ac8634d5e2d8bde6708e"
+      },
+      {
+        "path": "runs/phm2026_rtdetr_regression/20260814T020338751021Z-d0f225c8/tables/run_predictions.parquet",
+        "sha256": "b9c0e93d9a7fd65af944a677dc1a286ef041e833e725425095a2d0e086c8b42e"
+      }
+    ],
+    "PHM_retained_metric_recomputation": [
+      {
+        "model": "constant_train_mean",
+        "n_runs": 20,
+        "MAE": 0.8041562656268664,
+        "RMSE": 0.960808477881087
+      },
+      {
+        "model": "fused_all_three",
+        "n_runs": 20,
+        "MAE": 0.8237856498447172,
+        "RMSE": 1.033217414248919
+      },
+      {
+        "model": "patchtst_single_encoder",
+        "n_runs": 20,
+        "MAE": 0.9414550857205523,
+        "RMSE": 1.1337431162987606
+      },
+      {
+        "model": "rtdetr_r4_image_NOT_loeo",
+        "n_runs": 13,
+        "MAE": 1.8264112771415422,
+        "RMSE": 1.9595117503977078
+      }
+    ],
+    "PHM_v3_target_matches_all_retained_predictions": true,
+    "REASSEMBLE_split": {
+      "file_SHA256": "56dd1f32282a5771e16f780180e3cf62aa2684ae8e855ffd441418f91f14a668",
+      "canonical_content_SHA256": "30bb666f014f19e12bce7363ed84080721af30bbe499e6f03b3fd1da8ad78e69",
+      "canonical_algorithm": "SHA256(json.dumps(unsigned_split_object, sort_keys=True).encode()); excludes sha256 member",
+      "cohort_SHA256": "ef224314224a1bdff8ee5f01bcea64f03458a30026011cd0b2096a105ff81aea",
+      "segments": 4530,
+      "failures": 509,
+      "recordings": 148,
+      "fold_segments": [
+        753,
+        964,
+        1037,
+        906,
+        870
+      ],
+      "train_test_and_inner_disjoint": true
+    },
+    "REASSEMBLE_metric_recomputation": [
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/predictions/sensor_statistics_perm00.npz",
+        "model": "sensor_statistics",
+        "AP": 0.42939186936802726,
+        "AUROC": 0.7793245578590593,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/predictions/patchtst_perm00.npz",
+        "model": "patchtst",
+        "AP": 0.24159124413116922,
+        "AUROC": 0.7053514236896765,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T154732Z-section1/predictions/rtdetr_perm00.npz",
+        "model": "rtdetr",
+        "AP": 0.23065831504271656,
+        "AUROC": 0.6977948286232056,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T175336Z-section1b/stacking/oof.npz",
+        "model": "F2",
+        "AP": 0.44729855144048974,
+        "AUROC": 0.794968361094431,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+        "model": "U1",
+        "AP": 0.42939186936802726,
+        "AUROC": 0.7793245578590593,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+        "model": "U2",
+        "AP": 0.23065831504271656,
+        "AUROC": 0.6977948286232056,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+        "model": "F1",
+        "AP": 0.4457423126358656,
+        "AUROC": 0.7950611939576555,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+        "model": "F2",
+        "AP": 0.44729855144048974,
+        "AUROC": 0.794968361094431,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+        "model": "F3",
+        "AP": 0.41223149508702217,
+        "AUROC": 0.7855844244044894,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+        "model": "F4",
+        "AP": 0.44372532171000467,
+        "AUROC": 0.781506130144834,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+        "model": "F5",
+        "AP": 0.44454929401483734,
+        "AUROC": 0.7759869721291315,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+        "model": "F6",
+        "AP": 0.44135589063026875,
+        "AUROC": 0.7755232964070262,
+        "folds_and_labels_match": true
+      },
+      {
+        "path": "runs/reassemble/20260927T204649Z-modality-dropout/predictions/clean.npz",
+        "model": "dropout_F6",
+        "AP": 0.4376507703555813,
+        "AUROC": 0.7753742752318501,
+        "folds_and_labels_match": true
+      }
+    ],
+    "Section1B_stacker_train_test_indices_match": true,
+    "Section1B_outer_fold_deltas": [
+      {
+        "fold": 0,
+        "segments": 753,
+        "failures": 77,
+        "AUROC": 0.02069084761392459,
+        "AUPRC": 0.03945068120987727,
+        "fusion_AUROC": 0.7443710136017829,
+        "sensor_AUROC": 0.7236801659878583,
+        "fusion_AUPRC": 0.3671552457154409,
+        "sensor_AUPRC": 0.3277045645055636
+      },
+      {
+        "fold": 1,
+        "segments": 964,
+        "failures": 109,
+        "AUROC": 0.01167444605397272,
+        "AUPRC": 0.014616171759735563,
+        "fusion_AUROC": 0.8084231986694566,
+        "sensor_AUROC": 0.7967487526154838,
+        "fusion_AUPRC": 0.4860883969917672,
+        "sensor_AUPRC": 0.47147222523203164
+      },
+      {
+        "fold": 2,
+        "segments": 1037,
+        "failures": 125,
+        "AUROC": 0.024429824561403524,
+        "AUPRC": 0.011329139425145351,
+        "fusion_AUROC": 0.833280701754386,
+        "sensor_AUROC": 0.8088508771929824,
+        "fusion_AUPRC": 0.5078721179389709,
+        "sensor_AUPRC": 0.49654297851382556
+      },
+      {
+        "fold": 3,
+        "segments": 906,
+        "failures": 99,
+        "AUROC": 0.0028913672036348093,
+        "AUPRC": -0.004688739184722734,
+        "fusion_AUROC": 0.8113226440363988,
+        "sensor_AUROC": 0.808431276832764,
+        "fusion_AUPRC": 0.4812645837789152,
+        "sensor_AUPRC": 0.4859533229636379
+      },
+      {
+        "fold": 4,
+        "segments": 870,
+        "failures": 99,
+        "AUROC": 0.020044806037023966,
+        "AUPRC": 0.03642309486711598,
+        "fusion_AUROC": 0.7651220374955784,
+        "sensor_AUROC": 0.7450772314585544,
+        "fusion_AUPRC": 0.4162112941601719,
+        "sensor_AUPRC": 0.3797881992930559
+      }
+    ],
+    "Section1B_leave_one_fold_out_deltas": [
+      {
+        "fold": 0,
+        "segments": 3777,
+        "failures": 432,
+        "AUROC": 0.014445274871283775,
+        "AUPRC": 0.014733732220069906,
+        "fusion_AUROC": 0.8051064330399158,
+        "sensor_AUROC": 0.790661158168632,
+        "fusion_AUPRC": 0.4668249751509858,
+        "sensor_AUPRC": 0.4520912429309159
+      },
+      {
+        "fold": 1,
+        "segments": 3566,
+        "failures": 400,
+        "AUROC": 0.016764845230574865,
+        "AUPRC": 0.01921117306181952,
+        "fusion_AUROC": 0.791517687934302,
+        "sensor_AUROC": 0.7747528427037271,
+        "fusion_AUPRC": 0.4377843131910674,
+        "sensor_AUPRC": 0.4185731401292479
+      },
+      {
+        "fold": 2,
+        "segments": 3493,
+        "failures": 384,
+        "AUROC": 0.014162512061756116,
+        "AUPRC": 0.016833108880552505,
+        "fusion_AUROC": 0.784925485150638,
+        "sensor_AUROC": 0.7707629730888819,
+        "fusion_AUPRC": 0.43332414355541504,
+        "sensor_AUPRC": 0.41649103467486254
+      },
+      {
+        "fold": 3,
+        "segments": 3624,
+        "failures": 410,
+        "AUROC": 0.01855297706679626,
+        "AUPRC": 0.02475183976743428,
+        "fusion_AUROC": 0.790920818977947,
+        "sensor_AUROC": 0.7723678419111507,
+        "fusion_AUPRC": 0.4412517394828061,
+        "sensor_AUPRC": 0.4164998997153718
+      },
+      {
+        "fold": 4,
+        "segments": 3660,
+        "failures": 410,
+        "AUROC": 0.014487054409005884,
+        "AUPRC": 0.01438762456277326,
+        "fusion_AUROC": 0.8017673545966231,
+        "sensor_AUROC": 0.7872803001876172,
+        "fusion_AUPRC": 0.45901276993649764,
+        "sensor_AUPRC": 0.4446251453737244
+      }
+    ],
+    "complementarity": {
+      "all": {
+        "segments": 4530,
+        "both_correct": 2347,
+        "both_wrong": 529,
+        "visual_only_correct": 486,
+        "sensor_only_correct": 1168,
+        "prediction_correlation": 0.3129894463022776,
+        "error_correlation": 0.16272160857180898,
+        "oracle_correct": 4001,
+        "oracle_correct_fraction": 0.8832229580573951,
+        "sensor_correct_fraction": 0.7759381898454746,
+        "visual_correct_fraction": 0.6253863134657837
+      },
+      "failures": {
+        "segments": 509,
+        "both_correct": 240,
+        "both_wrong": 99,
+        "visual_only_correct": 97,
+        "sensor_only_correct": 73,
+        "prediction_correlation": 0.252660055492927,
+        "error_correlation": 0.27969881753806725,
+        "oracle_correct": 410,
+        "oracle_correct_fraction": 0.8055009823182712,
+        "sensor_correct_fraction": 0.6149312377210217,
+        "visual_correct_fraction": 0.6620825147347741
+      },
+      "pick": {
+        "segments": 1190,
+        "both_correct": 591,
+        "both_wrong": 132,
+        "visual_only_correct": 166,
+        "sensor_only_correct": 301,
+        "prediction_correlation": 0.14729332503128495,
+        "error_correlation": 0.09501419267358692,
+        "oracle_correct": 1058,
+        "oracle_correct_fraction": 0.8890756302521008,
+        "sensor_correct_fraction": 0.7495798319327731,
+        "visual_correct_fraction": 0.6361344537815126
+      },
+      "pick_failures": {
+        "segments": 98,
+        "both_correct": 22,
+        "both_wrong": 32,
+        "visual_only_correct": 22,
+        "sensor_only_correct": 22,
+        "prediction_correlation": 0.11179865791840939,
+        "error_correlation": 0.0925925925925928,
+        "oracle_correct": 66,
+        "oracle_correct_fraction": 0.673469387755102,
+        "sensor_correct_fraction": 0.4489795918367347,
+        "visual_correct_fraction": 0.4489795918367347
+      },
+      "insert": {
+        "segments": 1156,
+        "both_correct": 392,
+        "both_wrong": 217,
+        "visual_only_correct": 121,
+        "sensor_only_correct": 426,
+        "prediction_correlation": 0.21152291603674955,
+        "error_correlation": 0.11098874116033329,
+        "oracle_correct": 939,
+        "oracle_correct_fraction": 0.8122837370242214,
+        "sensor_correct_fraction": 0.7076124567474048,
+        "visual_correct_fraction": 0.4437716262975779
+      },
+      "insert_failures": {
+        "segments": 243,
+        "both_correct": 142,
+        "both_wrong": 34,
+        "visual_only_correct": 43,
+        "sensor_only_correct": 24,
+        "prediction_correlation": 0.19021452428671431,
+        "error_correlation": 0.32413575203197037,
+        "oracle_correct": 209,
+        "oracle_correct_fraction": 0.8600823045267489,
+        "sensor_correct_fraction": 0.6831275720164609,
+        "visual_correct_fraction": 0.7613168724279835
+      },
+      "remove": {
+        "segments": 1096,
+        "both_correct": 458,
+        "both_wrong": 150,
+        "visual_only_correct": 139,
+        "sensor_only_correct": 349,
+        "prediction_correlation": 0.14114263464604695,
+        "error_correlation": 0.07659345864564397,
+        "oracle_correct": 946,
+        "oracle_correct_fraction": 0.8631386861313869,
+        "sensor_correct_fraction": 0.7363138686131386,
+        "visual_correct_fraction": 0.5447080291970803
+      },
+      "remove_failures": {
+        "segments": 146,
+        "both_correct": 68,
+        "both_wrong": 24,
+        "visual_only_correct": 29,
+        "sensor_only_correct": 25,
+        "prediction_correlation": 0.091292632158397,
+        "error_correlation": 0.18738894703044115,
+        "oracle_correct": 122,
+        "oracle_correct_fraction": 0.8356164383561644,
+        "sensor_correct_fraction": 0.636986301369863,
+        "visual_correct_fraction": 0.6643835616438356
+      },
+      "place": {
+        "segments": 1088,
+        "both_correct": 906,
+        "both_wrong": 30,
+        "visual_only_correct": 60,
+        "sensor_only_correct": 92,
+        "prediction_correlation": 0.35170302583152474,
+        "error_correlation": 0.21052488964857466,
+        "oracle_correct": 1058,
+        "oracle_correct_fraction": 0.9724264705882353,
+        "sensor_correct_fraction": 0.9172794117647058,
+        "visual_correct_fraction": 0.8878676470588235
+      },
+      "place_failures": {
+        "segments": 22,
+        "both_correct": 8,
+        "both_wrong": 9,
+        "visual_only_correct": 3,
+        "sensor_only_correct": 2,
+        "prediction_correlation": 0.3609192208364061,
+        "error_correlation": 0.5477225575051662,
+        "oracle_correct": 13,
+        "oracle_correct_fraction": 0.5909090909090909,
+        "sensor_correct_fraction": 0.45454545454545453,
+        "visual_correct_fraction": 0.5
+      }
+    },
+    "sensor_permutation": {
+      "observed": {
+        "AUROC": 0.7793245578590593,
+        "AUPRC": 0.42939186936802726
+      },
+      "null": [
+        {
+          "permutation": 1,
+          "AUROC": 0.6292643875058692,
+          "AP": 0.15755509821997743,
+          "changed_labels": 794
+        },
+        {
+          "permutation": 2,
+          "AUROC": 0.6386471027107684,
+          "AP": 0.16931497165273945,
+          "changed_labels": 784
+        },
+        {
+          "permutation": 3,
+          "AUROC": 0.6213669981125612,
+          "AP": 0.15959804448038534,
+          "changed_labels": 786
+        },
+        {
+          "permutation": 4,
+          "AUROC": 0.6294087670378841,
+          "AP": 0.16708483290631382,
+          "changed_labels": 812
+        },
+        {
+          "permutation": 5,
+          "AUROC": 0.6129094356787964,
+          "AP": 0.1632358471470471,
+          "changed_labels": 792
+        },
+        {
+          "permutation": 6,
+          "AUROC": 0.6315370825758091,
+          "AP": 0.1695466566411165,
+          "changed_labels": 744
+        },
+        {
+          "permutation": 7,
+          "AUROC": 0.6112091284997379,
+          "AP": 0.16166873197953147,
+          "changed_labels": 780
+        },
+        {
+          "permutation": 8,
+          "AUROC": 0.6307533777725879,
+          "AP": 0.1676869048874004,
+          "changed_labels": 762
+        },
+        {
+          "permutation": 9,
+          "AUROC": 0.6248604453339027,
+          "AP": 0.15727230119200597,
+          "changed_labels": 774
+        },
+        {
+          "permutation": 10,
+          "AUROC": 0.6213286434822292,
+          "AP": 0.16473048680297947,
+          "changed_labels": 738
+        },
+        {
+          "permutation": 11,
+          "AUROC": 0.6056357365481517,
+          "AP": 0.15021039886034676,
+          "changed_labels": 774
+        },
+        {
+          "permutation": 12,
+          "AUROC": 0.6013561415535041,
+          "AP": 0.1520996213298241,
+          "changed_labels": 772
+        },
+        {
+          "permutation": 13,
+          "AUROC": 0.6414169421929761,
+          "AP": 0.17419568442067734,
+          "changed_labels": 766
+        },
+        {
+          "permutation": 14,
+          "AUROC": 0.6251452956457966,
+          "AP": 0.16084218971563466,
+          "changed_labels": 804
+        },
+        {
+          "permutation": 15,
+          "AUROC": 0.634416367117818,
+          "AP": 0.15923568771830818,
+          "changed_labels": 802
+        },
+        {
+          "permutation": 16,
+          "AUROC": 0.6692584950620245,
+          "AP": 0.19153033327544222,
+          "changed_labels": 796
+        },
+        {
+          "permutation": 17,
+          "AUROC": 0.6237872485756264,
+          "AP": 0.1660315146890887,
+          "changed_labels": 784
+        },
+        {
+          "permutation": 18,
+          "AUROC": 0.632742932609693,
+          "AP": 0.171027560077811,
+          "changed_labels": 778
+        },
+        {
+          "permutation": 19,
+          "AUROC": 0.6127977919459185,
+          "AP": 0.15398966374353262,
+          "changed_labels": 788
+        }
+      ],
+      "p_AUROC": 0.05,
+      "p_AUPRC": 0.05
+    },
+    "figure_outputs_and_scripts_exist": 14,
+    "visual_backbone_identity": {
+      "model_type": "rt_detr_resnet",
+      "implementation": "src/reassemble/section1_features.py: load_visual returns .model.backbone.model; Transformer encoder/decoder not used in core feature extraction."
+    },
+    "preservation": {
+      "prior_manifests": {
+        "runs/reassemble/20260927T154732Z-section1/final_output_manifest.json": 857,
+        "runs/reassemble/20260927T175336Z-section1b/output_manifest.json": 330,
+        "runs/reassemble/20260927T192852Z-section2/output_manifest.json": 1378
+      },
+      "protected_metadata_unchanged": 68745,
+      "raw_metadata_unchanged": 149,
+      "historical_git_blob_retained": "284ccffbfe2b61f2abc91d97f5db0d0ee7abd628",
+      "scope": "SHA256 prior evidence; lstat protected PHM/environment; size/mtime raw HDF5. Raw payloads were read-only; full raw rehash not repeated.",
+      "completed_manifests": {
+        "runs/reassemble/20260927T204649Z-completion-preflight/output_manifest.json": 3,
+        "runs/reassemble/20260927T204649Z-section3/output_manifest.json": 695,
+        "runs/reassemble/20260927T204649Z-modality-dropout/output_manifest.json": 90,
+        "runs/reassemble/20260927T204649Z-audio-gate/output_manifest.json": 5,
+        "runs/reassemble/20260927T204649Z-efficiency/output_manifest.json": 3,
+        "runs/reassemble/20260927T204649Z-object-feasibility/output_manifest.json": 4,
+        "runs/reassemble/20260927T204649Z-final-synthesis/output_manifest.json": 138
+      },
+      "passed": true,
+      "seconds": 3.6213502660102677
+    },
+    "environment_packages": {
+      "numpy": "2.4.6",
+      "pandas": "2.3.3",
+      "scipy": "1.18.0",
+      "scikit-learn": "1.7.2",
+      "torch": "2.13.0",
+      "transformers": "5.14.1",
+      "pyarrow": "24.0.0",
+      "h5py": "3.16.0",
+      "opencv-python": "5.0.0.93",
+      "PyYAML": "6.0.3"
+    },
+    "bootstrap_scope": "Existing CI JSONs and manifests verified; no bootstrap, permutations, training, corruption generation, or figure rendering rerun.",
+    "historical_nonstandard_JSON": "PROFILE_DIAGNOSTICS_V3.json includes NaN tokens; preserved unchanged. New outputs use strict JSON (allow_nan=False).",
+    "git_diff_check": {
+      "args": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "pip_check": {
+      "returncode": 0,
+      "stdout": "No broken requirements found.",
+      "stderr": ""
+    }
+  },
+  "claims_abstract": [
+    "P01",
+    "R01",
+    "R05",
+    "R07",
+    "R08"
+  ],
+  "claims_conclusion": [
+    "P01",
+    "P02",
+    "P06",
+    "R01",
+    "R05",
+    "R07",
+    "R08",
+    "R14"
+  ],
+  "source_registry": {
+    "RQ": "docs/intel_welding/research_contract.md",
+    "P_TARGET": "docs/thesis/TARGET_VERSION_LEDGER.md",
+    "P_PREREG": "docs/thesis/PREREGISTRATION_20260912T053329Z.md",
+    "P_LOEO": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json",
+    "P_LOEO_REPORT": "docs/thesis/FUSION_RESULTS_20260912T111025Z.md",
+    "P_RAW": "docs/thesis/RAW_VIB_20260927T095726Z.md",
+    "P_SECTOR": "docs/thesis/TOOTH_SECTOR_20260927T102354Z.md",
+    "P_SCREEN": "data/rawvib/l1_screen.json",
+    "P_SECTOR_SCREEN": "data/rawvib/sector_screen.json",
+    "P_POS": "docs/thesis/CLOSING_TASK_C_SYNTHETIC.json",
+    "P_CLOSE": "docs/thesis/CLOSING_EXPERIMENTS_20260912T171608Z.md",
+    "P_INSPECT": "docs/thesis/INSPECTION_RESULT_20260913T204715Z.md",
+    "P_DINO": "docs/thesis/ANOMALYDINO_RESULT_20260913T215556Z.md",
+    "P_PROFILE": "docs/thesis/PROFILE_DIAGNOSTICS_V3.json",
+    "P_FUSION": "docs/thesis/SQ2_SQ3_RESULTS.json",
+    "P_RECOVERY": "docs/phm2026/RAW_DATA_RECOVERY.md",
+    "P_RETIREMENT": "artifacts/phm2026/PHM_RAW_RETIREMENT_REPORT.md",
+    "INTEL": "artifacts/intel_welding/audits/PHASE_1_GATE_REPORT.md",
+    "R_FINAL": "artifacts/reassemble/reports/FINAL_REASSEMBLE_HANDOFF.md",
+    "R_STORY": "artifacts/reassemble/reports/THESIS_STORYLINE_ADDENDUM.md",
+    "R_MAP": "artifacts/reassemble/reports/FINAL_EVIDENCE_MAP.md",
+    "R_CROSS": "artifacts/reassemble/reports/CROSS_STUDY_SYNTHESIS_HANDOFF.md",
+    "R_S1": "runs/reassemble/20260927T154732Z-section1/assessment/results.json",
+    "R_S1_REPORT": "artifacts/reassemble/reports/SECTION_1_UNIMODAL_HANDOFF.md",
+    "R_S1B": "runs/reassemble/20260927T175336Z-section1b/assessment/results.json",
+    "R_S1B_REPORT": "artifacts/reassemble/reports/SECTION_1B_FUSION_ADMISSIBILITY_HANDOFF.md",
+    "R_S2": "runs/reassemble/20260927T192852Z-section2/assessment/results.json",
+    "R_S2_REPORT": "artifacts/reassemble/reports/SECTION_2_FUSION_HANDOFF.md",
+    "R_S3": "runs/reassemble/20260927T204649Z-section3/results.json",
+    "R_S3_REPORT": "artifacts/reassemble/reports/SECTION_3_ROBUSTNESS_HANDOFF.md",
+    "R_DROP": "runs/reassemble/20260927T204649Z-modality-dropout/results.json",
+    "R_DROP_REPORT": "artifacts/reassemble/reports/MODALITY_DROPOUT_HANDOFF.md",
+    "R_AUDIO": "runs/reassemble/20260927T204649Z-audio-gate/results.json",
+    "R_AUDIO_REPORT": "artifacts/reassemble/reports/AUDIO_FEASIBILITY_HANDOFF.md",
+    "R_OBJECT": "runs/reassemble/20260927T204649Z-object-feasibility/results.json",
+    "R_OBJECT_REPORT": "artifacts/reassemble/reports/OBJECT_GENERALIZATION_FEASIBILITY.md",
+    "R_EFF": "runs/reassemble/20260927T204649Z-efficiency/results.json",
+    "R_EFF_REPORT": "artifacts/reassemble/reports/EFFICIENCY_HANDOFF.md",
+    "R_FIGURES": "runs/reassemble/20260927T204649Z-final-synthesis/figure_index.json",
+    "EX_VIS": "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/comparison/results.json",
+    "EX_SENSOR": "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/comparison/results.json",
+    "EX_GATE": "runs/reassemble/additional_improvements_executed/20260928T000346Z/03_static_anchored_adaptation/comparison/results.json"
+  },
+  "source_search": "runs/thesis/documentation/20260928T025444Z/original_document_search.json",
+  "documentation_scope": "Only retained-evidence checks and documentation; no new model fitting, raw downloads, raw edits, deletions or historical result changes."
+}

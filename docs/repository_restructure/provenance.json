@@ -1,0 +1,19 @@
+{
+  "timestamp_utc": "2026-10-05T13:12:00.259256+00:00",
+  "git_head_before": "8d4e7a9378cb51ffc3cd7b9be1e2785efc02d792",
+  "git_head_after": "8d4e7a9378cb51ffc3cd7b9be1e2785efc02d792",
+  "new_commit_created": false,
+  "scope": "domain-first structural migration; no research reruns",
+  "authoritative_request_attachment": "73186d05-6329-4039-bb13-12673c4a2248",
+  "baseline_preimages": "baseline/source_preimages.tar.gz",
+  "exact_move_log": "moves.jsonl",
+  "exact_edits_log": "edits.jsonl",
+  "manifest": "path_mapping.csv",
+  "validation_commands": {
+    "pytest": "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 ma_thesis_env/bin/python -B -m pytest tests -q --import-mode=importlib -p no:cacheprovider",
+    "source_validation": "python3 docs/repository_restructure/validate_migration.py",
+    "cli": "see cli_checks.json (repository Python, -B, --help, PYTHONPATH unset)",
+    "dependencies": "ma_thesis_env/bin/python -B -m pip check"
+  },
+  "known_added_provenance_record": "artifacts/phm2026/downloads/20261005T130258188699Z-a8b31e9c.json"
+}

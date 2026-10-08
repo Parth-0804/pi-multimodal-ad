@@ -5,12 +5,12 @@ from __future__ import annotations
 import pytest
 import torch
 
-from pi_multimodal_ad.models.late_fusion import (
+from phm2026.fusion.late_fusion import (
     SUB_MODALITY_CHANNELS,
     LateFusionRegressor,
     sub_modality_column_indices,
 )
-from pi_multimodal_ad.models.patchtst import PatchTSTConfig
+from phm2026.models.patchtst.model import PatchTSTConfig
 
 COLUMNS = [
     f"{base}_{stat}"

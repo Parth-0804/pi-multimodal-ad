@@ -7,14 +7,14 @@ import argparse, json, sys
 from pathlib import Path
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "src"))
-from pi_multimodal_ad.evaluation.regression import (
+from phm2026.evaluation.regression import (
     metric_table,
     naive_predictions,
 )  # noqa: E402
-from pi_multimodal_ad.reporting.common import finalize_run, json_text  # noqa: E402
-from pi_multimodal_ad.utils import (
+from phm2026.reporting.common import finalize_run, json_text  # noqa: E402
+from phm2026.utils import (
     ConfigError,
     create_run_context,
     load_pinned_run,
@@ -72,7 +72,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/results/evaluate_naive_baselines.py", *(argv or sys.argv[1:])],
+            command=["scripts/phm2026/results/evaluate_naive_baselines.py", *(argv or sys.argv[1:])],
             input_roots=(pinned.relative_directory,),
             source_runs=(
                 {

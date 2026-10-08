@@ -13,7 +13,7 @@ Detailed scope and policy live in:
 - [Active scope](docs/active_scope.md)
 - [Data boundaries](docs/data_boundaries.md)
 - [Output policy](docs/output_policy.md)
-- [Restructuring tasks](docs/restructuring/TASKS.md)
+- [Restructuring tasks](docs/repository_restructure/MIGRATION_PLAN.md)
 
 ## Authoritative scope
 
@@ -48,9 +48,10 @@ Run number and lifecycle stage are not ground-truth health or damage labels.
 New work should converge on:
 
 - `configs/datasets/` and `configs/experiments/` for portable configuration;
-- `src/pi_multimodal_ad/` for installable acquisition, data, feature,
-  analysis, visualization, CLI, configuration, and provenance modules;
-- `tests/unit/`, `tests/integration/`, and tiny synthetic
+- `src/phm2026/`, `src/intel_welding/`, and `src/reassemble/` for
+  domain-owned implementation; genuinely cross-domain helpers only in `src/shared/`;
+- domain-owned `tests/phm2026/`, `tests/intel_welding/`, `tests/reassemble/`,
+  `tests/thesis/`, repository `tests/ops/`, and tiny synthetic
   `tests/fixtures/`;
 - versioned run directories containing configuration, manifests, warnings,
   tables, figures, reports, and software provenance;

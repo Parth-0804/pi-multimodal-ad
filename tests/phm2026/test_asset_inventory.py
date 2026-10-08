@@ -8,14 +8,14 @@ import zipfile
 import pandas as pd
 import pytest
 
-from pi_multimodal_ad.datasets import PHM2026Adapter
-from pi_multimodal_ad.profiling import (
+from phm2026.datasets import PHM2026Adapter
+from phm2026.profiling import (
     build_inventory_plan,
     discover_inventory_paths,
     profile_asset_inventory,
     write_inventory_run,
 )
-from pi_multimodal_ad.utils import ConfigError, create_run_context, load_yaml_config
+from phm2026.utils import ConfigError, create_run_context, load_yaml_config
 
 
 def _fake_repository(tmp_path: Path) -> Path:

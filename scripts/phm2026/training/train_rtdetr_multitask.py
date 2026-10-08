@@ -24,17 +24,17 @@ from torch.utils.data import DataLoader
 from ultralytics import RTDETR
 import ultralytics
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "src"))
 
-from pi_multimodal_ad.evaluation.regression import regression_metrics  # noqa: E402
-from pi_multimodal_ad.models.rtdetr_detection import (  # noqa: E402
+from phm2026.evaluation.regression import regression_metrics  # noqa: E402
+from phm2026.models.rtdetr.detection import (  # noqa: E402
     average_precision,
     deterministic_example_rows,
     select_confidence_threshold,
     sliced_metrics,
 )
-from pi_multimodal_ad.models.rtdetr_multitask import (  # noqa: E402
+from phm2026.models.rtdetr.multitask import (  # noqa: E402
     MULTITASK_STATUS,
     PseudoBoxScalarDataset,
     RTDETRMultitask,
@@ -42,17 +42,17 @@ from pi_multimodal_ad.models.rtdetr_multitask import (  # noqa: E402
     move_multitask_batch,
     normalized_rtdetr_predictions,
 )
-from pi_multimodal_ad.models.rtdetr_regression import (  # noqa: E402
+from phm2026.models.rtdetr.regression import (  # noqa: E402
     aggregate_predictions,
 )
-from pi_multimodal_ad.reporting.common import (  # noqa: E402
+from phm2026.reporting.common import (  # noqa: E402
     ACADEMIC_COLORS,
     apply_academic_style,
     finalize_run,
     json_text,
     save_figure_pair,
 )
-from pi_multimodal_ad.utils import (  # noqa: E402
+from phm2026.utils import (  # noqa: E402
     ConfigError,
     create_run_context,
     load_pinned_run,
@@ -849,7 +849,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/training/train_rtdetr_multitask.py", *(argv or sys.argv[1:])],
+            command=["scripts/phm2026/training/train_rtdetr_multitask.py", *(argv or sys.argv[1:])],
             input_roots=tuple(pinned.relative_directory for pinned in pins.values()),
             package_names=(
                 "torch",

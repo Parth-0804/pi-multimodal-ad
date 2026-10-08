@@ -1,6 +1,6 @@
 import pandas as pd
 
-from pi_multimodal_ad.evaluation.sensor_regression import sensor_metric_table
+from phm2026.evaluation.sensor_regression import sensor_metric_table
 
 
 def test_run_metrics_include_ranges_counts_and_deterministic_intervals() -> None:

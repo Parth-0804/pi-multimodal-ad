@@ -4,7 +4,7 @@
 Train EXP-B, select on EXP-A, evaluate once on EXP-F. Constant mean/median
 baselines are recomputed here from the same pinned target values, as an
 internal consistency check against the cited P4 LF-only numbers. No
-pi_multimodal_ad imports anywhere in this file.
+phm2026 imports anywhere in this file.
 
 `train_and_evaluate()` is written as a reusable function (not just script
 logic) so Phase 4's band/channel ablation can call the exact same training

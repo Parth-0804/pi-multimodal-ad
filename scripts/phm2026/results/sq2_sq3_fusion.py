@@ -13,6 +13,12 @@ valid at inference, which is what a real sensor dropout looks like.
 
 from __future__ import annotations
 
+# Source-tree entry point; no installed package is required.
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+
+
 import argparse
 import json
 from copy import deepcopy
@@ -22,16 +28,16 @@ import pandas as pd
 import torch
 from torch import nn
 
-from pi_multimodal_ad.evaluation.regression import regression_metrics
-from pi_multimodal_ad.models.modality_fusion import (
+from phm2026.evaluation.regression import regression_metrics
+from phm2026.fusion.modality_fusion import (
     SUB_MODALITY_PROVENANCE,
     DecisionLevelFusion,
     ProcessAwareGatedFusion,
     group_column_indices,
     resolve_groups,
 )
-from pi_multimodal_ad.models.patchtst import PatchTSTConfig, PatchTSTRegressor
-from pi_multimodal_ad.preprocessing.timeseries import (
+from phm2026.models.patchtst.model import PatchTSTConfig, PatchTSTRegressor
+from phm2026.preprocessing.timeseries import (
     RunSequence, build_run_sequences, collate_run_sequences, fit_feature_normalizer,
 )
 

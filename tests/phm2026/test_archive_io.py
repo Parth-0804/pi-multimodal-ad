@@ -5,7 +5,7 @@ import zipfile
 
 import pytest
 
-from pi_multimodal_ad.profiling.archive_io import (
+from phm2026.profiling.archive_io import (
     ArchiveMaterializationError,
     ArchiveMemberRef,
     iter_materialized_nested_members,

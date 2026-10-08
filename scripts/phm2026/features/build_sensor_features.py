@@ -3,6 +3,12 @@
 
 from __future__ import annotations
 
+# Source-tree entry point; no installed package is required.
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+
+
 import argparse
 from pathlib import Path
 import json
@@ -11,15 +17,15 @@ import sys
 
 import pandas as pd
 
-from pi_multimodal_ad.features.sensor_feature_run import write_sensor_feature_run
-from pi_multimodal_ad.features.sensor_minutes import (
+from phm2026.features.sensor_feature_run import write_sensor_feature_run
+from phm2026.features.sensor_minutes import (
     ChannelSpec,
     ExtractionOptions,
     extract_minute_features,
 )
-from pi_multimodal_ad.utils.artifacts import load_pinned_run
-from pi_multimodal_ad.utils.config import ConfigError, load_yaml_config
-from pi_multimodal_ad.utils.provenance import create_run_context
+from phm2026.utils.artifacts import load_pinned_run
+from phm2026.utils.config import ConfigError, load_yaml_config
+from phm2026.utils.provenance import create_run_context
 
 
 def _snapshot(paths: list[Path]) -> dict[str, tuple[int, int]]:
@@ -116,7 +122,7 @@ def main(argv: list[str] | None = None) -> int:
             config=config,
             seed=int(data["seed"]),
             command=(
-                "scripts/features/build_sensor_features.py",
+                "scripts/phm2026/features/build_sensor_features.py",
                 "--config",
                 config.relative_path,
             ),

@@ -22,7 +22,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO_ROOT / "src"))
-from pi_multimodal_ad.models.rtdetr_detection import _iou_matrix  # noqa: E402
+from phm2026.models.rtdetr.detection import _iou_matrix  # noqa: E402
 
 PSEUDO_RUN = (
     REPO_ROOT / "runs/phm2026_rtdetr_pseudo_boxes/20260814T040854991567Z-3fa0f794"

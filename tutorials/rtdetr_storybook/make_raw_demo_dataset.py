@@ -33,7 +33,7 @@ organizer damage boxes"). Two things have to happen first, and this script
 does them by calling the SAME functions the governed pipeline uses —
 it does not reimplement or invent new image-processing rules:
 
-  1. Preprocessing (pi_multimodal_ad.targets.image_damage.measure_damage_
+  1. Preprocessing (phm2026.targets.image_damage.measure_damage_
      candidate): crop to a fixed "visible flank" region of interest (ROI),
      contrast-normalize it (CLAHE), estimate a smooth local background
      (Gaussian blur) and subtract it to find a "dark residual", threshold
@@ -110,20 +110,20 @@ except ImportError:
     _MISSING_DEPENDENCIES.append("pyyaml")
 
 try:
-    from pi_multimodal_ad.datasets.phm2026 import PHM2026Adapter
-    from pi_multimodal_ad.profiling.archive_io import (
+    from phm2026.datasets.phm2026 import PHM2026Adapter
+    from phm2026.profiling.archive_io import (
         ArchiveMaterializationError,
         ArchiveMemberRef,
         materialize_archive_member,
     )
     # image_damage.py itself imports cv2/matplotlib/pandas at module scope,
     # so importing it also exercises those dependencies.
-    from pi_multimodal_ad.targets.image_damage import (
+    from phm2026.targets.image_damage import (
         ImageDamageOptions,
         measure_damage_candidate,
     )
 except ImportError as exc:
-    _MISSING_DEPENDENCIES.append(f"pi_multimodal_ad import failed ({exc})")
+    _MISSING_DEPENDENCIES.append(f"phm2026 import failed ({exc})")
 
 RAW_ROOT_DEFAULT = REPO_ROOT / "gtc-data-experiment"
 TARGET_CONFIG_DEFAULT = REPO_ROOT / "configs" / "experiments" / "phm2026_image_target.yaml"
@@ -294,7 +294,7 @@ def write_raw_demo_entry(
         "(canonical_tooth view)",
         "- Status: PROVISIONAL pseudo-label — derived by directly re-running the "
         "governed phm2026_image_damage_v2 preprocessing/measurement pipeline "
-        "(pi_multimodal_ad.targets.image_damage.measure_damage_candidate) on "
+        "(phm2026.targets.image_damage.measure_damage_candidate) on "
         "this raw image. NOT organizer ground truth, NOT expert-reviewed. See "
         "docs/planning/T2_TARGET_FORMULATION_DECISION.md and "
         "docs/planning/R4_PSEUDO_BOX_CHECKPOINT.md.",

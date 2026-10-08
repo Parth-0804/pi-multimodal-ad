@@ -4,7 +4,7 @@ Strategy is documented and justified in PLAN.md. Summary: Welch PSD per
 channel -> 32 log-spaced band-energy features (log1p-compressed) + 3
 broadband time-domain stats (RMS, crest factor, spectral centroid) per
 channel, for Accel 1 and Accel 2, plus 2 missingness flags = 72 features.
-Uses numpy/scipy only (standard libraries) -- no pi_multimodal_ad imports.
+Uses numpy/scipy only (standard libraries) -- no phm2026 imports.
 """
 
 from __future__ import annotations

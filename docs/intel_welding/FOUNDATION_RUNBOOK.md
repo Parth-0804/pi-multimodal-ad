@@ -5,7 +5,7 @@ The contract was already committed at
 
 ```bash
 ma_thesis_env/bin/python -B scripts/intel_welding/04_foundations.py --config configs/intel_welding/foundations.json
-ma_thesis_env/bin/python -B -m pytest -q tests/unit/test_intel_foundations.py
+ma_thesis_env/bin/python -B -m pytest -q tests/intel_welding/test_intel_foundations.py
 ma_thesis_env/bin/python -B -m pip check
 git diff --check
 git diff --stat

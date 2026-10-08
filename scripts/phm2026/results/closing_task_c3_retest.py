@@ -21,6 +21,12 @@ a table with a real number.
 
 from __future__ import annotations
 
+# Source-tree entry point; no installed package is required.
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+
+
 import argparse
 import importlib.util
 import json
@@ -36,7 +42,7 @@ task_c = importlib.util.module_from_spec(_spec)
 sys.modules["task_c"] = task_c
 _spec.loader.exec_module(task_c)
 
-from pi_multimodal_ad.preprocessing.timeseries import RunSequence  # noqa: E402
+from phm2026.preprocessing.timeseries import RunSequence  # noqa: E402
 
 ALPHAS = (0.0, 0.005, 0.01, 0.02, 0.05)
 WEIGHTS = (0.0, 0.1, 0.5, 1.0)

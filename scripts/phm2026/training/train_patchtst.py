@@ -3,6 +3,12 @@
 
 from __future__ import annotations
 
+# Source-tree entry point; no installed package is required.
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+
+
 import argparse
 import json
 import shutil
@@ -11,20 +17,20 @@ import sys
 import pandas as pd
 import torch
 
-from pi_multimodal_ad.models.patchtst import PatchTSTConfig
-from pi_multimodal_ad.models.patchtst_regression import (
+from phm2026.models.patchtst.model import PatchTSTConfig
+from phm2026.models.patchtst.regression import (
     TrainingOptions,
     run_patchtst_baseline,
     write_patchtst_run,
 )
-from pi_multimodal_ad.preprocessing.timeseries import (
+from phm2026.preprocessing.timeseries import (
     build_run_sequences,
     fit_feature_normalizer,
 )
-from pi_multimodal_ad.utils.artifacts import load_pinned_run
-from pi_multimodal_ad.utils.config import ConfigError, load_yaml_config
-from pi_multimodal_ad.utils.provenance import create_run_context
-from pi_multimodal_ad.utils.seeding import set_reproducible_seed
+from phm2026.utils.artifacts import load_pinned_run
+from phm2026.utils.config import ConfigError, load_yaml_config
+from phm2026.utils.provenance import create_run_context
+from phm2026.utils.seeding import set_reproducible_seed
 
 
 def _feature_columns(data: dict) -> list[str]:
@@ -178,7 +184,7 @@ def main(argv: list[str] | None = None) -> int:
             ),
             config=config,
             seed=int(data["seed"]),
-            command=("scripts/training/train_patchtst.py", "--config", config.relative_path),
+            command=("scripts/phm2026/training/train_patchtst.py", "--config", config.relative_path),
             input_roots=(),
             package_names=(
                 "numpy",

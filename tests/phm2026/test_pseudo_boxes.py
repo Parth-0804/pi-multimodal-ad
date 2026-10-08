@@ -8,12 +8,12 @@ import pandas as pd
 from PIL import Image
 import pytest
 
-from pi_multimodal_ad.profiling.images import ImageSource
-from pi_multimodal_ad.targets.image_damage import (
+from phm2026.profiling.images import ImageSource
+from phm2026.targets.image_damage import (
     ImageDamageOptions,
     measure_damage_candidate,
 )
-from pi_multimodal_ad.targets.pseudo_boxes import (
+from phm2026.targets.pseudo_boxes import (
     ComponentDecision,
     build_pseudo_box_dataset,
     component_to_box,

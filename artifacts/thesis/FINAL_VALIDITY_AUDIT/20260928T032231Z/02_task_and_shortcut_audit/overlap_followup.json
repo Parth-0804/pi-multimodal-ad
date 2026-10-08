@@ -1,0 +1,62 @@
+{
+  "question": "Do observed annotation overlaps cross a fitting boundary or change the task-count interpretation?",
+  "reason": "Follow up the timestamp audit before interpreting semantic boundary validity.",
+  "method": "All positive interval-overlap pairs among high-level annotations in the148 included recordings; for pairs in the primary cohort compare frozen frame indices and statistics, without re-scoring or deleting anything.",
+  "positive_pairs_all_annotations": 14,
+  "primary_pairs": [
+    {
+      "recording_id": "2025-01-10-15-49-06",
+      "segment_a": "42",
+      "segment_b": "44",
+      "action_a": "insert",
+      "action_b": "insert",
+      "failure_a": 0,
+      "failure_b": 0,
+      "a_primary": true,
+      "b_primary": true,
+      "overlap_seconds": 22.299856662750244,
+      "same_start_end": true,
+      "same_fold": true,
+      "same_selected_frames": true,
+      "same_statistics": true
+    },
+    {
+      "recording_id": "2025-01-10-17-54-09",
+      "segment_a": "34",
+      "segment_b": "37",
+      "action_a": "pick",
+      "action_b": "pick",
+      "failure_a": 0,
+      "failure_b": 0,
+      "a_primary": true,
+      "b_primary": true,
+      "overlap_seconds": 9.165385246276855,
+      "same_start_end": false,
+      "same_fold": true,
+      "same_selected_frames": false,
+      "same_statistics": false
+    },
+    {
+      "recording_id": "2025-01-10-17-54-09",
+      "segment_a": "35",
+      "segment_b": "38",
+      "action_a": "insert",
+      "action_b": "insert",
+      "failure_a": 0,
+      "failure_b": 0,
+      "a_primary": true,
+      "b_primary": true,
+      "overlap_seconds": 18.48333191871643,
+      "same_start_end": true,
+      "same_fold": true,
+      "same_selected_frames": true,
+      "same_statistics": true
+    }
+  ],
+  "cross_recording_or_outer_fold_overlap": false,
+  "historical_leakage_audit_scope": "src/reassemble/audit_report.py retains duplicate sensor sets only when len(distinct recording IDs)>1; within-recording repeated annotations were not excluded by that gate.",
+  "interpretation": "Within-recording repeated/overlapping annotation windows are not cross-fold leakage under recording grouping. Count4530 refers to annotation rows, not4530 distinct nonoverlapping physical actions. Same-action/same-outcome overlap requires annotation adjudication before any claim of unique physical-action counts.",
+  "performance_or_labels_modified": false,
+  "adjudication_required_before_annotation_correction": true,
+  "status": "TASK_BOUNDARY_QUALIFICATION_HUMAN_REVIEW_PENDING"
+}

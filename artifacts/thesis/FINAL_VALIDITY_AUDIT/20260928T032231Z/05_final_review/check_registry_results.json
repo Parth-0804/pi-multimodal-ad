@@ -1,0 +1,98 @@
+[
+  {
+    "check": "Numerical reconstruction",
+    "question": "Do core scores and uncertainty reproduce?",
+    "reason": "Detect reporting/metric mistakes independently.",
+    "method": "NumPy tie-group AP, pair-credit AUROC, Brier/ECE/confusion metrics; installed sklearn crosscheck; original paired recording RNG",
+    "source": "sealed S1/S1B/S2/S3/dropout predictions and result JSONs",
+    "result": "216 core metrics + 30 paired rows + 8 PHM error rows reproduce",
+    "uncertainty": "2000 recording draws, seed20310927; all checked core replicates valid",
+    "limitation": "Conditional retained-model audit; no full retraining or independent cohort",
+    "consequence": "Retain bounded core numerical claims",
+    "status": "VERIFIED_NUMERICALLY"
+  },
+  {
+    "check": "Fitting scope",
+    "question": "Were assessment recordings excluded from required fits?",
+    "reason": "File naming is not proof of nested fitting.",
+    "method": "All 20 inner +80 extra subfold memberships; deterministic outer0/inner0/sub0 source trace; outer0 F6 scaler parity",
+    "source": "fitting_scope_checks.json, original sources/manifests",
+    "result": "No required assessment overlap found; inspected sources match training identities",
+    "uncertainty": "Not statistical",
+    "limitation": "No replay of all optimizer/sample events; original S1 statistical model/scaler not retained at its original fit",
+    "consequence": "State scope and PROVENANCE_GAP explicitly, not universal execution certification",
+    "status": "COMPLETED_WITH_PROVENANCE_LIMITATIONS"
+  },
+  {
+    "check": "Task boundary",
+    "question": "What inputs are available when, and do windows obey their annotations?",
+    "reason": "Separate retrospective outcome classification from prospective warning.",
+    "method": "27180 timestamp/count checks,4530 saved frame-index checks; source inspection and overlap follow-up",
+    "source": "boundary_checks.json, input_availability.csv, overlap_followup.json",
+    "result": "No selected timestamp outside annotation window; closed endpoints; three overlapping primary pairs within recordings",
+    "uncertainty": "Annotation semantics/human labels pending",
+    "limitation": "Whole-recording cadence metadata; raw signal extraction not reexecuted; trailing idle cannot be decided from timestamps",
+    "consequence": "Retrospective annotation-row task; targeted adjudication before any correction",
+    "status": "COMPLETE WITH QUALIFICATIONS"
+  },
+  {
+    "check": "Metadata diagnostics",
+    "question": "Can permitted action/duration/coverage predict failures?",
+    "reason": "Quantify a plausible alternative explanation without new architecture search.",
+    "method": "Three fixed logistic models; same nested recording folds, training-only transforms/calibration/thresholds",
+    "source": "D0/D1/D2 keyed OOF files and fitting logs",
+    "result": "D1 AP improves over D0; D2 decreases from D1; every diagnostic remains below U1/F2",
+    "uncertainty": "Paired recording2000-draw intervals, post-hoc",
+    "limitation": "Does not prove original model mechanism; historical action baseline specification differs",
+    "consequence": "Add metadata caveat without claiming sensor information absence",
+    "status": "COMPLETE"
+  },
+  {
+    "check": "Action sensitivity",
+    "question": "Does actual F2 gain generalize across actions?",
+    "reason": "Complementarity is not actual subgroup fusion improvement.",
+    "method": "All four actions; whole-recording draws then filter; support/invalid draw counts",
+    "source": "per_action_fusion.csv",
+    "result": "All AP point deltas positive; only insert marginal AP interval excludes zero",
+    "uncertainty": "Marginal exploratory intervals; place22 failures/21 recordings",
+    "limitation": "Small subgroup precision, no simultaneous positive claim or new macro-AP headline",
+    "consequence": "No uniform per-action gain assertion",
+    "status": "COMPLETE"
+  },
+  {
+    "check": "Recording weighting",
+    "question": "Does gain depend on recording contribution?",
+    "reason": "Large recordings carry more segment mass in the primary estimand.",
+    "method": "Weighted pooled metrics with1/n_r; bootstrap k/n_r",
+    "source": "recording_weight_sensitivity.csv",
+    "result": "Positive AP/AUROC point gains but CIs include zero; weighted Brier gain persists",
+    "uncertainty": "2000 paired recording draws",
+    "limitation": "Alternative target weighting; does not replace primary result",
+    "consequence": "Qualify gain as supported under original segment weighting",
+    "status": "COMPLETE"
+  },
+  {
+    "check": "Operating points",
+    "question": "What do issued flags and misses mean?",
+    "reason": "AP does not specify decision workload or missed-case burden.",
+    "method": "Saved decisions/verified fold thresholds; explicit confusion counts/denominators",
+    "source": "operating_points.csv",
+    "result": "F2 about29.2 true failures per 100 flags;38.9 missed per 100 failures",
+    "uncertainty": "Descriptive conditional counts, no new optimized cutoff",
+    "limitation": "Retrospective segments; no validated time-exposure denominator",
+    "consequence": "Report false flags per 100 successes, not per hour",
+    "status": "COMPLETE"
+  },
+  {
+    "check": "Human review",
+    "question": "Do independent reviewers find outcomes and boundaries defensible?",
+    "reason": "Automated label consistency is not annotation truth.",
+    "method": "Seeded64-case recording-spread balanced sample; blinded silent clips; two orders; tested ingestion",
+    "source": "review_export_manifest.json and blank sheets; no actual returns",
+    "result": "64 clips ready,62.2MiB, ratings remain blank",
+    "uncertainty": "Human responses missing",
+    "limitation": "Source familiarity, encoding, average cadence and biased-to-balance qualitative sampling; no invented second reviewer",
+    "consequence": "Keep human review pending; no annotation validation claim",
+    "status": "PENDING_HUMAN_REVIEW"
+  }
+]

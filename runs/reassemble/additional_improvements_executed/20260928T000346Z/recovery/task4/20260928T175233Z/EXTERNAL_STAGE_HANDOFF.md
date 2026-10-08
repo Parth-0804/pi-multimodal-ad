@@ -1,0 +1,5 @@
+# Recorded visual-stage handoff
+
+The first restart coordinator is allowing its current CPU units to commit before exit. One of those units is the long outer3 sensor bank, so waiting for the coordinator lock would unnecessarily idle the GPU. The corrected GPU visual stage is launched independently, with an atomic external_visual.json start/return-code receipt and a dedicated visual.log. The replacement coordinator (PID11512) waits for the previous advisory lock, then starts only missing CPU shards and adopts this already-running visual process. It never launches a duplicate visual worker. A missing process without a recorded completion is a failure, not success.
+
+The first attempt's CPU work continues usefully until its current units are saved; all new completed banks are retained. Visual Task1 stays stopped. Source snapshots, completed tests and metadata correction are preserved. Four Task4 resume tests passed, including external-stage identity/completion handling. No fitting, architecture, scientific budget, seed or corruption distribution changed.

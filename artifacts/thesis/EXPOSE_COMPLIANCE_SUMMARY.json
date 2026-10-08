@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "snapshot": "2026-09-28T03:20:13.725378+00:00",
+  "run": "runs/thesis/documentation/20260928T025444Z",
+  "original_expose_verified": false,
+  "external_master_reviewed": false,
+  "proxy_source": "docs/intel_welding/research_contract.md",
+  "search_record": "runs/thesis/documentation/20260928T025444Z/original_document_search.json",
+  "status_counts": {
+    "ADAPTED": 10,
+    "PARTIALLY ANSWERED": 6,
+    "ANSWERED": 7,
+    "NOT RUN — GATE FAILED": 4,
+    "SUPERSEDED": 1
+  },
+  "rows": [
+    {
+      "original_item": "MAIN RQ",
+      "original_wording_or_intention": "Repository proxy: How can a process-aware multimodal AI architecture be designed and evaluated for robust industrial anomaly detection?",
+      "final_implemented_form": "Two task-specific studies with signal, complementarity, feasibility and robustness gates",
+      "dataset": "PHM + REASSEMBLE",
+      "experiment_or_method": "LOEO regression; nested recording-disjoint failure classification",
+      "main_evidence": "PHM sensor gain unresolved; REASSEMBLE static fusion adds information; original adaptive robustness not established",
+      "status": "ADAPTED",
+      "reason_for_deviation": "Dataset and task changed as signal and protection gates were audited",
+      "thesis_safe_interpretation": "Conditions for useful fusion are evaluated; architectural sophistication is not itself evidence of benefit",
+      "remaining_limitation": "Original approved wording unavailable; neither study establishes general industrial deployment",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json",
+        "artifacts/reassemble/reports/FINAL_REASSEMBLE_HANDOFF.md",
+        "artifacts/reassemble/reports/CROSS_STUDY_SYNTHESIS_HANDOFF.md"
+      ],
+      "suggested_chapter": "Introduction / Research design / Discussion"
+    },
+    {
+      "original_item": "SQ1 visual representation",
+      "original_wording_or_intention": "Repository proxy: lightweight or pretrained Transformer representations for visual data",
+      "final_implemented_form": "Frozen RT-DETR backbone features and trained segment head; PHM privileged/offline image reference",
+      "dataset": "REASSEMBLE; PHM secondary",
+      "experiment_or_method": "16 hand-camera frames, spatial/temporal pooling; image-label qualification",
+      "main_evidence": "Visual AP 0.2307 alone; complementary failure errors and incremental static fusion",
+      "status": "PARTIALLY ANSWERED",
+      "reason_for_deviation": "Representation usefulness tested for segment outcomes rather than bounding boxes",
+      "thesis_safe_interpretation": "The tested visual representation adds useful information to statistical sensors on this cohort",
+      "remaining_limitation": "The core uses the convolutional RT-DETR ResNet backbone, not its Transformer encoder/decoder; standalone AUROC improvement over action context is unresolved",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T154732Z-section1/assessment/results.json",
+        "runs/reassemble/20260927T175336Z-section1b/assessment/results.json",
+        "docs/thesis/INSPECTION_RESULT_20260913T204715Z.md"
+      ],
+      "suggested_chapter": "Methods / Results SQ1"
+    },
+    {
+      "original_item": "SQ1 sensor time series",
+      "original_wording_or_intention": "Repository proxy: Transformer suitability for sensor time series",
+      "final_implemented_form": "PatchTST compared with engineered statistics; statistics selected for core fusion",
+      "dataset": "REASSEMBLE; PHM",
+      "experiment_or_method": "Frozen nested procedure; 512 positions, 22 channels; 220 statistics",
+      "main_evidence": "AP statistics 0.4294 versus tested PatchTST 0.2416",
+      "status": "ANSWERED",
+      "reason_for_deviation": "Model choice follows retained evidence instead of named-architecture preference",
+      "thesis_safe_interpretation": "Tested PatchTST is an SQ1 negative result; statistics are the selected core representation",
+      "remaining_limitation": "Bounded schedules, cohort and architecture; later longer-budget extension is separate",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T154732Z-section1/assessment/results.json",
+        "runs/reassemble/20260927T175336Z-section1b/assessment/results.json",
+        "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json"
+      ],
+      "suggested_chapter": "Methods / Results SQ1"
+    },
+    {
+      "original_item": "SQ1 audio representation",
+      "original_wording_or_intention": "Repository proxy: suitability of audio Transformer representations",
+      "final_implemented_form": "Feasibility audit only; AST and trimodal training excluded",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Independent annotation-to-waveform clock mapping required",
+      "main_evidence": "No independently verified alignment mapping",
+      "status": "NOT RUN — GATE FAILED",
+      "reason_for_deviation": "Nominal media coverage cannot substitute for clock validation",
+      "thesis_safe_interpretation": "Audio performance remains unanswered",
+      "remaining_limitation": "No audio representation comparison or audio corruption experiment",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T204649Z-audio-gate/results.json",
+        "artifacts/reassemble/reports/AUDIO_FEASIBILITY_HANDOFF.md"
+      ],
+      "suggested_chapter": "Methods gates / Limitations"
+    },
+    {
+      "original_item": "SQ2 unimodal baselines",
+      "original_wording_or_intention": "Repository proxy: compare unimodal and fusion models",
+      "final_implemented_form": "Prior/action controls, visual, statistics and PatchTST baselines",
+      "dataset": "REASSEMBLE; PHM separately",
+      "experiment_or_method": "Nested grouped classification; LOEO regression",
+      "main_evidence": "Current metric and paired-uncertainty tables retained",
+      "status": "ANSWERED",
+      "reason_for_deviation": "Separate prediction targets require separate metric tables",
+      "thesis_safe_interpretation": "Baseline strength and task definition determine the fusion comparison",
+      "remaining_limitation": "No numerical pooling of regression and classification",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T154732Z-section1/assessment/results.json",
+        "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json"
+      ],
+      "suggested_chapter": "Results SQ2"
+    },
+    {
+      "original_item": "SQ2 concatenation",
+      "original_wording_or_intention": "Repository proxy: simple concatenation fusion",
+      "final_implemented_form": "F3 embedding concatenation and bounded MLP grid",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Two configurations; training-only selection and calibration; three seeds",
+      "main_evidence": "AP 0.4122; versus statistics ΔAP −0.0172, interval crosses zero",
+      "status": "ANSWERED",
+      "reason_for_deviation": "Frozen tested embeddings used; no architecture expansion",
+      "thesis_safe_interpretation": "Concatenation did not demonstrate an improvement over statistics",
+      "remaining_limitation": "Not evidence that all concatenation designs fail",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T192852Z-section2/assessment/results.json"
+      ],
+      "suggested_chapter": "Methods / Results SQ2"
+    },
+    {
+      "original_item": "SQ2 modular late fusion",
+      "original_wording_or_intention": "Repository proxy: modular late fusion, including learned convex combination",
+      "final_implemented_form": "Uniform F1 and three-parameter logistic probability stacker F2",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Strict inner OOF branch predictions; no fitting on outer-test OOF",
+      "main_evidence": "F2 AP 0.4473 versus statistics 0.4294; paired ΔAP +0.0179 [0.0086,0.0283]",
+      "status": "ADAPTED",
+      "reason_for_deviation": "Logistic probability stacking replaces the Intel contract’s convex weighting formulation",
+      "thesis_safe_interpretation": "Minimal learned static fusion demonstrates incremental information on the frozen cohort",
+      "remaining_limitation": "Adaptive same-cohort follow-up; not independent confirmation or a convex gate",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T175336Z-section1b/assessment/results.json",
+        "runs/reassemble/20260927T192852Z-section2/assessment/results.json"
+      ],
+      "suggested_chapter": "Methods / Results SQ2"
+    },
+    {
+      "original_item": "SQ2 process-aware gated fusion",
+      "original_wording_or_intention": "Repository proxy: process-aware gated cross-modal fusion",
+      "final_implemented_form": "F4 action, F5 quality, F6 action+quality masked scalar logit gates",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Two shared gate configurations; matched folds, three seeds and ablations",
+      "main_evidence": "No original gate qualifies over F2; F6 ΔAUROC −0.0194 [−0.0288,−0.0102]",
+      "status": "ADAPTED",
+      "reason_for_deviation": "Late allocation gates operationalize process awareness; no temporal cross-attention claim",
+      "thesis_safe_interpretation": "Original gates did not establish incremental clean value over static fusion",
+      "remaining_limitation": "Bounded designs; exploratory static-anchored adaptation is a distinct later study",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T192852Z-section2/assessment/results.json",
+        "artifacts/reassemble/reports/SECTION_2_FUSION_HANDOFF.md"
+      ],
+      "suggested_chapter": "Methods / Results SQ2 / Discussion"
+    },
+    {
+      "original_item": "SQ3 missing modalities",
+      "original_wording_or_intention": "Repository proxy: robustness under missing modalities",
+      "final_implemented_form": "Complete visual/sensor removal, exact branch fallback and abstention rules",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "V4/S5; unavailable unimodal model abstains; fusion adopts surviving probability and threshold",
+      "main_evidence": "All fusion arms collapse exactly to the available branch",
+      "status": "ANSWERED",
+      "reason_for_deviation": "Two validated modalities permit two single-loss cases, not seven trimodal cases",
+      "thesis_safe_interpretation": "Graceful fallback is guaranteed by implementation",
+      "remaining_limitation": "Structural fallback does not show learned robustness or improved surviving-branch performance",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T204649Z-section3/results.json",
+        "runs/reassemble/20260927T204649Z-modality-dropout/results.json"
+      ],
+      "suggested_chapter": "Methods / Results SQ3"
+    },
+    {
+      "original_item": "SQ3 degraded modalities",
+      "original_wording_or_intention": "Repository proxy: robustness under degraded/unreliable modalities",
+      "final_implemented_form": "Clean-trained visual/sensor corruption suite; no corruption-driven tuning",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Six graded families plus missingness/stuck channels; paired recording bootstrap",
+      "main_evidence": "Original gates do not establish a superior robustness mechanism",
+      "status": "ANSWERED",
+      "reason_for_deviation": "Audio removed; operators act on supported visual/sensor inputs",
+      "thesis_safe_interpretation": "Performance under declared synthetic corruptions is measured",
+      "remaining_limitation": "One deterministic corruption realization per core condition; not production-fault coverage",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T204649Z-section3/results.json"
+      ],
+      "suggested_chapter": "Results SQ3 / Limitations"
+    },
+    {
+      "original_item": "SQ3 adaptive robustness",
+      "original_wording_or_intention": "Repository proxy: can gating improve robustness?",
+      "final_implemented_form": "Weight-direction and outcome criteria; matched modality-dropout follow-up",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "12 family/gate high-severity checks; fixed dropout probabilities",
+      "main_evidence": "0/12 original mechanism checks qualify; dropout outcomes mixed",
+      "status": "ANSWERED",
+      "reason_for_deviation": "Test falsifiable criteria instead of treating moving weights as success",
+      "thesis_safe_interpretation": "The completed core did not demonstrate the proposed adaptive robustness advantage",
+      "remaining_limitation": "Does not prove no possible gate can work; ongoing repeated-corruption extension excluded",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T204649Z-section3/results.json",
+        "runs/reassemble/20260927T204649Z-modality-dropout/results.json"
+      ],
+      "suggested_chapter": "Results SQ3 / Discussion"
+    },
+    {
+      "original_item": "SQ4 predictive metrics",
+      "original_wording_or_intention": "Repository proxy: evaluate beyond accuracy",
+      "final_implemented_form": "Task-specific predictive tables and paired uncertainty",
+      "dataset": "Both studies separately",
+      "experiment_or_method": "PHM MAE/RMSE/rank; REASSEMBLE AUROC/AP and threshold metrics",
+      "main_evidence": "Retained LOEO and recording-disjoint OOF outputs",
+      "status": "ADAPTED",
+      "reason_for_deviation": "Image-derived regression target versus segment failure labels",
+      "thesis_safe_interpretation": "Each study answers its own operational prediction question",
+      "remaining_limitation": "Metric values are not comparable across task scales",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json",
+        "runs/reassemble/20260927T192852Z-section2/assessment/results.json"
+      ],
+      "suggested_chapter": "Evaluation protocol / Results"
+    },
+    {
+      "original_item": "SQ4 calibration",
+      "original_wording_or_intention": "Repository proxy: evaluate calibration",
+      "final_implemented_form": "Training-only sigmoid calibration; Brier and 15-bin ECE",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Strict OOF calibration; F2 logistic likelihood on branch probabilities",
+      "main_evidence": "F2 ΔBrier −0.00201 with negative CI; ΔECE interval crosses zero",
+      "status": "ANSWERED",
+      "reason_for_deviation": "Quantitative calibration evidence replaces qualitative confidence claims",
+      "thesis_safe_interpretation": "Brier improves; additional ECE improvement remains unresolved",
+      "remaining_limitation": "Brier also reflects discrimination; binning and deployment prevalence matter",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T175336Z-section1b/assessment/results.json",
+        "runs/reassemble/20260927T192852Z-section2/assessment/results.json"
+      ],
+      "suggested_chapter": "Results SQ4"
+    },
+    {
+      "original_item": "SQ4 interpretability",
+      "original_wording_or_intention": "Repository proxy: evaluate interpretability",
+      "final_implemented_form": "Action/quality weight plots and controlled input ablations",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Gate-weight changes and corruption direction checked against outcomes",
+      "main_evidence": "Weight variation does not establish useful reliability adaptation",
+      "status": "PARTIALLY ANSWERED",
+      "reason_for_deviation": "Mechanistic diagnostics substitute for unsupported semantic interpretations",
+      "thesis_safe_interpretation": "Measured allocation response is inspectable",
+      "remaining_limitation": "No causal reliability understanding, expert validation or human interpretability study",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T192852Z-section2/assessment/results.json",
+        "runs/reassemble/20260927T204649Z-section3/results.json"
+      ],
+      "suggested_chapter": "Results SQ4 / Discussion"
+    },
+    {
+      "original_item": "SQ4 modularity",
+      "original_wording_or_intention": "Repository proxy: evaluate modularity",
+      "final_implemented_form": "Explicit branch probability interfaces, masks and fallback",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Uniform, learned static and gated heads share frozen branches",
+      "main_evidence": "Retained common inputs/checkpoints and exact missingness parity",
+      "status": "PARTIALLY ANSWERED",
+      "reason_for_deviation": "Modularity operationalized as replaceable implementation interfaces",
+      "thesis_safe_interpretation": "Components can be evaluated separately",
+      "remaining_limitation": "Unseen branch substitution still requires calibration/refitting; no cost-free hot swap demonstration",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T192852Z-section2/assessment/results.json",
+        "runs/reassemble/20260927T204649Z-section3/results.json",
+        "artifacts/reassemble/reports/EFFICIENCY_HANDOFF.md"
+      ],
+      "suggested_chapter": "Architecture / Discussion"
+    },
+    {
+      "original_item": "SQ4 latency and compute",
+      "original_wording_or_intention": "Repository proxy: report compute, latency and usability",
+      "final_implemented_form": "Parameter, checkpoint, memory and warm component timings",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "T4, four CPU threads, three deterministic segments",
+      "main_evidence": "U1 26.27 ms; F2 504.69 ms sequential component sum",
+      "status": "PARTIALLY ANSWERED",
+      "reason_for_deviation": "A bounded benchmark replaces an unperformed deployment trial",
+      "thesis_safe_interpretation": "Statistics are much cheaper in this measured setting",
+      "remaining_limitation": "Cached compressed video, RAM sensors, three segments; no end-to-end production SLA",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "runs/reassemble/20260927T204649Z-efficiency/results.json",
+        "artifacts/reassemble/reports/EFFICIENCY_HANDOFF.md"
+      ],
+      "suggested_chapter": "Results SQ4 / Limitations"
+    },
+    {
+      "original_item": "SQ4 practical usability",
+      "original_wording_or_intention": "Repository proxy: practical industrial usability",
+      "final_implemented_form": "Task semantics, thresholds, fallback and cost trade-offs documented",
+      "dataset": "Both studies",
+      "experiment_or_method": "Evidence-qualified design discussion",
+      "main_evidence": "No prospective plant or operator trial",
+      "status": "PARTIALLY ANSWERED",
+      "reason_for_deviation": "Available offline data supports research evaluation only",
+      "thesis_safe_interpretation": "Provides an auditable evaluation design and bounded findings",
+      "remaining_limitation": "No user study, prospective safety/utility validation or production readiness claim",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "docs/thesis/TARGET_VERSION_LEDGER.md",
+        "artifacts/reassemble/reports/FINAL_REASSEMBLE_HANDOFF.md",
+        "runs/reassemble/20260927T204649Z-efficiency/results.json"
+      ],
+      "suggested_chapter": "Discussion / Limitations"
+    },
+    {
+      "original_item": "PHM dataset pivot",
+      "original_wording_or_intention": "Intention inferred from retained study records: industrial multimodal anomaly research",
+      "final_implemented_form": "Study 1 remains a target/signal and evaluation-conditions study; does not supply a positive deployable visual-sensor fusion claim",
+      "dataset": "PHM",
+      "experiment_or_method": "Image-derived damage regression and bounded sensor tests",
+      "main_evidence": "LOEO gain unresolved; physical tooth identity/alignment and target uncertainty constrain fusion",
+      "status": "ADAPTED",
+      "reason_for_deviation": "Data supports provisional regression more directly than validated online multimodal anomaly detection",
+      "thesis_safe_interpretation": "Negative and feasibility findings remain part of the thesis",
+      "remaining_limitation": "Exact original proposed dataset and approval history cannot be certified without exposé/master record",
+      "source_paths": [
+        "docs/thesis/TARGET_VERSION_LEDGER.md",
+        "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json",
+        "docs/thesis/RAW_VIB_20260927T095726Z.md",
+        "docs/thesis/CLOSING_EXPERIMENTS_20260912T171608Z.md"
+      ],
+      "suggested_chapter": "Research design / Study 1"
+    },
+    {
+      "original_item": "Intel audit / no-go",
+      "original_wording_or_intention": "Repository proxy: session-disjoint protected final evaluation",
+      "final_implemented_form": "Audit retained; new model programme stopped at protection gate",
+      "dataset": "Intel welding",
+      "experiment_or_method": "Session and exposure audit",
+      "main_evidence": "216 supplied-split session crossings; proposed holdout already exposed; zero new audit-phase models",
+      "status": "NOT RUN — GATE FAILED",
+      "reason_for_deviation": "A protected final-test claim could not be sustained",
+      "thesis_safe_interpretation": "Dataset rejection is a protocol decision",
+      "remaining_limitation": "No evidence that Intel encoders perform poorly; intended-condition labels are not physical defect truth",
+      "source_paths": [
+        "docs/intel_welding/research_contract.md",
+        "artifacts/intel_welding/audits/PHASE_1_GATE_REPORT.md"
+      ],
+      "suggested_chapter": "Dataset selection / Limitations"
+    },
+    {
+      "original_item": "REASSEMBLE introduction",
+      "original_wording_or_intention": "Intention inferred: an admissible multimodal industrial task",
+      "final_implemented_form": "Study 2: annotated pick/insert/remove/place segment failure classification",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "148 recordings, 4530 primary dual-complete segments, 509 failures",
+      "main_evidence": "Recording-disjoint nested evidence supports static visual-sensor fusion",
+      "status": "ADAPTED",
+      "reason_for_deviation": "Provides aligned visual/sensor observations and explicit segment outcomes",
+      "thesis_safe_interpretation": "A complementary task evaluates fusion under different evidence conditions",
+      "remaining_limitation": "Same physical objects/environment may recur; not independent physical-object OOD",
+      "source_paths": [
+        "artifacts/reassemble/reports/FINAL_REASSEMBLE_HANDOFF.md",
+        "artifacts/reassemble/reports/FINAL_EVIDENCE_MAP.md",
+        "runs/reassemble/20260927T175336Z-section1b/assessment/results.json"
+      ],
+      "suggested_chapter": "Research design / Dataset"
+    },
+    {
+      "original_item": "RT-DETR: representation, not detection",
+      "original_wording_or_intention": "Named visual architecture in repository task lineage; approved detector wording unverified",
+      "final_implemented_form": "Frozen RT-DETR ResNet backbone spatial features with segment-level classification head; Transformer encoder/decoder unused in the core",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "16-frame temporal mean in completed core",
+      "main_evidence": "Segment AP/AUROC, not bounding-box AP",
+      "status": "ADAPTED",
+      "reason_for_deviation": "No detector fine-tuning or detection target in completed core",
+      "thesis_safe_interpretation": "A pretrained detector backbone is used as a visual representation",
+      "remaining_limitation": "Do not describe task metrics as object-detection performance or evidence that the detector’s Transformer layers were evaluated",
+      "source_paths": [
+        "artifacts/reassemble/reports/SECTION_1_UNIMODAL_HANDOFF.md",
+        "runs/reassemble/20260927T154732Z-section1/assessment/results.json"
+      ],
+      "suggested_chapter": "Methods SQ1"
+    },
+    {
+      "original_item": "PatchTST not selected",
+      "original_wording_or_intention": "Named temporal Transformer suitability is a testable question",
+      "final_implemented_form": "Retained as bounded SQ1 negative; not the core fusion branch",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "3/6-epoch candidate schedules; statistics control",
+      "main_evidence": "AP 0.2416 versus 0.4294 statistics",
+      "status": "ADAPTED",
+      "reason_for_deviation": "Selection follows paired predictive evidence",
+      "thesis_safe_interpretation": "Testing a proposed model does not require it to win",
+      "remaining_limitation": "Later 24/48-epoch exploratory result must remain separate from historical Section 1",
+      "source_paths": [
+        "runs/reassemble/20260927T154732Z-section1/assessment/results.json",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/comparison/results.json"
+      ],
+      "suggested_chapter": "Results SQ1 / Exploratory appendix"
+    },
+    {
+      "original_item": "Statistics selected",
+      "original_wording_or_intention": "Intention inferred: choose a defensible sensor representation",
+      "final_implemented_form": "220 statistics, training-only scaling, regularized logistic model",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "C in {0.1,1,10}; nested selection and calibration; conditional permutation",
+      "main_evidence": "Strongest core sensor arm; observed AP 0.4294 above all 19 structured null draws",
+      "status": "ADAPTED",
+      "reason_for_deviation": "Simpler model outperformed tested temporal Transformer",
+      "thesis_safe_interpretation": "Engineering baselines are scientifically consequential",
+      "remaining_limitation": "Conditional null preserves recording/action structure and has coarse p resolution",
+      "source_paths": [
+        "runs/reassemble/20260927T154732Z-section1/assessment/results.json",
+        "runs/reassemble/20260927T175336Z-section1b/assessment/results.json"
+      ],
+      "suggested_chapter": "Methods / Results SQ1"
+    },
+    {
+      "original_item": "Audio alignment exclusion",
+      "original_wording_or_intention": "Audio branch intended in repository proxy",
+      "final_implemented_form": "No AST, trimodal or audio-corruption training",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Alignment feasibility gate",
+      "main_evidence": "No independently verified clock mapping",
+      "status": "NOT RUN — GATE FAILED",
+      "reason_for_deviation": "Cannot justify waveform-to-segment labels",
+      "thesis_safe_interpretation": "Audio SQ1/SQ3 components remain untested",
+      "remaining_limitation": "Nominal coverage is not evidence of valid synchronization",
+      "source_paths": [
+        "artifacts/reassemble/reports/AUDIO_FEASIBILITY_HANDOFF.md",
+        "runs/reassemble/20260927T204649Z-audio-gate/results.json"
+      ],
+      "suggested_chapter": "Methods gates / Limitations"
+    },
+    {
+      "original_item": "Physical-object OOD exclusion",
+      "original_wording_or_intention": "Extension intention: generalize to unseen physical objects",
+      "final_implemented_form": "Feasibility audit only",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Physical-instance identity and recording/category graph audit",
+      "main_evidence": "17 categories; one connected component spans 148 recordings; instance IDs unverified",
+      "status": "NOT RUN — GATE FAILED",
+      "reason_for_deviation": "Category labels are not physical-instance identities; valid split not established",
+      "thesis_safe_interpretation": "No object-OOD result is claimed",
+      "remaining_limitation": "Recording-disjoint evaluation is narrower than object-disjoint generalization",
+      "source_paths": [
+        "artifacts/reassemble/reports/OBJECT_GENERALIZATION_FEASIBILITY.md",
+        "runs/reassemble/20260927T204649Z-object-feasibility/results.json"
+      ],
+      "suggested_chapter": "Methods gates / Limitations"
+    },
+    {
+      "original_item": "Regression versus classification",
+      "original_wording_or_intention": "Repository proxy targets anomaly detection; PHM operational target changed",
+      "final_implemented_form": "PHM continuous provisional damage score; REASSEMBLE binary annotated failure",
+      "dataset": "Both studies",
+      "experiment_or_method": "Separate result tables and uncertainty units",
+      "main_evidence": "20 PHM run units versus 148 REASSEMBLE recording clusters",
+      "status": "ADAPTED",
+      "reason_for_deviation": "Target semantics and labels differ",
+      "thesis_safe_interpretation": "Research design connects the studies; metric magnitudes do not",
+      "remaining_limitation": "Neither task establishes all industrial anomaly types",
+      "source_paths": [
+        "docs/thesis/TARGET_VERSION_LEDGER.md",
+        "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/loeo_summary.json",
+        "artifacts/reassemble/reports/CROSS_STUDY_SYNTHESIS_HANDOFF.md"
+      ],
+      "suggested_chapter": "Research design / Evaluation"
+    },
+    {
+      "original_item": "Old Section 1 standalone fusion gate",
+      "original_wording_or_intention": "Both branches required simultaneous standalone improvement before fusion",
+      "final_implemented_form": "Section 1B explicitly evaluates incremental information beyond the strongest branch",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Strict nested logistic stacking plus complementary errors and structured sensor null",
+      "main_evidence": "Original Section 1 CONDITIONAL retained; Section 1B GO is a different question",
+      "status": "SUPERSEDED",
+      "reason_for_deviation": "A weaker standalone model may still add useful information",
+      "thesis_safe_interpretation": "Incremental gain supports fusion without rewriting the standalone finding",
+      "remaining_limitation": "Outcome-informed follow-up; not independent confirmation",
+      "source_paths": [
+        "artifacts/reassemble/reports/SECTION_1_UNIMODAL_HANDOFF.md",
+        "artifacts/reassemble/reports/SECTION_1B_FUSION_ADMISSIBILITY_HANDOFF.md"
+      ],
+      "suggested_chapter": "Evaluation evolution / Discussion"
+    },
+    {
+      "original_item": "Exploratory extension boundary",
+      "original_wording_or_intention": "User-authorized separate bounded additional-improvements study",
+      "final_implemented_form": "Completed temporal, budget and static-anchored comparisons segregated; pending refinements excluded",
+      "dataset": "REASSEMBLE",
+      "experiment_or_method": "Same cohort/folds; dedicated timestamped extension run",
+      "main_evidence": "Some positive and negative exploratory results retained; extension not complete at freeze",
+      "status": "PARTIALLY ANSWERED",
+      "reason_for_deviation": "Post-core questions require their own outcome-informed status",
+      "thesis_safe_interpretation": "Original conclusions remain historical; new evidence is labelled by scope",
+      "remaining_limitation": "No overall extension completion or automatic combination of winning changes",
+      "source_paths": [
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/comparison/results.json",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/02_patchtst_training_budget/comparison/results.json",
+        "runs/reassemble/additional_improvements_executed/20260928T000346Z/03_static_anchored_adaptation/comparison/results.json",
+        "artifacts/reassemble/reports/THESIS_STORYLINE_ADDENDUM.md"
+      ],
+      "suggested_chapter": "Exploratory appendix / Limitations"
+    }
+  ],
+  "overall_assessment": {
+    "conceptual_continuity": "Design and evaluate process-aware multimodal industrial prediction using strong unimodal baselines, modular fusion, robustness interventions and evaluation beyond accuracy. A negative answer is still an answer to a research question.",
+    "methodological_changes": "PHM became provisional image-target regression and bounded sensor diagnostics; Intel was stopped at the evaluation-protection gate; REASSEMBLE added recording-disjoint annotated failure classification. RT-DETR became a frozen ResNet-backbone representation (its Transformer encoder/decoder was unused in the core), statistics replaced the tested PatchTST in core fusion, logistic stacking replaced the planned convex combination, and scalar late gates replaced any implied temporal cross-attention. The standalone gate was explicitly replaced by an incremental-information gate for Section 1B.",
+    "gated_exclusions": "Intel new models; audio/AST/trimodal/audio-corruption experiments; physical-object OOD; dependent PHM sensor stages after failed signal gates. None is a poor model result.",
+    "SQ1": "Partially answerable across the full original modality scope: visual and sensor representations tested with bounded conclusions; audio suitability unanswered.",
+    "SQ2": "Answerable for the tested visual/sensor family: static late fusion improves beyond statistics; original gates do not establish additional clean gain. Full originally contemplated trimodal or temporal-cross-attention scope not evaluated.",
+    "SQ3": "Answerable with a bounded negative for the original core gates and mixed dropout results under the declared faults. Complete-loss fallback is structural. Audio, natural faults and physical-object OOD remain outside evaluated scope.",
+    "SQ4": "Partially answerable: predictive/calibration metrics, component cost and diagnostics measured; human interpretability, branch replacement generalization and prospective usability untested.",
+    "useful_supervisor_acknowledgement": "Reconcile each row with the actual approved exposé and external master when available; acknowledge the dataset/task pivots, statistics selection, representation-not-detection use, logistic late fusion, gated exclusions, exploratory status, and separate appendix treatment of later positive adaptive results. This package does not assert that acknowledgement has occurred."
+  }
+}

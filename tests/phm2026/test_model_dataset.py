@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from pi_multimodal_ad.targets.model_dataset import build_image_samples
+from phm2026.targets.model_dataset import build_image_samples
 
 
 def test_experiment_split_is_deterministic_and_leakage_safe() -> None:

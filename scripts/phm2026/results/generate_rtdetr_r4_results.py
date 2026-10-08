@@ -11,17 +11,17 @@ import sys
 import matplotlib.pyplot as plt
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "src"))
 
-from pi_multimodal_ad.reporting.common import (  # noqa: E402
+from phm2026.reporting.common import (  # noqa: E402
     ACADEMIC_COLORS,
     apply_academic_style,
     finalize_run,
     json_text,
     save_figure_pair,
 )
-from pi_multimodal_ad.utils import (  # noqa: E402
+from phm2026.utils import (  # noqa: E402
     ConfigError,
     create_run_context,
     load_pinned_run,
@@ -152,7 +152,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/results/generate_rtdetr_r4_results.py", *(argv or sys.argv[1:])],
+            command=["scripts/phm2026/results/generate_rtdetr_r4_results.py", *(argv or sys.argv[1:])],
             input_roots=tuple(pinned.relative_directory for pinned in pins.values()),
             package_names=("pandas", "pyarrow", "matplotlib", "PyYAML"),
             source_runs=source_runs,

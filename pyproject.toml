@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pi-multimodal-ad"
+version = "0.1.0"
+description = "Domain-owned thesis research pipelines and legacy compatibility interfaces"
+requires-python = ">=3.10"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["phm2026*", "intel_welding*", "reassemble*", "pi_multimodal_ad*"]
+namespaces = false

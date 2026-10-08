@@ -25,14 +25,14 @@ from PIL import Image, ImageDraw, ImageFont
 from pptx import Presentation
 from pptx.util import Inches
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from pi_multimodal_ad.reporting.common import (  # noqa: E402
+from phm2026.reporting.common import (  # noqa: E402
     finalize_run,
     save_figure_pair,
 )
-from pi_multimodal_ad.utils import (  # noqa: E402
+from phm2026.utils import (  # noqa: E402
     ConfigError,
     create_run_context,
     load_pinned_run,

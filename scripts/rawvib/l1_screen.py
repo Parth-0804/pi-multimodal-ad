@@ -2,7 +2,7 @@
 """RAW-VIB Step 3 (L1) -- screen the physics features exactly as D1 screened
 the DAQ summaries, so the head-to-head is like-for-like.
 
-D1's protocol, reproduced from scripts/results/diagnose_signal_and_monotonicity.py:
+D1's protocol, reproduced from scripts/phm2026/results/diagnose_signal_and_monotonicity.py:
   * aggregate to run level by MEAN
   * target = raw_top3_mean_pct from the sensor run-sequence table
   * count features with |rho| >= 0.5 within each experiment

@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from pi_multimodal_ad.utils import ConfigError, load_pinned_run, sha256_file
+from phm2026.utils import ConfigError, load_pinned_run, sha256_file
 
 
 def _json(path: Path, value: object) -> None:

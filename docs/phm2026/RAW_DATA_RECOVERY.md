@@ -42,7 +42,7 @@ working Synology download mechanism: runtime public-share initialization,
 That code remains in Git history. Its former single-experiment scanning, weak
 size/ZIP validation, workstation path and cookie-file handling were replaced.
 The new root file is a small entry point into
-`src/pi_multimodal_ad/acquisition/phm_download.py`.
+`src/phm2026/acquisition/phm_download.py`.
 
 Live inspection of the share's public FileBrowser JavaScript identified
 `SYNO.FolderSharing.List` v2. The working list request uses `folder_path`, starting
@@ -171,7 +171,7 @@ experiments, models, reports, environments or scratch evidence to reclaim space.
 Offline validation:
 
 ```bash
-ma_thesis_env/bin/python -B -m pytest -q tests/unit/test_phm_download.py
+ma_thesis_env/bin/python -B -m pytest -q tests/phm2026/test_phm_download.py
 git diff --check
 ma_thesis_env/bin/python -B -m pip check
 ```

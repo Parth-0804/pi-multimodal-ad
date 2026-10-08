@@ -20,10 +20,10 @@ import yaml
 from ultralytics import RTDETR
 import ultralytics
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "src"))
 
-from pi_multimodal_ad.models.rtdetr_detection import (  # noqa: E402
+from phm2026.models.rtdetr.detection import (  # noqa: E402
     average_precision,
     collect_predictions,
     deterministic_example_rows,
@@ -31,14 +31,14 @@ from pi_multimodal_ad.models.rtdetr_detection import (  # noqa: E402
     sliced_metrics,
     write_detection_results,
 )
-from pi_multimodal_ad.utils import (  # noqa: E402
+from phm2026.utils import (  # noqa: E402
     ConfigError,
     create_run_context,
     load_pinned_run,
     load_yaml_config,
     set_reproducible_seed,
 )
-from pi_multimodal_ad.utils.artifacts import sha256_file  # noqa: E402
+from phm2026.utils.artifacts import sha256_file  # noqa: E402
 
 
 def _device_information(device: int | str) -> dict[str, Any]:
@@ -323,7 +323,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/training/train_rtdetr_detector.py", *(argv or sys.argv[1:])],
+            command=["scripts/phm2026/training/train_rtdetr_detector.py", *(argv or sys.argv[1:])],
             input_roots=(pseudo.relative_directory, pretrained.relative_directory),
             package_names=(
                 "torch",

@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / 'src'))
-from pi_multimodal_ad.acquisition.phm_download import main
+from phm2026.acquisition.phm_download import main
 
 if __name__ == '__main__':
     raise SystemExit(main())

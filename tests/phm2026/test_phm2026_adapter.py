@@ -6,8 +6,8 @@ from pathlib import Path
 import pytest
 import yaml
 
-from pi_multimodal_ad.data_contracts import ContractValidationError
-from pi_multimodal_ad.datasets import (
+from phm2026.data_contracts import ContractValidationError
+from phm2026.datasets import (
     PHM2026Adapter,
     UnverifiedTargetSemanticsError,
 )

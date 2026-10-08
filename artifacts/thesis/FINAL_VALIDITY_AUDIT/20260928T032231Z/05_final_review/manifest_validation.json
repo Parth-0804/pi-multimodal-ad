@@ -1,0 +1,16 @@
+{
+  "timestamp_UTC": "2026-09-28T03:59:14.544465+00:00",
+  "passed": true,
+  "initial_manifest_sha256": "8b688f27417937c15e2607c9c61ca21bf90c2d08e48eaa8350b6cf38ccba4781",
+  "initial_manifest_files_checked": 111,
+  "initial_manifest_mismatches": [
+    "artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z/05_final_review/finalization.log"
+  ],
+  "correction": "Post-process sealing; initial manifest preserved unchanged.",
+  "protected_source_hashes_unchanged": 3665,
+  "frozen_protocol_hashes_unchanged": true,
+  "external_export_hashes_unchanged": true,
+  "status": "AUTOMATED VALIDITY AUDIT COMPLETE — HUMAN REVIEW PENDING",
+  "sealing_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH=. ma_thesis_env/bin/python -B -m scripts.thesis.final_validity_audit.seal --run artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z",
+  "exclusion": "Only final output_manifest.json excludes its own hash."
+}

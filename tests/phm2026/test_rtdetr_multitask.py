@@ -6,7 +6,7 @@ from PIL import Image
 import torch
 from torch import nn
 
-from pi_multimodal_ad.models.rtdetr_multitask import (
+from phm2026.models.rtdetr.multitask import (
     PseudoBoxScalarDataset,
     RTDETRMultitask,
     collate_multitask,

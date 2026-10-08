@@ -7,7 +7,7 @@ along, using **real photos from the PHM 2026 gear-tooth dataset**, read
 straight out of the **raw challenge archives**.
 
 > **This is a tutorial, not thesis evidence.** It lives in `tutorials/`,
-> separate from `src/pi_multimodal_ad/`, `scripts/`, `configs/`, and
+> separate from `src/phm2026/`, `scripts/`, `configs/`, and
 > `runs/`. It does not follow — and does not need to follow — the
 > governed run/provenance rules in `AGENTS.md`; those apply to the actual
 > research pipeline, not to this teaching aid. Nothing here counts as
@@ -68,7 +68,7 @@ file the real thesis pipeline trains against:
 `configs/experiments/phm2026_image_target.yaml`.** This tutorial does not
 invent its own numbers or its own image-processing rule; it calls the
 exact same function
-(`pi_multimodal_ad.targets.image_damage.measure_damage_candidate`) the
+(`phm2026.targets.image_damage.measure_damage_candidate`) the
 governed pipeline calls. `rtdetr_storybook.py`'s new **Step 0** runs this
 live and shows you the ROI and the surviving mask before Steps 1-4 even
 start.
@@ -112,7 +112,7 @@ genuinely valuable for the thesis, the real next steps (already scoped in
 of masks/boxes using the review guide the governed pipeline already
 generates (`HUMAN_PSEUDO_BOX_REVIEW_GUIDE.md` in a
 `phm2026_rtdetr_pseudo_boxes` run), (b) only *then* fine-tune RT-DETR for
-real on the reviewed boxes via `scripts/training/train_rtdetr_detector.py`, and (c)
+real on the reviewed boxes via `scripts/phm2026/training/train_rtdetr_detector.py`, and (c)
 evaluate with a proper held-out split (the pipeline already uses
 EXP-B/train, EXP-A/validation, EXP-F/test — this tutorial's raw loader
 mirrors that same split for its 6-image demo, on purpose).
@@ -146,7 +146,7 @@ on this data. Its raw guesses will use everyday COCO object names, and
 will very likely **not** line up with the green "damage_candidate"
 boxes. That mismatch is expected, and is itself part of the lesson: it's
 exactly why the real, governed pipeline
-(`scripts/training/train_rtdetr_detector.py`) has to fine-tune RT-DETR on
+(`scripts/phm2026/training/train_rtdetr_detector.py`) has to fine-tune RT-DETR on
 reviewed data before it becomes useful for this task.
 
 ## How to run it

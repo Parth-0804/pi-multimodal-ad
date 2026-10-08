@@ -3,7 +3,7 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from pi_multimodal_ad.models.rtdetr_detection import (
+from phm2026.models.rtdetr.detection import (
     average_precision,
     box_iou,
     match_counts,

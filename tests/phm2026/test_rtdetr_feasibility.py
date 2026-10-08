@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from pi_multimodal_ad.models.rtdetr_feasibility import (
+from phm2026.models.rtdetr.feasibility import (
     RTDETRFeasibilityOptions,
     select_balanced_images,
 )

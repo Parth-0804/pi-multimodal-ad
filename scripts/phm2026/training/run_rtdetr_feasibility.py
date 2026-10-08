@@ -10,26 +10,26 @@ import sys
 
 import pandas as pd
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
 SOURCE_ROOT = REPOSITORY_ROOT / "src"
 if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
-from pi_multimodal_ad.models.rtdetr_feasibility import (  # noqa: E402
+from phm2026.models.rtdetr.feasibility import (  # noqa: E402
     RTDETRFeasibilityOptions,
     download_checkpoint,
     run_inference,
     select_balanced_images,
     write_rtdetr_feasibility_run,
 )
-from pi_multimodal_ad.profiling.images import load_image_sources  # noqa: E402
-from pi_multimodal_ad.utils import (  # noqa: E402
+from phm2026.profiling.images import load_image_sources  # noqa: E402
+from phm2026.utils import (  # noqa: E402
     ConfigError,
     create_run_context,
     load_pinned_run,
     load_yaml_config,
 )
-from pi_multimodal_ad.utils.seeding import set_reproducible_seed  # noqa: E402
+from phm2026.utils.seeding import set_reproducible_seed  # noqa: E402
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -156,7 +156,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=options.seed,
-            command=["scripts/training/run_rtdetr_feasibility.py", *(argv or sys.argv[1:])],
+            command=["scripts/phm2026/training/run_rtdetr_feasibility.py", *(argv or sys.argv[1:])],
             input_roots=(
                 pinned["image_profile"].relative_directory,
                 pinned["asset_inventory"].relative_directory,

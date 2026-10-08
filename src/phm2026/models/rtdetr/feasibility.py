@@ -17,12 +17,12 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 
-from ..profiling.images import (
+from phm2026.profiling.images import (
     ImageProfileOptions,
     ImageSource,
     materialize_image_source,
 )
-from ..reporting.common import (
+from phm2026.reporting.common import (
     ACADEMIC_COLORS,
     apply_academic_style,
     finalize_run,
@@ -30,8 +30,8 @@ from ..reporting.common import (
     save_figure_pair,
     write_csv,
 )
-from ..utils.artifacts import sha256_file
-from ..utils.provenance import ArtifactRecord, RunContext
+from phm2026.utils.artifacts import sha256_file
+from phm2026.utils.provenance import ArtifactRecord, RunContext
 
 SCHEMA_VERSION = "1.0.0"
 BRANCH = "PRETRAINED_STANDARD_RTDETR_INFERENCE_FEASIBILITY"

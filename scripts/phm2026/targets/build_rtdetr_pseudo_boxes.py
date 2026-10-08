@@ -12,18 +12,18 @@ import sys
 import pandas as pd
 import yaml
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "src"))
 
-from pi_multimodal_ad.profiling.images import load_image_sources  # noqa: E402
-from pi_multimodal_ad.targets.image_damage import ImageDamageOptions  # noqa: E402
-from pi_multimodal_ad.targets.pseudo_boxes import (  # noqa: E402
+from phm2026.profiling.images import load_image_sources  # noqa: E402
+from phm2026.targets.image_damage import ImageDamageOptions  # noqa: E402
+from phm2026.targets.pseudo_boxes import (  # noqa: E402
     PSEUDO_BOX_ALGORITHM_VERSION,
     build_pseudo_box_dataset,
     validate_pseudo_box_result,
     write_pseudo_box_run,
 )
-from pi_multimodal_ad.utils import (  # noqa: E402
+from phm2026.utils import (  # noqa: E402
     ConfigError,
     create_run_context,
     load_pinned_run,
@@ -215,7 +215,7 @@ def main(argv: list[str] | None = None) -> int:
             config=config,
             seed=int(data["seed"]),
             command=[
-                "scripts/targets/build_rtdetr_pseudo_boxes.py",
+                "scripts/phm2026/targets/build_rtdetr_pseudo_boxes.py",
                 *(argv or sys.argv[1:]),
             ],
             input_roots=tuple(item.relative_directory for item in pinned.values())

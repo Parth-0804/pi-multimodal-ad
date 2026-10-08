@@ -11,16 +11,16 @@ import sys
 
 import pandas as pd
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
 SOURCE_ROOT = REPOSITORY_ROOT / "src"
 if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
-from pi_multimodal_ad.reporting.target_audit import (  # noqa: E402
+from phm2026.reporting.target_audit import (  # noqa: E402
     build_target_audit,
     write_target_audit_run,
 )
-from pi_multimodal_ad.utils import (  # noqa: E402
+from phm2026.utils import (  # noqa: E402
     ConfigError,
     create_run_context,
     load_pinned_run,
@@ -158,7 +158,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/targets/audit_target.py", *(argv or sys.argv[1:])],
+            command=["scripts/phm2026/targets/audit_target.py", *(argv or sys.argv[1:])],
             input_roots=tuple(item.relative_directory for item in pinned.values()),
             package_names=("pandas", "pyarrow", "matplotlib", "numpy", "PyYAML"),
             source_runs=source_runs,

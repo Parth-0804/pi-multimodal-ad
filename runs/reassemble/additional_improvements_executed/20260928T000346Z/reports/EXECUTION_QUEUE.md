@@ -71,3 +71,7 @@ metrics and manifests. No winner combination or extra experiment is authorized.
 Checkpoint retention review: S-6 selected3/6 logits were saved correctly, but some inner checkpoint files held an alternative best epoch1–6. Task2 report now recovers only missing selected states through one fixed same-budget replay, with saved-logit parity required. This does not change reported predictions or selection. See checkpoint_retention_correction.md.
 
 Latest reporting/provenance-repair commit: efd5b6c. All70 REASSEMBLE tests passed; extension9 passed again after reporting changes; pip check and git diff --check passed. Cache ten-sample conservative estimate43.723GiB passed30GiB-reserve rule. Interim checkpoint counts are not scientific outcomes. Supervisor-state bookkeeping was corrected from stale waiting status to running; no jobs restarted.
+
+## Runtime estimate at 2026-09-28 02:34 UTC
+
+Plan roughly3–6 additional days; provisional because75 bounded V-FT fits have not begun. Cache about35–40min remaining, strict hybrid4–5h, CPU sensor banks3–5h, pixel corruption bank about14–20h based on prior measured extraction. Chains overlap; do not sum these durations. See runtime_estimate_20260928T0234Z.json and read-only cache-loading benchmark. No budget or deadline changed. Refine after first actual V-FT fits.

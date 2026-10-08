@@ -1,0 +1,67 @@
+{
+  "seed": 20260927,
+  "audit_run": "runs/reassemble/20260927T141645Z-inventory",
+  "data_root": "../datasets/REASSEMBLE",
+  "splits": "artifacts/reassemble/audits/nested_splits.json",
+  "run_dir": "runs/reassemble/20260927T154732Z-section1",
+  "cohort_filter": "primary_task and dual_complete",
+  "visual": {
+    "model": "PekingU/rtdetr_r18vd",
+    "revision": "ac77a11ff0170a41b771c03264987f8ce2b0d753",
+    "frames": 16,
+    "image_size": 640,
+    "pooling": "spatial mean of final three backbone maps; temporal mean",
+    "frozen": true,
+    "projection_dim": 128,
+    "epochs": [
+      5,
+      10
+    ],
+    "learning_rate": 0.001,
+    "batch_size": 128,
+    "weight_decay": 0.001
+  },
+  "sensor": {
+    "positions": 512,
+    "channels": [
+      "measured_force",
+      "measured_torque",
+      "gripper_positions",
+      "joint_efforts",
+      "joint_velocities"
+    ],
+    "patch_length": 32,
+    "patch_stride": 16,
+    "d_model": 32,
+    "layers": 2,
+    "heads": 4,
+    "ffn_dim": 64,
+    "dropout": 0.1,
+    "projection_dim": 128,
+    "epochs": [
+      3,
+      6
+    ],
+    "learning_rate": 0.001,
+    "batch_size": 128,
+    "weight_decay": 0.001,
+    "scaling": "training-only per-channel standard; missing values filled with training mean after scaling; observed mask retained",
+    "pretrained": false
+  },
+  "logistic_C": [
+    0.1,
+    1.0,
+    10.0
+  ],
+  "selection_metric": "mean inner-fold average precision",
+  "calibration": "unweighted sigmoid logistic fitted to selected inner out-of-fold logits",
+  "threshold": "maximize inner-OOF balanced accuracy over 0.01..0.99, tie nearest 0.5",
+  "permutations": 19,
+  "permutation_scheme": "independent circular shifts of labels within each recording/action stratum in chronological segment order; preserve recording/action prevalence; frozen folds; rerun all inner selection/calibration/threshold fitting",
+  "bootstrap_replicates": 2000,
+  "bootstrap_unit": "recording",
+  "ece_bins": 15,
+  "gate": "Each branch: paired bootstrap lower 95% bound of AUROC and AP differences versus both prior and action-only >0; conditional permutation AP p<=0.05. Both must pass for FUSION GO. Intersection-union claim; no winner selected. Inconclusive uncertainty/control => CONDITIONAL, clearly unsupported performance => FAIL.",
+  "precision": "float32 training; float16 autocast frozen visual extraction",
+  "threads": 4
+}

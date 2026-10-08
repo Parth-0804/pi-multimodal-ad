@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from pi_multimodal_ad.reporting.target_audit import BLOCKED, build_target_audit
+from phm2026.reporting.target_audit import BLOCKED, build_target_audit
 
 
 def test_target_audit_blocks_without_target_timing_pairing_and_six_hour_evidence() -> (

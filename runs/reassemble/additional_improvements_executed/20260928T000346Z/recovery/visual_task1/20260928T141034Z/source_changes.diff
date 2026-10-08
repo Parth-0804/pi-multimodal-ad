@@ -1,0 +1,177 @@
+diff --git a/src/reassemble/additional_improvements/finetune.py b/src/reassemble/additional_improvements/finetune.py
+index 8b460e2..74ae39c 100644
+--- a/src/reassemble/additional_improvements/finetune.py
++++ b/src/reassemble/additional_improvements/finetune.py
+@@ -15,6 +15,7 @@ from reassemble.section1b import index_plan,choose_threshold,guard_partition
+ from .models import TemporalHead
+ from .common import config,read,write,storage,identity,progress,setup,inputs
+ from .reporting import comparison
++from .training_recovery import Recovery,TrainingPaused,should_pause,compact_state,load_compact,random_state,restore_random,publish_predictions,publish_selected
+ 
+ class PixelSource:
+     """Decode only requested segment frames; retain compressed videos only."""
+@@ -86,9 +87,10 @@ def gradient_audit(base,root):
+ 
+ def fit(path,source,processor,base,checkpoint_path,y,train,valid,seed,epochs=None):
+     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True);c=config();options=c['finetune']
+-    signature=hashlib.sha256(json.dumps(dict(code=sha(__file__),prefix_code=sha(Path(__file__).with_name('prefix_cache.py')) if hasattr(source,'values') else None,cache_manifest=identity(source.folder/'complete.json') if hasattr(source,'folder') else None,initial=identity(checkpoint_path),train=train.tolist(),valid=valid.tolist(),seed=seed,epochs=epochs,options=options,input_mode=type(source).__name__),sort_keys=True).encode()).hexdigest()
++    signature=hashlib.sha256(json.dumps(dict(code=sha(__file__),recovery_code=sha(Path(__file__).with_name('training_recovery.py')),prefix_code=sha(Path(__file__).with_name('prefix_cache.py')) if hasattr(source,'values') else None,cache_manifest=identity(source.folder/'complete.json') if hasattr(source,'folder') else None,initial=identity(checkpoint_path),train=train.tolist(),valid=valid.tolist(),seed=seed,epochs=epochs,options=options,input_mode=type(source).__name__),sort_keys=True).encode()).hexdigest()
+     if path.with_suffix('.json').exists():
+         info=read(path.with_suffix('.json'));assert info['signature']==signature
++        assert identity(path.with_suffix('.pt'))==info['checkpoint'] and identity(path.with_suffix('.npz'))==info['predictions']
+         with np.load(path.with_suffix('.npz')) as z:return {key:z[key] for key in z.files},info
+     for attempt,micro in enumerate([2,1]):
+         try:
+@@ -122,32 +124,58 @@ def _fit(path,source,processor,base,checkpoint_path,y,train,valid,seed,epochs,mi
+                 outputs.append(model(x).cpu().numpy())
+         return np.concatenate(outputs)
+     best=-np.inf;best_epoch=0;history=[];maximum=epochs or options['max_epochs'];best_state=None;best_raw=None
+-    for epoch in range(1,maximum+1):
+-        storage();model.train();order=rng.permutation(train);loss_sum=0.
+-        for offset in range(0,len(order),options['batch_size']):
++    fit_root=Path(c['run_dir'])/'01_temporal_visual/fits/V-FT'
++    recovery=Recovery(Path(c['run_dir'])/'01_temporal_visual/training_recovery'/path.relative_to(fit_root)/f'micro{micro}',signature)
++    saved=recovery.load();first_epoch=1;resume_order=None;resume_offset=0;resume_loss=0.;elapsed_before=0.;epoch=0
++    if saved is not None:
++        load_compact(model,saved['model']);optimizer.load_state_dict(saved['optimizer']);amp.load_state_dict(saved['amp'])
++        first_epoch=saved['epoch'];resume_order=None if saved['order'] is None else saved['order'].numpy()
++        resume_offset=saved['offset'];resume_loss=saved['loss'];history=saved['history'];best=saved['best'];best_epoch=saved['best_epoch']
++        best_state=saved['best_state'];best_raw=None if saved['best_raw'] is None else saved['best_raw'].numpy()
++        elapsed_before=saved['elapsed_seconds'];epoch=history[-1]['epoch'] if history else 0
++        if saved['finished']:first_epoch=maximum+1
++        restore_random(saved['random'],rng)
++        print('RESUMED FT',path.name,'epoch',first_epoch,'offset',resume_offset,flush=True)
++        del saved
++    def checkpoint(next_epoch,order,offset,loss,finished=False):
++        storage()
++        recovery.save(dict(model=compact_state(model),optimizer=optimizer.state_dict(),amp=amp.state_dict(),random=random_state(rng),
++            epoch=next_epoch,order=None if order is None else torch.from_numpy(order.copy()),offset=offset,loss=loss,history=history,
++            best=best,best_epoch=best_epoch,best_state=best_state,best_raw=None if best_raw is None else torch.from_numpy(best_raw.copy()),
++            elapsed_seconds=elapsed_before+time.perf_counter()-started,finished=finished))
++        print('CHECKPOINT FT',path.name,'epoch',next_epoch,'offset',offset,'generation',recovery.generation,flush=True)
++        if should_pause():raise TrainingPaused('Visual state saved before planned stop/reset')
++    for epoch in range(first_epoch,maximum+1):
++        storage();model.train()
++        if epoch==first_epoch and resume_order is not None:order=resume_order;start_offset=resume_offset;loss_sum=resume_loss
++        else:order=rng.permutation(train);start_offset=0;loss_sum=0.
++        for offset in range(start_offset,len(order),options['batch_size']):
+             effective=order[offset:offset+options['batch_size']];optimizer.zero_grad(set_to_none=True)
+             for step in range(0,len(effective),micro):
+                 rows=effective[step:step+micro];raw=model(pixels(rows));loss=criterion(raw,torch.tensor(y[rows],dtype=torch.float32,device='cuda'))
+                 assert torch.isfinite(loss);amp.scale(loss*len(rows)/len(effective)).backward();loss_sum+=loss.item()*len(rows)
+             amp.unscale_(optimizer);torch.nn.utils.clip_grad_norm_(head+stage,1);amp.step(optimizer);amp.update()
++            if recovery.due():checkpoint(epoch,order,min(offset+options['batch_size'],len(order)),loss_sum)
+         raw=predict(valid) if epochs is None or epoch==maximum else None
+         ap=float(average_precision_score(y[valid],sigmoid(raw))) if epochs is None else None
+         auc=float(roc_auc_score(y[valid],raw)) if epochs is None else None
+-        history.append(dict(epoch=epoch,train_loss=loss_sum/len(train),validation_AP=ap,validation_AUROC=auc,elapsed_seconds=time.perf_counter()-started))
++        history.append(dict(epoch=epoch,train_loss=loss_sum/len(train),validation_AP=ap,validation_AUROC=auc,elapsed_seconds=elapsed_before+time.perf_counter()-started))
+         write(path.parent/(path.name+'_live.json'),dict(history=history,seed=seed,initial=str(checkpoint_path)),replace=True)
+         print('FT',path.name,'epoch',epoch,'elapsed',round(time.perf_counter()-started),flush=True)
+         if (epochs is not None and epoch==maximum) or (epochs is None and ap>best):
+             if ap is not None:best=ap
+-            best_epoch=epoch;best_raw=raw.copy();best_state={k:v.detach().cpu().clone() for k,v in model.state_dict().items()}
+-        if epochs is None and epoch-best_epoch>=options['patience']:break
+-    model.load_state_dict(best_state)
++            best_epoch=epoch;best_raw=raw.copy();best_state=compact_state(model)
++        finished=epoch==maximum or (epochs is None and epoch-best_epoch>=options['patience'])
++        checkpoint(epoch+1,None,0,0.,finished)
++        if finished:break
++    load_compact(model,best_state)
+     # Three separate fixed-weight pixel passes; not a prediction ensemble.
+     result=dict(raw=best_raw,reverse=predict(valid,np.arange(16)[::-1].copy()),permute=predict(valid,np.random.default_rng(seed+991).permutation(16)))
+-    np.savez_compressed(path.with_suffix('.npz'),**result)
++    publish_predictions(path.with_suffix('.npz'),result)
+     # Only adapted stage + head and scaler need storage; immutable prefix remains pinned.
+     compact={k:v for k,v in best_state.items() if k.startswith('head.') or k.startswith('backbone.encoder.stages.3.') or k in ['mean','std']}
+-    torch.save(dict(state_dict=compact,initial=identity(checkpoint_path),epoch=best_epoch,seed=seed),path.with_suffix('.pt'))
+-    info=dict(signature=signature,initial=identity(checkpoint_path),seed=seed,train_rows=train.tolist(),assessment_rows=valid.tolist(),best_epoch=best_epoch,stopped_epoch=epoch,cap_reached=epoch==maximum,history=history,input_mode=type(source).__name__,microbatch=micro,effective_batch=128,seconds=time.perf_counter()-started,checkpoint=identity(path.with_suffix('.pt')),predictions=identity(path.with_suffix('.npz')))
++    publish_selected(path.with_suffix('.pt'),dict(state_dict=compact,initial=identity(checkpoint_path),epoch=best_epoch,seed=seed))
++    info=dict(signature=signature,initial=identity(checkpoint_path),seed=seed,train_rows=train.tolist(),assessment_rows=valid.tolist(),best_epoch=best_epoch,stopped_epoch=epoch,cap_reached=epoch==maximum,history=history,input_mode=type(source).__name__,microbatch=micro,effective_batch=128,seconds=elapsed_before+time.perf_counter()-started,recovery_generations=recovery.generation+1,checkpoint=identity(path.with_suffix('.pt')),predictions=identity(path.with_suffix('.npz')))
+     write(path.with_suffix('.json'),info);del model,optimizer,backbone;gc.collect();torch.cuda.empty_cache();return result,info
+ 
+ def main():
+@@ -178,7 +206,7 @@ def main():
+             all_info.append(dict(seed=seed,calibration=cal,inner=info,refit=detail))
+         threshold=choose_threshold(y[tr],np.mean(inner_p,axis=0));p[te]=seed_p[:,te].mean(0);hard[te]=p[te]>=threshold;reverse[te]=np.mean(rev,axis=0);permuted[te]=np.mean(perm,axis=0)
+         write(root/f'finetune_outer{k}.json',dict(fold=k,threshold=threshold,seeds=all_info));progress(1,f'V-FT outer {k+1}/5 complete')
+-    source.close();np.savez_compressed(root/'V-FT_predictions.npz',y=y,fold=fold,p=p,hard=hard,seed_p=seed_p,seed_hard=seed_hard,reverse=reverse,permute=permuted)
++    source.close();publish_predictions(root/'V-FT_predictions.npz',dict(y=y,fold=fold,p=p,hard=hard,seed_p=seed_p,seed_hard=seed_hard,reverse=reverse,permute=permuted))
+     predictions={'V-FT':dict(p=p,hard=hard,seed_p=seed_p,seed_hard=seed_hard)}
+     for name in ['V-TEMP','V-MEAN']:
+         with np.load(root/(name+'_predictions.npz')) as z:predictions[name]={key:z[key] for key in ['p','hard','seed_p','seed_hard']}
+diff --git a/src/reassemble/additional_improvements/fit_summaries.py b/src/reassemble/additional_improvements/fit_summaries.py
+index 8a9e08c..4fa0498 100644
+--- a/src/reassemble/additional_improvements/fit_summaries.py
++++ b/src/reassemble/additional_improvements/fit_summaries.py
+@@ -8,8 +8,9 @@ import matplotlib.pyplot as plt
+ from .common import read
+ 
+ 
+-def summarize(task, mode):
++def summarize(task, mode, output_dir=None):
+     task=Path(task);curves=[];fits=[]
++    destination=task if output_dir is None else Path(output_dir)
+     labels=['clean_F6','augmented_F6','clean_A-ADAPTIVE','augmented_A-ADAPTIVE'] if mode=='robust' else ['V-FT']
+     fig,axes=plt.subplots(2,len(labels),figsize=(5*len(labels),7),squeeze=False)
+     for path in sorted((task/'fits').rglob('*.json')):
+@@ -39,9 +40,9 @@ def summarize(task, mode):
+         axes[0,col].set_title(label);axes[0,col].set_ylabel('Training objective')
+         axes[1,col].set_ylabel('Inner selection objective' if mode=='robust' else 'Inner AP');axes[1,col].set_xlabel('Epoch')
+     prefix='matched' if mode=='robust' else 'finetune'
+-    pd.DataFrame(curves).to_csv(task/(prefix+'_learning_curves.csv'),index=False)
+-    pd.DataFrame(fits).to_csv(task/(prefix+'_fit_compute.csv'),index=False)
++    pd.DataFrame(curves).to_csv(destination/(prefix+'_learning_curves.csv'),index=False)
++    pd.DataFrame(fits).to_csv(destination/(prefix+'_fit_compute.csv'),index=False)
+     fig.tight_layout()
+-    for suffix in ['png','pdf']:fig.savefig(task/(prefix+'_learning_curves.'+suffix),dpi=160)
++    for suffix in ['png','pdf']:fig.savefig(destination/(prefix+'_learning_curves.'+suffix),dpi=160)
+     plt.close(fig)
+     return dict(fits=len(fits),seconds=sum(r['seconds'] for r in fits))
+diff --git a/src/reassemble/additional_improvements/unimodal_report.py b/src/reassemble/additional_improvements/unimodal_report.py
+index 4581969..5e9a7ff 100644
+--- a/src/reassemble/additional_improvements/unimodal_report.py
++++ b/src/reassemble/additional_improvements/unimodal_report.py
+@@ -12,7 +12,9 @@ from .common import config,read,write,progress,identity
+ from .fit_summaries import summarize
+ 
+ def main():
+-    parser=argparse.ArgumentParser();parser.add_argument('--task',type=int,choices=[1,2],required=True);args=parser.parse_args();c=config();root=Path(c['run_dir']);name='01_temporal_visual' if args.task==1 else '02_patchtst_training_budget';task=root/name
++    parser=argparse.ArgumentParser();parser.add_argument('--task',type=int,choices=[1,2],required=True);parser.add_argument('--output-dir',type=Path);args=parser.parse_args();c=config();root=Path(c['run_dir']);name='01_temporal_visual' if args.task==1 else '02_patchtst_training_budget';task=root/name
++    destination=task if args.output_dir is None else args.output_dir
++    if args.output_dir is not None:destination.mkdir(parents=True,exist_ok=False)
+     if args.task==2 and (task/'hybrid_comparison/results.json').exists():
+         from .checkpoint_retention import recover_selected_short_states
+         recover_selected_short_states()
+@@ -41,9 +43,9 @@ def main():
+                     axes[1,col].plot(epochs,[r['validation_AP'] for r in history],alpha=.22,lw=.6)
+                     for row in history:historyrows.append(dict(model=variant,fold=fold,seed=seed,inner=inner,**row))
+             axes[0,col].set_title(variant);axes[0,col].set_ylabel('Class-weighted training BCE');axes[1,col].set_ylabel('Inner AP');axes[1,col].set_xlabel('Epoch')
+-    fig.tight_layout();fig.savefig(task/'learning_curves.png',dpi=160);fig.savefig(task/'learning_curves.pdf');plt.close(fig)
+-    for filename,rows in [('selected_epochs',epochrows),('per_seed_fold_metrics',seedrows),('learning_curves',historyrows),('fit_compute',compute)]:pd.DataFrame(rows).to_csv(task/(filename+'.csv'),index=False)
+-    if orderrows:pd.DataFrame(orderrows).to_csv(task/'order_diagnostic_metrics.csv',index=False)
++    fig.tight_layout();fig.savefig(destination/'learning_curves.png',dpi=160);fig.savefig(destination/'learning_curves.pdf');plt.close(fig)
++    for filename,rows in [('selected_epochs',epochrows),('per_seed_fold_metrics',seedrows),('learning_curves',historyrows),('fit_compute',compute)]:pd.DataFrame(rows).to_csv(destination/(filename+'.csv'),index=False)
++    if orderrows:pd.DataFrame(orderrows).to_csv(destination/'order_diagnostic_metrics.csv',index=False)
+     rows=[]
+     for model,r in result['models'].items():rows.append([model]+[f'{r["metrics"][m]["estimate"]:.4f}' for m in METRICS])
+     differences=[]
+@@ -63,7 +65,7 @@ def main():
+     if args.task==1:
+         text+='Fixed-weight reversal/permutation results are in `order_diagnostic_metrics.csv`; non-positional invariance tests precede execution. Score changes alone do not establish useful temporal reasoning. A temporal-order claim additionally requires V-TEMP improvement relative to V-NOPOS; improvement only against V-MEAN may reflect capacity.\n\n'
+         if (task/'finetune_comparison/results.json').exists():
+-            summarize(task,'finetune')
++            summarize(task,'finetune',output_dir=destination)
+             ft=read(task/'finetune_comparison/results.json');text+='V-FT is separately evaluated after at most20 additional epochs/patience5, final spatial stage only, backbone lr1e-5/head lr1e-4, frozen BatchNorm running statistics. Synthetic memory/gradient audit is `finetune_gradient_audit.json`. It adds supervised adaptation and compute. Frozen-prefix caching was explicitly approved after exact GPU prediction/gradient parity; only unchanged stages are cached, with the adapted final stage recomputed on every update. See PROTOCOL_AMENDMENT_01_FROZEN_PREFIX_CACHE.md, finetune_learning_curves.csv/.png/.pdf and finetune_fit_compute.csv.\n\n'
+             for key,r in ft['contrasts'].items():
+                 v=r['metrics']['AUPRC'];text+=f'- {key}: ΔAP {v["estimate"]:+.4f},95% [{v["lower_95"]:+.4f},{v["upper_95"]:+.4f}]; {r["AP_interpretation"]}.\n'
+@@ -77,7 +79,8 @@ def main():
+             text+='The C1 logistic hybrid uses calibrated S-LONG and statistics with nested branch predictions; even its inner threshold predictions use deeper training-only branch selection/calibration. These are two representations of one sensor modality. Selected S-6 inner checkpoints are retained via reuse or one deterministic replay to the already-selected3/6 epoch, requiring parity with saved logits; original predictions are untouched (selected_S6_checkpoint_retention.json). It does not replace the statistics branch in Tasks3/4.\n';complete=True
+         else:text+='[NOT RUN / INCOMPLETE] S-HYBRID comparison is pending; no incremental temporal-sensor claim is supported yet.\n';complete=False
+     text+='\nInterpretation is bounded by matched controls, seed/fold variation and paired intervals. Report supported improvements, deteriorations and inconclusive effects equally. This outcome-informed same-cohort extension is not independent confirmation. No winning changes are automatically combined. Exact protocol/config, implementation commits and artifact manifests are under the new root only; completed original study files and external Reasoning Record are unchanged.\n'
+-    target=root/'reports'/('01_TEMPORAL_VISUAL_RESULTS.md' if args.task==1 else '02_PATCHTST_BUDGET_RESULTS.md');target.write_text(text)
++    if args.output_dir is not None:text+='\nVersioned completion report; previous summaries are preserved. Original fitting/comparison evidence: `'+str(task)+'`. New curves and tables are beside this file.\n'
++    target=(root/'reports' if args.output_dir is None else destination)/('01_TEMPORAL_VISUAL_RESULTS.md' if args.task==1 else '02_PATCHTST_BUDGET_RESULTS.md');target.write_text(text)
+     progress(args.task,'All bounded variants, learning curves, predictions, paired comparisons and report complete' if complete else 'Primary variants reported; secondary task remains pending', 'complete' if complete else 'running')
+ 
+ if __name__=='__main__':main()

@@ -1,11 +1,11 @@
 """Model-facing utilities; scientific formulations remain configuration-gated."""
 
-from .rtdetr_feasibility import (
+from phm2026.models.rtdetr.feasibility import (
     RTDETRFeasibilityOptions,
     RTDETRFeasibilityResult,
     select_balanced_images,
 )
-from .patchtst import PatchTSTConfig, PatchTSTRegressor
+from phm2026.models.patchtst.model import PatchTSTConfig, PatchTSTRegressor
 
 __all__ = [
     "RTDETRFeasibilityOptions",

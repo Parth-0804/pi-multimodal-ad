@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, timezone
 
 import pytest
 
-from pi_multimodal_ad.profiling.alignment import (
+from phm2026.profiling.alignment import (
     AlignmentOptions,
     CanonicalEvent,
     align_event_modalities,

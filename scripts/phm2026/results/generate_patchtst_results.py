@@ -3,6 +3,12 @@
 
 from __future__ import annotations
 
+# Source-tree entry point; no installed package is required.
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+
+
 import argparse
 import json
 import shutil
@@ -10,10 +16,10 @@ import sys
 
 import pandas as pd
 
-from pi_multimodal_ad.reporting.patchtst_results import write_patchtst_results_run
-from pi_multimodal_ad.utils.artifacts import load_pinned_run
-from pi_multimodal_ad.utils.config import ConfigError, load_yaml_config
-from pi_multimodal_ad.utils.provenance import create_run_context
+from phm2026.reporting.patchtst_results import write_patchtst_results_run
+from phm2026.utils.artifacts import load_pinned_run
+from phm2026.utils.config import ConfigError, load_yaml_config
+from phm2026.utils.provenance import create_run_context
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -116,7 +122,7 @@ def main(argv: list[str] | None = None) -> int:
             config=config,
             seed=int(data["seed"]),
             command=(
-                "scripts/results/generate_patchtst_results.py",
+                "scripts/phm2026/results/generate_patchtst_results.py",
                 "--config",
                 config.relative_path,
             ),

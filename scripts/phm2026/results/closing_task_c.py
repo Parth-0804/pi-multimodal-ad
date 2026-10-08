@@ -18,6 +18,12 @@ C.1 alpha sweep, C.2 channel sparsity, C.3 rank-distillation control.
 
 from __future__ import annotations
 
+# Source-tree entry point; no installed package is required.
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+
+
 import argparse
 import json
 from copy import deepcopy
@@ -27,8 +33,8 @@ import pandas as pd
 import torch
 from torch import nn
 
-from pi_multimodal_ad.models.patchtst import PatchTSTConfig, PatchTSTRegressor
-from pi_multimodal_ad.preprocessing.timeseries import RunSequence, collate_run_sequences
+from phm2026.models.patchtst.model import PatchTSTConfig, PatchTSTRegressor
+from phm2026.preprocessing.timeseries import RunSequence, collate_run_sequences
 
 SENSOR = "runs/phm2026_sensor_features/20260912T053550461436Z-69f2e5ee"
 LOEO_TRAIN = {"EXP-A": "EXP-F", "EXP-B": "EXP-F", "EXP-F": "EXP-B"}

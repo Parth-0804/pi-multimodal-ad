@@ -52,7 +52,7 @@ class MLP(nn.Module):
 
 def pairwise_rank_loss(pred: torch.Tensor, teacher: torch.Tensor) -> torch.Tensor:
     """Pairwise rank distillation -- COPIED from the PHM implementation in
-    scripts/results/closing_task_c.py so the mechanism under test is the same
+    scripts/phm2026/results/closing_task_c.py so the mechanism under test is the same
     one, not a re-derivation of it.
 
     Logistic pairwise ranking loss: order predictions like the teacher.

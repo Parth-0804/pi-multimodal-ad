@@ -1,0 +1,63 @@
+diff --git a/src/reassemble/additional_improvements/hybrid.py b/src/reassemble/additional_improvements/hybrid.py
+index 1ee5598..a122713 100644
+--- a/src/reassemble/additional_improvements/hybrid.py
++++ b/src/reassemble/additional_improvements/hybrid.py
+@@ -7,6 +7,7 @@ from .common import setup,inputs,read,write,progress,identity
+ from .neural import branch
+ from .anchored import anchor
+ from .reporting import comparison
++from .resume_io import completed_hybrid_fold
+ 
+ def main():
+     c=setup();c,base,frame,arrays,splits=inputs();c2=read(c['section2_config'])
+@@ -16,6 +17,11 @@ def main():
+         k=outer['fold'];plan=index_plan(frame,outer);original=Path(c2['section1b_run'])/'stacking'
+         with np.load(original/f'outer{k}.npz') as z:tr=z['train_rows'];te=z['test_rows'];statistics_train=z['training_branch_oof'][:,1];statistics_test=z['test_branch_probabilities'][:,1]
+         guard_partition(frame,tr,te,plan);fold[te]=k
++        retained=completed_hybrid_fold(root,k,tr,te)
++        if retained is not None:
++            p[te],hard[te]=retained
++            progress(2,f'S-HYBRID outer{k+1}/5 reused unchanged from completed fold')
++            continue
+         temporal_train=np.full(n,np.nan);inner_hybrid=np.full(n,np.nan);inner_details=[]
+         for j,(it,iv) in enumerate(plan):
+             detail=read(original/f'outer{k}_inner{j}.json');idx=lambda groups:np.flatnonzero(frame.recording_id.isin(groups))
+diff --git a/src/reassemble/additional_improvements/unimodal_report.py b/src/reassemble/additional_improvements/unimodal_report.py
+index 4581969..0b3800f 100644
+--- a/src/reassemble/additional_improvements/unimodal_report.py
++++ b/src/reassemble/additional_improvements/unimodal_report.py
+@@ -12,7 +12,10 @@ from .common import config,read,write,progress,identity
+ from .fit_summaries import summarize
+ 
+ def main():
+-    parser=argparse.ArgumentParser();parser.add_argument('--task',type=int,choices=[1,2],required=True);args=parser.parse_args();c=config();root=Path(c['run_dir']);name='01_temporal_visual' if args.task==1 else '02_patchtst_training_budget';task=root/name
++    parser=argparse.ArgumentParser();parser.add_argument('--task',type=int,choices=[1,2],required=True);parser.add_argument('--output-dir',type=Path);args=parser.parse_args();c=config();root=Path(c['run_dir']);name='01_temporal_visual' if args.task==1 else '02_patchtst_training_budget';task=root/name
++    if args.output_dir is not None and args.task!=2:parser.error('--output-dir supports sensor Task 2 only')
++    destination=task if args.output_dir is None else args.output_dir
++    if args.output_dir is not None:destination.mkdir(parents=True,exist_ok=False)
+     if args.task==2 and (task/'hybrid_comparison/results.json').exists():
+         from .checkpoint_retention import recover_selected_short_states
+         recover_selected_short_states()
+@@ -41,9 +44,9 @@ def main():
+                     axes[1,col].plot(epochs,[r['validation_AP'] for r in history],alpha=.22,lw=.6)
+                     for row in history:historyrows.append(dict(model=variant,fold=fold,seed=seed,inner=inner,**row))
+             axes[0,col].set_title(variant);axes[0,col].set_ylabel('Class-weighted training BCE');axes[1,col].set_ylabel('Inner AP');axes[1,col].set_xlabel('Epoch')
+-    fig.tight_layout();fig.savefig(task/'learning_curves.png',dpi=160);fig.savefig(task/'learning_curves.pdf');plt.close(fig)
+-    for filename,rows in [('selected_epochs',epochrows),('per_seed_fold_metrics',seedrows),('learning_curves',historyrows),('fit_compute',compute)]:pd.DataFrame(rows).to_csv(task/(filename+'.csv'),index=False)
+-    if orderrows:pd.DataFrame(orderrows).to_csv(task/'order_diagnostic_metrics.csv',index=False)
++    fig.tight_layout();fig.savefig(destination/'learning_curves.png',dpi=160);fig.savefig(destination/'learning_curves.pdf');plt.close(fig)
++    for filename,rows in [('selected_epochs',epochrows),('per_seed_fold_metrics',seedrows),('learning_curves',historyrows),('fit_compute',compute)]:pd.DataFrame(rows).to_csv(destination/(filename+'.csv'),index=False)
++    if orderrows:pd.DataFrame(orderrows).to_csv(destination/'order_diagnostic_metrics.csv',index=False)
+     rows=[]
+     for model,r in result['models'].items():rows.append([model]+[f'{r["metrics"][m]["estimate"]:.4f}' for m in METRICS])
+     differences=[]
+@@ -77,7 +80,8 @@ def main():
+             text+='The C1 logistic hybrid uses calibrated S-LONG and statistics with nested branch predictions; even its inner threshold predictions use deeper training-only branch selection/calibration. These are two representations of one sensor modality. Selected S-6 inner checkpoints are retained via reuse or one deterministic replay to the already-selected3/6 epoch, requiring parity with saved logits; original predictions are untouched (selected_S6_checkpoint_retention.json). It does not replace the statistics branch in Tasks3/4.\n';complete=True
+         else:text+='[NOT RUN / INCOMPLETE] S-HYBRID comparison is pending; no incremental temporal-sensor claim is supported yet.\n';complete=False
+     text+='\nInterpretation is bounded by matched controls, seed/fold variation and paired intervals. Report supported improvements, deteriorations and inconclusive effects equally. This outcome-informed same-cohort extension is not independent confirmation. No winning changes are automatically combined. Exact protocol/config, implementation commits and artifact manifests are under the new root only; completed original study files and external Reasoning Record are unchanged.\n'
+-    target=root/'reports'/('01_TEMPORAL_VISUAL_RESULTS.md' if args.task==1 else '02_PATCHTST_BUDGET_RESULTS.md');target.write_text(text)
++    if args.output_dir is not None:text+='\nVersioned sensor completion report; previous summaries are preserved. Original fitting/comparison evidence: `'+str(task)+'`. New curves and tables are beside this file.\n'
++    target=(root/'reports' if args.output_dir is None else destination)/('01_TEMPORAL_VISUAL_RESULTS.md' if args.task==1 else '02_PATCHTST_BUDGET_RESULTS.md');target.write_text(text)
+     progress(args.task,'All bounded variants, learning curves, predictions, paired comparisons and report complete' if complete else 'Primary variants reported; secondary task remains pending', 'complete' if complete else 'running')
+ 
+ if __name__=='__main__':main()

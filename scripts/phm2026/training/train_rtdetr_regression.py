@@ -12,13 +12,13 @@ import sys
 import pandas as pd
 import torch
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "src"))
-from pi_multimodal_ad.models.rtdetr_feasibility import (
+from phm2026.models.rtdetr.feasibility import (
     RTDETRFeasibilityOptions,
     download_checkpoint,
 )  # noqa: E402
-from pi_multimodal_ad.models.rtdetr_regression import (  # noqa: E402
+from phm2026.models.rtdetr.regression import (  # noqa: E402
     RegressionResult,
     aggregate_predictions,
     build_metrics,
@@ -27,8 +27,8 @@ from pi_multimodal_ad.models.rtdetr_regression import (  # noqa: E402
     train_head,
     write_regression_run,
 )
-from pi_multimodal_ad.profiling.images import load_image_sources  # noqa: E402
-from pi_multimodal_ad.utils import (
+from phm2026.profiling.images import load_image_sources  # noqa: E402
+from phm2026.utils import (
     ConfigError,
     create_run_context,
     load_pinned_run,
@@ -156,7 +156,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/training/train_rtdetr_regression.py", *(argv or sys.argv[1:])],
+            command=["scripts/phm2026/training/train_rtdetr_regression.py", *(argv or sys.argv[1:])],
             input_roots=tuple(item.relative_directory for item in pinned.values())
             + (dataset_data["dataset"]["data_root"],),
             package_names=(

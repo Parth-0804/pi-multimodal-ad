@@ -8,7 +8,7 @@ import socket
 import threading
 from types import SimpleNamespace
 import pytest
-from pi_multimodal_ad.acquisition import phm_download as d
+from phm2026.acquisition import phm_download as d
 
 BODY = b'PK' + bytes(range(256)) * 4096
 

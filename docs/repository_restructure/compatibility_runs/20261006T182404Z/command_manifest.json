@@ -1,0 +1,7 @@
+{
+  "install": "PIP_NO_INDEX=1 PYTHONDONTWRITEBYTECODE=1 ma_thesis_env/bin/python -B -m pip install --no-build-isolation --no-deps -e .",
+  "full_tests": "env -u PYTHONPATH OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 COMPATIBILITY_AUDIT_DIRECTORY=docs/repository_restructure/compatibility_runs/20261006T182404Z ma_thesis_env/bin/python -B -m pytest tests -q --import-mode=importlib -p no:cacheprovider",
+  "targeted_existing": "PYTHONPATH=src ma_thesis_env/bin/python -B -m pytest tests/phm2026/test_run_infrastructure.py tests/phm2026/test_phm_download.py -q -p no:cacheprovider",
+  "targeted_compatibility": "env -u PYTHONPATH ma_thesis_env/bin/python -B -m pytest tests/compatibility/test_interfaces.py tests/compatibility/test_paths.py -q --import-mode=importlib -p no:cacheprovider",
+  "dependency_check": "ma_thesis_env/bin/python -B -m pip check"
+}

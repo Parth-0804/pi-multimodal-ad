@@ -8,7 +8,7 @@ import random
 import numpy as np
 import pytest
 
-from pi_multimodal_ad.utils import (
+from phm2026.utils import (
     ConfigError,
     create_run_context,
     deterministic_group_split,
@@ -175,7 +175,7 @@ def test_untracked_output_does_not_mark_the_run_as_code_dirty(
 ) -> None:
     """A new run directory is untracked by design; that is not a code change."""
 
-    from pi_multimodal_ad.utils.provenance import _git_state
+    from phm2026.utils.provenance import _git_state
 
     root = _fake_repository(tmp_path)
     (root / ".git").rmdir()

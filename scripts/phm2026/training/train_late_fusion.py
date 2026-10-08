@@ -12,6 +12,12 @@ training or selection even by mistake.
 
 from __future__ import annotations
 
+# Source-tree entry point; no installed package is required.
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+
+
 import argparse
 import json
 import sys
@@ -24,24 +30,24 @@ import pandas as pd
 import torch
 from torch import nn
 
-from pi_multimodal_ad.evaluation.monotonic import monotonic_metrics
-from pi_multimodal_ad.evaluation.regression import regression_metrics
-from pi_multimodal_ad.models.late_fusion import (
+from phm2026.evaluation.monotonic import monotonic_metrics
+from phm2026.evaluation.regression import regression_metrics
+from phm2026.fusion.late_fusion import (
     SUB_MODALITY_CHANNELS,
     LateFusionRegressor,
     sub_modality_column_indices,
 )
-from pi_multimodal_ad.models.patchtst import PatchTSTConfig, PatchTSTRegressor
-from pi_multimodal_ad.preprocessing.timeseries import (
+from phm2026.models.patchtst.model import PatchTSTConfig, PatchTSTRegressor
+from phm2026.preprocessing.timeseries import (
     FeatureNormalizer,
     build_run_sequences,
     collate_run_sequences,
     fit_feature_normalizer,
 )
-from pi_multimodal_ad.reporting.common import finalize_run, json_text
-from pi_multimodal_ad.utils.artifacts import load_pinned_run
-from pi_multimodal_ad.utils.config import load_yaml_config
-from pi_multimodal_ad.utils.provenance import create_run_context
+from phm2026.reporting.common import finalize_run, json_text
+from phm2026.utils.artifacts import load_pinned_run
+from phm2026.utils.config import load_yaml_config
+from phm2026.utils.provenance import create_run_context
 
 PREREGISTRATION = "docs/thesis/PREREGISTRATION_20260912T053329Z.md"
 ALL_GROUPS = tuple(SUB_MODALITY_CHANNELS)
@@ -232,7 +238,7 @@ def main(argv: list[str] | None = None) -> int:
         output_root=config.resolve_repository_path(data["output_root"], field="output_root"),
         config=config,
         seed=seed,
-        command=["scripts/training/train_late_fusion.py", *(argv or sys.argv[1:])],
+        command=["scripts/phm2026/training/train_late_fusion.py", *(argv or sys.argv[1:])],
         input_roots=(sensor.relative_directory,),
         package_names=("numpy", "pandas", "pyarrow", "torch", "scikit-learn", "PyYAML"),
         source_runs=[

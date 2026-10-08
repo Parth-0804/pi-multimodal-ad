@@ -10,15 +10,15 @@ import sys
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "src"))
 
-from pi_multimodal_ad.targets.model_dataset import (  # noqa: E402
+from phm2026.targets.model_dataset import (  # noqa: E402
     build_image_samples,
     build_sensor_manifests,
     write_dataset_run,
 )
-from pi_multimodal_ad.utils import (  # noqa: E402
+from phm2026.utils import (  # noqa: E402
     ConfigError,
     create_run_context,
     load_pinned_run,
@@ -101,7 +101,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/features/build_model_dataset.py", *(argv or sys.argv[1:])],
+            command=["scripts/phm2026/features/build_model_dataset.py", *(argv or sys.argv[1:])],
             input_roots=(inventory.relative_directory, target.relative_directory),
             source_runs=sources,
         )

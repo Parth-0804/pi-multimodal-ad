@@ -7,12 +7,12 @@ import h5py
 import numpy as np
 import pandas as pd
 
-from pi_multimodal_ad.features.sensor_minutes import (
+from phm2026.features.sensor_minutes import (
     ChannelSpec,
     ExtractionOptions,
     extract_minute_features,
 )
-from pi_multimodal_ad.preprocessing.timeseries import (
+from phm2026.preprocessing.timeseries import (
     build_run_sequences,
     collate_run_sequences,
     fit_feature_normalizer,

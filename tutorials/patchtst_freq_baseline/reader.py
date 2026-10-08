@@ -1,6 +1,6 @@
 """From-scratch, read-only, bounded HF archive discovery + member access.
 
-Independent of pi_multimodal_ad.profiling.archive_io — written fresh for
+Independent of phm2026.profiling.archive_io — written fresh for
 this tutorial. Never calls zipfile.ZipFile.extract() (which can write
 outside the target directory via crafted paths); instead streams one
 member at a time into a uniquely-named temporary file and removes it when

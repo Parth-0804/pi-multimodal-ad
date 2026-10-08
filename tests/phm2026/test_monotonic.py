@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from pi_multimodal_ad.evaluation.monotonic import (
+from phm2026.evaluation.monotonic import (
     DEGENERATE_CONSTANT_PREDICTION,
     monotonic_metrics,
     monotonic_rescale,

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from pi_multimodal_ad.targets.image_damage import (
+from phm2026.targets.image_damage import (
     ImageDamageOptions,
     aggregate_targets,
     measure_damage_candidate,

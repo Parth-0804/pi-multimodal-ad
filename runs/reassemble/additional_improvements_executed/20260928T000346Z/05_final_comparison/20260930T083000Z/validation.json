@@ -1,0 +1,48 @@
+{
+  "UTC": "2026-09-30T08:36:41.783714+00:00",
+  "numerical_recalculation": {
+    "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/05_final_comparison/20260930T083000Z/numerical_validation.json",
+    "sha256": "eea33f3780fd745205776932d4076963b92ebd906646baa3f8d4296801b7f24d",
+    "bytes": 15716
+  },
+  "boundary_point_checks_passed": true,
+  "historical_preservation": {
+    "verified_entries": 23329,
+    "small_files_hashed": 18534,
+    "large_files": "size/mtime preservation; not a fresh full-content rehash",
+    "passed": true
+  },
+  "consolidation_preservation": {
+    "verified_entries": 20496,
+    "small_files_hashed": 15849,
+    "large_files": "size/mtime preservation; not a fresh full-content rehash",
+    "passed": true
+  },
+  "checks": [
+    {
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "returncode": 0,
+      "stdout": "No broken requirements found.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "scope": "No model training, no re-bootstrap. Exact point recomputation and retained interval provenance; small-file hashes, large-file metadata, not full raw rehash.",
+  "tasks_2_to_4_complete": true,
+  "task1_discontinued": true
+}

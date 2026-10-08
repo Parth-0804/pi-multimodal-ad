@@ -6,7 +6,7 @@ independent univariate series, split into overlapping patches, linearly
 embedded, and passed through ONE SHARED Transformer encoder across all
 channels (channel independence -- the architecture's defining idea, not
 an implementation detail of any particular codebase). No code is imported
-from this repository's own src/pi_multimodal_ad/models/patchtst.py; every
+from this repository's own src/phm2026/models/patchtst/model.py; every
 layer below is defined fresh for this tutorial.
 """
 

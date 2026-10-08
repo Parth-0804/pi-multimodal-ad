@@ -1,7 +1,7 @@
 from __future__ import annotations
 import pandas as pd
 import torch
-from pi_multimodal_ad.models.rtdetr_regression import (
+from phm2026.models.rtdetr.regression import (
     RegressionHead,
     aggregate_predictions,
 )

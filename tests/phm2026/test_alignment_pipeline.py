@@ -6,13 +6,13 @@ from pathlib import Path
 
 import pandas as pd
 
-from pi_multimodal_ad.profiling.alignment_artifacts import write_blocker_artifacts
-from pi_multimodal_ad.profiling.alignment_pipeline import (
+from phm2026.profiling.alignment_artifacts import write_blocker_artifacts
+from phm2026.profiling.alignment_pipeline import (
     AlignmentPipelineOptions,
     build_alignment_pipeline,
     write_alignment_run,
 )
-from pi_multimodal_ad.utils import create_run_context, load_yaml_config
+from phm2026.utils import create_run_context, load_yaml_config
 
 UTC = timezone.utc
 
@@ -148,7 +148,7 @@ def test_blocked_pipeline_preserves_clock_status_and_never_creates_a_join(
         output_root=repository / "runs/synthetic_alignment_audit",
         config=config,
         seed=17,
-        command=("scripts/dataset/audit_alignment.py",),
+        command=("scripts/phm2026/dataset/audit_alignment.py",),
         input_roots=("runs/synthetic-source",),
         now=datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC),
         package_names=(),

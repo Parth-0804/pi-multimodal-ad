@@ -1,0 +1,412 @@
+TASK 1 — Exposé → Final Thesis Compliance Matrix
+
+You are working in:
+
+/home/student/Master_Thesis_WS/pi-multimodal-ad
+
+Goal:
+
+Create an evidence-based matrix showing exactly how the FINAL thesis relates to the originally approved exposé.
+
+This is documentation work only.
+
+Do NOT train models.
+Do NOT change historical results.
+Do NOT reinterpret missing experiments as completed experiments.
+
+Read first:
+
+original exposé / research-question documents
+
+current PHM reasoning record
+
+FINAL_REASSEMBLE_HANDOFF.md
+
+THESIS_STORYLINE_ADDENDUM.md
+
+Section 1 / 1B / 2 / robustness reports
+
+any final evidence map already present
+
+Create:
+
+docs/thesis/EXPOSE_TO_FINAL_THESIS_MATRIX.md
+
+Required columns:
+
+Original exposé item
+
+Original wording / intention
+
+Final implemented form
+
+Dataset answering it
+
+Experiment / method
+
+Main evidence
+
+Status:
+
+ANSWERED
+
+PARTIALLY ANSWERED
+
+ADAPTED
+
+NOT RUN — GATE FAILED
+
+SUPERSEDED
+
+Reason for deviation
+
+Thesis-safe interpretation
+
+Remaining limitation
+
+Artifact/source path
+
+Suggested thesis chapter
+
+Cover at minimum:
+
+MAIN RQ
+
+SQ1:
+visual representation
+sensor time-series representation
+audio representation
+
+SQ2:
+unimodal
+concatenation
+late fusion
+process-aware gated fusion
+
+SQ3:
+missing modalities
+degraded modalities
+adaptive robustness
+
+SQ4:
+predictive metrics
+calibration
+interpretability
+modularity
+latency/compute
+practical usability
+
+Also include explicit rows for:
+
+PHM dataset pivot
+
+Intel audit/no-go
+
+REASSEMBLE introduction
+
+RT-DETR becoming representation extraction rather than detection
+
+PatchTST being tested but not selected as final sensor branch
+
+engineered sensor statistics being selected
+
+audio being excluded by the alignment gate
+
+physical-object OOD being excluded
+
+PHM regression metrics vs REASSEMBLE classification metrics
+
+Do not hide deviations from the exposé.
+
+The purpose is to demonstrate that the research question remained coherent even though the implementation changed.
+
+Finish with:
+
+Overall compliance assessment
+
+Write:
+
+what remained unchanged conceptually
+
+what changed methodologically
+
+what was deliberately gated out
+
+whether each SQ can now be answered
+
+what supervisor approval/acknowledgement may still be useful
+
+Also generate:
+
+artifacts/thesis/EXPOSE_COMPLIANCE_SUMMARY.json
+
+with machine-readable row status and source paths.
+
+Stop after documentation.
+
+TASK 2 — Final Combined Claim Matrix
+
+Goal:
+
+Create ONE authoritative claim ledger covering both PHM and REASSEMBLE.
+
+Read all existing claim/limitation sections first.
+
+Create:
+
+docs/thesis/FINAL_CLAIM_MATRIX.md
+
+Columns:
+
+Claim ID
+
+Exact proposed thesis sentence
+
+Study
+
+RQ/SQ
+
+Evidence
+
+Point estimate
+
+Uncertainty
+
+Evaluation protocol
+
+Artifact path
+
+Evidence status
+
+Important limitation
+
+Allowed wording
+
+Overstatement to avoid
+
+Main-text / appendix / discussion
+
+Current / exploratory / historical / retired
+
+Include at minimum claims around:
+
+PHM:
+
+LOEO constant vs models
+
+target uncertainty
+
+raw/TSA validation
+
+sensor negative result with bounded wording
+
+positive-control result
+
+image-signal qualification
+
+exposed historical split
+
+regression metrics
+
+REASSEMBLE:
+
+sensor statistics vs PatchTST
+
+RT-DETR incremental information
+
+visual/sensor complementarity
+
+learned static late-fusion improvement
+
+gating clean result
+
+corruption robustness result
+
+modality-dropout structural fallback
+
+audio exclusion
+
+object-OOD exclusion
+
+efficiency/calibration
+
+classification metrics
+
+Critical wording rule:
+
+Never convert:
+
+"did not demonstrate"
+
+into:
+
+"proved absence".
+
+Never convert:
+
+"gate weights changed"
+
+into:
+
+"gate understood reliability".
+
+Never convert:
+
+"not run because feasibility gate failed"
+
+into:
+
+"model performed poorly".
+
+Create a final section:
+
+Claims suitable for Abstract
+
+Maximum 5.
+
+Claims suitable for Conclusion
+
+Maximum 8.
+
+Claims that must remain in Limitations
+
+Retired claims that must never reappear
+
+Output also:
+
+artifacts/thesis/final_claim_matrix.csv
+
+Stop after completion.
+
+TASK 5 — Final Reproducibility Freeze
+
+Goal:
+
+Create the reproducibility package needed to defend the thesis WITHOUT rerunning expensive experiments.
+
+Do not retrain models.
+
+Do not redownload raw datasets.
+
+Do not delete anything.
+
+Create:
+
+docs/thesis/FINAL_THESIS_REPRODUCIBILITY.md
+
+Record:
+
+current Git commit
+
+relevant historical commits
+
+repository status
+
+environment
+
+Python version
+
+Torch/CUDA version
+
+GPU used
+
+dataset roots
+
+dataset/manifests/hashes where available
+
+PHM recovery mechanism
+
+REASSEMBLE source identity
+
+exact cohort
+
+exact split hashes
+
+target version
+
+configurations for every headline result
+
+run directories
+
+result JSON/NPZ/CSV paths
+
+figure-generation scripts
+
+table-generation scripts
+
+final figure paths
+
+final table paths
+
+random seeds
+
+number of bootstrap replicates
+
+permutation-control design
+
+calibration/threshold rules
+
+For every HEADLINE thesis result create one row:
+
+Claim
+→ run
+→ config
+→ predictions
+→ metric source
+→ figure/table
+→ commit.
+
+At minimum cover:
+
+PHM LOEO
+PHM signal diagnostics
+PHM target validation
+REASSEMBLE unimodal comparison
+Section 1B fusion
+Section 2 fusion
+Section 3 robustness
+modality dropout
+audio feasibility
+efficiency
+
+Run only lightweight validations:
+
+files exist
+
+hashes/manifests consistent
+
+configs parsable
+
+split identities consistent
+
+reported metric sources exist
+
+figure/table scripts exist
+
+Git diff check
+
+protected historical output check
+
+Do NOT regenerate every model.
+
+Create:
+
+artifacts/thesis/FINAL_REPRODUCIBILITY_AUDIT.json
+
+Report status for every headline result:
+
+REPRODUCIBLE FROM RETAINED ARTIFACTS
+REQUIRES RAW DATA RE-DOWNLOAD
+REQUIRES MODEL RETRAINING
+DOCUMENTATION ONLY
+BLOCKED / MISSING
+
+Any missing item must be documented rather than silently reconstructed.
+
+Finish with:
+
+THESIS REPRODUCIBILITY PACKAGE READY
+
+or
+
+THESIS REPRODUCIBILITY PACKAGE READY WITH DOCUMENTED GAPS

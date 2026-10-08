@@ -17,20 +17,20 @@ from PIL import Image, ImageDraw
 import torch
 from torch import nn
 
-from ..evaluation.regression import regression_metrics
-from ..profiling.images import (
+from phm2026.evaluation.regression import regression_metrics
+from phm2026.profiling.images import (
     ImageProfileOptions,
     ImageSource,
     materialize_image_source,
 )
-from ..reporting.common import (
+from phm2026.reporting.common import (
     ACADEMIC_COLORS,
     apply_academic_style,
     finalize_run,
     json_text,
     save_figure_pair,
 )
-from ..utils.provenance import ArtifactRecord, RunContext
+from phm2026.utils.provenance import ArtifactRecord, RunContext
 
 SCHEMA_VERSION = "1.0.0"
 FORMULATION = "RTDETR_DERIVED_FROZEN_ENCODER_SCALAR_REGRESSION_PROVISIONAL"

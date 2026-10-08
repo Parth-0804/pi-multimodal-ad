@@ -1,0 +1,210 @@
+ .../intel_welding/audits/GATE_0_DATA_ACCESS.md     |    5 +
+ .../intel_welding/audits/PHASE_1_GATE_REPORT.md    |  130 +
+ artifacts/intel_welding/audits/alignment_audit.md  |    5 +
+ .../intel_welding/audits/context_shortcut_audit.md |  115 +
+ .../audits/context_shortcut_metrics.json           |   51 +
+ .../intel_welding/audits/dataset_integrity.md      |    5 +
+ .../intel_welding/audits/dataset_summary.json      |   42 +
+ .../20260927T114653957275Z/config.json             |   11 +
+ .../20260927T114705163655Z/GATE_0_DATA_ACCESS.md   |   18 +
+ .../20260927T114705163655Z/PHASE_1_GATE_REPORT.md  |  130 +
+ .../20260927T114705163655Z/alignment_audit.md      |   35 +
+ .../20260927T114705163655Z/config.json             |   11 +
+ .../20260927T114705163655Z/dataset_integrity.md    |   80 +
+ .../20260927T114705163655Z/dataset_summary.json    |  261 ++
+ .../20260927T114705163655Z/decoder_warnings.json   |   13 +
+ .../label_session_process_audit.md                 |   46 +
+ .../20260927T114705163655Z/leakage_tests.json      |  163 +
+ .../20260927T114705163655Z/output_manifest.json    |   92 +
+ .../20260927T114705163655Z/provenance.json         |   29 +
+ .../report_output_manifest.json                    |  138 +
+ .../20260927T114705163655Z/split_disposition.json  |   10 +
+ .../20260927T114705163655Z/split_disposition.md    |   35 +
+ .../intel_welding/splits/development_sessions.txt  |  137 +
+ .../intel_welding/splits/final_test_sessions.txt   |   32 +
+ artifacts/intel_welding/splits/leakage_tests.json  |   50 +
+ artifacts/intel_welding/splits/split_manifest.json |  908 ++++++
+ artifacts/reassemble/audits/STORAGE_PREFLIGHT.md   |  271 ++
+ artifacts/reassemble/audits/STORAGE_TRIAGE.md      |  446 +++
+ .../20260927T123356Z/STORAGE_PREFLIGHT.md          |  271 ++
+ .../20260927T123356Z/command_results.json          |   86 +
+ .../20260927T123356Z/official_metadata.json        |   21 +
+ .../20260927T123356Z/output_manifest.json          |   32 +
+ .../storage_runs/20260927T123356Z/provenance.json  |   15 +
+ .../20260927T123356Z/search_and_locations.json     |   74 +
+ .../triage_runs/20260927T124429Z/STORAGE_TRIAGE.md |  446 +++
+ .../20260927T124429Z/command_results.json          |   68 +
+ .../20260927T124429Z/duplicate_evidence.json       |   78 +
+ .../triage_runs/20260927T124429Z/git_objects.json  |  215 ++
+ .../20260927T124429Z/large_subdirectories.json     | 1186 +++++++
+ .../20260927T124429Z/output_manifest.json          |   47 +
+ .../triage_runs/20260927T124429Z/provenance.json   |   27 +
+ .../20260927T124429Z/storage_summary.json          |  958 ++++++
+ .../triage_runs/20260927T124429Z/volumes.json      |   30 +
+ configs/intel_welding/foundations.json             |   11 +
+ docs/intel_welding/FOUNDATION_PROTOCOL_ADDENDUM.md |   98 +
+ docs/intel_welding/FOUNDATION_RUNBOOK.md           |   47 +
+ docs/intel_welding/RESULTS_REVIEW.md               |   64 +
+ .../context_baseline_specification.md              |   70 +
+ .../ADDITIONAL_IMPROVEMENTS_EXECUTION_PROMPT.md    |  548 ++++
+ runs/reassemble/20260927T134437Z/acquisition.json  |   36 +
+ .../20260927T134437Z/acquisition_progress.json     |   30 +
+ .../20260927T134437Z/archive_inventory.json        | 1550 +++++++++
+ runs/reassemble/20260927T134437Z/config.json       |   21 +
+ runs/reassemble/20260927T134437Z/environment.json  |   12 +
+ .../20260927T134437Z/official_record.json          |  726 +++++
+ .../20260927T134437Z/official_record_download.json |  726 +++++
+ .../20260927T134437Z/upstream_reference.json       |   10 +
+ .../reports_v2/PHASE_A_B_GATE_REPORT.md            |   71 +
+ .../reports_v2/gates.json                          |   54 +
+ .../reports_v2/inventory.md                        |   81 +
+ .../reports_v2/known_issues.json                   |  242 ++
+ .../reports_v2/label_audit.md                      |   82 +
+ .../reports_v2/leakage_audit.json                  |   29 +
+ .../reports_v2/modality_selection.json             |   64 +
+ .../reports_v2/nested_splits.json                  | 3357 ++++++++++++++++++++
+ .../reports_v2/storage_actual.md                   |    8 +
+ .../previous_continuation.md                       |   87 +
+ .../frozen_prefix_cache_attempt0.json              |   17 +
+ .../recover_original_branches_attempt0.json        |   19 +
+ .../strict_sensor_hybrid_attempt0.json             |   16 +
+ .../01_temporal_visual/learning_curves.pdf         |  Bin 0 -> 93159 bytes
+ .../01_temporal_visual/learning_curves.png         |  Bin 0 -> 1014466 bytes
+ .../01_temporal_visual/status.json                 |    6 +-
+ .../learning_curves.pdf                            |  Bin 0 -> 44714 bytes
+ .../learning_curves.png                            |  Bin 0 -> 632724 bytes
+ .../02_patchtst_training_budget/status.json        |    6 +-
+ .../04_corruption_training/status.json             |    6 +-
+ .../20260928T000346Z/reports/CONTINUATION.md       |    6 +-
+ .../20260928T000346Z/status.json                   |   20 +-
+ .../20260928T000346Z/supervisor_state.json         |    7 +
+ scripts/intel_welding/01_inventory.py              |  167 +
+ scripts/intel_welding/02_label_audit.py            |  268 ++
+ scripts/intel_welding/03_make_split.py             |  156 +
+ scripts/intel_welding/04_foundations.py            |  285 ++
+ scripts/intel_welding/05_foundation_report.py      |  370 +++
+ scripts/{ => phm2026}/dataset/audit_alignment.py   |    0
+ scripts/{ => phm2026}/dataset/describe_dataset.py  |    0
+ .../dataset/generate_dataset_evidence.py           |    0
+ scripts/{ => phm2026}/dataset/profile_dataset.py   |    0
+ scripts/{ => phm2026}/dataset/profile_images.py    |    0
+ scripts/{ => phm2026}/dataset/profile_sensors.py   |    0
+ .../{ => phm2026}/features/build_model_dataset.py  |    0
+ .../features/build_sensor_features.py              |    0
+ .../{ => phm2026}/results/analyze_photometrics.py  |    0
+ .../results/analyze_teacher_identity.py            |    0
+ scripts/{ => phm2026}/results/anomalydino_sweep.py |    0
+ .../{ => phm2026}/results/anomalydino_validated.py |    0
+ scripts/{ => phm2026}/results/closing_task_c.py    |    0
+ .../results/closing_task_c3_retest.py              |    0
+ scripts/{ => phm2026}/results/closing_tasks_a_b.py |    0
+ .../results/diagnose_signal_and_monotonicity.py    |    0
+ .../results/evaluate_naive_baselines.py            |    0
+ .../results/generate_patchtst_results.py           |    0
+ .../results/generate_rtdetr_r4_results.py          |    0
+ .../results/generate_rtdetr_results.py             |    0
+ scripts/{ => phm2026}/results/loeo_evaluation.py   |    0
+ .../{ => phm2026}/results/monotonic_null_test.py   |    0
+ scripts/{ => phm2026}/results/rescore_monotonic.py |    0
+ scripts/{ => phm2026}/results/sq2_sq3_fusion.py    |    0
+ .../results/verify_target_constants.py             |    0
+ .../targets/analyze_tooth_profiles.py              |    0
+ scripts/{ => phm2026}/targets/audit_target.py      |    0
+ .../targets/build_rtdetr_pseudo_boxes.py           |    0
+ .../{ => phm2026}/targets/derive_image_targets.py  |    0
+ .../targets/ingest_blind_inspection.py             |    0
+ .../targets/package_blind_inspection.py            |    0
+ .../targets/prepare_blind_inspection.py            |    0
+ .../targets/score_blind_inspection.py              |    0
+ .../training/run_rtdetr_feasibility.py             |    0
+ .../{ => phm2026}/training/train_late_fusion.py    |    0
+ scripts/{ => phm2026}/training/train_patchtst.py   |    0
+ .../training/train_rtdetr_detector.py              |    0
+ .../training/train_rtdetr_multitask.py             |    0
+ .../training/train_rtdetr_regression.py            |    0
+ src/{pi_multimodal_ad => phm2026}/__init__.py      |    0
+ .../acquisition/__init__.py                        |    0
+ .../acquisition/phm_download.py                    |    0
+ src/{pi_multimodal_ad => phm2026}/cli.py           |    0
+ .../data_contracts/__init__.py                     |    0
+ .../data_contracts/identifiers.py                  |    0
+ .../data_contracts/records.py                      |    0
+ .../data_contracts/validation.py                   |    0
+ .../datasets/__init__.py                           |    0
+ src/{pi_multimodal_ad => phm2026}/datasets/base.py |    0
+ .../datasets/phm2026.py                            |    0
+ .../evaluation/__init__.py                         |    0
+ .../evaluation/monotonic.py                        |    0
+ .../evaluation/regression.py                       |    0
+ .../evaluation/sensor_regression.py                |    0
+ .../features/__init__.py                           |    0
+ .../features/sensor_feature_run.py                 |    0
+ .../features/sensor_minutes.py                     |    0
+ .../models => phm2026/fusion}/late_fusion.py       |    0
+ .../models => phm2026/fusion}/modality_fusion.py   |    0
+ .../models/__init__.py                             |    0
+ .../models/patchtst/model.py}                      |    0
+ .../models/patchtst/regression.py}                 |    0
+ .../models/rtdetr/detection.py}                    |    0
+ .../models/rtdetr/feasibility.py}                  |    0
+ .../models/rtdetr/multitask.py}                    |    0
+ .../models/rtdetr/regression.py}                   |    0
+ .../preprocessing/__init__.py                      |    0
+ .../preprocessing/timeseries.py                    |    0
+ .../profiling/__init__.py                          |    0
+ .../profiling/alignment.py                         |    0
+ .../profiling/alignment_artifacts.py               |    0
+ .../profiling/alignment_pipeline.py                |    0
+ .../profiling/archive_io.py                        |    0
+ .../profiling/assets.py                            |    0
+ .../profiling/dataset_description.py               |    0
+ .../profiling/images.py                            |    0
+ .../profiling/sensors.py                           |    0
+ .../reporting/__init__.py                          |    0
+ .../reporting/common.py                            |    0
+ .../reporting/dataset_evidence.py                  |    0
+ .../reporting/patchtst_results.py                  |    0
+ .../reporting/target_audit.py                      |    0
+ .../targets/__init__.py                            |    0
+ .../targets/image_damage.py                        |    0
+ .../targets/model_dataset.py                       |    0
+ .../targets/pseudo_boxes.py                        |    0
+ .../utils/__init__.py                              |    0
+ .../utils/artifacts.py                             |    0
+ src/{pi_multimodal_ad => phm2026}/utils/config.py  |    0
+ .../utils/provenance.py                            |    0
+ src/{pi_multimodal_ad => phm2026}/utils/seeding.py |    0
+ .../utils/splitting.py                             |    0
+ tests/intel_welding/test_intel_foundations.py      |   63 +
+ tests/{unit => ops}/test_ops_scripts.py            |    0
+ tests/{unit => phm2026}/conftest.py                |    0
+ tests/{unit => phm2026}/test_alignment.py          |    0
+ tests/{unit => phm2026}/test_alignment_pipeline.py |    0
+ tests/{unit => phm2026}/test_archive_io.py         |    0
+ tests/{unit => phm2026}/test_asset_inventory.py    |    0
+ tests/{unit => phm2026}/test_data_contracts.py     |    0
+ .../{unit => phm2026}/test_dataset_description.py  |    0
+ .../{unit => phm2026}/test_image_damage_target.py  |    0
+ tests/{unit => phm2026}/test_image_profile.py      |    0
+ tests/{unit => phm2026}/test_late_fusion.py        |    0
+ tests/{unit => phm2026}/test_meeting_evidence.py   |    0
+ tests/{unit => phm2026}/test_model_dataset.py      |    0
+ tests/{unit => phm2026}/test_monotonic.py          |    0
+ tests/{unit => phm2026}/test_patchtst.py           |    0
+ tests/{unit => phm2026}/test_phm2026_adapter.py    |    0
+ tests/{unit => phm2026}/test_phm_download.py       |    0
+ tests/{unit => phm2026}/test_pinned_artifacts.py   |    0
+ tests/{unit => phm2026}/test_pseudo_boxes.py       |    0
+ .../test_regression_evaluation.py                  |    0
+ tests/{unit => phm2026}/test_rtdetr_detection.py   |    0
+ tests/{unit => phm2026}/test_rtdetr_feasibility.py |    0
+ tests/{unit => phm2026}/test_rtdetr_multitask.py   |    0
+ tests/{unit => phm2026}/test_rtdetr_regression.py  |    0
+ tests/{unit => phm2026}/test_run_infrastructure.py |    0
+ .../test_sensor_minute_features.py                 |    0
+ tests/{unit => phm2026}/test_sensor_profile.py     |    0
+ .../test_sensor_regression_evaluation.py           |    0
+ tests/{unit => phm2026}/test_target_audit.py       |    0
+ .../{unit => phm2026}/test_target_definition_v3.py |    0
+ .../test_timeseries_preprocessing.py               |    0
+ 209 files changed, 16237 insertions(+), 22 deletions(-)

@@ -12,19 +12,19 @@ import sys
 
 import pandas as pd
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
 SOURCE_ROOT = REPOSITORY_ROOT / "src"
 if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
-from pi_multimodal_ad.profiling.images import load_image_sources  # noqa: E402
-from pi_multimodal_ad.targets.image_damage import (  # noqa: E402
+from phm2026.profiling.images import load_image_sources  # noqa: E402
+from phm2026.targets.image_damage import (  # noqa: E402
     ImageDamageOptions,
     aggregate_targets,
     profile_target_images,
     write_target_run,
 )
-from pi_multimodal_ad.utils import (  # noqa: E402
+from phm2026.utils import (  # noqa: E402
     ConfigError,
     create_run_context,
     load_pinned_run,
@@ -174,7 +174,7 @@ def main(argv: list[str] | None = None) -> int:
             output_root=output_root,
             config=config,
             seed=int(data["seed"]),
-            command=["scripts/targets/derive_image_targets.py", *(argv or sys.argv[1:])],
+            command=["scripts/phm2026/targets/derive_image_targets.py", *(argv or sys.argv[1:])],
             input_roots=(
                 inventory.relative_directory,
                 images.relative_directory,

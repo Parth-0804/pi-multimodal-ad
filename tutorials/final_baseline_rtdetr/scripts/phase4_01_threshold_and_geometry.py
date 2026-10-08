@@ -3,7 +3,7 @@
 and an extended precision-recall curve down to the model's true observed
 minimum confidence.
 
-Reuses pi_multimodal_ad.models.rtdetr_detection's match_counts/
+Reuses phm2026.models.rtdetr.detection's match_counts/
 average_precision/metrics_at_threshold rather than reimplementing IoU
 matching or AP. Reads only from the two pinned runs; writes only under
 tutorials/final_baseline_rtdetr/analysis/.
@@ -23,7 +23,7 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO_ROOT / "src"))
-from pi_multimodal_ad.models.rtdetr_detection import (  # noqa: E402
+from phm2026.models.rtdetr.detection import (  # noqa: E402
     average_precision,
     match_counts,
     metrics_at_threshold,

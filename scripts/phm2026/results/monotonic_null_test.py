@@ -22,12 +22,18 @@ sample size.
 
 from __future__ import annotations
 
+# Source-tree entry point; no installed package is required.
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+
+
 import argparse
 
 import numpy as np
 import pandas as pd
 
-from pi_multimodal_ad.evaluation.monotonic import monotonic_metrics
+from phm2026.evaluation.monotonic import monotonic_metrics
 
 CANONICAL_PATCHTST = (
     "runs/phm2026_patchtst_baseline/20260911T193200607744Z-433d4154"

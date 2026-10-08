@@ -1,0 +1,7 @@
+# Audit implementation corrections
+
+1. Preflight package metadata initially used the system Python, which has no NumPy distribution metadata. Re-ran the metadata query with ma_thesis_env/bin/python before any numerical audit outcomes. No packages or historical files were changed.
+
+2. Before any real clip export, installed capabilities showed no ffmpeg/PyAV/H264 encoder. Review copies use the installed CPU OpenCV MPEG4 (mp4v) codec, preserving every selected frame. Capture timestamps determine average normal-speed cadence; uneven-frame timing deviations are quantified. Resolution/sample/budget are unchanged; no package installed and no sample replaced. Reviewer instructions disclose encoding/timing limits.
+
+3. Final packaging verification found exactly one initial manifest mismatch: finalization.log received the final status line after the manifest was written. The completed log is now stable. Preserved the original manifest byte-for-byte as 05_final_review/output_manifest.initial.json and resealed with the separate seal.py after finalization exited. All other initially listed audit outputs and external exports matched; all 3665 protected source hashes and frozen protocol hashes were checked again unchanged. No source prediction, metric, historical output, or active queue was modified. This is an audit packaging correction, not a research numerical discrepancy. Final sealing stdout is not redirected into a hashed file. See manifest_validation.json.

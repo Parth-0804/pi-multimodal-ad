@@ -15,6 +15,12 @@ Reports, per version:
 
 from __future__ import annotations
 
+# Source-tree entry point; no installed package is required.
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
+
+
 import argparse
 
 import numpy as np
@@ -26,7 +32,7 @@ VERSIONS = {
     "v2": "runs/phm2026_image_target/20260814T012054997053Z-e195f6d9",
     "v3": "runs/phm2026_image_target/20260912T052857044116Z-c936a4e3",
 }
-# LOEO fold -> training experiment, matching scripts/results/loeo_evaluation.py
+# LOEO fold -> training experiment, matching scripts/phm2026/results/loeo_evaluation.py
 LOEO_TRAIN = {"EXP-A": "EXP-F", "EXP-B": "EXP-F", "EXP-F": "EXP-B"}
 
 

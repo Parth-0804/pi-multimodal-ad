@@ -28,7 +28,7 @@ from collections.abc import Mapping, Sequence
 import torch
 from torch import nn
 
-from .patchtst import PatchTSTConfig, PatchTSTRegressor
+from phm2026.models.patchtst.model import PatchTSTConfig, PatchTSTRegressor
 
 # base channel -> HDF5 path, from configs/experiments/phm2026_sensor_features.yaml
 SUB_MODALITY_PROVENANCE: Mapping[str, tuple[str, ...]] = {

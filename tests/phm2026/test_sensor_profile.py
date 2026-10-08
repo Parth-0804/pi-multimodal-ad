@@ -11,8 +11,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from pi_multimodal_ad.datasets import PHM2026Adapter
-from pi_multimodal_ad.profiling.sensors import (
+from phm2026.datasets import PHM2026Adapter
+from phm2026.profiling.sensors import (
     SensorProfileOptions,
     SensorProfileResult,
     SensorSource,
@@ -22,7 +22,7 @@ from pi_multimodal_ad.profiling.sensors import (
     profile_sensor_sources,
     write_sensor_run,
 )
-from pi_multimodal_ad.utils import create_run_context, load_yaml_config
+from phm2026.utils import create_run_context, load_yaml_config
 
 UTC = timezone.utc
 
@@ -454,7 +454,7 @@ def test_schema_variations_and_csv_parquet_writer_are_consistent(
         output_root=repository / "runs/synthetic_sensor_profile",
         config=config,
         seed=17,
-        command=("scripts/dataset/profile_sensors.py", "--mode", "metadata"),
+        command=("scripts/phm2026/dataset/profile_sensors.py", "--mode", "metadata"),
         input_roots=("tests/synthetic",),
         now=datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC),
         package_names=(),

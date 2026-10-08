@@ -1,0 +1,77 @@
+{
+  "run": "artifacts/thesis/FINAL_VALIDITY_AUDIT/20260928T032231Z",
+  "seed": 20260928,
+  "bootstrap_seed": 20310927,
+  "bootstrap_replicates": 2000,
+  "metric_tolerance": 1e-08,
+  "probability_parity_tolerance": 1e-08,
+  "minimum_valid_bootstrap_fraction": 0.95,
+  "cpu_threads": 1,
+  "diagnostic": {
+    "C": 1.0,
+    "penalty": "l2",
+    "solver": "lbfgs",
+    "max_iter": 2000,
+    "class_weight": null,
+    "calibration_C": 1.0,
+    "calibration_max_iter": 1000,
+    "threshold_grid": [
+      0.01,
+      0.99,
+      0.01
+    ],
+    "tie_rule": "balanced accuracy tolerance 1e-12, nearest .5",
+    "action_order": [
+      "pick",
+      "insert",
+      "remove",
+      "place"
+    ],
+    "coverage_columns": [
+      "hand.valid_frame_ratio",
+      "hand.decode_failure_ratio",
+      "measured_force.finite_fraction",
+      "measured_force.resampled_finite_fraction",
+      "measured_force.interpolation_fraction",
+      "measured_force.missing_channels",
+      "measured_torque.finite_fraction",
+      "measured_torque.resampled_finite_fraction",
+      "measured_torque.interpolation_fraction",
+      "measured_torque.missing_channels",
+      "gripper_positions.finite_fraction",
+      "gripper_positions.resampled_finite_fraction",
+      "gripper_positions.interpolation_fraction",
+      "gripper_positions.missing_channels",
+      "joint_efforts.finite_fraction",
+      "joint_efforts.resampled_finite_fraction",
+      "joint_efforts.interpolation_fraction",
+      "joint_efforts.missing_channels",
+      "joint_velocities.finite_fraction",
+      "joint_velocities.resampled_finite_fraction",
+      "joint_velocities.interpolation_fraction",
+      "joint_velocities.missing_channels"
+    ]
+  },
+  "human": {
+    "sample_seed": 20260928,
+    "per_action_outcome": 8,
+    "review_id_seed": 20260929,
+    "order_A_seed": 20260930,
+    "order_B_seed": 20260931,
+    "maximum_bytes": 2147483648,
+    "max_width": 640,
+    "no_audio": true
+  },
+  "sources": {
+    "S1": "runs/reassemble/20260927T154732Z-section1",
+    "S1B": "runs/reassemble/20260927T175336Z-section1b",
+    "S2": "runs/reassemble/20260927T192852Z-section2",
+    "S3": "runs/reassemble/20260927T204649Z-section3",
+    "DROP": "runs/reassemble/20260927T204649Z-modality-dropout",
+    "FINAL": "runs/reassemble/20260927T204649Z-final-synthesis",
+    "inventory": "runs/reassemble/20260927T141645Z-inventory",
+    "PHM": "runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f"
+  },
+  "data_root": "../datasets/REASSEMBLE",
+  "policy": "completed sealed core only; additional-improvements outputs excluded"
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 4, item 3+5+7: confidence calibration, view_role/run/box-size slicing.
 
-Reuses pi_multimodal_ad.models.rtdetr_detection's sliced_metrics,
+Reuses phm2026.models.rtdetr.detection's sliced_metrics,
 metrics_at_threshold, and the module's own IoU-matrix helper (_iou_matrix)
 for the per-prediction match labels calibration needs (match_counts only
 returns aggregate counts, not which individual predictions matched, so this
@@ -23,7 +23,7 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO_ROOT / "src"))
-from pi_multimodal_ad.models.rtdetr_detection import (  # noqa: E402
+from phm2026.models.rtdetr.detection import (  # noqa: E402
     _iou_matrix,
     sliced_metrics,
 )
