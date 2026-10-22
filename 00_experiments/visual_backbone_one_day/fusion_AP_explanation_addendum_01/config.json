@@ -1,0 +1,21 @@
+{
+  "started_utc": "2026-10-22T17:57:35.868762+00:00",
+  "deadline_utc": "2026-10-22T18:27:35.868762+00:00",
+  "study_root": "00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning",
+  "prior_diagnostics": "00_experiments/visual_backbone_one_day/fine_tuning_diagnostics_01",
+  "threshold": 0.5,
+  "scope": "Only missing saved-artifact CPU diagnostics and review packaging; no models, raw inputs or fits",
+  "new_contrasts": [
+    "fine_tuned_32_frames minus frozen_32_frames",
+    "fine_tuned_32_frames minus frozen_16_frames"
+  ],
+  "reused_contrasts": [
+    "fine_tuned_16_frames minus frozen_16_frames",
+    "frozen_32_frames minus frozen_16_frames",
+    "fine_tuned_32_frames minus fine_tuned_16_frames"
+  ],
+  "example_rule": "For each controlled fine-tuning pair and each within-fold failure rank-direction combination, take at most two with largest visual rank displacement; ties sample_id. Percentile ranks use average ties; exact zero means unchanged.",
+  "aggregation": "Pooled weighted AP with original saved recording multiplicities and recording order; percentile95 using numpy default linear quantiles. Newly added contrasts exploratory.",
+  "cpu_threads": 4,
+  "max_new_storage_bytes": 104857600
+}

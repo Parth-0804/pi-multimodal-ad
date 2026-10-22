@@ -1,0 +1,18 @@
+{
+  "methodology_version": "saved-results-finetuning-diagnostics-v1",
+  "study_root": "00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning",
+  "conditions": ["frozen_16_frames", "fine_tuned_16_frames", "frozen_32_frames", "fine_tuned_32_frames"],
+  "decision_threshold": 0.5,
+  "within_fold_top_fractions": [0.1, 0.2],
+  "reliability_bin_edges": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+  "reliability_plot_min_samples": 20,
+  "sensor_probability_bin_edges": [0, 0.1, 0.3, 0.5, 1],
+  "example_count_per_direction_per_pair": 5,
+  "uncertainty": "Reuse original predeclared intervals only; no new significance tests or resampling. All new subgroup and rank-budget analyses are exploratory.",
+  "ranking_ties": "AP uses complete tied-score threshold groups. Fixed-budget ranking uses sample_id to break ties deterministically within each outer fold.",
+  "scope": "CPU arithmetic on saved predictions, calibration records, learning curves, fit checks and metadata. No model loading, training, fresh inference, feature extraction, raw-data access, corruption experiments or follow-up execution.",
+  "data_domain": "REASSEMBLE completed-action failure classification; no new PHM data analysis",
+  "duplicate_policy": "Reject duplicate assessment sample keys; preserve all existing files and records.",
+  "limits": {"maximum_new_bytes": 104857600, "cpu_threads": 4},
+  "follow_up": "Recommendation only; any new scientific run requires a separate decision."
+}

@@ -1,0 +1,28 @@
+{
+  "task": "Explain fine-tuning and fusion behaviour using saved visual-backbone study evidence",
+  "status": "COMPLETE",
+  "stages": {
+    "targeted_read_only_inspection": "COMPLETE",
+    "saved_prediction_and_learning_curve_analysis": "COMPLETE",
+    "tables_and_figures": "COMPLETE",
+    "focused_synthetic_tests": "PASS_6_OF_6",
+    "separate_arithmetic_self_check": "PASS",
+    "preservation_check": "PASS",
+    "report": "COMPLETE"
+  },
+  "source_study": "../run_01_two_epoch_finetuning",
+  "main_outputs": ["README_FIRST.md", "FINE_TUNING_DIAGNOSTIC_REPORT.md", "findings.json"],
+  "new_training_fits": 0,
+  "new_raw_input_inference_segments": 0,
+  "review_type": "Self-review; separate arithmetic implementation, no independent scientific reviewer",
+  "remaining_evidence_gaps": [
+    "Cause of OOF/assessment inconsistency is not established",
+    "No per-epoch held-out performance or repeated-seed evidence",
+    "Unequal five-versus-two epoch budgets do not isolate backbone adaptation",
+    "No new image/label review or feature-drift measurement"
+  ],
+  "recommended_next_decision": "Review the diagnostic packet and decide whether to authorise a small pre-specified 16-frame matched-two-epoch repeated-seed control with training-only validation monitoring",
+  "follow_up_authorised_by_this_task": false,
+  "follow_up_launched": false,
+  "historical_Task4": "EXCLUDED"
+}
