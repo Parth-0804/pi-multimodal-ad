@@ -1,0 +1,47 @@
+{
+  "worker_status": {
+    "supervisor_pid": 73280,
+    "worker_pid": 73287,
+    "status": "STOPPED",
+    "returncode": 1,
+    "clock": {
+      "amendment_id": "efficient_finetuning_two_epochs_24h_v1",
+      "accepted_utc": "2026-10-20T23:16:52+00:00",
+      "deadline_utc": "2026-10-21T23:16:52+00:00",
+      "training_cutoff_utc": "2026-10-21T20:16:52+00:00",
+      "accepted_Europe_Berlin": "2026-10-21T01:16:52+02:00",
+      "deadline_Europe_Berlin": "2026-10-22T01:16:52+02:00",
+      "basis": "First inspection UTC timestamp on accepting user attachment; immutable across invocations",
+      "report_reserve_seconds": 10800
+    },
+    "stopped_utc": "2026-10-20T23:40:39.863084+00:00"
+  },
+  "stop_marker": {
+    "requested": "stop at next safe checkpoint"
+  },
+  "checkpoints": [
+    {
+      "path": "00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/fusion_training/inner_fold_01/visual_fit/in_progress.pt",
+      "bytes": 102120199,
+      "sha256": "de7ffc24c58d336b55de30f31f644d477d32b96e6a298cad4008610b8bbfb60f"
+    }
+  ],
+  "source_files_unchanged_by_pause": true,
+  "checkpoint_metadata": {
+    "fit_id": "943ef96e0afd2bc054522e38c687279660169af61fa1d1757e5a596ea7e2d1e1",
+    "epoch": 1,
+    "next_batch": 1304,
+    "updates": 453,
+    "rows_seen": 3621,
+    "precision": "float32",
+    "order_seed": 1158721220,
+    "frames": 16,
+    "effective_batch_segments": 8,
+    "microbatch_segments": 1,
+    "fit_identity_matches_saved_job_and_inputs": true,
+    "optimizer_state_present": true,
+    "model_state_present": true,
+    "cpu_cuda_python_rng_present": true,
+    "verified_utc": "2026-10-20T23:47:33.422670+00:00"
+  }
+}

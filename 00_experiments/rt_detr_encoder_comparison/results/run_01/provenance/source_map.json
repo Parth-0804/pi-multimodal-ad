@@ -1,0 +1,44 @@
+{
+  "checked_utc": "2026-10-20T22:54:58.192838+00:00",
+  "installed_sources": {
+    "native_model": {
+      "path": "ma_thesis_env/lib/python3.12/site-packages/transformers/models/rt_detr/modeling_rt_detr.py",
+      "sha256": "39189c7b7fe01e9814f6a6b9aa6bd721af376d7982c8128fca9462f5eef5d5d8"
+    },
+    "checkpoint_conversion": {
+      "path": "ma_thesis_env/lib/python3.12/site-packages/transformers/conversion_mapping.py",
+      "sha256": "cb40dd3862fd187a95948e40945f66a661cc4d64466b6544fc4111fd1bb312a3"
+    }
+  },
+  "native_functions": [
+    "RTDetrConvEncoder.forward",
+    "RTDetrHybridEncoder.forward",
+    "RTDetrAIFILayer.forward",
+    "RTDetrSelfAttention.forward",
+    "RTDetrModel.forward (source inspected only; guarded against execution)"
+  ],
+  "study_functions": [
+    "features.Prefix.forward",
+    "features.original",
+    "fitting.train_raw",
+    "fusion.sensor_fit",
+    "fusion.calibrate",
+    "fusion.stacker",
+    "data.validate_job"
+  ],
+  "predecessor_source_snapshot": "provenance/prior_source",
+  "snapshot_hashes": {
+    "fusion.py": "b5079de1e72d7ea36fcc440eb287ef35065f3c0c2b34be549e130afdb9779e86",
+    "visual_model.py": "d66793a8a2cfd3f58cff0afcdd59ff98f6c2b184ded5386a78e2be7336216e8f",
+    "evaluation.py": "c5d06a05b01d3425cd6b716c941ac05531a73959597d9658d4d30298d3dc4fef",
+    "run_study.py": "847aa55f89f551221ffd7f50cd7784e1eaa46a9710fdb96e4a03eadf17b062e0",
+    "data.py": "6f54d5ce792af97f8f04df872417800bba70c9285c3ad05cd1cb9f277075d7dd",
+    "pixel_access.py": "6971d1d6a5ac54a7c8f659024c2d62bd0990aebd2d10258bc83a987cad51e269",
+    "common.py": "44ee3d5402e3f21ab778d39ef165e0a563e408123eaf935df0a2c6d4d581dc1a",
+    "reporting.py": "cb42f1cdaab614df649d61ec1adb5485fb5b403e83c2ef3639b9837aa63bf206",
+    "training.py": "663a527cc5f6042651de19bba693bb73e16753cf93f4812a1b4cdca16fe396aa"
+  },
+  "checkpoint_mapping": "Installed rt_detr WeightRenaming: out_proj -> o_proj; layer fc1/fc2 -> mlp.fc1/fc2; encoder.encoder.N.layers -> encoder.aifi.N.layers. Every used loaded state tensor compared exactly to corresponding original checkpoint tensor.",
+  "processor": "provenance/original_pretrained_identity.json and checks/original_weight_CPU_path.json",
+  "forbidden_boundary": "No full model/detector forward; stop at final encoder PAN maps, before decoder_input_proj/enc_output/enc_score_head/enc_bbox_head/query/decoder."
+}

@@ -1,0 +1,15 @@
+{
+  "utc": "2026-10-20T23:40:53.619177+00:00",
+  "user_instruction": "Pause running frozen/fine-tuned16/32 study, complete encoder and noise studies, then resume the paused visual study.",
+  "paused_run": "00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning",
+  "pause_command": "bash 00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/source/study.sh stop",
+  "resume_command": "bash 00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/source/study.sh supervise",
+  "resume_control": "Preserve and explicitly clear this pause STOP.json only after encoder/noise completion; verify checkpoint identity first.",
+  "limits": "Original wall-time/storage/fit caps remain unchanged; pause does not reset any deadline.",
+  "execution_order": [
+    "encoder comparison",
+    "selected-model noise study",
+    "resume existing visual-backbone study"
+  ],
+  "noise_selection_question": "Pending explicit choice: preserve old F2 pilot vs new documented pre-noise selection after encoder completes."
+}
