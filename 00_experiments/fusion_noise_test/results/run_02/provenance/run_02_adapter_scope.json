@@ -1,0 +1,32 @@
+{
+  "checked_utc": "2026-10-21T00:03:03.750069+00:00",
+  "old_required_reports_unchanged": {
+    "README_FIRST.md": true,
+    "model_selection/selection_report.md": true,
+    "model_selection/clean_comparison.csv": true,
+    "model_selection/clean_predictions/frozen_16_frames.csv": true,
+    "comparison/RESULTS_SUMMARY.md": true
+  },
+  "old_selection_and_config_preserved": true,
+  "adapters": {
+    "module": "run02_input_adapter.py",
+    "sha256": "72f232691a35441b9dcb84f00622ed814a35662b33543652c1aa6c5ef5d6dda1",
+    "scope": [
+      "Exact no-bridge interpolation-mask acceleration; clean route delegates to original",
+      "Exact live/cache serialization assertions",
+      "Explicit visual/sensor/stacker fit IDs per prediction",
+      "Byte-identical copies of small selected fitted components for review"
+    ],
+    "predictor_parameters_or_corruption_settings_changed": false
+  },
+  "tests": [
+    "checks/vectorized_mask_equivalence.json",
+    "checks/live_frame_cache_serialization.json",
+    "checks/tests.json"
+  ],
+  "user_requested_execution_order": [
+    "finish encoder",
+    "finish selected-model noise",
+    "resume paused visual comparison"
+  ]
+}

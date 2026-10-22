@@ -1,0 +1,65 @@
+{
+  "protocol": "SELECTED-F2-RAW-INPUT-ROBUSTNESS-v1",
+  "visual_run": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01",
+  "encoder_run": "00_experiments/rt_detr_encoder_comparison/results/run_01",
+  "weights_dir": "../datasets/REASSEMBLE/cache/section1_models/ac77a11ff0170a41b771c03264987f8ce2b0d753",
+  "base_config": "configs/reassemble/section1.json",
+  "started_utc": "2026-10-20T23:01:00+00:00",
+  "wall_seconds": 86400,
+  "report_reserve_seconds": 900,
+  "max_wait_seconds": 3600,
+  "wait_poll_seconds": 60,
+  "storage_cap_bytes": 32212254720,
+  "minimum_free_bytes": 10737418240,
+  "host_memory_ceiling_bytes": 34359738368,
+  "cpu_threads": 2,
+  "decode_workers": 0,
+  "gpu_index": 0,
+  "gpu_uuid": "GPU-14f8a7a5-89d7-a749-6b86-c6eaa1de8ac2",
+  "realization_seeds": [
+    271828,
+    271829,
+    271830
+  ],
+  "evaluation_seed": 314159,
+  "bootstrap_replicates": 2000,
+  "AP_tie_tolerance": 1e-12,
+  "probability_replay_tolerance": 1e-05,
+  "precision": "float32",
+  "image_noise": [
+    0.02,
+    0.05,
+    0.1
+  ],
+  "image_blur": [
+    1,
+    2,
+    4
+  ],
+  "frame_loss": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "sensor_noise": [
+    0.1,
+    0.5,
+    1.0
+  ],
+  "sensor_channel_loss": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "sensor_time_loss": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "image_batch_frames": 16,
+  "reliability_bins": 10,
+  "technical_repair_cap": 2,
+  "exposure": "DEVELOPMENT-EXPOSED exploratory selection and robustness",
+  "historical_Task4": "EXCLUDED",
+  "training": "PROHIBITED"
+}

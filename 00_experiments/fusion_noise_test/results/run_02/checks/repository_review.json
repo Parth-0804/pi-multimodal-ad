@@ -1,0 +1,35 @@
+{
+  "observed_utc": "2026-10-21T05:15:27.377953+00:00",
+  "checks": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "output": "repository_diff_check.txt"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--stat"
+      ],
+      "returncode": 0,
+      "output": "repository_diff_stat.txt"
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--short",
+        "--branch",
+        "--untracked-files=all"
+      ],
+      "returncode": 0,
+      "output": "repository_status.txt"
+    }
+  ],
+  "policy": "Read-only checks; existing dirty-tree changes preserved. No Git add, commit, reset, checkout, or clean."
+}

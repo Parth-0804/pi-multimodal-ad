@@ -1,0 +1,103 @@
+{
+  "condition": "frozen_16_frames",
+  "source_condition": "frozen_16_frames",
+  "reference": "frozen_16_frames",
+  "reference_source_condition": "frozen_16_frames",
+  "clean_AP": 0.3079288353686115,
+  "reference_AP": 0.3079288353686115,
+  "clean_AP_improvement": 0.0,
+  "coverage": "PARTIAL_COVERAGE_PILOT",
+  "folds": [
+    "fold_01"
+  ],
+  "samples": 753,
+  "frames": 16,
+  "precision": "float32",
+  "thresholds": {
+    "visual": 0.5,
+    "sensor": 0.5,
+    "fused": 0.5
+  },
+  "components": {
+    "fold_01": {
+      "head": {
+        "path": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/frozen_16_frames/fold_01/outer_assessment/visual_fit/model.pt",
+        "sha256": "49a7cfc8973229ab14df5ddb795bf87f387fdd9724acaf200fd1ac22d2f43c42"
+      },
+      "calibrator": {
+        "path": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/frozen_16_frames/fold_01/outer_assessment/visual_fit/calibrator.json",
+        "sha256": "21fc1cc860fef0998293b3d4690af5ee97ccc34fc5aa88e48f30ac6c81c5810d"
+      },
+      "visual_complete": {
+        "path": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/frozen_16_frames/fold_01/outer_assessment/visual_fit/complete.json",
+        "sha256": "01a54a85f56a0318f763191863054373d16d9f365025181b9c41e3dc5315ece4"
+      },
+      "sensor": {
+        "path": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/sensor_reference/fold_01/outer_assessment/model_and_calibrator.json",
+        "sha256": "a600845468a37b1b49a4cfc721fac2a5f98cd6445b7df6a0554ab311c563da5e"
+      },
+      "sensor_complete": {
+        "path": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/sensor_reference/fold_01/outer_assessment/complete.json",
+        "sha256": "002dc506b5a27a81c94213c12eae3bc3ab420449e68f6b482b7f41e6ec0be5ee"
+      },
+      "stacker": {
+        "path": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/frozen_16_frames/fold_01/F2_stacker.json",
+        "sha256": "0b8126aeb141419a4dbe854e558b164581a2727cdf0941264c404c516f68705c"
+      },
+      "condition_complete": {
+        "path": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/frozen_16_frames/fold_01/condition_complete.json",
+        "sha256": "855a0647c5220268496e3af9b6a3081a5af70eb40876d58ed193d788ee604829"
+      },
+      "predictions": {
+        "path": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/frozen_16_frames/fold_01/assessment_predictions.csv",
+        "sha256": "2f7eac5b3bda83ec163c8cd092c546b99812168bf91d37fd37c267683bad6100"
+      },
+      "oof": {
+        "path": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/frozen_16_frames/fold_01/fusion_training/identified_oof_branch_probabilities.csv",
+        "sha256": "defd4f07a3f7008dc629bf873bfd8bc860996aed2c1c55df77b7e6ae052f21cf"
+      }
+    }
+  },
+  "config_sha256": "40c0fbd85e51d68d22185d5ec7fcf7f6afc733c6df2eb125aa568f69b26563d7",
+  "source_identity": {
+    "code/common.py": "8f3223bf3872697f8d153ce396f785653fbbdbdc0bb1d745d21aa6f2d0721606",
+    "code/corruptions.py": "fb1e9a336566ffcc19181e90a16395d47c2d527012e8d89802fe8d897e2cb1e4",
+    "code/evaluation.py": "6c9ac75e852ac5b9cbf0e411e435969013236c337426ade229f17eee13c6aeb2",
+    "code/inference.py": "9f6c31029560e2a0cd136df6f382efeaf5d5373dc5ea60a8cbc675a5b98932ae",
+    "code/inputs.py": "624644c67f5d6920903a02ec6adf311e8357718cbadbc3815a6e6102c743fc60",
+    "code/pipeline.py": "6d42f1bcc4d66afe9b97742713c1a1923df5e0f3efbc4e2683b77fe0d17a77a6",
+    "code/prefix.py": "c8b86cbe60c48126f26cb93c45ecce30dd6477fffc520606a28b438ddf357e8c",
+    "code/reporting.py": "adeed4bcc0b0a43ff6aceca84f6f3ea74351fe5d38ac8dc24f357b41d1a55154",
+    "code/selection.py": "ed2600f00c26468043ec637aa11e9fbb6e4eac506a51aada6d1706586749e5dc",
+    "run_experiment.py": "bb21bd5467f7977cb3a702b8a0a857cf4338f90459ba456effdd8e4005a96b10"
+  },
+  "cohort_sha256": "dad369a6deda6a7b3c49d98da33918f9f997366d5775821275d88ad975fea036",
+  "partitions_sha256": "d4c944874f7e24ee7f2107ae70d108a9e2116eec41ea519017e54e9bec805500",
+  "processor_and_checkpoint": {
+    "weights": {
+      "config.json": {
+        "bytes": 5267,
+        "sha256": "8493be71f51a1c0a741f8f71ec151039227579379de7bcba047c0470d9320c3c"
+      },
+      "preprocessor_config.json": {
+        "bytes": 841,
+        "sha256": "ffb4b9461a1dad746be8f0f9c8330ed7743a1ba5fba4f75c232cd281b3d4c64a"
+      },
+      "model.safetensors": {
+        "bytes": 80904152,
+        "sha256": "fe87a5a30f5daf298d10794c7682a63b6107986f97d6a770ba948d89e4340093"
+      }
+    },
+    "revision": "ac77a11ff0170a41b771c03264987f8ce2b0d753",
+    "no_download": true,
+    "load_path": "Original local RTDetrForObjectDetection wrapper for weights only; only returned model.backbone.model executes",
+    "GPU": "Tesla T4,capability7.5",
+    "native_bfloat16": false,
+    "precision_policy": "float32 locked; synthetic processor uint8 lossless-cache reconstruction bitwise exact"
+  },
+  "label_orientation": "failure=1; success=0",
+  "camera": "hand",
+  "exposure": "DEVELOPMENT-EXPOSED exploratory selection and robustness",
+  "selection_rule": "unrounded pooled clean fused AP; numerical tolerance1e-12; ties reference, fewer frames, reliably measured fewer executed parameters, alphabetical",
+  "corruption_config_sha256": "40c0fbd85e51d68d22185d5ec7fcf7f6afc733c6df2eb125aa568f69b26563d7"
+}

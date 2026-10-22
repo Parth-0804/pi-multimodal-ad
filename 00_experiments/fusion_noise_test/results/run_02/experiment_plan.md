@@ -1,0 +1,19 @@
+# Fixed selected-model robustness protocol
+
+Selection is deferred until both upstream tasks are terminal and outputs stable. Canonical reference is new frozen_16_frames, with cnn_only as a documented fallback alias only if the canonical reference is unavailable. Eligibility precedes scores. All eligible candidates with at least one complete replayable outer fold enter the whole-fold intersection. Zero-fold candidates are untested; an empty intersection blocks. Five folds are full coverage; any fallback is PARTIAL_COVERAGE_PILOT. No row-subset cherry-picking.
+
+Winner uses unrounded pooled failure-class fused AP, tolerance1e-12. Retain reference unless exceeded; ties prefer reference, fewer frames, fewer reliably measured executed parameters, alphabetical name. No visual-only or noisy metric enters selection. Lock condition, per-fold components, cohort, config and sources before corrupting any assessment inputs. Selection is DEVELOPMENT-EXPOSED and exploratory.
+
+Only selected fixed saved models run: original/fine-tuned CNN or frozen encoder prefix exactly as fitted, existing head, normalizers, calibrators, sensor logistic model, static F2 and thresholds. Detector/decoder/proposal paths guarded. All parameters/BN/dropout frozen, inference-mode only. No training, refitting, recalibration or optimizer steps.
+
+Gaussian RGB sigma .02/.05/.10 at native resolution, float RGB clipped[0,1]; processor float path preferred only if no-op matches. Required uint8 quantization is recorded. Blur sigma1/2/4, reflect boundaries, radius ceil(3sigma), spatial axes only. Frame loss10/30/50% removes seeded nested prefixes, floor(fN+.5), at least1 and at mostN-1; survivors remain chronological.
+
+Sensor Gaussian alpha .10/.50/1.00 times finite native raw-channel population SD computed only from saved G intervals. Each action interval contributes its finite samples once; overlapping intervals, if present, contribute per action. Channel loss10/30/50% uses nested named channel prefixes. Time loss masks10/30/50% duration about one seed-derived center[.25,.75], propagated through resampling so interpolation cannot recreate removed support. Missing features use unchanged saved imputation. All rows retained.
+
+Seeds271828/271829/271830. Stable SHA256 keys bind seed, recording+segment, family, frame/channel; severity excluded for common draws and nested masks. One modality at a time. Declared image absence returns calibrated sensor branch; sensor absence returns visual branch; both absent abstains. Partial faults always use F2.
+
+51 realizations per fold: clean1, image noise9, sensor noise9, blur3, frame loss9, channel loss9, time loss9, absence2. All clean folds replay before any new corrupted assessment inference. Then image/sensor Gaussian severity-repeat blocks across all folds, then blur/frame/channel/time/absence. Streaming predictions and compact fold-specific clean frame vectors; no damaged dataset copies.
+
+Report per-fold and pooled AP/AUROC, fixed-threshold precision/recall/balanced accuracy/macroF1/Brier. For stochastic faults average three separately computed metrics, never probabilities or duplicated subjects. AP_drop=clean-corrupted. Paired recording-cluster bootstrap2000, seed314159, same multiplicities, all rows per recording; average fixed-realization metrics within replicate. Undefined draws counted. Reliability10 equal-width bins, final bin includes1. Intervals do not account for winner selection/training uncertainty. Absence results separate.
+
+Limits: one allocated GPU after upstream release;2 CPU threads and0 decode workers;24h from original request including interruptions/waiting;30GiB new storage,10GiB filesystem reserve;monitored32GiB RSS. At most60min foreground waiting, polls no faster than60s, no queued continuation. Reserve15min for reports. At most2 technical repairs per failed stage. Historical Task4 excluded.

@@ -1,0 +1,38 @@
+{
+  "recorded_utc": "2026-10-20T23:27:29.250918+00:00",
+  "technical_repair_number": 1,
+  "stage": "inference",
+  "authorization": "Existing user-authorized faithful replay and bounded technical repair; no new approval or scientific choice",
+  "selected_model_sha256": "28a57a51a5cc52234f5a9f40f429ef02a95f7ac566ce3b26011839512afc2eac",
+  "selection_lock_sha256": "7abf80fa371eb3ebd987a98ed8cef1525532ccc8876ed624aae974ee405c8da1",
+  "config_sha256": "40c0fbd85e51d68d22185d5ec7fcf7f6afc733c6df2eb125aa568f69b26563d7",
+  "original_source_identity": {
+    "code/common.py": "8f3223bf3872697f8d153ce396f785653fbbdbdc0bb1d745d21aa6f2d0721606",
+    "code/corruptions.py": "fb1e9a336566ffcc19181e90a16395d47c2d527012e8d89802fe8d897e2cb1e4",
+    "code/evaluation.py": "6c9ac75e852ac5b9cbf0e411e435969013236c337426ade229f17eee13c6aeb2",
+    "code/inference.py": "9f6c31029560e2a0cd136df6f382efeaf5d5373dc5ea60a8cbc675a5b98932ae",
+    "code/inputs.py": "624644c67f5d6920903a02ec6adf311e8357718cbadbc3815a6e6102c743fc60",
+    "code/pipeline.py": "6d42f1bcc4d66afe9b97742713c1a1923df5e0f3efbc4e2683b77fe0d17a77a6",
+    "code/prefix.py": "c8b86cbe60c48126f26cb93c45ecce30dd6477fffc520606a28b438ddf357e8c",
+    "code/reporting.py": "adeed4bcc0b0a43ff6aceca84f6f3ea74351fe5d38ac8dc24f357b41d1a55154",
+    "code/selection.py": "ed2600f00c26468043ec637aa11e9fbb6e4eac506a51aada6d1706586749e5dc",
+    "run_experiment.py": "bb21bd5467f7977cb3a702b8a0a857cf4338f90459ba456effdd8e4005a96b10"
+  },
+  "repaired_source_identity": {
+    "code/common.py": "8f3223bf3872697f8d153ce396f785653fbbdbdc0bb1d745d21aa6f2d0721606",
+    "code/corruptions.py": "8e02a72086777aa5a69af4a74078cd464ec2c91d8ed69d56fd3a5ff3c11fa6e9",
+    "code/evaluation.py": "6c9ac75e852ac5b9cbf0e411e435969013236c337426ade229f17eee13c6aeb2",
+    "code/inference.py": "0a0af1b4e54818879042e73cb0493edabea18fdaf0b0c4525fa3907f9a801763",
+    "code/inputs.py": "624644c67f5d6920903a02ec6adf311e8357718cbadbc3815a6e6102c743fc60",
+    "code/pipeline.py": "36c2210e668c2420c71bfd9cd50c0e26fcb1fd22f00f64d3503129ca3042d129",
+    "code/prefix.py": "c8b86cbe60c48126f26cb93c45ecce30dd6477fffc520606a28b438ddf357e8c",
+    "code/reporting.py": "481847e09cde8d56588f27ad155a8ac57d8752262294e9fa3ecacc73df603822",
+    "code/selection.py": "b34b71dba34ef348b74e338b0fcda319109c1f23faff68acad75c3c72e09971a",
+    "run_experiment.py": "bb21bd5467f7977cb3a702b8a0a857cf4338f90459ba456effdd8e4005a96b10"
+  },
+  "reason": "Restore original float32 sensor statistics and Torch visual mean/standardization; retain clean failure evidence. Original implementation promoted sensor arrays to float64.",
+  "failing_test_log": "checks/test_attempt_04.txt",
+  "passing_tests_sha256": "6b793c38e39ae7daf01ada4642b8eb1a04170971f36a0fec23a02558208df06b",
+  "all_row_clean_replay": "PENDING; must pass unchanged 1e-5 tolerance before corrupted assessment inference",
+  "model_or_protocol_changes": false
+}

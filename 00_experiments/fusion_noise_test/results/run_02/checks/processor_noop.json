@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "scope": "synthetic native RGB processor check, not model replay",
+  "float_noop_max_abs": 0.003896355628967285,
+  "uint8_roundtrip_bitwise_equal": true,
+  "policy": "round_nearest_uint8_after_float_corruption",
+  "reason": "Prefer float domain only if it preserves upstream clean pixels; otherwise record required quantization to original uint8 processor route.",
+  "processor_config": {
+    "do_convert_annotations": true,
+    "do_normalize": false,
+    "do_pad": false,
+    "do_rescale": true,
+    "do_resize": true,
+    "format": "coco_detection",
+    "image_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "image_processor_type": "RTDetrImageProcessor",
+    "image_std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "resample": 2,
+    "rescale_factor": 0.00392156862745098,
+    "size": {
+      "height": 640,
+      "width": 640
+    }
+  },
+  "quantization": "nearest integer RGB*255 after clipping, only if float no-op differs"
+}
