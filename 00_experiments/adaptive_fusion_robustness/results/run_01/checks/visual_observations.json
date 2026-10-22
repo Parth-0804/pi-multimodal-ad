@@ -1,0 +1,17 @@
+{
+  "reviewer": "assistant visual inspection, not independent human adjudication",
+  "examples_viewed": [
+    1,
+    8,
+    10,
+    15
+  ],
+  "observations": {
+    "1": "Wrist view shows gripper/board approach over the sampled interval; frames are coherent with a manipulation sequence. Still frames alone do not establish successful pickup.",
+    "8": "Insertion example shows motion blur and persistent gripper/object view before withdrawal; failure annotation is retained, not independently proven by a sparse contact sheet.",
+    "10": "Removal example shows approach followed by retreat over the selected timestamps; label correctness requires temporal/human semantic review.",
+    "15": "Placement-failure example shows a cylindrical object leave the gripper and lie on the board; visually compatible with a failed placement, without relabeling."
+  },
+  "other_examples": "12 contact sheets generated and machine-checked; no claim of visual semantic review for those examples.",
+  "remaining_human_review": "All annotations remain source-provided. Independent domain review and full playback may resolve ambiguity beyond 16 stills."
+}

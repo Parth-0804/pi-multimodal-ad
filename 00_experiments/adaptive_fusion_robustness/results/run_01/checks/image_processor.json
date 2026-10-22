@@ -1,0 +1,31 @@
+{
+  "config": {
+    "do_convert_annotations": true,
+    "do_normalize": false,
+    "do_pad": false,
+    "do_rescale": true,
+    "do_resize": true,
+    "format": "coco_detection",
+    "image_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "image_processor_type": "RTDetrImageProcessor",
+    "image_std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "resample": 2,
+    "rescale_factor": 0.00392156862745098,
+    "size": {
+      "height": 640,
+      "width": 640
+    }
+  },
+  "source_sha256": "ffb4b9461a1dad746be8f0f9c8330ed7743a1ba5fba4f75c232cd281b3d4c64a",
+  "BGR_to_RGB": "explicit cv2.COLOR_BGR2RGB before processor",
+  "scaling": "processor original rescale; no added normalization",
+  "scope": "CPU processing and cache comparison, no extractor inference"
+}

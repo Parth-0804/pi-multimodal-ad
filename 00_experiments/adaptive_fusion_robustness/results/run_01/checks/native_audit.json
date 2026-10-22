@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "counts": {
+    "all_annotations": 4863,
+    "primary_actions": 4551,
+    "primary_failures": 516,
+    "included_actions": 4530,
+    "included_failures": 509,
+    "recordings": 148,
+    "excluded_primary": 21,
+    "success_datatypes": {
+      "bool": 4863
+    }
+  },
+  "mapping": "failure = 1 - explicitly validated native success",
+  "annotation_level": "high_level segments_info direct children; not Low_level",
+  "eligibility": "exact prior primary_task AND dual_complete, followed by >=32-frame eligibility; no new exclusions",
+  "frame_rule": "16 rounded linearly spaced positions within in-interval native frame indices; not uniform elapsed time",
+  "label_semantics": "Source annotations verified by identity; no claim that machine checks prove semantic correctness."
+}

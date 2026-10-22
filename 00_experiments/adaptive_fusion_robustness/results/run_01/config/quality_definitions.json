@@ -1,0 +1,25 @@
+{
+  "names": [
+    "image_gradient",
+    "image_clipping",
+    "image_contrast",
+    "unique_frame_fraction",
+    "sensor_finite_fraction",
+    "available_channel_fraction",
+    "sensor_max_gap_fraction",
+    "sensor_relative_variation"
+  ],
+  "definitions": {
+    "image_gradient": "Mean across available native RGB frames of the mean absolute horizontal/vertical neighbor difference of luminance 0.299R+0.587G+0.114B, RGB/255; equal axis weight.",
+    "image_clipping": "Mean fraction of native RGB channel values <=1/255 or >=254/255 across available frames.",
+    "image_contrast": "Mean population SD of native luminance per frame.",
+    "unique_frame_fraction": "Number of actually received distinct frame IDs divided by 16; clipped to [0,1].",
+    "sensor_finite_fraction": "Finite raw values divided by all expected raw values in each action interval, pooled over five native streams and 22 channels; missing samples/channels are NaN.",
+    "available_channel_fraction": "Fraction of the 22 channels with at least two finite in-interval raw samples.",
+    "sensor_max_gap_fraction": "Mean over channels of largest gap between finite native timestamps including action boundaries, divided by action duration; no finite samples gives 1.",
+    "sensor_relative_variation": "log1p of mean per-channel finite population SD divided by that branch G-only raw-channel SD; each ratio capped at 1000; zero/undefined G scales omitted, unavailable channels contribute 0; no usable scales gives 0.",
+    "normalization": "Weighted mean and population SD from only that outer fold fusion-training variants; sample weights 0.5/0.25/0.25. SD<=1e-6 replaced by 1; standardized q clipped to [-10,10]. p probabilities unstandardized; interactions use this q.",
+    "image_missing": "All four image descriptors set 0 if no received frames; explicit absence routes to the surviving branch, never a fitted head.",
+    "quality_missing": "Defined finite sentinel behavior as above; no pristine input, identity, fault name, severity, seed, label or correctness enters quality."
+  }
+}

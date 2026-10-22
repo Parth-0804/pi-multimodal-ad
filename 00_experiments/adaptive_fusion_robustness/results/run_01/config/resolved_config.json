@@ -1,0 +1,74 @@
+{
+  "status": "PROTOCOL_LOCKED",
+  "weights_dir": "../datasets/REASSEMBLE/cache/section1_models/ac77a11ff0170a41b771c03264987f8ce2b0d753",
+  "device": "cpu",
+  "cpu_ids": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "threads": 8,
+  "frames": 16,
+  "image_batch_frames": 4,
+  "target_folds": [
+    "fold_01",
+    "fold_02",
+    "fold_03",
+    "fold_04",
+    "fold_05"
+  ],
+  "locked_folds": [
+    "fold_01"
+  ],
+  "fold_choice_policy": "largest complete prefix admitted by conservative training-only end-to-end CPU benchmark; no assessment scores",
+  "training_seed": 50101,
+  "realization_seeds": [
+    60101,
+    60102,
+    60103
+  ],
+  "image_noise": [
+    0.02,
+    0.05,
+    0.1
+  ],
+  "sensor_noise": [
+    0.1,
+    0.5,
+    1.0
+  ],
+  "image_blur": [
+    1,
+    2,
+    4
+  ],
+  "sensor_time_loss": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "new_storage_cap_bytes": 32212254720,
+  "minimum_free_bytes": 10737418240,
+  "monitored_RSS_ceiling_bytes": 17179869184,
+  "head_recipe": {
+    "C": 1,
+    "solver": "lbfgs",
+    "class_weight": null,
+    "max_iter": 2000,
+    "tol": 0.0001,
+    "random_state": 42,
+    "threshold": 0.5
+  },
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 314159,
+  "probability_replay_tolerance": 1e-05,
+  "exposure": "DEVELOPMENT-EXPOSED exploratory controlled study",
+  "no_model_selection_by_score": true,
+  "coverage": "PARTIAL_COVERAGE_PILOT",
+  "initial_assessment_generated": false
+}
