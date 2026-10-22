@@ -1,0 +1,75 @@
+{
+  "tolerance_predeclared": {
+    "atol": 1e-06,
+    "rtol": 1e-05
+  },
+  "sample_ids": [
+    "0d617db6e2eaa35b09cc3c63",
+    "919aed2819a9a62e8e833640",
+    "694fbc8d0429b1367503d931",
+    "db7ed549c866044c1ce7cb7a",
+    "7f251e7cde0ee80008a81f06",
+    "eb02efcba0c4f333efe5f3c5",
+    "14ad3640e76495bb530a4791",
+    "aa2741e2ac3a7c2e1390bbda"
+  ],
+  "training_G_only": true,
+  "additional_optimizer_steps": 0,
+  "baseline_postfit_C_seconds": 519.5802712909936,
+  "baseline_postfit_V_seconds": 1651.50092334699,
+  "CPU_affinity_kept": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "CPU_entitlement": "Host cpuset0-15 visible; no explicit entitlement to increase prior4CPU allocation; retain4",
+  "benchmarks": [
+    {
+      "kind": "loader",
+      "workers": 0,
+      "segments": 8,
+      "seconds": 1.5822628519963473,
+      "segments_per_second": 5.056049941326985,
+      "prefetch_bound": 0,
+      "worker_type": "original compressed exclusive RAM/disk LRU"
+    },
+    {
+      "kind": "loader",
+      "workers": 2,
+      "segments": 8,
+      "seconds": 0.9547724050062243,
+      "segments_per_second": 8.378960219265917,
+      "prefetch_bound": 2,
+      "worker_type": "threads with worker-local processor/video capture; OpenCV internal threads1"
+    },
+    {
+      "kind": "prediction",
+      "batch_segments": 1,
+      "seconds_excluding_decode": 1.3884357380011352,
+      "H2D_seconds": 0.2216678169934312,
+      "forward_D2H_seconds": 1.1667441249737749,
+      "segments": 8,
+      "segments_per_second_excluding_decode": 5.761879920720868,
+      "peak_cuda_bytes": 2203580416
+    },
+    {
+      "kind": "prediction",
+      "batch_segments": 2,
+      "seconds_excluding_decode": 1.1474715119984467,
+      "H2D_seconds": 0.22394204999727663,
+      "forward_D2H_seconds": 0.9235194150096504,
+      "segments": 8,
+      "segments_per_second_excluding_decode": 6.97185064408887,
+      "peak_cuda_bytes": 4325898240
+    }
+  ],
+  "loader_measurement_scope": "Same8 G segments, warmed compressed RAM cache; no claim of cold-decode throughput",
+  "loader_order_and_pixels_exact": true,
+  "batch_independence_all_CNN_eval": true,
+  "prediction_batch_agreement_passed": true,
+  "probability_max_abs": 1.5500169064930347e-08,
+  "chosen_loader_workers": 2,
+  "chosen_prediction_batch_segments": 2,
+  "wall_seconds": 8.139422211999772
+}

@@ -1,0 +1,34 @@
+{
+  "observed_utc": "2026-10-20T23:42:13.632819+00:00",
+  "stop_marker": {
+    "path": "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/STOP.json",
+    "sha256": "9bbe5e2153a8a4b6c77c76b848921a09f11adf7f114e7e9228def875a6ce9397",
+    "mtime_ns": 1792539631614770161,
+    "contents": {
+      "requested": "stop at next safe checkpoint"
+    }
+  },
+  "priority_evidence": {
+    "path": "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/fusion_noise_test/results/run_01/provenance/execution_priority_request.json",
+    "sha256": "4420cc234a9ef4497d6d170dfa81208d4636f853098a3851a650bb9cc7502c4d",
+    "recorded_request": {
+      "utc": "2026-10-20T23:40:53.619177+00:00",
+      "user_instruction": "Pause running frozen/fine-tuned16/32 study, complete encoder and noise studies, then resume the paused visual study.",
+      "paused_run": "00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning",
+      "pause_command": "bash 00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/source/study.sh stop",
+      "resume_command": "bash 00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/source/study.sh supervise",
+      "resume_control": "Preserve and explicitly clear this pause STOP.json only after encoder/noise completion; verify checkpoint identity first.",
+      "limits": "Original wall-time/storage/fit caps remain unchanged; pause does not reset any deadline.",
+      "execution_order": [
+        "encoder comparison",
+        "selected-model noise study",
+        "resume existing visual-backbone study"
+      ],
+      "noise_selection_question": "Pending explicit choice: preserve old F2 pilot vs new documented pre-noise selection after encoder completes."
+    }
+  },
+  "GPU_current_owner_snapshot": "82499, ma_thesis_env/bin/python, 4266 MiB\n",
+  "own_supervisor_and_worker_absent": true,
+  "action": "Preserve stop marker and checkpoint; no competing GPU worker; no cleared approval/priority block; no deadline reset",
+  "resume_dependency": "Other workflow completes encoder/noise priority and releases sole GPU; checkpoint identity must still match and original deadline/admission remain valid"
+}

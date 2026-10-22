@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "frames": 32,
+  "sample_ids": [
+    "0d617db6e2eaa35b09cc3c63",
+    "919aed2819a9a62e8e833640",
+    "694fbc8d0429b1367503d931",
+    "db7ed549c866044c1ce7cb7a"
+  ],
+  "training_G_only": true,
+  "comparison_model": "Unchanged historical final-stage16 model used only to verify numerical batch independence at32 input frames; not a32 scientific fit",
+  "atol": 1e-06,
+  "rtol": 1e-05,
+  "probability_max_abs": 1.0322537880025351e-08,
+  "loader_pixels_and_order_exact": true,
+  "CNN_eval": true,
+  "measurements": [
+    {
+      "frames": 32,
+      "batch_segments": 1,
+      "segments": 4,
+      "seconds_excluding_decode": 1.3630265050014714,
+      "peak_cuda_bytes": 4325898240
+    },
+    {
+      "frames": 32,
+      "batch_segments": 2,
+      "segments": 4,
+      "seconds_excluding_decode": 1.153966458994546,
+      "peak_cuda_bytes": 8572631040
+    }
+  ],
+  "wall_seconds": 11.88065671500226,
+  "optimizer_steps": 0
+}

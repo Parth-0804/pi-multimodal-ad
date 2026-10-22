@@ -1,0 +1,25 @@
+{
+  "feature_width": 896,
+  "precision": "float32",
+  "samples": 4530,
+  "seconds_this_invocation": 10343.143981318994,
+  "seconds": 10225.276892994167,
+  "cost_totals": {
+    "pixel_loading_cache_transfer_seconds": 8456.224476381729,
+    "CNN16_pool_transfer_wall_seconds": 653.3095235364744,
+    "CNN32_pool_transfer_wall_seconds": 1111.920454330917,
+    "row_total_wall_seconds": 10225.276892994167
+  },
+  "CNN_parameters": 11190112,
+  "feature_selection": [
+    "stage2",
+    "stage3",
+    "stage4"
+  ],
+  "pooling": "Same 16/32 frame batch shape and Torch float32 spatial/frame means as live forward",
+  "source_sha256": "d66793a8a2cfd3f58cff0afcdd59ff98f6c2b184ded5386a78e2be7336216e8f",
+  "hashes": {
+    "shared_cache/original_features_16.npy": "04e52289d4aa78e38ff7aa7a9f48ccbd295d049bc1a0a5119d23bea20908d7f8",
+    "shared_cache/original_features_32.npy": "d4d6af5409a4a8e382a685b311df82aa763f85929e322b3f5279d760426f048c"
+  }
+}

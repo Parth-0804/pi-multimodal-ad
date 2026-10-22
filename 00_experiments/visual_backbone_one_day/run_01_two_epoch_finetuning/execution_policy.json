@@ -1,0 +1,27 @@
+{
+  "policy_id": "two_epoch_finetuning_unlimited_wall_time_user_amendment_v2",
+  "authorized_utc": "2026-10-21T07:34:32.050891+00:00",
+  "user_instruction": "dont worry about the deadline on 24 hours, just make sure we are for frozen keeping it as it is, and for fine tune, we train 2 epochs each for 16 and 32",
+  "wall_time_limit_seconds": null,
+  "training_cutoff_utc": null,
+  "deadline_utc": null,
+  "epoch_budgets": {
+    "frozen_16_frames": 5,
+    "fine_tuned_16_frames": 2,
+    "frozen_32_frames": 5,
+    "fine_tuned_32_frames": 2
+  },
+  "unchanged_limits": [
+    "one allocated GPU",
+    "four CPU affinity",
+    "30GiB combined study storage",
+    "10GiB filesystem free reserve",
+    "110 cumulative full visual fit starts",
+    "20 cumulative disposable optimizer steps",
+    "two technical repairs per stage"
+  ],
+  "scientific_configuration_snapshot_role": "Existing config and fit identities preserve exact checkpoint numerical compatibility. This explicit execution-only override supersedes their historical wall_seconds field and the historical24h clock.",
+  "historical_clock_file": "../efficient_finetuning_two_epochs_24h_v1_deadline.json",
+  "no_counter_reset": true,
+  "no_scientific_parameter_change": true
+}
