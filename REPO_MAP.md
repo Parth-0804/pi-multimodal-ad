@@ -1,5 +1,9 @@
 # Repository map
 
+PHM experiment walkthrough: [RT-DETR Model 1, from data to saved results](experiments/phm2026/README.md). Follow the numbered 00–03 folders or the single-sample trace.
+
+REASSEMBLE experiment walkthroughs: [RT-DETR, PatchTST and core fusion in numbered folders](experiments/reassemble/README.md). Start there to follow data → preprocessing → models → predictions → results.
+
 Domain first, then capability. Detailed tree, old-to-new imports and validation: [FINAL_STRUCTURE.md](docs/repository_restructure/FINAL_STRUCTURE.md). Working boundaries: [AGENTS.md](AGENTS.md).
 
 | Domain/purpose | Implementation | Scripts | Configs | Tests | Evidence |
