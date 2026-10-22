@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "kind": "proposed_task_specification_not_executable_controller",
+  "project": "Parth WS",
+  "prepared_date": "2026-10-19",
+  "current_scope": "audit_only_when_START_HERE_CODEX_is_explicitly_submitted",
+  "implementation_verified": false,
+  "desktop_connected_by_this_pack": false,
+  "controller_installed": false,
+  "experiment_approval": null,
+  "budget_approval": null,
+  "historical_exclusions": [
+    "Historical experiment labelled Task 4: execution remains excluded unless explicitly reauthorized by the user for that experiment."
+  ],
+  "write_scope": [
+    "parth_ws_bootstrap/outputs/<unique-audit-id>/**"
+  ],
+  "state_file_policy": "Copy this specification to new audit output; do not mutate original. State is not authority.",
+  "maximum_audit_report_correction_cycles": 2,
+  "transitions": {
+    "audit": [
+      "PLANNED",
+      "RUNNING",
+      "DONE_WITHIN_SCOPE",
+      "BLOCKED"
+    ],
+    "future": [
+      "WAITING_USER_AUTHORIZATION",
+      "DEFERRED"
+    ],
+    "restriction": "No agent may transition a future task to executable based on its own recommendation or edited JSON."
+  },
+  "tasks": [
+    {
+      "id": "AUDIT_ENV",
+      "title": "Observe environment, instructions, and initial state",
+      "depends_on": [],
+      "status": "PLANNED",
+      "permission": "static_audit_and_new_reports_only",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "AUDIT_SOURCE",
+      "title": "Trace the actual current implementation",
+      "depends_on": [
+        "AUDIT_ENV"
+      ],
+      "status": "PLANNED",
+      "permission": "static_audit_and_new_reports_only",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "AUDIT_HISTORY",
+      "title": "Inventory existing experiments and historical evidence",
+      "depends_on": [
+        "AUDIT_ENV"
+      ],
+      "status": "PLANNED",
+      "permission": "static_audit_and_new_reports_only",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "PLAN_MINIMAL",
+      "title": "Draft minimal roadmap, protocol, and controller requirements",
+      "depends_on": [
+        "AUDIT_SOURCE",
+        "AUDIT_HISTORY"
+      ],
+      "status": "PLANNED",
+      "permission": "static_audit_and_new_reports_only",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "REVIEW_AUDIT",
+      "title": "Obtain an additional source-grounded review or disclose its absence",
+      "depends_on": [
+        "PLAN_MINIMAL"
+      ],
+      "status": "PLANNED",
+      "permission": "static_audit_and_new_reports_only",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "PACKAGE_APPROVAL",
+      "title": "Package findings, preservation checks, and proposed next step",
+      "depends_on": [
+        "REVIEW_AUDIT"
+      ],
+      "status": "PLANNED",
+      "permission": "static_audit_and_new_reports_only",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "LITERATURE",
+      "title": "Results-blind research synthesis and dataset screening",
+      "depends_on": [
+        "PACKAGE_APPROVAL"
+      ],
+      "status": "WAITING_USER_AUTHORIZATION",
+      "permission": "none_in_current_task",
+      "authorization_condition": "Explicit research authorization, approved access/usage scope, and verified fresh context; otherwise label not results-blind.",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "LOCK_PROTOCOL",
+      "title": "User approves scientific protocol and resource limits",
+      "depends_on": [
+        "LITERATURE"
+      ],
+      "status": "WAITING_USER_AUTHORIZATION",
+      "permission": "none_in_current_task",
+      "authorization_condition": "Human decision; missing values and ambiguity block experimental authorization.",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "CONTROLLER_SETUP",
+      "title": "Implement and test a minimal bounded controller",
+      "depends_on": [
+        "LOCK_PROTOCOL"
+      ],
+      "status": "WAITING_USER_AUTHORIZATION",
+      "permission": "none_in_current_task",
+      "authorization_condition": "Separate approved code-write/config scope and fail-closed dry-run checks; do not treat successful setup as scientific validity.",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "BASELINE_CHECK",
+      "title": "Approved baseline and reproduction checks",
+      "depends_on": [
+        "CONTROLLER_SETUP"
+      ],
+      "status": "WAITING_USER_AUTHORIZATION",
+      "permission": "none_in_current_task",
+      "authorization_condition": "Primary evidence, target/split identity, and allowed commands established.",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "ROBUSTNESS",
+      "title": "Only missing approved controlled robustness comparisons",
+      "depends_on": [
+        "BASELINE_CHECK"
+      ],
+      "status": "WAITING_USER_AUTHORIZATION",
+      "permission": "none_in_current_task",
+      "authorization_condition": "Frozen conditions, paired samples, fair controls, explicit budget; historical Task 4 exclusion remains.",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "ENCODER_FINETUNE",
+      "title": "Conditional frozen/final-stage fine-tuning comparison",
+      "depends_on": [
+        "ROBUSTNESS"
+      ],
+      "status": "DEFERRED",
+      "permission": "none_in_current_task",
+      "authorization_condition": "Optional hypothesis and actual resource authorization, not assumed from the idea list.",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "TRANSFORMER_STUDY",
+      "title": "Conditional spatial or temporal representation comparison",
+      "depends_on": [
+        "ROBUSTNESS"
+      ],
+      "status": "DEFERRED",
+      "permission": "none_in_current_task",
+      "authorization_condition": "Optional distinct hypothesis and fair control; not mandatory.",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "METHOD_FREEZE",
+      "title": "Lock selected method, baselines, and dataset-specific training recipe before external assessment",
+      "depends_on": [
+        "ROBUSTNESS"
+      ],
+      "status": "WAITING_USER_AUTHORIZATION",
+      "permission": "none_in_current_task",
+      "authorization_condition": "Within the user-approved protocol, explicitly record optional-study selections; every selected encoder study must be completed with evidence or explicitly excluded by an authorized decision before this stage can pass. A coordinator cannot omit an unfavorable completed result or silently bypass a selected study. Preserve method/config hashes and no external assessment-driven redesign.",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "EXTERNAL_ASSESSMENT",
+      "title": "Locked-method comparison on a suitable independent dataset",
+      "depends_on": [
+        "METHOD_FREEZE"
+      ],
+      "status": "WAITING_USER_AUTHORIZATION",
+      "permission": "none_in_current_task",
+      "authorization_condition": "Explicit dataset approval and finalized method/selection decisions, including any selected optional studies, before assessment.",
+      "evidence": [],
+      "limitations": []
+    },
+    {
+      "id": "INSPECTION_UI",
+      "title": "Dataset/sample/results inspection interface",
+      "depends_on": [
+        "EXTERNAL_ASSESSMENT"
+      ],
+      "status": "DEFERRED",
+      "permission": "none_in_current_task",
+      "authorization_condition": "Explicit UI scope; consume validated outputs without overstating live capability.",
+      "evidence": [],
+      "limitations": []
+    }
+  ]
+}

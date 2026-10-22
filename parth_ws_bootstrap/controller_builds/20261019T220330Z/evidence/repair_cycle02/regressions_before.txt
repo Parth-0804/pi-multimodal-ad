@@ -1,0 +1,38 @@
+test_29_unordered_valid_dag_is_scheduled_topologically (test_controller.OfflineControllerTests.test_29_unordered_valid_dag_is_scheduled_topologically) ... FAIL
+test_30_upstream_drift_invalidates_completed_dependents_transitively (test_controller.OfflineControllerTests.test_30_upstream_drift_invalidates_completed_dependents_transitively) ... FAIL
+test_31_dispatch_checks_current_config_not_only_cached_config (test_controller.OfflineControllerTests.test_31_dispatch_checks_current_config_not_only_cached_config) ... FAIL
+
+======================================================================
+FAIL: test_29_unordered_valid_dag_is_scheduled_topologically (test_controller.OfflineControllerTests.test_29_unordered_valid_dag_is_scheduled_topologically)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/parth_ws_bootstrap/controller_builds/20261019T220330Z/tests/test_controller.py", line 268, in test_29_unordered_valid_dag_is_scheduled_topologically
+    self.assertEqual(state['execution_status'],'DONE')
+AssertionError: 'BLOCKED' != 'DONE'
+- BLOCKED
++ DONE
+
+
+======================================================================
+FAIL: test_30_upstream_drift_invalidates_completed_dependents_transitively (test_controller.OfflineControllerTests.test_30_upstream_drift_invalidates_completed_dependents_transitively)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/parth_ws_bootstrap/controller_builds/20261019T220330Z/tests/test_controller.py", line 285, in test_30_upstream_drift_invalidates_completed_dependents_transitively
+    self.assertEqual(recovered['dispatches'],4)
+AssertionError: 6 != 4
+
+======================================================================
+FAIL: test_31_dispatch_checks_current_config_not_only_cached_config (test_controller.OfflineControllerTests.test_31_dispatch_checks_current_config_not_only_cached_config)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/parth_ws_bootstrap/controller_builds/20261019T220330Z/tests/test_controller.py", line 295, in test_31_dispatch_checks_current_config_not_only_cached_config
+    self.assertEqual(state['execution_status'],'BLOCKED')
+AssertionError: 'DONE' != 'BLOCKED'
+- DONE
++ BLOCKED
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.981s
+
+FAILED (failures=3)

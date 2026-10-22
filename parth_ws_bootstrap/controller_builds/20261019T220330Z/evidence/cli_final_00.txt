@@ -1,0 +1,17 @@
+usage: controller.py [-h] [--root ROOT] [--research] [--clear-stop]
+                     [--scope {LITERATURE}]
+                     {prepare-demo,status,preview,run,resume,stop,activate}
+
+Offline sequential runner. Live execution is deliberately unavailable. All
+executable operations are fixed synthetic fixtures. Filesystem validation is
+application-level confinement, not an OS sandbox for hostile worker processes.
+
+positional arguments:
+  {prepare-demo,status,preview,run,resume,stop,activate}
+
+options:
+  -h, --help            show this help message and exit
+  --root ROOT
+  --research
+  --clear-stop
+  --scope {LITERATURE}

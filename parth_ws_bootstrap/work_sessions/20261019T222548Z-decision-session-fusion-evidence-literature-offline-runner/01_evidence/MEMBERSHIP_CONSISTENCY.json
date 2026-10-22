@@ -1,0 +1,50 @@
+{
+  "scope": "Current saved cohort and split consistency only. Labels/folds agree in source-defined order; anonymous prediction files still lack direct row keys. No raw annotation validation or producing-run identity proof.",
+  "inputs": {
+    "runs/reassemble/20260927T141645Z-inventory/tables_v2/cohort.parquet": {
+      "sha256": "1e4b971d9ce97c12d79f8fc43a44f7cf97de57ad3f475d18e925a916b23f22b2",
+      "bytes": 861867
+    },
+    "artifacts/reassemble/audits/nested_splits.json": {
+      "sha256": "56dd1f32282a5771e16f780180e3cf62aa2684ae8e855ffd441418f91f14a668",
+      "bytes": 111163
+    }
+  },
+  "parquet_total_uncompressed_bytes": 2846114,
+  "cohort_rows": 4530,
+  "failures": 509,
+  "recordings": 148,
+  "cohort_key_order_sha256": "1ad96f90160008993c5e5a4fcb0ad60791bb19bc61055fe8a4010dd1995c5eda",
+  "unique_keys": true,
+  "outer_recording_sets_disjoint": true,
+  "inner_partitions_inside_outer_train": true,
+  "banks": [
+    {
+      "path": "runs/reassemble/20260927T204649Z-section3/predictions/clean.npz",
+      "saved_label_vector_equal_current_cohort_order": true,
+      "saved_fold_vector_equal_split_in_current_cohort_order": true,
+      "direct_row_key_binding": false
+    },
+    {
+      "path": "runs/reassemble/20260927T204649Z-section3/predictions/V1_0.1.npz",
+      "saved_label_vector_equal_current_cohort_order": true,
+      "saved_fold_vector_equal_split_in_current_cohort_order": true,
+      "direct_row_key_binding": false
+    },
+    {
+      "path": "runs/reassemble/20260927T204649Z-section3/predictions/S1_1.0.npz",
+      "saved_label_vector_equal_current_cohort_order": true,
+      "saved_fold_vector_equal_split_in_current_cohort_order": true,
+      "direct_row_key_binding": false
+    },
+    {
+      "path": "runs/reassemble/additional_improvements_executed/20260928T000346Z/03_static_anchored_adaptation/predictions.npz",
+      "saved_label_vector_equal_current_cohort_order": true,
+      "saved_fold_vector_equal_split_in_current_cohort_order": true,
+      "direct_row_key_binding": false
+    }
+  ],
+  "seconds": 0.09294354600024235,
+  "pyarrow_version": "24.0.0",
+  "evidence_status": "VERIFIED_WITHIN_SCOPE_CURRENT_TABLE_CONSISTENCY; historical row identity remains INFERRED/UNKNOWN"
+}

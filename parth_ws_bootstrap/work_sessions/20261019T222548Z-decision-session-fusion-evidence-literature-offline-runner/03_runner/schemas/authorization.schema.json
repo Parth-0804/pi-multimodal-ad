@@ -1,0 +1,83 @@
+{
+  "type": "object",
+  "properties": {
+    "payload": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "SYNTHETIC_ORCHESTRATION_TEST"
+        },
+        "issuer": {
+          "const": "SYNTHETIC_AUTHORITY"
+        },
+        "revoked": {
+          "type": "boolean"
+        },
+        "expires_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "protocol_version": {
+          "const": "SYNTHETIC-1"
+        },
+        "config_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "code": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "operations": {
+          "const": [
+            "synthetic.report"
+          ]
+        },
+        "access": {
+          "const": "synthetic-local-only"
+        },
+        "write_scope": {
+          "type": "string"
+        },
+        "resource_limits": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "kind",
+        "issuer",
+        "revoked",
+        "expires_utc",
+        "protocol_version",
+        "config_sha256",
+        "code",
+        "scope",
+        "operations",
+        "access",
+        "write_scope",
+        "resource_limits"
+      ],
+      "additionalProperties": false
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "payload",
+    "signature"
+  ],
+  "additionalProperties": false,
+  "description": "Public synthetic fixture signature only; never authorizes live work.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

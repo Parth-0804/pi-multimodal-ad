@@ -1,0 +1,99 @@
+{
+  "type": "object",
+  "properties": {
+    "kind": {
+      "const": "SYNTHETIC_ORCHESTRATION_TEST"
+    },
+    "execution_status": {
+      "enum": [
+        "READY",
+        "DONE",
+        "BLOCKED",
+        "STOPPED"
+      ]
+    },
+    "config_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "code": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "dispatches": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reserved_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "measured_child_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "tasks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "execution_status": {
+            "enum": [
+              "PENDING",
+              "RUNNING",
+              "DONE",
+              "FAILED",
+              "BLOCKED",
+              "NEEDS_RECONCILIATION"
+            ]
+          },
+          "authorization_status": {
+            "type": "string"
+          },
+          "evidence_status": {
+            "type": "string"
+          },
+          "attempts": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "execution_status",
+          "authorization_status",
+          "evidence_status",
+          "attempts",
+          "checks",
+          "reason"
+        ],
+        "additionalProperties": true
+      }
+    }
+  },
+  "required": [
+    "kind",
+    "execution_status",
+    "config_sha256",
+    "code",
+    "dispatches",
+    "reserved_seconds",
+    "measured_child_seconds",
+    "tasks"
+  ],
+  "additionalProperties": true,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

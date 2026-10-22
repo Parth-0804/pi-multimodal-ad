@@ -1,0 +1,78 @@
+{
+  "utc": "2026-10-19T22:29:16.518529+00:00",
+  "commands": [
+    {
+      "name": "copied_31",
+      "argv": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-I",
+        "-B",
+        "parth_ws_bootstrap/work_sessions/20261019T222548Z-decision-session-fusion-evidence-literature-offline-runner/03_runner/tests/test_controller.py"
+      ],
+      "exit_code": 0,
+      "seconds": 11.660076144999039,
+      "log": "evidence/copied_31.txt"
+    },
+    {
+      "name": "session_no_work_2",
+      "argv": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-I",
+        "-B",
+        "parth_ws_bootstrap/work_sessions/20261019T222548Z-decision-session-fusion-evidence-literature-offline-runner/03_runner/tests/test_session_no_work.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.229800790999434,
+      "log": "evidence/session_no_work_2.txt"
+    }
+  ],
+  "original_suite": {
+    "kind": "SYNTHETIC_ORCHESTRATION_TEST",
+    "tests_run": 31,
+    "failures": 0,
+    "errors": 0,
+    "seconds_measured": 11.584137054998791,
+    "success": true,
+    "test_ids": [
+      "test_01_dependencies_review_handoff_and_no_duplicates",
+      "test_02_missing_authorization_rejected_without_dispatch",
+      "test_03_malformed_authorization",
+      "test_04_revoked_authorization_even_with_fixture_signature",
+      "test_05_mismatched_scope_protocol_access_writes_budget",
+      "test_06_agent_forged_or_expired_authorization",
+      "test_07_graph_missing_dependency_cycle_duplicate",
+      "test_08_missing_budgets_and_excluded_or_unimplemented_tasks",
+      "test_09_fabricated_done_missing_output_and_hash_mismatch",
+      "test_10_reviewer_reject_or_self_review_does_not_advance",
+      "test_11_timeout_has_bounded_retries_and_saves_failure",
+      "test_12_malformed_and_nonzero_are_not_score_retries",
+      "test_13_technical_retry_succeeds_and_is_accounted",
+      "test_14_technical_failure_exhausts_two_repairs",
+      "test_15_dispatch_budget_exhaustion_includes_reviewer",
+      "test_16_wall_reservation_and_output_budgets",
+      "test_17_input_and_completed_artifact_drift_on_resume",
+      "test_18_interruption_journal_replay_no_duplicate_long_job",
+      "test_19_partial_event_log_preserved_and_refused",
+      "test_20_real_os_writer_lock_rejects_concurrent_start",
+      "test_21_stop_then_explicit_resume",
+      "test_22_real_process_stop_terminates_owned_fake_child",
+      "test_23_path_traversal_symlink_and_unapproved_command_arguments",
+      "test_24_weakening_policy_and_review_checks_rejected",
+      "test_25_valid_negative_advances_invalid_high_score_fails",
+      "test_26_live_adapter_never_spawns_and_flags_are_registered",
+      "test_27_no_fake_success_modifies_real_queue_or_creates_authorization",
+      "test_28_schema_strict_json_and_config_drift",
+      "test_29_unordered_valid_dag_is_scheduled_topologically",
+      "test_30_upstream_drift_invalidates_completed_dependents_transitively",
+      "test_31_dispatch_checks_current_config_not_only_cached_config"
+    ],
+    "scope": "Fixed synthetic workers/reviewers; real OS flock and owned-child stop tested; no hostile-worker OS isolation or live model connection tested"
+  },
+  "no_work_tests": 2,
+  "all_passed": true,
+  "child_maxrss_kib": 25600,
+  "enforcement_limits": "2-thread library environment caps; fixed standard-library fake workers. CPU/RAM/disk not host-enforced. No science imports, models, network, project tests or model-backed subprocesses.",
+  "cli_checks": "evidence/CLI_CHECKS.json",
+  "cli_commands_passed": 10,
+  "session_repair_cycles_used": 0
+}

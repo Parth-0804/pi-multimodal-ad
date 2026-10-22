@@ -1,0 +1,192 @@
+{
+  "session_root": "parth_ws_bootstrap/work_sessions/20261019T222548Z-decision-session-fusion-evidence-literature-offline-runner",
+  "started_utc": "2026-10-19T22:24:43.974540+00:00",
+  "start_basis": "First observed UTC checkpoint; initial prompt lookup preceded this by a few minutes. Ceiling measured conservatively from checkpoint.",
+  "target_finish_utc": "2026-10-20T02:24:43.974540+00:00",
+  "deadline_utc": "2026-10-20T04:24:43.974540+00:00",
+  "active_stage": null,
+  "status": "STOPPED_DECISION_HANDOFF",
+  "authorization": "Only bounded public-source scoping review, targeted static evidence, isolated synthetic runner tests, optional retained-array checks and documents. No scientific experiments/live activation.",
+  "budgets": {
+    "search_queries": 40,
+    "distinct_opens": 100,
+    "primary_studies_deep": 20,
+    "new_bytes": 536870912,
+    "public_document_bytes": 104857600,
+    "cpu_threads": 2,
+    "aim_ram_bytes": 4294967296,
+    "model_backed_subprocesses": 0,
+    "new_paid_operations": 0,
+    "repair_retries_per_task": 2
+  },
+  "usage": {
+    "queries": 36,
+    "opens": 43,
+    "extra_workers": 0,
+    "primary_studies": 20,
+    "deep_targeted_studies": 16
+  },
+  "stages": {
+    "preflight": {
+      "depends_on": [],
+      "execution_status": "DONE_WITHIN_SCOPE",
+      "evidence_status": "VERIFIED_WITHIN_SCOPE",
+      "authorization_status": "AUTHORIZED_BOUNDED",
+      "attempts": 1,
+      "artifacts": [
+        "00_control/INITIAL_STATE.json",
+        "00_control/ACCESS_AND_ISOLATION.md"
+      ],
+      "blocked_or_deferred_reasons": [],
+      "checkpoint_utc": "2026-10-19T22:47:34.802470+00:00"
+    },
+    "evidence": {
+      "depends_on": [
+        "preflight"
+      ],
+      "execution_status": "DONE_WITHIN_SCOPE",
+      "evidence_status": "STATIC_SOURCE_AND_BOUNDED_HISTORY",
+      "authorization_status": "AUTHORIZED_BOUNDED",
+      "attempts": 1,
+      "artifacts": [
+        "01_evidence/IMPLEMENTATION_AND_STUDY_STATUS.md",
+        "01_evidence/AUDIT_TO_ACTION_MAP.csv",
+        "01_evidence/EXISTING_EXPERIMENT_COVERAGE.csv"
+      ],
+      "blocked_or_deferred_reasons": [],
+      "checkpoint_utc": "2026-10-19T22:47:34.802470+00:00"
+    },
+    "literature": {
+      "depends_on": [
+        "preflight"
+      ],
+      "execution_status": "DONE_WITHIN_SCOPE",
+      "evidence_status": "PUBLIC_SOURCE_SCOPING_NOT_RESULTS_BLIND",
+      "authorization_status": "AUTHORIZED_BOUNDED",
+      "attempts": 1,
+      "artifacts": [
+        "02_literature/FROZEN_REVIEW_MANIFEST.json",
+        "02_literature/SOURCE_ACCESS_LOG.csv",
+        "02_literature/SOURCE_VERIFICATION.csv",
+        "02_literature/RESEARCH_RECORD.json",
+        "02_literature/RESEARCH_REPORT.md",
+        "02_literature/PAPER_MATRIX.csv",
+        "02_literature/REVIEW_METHOD.md",
+        "02_literature/SEARCH_LOG.csv",
+        "02_literature/REFERENCES.bib",
+        "02_literature/DATASET_SHORTLIST.csv"
+      ],
+      "blocked_or_deferred_reasons": [
+        "Original independent results-blind review unresolved; shared context/file access;4 restricted-depth studies"
+      ],
+      "checkpoint_utc": "2026-10-19T22:47:34.802470+00:00"
+    },
+    "runner": {
+      "depends_on": [
+        "preflight"
+      ],
+      "execution_status": "DONE_WITHIN_SCOPE",
+      "evidence_status": "33_OFFLINE_TESTS_AND_10_CLI_CHECKS_PASSED",
+      "authorization_status": "AUTHORIZED_BOUNDED",
+      "attempts": 1,
+      "artifacts": [
+        "03_runner/SETUP_RESULT.md",
+        "03_runner/TEST_RESULTS.json",
+        "03_runner/LIVE_READINESS.md",
+        "03_runner/REUSE_PROVENANCE.json"
+      ],
+      "blocked_or_deferred_reasons": [
+        "Live handlers and host-owned approval/code isolation absent; deliberately disabled"
+      ],
+      "checkpoint_utc": "2026-10-19T22:47:34.802470+00:00"
+    },
+    "numerical": {
+      "depends_on": [
+        "evidence"
+      ],
+      "execution_status": "DONE_WITHIN_SCOPE",
+      "evidence_status": "CONDITIONAL_ARRAY_ARITHMETIC",
+      "authorization_status": "AUTHORIZED_BOUNDED",
+      "attempts": 1,
+      "artifacts": [
+        "01_evidence/NUMERICAL_CHECKS.md",
+        "01_evidence/METRIC_RECONCILIATION.csv",
+        "01_evidence/NUMERICAL_RESULT.json",
+        "01_evidence/MEMBERSHIP_CONSISTENCY.json"
+      ],
+      "blocked_or_deferred_reasons": [
+        "Anonymous banks have no direct sample-key binding; full producing chain/raw label validity not established"
+      ],
+      "checkpoint_utc": "2026-10-19T22:47:34.802470+00:00"
+    },
+    "decisions": {
+      "depends_on": [
+        "evidence",
+        "literature",
+        "runner"
+      ],
+      "execution_status": "DONE_WITHIN_SCOPE",
+      "evidence_status": "OUTCOME_AWARE_PROPOSALS_NOT_APPROVAL",
+      "authorization_status": "AUTHORIZED_BOUNDED",
+      "attempts": 1,
+      "artifacts": [
+        "04_decisions/PRIORITIZED_ROADMAP.md",
+        "04_decisions/EXPERIMENT_CARDS.md",
+        "04_decisions/UI_REQUIREMENTS.md",
+        "04_decisions/USER_DECISIONS.md"
+      ],
+      "blocked_or_deferred_reasons": [],
+      "checkpoint_utc": "2026-10-19T22:47:34.802470+00:00"
+    },
+    "review_package": {
+      "depends_on": [
+        "decisions"
+      ],
+      "execution_status": "DONE_WITHIN_SCOPE",
+      "evidence_status": "SELF_REVIEW_ONLY_LOCAL_PACKAGE_VERIFIED",
+      "authorization_status": "AUTHORIZED_BOUNDED",
+      "attempts": 1,
+      "artifacts": [
+        "README_FIRST.md",
+        "DECISION_PACKET.md",
+        "SHAREABLE_REVIEW_PACKET.zip",
+        "SHAREABLE_CONTENTS.json",
+        "05_review/REVIEW_REPORT.md",
+        "05_review/PRESERVATION_AND_DELIVERABLE_CHECKS.json",
+        "ARTIFACT_MANIFEST.json"
+      ],
+      "blocked_or_deferred_reasons": [
+        "Separate current-session AI/human review not established; no independent gate satisfied"
+      ],
+      "checkpoint_utc": "2026-10-19T22:47:34.802470+00:00"
+    }
+  },
+  "results_blind": false,
+  "independent_review": "UNRESOLVED_SELF_REVIEW_FALLBACK",
+  "scientific_protocol_approved": null,
+  "scheduled_continuation": false,
+  "review": "SELF_REVIEW_ONLY_ACCEPT_WITH_LIMITATIONS",
+  "review_corrections": 1,
+  "runner_repair_cycles_used": 0,
+  "publication": "LOCAL_FILES_ONLY_NO_UPLOAD",
+  "resources_observed": {
+    "extra_workers": 0,
+    "additional_paid_operations_started": 0,
+    "model_backed_subprocesses": 0,
+    "research_queries": 36,
+    "explicit_distinct_urls_opened": 43,
+    "primary_studies_retained": 20,
+    "targeted_full_text": 16,
+    "restricted_depth": 4,
+    "local_public_PDF_bytes": 0,
+    "thread_caps": "2 via library environment; parquet use_threads=False; not hostquota",
+    "test_child_maxrss_kib": 25600,
+    "memory_scope": "Observed runner-test subprocess maximum only, not whole session/host/browser",
+    "billing_token_usage": "Not exposed; existing authenticated interactive usage may be billable"
+  },
+  "finished_utc": "2026-10-19T22:47:34.802470+00:00",
+  "elapsed_seconds_from_first_UTC_checkpoint": 1370.82793,
+  "elapsed_measurement_limit": "Initial root-prompt lookup preceded first observed UTC checkpoint by a few minutes; final console handoff follows packaging.",
+  "recommended_next_decision": "Approve A1 bounded retained-provenance/protocol reconciliation only; no experiments",
+  "live_activated": false
+}

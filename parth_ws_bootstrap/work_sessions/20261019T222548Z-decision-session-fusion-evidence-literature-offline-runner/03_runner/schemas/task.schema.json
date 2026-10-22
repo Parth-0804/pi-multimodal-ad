@@ -1,0 +1,116 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "operation": {
+      "const": "synthetic.report"
+    },
+    "authorization_requirement": {
+      "const": "SYNTHETIC_ONLY"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "outputs": {
+      "const": [
+        "report.json"
+      ]
+    },
+    "acceptance_checks": {
+      "const": [
+        "artifact_hash",
+        "synthetic_identity",
+        "method_validity",
+        "separate_review"
+      ]
+    },
+    "resource_limits": {
+      "type": "object",
+      "properties": {
+        "timeout_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 10
+        },
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "repair_retries": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        }
+      },
+      "required": [
+        "timeout_seconds",
+        "max_attempts",
+        "repair_retries"
+      ],
+      "additionalProperties": false
+    },
+    "arguments": {
+      "type": "object",
+      "properties": {
+        "scenario": {
+          "type": "string"
+        },
+        "delay": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        }
+      },
+      "required": [
+        "scenario",
+        "delay"
+      ],
+      "additionalProperties": false
+    },
+    "idempotent": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "depends_on",
+    "operation",
+    "authorization_requirement",
+    "inputs",
+    "outputs",
+    "acceptance_checks",
+    "resource_limits",
+    "arguments",
+    "idempotent"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

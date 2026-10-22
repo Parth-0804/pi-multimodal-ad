@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "decision": {
+      "enum": [
+        "ACCEPT",
+        "REJECT"
+      ]
+    },
+    "reviewer": {
+      "type": "string"
+    },
+    "inspected_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "checks": {
+      "type": "object",
+      "properties": {
+        "marker": {
+          "type": "boolean"
+        },
+        "identity": {
+          "type": "boolean"
+        },
+        "validity": {
+          "type": "boolean"
+        },
+        "input": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "marker",
+        "identity",
+        "validity",
+        "input"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "decision",
+    "reviewer",
+    "inspected_sha256",
+    "checks"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

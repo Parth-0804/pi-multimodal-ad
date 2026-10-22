@@ -1,0 +1,50 @@
+test_01_dependencies_review_handoff_and_no_duplicates (__main__.OfflineControllerTests.test_01_dependencies_review_handoff_and_no_duplicates) ... ok
+test_02_missing_authorization_rejected_without_dispatch (__main__.OfflineControllerTests.test_02_missing_authorization_rejected_without_dispatch) ... ok
+test_03_malformed_authorization (__main__.OfflineControllerTests.test_03_malformed_authorization) ... ok
+test_04_revoked_authorization_even_with_fixture_signature (__main__.OfflineControllerTests.test_04_revoked_authorization_even_with_fixture_signature) ... ok
+test_05_mismatched_scope_protocol_access_writes_budget (__main__.OfflineControllerTests.test_05_mismatched_scope_protocol_access_writes_budget) ... ok
+test_06_agent_forged_or_expired_authorization (__main__.OfflineControllerTests.test_06_agent_forged_or_expired_authorization) ... ok
+test_07_graph_missing_dependency_cycle_duplicate (__main__.OfflineControllerTests.test_07_graph_missing_dependency_cycle_duplicate) ... ok
+test_08_missing_budgets_and_excluded_or_unimplemented_tasks (__main__.OfflineControllerTests.test_08_missing_budgets_and_excluded_or_unimplemented_tasks) ... ok
+test_09_fabricated_done_missing_output_and_hash_mismatch (__main__.OfflineControllerTests.test_09_fabricated_done_missing_output_and_hash_mismatch) ... ok
+test_10_reviewer_reject_or_self_review_does_not_advance (__main__.OfflineControllerTests.test_10_reviewer_reject_or_self_review_does_not_advance) ... ok
+test_11_timeout_has_bounded_retries_and_saves_failure (__main__.OfflineControllerTests.test_11_timeout_has_bounded_retries_and_saves_failure) ... ok
+test_12_malformed_and_nonzero_are_not_score_retries (__main__.OfflineControllerTests.test_12_malformed_and_nonzero_are_not_score_retries) ... ok
+test_13_technical_retry_succeeds_and_is_accounted (__main__.OfflineControllerTests.test_13_technical_retry_succeeds_and_is_accounted) ... ok
+test_14_technical_failure_exhausts_two_repairs (__main__.OfflineControllerTests.test_14_technical_failure_exhausts_two_repairs) ... ok
+test_15_dispatch_budget_exhaustion_includes_reviewer (__main__.OfflineControllerTests.test_15_dispatch_budget_exhaustion_includes_reviewer) ... ok
+test_16_wall_reservation_and_output_budgets (__main__.OfflineControllerTests.test_16_wall_reservation_and_output_budgets) ... ok
+test_17_input_and_completed_artifact_drift_on_resume (__main__.OfflineControllerTests.test_17_input_and_completed_artifact_drift_on_resume) ... ok
+test_18_interruption_journal_replay_no_duplicate_long_job (__main__.OfflineControllerTests.test_18_interruption_journal_replay_no_duplicate_long_job) ... ok
+test_19_partial_event_log_preserved_and_refused (__main__.OfflineControllerTests.test_19_partial_event_log_preserved_and_refused) ... ok
+test_20_real_os_writer_lock_rejects_concurrent_start (__main__.OfflineControllerTests.test_20_real_os_writer_lock_rejects_concurrent_start) ... FAIL
+test_21_stop_then_explicit_resume (__main__.OfflineControllerTests.test_21_stop_then_explicit_resume) ... ok
+test_22_real_process_stop_terminates_owned_fake_child (__main__.OfflineControllerTests.test_22_real_process_stop_terminates_owned_fake_child) ... FAIL
+test_23_path_traversal_symlink_and_unapproved_command_arguments (__main__.OfflineControllerTests.test_23_path_traversal_symlink_and_unapproved_command_arguments) ... ok
+test_24_weakening_policy_and_review_checks_rejected (__main__.OfflineControllerTests.test_24_weakening_policy_and_review_checks_rejected) ... ok
+test_25_valid_negative_advances_invalid_high_score_fails (__main__.OfflineControllerTests.test_25_valid_negative_advances_invalid_high_score_fails) ... ok
+test_26_live_adapter_never_spawns_and_flags_are_registered (__main__.OfflineControllerTests.test_26_live_adapter_never_spawns_and_flags_are_registered) ... ok
+test_27_no_fake_success_modifies_real_queue_or_creates_authorization (__main__.OfflineControllerTests.test_27_no_fake_success_modifies_real_queue_or_creates_authorization) ... ok
+test_28_schema_strict_json_and_config_drift (__main__.OfflineControllerTests.test_28_schema_strict_json_and_config_drift) ... ok
+
+======================================================================
+FAIL: test_20_real_os_writer_lock_rejects_concurrent_start (__main__.OfflineControllerTests.test_20_real_os_writer_lock_rejects_concurrent_start)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/parth_ws_bootstrap/controller_builds/20261019T220330Z/tests/test_controller.py", line 185, in test_20_real_os_writer_lock_rejects_concurrent_start
+    self.assertEqual(result.returncode,2);self.assertIn('writer lock',result.stdout)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 2
+
+======================================================================
+FAIL: test_22_real_process_stop_terminates_owned_fake_child (__main__.OfflineControllerTests.test_22_real_process_stop_terminates_owned_fake_child)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/parth_ws_bootstrap/controller_builds/20261019T220330Z/tests/test_controller.py", line 206, in test_22_real_process_stop_terminates_owned_fake_child
+    self.assertIsNotNone(child)
+AssertionError: unexpectedly None
+
+----------------------------------------------------------------------
+Ran 28 tests in 15.259s
+
+FAILED (failures=2)
