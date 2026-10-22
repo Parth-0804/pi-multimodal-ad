@@ -1,0 +1,94 @@
+This is an execution request: implement the changes, perform focused checks, safely hand over the current worker if needed, and resume the real experiment. Do not stop after an audit or proposed plan. Do not launch training on another machine.
+Keep the existing four conditions:
+- frozen_16_frames: preserve the authoritative frozen recipe, epoch count, and compatible results unchanged; the original reported recipe used five classifier-training epochs.
+- frozen_32_frames: preserve the authoritative frozen recipe, epoch count, and compatible results unchanged; the original reported recipe used five classifier-training epochs.
+- fine_tuned_16_frames: exactly two joint training epochs.
+- fine_tuned_32_frames: exactly two joint training epochs.
+For both fine-tuned conditions, train only the currently specified final CNN stage and classification head. Preserve the earlier backbone stages, architecture, pooling, frames, cohort, labels, preprocessing, augmentation policy, seeds, optimizer, learning rate, precision, training batch size, gradient accumulation, and per-epoch sample coverage.
+Preserve the first two epochs of the original learning-rate schedule: separate the two-epoch stopping rule from any original five-epoch scheduler horizon. Do not change the scheduler horizon implicitly.
+Preserve the recording-group outer folds, four inner OOF fits plus one final fit per condition and outer fold, recording-disjoint calibration, sensor branch, and F2 static probability-level logistic stacking.
+Do not add a decoder, hybrid encoder, temporal model, new modality, dataset, robustness experiment, or other task.
+This amendment supersedes earlier proposals to shorten the frozen runs or count all historical elapsed time inside this new window. Read actual state; do not assume an earlier proposal was applied.
+The primary result will compare the configured frozen and fine-tuned policies with different epoch budgets. It must not be described as an equal-epoch or equal-compute isolation of fine-tuning, a convergence study, or proof of the best architecture.
+Use amendment ID efficient_finetuning_two_epochs_24h_v1.
+At first acceptance of this prompt, persist its actual start time and an absolute deadline exactly 24 hours later in UTC; display Europe/Berlin time alongside it for readability.
+Include inspection, implementation, waiting for the old worker, verification, profiling, feature extraction, training, prediction, calibration, fusion, evaluation, and packaging inside this window. Record earlier elapsed work separately.
+On any retry, crash recovery, or repeated invocation with this amendment ID, reuse the original start and deadline. Never silently grant another day. If the deadline has already passed, report the existing state without starting more training.
+Reserve the final three hours for aggregation, final evaluation, packaging, and the results report. Include each fit’s prediction and calibration work in its estimated cost before admission. Do not start a fit or additional outer-fold cycle whose conservative remaining cost would consume that reserve.
+Aim to finish implementation and focused checks within the first hour; spend at most ten minutes of additional GPU work on optimization benchmarks, within all existing diagnostic-step limits. If optional optimization takes too long, use the validated original execution path with the amended epoch stopping rule and resume.
+Implement deadline checks inside long loops and between stages, atomic checkpoints, and a supervisor scoped only to this run. Stop computation early enough to write a usable checkpoint and report.
+At the hard deadline, leave a clear completed/partial status and no training process for this amendment continuing beyond its budget. Do not use a simple outer-loop check that lets an hours-long fit overrun.
+Test deadline and restart logic with an injected short/simulated deadline, without killing the real worker or sleeping for long periods.
+Keep the existing limits on GPU allocation, CPU allocation, fit starts, diagnostic optimizer steps, technical repairs, and storage. A new wall-clock window does not reset those counters.
+The historical report listed 110 fit starts, 20 disposable optimizer steps, two technical repairs per stage, and a 30-GiB total study storage cap; inspect authoritative current limits and cumulative usage. Do not count this amendment as a new 30-GiB allowance. Retain the configured free-space reserve.
+Inspect the actual running command, PID, working directory, environment, loaded configuration, source revision and local changes, run identity, fold/fit/epoch progress, checkpoint contents, and completed artifacts.
+Historical PID 53642 is only a clue, not authority to terminate a process. Confirm which process belongs to this study. Editing a configuration file alone does not update a running process that already loaded it.
+Preserve the current configuration, code revision/diff, checkpoints, logs, completed frozen outputs, and historical five-epoch fine-tuned outputs.
+Do not modify shared source that the active worker may still import: stage changes separately until it has stopped, then apply the amendment.
+If a restart is required, checkpoint and stop only the identified experiment worker at an available safe point. Verify it has stopped before launching its replacement. Do not use broad kill commands or leave two study workers competing for the GPU.
+If an already-running two-epoch fit is compatible, resume or retain it instead of restarting unnecessarily. Bring any retained worker under this amendment’s deadline supervisor and cumulative resource accounting; retaining it must not preserve an earlier unlimited-runtime policy.
+Use 00_experiments/visual_backbone_one_day/ for new amendment files, configuration, run state, checks, and reports. Reuse existing project code and apply only necessary backward-compatible changes.
+If this directory already contains earlier work, preserve it and allocate an unused run subdirectory. Store the stable amendment deadline at a discoverable location above individual run subdirectories. Preserve unrelated uncommitted changes.
+First take a short representative measurement: GPU activity and memory, allowed CPU affinity and thread counts, available RAM, loader/decode time, host-to-device transfer time, forward/backward time, and post-training prediction/calibration time.
+Use existing logs and lightweight instrumentation; do not run a full profiling experiment. Keep verification/benchmark RNG and model state isolated from actual training, or restore that state before resuming.
+Historical screenshots showed a T4 with 2,953 MiB allocated, utilization samples of 0% and 53%, and about 46 GiB available host RAM. Those snapshots do not establish the current bottleneck. Maximize completed valid work per hour, not a CPU percentage or VRAM percentage.
+Prioritize these changes, gated to the fine-tuned execution paths so frozen behavior remains unchanged:
+1. Prediction and calibration inference. The earlier report attributed about 36 minutes per fine-tuned 16-frame fit to post-training work. Check for avoidable repeated decoding or forward passes. Use evaluation mode and no-grad where appropriate. Benchmark an evaluation batch around twice the baseline, and only consider a further increase if measured throughput and memory permit it. Keep sample IDs and order aligned. Verify batch independence, including BatchNorm configuration, and compare probabilities with the original path on a fixed training-derived verification sample using a predeclared tolerance. Do not tune on outer assessment scores or change aggregation, calibration, or thresholds to gain speed.
+2. Input loading. Compare the existing loader with two workers; consider more only if useful and permitted. Bound prefetching and worker memory, limit worker-internal threads, and use pinned memory/nonblocking transfers only where measured to help. Preserve sampler order, labels, frame selection, preprocessing, and augmentation/RNG semantics. No dropped or duplicated samples. If worker changes cannot preserve the required semantics, retain the old loader for that path.
+3. CPU allocation. Determine whether the reported four-CPU affinity is an actual allocation or merely a self-imposed tuning setting. Increase it modestly only if a larger existing allocation is explicitly established and the change helps. Never override scheduler limits, cgroups, infrastructure policy, or other users’ allocations. If entitlement is unclear, keep the current limit.
+4. Avoidable computation. Remove confirmed redundant transfers, forwards, decoding, or synchronization. A frozen backbone prefix may execute under no-grad only if the boundary is correct and the final trainable stage and head remain under autograd. Preserve the existing train/eval modes, BatchNorm behavior, and dropout behavior. Never cache outputs of the trainable final stage across optimizer updates.
+5. Bounded reuse. Reuse valid existing cached data or frozen features with identities tied to exact sample/frame selection, preprocessing, weights, and partition. Do not freeze stochastic augmentation through caching. Do not create a large activation cache or copy datasets. Retained historical artifacts plus new checkpoints and caches must fit the existing total storage cap. Available host RAM does not justify loading everything into memory.
+Keep FP32 and the physical/effective training batch sizes unchanged for this amendment. Do not introduce AMP, compilation, new optimizer settings, changed BatchNorm modes, or larger training microbatches as untested speed switches.
+Implement only improvements supported by bounded measurements and focused correctness checks. Record baseline and modified throughput, measurement scope, peak memory, and the chosen settings. If an optimization fails checks or does not help, revert that optimization and proceed with the valid baseline.
+Build a fit-level provenance inventory before deciding to reuse anything.
+A compatible exact epoch-two checkpoint from an earlier five-epoch fine-tuned fit may be reused only if its data partitions, sample identities, frame count, preprocessing, initialization, seed, training policy, model modes, and first-two-epoch scheduler behavior match this amendment.
+A final epoch-five checkpoint is not an epoch-two checkpoint and cannot be relabelled or rolled back without the saved intermediate state. If the compatible epoch-two model is absent, refit only that affected fit from its original initialization.
+Use the model at the end of epoch two; do not select a different checkpoint using evaluation performance.
+For mid-fit resumption, restore the optimizer, scheduler, RNG, sampler, and relevant loader state as required. If exact mid-epoch continuation is unsupported, resume from the last compatible epoch boundary and record repeated computation; do not silently splice incompatible states.
+Existing frozen and sensor artifacts may be referenced unchanged when their provenance matches.
+Recompute two-epoch fine-tuned predictions, calibration, OOF outputs, and final assessment outputs, and refit the relevant F2 stacker from compatible OOF probabilities.
+Do not reuse a five-epoch fine-tuned calibrator or stacker with two-epoch branch outputs. Keep old five-epoch results separate and intact.
+Keep the original predetermined fold identities and order.
+Prioritize the first outer fold that is not complete under the amended policy, normally outer fold 1. Finish all four conditions and their calibration/F2 assessment for that fold before attempting another full outer-fold cycle.
+One fully assessed matched outer fold contains four conditions times four inner OOF fits plus one final fit: twenty visual fits before compatible reuse.
+After the first representative two-epoch fits, update remaining-time estimates using measured end-to-end costs. Include startup, uncached feature extraction, prediction, calibration, fusion, checkpoint writing, and final reporting.
+Do not extrapolate 32-frame cost with confidence before observing it. Admit another complete outer-fold cycle only if a conservative estimate shows that all four conditions will finish before the reserved reporting period. Do not promise all five outer folds or all 100 fits in a day.
+Preserve completed extra frozen-fold coverage. Cheap additional frozen-only work using existing cached features is permissible only if it does not delay the matched milestone or consume the reporting reserve.
+The primary comparison must use only the intersection of completely assessed outer folds across all four conditions. Report unmatched extra frozen coverage separately. Do not compare a five-fold frozen aggregate with a one-fold fine-tuned result as though they were matched.
+Keep recording-group separation for outer assessment, inner OOF, and calibration. Train the F2 meta-model on correctly held-out branch probabilities, never in-sample substitutes.
+Do not reduce inner folds, move recordings, change thresholds using outer assessment, select folds by their metrics, or lower epochs for only the slower condition to force completion.
+If time is insufficient, checkpoint and report partial coverage honestly.
+Before accepting the revised execution path, verify:
+- Frozen configuration and referenced outputs are unchanged; record identities/checksums.
+- Both fine-tuned conditions stop at exactly two complete epochs with the intended learning-rate prefix, training sample coverage, and trainable-module boundary.
+- Recording groups remain disjoint where required, and predictions map to the correct recording/segment/fold/condition.
+- Optimized prediction agrees with the original FP32 path within the predeclared tolerance, for example atol=1e-6 and rtol=1e-5 on probabilities when appropriate. Decide the tolerance before comparing; do not relax it after failure. Revert incompatible batching.
+- Loader changes preserve the intended samples, order, frames, labels, and randomness policy.
+- The intended final stage and head receive gradients and update while frozen weights/modes remain as prescribed. Prefer checking the first real planned training update instead of consuming additional disposable optimizer steps.
+- Deadline persistence, run locking, checkpoint resumption, and cumulative resource accounting work. Use focused unit/smoke checks, not a broad new testing campaign.
+Once checks pass, start or resume the real training process with a verified command and durable logs. Use the project’s existing permitted session/job mechanism.
+Record the actual PID/job/session, absolute paths, deadline, and how to inspect progress. Verify from the new log that the intended configuration is loaded and the process advances. Do not claim training resumed merely because a command was prepared.
+Continue monitoring according to this environment’s supported workflow; do not claim unattended monitoring if it is unavailable.
+Never bypass an actual access or policy block; report the exact blocker and preserve work if one prevents execution.
+Maintain a readable README_FIRST.md, protocol_amendment.md, immutable configuration snapshot, budget/state file, performance_report.md, fit/checkpoint provenance manifest, focused check results, and source revision/diff.
+Log actual epoch counts and timing by stage, including reused, repeated, skipped, and incomplete fits.
+Produce metrics and per-recording/segment predictions with the applicable outer fold, condition, model epoch count, labels, and visual/sensor/F2 scores.
+Produce a paired comparison table on common completed outer folds, using the existing predeclared metrics, including AP where already specified.
+Preserve the existing valid uncertainty method; identify the recording as the sampling unit where relevant, and state that uncertainty from one observed fold does not establish variation across unobserved folds.
+Keep the checkpoints, calibrators, and F2 coefficients needed to replay completed results, with checksums and absolute paths.
+Make a small review package of source/configuration/manifests/predictions/metrics/checks/reports; reference large weights and caches instead of duplicating them.
+Before writing checkpoints or packages, account for peak storage including temporary atomic checkpoint files and ZIP staging; stay within the shared study cap and configured free-space reserve throughout the write.
+Do not delete historical checkpoints to make room without an existing authorized retention rule.
+Report:
+- What changed and why.
+- What remained the authoritative frozen recipe.
+- Numerical and performance checks.
+- Current worker status.
+- The fixed start/deadline and remaining time.
+- Actual completed common folds.
+- All epoch budgets.
+- Measured versus projected runtime.
+- Storage/resource usage.
+- Any incomplete artifacts.
+Label a one-fold result as a pilot and the whole amendment as an asymmetric epoch-budget comparison. Do not claim convergence, general robustness, optimality, or completion of the original five-fold study if it did not finish.
+Proceed now with implementation, focused verification, and controlled resumption. Ask only for a genuinely missing decision or access that prevents safe progress; do all otherwise authorized work first.

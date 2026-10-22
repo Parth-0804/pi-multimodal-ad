@@ -1,0 +1,80 @@
+--- before/run_study.py
++++ effective/run_study.py
+@@ -5,6 +5,8 @@
+ from common import ROOT,config,read,write,event,resources,check_originals
+ 
+ def main():
++ from execution_policy import install
++ install()
+  p=argparse.ArgumentParser();p.add_argument('command',choices=['prepare','preflight','train','resume','evaluate','package','status','stop','benchmark','focused_checks','benchmark32','supervise']);a=p.parse_args()
+  if a.command=='supervise':
+   from supervisor import main as supervisor_main
+--- before/supervisor.py
++++ effective/supervisor.py
+@@ -6,8 +6,8 @@
+ from budget import remaining,clock
+ 
+ def action(now,cutoff,deadline,stopped_at=None):
+- if now>=deadline:return 'hard_stop'
+- if now>=cutoff:return 'kill' if stopped_at is not None and now-stopped_at>=60 else 'checkpoint_stop'
++ if deadline is not None and now>=deadline:return 'hard_stop'
++ if cutoff is not None and now>=cutoff:return 'kill' if stopped_at is not None and now-stopped_at>=60 else 'checkpoint_stop'
+  return 'continue'
+ 
+ def main():
+@@ -16,8 +16,9 @@
+   # Hold legacy writer lock too: original run cannot restart concurrently.
+   with (REPO/config()['original_run']/'study_writer.lock').open('a') as oldlock:
+    fcntl.flock(oldlock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+-   if remaining()<=180:event('REPORTING_ONLY_DEADLINE_OR_RESERVE');finalize();return
+-   d=clock();cutoff=datetime.datetime.fromisoformat(d['training_cutoff_utc']).timestamp()-90;deadline=datetime.datetime.fromisoformat(d['deadline_utc']).timestamp();stopped=None
++   left=remaining()
++   if left is not None and left<=180:event('REPORTING_ONLY_DEADLINE_OR_RESERVE');finalize();return
++   d=clock();cutoff=datetime.datetime.fromisoformat(d['training_cutoff_utc']).timestamp()-90 if d['training_cutoff_utc'] is not None else None;deadline=datetime.datetime.fromisoformat(d['deadline_utc']).timestamp() if d['deadline_utc'] is not None else None;stopped=None
+    log=(ROOT/'logs/amended_training.log').open('a',buffering=1)
+    command=['bash',str(ROOT/'source/study.sh'),'resume'];worker=subprocess.Popen(command,cwd=REPO,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+    write(ROOT/'worker_status.json',{'supervisor_pid':os.getpid(),'worker_pid':worker.pid,'command':command,'cwd':str(REPO),'clock':d,'status':'RUNNING','launched_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()})
+@@ -26,7 +27,7 @@
+      todo=action(time.time(),cutoff,deadline,stopped)
+      if todo=='checkpoint_stop' and stopped is None:os.killpg(worker.pid,signal.SIGTERM);stopped=time.time()
+      elif todo in ['kill','hard_stop']:os.killpg(worker.pid,signal.SIGKILL)
+-     time.sleep(min(5,max(.01,deadline-time.time())))
++     time.sleep(5 if deadline is None else min(5,max(.01,deadline-time.time())))
+    finally:
+     if worker.poll() is None:
+      os.killpg(worker.pid,signal.SIGTERM)
+--- before/amendment_report.py
++++ effective/amendment_report.py
+@@ -20,9 +20,12 @@
+  status=('PAUSED — PARTIAL' if paused else 'COMPLETE' if len(folds)==5 else 'PARTIAL') if final else 'RUNNING / INCOMPLETE'
+  pause_note=''
+  if paused and (ROOT/'checks/paused_checkpoint_validation.json').exists():
+-  pc=read(ROOT/'checks/paused_checkpoint_validation.json');pause_note=f"External workflow requested a safe priority stop for encoder/noise work. The sole GPU is occupied by that separate workflow. STOP.json remains intact; this run has no training process. Checkpoint: one full epoch plus {pc['next_position_in_epoch']}/{pc['G_segments_per_epoch']} segments in epoch two; {pc['optimizer_updates']} updates; two complete epochs have NOT finished. Its model/optimizer/RNG/order and source/config identities pass CPU validation. First-epoch BCE matches the original five-epoch recipe exactly (absolute difference {pc['first_epoch_loss_absolute_difference']}). See checks/external_priority_pause.json and paused_checkpoint_validation.json. The deadline continues during this pause." 
++  pc=read(ROOT/'checks/paused_checkpoint_validation.json');pause_note=f"External workflow requested a safe priority stop for encoder/noise work. The sole GPU is occupied by that separate workflow. STOP.json remains intact; this run has no training process. Checkpoint: one full epoch plus {pc['next_position_in_epoch']}/{pc['G_segments_per_epoch']} segments in epoch two; {pc['optimizer_updates']} updates; two complete epochs have NOT finished. Its model/optimizer/RNG/order and source/config identities pass CPU validation. First-epoch BCE matches the original five-epoch recipe exactly (absolute difference {pc['first_epoch_loss_absolute_difference']}). See checks/external_priority_pause.json and paused_checkpoint_validation.json. The effective execution policy remains recorded in execution_policy.json." 
+  w=read(ROOT/'worker_status.json') if (ROOT/'worker_status.json').exists() else {'status':'not launched'}
+- limits=f"Fixed start: {d['accepted_utc']} ({d['accepted_Europe_Berlin']} Berlin). Hard deadline: {d['deadline_utc']} ({d['deadline_Europe_Berlin']} Berlin). Training cutoff: {d['training_cutoff_utc']}; last three hours reserved for reporting. Time remaining at this document write: {max(0,remaining(reporting=True))/3600:.2f} h. Prior study elapsed is separate, not subtracted from this amendment clock."
++ left=remaining(reporting=True)
++ if left is None:limits=f"Wall-time limit removed by the user's explicit amendment on {d['effective_policy_authorized_utc']}. There is no training cutoff or hard deadline. Frozen16/32 retain five epochs; fine-tuned16/32 use exactly two joint epochs. Cumulative GPU/CPU/storage/fit/diagnostic limits remain unchanged. The old24h clock/config fields are preserved as historical checkpoint provenance; execution_policy.json records the effective policy."
++ else:
++  limits=f"Fixed start: {d['accepted_utc']} ({d['accepted_Europe_Berlin']} Berlin). Hard deadline: {d['deadline_utc']} ({d['deadline_Europe_Berlin']} Berlin). Training cutoff: {d['training_cutoff_utc']}; last three hours reserved for reporting. Time remaining at this document write: {max(0,remaining(reporting=True))/3600:.2f} h. Prior study elapsed is separate, not subtracted from this amendment clock."
+  coverage=f"Common completely assessed outer folds: {', '.join(folds) or 'none'}. Only this four-condition intersection supplies the primary comparison. Unmatched frozen coverage is listed separately in `comparison/unmatched_coverage.json`. A one-fold result is a pilot; no statement extends to the unobserved folds."
+  limitation="This is an asymmetric epoch-budget comparison: frozen heads use five epochs, final-stage plus head use exactly two joint epochs. It is not an equal-epoch/equal-compute fine-tuning isolation, convergence study, optimal architecture claim, robustness test or completion of unobserved folds. Recording-cluster bootstrap uncertainty conditions on these fitted models; one observed fold cannot establish variation across unobserved folds. One seed family; previously exposed REASSEMBLE cohort; fixed0.5 threshold. No outer scores select settings, stopping, folds or batching. Historical Task4 remains excluded. Review is self-review; independent review is outstanding."
+  unmatched_table=''
+@@ -35,7 +38,7 @@
+  if ev and folds:
+   q=pd.read_csv(ROOT/'comparison/paired_comparisons.csv');contrast=q.to_markdown(index=False) if __import__('importlib').util.find_spec('tabulate') else q.to_csv(index=False)
+  recommendation='Review the matched pilot and its evidence before authorizing more outer-fold coverage.' if len(folds)==1 else 'Review the completed matched evidence before authorizing any additional scientific change.' if len(folds)>1 else 'Review the checkpoint and remaining-cost evidence before authorizing another bounded continuation of this same amended protocol.'
+- if paused:recommendation='Resume this same checkpoint only after the priority encoder/noise workflow releases the GPU and only if the original deadline and conservative admission still permit it.'
++ if paused:recommendation='Resume the saved checkpoint when its explicit pause is resolved and the allocated GPU is free; retain the effective execution policy and all resource caps.'
+  text('comparison/RESULTS_SUMMARY.md',f"# Asymmetric epoch-budget backbone study — {status}\n\n{coverage}\n\n{pause_note}\n\n{table}\n\nAP is sklearn average_precision_score on directly keyed outer assessment predictions. Mean-fold AP, AUROC, fixed-threshold metrics and Brier scores are separate numerical tables.\n\n{contrast}\n\n{unmatched_table}\n\n{limitation}\n\n{limits}\n\nNext decision: {recommendation}\n")
+  text('README_FIRST.md',f"# Two-epoch fine-tuning / five-epoch frozen backbone comparison\n\n**{status}**. {coverage}\n\n[Results](comparison/RESULTS_SUMMARY.md) · [Protocol amendment](protocol_amendment.md) · [Performance](performance_report.md) · [Progress](progress.json) · [Worker](worker_status.json) · [Focused checks](checks/focused_checks.json).\n\n{table}\n\n{limits}\n\n{pause_note}\n\nWorker status: `{w.get('status')}`; supervisor PID `{w.get('supervisor_pid')}`, worker PID `{w.get('worker_pid')}`. See `logs/amended_training.log`. Resume only via `bash {ROOT.relative_to(REPO)}/source/study.sh supervise`; it reuses the stable clock and rejects a second writer. No other machine, future schedule or new deadline is created. An existing STOP.json blocks resumption; preserve it as provenance and clear only after the recorded priority dependency has completed. Do not bypass it to run a competing writer.\n\n{limitation}\n\nSingle next decision after stopping: {recommendation}\n")
+  b=read(ROOT/'checks/performance_benchmark.json');b32=read(ROOT/'checks/prediction32_batch_check.json');completed=[];models=[]
+@@ -46,7 +49,7 @@
+  write(ROOT/'provenance/fit_checkpoint_manifest.json',{'completed_fits':completed,'retained_models':models,'incomplete_checkpoints':[{'path':str(p.resolve()),'bytes':p.stat().st_size,'sha256':sha(p)} for p in ROOT.glob('**/visual_fit/in_progress.pt')],'historical_inventory':'fit_provenance_inventory_initial.json and checkpoint_inventory_initial.json; old5epoch FT outputs excluded from new fit reuse','original_source_snapshot':'original_source_snapshot/','shared_cache_reference':str((REPO/config()['original_run']/'shared_cache').resolve())})
+  write(ROOT/'budget_state.json',{'clock':d,'now_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'remaining_seconds':remaining(reporting=True),'training_remaining_seconds':remaining(),'full_fit_starts_cumulative':state['full_visual_fits_started'],'full_fit_cap':config()['full_visual_fit_cap'],'diagnostic_steps_cumulative':state['preflight_optimizer_steps'],'diagnostic_step_cap':config()['preflight_step_cap'],'technical_repairs_cumulative':state['technical_repairs'],'storage':resources(),'worker':w,'common_folds':folds,'status':status})
+  measured=pd.DataFrame(completed);cost=measured.to_csv(index=False) if len(measured) else 'No completed amendment fits yet.'
+- text('performance_report.md',f"# Measured performance and resource policy\n\n{limits}\n\nBounded benchmark: {b['wall_seconds']+b32['wall_seconds']:.2f} s total, zero optimizer steps. Both paths used identical warmed G-only segments; these warm-cache figures exclude cold video decoding. Two loader threads with worker-local video/processor state preserve order and exact pixel tensors; only two in-flight tensors. No worker changes global training RNG. CPU affinity stays0–3 because increased entitlement was not established. No pinning/nonblocking change, mixed precision, larger training microbatch, compilation or prefix activation cache. Frozen execution remains the authoritative original five-epoch cached-feature path. The frozen prefix already has no autograd history when its inputs and parameters do not require gradients, so no new graph boundary was introduced.\n\n```json\n{json.dumps(b['benchmarks'],indent=2)}\n```\n\n16-frame probability max absolute difference: {b['probability_max_abs']:.12g};32-frame: {b32['probability_max_abs']:.12g}. Fixed tolerance atol1e-6/rtol1e-5.32-frame benchmark is numerical inference checking, not observed32-frame fitting cost. No relaxed tolerance or assessment tuning. Baseline historical16-frame C/V prediction cost was {b['baseline_postfit_C_seconds']+b['baseline_postfit_V_seconds']:.1f}s. Actual amendment fit times (reused fitting time is historical):\n\n```csv\n{cost}\n```\n\nInitial full first-cycle projection was19.13hours before any32frame fit; it remains provisional. At the external pause, actual fine-tuned16 fitting consumed905.56seconds for3621segment presentations (one complete epoch plus part of epoch two), not a completed end-to-end fit. No measured two-epoch C/V/calibration or32frame fitting cost is available yet; do not present the benchmark as that cost.\n\nPer-fit admission includes raw training, C/V inference, sigmoid calibration, full saved-model replay, startup/checkpoints and F2; measured completed same-frame fits update estimates with35% margin. Unobserved32 costs remain provisional. No new outer cycle is admitted unless all four policies conservatively fit before the reporting reserve. Exact updates and first-real-update loader/H2D/forward-backward timings are saved with each fit. Total disk accounting sums original and amendment regular files, without double-counting shared-cache symlinks; atomic write/ZIP peak bytes are reserved before write. No extra30GiB allocation.\n")
++ text('performance_report.md',f"# Measured performance and resource policy\n\n{limits}\n\nBounded benchmark: {b['wall_seconds']+b32['wall_seconds']:.2f} s total, zero optimizer steps. Both paths used identical warmed G-only segments; these warm-cache figures exclude cold video decoding. Two loader threads with worker-local video/processor state preserve order and exact pixel tensors; only two in-flight tensors. No worker changes global training RNG. CPU affinity stays0–3 because increased entitlement was not established. No pinning/nonblocking change, mixed precision, larger training microbatch, compilation or prefix activation cache. Frozen execution remains the authoritative original five-epoch cached-feature path. The frozen prefix already has no autograd history when its inputs and parameters do not require gradients, so no new graph boundary was introduced.\n\n```json\n{json.dumps(b['benchmarks'],indent=2)}\n```\n\n16-frame probability max absolute difference: {b['probability_max_abs']:.12g};32-frame: {b32['probability_max_abs']:.12g}. Fixed tolerance atol1e-6/rtol1e-5.32-frame benchmark is numerical inference checking, not observed32-frame fitting cost. No relaxed tolerance or assessment tuning. Baseline historical16-frame C/V prediction cost was {b['baseline_postfit_C_seconds']+b['baseline_postfit_V_seconds']:.1f}s. Actual amendment fit times (reused fitting time is historical):\n\n```csv\n{cost}\n```\n\nInitial full first-cycle projection was19.13hours before any32frame fit; it remains provisional. At the external pause, actual fine-tuned16 fitting consumed905.56seconds for3621segment presentations (one complete epoch plus part of epoch two), not a completed end-to-end fit. No measured two-epoch C/V/calibration or32frame fitting cost is available yet; do not present the benchmark as that cost.\n\nPer-fit admission includes raw training, C/V inference, sigmoid calibration, full saved-model replay, startup/checkpoints and F2; measured completed same-frame fits update estimates with35% margin. Unobserved32 costs remain provisional. The user removed wall-time admission limits; fixed epochs, fold order, cumulative fit/diagnostic caps and storage/free-space guards still apply. Runtime estimates remain descriptive. Exact updates and first-real-update loader/H2D/forward-backward timings are saved with each fit. Total disk accounting sums original and amendment regular files, without double-counting shared-cache symlinks; atomic write/ZIP peak bytes are reserved before write. No extra30GiB allocation.\n")
+ 
+ def finish():
+  from evaluation import evaluate

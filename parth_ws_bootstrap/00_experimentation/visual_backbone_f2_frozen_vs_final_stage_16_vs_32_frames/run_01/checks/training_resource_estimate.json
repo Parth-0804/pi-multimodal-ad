@@ -1,0 +1,49 @@
+{
+  "estimates": [
+    {
+      "condition": "frozen_16_frames",
+      "planned_visual_fits": 25,
+      "segment_presentations": 287620,
+      "single_segment_update_mean_seconds": 0.37144970650115283,
+      "estimated_raw_fit_seconds_upper_including_per_segment_optimizer_overhead": 106836.36458386158,
+      "peak_preflight_cuda_bytes": 2285725184,
+      "expected_compact_weights_bytes_all_fits": 11494500
+    },
+    {
+      "condition": "fine_tuned_16_frames",
+      "planned_visual_fits": 25,
+      "segment_presentations": 287620,
+      "single_segment_update_mean_seconds": 0.1698479269980453,
+      "estimated_raw_fit_seconds_upper_including_per_segment_optimizer_overhead": 48851.66076317779,
+      "peak_preflight_cuda_bytes": 2431106048,
+      "expected_compact_weights_bytes_all_fits": 850355300
+    },
+    {
+      "condition": "frozen_32_frames",
+      "planned_visual_fits": 25,
+      "segment_presentations": 287620,
+      "single_segment_update_mean_seconds": 0.23050933350168634,
+      "estimated_raw_fit_seconds_upper_including_per_segment_optimizer_overhead": 66299.09450175503,
+      "peak_preflight_cuda_bytes": 4474281472,
+      "expected_compact_weights_bytes_all_fits": 11494500
+    },
+    {
+      "condition": "fine_tuned_32_frames",
+      "planned_visual_fits": 25,
+      "segment_presentations": 287620,
+      "single_segment_update_mean_seconds": 0.26780388400220545,
+      "estimated_raw_fit_seconds_upper_including_per_segment_optimizer_overhead": 77025.75311671433,
+      "peak_preflight_cuda_bytes": 4623345664,
+      "expected_compact_weights_bytes_all_fits": 850355300
+    }
+  ],
+  "total_planned_visual_fits": 100,
+  "sensor_fits": 25,
+  "wall_cap_seconds": null,
+  "maximum_full_visual_fits": 110,
+  "storage_ceiling_bytes": 32212254720,
+  "pixel_disk_cache_cap_bytes": 25769803776,
+  "pixel_RAM_cap_bytes": 8589934592,
+  "host_memory_ceiling_bytes": 34359738368,
+  "uncertainties": "Training-only one-segment timings include optimizer overhead each segment, unlike accumulated fitting; random decode/cache misses, inference and I/O add variable cost. Estimate is not a completion promise. Final scientific fits always start independently from original pretrained weights."
+}

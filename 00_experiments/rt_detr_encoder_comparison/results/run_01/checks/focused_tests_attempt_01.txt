@@ -1,0 +1,50 @@
+test_actual_native_prefix_guards_and_frozen_buffers_on_synthetic_pixels (test_study.NativeOriginalWeightCPU.test_actual_native_prefix_guards_and_frozen_buffers_on_synthetic_pixels)
+Original checkpoint; CPU 64px synthetic images, NOT real-data preflight. ... 
+Loading weights:   0%|          | 0/526 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 526/526 [00:00<00:00, 10737.46it/s]
+FAIL
+test_all_locked_partitions_and_negative_recording_leakage (test_study.ScientificContracts.test_all_locked_partitions_and_negative_recording_leakage) ... ok
+test_keyed_join_rejects_wrong_rows_and_labels (test_study.ScientificContracts.test_keyed_join_rejects_wrong_rows_and_labels) ... ERROR
+test_mean_pooling_equal_scale_weights_and_frame_grouping (test_study.ScientificContracts.test_mean_pooling_equal_scale_weights_and_frame_grouping) ... ok
+test_paired_cluster_bootstrap_shared_multiplicities (test_study.ScientificContracts.test_paired_cluster_bootstrap_shared_multiplicities) ... ok
+test_raw_training_is_G_only_and_checkpoint_replay (test_study.ScientificContracts.test_raw_training_is_G_only_and_checkpoint_replay) ... ok
+test_small_sensor_calibration_fusion_and_metrics (test_study.ScientificContracts.test_small_sensor_calibration_fusion_and_metrics) ... ok
+test_standardization_near_zero_and_missing (test_study.ScientificContracts.test_standardization_near_zero_and_missing) ... ok
+test_write_boundary_and_completed_hash_rejection (test_study.ScientificContracts.test_write_boundary_and_completed_hash_rejection) ... ok
+
+======================================================================
+ERROR: test_keyed_join_rejects_wrong_rows_and_labels (test_study.ScientificContracts.test_keyed_join_rejects_wrong_rows_and_labels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/rt_detr_encoder_comparison/tests/test_study.py", line 72, in test_keyed_join_rejects_wrong_rows_and_labels
+    with self.assertRaises(AssertionError):join_branches(a,a)
+                                           ^^^^^^^^^^^^^^^^^^
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/rt_detr_encoder_comparison/code/fitting.py", line 215, in join_branches
+    z=visual.merge(sensor[KEYS+['failure','raw_sensor_logit','p_sensor','sensor_fit_id']],on=KEYS,validate='one_to_one',suffixes=('','_sensor'))
+                   ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/lib/python3.12/site-packages/pandas/core/frame.py", line 4119, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 6212, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 6264, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['raw_sensor_logit', 'p_sensor', 'sensor_fit_id'] not in index"
+
+======================================================================
+FAIL: test_actual_native_prefix_guards_and_frozen_buffers_on_synthetic_pixels (test_study.NativeOriginalWeightCPU.test_actual_native_prefix_guards_and_frozen_buffers_on_synthetic_pixels)
+Original checkpoint; CPU 64px synthetic images, NOT real-data preflight.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/rt_detr_encoder_comparison/tests/test_study.py", line 109, in test_actual_native_prefix_guards_and_frozen_buffers_on_synthetic_pixels
+    model=original('cpu');before=model.active_state();torch.manual_seed(7)
+          ^^^^^^^^^^^^^^^
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/rt_detr_encoder_comparison/code/features.py", line 127, in original
+    assert name in keys, 'UNINITIALIZED_USED_STATE ' + name
+           ^^^^^^^^^^^^
+AssertionError: UNINITIALIZED_USED_STATE model.encoder.aifi.0.layers.0.self_attn.k_proj.weight
+
+----------------------------------------------------------------------
+Ran 9 tests in 5.162s
+
+FAILED (failures=1, errors=1)

@@ -1,0 +1,112 @@
+{
+  "utc": "2026-10-20T16:21:39.797326+00:00",
+  "evidence": "Constructed original local pretrained backbone object on CPU; no forward/gradient/training/model score",
+  "backbone_class": "transformers.models.rt_detr.modeling_rt_detr_resnet.RTDetrResNetBackbone",
+  "backbone_source": "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/lib/python3.12/site-packages/transformers/models/rt_detr/modeling_rt_detr_resnet.py",
+  "backbone_source_sha256": "769b0ff84ae3d60a979bdf293de0fd71e76947fb4119f8d58d112baea93ca3c7",
+  "selected_features": [
+    "stage2",
+    "stage3",
+    "stage4"
+  ],
+  "stage_count": 4,
+  "final_stage_name": "backbone.encoder.stages.3",
+  "total_CNN_parameters": 11190112,
+  "final_stage_parameters": 8388608,
+  "final_stage_parameter_shapes": {
+    "layers.0.shortcut.1.convolution.weight": [
+      512,
+      256,
+      1,
+      1
+    ],
+    "layers.0.layer.0.convolution.weight": [
+      512,
+      256,
+      3,
+      3
+    ],
+    "layers.0.layer.1.convolution.weight": [
+      512,
+      512,
+      3,
+      3
+    ],
+    "layers.1.layer.0.convolution.weight": [
+      512,
+      512,
+      3,
+      3
+    ],
+    "layers.1.layer.1.convolution.weight": [
+      512,
+      512,
+      3,
+      3
+    ]
+  },
+  "final_stage_buffer_shapes": {
+    "layers.0.shortcut.1.normalization.weight": [
+      512
+    ],
+    "layers.0.shortcut.1.normalization.bias": [
+      512
+    ],
+    "layers.0.shortcut.1.normalization.running_mean": [
+      512
+    ],
+    "layers.0.shortcut.1.normalization.running_var": [
+      512
+    ],
+    "layers.0.layer.0.normalization.weight": [
+      512
+    ],
+    "layers.0.layer.0.normalization.bias": [
+      512
+    ],
+    "layers.0.layer.0.normalization.running_mean": [
+      512
+    ],
+    "layers.0.layer.0.normalization.running_var": [
+      512
+    ],
+    "layers.0.layer.1.normalization.weight": [
+      512
+    ],
+    "layers.0.layer.1.normalization.bias": [
+      512
+    ],
+    "layers.0.layer.1.normalization.running_mean": [
+      512
+    ],
+    "layers.0.layer.1.normalization.running_var": [
+      512
+    ],
+    "layers.1.layer.0.normalization.weight": [
+      512
+    ],
+    "layers.1.layer.0.normalization.bias": [
+      512
+    ],
+    "layers.1.layer.0.normalization.running_mean": [
+      512
+    ],
+    "layers.1.layer.0.normalization.running_var": [
+      512
+    ],
+    "layers.1.layer.1.normalization.weight": [
+      512
+    ],
+    "layers.1.layer.1.normalization.bias": [
+      512
+    ],
+    "layers.1.layer.1.normalization.running_mean": [
+      512
+    ],
+    "layers.1.layer.1.normalization.running_var": [
+      512
+    ]
+  },
+  "CNN_forward_called": false,
+  "detector_transformer_forward_called": false
+}

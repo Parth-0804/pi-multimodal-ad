@@ -1,0 +1,86 @@
+{
+  "study": "F2 clean input visual backbone freeze/finalstage x16/32frames",
+  "started_utc": "2026-10-20T15:47:00+00:00",
+  "start_basis": "Initial prompt reading approximately15:47UTC; no interrupted matching writer found",
+  "status": "FITTING_VISUAL",
+  "full_visual_fits_planned": 100,
+  "full_visual_fit_cap": 110,
+  "full_visual_fits_started": 7,
+  "preflight_optimizer_steps": 9,
+  "preflight_optimizer_step_cap": 20,
+  "new_storage_cap_bytes": 32212254720,
+  "minimum_free_bytes": 10737418240,
+  "wall_time_limit_seconds": null,
+  "time_scope": "Latest user explicitly removes24-hour limit; fixed5epochs/no score-based rescue unchanged",
+  "gpu_policy": "Use suitable available local GPU,one training worker; preflight observed sole idle TeslaT4",
+  "completed_jobs": [
+    {
+      "condition": "frozen_16_frames",
+      "fold": "fold_01",
+      "assessment_predictions": "frozen_16_frames/fold_01/assessment_predictions.csv"
+    }
+  ],
+  "active_job": {
+    "condition": "fine_tuned_16_frames",
+    "fold": "fold_01",
+    "role": "inner_fold_02",
+    "epoch": 5,
+    "segments_in_epoch": 992,
+    "G_segments": 2348,
+    "optimizer_updates": 1300,
+    "fit_id": "b483a3b7e696a2d6f5705612b41fb65323c7852661165712dbcefe3f6f7c5f53"
+  },
+  "failures": [
+    {
+      "command": "prepare",
+      "error": "RuntimeError('PIXEL_CACHE_ESTIMATE_BLOCKER: lossless pixel cache plus checkpoint reserve exceeds30GiB; no silent changed pixels')"
+    }
+  ],
+  "technical_repairs": {
+    "prepare": 1
+  },
+  "scientific_result_requirement": "Valid measured outcomes, including negative/inconclusive; no desired-score guarantee",
+  "historical_Task4": "EXCLUDED",
+  "historical_Task1": "Not resumed; distinct new protocol",
+  "write_root": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01",
+  "live_automation": false,
+  "updated_utc": "2026-10-20T23:16:39.790379+00:00",
+  "blocker": null,
+  "selected": 3875,
+  "recording": "2025-01-14-12-05-01",
+  "elapsed_seconds": 10331.033215235002,
+  "storage": {
+    "new_bytes": 26182638127,
+    "free_bytes": 23666827264,
+    "host_RSS_bytes": 11970899968,
+    "host_memory_policy": "Monitored process RSS; not claimed OS hard limit"
+  },
+  "samples": 4530,
+  "exclusions": 0,
+  "visual_fits": 100,
+  "resolved_blockers": [
+    {
+      "blocker": "RuntimeError('PIXEL_CACHE_ESTIMATE_BLOCKER: lossless pixel cache plus checkpoint reserve exceeds30GiB; no silent changed pixels')",
+      "resolution": "Full pixel-cache materialization rejected; lossless bounded cache with exact content hashes; cohort completed",
+      "evidence": "provenance/technical_repair_01_bounded_pixel_cache/"
+    }
+  ],
+  "cohort_samples": 4530,
+  "cohort_failures": 509,
+  "cohort_recordings": 148,
+  "total_elapsed_seconds": 26979.790397,
+  "remaining_full_visual_fit_starts": 103,
+  "remaining_disposable_optimizer_steps": 11,
+  "elapsed_seconds_scope": "elapsed_seconds describes an individual stage invocation when supplied; total_elapsed_seconds includes the full task from its approximate recorded start",
+  "condition": "fine_tuned_16_frames",
+  "conditions": 4,
+  "rows": 4525,
+  "total": 4530,
+  "feature_width": 896,
+  "fold": "fold_01",
+  "role": "inner_fold_02",
+  "fit_id": "4fe7b01b966bbcb5c47acffe66595e7f1849cc38a920ebf7590ee15fb954f9c0",
+  "epoch": 4,
+  "optimizer_updates": 1176,
+  "full_visual_fits_completed": 6
+}

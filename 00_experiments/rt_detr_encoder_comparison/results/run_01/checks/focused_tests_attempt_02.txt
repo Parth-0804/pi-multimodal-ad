@@ -1,0 +1,44 @@
+test_actual_native_prefix_guards_and_frozen_buffers_on_synthetic_pixels (test_study.NativeOriginalWeightCPU.test_actual_native_prefix_guards_and_frozen_buffers_on_synthetic_pixels)
+Original checkpoint; CPU 64px synthetic images, NOT real-data preflight. ... 
+Loading weights:   0%|          | 0/526 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 526/526 [00:00<00:00, 9316.82it/s]
+ERROR
+test_all_locked_partitions_and_negative_recording_leakage (test_study.ScientificContracts.test_all_locked_partitions_and_negative_recording_leakage) ... ok
+test_keyed_join_rejects_wrong_rows_and_labels (test_study.ScientificContracts.test_keyed_join_rejects_wrong_rows_and_labels) ... ok
+test_mean_pooling_equal_scale_weights_and_frame_grouping (test_study.ScientificContracts.test_mean_pooling_equal_scale_weights_and_frame_grouping) ... ok
+test_paired_cluster_bootstrap_shared_multiplicities (test_study.ScientificContracts.test_paired_cluster_bootstrap_shared_multiplicities) ... ok
+test_raw_training_is_G_only_and_checkpoint_replay (test_study.ScientificContracts.test_raw_training_is_G_only_and_checkpoint_replay) ... ok
+test_small_sensor_calibration_fusion_and_metrics (test_study.ScientificContracts.test_small_sensor_calibration_fusion_and_metrics) ... ok
+test_standardization_near_zero_and_missing (test_study.ScientificContracts.test_standardization_near_zero_and_missing) ... ok
+test_write_boundary_and_completed_hash_rejection (test_study.ScientificContracts.test_write_boundary_and_completed_hash_rejection) ... ok
+
+======================================================================
+ERROR: test_actual_native_prefix_guards_and_frozen_buffers_on_synthetic_pixels (test_study.NativeOriginalWeightCPU.test_actual_native_prefix_guards_and_frozen_buffers_on_synthetic_pixels)
+Original checkpoint; CPU 64px synthetic images, NOT real-data preflight.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/rt_detr_encoder_comparison/tests/test_study.py", line 137, in test_actual_native_prefix_guards_and_frozen_buffers_on_synthetic_pixels
+    write(RUN/'checks/original_weight_CPU_path.json',evidence)
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/rt_detr_encoder_comparison/code/common.py", line 49, in write
+    json.dump(value, f, indent=2, allow_nan=False)
+  File "/usr/lib/python3.12/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/usr/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type set is not JSON serializable
+
+----------------------------------------------------------------------
+Ran 9 tests in 5.912s
+
+FAILED (errors=1)

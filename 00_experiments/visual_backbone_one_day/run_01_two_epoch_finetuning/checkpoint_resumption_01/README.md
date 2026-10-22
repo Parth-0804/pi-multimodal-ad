@@ -1,0 +1,3 @@
+# Resume the existing visual-backbone checkpoint
+
+The current user removed only the24hour deadline and reaffirmed five frozen epochs and two fine-tuned epochs for16/32frames. The old immutable deadline stays historical. Existing scientific source/config hashes, frozen outputs, model/optimizer/RNG/sampler state remain exact. source/execution_policy.py explicitly adapts execution-time controls before worker imports. source/supervisor.py supports an absent deadline. No source governing numerical training changed. This folder preserves the earlier launchers, checkpoint and evidence. See checks.json and launch_verification.json.

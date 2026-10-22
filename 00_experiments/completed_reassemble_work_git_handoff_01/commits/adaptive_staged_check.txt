@@ -1,0 +1,498 @@
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:1: trailing whitespace.
++# Audit the inputs, then execute a controlled adaptive-fusion robustness study
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:2: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:3: trailing whitespace.
++Work in the existing HFU `pi-multimodal-ad` repository.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:4: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:5: trailing whitespace.
++## Goal
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:6: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:7: trailing whitespace.
++Answer:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:8: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:9: trailing whitespace.
++“For the fixed frozen 16-frame CNN and sensor branches, does a small quality-conditioned fusion model improve performance under predefined input corruptions compared with augmentation-matched static F2?”
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:10: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:11: trailing whitespace.
++A negative or inconclusive result is acceptable. Do not optimize the experiment to produce a positive conclusion.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:12: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:13: trailing whitespace.
++This is a new experiment. Preserve previous encoder, noise and backbone-study artifacts. Historical Task4 remains excluded.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:14: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:15: trailing whitespace.
++Proceed autonomously within this scope when the checks pass. Do not restart backbone or encoder fine-tuning.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:16: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:17: trailing whitespace.
++## 1. Establish the evidence and budget
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:18: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:19: trailing whitespace.
++Locate the completed encoder comparison, current noise `run_02`, their source/configuration snapshots, model components, memberships, OOF predictions and provenance.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:20: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:21: trailing whitespace.
++Verify actual files and fit identities rather than trusting filenames or summary text.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:22: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:23: trailing whitespace.
++Use a separate maximum 24-hour wall-clock window for this experiment, including audit, preparation, waiting, extraction, fitting and reporting. Persist its start and deadline once. Reserve the final three hours for evaluation and reporting. Do not renew the clock on restart or change the older study’s deadlines or STOP markers.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:24: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:25: trailing whitespace.
++Check GPU ownership before GPU work. Do not terminate another workflow.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:26: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:27: trailing whitespace.
++Aim for five matched outer folds using verified CNN-only branch fits from the completed encoder study. Before assessment, benchmark on permitted training inputs and conservatively estimate the complete workload. If five folds cannot fit, lock a smaller fixed prefix of fold IDs based only on runtime and available artifacts. Label reduced coverage as a pilot.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:28: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:29: trailing whitespace.
++Do not choose folds, samples, conditions or seeds using scores.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:30: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:31: trailing whitespace.
++## 2. Perform a bounded data and implementation audit first
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:32: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:33: trailing whitespace.
++Write `DATA_AUDIT.md` and machine-readable checks.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:34: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:35: trailing whitespace.
++### Labels and eligibility
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:36: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:37: trailing whitespace.
++- Trace each selected target to the native recording and exact segment.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:38: trailing whitespace.
++- Verify the intended annotation level: high-level action versus low-level sub-action.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:39: trailing whitespace.
++- Verify success datatype and accepted values explicitly. Reject ambiguous strings, missing values or unsupported encodings; do not rely on generic truthiness.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:40: trailing whitespace.
++- Verify the explicit success-to-failure mapping, action identity and start/end interval.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:41: trailing whitespace.
++- Reconcile original eligibility rules, exclusions and class counts.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:42: trailing whitespace.
++- Confirm that labels are source annotations rather than predictions or sensor-derived proxies.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:43: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:44: trailing whitespace.
++### Known dataset issues
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:45: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:46: trailing whitespace.
++Read the official dataset notes:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:47: trailing whitespace.
++https://github.com/TUWIEN-ASL/REASSEMBLE
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:48: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:49: trailing whitespace.
++In particular, reconcile the documented last-action force/torque issues in:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:50: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:51: trailing whitespace.
++- 2025-01-11-14-45-48
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:52: trailing whitespace.
++- 2025-01-11-15-27-19
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:53: trailing whitespace.
++- 2025-01-11-15-35-08
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:54: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:55: trailing whitespace.
++Also check relevant missing-camera and hardware-issue notes.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:56: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:57: trailing whitespace.
++Determine which exact actions are affected and how the current dataset version and pipeline handle them. A recording-level warning does not justify dropping every action in that recording. Finite sensor values do not establish physical validity.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:58: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:59: trailing whitespace.
++### Images and alignment
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:60: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:61: trailing whitespace.
++- Verify native camera identity, cached-video provenance, timestamps and frame indexing.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:62: trailing whitespace.
++- Check the exact 16 selected frames against the action interval.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:63: trailing whitespace.
++- Document that the current sampler is uniform in frame index, which need not be uniform in elapsed time.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:64: trailing whitespace.
++- Verify BGR/RGB handling, resize, scaling and normalization against the actual pretrained processor.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:65: trailing whitespace.
++- Check sensor/video interval alignment and missing-data handling.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:66: trailing whitespace.
++- Compare a deterministic small sample of native and cached frames using an appropriate codec-aware method.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:67: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:68: trailing whitespace.
++Create evidence for 16 predetermined development/training examples spanning successes, failures, action types and recordings: short action playback or contact sheets, selected timestamps, native annotation and aligned sensor summaries. Do not select examples by prediction error.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:69: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:70: trailing whitespace.
++Distinguish machine checks, visual observations and any human review still needed. Do not claim that automated inspection proves all labels correct.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:71: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:72: trailing whitespace.
++### Existing encoder implementation
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:73: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:74: trailing whitespace.
++Record the actual extraction path, tensor shapes, spatial pooling and frame aggregation. Confirm that the encoder receives spatial feature maps and that frame averaging discards temporal order.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:75: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:76: trailing whitespace.
++On existing training-only cached features, check finite values, near-constant dimensions, normalizer floors, extreme standardized values and final-checkpoint evaluation-mode training loss. Do not tune the encoder using assessment results.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:77: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:78: trailing whitespace.
++### Audit decision
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:79: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:80: trailing whitespace.
++If a concrete label-mapping, alignment, cache or split defect invalidates the experiment, preserve the evidence and stop before adaptive training. Explain the exact blocker and required correction.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:81: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:82: trailing whitespace.
++Do not silently relabel examples, alter the cohort or overwrite historical results.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:83: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:84: trailing whitespace.
++If the checks pass, proceed. Carry remaining semantic uncertainty into the report.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:85: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:86: trailing whitespace.
++## 3. Lock the protocol before new assessment
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:87: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:88: trailing whitespace.
++Save a protocol and resolved configuration defining:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:89: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:90: trailing whitespace.
++- Task, target, eligible cohort and exact folds.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:91: trailing whitespace.
++- Branch-fit identities and all fitting/prediction roles.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:92: trailing whitespace.
++- Quality features and their mathematical definitions.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:93: trailing whitespace.
++- Fusion models and fixed fitting settings.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:94: trailing whitespace.
++- Training augmentation, assessment conditions and seeds.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:95: trailing whitespace.
++- Primary estimand, secondary analyses and stopping rules.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:96: trailing whitespace.
++- Compute budget and artifact plan.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:97: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:98: trailing whitespace.
++The REASSEMBLE cohort and previous outer scores are already development-exposed. Describe this as an exploratory controlled study. A new split or new corruption seed does not make it an untouched independent dataset.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:99: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:100: trailing whitespace.
++Use completed-action classification throughout. Do not claim online or early failure detection.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:101: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:102: trailing whitespace.
++## 4. Keep the branches fixed and compare four fusion models
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:103: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:104: trailing whitespace.
++Use identical frozen CNN and sensor branch predictions across fusion conditions.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:105: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:106: trailing whitespace.
++Retain the historical clean-trained F2 as a reference.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:107: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:108: trailing whitespace.
++Fit these three additional models:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:109: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:110: trailing whitespace.
++A. `static_augmented`
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:111: trailing whitespace.
++Logistic regression using `[p_visual, p_sensor]`.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:112: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:113: trailing whitespace.
++B. `quality_additive`
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:114: trailing whitespace.
++Logistic regression using `[p_visual, p_sensor, q]`.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:115: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:116: trailing whitespace.
++C. `quality_interaction`
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:117: trailing whitespace.
++Logistic regression using `[p_visual, p_sensor, q, p_visual*q, p_sensor*q]`.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:118: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:119: trailing whitespace.
++Here `q` contains a small fixed set of observable input-quality statistics.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:120: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:121: trailing whitespace.
++For C, the visual coefficient becomes `beta_visual + theta_visual · q`, and similarly for the sensor coefficient. Describe these as input-dependent coefficients, not percentages of trust or causal modality importance.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:122: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:123: trailing whitespace.
++Use the existing F2 regularization/solver recipe where compatible, including C=1 and unweighted class treatment. Fix the numerical settings before assessment. Do not perform an architecture or hyperparameter search. Do not add a new fusion calibrator in this minimal study.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:124: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:125: trailing whitespace.
++Include visual-only and sensor-only outputs as contextual baselines.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:126: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:127: trailing whitespace.
++All three new fusion models must receive the same parent actions, corruption realizations and sample weights.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:128: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:129: trailing whitespace.
++## 5. Generate valid fusion-training inputs
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:130: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:131: trailing whitespace.
++Fit a separate fusion model for each outer fold.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:132: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:133: trailing whitespace.
++For each outer fold, define T as its training recordings and E as its assessment recordings. E labels must never enter fitting, normalization, calibration or selection.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:134: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:135: trailing whitespace.
++Use verified inner out-of-fold branch predictions covering T. For corrupted fusion-training inputs, generate predictions on each inner job’s held-out prediction recordings using that job’s saved branches and calibrators. Those recordings must be absent from the branch-training and branch-calibration groups.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:136: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:137: trailing whitespace.
++Never use the previous noise study’s outer-assessment predictions to train or tune fusion.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:138: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:139: trailing whitespace.
++Never combine OOF tables from different outer folds into one global fusion model.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:140: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:141: trailing whitespace.
++Do not casually split an existing OOF table for validation or calibration: upstream fits generating other rows may already have used those proposed validation labels. Keep fusion settings fixed and fit on the permitted OOF rows. Any future tuning would require properly nested feature generation.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:142: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:143: trailing whitespace.
++Fit quality normalization only on the appropriate fusion-training inputs. Fit raw-channel scales only on the permitted branch-training inputs.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:144: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:145: trailing whitespace.
++Keep every clean/corrupted variant of a recording in the same partition.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:146: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:147: trailing whitespace.
++## 6. Define observable quality and matched augmentation
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:148: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:149: trailing whitespace.
++Use at most ten predeclared, inexpensive quality features, such as:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:150: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:151: trailing whitespace.
++- Image sharpness or high-frequency variation.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:152: trailing whitespace.
++- Clipping/saturation fraction.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:153: trailing whitespace.
++- Contrast.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:154: trailing whitespace.
++- Actually available unique-frame fraction.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:155: trailing whitespace.
++- Sensor finite-value fraction.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:156: trailing whitespace.
++- Available-channel fraction.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:157: trailing whitespace.
++- Observable missing-time gaps.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:158: trailing whitespace.
++- Sensor variation relative to training-derived channel scales.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:159: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:160: trailing whitespace.
++Record exact formulas, aggregation, missing-value treatment, clipping and normalization before fitting.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:161: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:162: trailing whitespace.
++Compute quality from the input actually received at prediction time. Do not use a pristine counterpart, corruption name, injected severity, seed, correctness, recording identity or known fault label as a model input.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:163: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:164: trailing whitespace.
++Quality features are proxies; do not assume they are validated reliability measurements.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:165: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:166: trailing whitespace.
++Use a fixed training mixture:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:167: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:168: trailing whitespace.
++- Clean input.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:169: trailing whitespace.
++- One image-corrupted variant per parent action, drawn deterministically from image Gaussian noise or frame loss.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:170: trailing whitespace.
++- One sensor-corrupted variant per parent action, drawn deterministically from sensor Gaussian noise or channel loss.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:171: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:172: trailing whitespace.
++Use the existing documented severity levels, with a predetermined uniform sampling rule. Give each action total weight 1: 0.5 clean, 0.25 image-corrupted, 0.25 sensor-corrupted.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:173: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:174: trailing whitespace.
++Use disjoint training and assessment random seeds, fixed before fitting.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:175: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:176: trailing whitespace.
++Apply corruption to actual image pixels or native sensor signals. Do not substitute noise on saved probabilities or embeddings.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:177: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:178: trailing whitespace.
++## 7. Run the predefined assessment
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:179: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:180: trailing whitespace.
++Primary assessment:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:181: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:182: trailing whitespace.
++- Image Gaussian noise: sigma 0.02, 0.05 and 0.10 on RGB scaled to [0,1].
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:183: trailing whitespace.
++- Sensor Gaussian noise: 0.1, 0.5 and 1.0 times permitted training-derived channel standard deviations.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:184: trailing whitespace.
++- Three assessment realizations per severity.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:185: trailing whitespace.
++- Corrupt one modality at a time; keep the other unchanged.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:186: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:187: trailing whitespace.
++Secondary assessments, excluded from augmentation fitting:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:188: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:189: trailing whitespace.
++- Image blur at the previously documented three levels.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:190: trailing whitespace.
++- Sensor time-block loss at the previously documented three levels.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:191: trailing whitespace.
++- Clean input.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:192: trailing whitespace.
++- Declared complete modality absence.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:193: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:194: trailing whitespace.
++For absence, apply the same explicit fallback policy to every fusion model and report it separately. Both absent must produce an explicit unavailable/abstain outcome.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:195: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:196: trailing whitespace.
++Verify exact keyed coverage and unchanged-branch equality. Retain failed cases in coverage accounting; do not silently drop difficult samples.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:197: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:198: trailing whitespace.
++Cache expensive frozen features once per exact input/transformation identity and reuse them across compatible heads. Include weights, preprocessing, sample IDs, corruption parameters, seeds and applicable training-derived scales in cache identities.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:199: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:200: trailing whitespace.
++## 8. Evaluate the question fairly
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:201: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:202: trailing whitespace.
++Primary contrast:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:203: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:204: trailing whitespace.
++Quality-interaction model minus augmentation-matched static F2 in AP.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:205: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:206: trailing whitespace.
++Compute AP separately within each outer fold, corruption family, severity and realization. Average repeats, then severities, then the two primary families, then matched folds with equal weights.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:207: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:208: trailing whitespace.
++Do not pool repeated corruptions as independent subjects or compute AP from averaged probabilities. Report pooled outer-fold AP separately from mean-fold AP.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:209: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:210: trailing whitespace.
++Use 2,000 paired recording-cluster bootstrap resamples within folds, keeping models and all variants of a recording paired. Report valid/invalid replicate counts and state that uncertainty conditions on the fitted models and fixed realizations.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:211: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:212: trailing whitespace.
++Also report:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:213: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:214: trailing whitespace.
++- Adaptive versus additive-quality contrast.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:215: trailing whitespace.
++- Augmented static versus historical static contrast.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:216: trailing whitespace.
++- Each corruption family and severity separately.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:217: trailing whitespace.
++- Clean AP differences against both static baselines.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:218: trailing whitespace.
++- Unimodal comparisons.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:219: trailing whitespace.
++- AUROC, Brier, precision, recall and confusion counts at fixed threshold 0.5.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:220: trailing whitespace.
++- Worst-family performance, runtime, memory and completed coverage.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:221: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:222: trailing whitespace.
++Do not claim that nonsignificant clean deterioration establishes “no harm.” Use zero clean degradation as the conservative margin for any claim of improvement without clean AP cost; otherwise report the clean tradeoff or uncertainty explicitly.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:223: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:224: trailing whitespace.
++A positive primary interval supports improvement under the predefined noise mixture. It does not prove superiority under every fault. Evidence specifically for quality-dependent modality coefficients also requires comparison with the additive-quality control.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:225: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:226: trailing whitespace.
++Held-out fault families are excluded from this fitting procedure; they are not an independent dataset.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:227: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:228: trailing whitespace.
++Do not rerun with different settings merely because results are negative.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:229: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:230: trailing whitespace.
++## 9. Deliver a reviewable package
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:231: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:232: trailing whitespace.
++Produce:
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:233: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:234: trailing whitespace.
++- `README_FIRST.md`
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:235: trailing whitespace.
++- `RESULTS_SUMMARY.md`
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:236: trailing whitespace.
++- `DATA_AUDIT.md`
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:237: trailing whitespace.
++- Locked protocol and resolved configuration.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:238: trailing whitespace.
++- Sample audit visuals.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:239: trailing whitespace.
++- Exact split, fit and source identities.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:240: trailing whitespace.
++- Saved fusion components and quality-feature definitions.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:241: trailing whitespace.
++- Keyed clean and corrupted predictions.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:242: trailing whitespace.
++- Metrics, paired intervals and per-condition coverage.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:243: trailing whitespace.
++- Independent saved-table recalculation code and results.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:244: trailing whitespace.
++- Runtime/budget records and reproducible commands.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:245: trailing whitespace.
++- A checksummed review ZIP containing the necessary source and small artifacts, with large raw data and weight files referenced by identity.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:246: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:247: trailing whitespace.
++Finish with a direct answer: supported improvement, no demonstrated improvement, inconclusive, or blocked.
+00_experiments/adaptive_fusion_robustness/ASSIGNMENT.md:248: trailing whitespace.
++
+00_experiments/adaptive_fusion_robustness/code/prefix.py:150: new blank line at EOF.
+Exit code: 2

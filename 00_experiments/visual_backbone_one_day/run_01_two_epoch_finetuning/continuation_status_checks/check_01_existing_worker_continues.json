@@ -1,0 +1,149 @@
+{
+  "checked_utc": "2026-10-21T11:31:44.438501+00:00",
+  "action": "Existing healthy study worker retained; no restart, duplicate worker, or configuration change",
+  "worker_pid": 111468,
+  "supervisor_pid": 111461,
+  "actual_command": "ma_thesis_env/bin/python -I -B /home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/source/run_study.py resume ",
+  "GPU_owner": "111468, ma_thesis_env/bin/python, 11102 MiB\n",
+  "completed_visual_fits": 17,
+  "planned_visual_fits": 100,
+  "completed_fits_epochs_verified": [
+    {
+      "condition": "frozen_16_frames",
+      "fold": "fold_01",
+      "role": "outer_assessment",
+      "epochs_complete": 5
+    },
+    {
+      "condition": "frozen_16_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_03",
+      "epochs_complete": 5
+    },
+    {
+      "condition": "frozen_16_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_04",
+      "epochs_complete": 5
+    },
+    {
+      "condition": "frozen_16_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_02",
+      "epochs_complete": 5
+    },
+    {
+      "condition": "frozen_16_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_01",
+      "epochs_complete": 5
+    },
+    {
+      "condition": "fine_tuned_16_frames",
+      "fold": "fold_01",
+      "role": "outer_assessment",
+      "epochs_complete": 2
+    },
+    {
+      "condition": "fine_tuned_16_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_03",
+      "epochs_complete": 2
+    },
+    {
+      "condition": "fine_tuned_16_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_04",
+      "epochs_complete": 2
+    },
+    {
+      "condition": "fine_tuned_16_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_02",
+      "epochs_complete": 2
+    },
+    {
+      "condition": "fine_tuned_16_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_01",
+      "epochs_complete": 2
+    },
+    {
+      "condition": "frozen_32_frames",
+      "fold": "fold_01",
+      "role": "outer_assessment",
+      "epochs_complete": 5
+    },
+    {
+      "condition": "frozen_32_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_03",
+      "epochs_complete": 5
+    },
+    {
+      "condition": "frozen_32_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_04",
+      "epochs_complete": 5
+    },
+    {
+      "condition": "frozen_32_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_02",
+      "epochs_complete": 5
+    },
+    {
+      "condition": "frozen_32_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_01",
+      "epochs_complete": 5
+    },
+    {
+      "condition": "fine_tuned_32_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_02",
+      "epochs_complete": 2
+    },
+    {
+      "condition": "fine_tuned_32_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_01",
+      "epochs_complete": 2
+    }
+  ],
+  "active_job": {
+    "condition": "fine_tuned_32_frames",
+    "fold": "fold_01",
+    "role": "inner_fold_03",
+    "epoch": 2,
+    "segments_in_epoch": 1824,
+    "G_segments": 2171,
+    "optimizer_updates": 500,
+    "fit_id": "ca049b473469d1183848074213b58085b548a7d7171d59f8e6a0495a612300dc"
+  },
+  "current_stage": "VISUAL_EPOCH_COMPLETE",
+  "completed_assessment_conditions": [
+    {
+      "condition": "frozen_16_frames",
+      "fold": "fold_01",
+      "assessment_predictions": "frozen_16_frames/fold_01/assessment_predictions.csv"
+    },
+    {
+      "condition": "fine_tuned_16_frames",
+      "fold": "fold_01",
+      "assessment_predictions": "fine_tuned_16_frames/fold_01/assessment_predictions.csv"
+    },
+    {
+      "condition": "frozen_32_frames",
+      "fold": "fold_01",
+      "assessment_predictions": "frozen_32_frames/fold_01/assessment_predictions.csv"
+    }
+  ],
+  "wall_time_limit_seconds": null,
+  "epoch_budgets": {
+    "frozen_16_frames": 5,
+    "frozen_32_frames": 5,
+    "fine_tuned_16_frames": 2,
+    "fine_tuned_32_frames": 2
+  }
+}

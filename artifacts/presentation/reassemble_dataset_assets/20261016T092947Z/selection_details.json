@@ -1,0 +1,54 @@
+{
+  "rule": "Within frozen action/failure stratum: duration=end-start; sort abs(duration-median_duration), recording_id (string), segment_id (string); take first.",
+  "strata": [
+    {
+      "example_id": "pick_success",
+      "stratum_count": 1092,
+      "median_duration": 8.20827341079712,
+      "absolute_difference": 0.008280038833618164
+    },
+    {
+      "example_id": "pick_failure",
+      "stratum_count": 98,
+      "median_duration": 8.158285140991211,
+      "absolute_difference": 0.0583796501159668
+    },
+    {
+      "example_id": "insert_success",
+      "stratum_count": 913,
+      "median_duration": 14.866677045822144,
+      "absolute_difference": 0.0
+    },
+    {
+      "example_id": "insert_failure",
+      "stratum_count": 243,
+      "median_duration": 15.233322381973267,
+      "absolute_difference": 0.0
+    },
+    {
+      "example_id": "remove_success",
+      "stratum_count": 950,
+      "median_duration": 9.352685809135437,
+      "absolute_difference": 0.0027598142623901367
+    },
+    {
+      "example_id": "remove_failure",
+      "stratum_count": 146,
+      "median_duration": 11.249764800071716,
+      "absolute_difference": 0.00017178058624267578
+    },
+    {
+      "example_id": "place_success",
+      "stratum_count": 1066,
+      "median_duration": 5.032819509506226,
+      "absolute_difference": 0.00015664100646972656
+    },
+    {
+      "example_id": "place_failure",
+      "stratum_count": 22,
+      "median_duration": 6.016660928726196,
+      "absolute_difference": 0.03331112861633301
+    }
+  ],
+  "ids_are_strings": true
+}

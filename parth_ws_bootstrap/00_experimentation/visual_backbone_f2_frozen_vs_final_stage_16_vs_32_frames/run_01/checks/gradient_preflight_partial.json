@@ -1,0 +1,272 @@
+{
+  "results": [
+    {
+      "condition": "frozen_16_frames",
+      "train_sample_id": "b3c712ca157772ed7234332b",
+      "training_only_G": true,
+      "feature_width": 896,
+      "observed_forward_classes": [
+        "AvgPool2d",
+        "Conv2d",
+        "Identity",
+        "MaxPool2d",
+        "RTDetrFrozenBatchNorm2d",
+        "RTDetrResNetBackbone",
+        "RTDetrResNetBasicLayer",
+        "RTDetrResNetConvLayer",
+        "RTDetrResNetEmbeddings",
+        "RTDetrResNetEncoder",
+        "RTDetrResNetShortCut",
+        "RTDetrResNetStage",
+        "ReLU",
+        "Sequential"
+      ],
+      "gradient_parameters": {
+        "head.projection.0.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.projection.0.bias": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.classifier.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.classifier.bias": {
+          "finite": true,
+          "nonzero": true
+        }
+      },
+      "changed_backbone_names": [],
+      "head_changed": true,
+      "BN_buffers_unchanged": true,
+      "total_backbone_parameters": 11190112,
+      "trainable_backbone_parameters": 0,
+      "head_parameters": 114945,
+      "seconds_per_single_segment_update": [
+        0.6257094449974829,
+        0.11718996800482273
+      ],
+      "peak_cuda_bytes": 2285725184,
+      "compact_reload_logit_max_abs": 0.0,
+      "model_path": "checks/disposable_frozen_16_frames.pt",
+      "model_sha256": "d8b4ee63acd6dfd666b619e6cf51da1757e6c8d3cbb2898e369b6dd062f8027b"
+    },
+    {
+      "condition": "fine_tuned_16_frames",
+      "train_sample_id": "b3c712ca157772ed7234332b",
+      "training_only_G": true,
+      "feature_width": 896,
+      "observed_forward_classes": [
+        "AvgPool2d",
+        "Conv2d",
+        "Identity",
+        "MaxPool2d",
+        "RTDetrFrozenBatchNorm2d",
+        "RTDetrResNetBackbone",
+        "RTDetrResNetBasicLayer",
+        "RTDetrResNetConvLayer",
+        "RTDetrResNetEmbeddings",
+        "RTDetrResNetEncoder",
+        "RTDetrResNetShortCut",
+        "RTDetrResNetStage",
+        "ReLU",
+        "Sequential"
+      ],
+      "gradient_parameters": {
+        "backbone.encoder.stages.3.layers.0.shortcut.1.convolution.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "backbone.encoder.stages.3.layers.0.layer.0.convolution.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "backbone.encoder.stages.3.layers.0.layer.1.convolution.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "backbone.encoder.stages.3.layers.1.layer.0.convolution.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "backbone.encoder.stages.3.layers.1.layer.1.convolution.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.projection.0.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.projection.0.bias": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.classifier.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.classifier.bias": {
+          "finite": true,
+          "nonzero": true
+        }
+      },
+      "changed_backbone_names": [
+        "encoder.stages.3.layers.0.shortcut.1.convolution.weight",
+        "encoder.stages.3.layers.0.layer.0.convolution.weight",
+        "encoder.stages.3.layers.0.layer.1.convolution.weight",
+        "encoder.stages.3.layers.1.layer.0.convolution.weight",
+        "encoder.stages.3.layers.1.layer.1.convolution.weight"
+      ],
+      "head_changed": true,
+      "BN_buffers_unchanged": true,
+      "total_backbone_parameters": 11190112,
+      "trainable_backbone_parameters": 8388608,
+      "head_parameters": 114945,
+      "seconds_per_single_segment_update": [
+        0.19974344699585345,
+        0.13995240700023714
+      ],
+      "peak_cuda_bytes": 2431106048,
+      "compact_reload_logit_max_abs": 0.0,
+      "model_path": "checks/disposable_fine_tuned_16_frames.pt",
+      "model_sha256": "6ebfaf90424482b47103cf01025ce93dd795b17bc67ae0888ad58d7f6487afff"
+    },
+    {
+      "condition": "frozen_32_frames",
+      "train_sample_id": "b3c712ca157772ed7234332b",
+      "training_only_G": true,
+      "feature_width": 896,
+      "observed_forward_classes": [
+        "AvgPool2d",
+        "Conv2d",
+        "Identity",
+        "MaxPool2d",
+        "RTDetrFrozenBatchNorm2d",
+        "RTDetrResNetBackbone",
+        "RTDetrResNetBasicLayer",
+        "RTDetrResNetConvLayer",
+        "RTDetrResNetEmbeddings",
+        "RTDetrResNetEncoder",
+        "RTDetrResNetShortCut",
+        "RTDetrResNetStage",
+        "ReLU",
+        "Sequential"
+      ],
+      "gradient_parameters": {
+        "head.projection.0.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.projection.0.bias": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.classifier.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.classifier.bias": {
+          "finite": true,
+          "nonzero": true
+        }
+      },
+      "changed_backbone_names": [],
+      "head_changed": true,
+      "BN_buffers_unchanged": true,
+      "total_backbone_parameters": 11190112,
+      "trainable_backbone_parameters": 0,
+      "head_parameters": 114945,
+      "seconds_per_single_segment_update": [
+        0.23000711300119292,
+        0.23101155400217976
+      ],
+      "peak_cuda_bytes": 4474281472,
+      "compact_reload_logit_max_abs": 0.0,
+      "model_path": "checks/disposable_frozen_32_frames.pt",
+      "model_sha256": "df8fb2cb0c102a2f78306402564b3ff73d2036fe949750db805878a9d8f344ca"
+    },
+    {
+      "condition": "fine_tuned_32_frames",
+      "train_sample_id": "b3c712ca157772ed7234332b",
+      "training_only_G": true,
+      "feature_width": 896,
+      "observed_forward_classes": [
+        "AvgPool2d",
+        "Conv2d",
+        "Identity",
+        "MaxPool2d",
+        "RTDetrFrozenBatchNorm2d",
+        "RTDetrResNetBackbone",
+        "RTDetrResNetBasicLayer",
+        "RTDetrResNetConvLayer",
+        "RTDetrResNetEmbeddings",
+        "RTDetrResNetEncoder",
+        "RTDetrResNetShortCut",
+        "RTDetrResNetStage",
+        "ReLU",
+        "Sequential"
+      ],
+      "gradient_parameters": {
+        "backbone.encoder.stages.3.layers.0.shortcut.1.convolution.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "backbone.encoder.stages.3.layers.0.layer.0.convolution.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "backbone.encoder.stages.3.layers.0.layer.1.convolution.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "backbone.encoder.stages.3.layers.1.layer.0.convolution.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "backbone.encoder.stages.3.layers.1.layer.1.convolution.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.projection.0.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.projection.0.bias": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.classifier.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "head.classifier.bias": {
+          "finite": true,
+          "nonzero": true
+        }
+      },
+      "changed_backbone_names": [
+        "encoder.stages.3.layers.0.shortcut.1.convolution.weight",
+        "encoder.stages.3.layers.0.layer.0.convolution.weight",
+        "encoder.stages.3.layers.0.layer.1.convolution.weight",
+        "encoder.stages.3.layers.1.layer.0.convolution.weight",
+        "encoder.stages.3.layers.1.layer.1.convolution.weight"
+      ],
+      "head_changed": true,
+      "BN_buffers_unchanged": true,
+      "total_backbone_parameters": 11190112,
+      "trainable_backbone_parameters": 8388608,
+      "head_parameters": 114945,
+      "seconds_per_single_segment_update": [
+        0.26850674200977664,
+        0.26710102599463426
+      ],
+      "peak_cuda_bytes": 4623345664,
+      "compact_reload_logit_max_abs": 0.0,
+      "model_path": "checks/disposable_fine_tuned_32_frames.pt",
+      "model_sha256": "c350cc2b3d45c47b26a6e4191adb5d58b5bfd7d201210bad6b812af651dc54b2"
+    }
+  ]
+}

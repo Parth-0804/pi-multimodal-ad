@@ -1,0 +1,53 @@
+test_metrics_paired_clusters_and_repeat_average (test_study.EvidenceTests.test_metrics_paired_clusters_and_repeat_average) ... ok
+test_native_original_weight_inference_only_guards (test_study.EvidenceTests.test_native_original_weight_inference_only_guards) ... 
+Loading weights:   0%|          | 0/526 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 526/526 [00:00<00:00, 18902.65it/s]
+ok
+test_no_training_calls_and_write_boundary (test_study.EvidenceTests.test_no_training_calls_and_write_boundary) ... ok
+test_actual_missing_checkpoint_excluded_before_scores (test_study.SelectionTests.test_actual_missing_checkpoint_excluded_before_scores) ... ok
+test_alias_whole_fold_intersection_and_empty_coverage (test_study.SelectionTests.test_alias_whole_fold_intersection_and_empty_coverage) ... ok
+test_real_memberships_and_negative_key_contracts (test_study.SelectionTests.test_real_memberships_and_negative_key_contracts) ... ok
+test_superior_no_improvement_ineligible_and_noisy_fields (test_study.SelectionTests.test_superior_no_improvement_ineligible_and_noisy_fields) ... ok
+test_tie_precedence_reference_frames_parameters_alphabetical (test_study.SelectionTests.test_tie_precedence_reference_frames_parameters_alphabetical) ... ok
+test_clean_statistics_regression_and_all_missing_imputation (test_study.TransformTests.test_clean_statistics_regression_and_all_missing_imputation) ... FAIL
+test_fallback_zero_is_present_and_partial_stays_f2 (test_study.TransformTests.test_fallback_zero_is_present_and_partial_stays_f2) ... ok
+test_frame_channel_nested_count_and_chronology (test_study.TransformTests.test_frame_channel_nested_count_and_chronology) ... ok
+test_image_zero_common_draws_clipping_blur_no_channel_mix (test_study.TransformTests.test_image_zero_common_draws_clipping_blur_no_channel_mix) ... ok
+test_native_sensor_noise_zero_sd_missingness_and_time_gap (test_study.TransformTests.test_native_sensor_noise_zero_sd_missingness_and_time_gap) ... ok
+test_scales_use_only_G_and_native_channels (test_study.TransformTests.test_scales_use_only_G_and_native_channels) ... ok
+test_schedule_counts_and_seed_stability (test_study.TransformTests.test_schedule_counts_and_seed_stability) ... ok
+
+======================================================================
+FAIL: test_clean_statistics_regression_and_all_missing_imputation (test_study.TransformTests.test_clean_statistics_regression_and_all_missing_imputation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/fusion_noise_test/tests/test_study.py", line 132, in test_clean_statistics_regression_and_all_missing_imputation
+    np.testing.assert_array_equal(space['statistics'](native32),statistics(native32))
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 1121, in assert_array_equal
+    assert_array_compare(operator.__eq__, actual, desired, err_msg=err_msg,
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 983, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Arrays are not equal
+
+Mismatched elements: 4 / 20 (20%)
+Mismatch at indices:
+ [0]: 0.7185872793197632 (ACTUAL), 0.7185869812965393 (DESIRED)
+ [1]: 1.1442805528640747 (ACTUAL), 1.1442800760269165 (DESIRED)
+ [3]: 0.9589446187019348 (ACTUAL), 0.9589447379112244 (DESIRED)
+ [17]: 1.4929673671722412 (ACTUAL), 1.4929674863815308 (DESIRED)
+Max absolute difference among violations: 4.7683716e-07
+Max relative difference among violations: 4.1671368e-07
+ ACTUAL: array([0.718587, 1.144281, 0.278743, 0.958945, 0.813412, 0.902508,
+       0.099833, 0.01    , 0.999999, 3.24    , 0.501211, 0.275631,
+       0.977379, 1.890631, 0.900165, 3.23    , 0.770756, 1.492967,
+       0.918968, 3.23    ], dtype=float32)
+ DESIRED: array([0.718587, 1.14428 , 0.278743, 0.958945, 0.813412, 0.902508,
+       0.099833, 0.01    , 0.999999, 3.24    , 0.501211, 0.275631,
+       0.977379, 1.890631, 0.900165, 3.23    , 0.770756, 1.492967,
+       0.918968, 3.23    ], dtype=float32)
+
+----------------------------------------------------------------------
+Ran 15 tests in 6.933s
+
+FAILED (failures=1)

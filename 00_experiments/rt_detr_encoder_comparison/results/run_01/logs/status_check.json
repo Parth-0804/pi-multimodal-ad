@@ -1,0 +1,61 @@
+{
+  "progress": {
+    "attempts": {},
+    "calibrator_fits": 0,
+    "preflight_steps": 0,
+    "status": "WAITING_FOR_GPU",
+    "updated_utc": "2026-10-20T22:59:54.882911+00:00",
+    "elapsed_seconds": 1734.882918,
+    "cohort_samples": 4530,
+    "failures": 509,
+    "recordings": 148,
+    "planned_visual_fits": 50,
+    "planned_sensor_fits": 25,
+    "planned_stackers": 10,
+    "blocker": "Priority study/process still owns allocated device; extraction/fitting not started.",
+    "foreground_pid": null,
+    "waiting_seconds": 0.07389607399818487,
+    "background_worker": false,
+    "queued": false
+  },
+  "readiness": {
+    "checked_utc": "2026-10-20T23:00:49.467531+00:00",
+    "available": false,
+    "gpu": {
+      "returncode": 0,
+      "stdout": "0, GPU-14f8a7a5-89d7-a749-6b86-c6eaa1de8ac2, Tesla T4, 2953, 35\n",
+      "stderr": ""
+    },
+    "applications": {
+      "returncode": 0,
+      "stdout": "GPU-14f8a7a5-89d7-a749-6b86-c6eaa1de8ac2, 53642, ma_thesis_env/bin/python, 2950\n",
+      "stderr": ""
+    },
+    "priority_processes": [
+      {
+        "pid": 53641,
+        "comm": "bash",
+        "identity": "priority visual-backbone study"
+      },
+      {
+        "pid": 53642,
+        "comm": "python",
+        "identity": "priority visual-backbone study"
+      }
+    ],
+    "observed_priority_pid_alive": true,
+    "priority_status": "FITTING_VISUAL",
+    "priority_active_job": {
+      "condition": "fine_tuned_16_frames",
+      "fold": "fold_01",
+      "role": "inner_fold_02",
+      "epoch": 4,
+      "segments_in_epoch": 144,
+      "G_segments": 2348,
+      "optimizer_updates": 900,
+      "fit_id": "b483a3b7e696a2d6f5705612b41fb65323c7852661165712dbcefe3f6f7c5f53"
+    },
+    "priority_full_fits_started": 7,
+    "priority_full_fits_completed": 6
+  }
+}

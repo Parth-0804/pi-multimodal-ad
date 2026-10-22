@@ -1,0 +1,139 @@
+{
+  "study": "F2 asymmetric epoch-budget amendment",
+  "started_utc": "2026-10-20T23:16:52+00:00",
+  "start_basis": "Immutable amendment clock: accepted2026-10-20T23:16:52UTC; prior study start recorded separately",
+  "status": "AMENDMENT_FINISHED",
+  "full_visual_fits_planned": 100,
+  "full_visual_fit_cap": 110,
+  "full_visual_fits_started": 8,
+  "preflight_optimizer_steps": 9,
+  "preflight_optimizer_step_cap": 20,
+  "new_storage_cap_bytes": 32212254720,
+  "minimum_free_bytes": 10737418240,
+  "wall_time_limit_seconds": 86400,
+  "time_scope": "Immutable amendment clock; prior work separate; final3h reporting reserve",
+  "gpu_policy": "Use suitable available local GPU,one training worker; preflight observed sole idle TeslaT4",
+  "completed_jobs": [
+    {
+      "condition": "frozen_16_frames",
+      "fold": "fold_01",
+      "assessment_predictions": "frozen_16_frames/fold_01/assessment_predictions.csv"
+    }
+  ],
+  "active_job": null,
+  "failures": [
+    {
+      "command": "prepare",
+      "error": "RuntimeError('PIXEL_CACHE_ESTIMATE_BLOCKER: lossless pixel cache plus checkpoint reserve exceeds30GiB; no silent changed pixels')"
+    },
+    {
+      "command": "train",
+      "error": "InterruptedError('OWNED_STUDY_STOP_REQUESTED_CHECKPOINT_SAVED')"
+    },
+    {
+      "command": "resume",
+      "error": "InterruptedError('OWNED_STUDY_STOP_REQUESTED_CHECKPOINT_SAVED')"
+    }
+  ],
+  "technical_repairs": {
+    "prepare": 1
+  },
+  "scientific_result_requirement": "Valid measured outcomes, including negative/inconclusive; no desired-score guarantee",
+  "historical_Task4": "EXCLUDED",
+  "historical_Task1": "Not resumed; distinct new protocol",
+  "write_root": "00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning",
+  "live_automation": false,
+  "updated_utc": "2026-10-21T05:19:40.610688+00:00",
+  "blocker": "External priority STOP marker; sole GPU assigned to encoder/noise workflow. No restart or cleared STOP until dependency resolves; deadline unchanged.",
+  "selected": 3875,
+  "recording": "2025-01-14-12-05-01",
+  "elapsed_seconds": 10331.033215235002,
+  "storage": {
+    "new_bytes": 26252486373,
+    "free_bytes": 23585755136,
+    "host_RSS_bytes": 2494533632,
+    "host_memory_policy": "Monitored process RSS; not claimed OS hard limit"
+  },
+  "samples": 4530,
+  "exclusions": 0,
+  "visual_fits": 100,
+  "resolved_blockers": [
+    {
+      "blocker": "RuntimeError('PIXEL_CACHE_ESTIMATE_BLOCKER: lossless pixel cache plus checkpoint reserve exceeds30GiB; no silent changed pixels')",
+      "resolution": "Full pixel-cache materialization rejected; lossless bounded cache with exact content hashes; cohort completed",
+      "evidence": "provenance/technical_repair_01_bounded_pixel_cache/"
+    }
+  ],
+  "cohort_samples": 4530,
+  "cohort_failures": 509,
+  "cohort_recordings": 148,
+  "total_elapsed_seconds": 21768.610705,
+  "remaining_full_visual_fit_starts": 102,
+  "remaining_disposable_optimizer_steps": 11,
+  "elapsed_seconds_scope": "elapsed_seconds describes an individual stage invocation when supplied; total_elapsed_seconds includes the full task from its approximate recorded start",
+  "condition": "fine_tuned_16_frames",
+  "conditions": 4,
+  "rows": 4525,
+  "total": 4530,
+  "feature_width": 896,
+  "fold": "fold_01",
+  "role": "inner_fold_01",
+  "fit_id": "4fe7b01b966bbcb5c47acffe66595e7f1849cc38a920ebf7590ee15fb954f9c0",
+  "epoch": 1,
+  "optimizer_updates": 290,
+  "full_visual_fits_completed": 5,
+  "amendment_id": "efficient_finetuning_two_epochs_24h_v1",
+  "prior_study_started_utc": "2026-10-20T15:47:00+00:00",
+  "original_full_visual_fits_started": 7,
+  "epoch_budgets": {
+    "frozen_16_frames": 5,
+    "frozen_32_frames": 5,
+    "fine_tuned_16_frames": 2,
+    "fine_tuned_32_frames": 2
+  },
+  "scheduler": {
+    "kind": "none",
+    "original_horizon_epochs": 5,
+    "learning_rate_prefix": "constant; preserve original head1e-3/final_stage1e-5"
+  },
+  "loader_workers": 2,
+  "prediction_batch_segments": 2,
+  "precision": "float32",
+  "effective_batch_segments": 8,
+  "microbatch_segments": 1,
+  "deadline": {
+    "amendment_id": "efficient_finetuning_two_epochs_24h_v1",
+    "accepted_utc": "2026-10-20T23:16:52+00:00",
+    "deadline_utc": "2026-10-21T23:16:52+00:00",
+    "training_cutoff_utc": "2026-10-21T20:16:52+00:00",
+    "accepted_Europe_Berlin": "2026-10-21T01:16:52+02:00",
+    "deadline_Europe_Berlin": "2026-10-22T01:16:52+02:00",
+    "basis": "First inspection UTC timestamp on accepting user attachment; immutable across invocations",
+    "report_reserve_seconds": 10800
+  },
+  "pid": 106854,
+  "input_identity": {
+    "amendment_deadline": "c5a7f8665836ae81cd3db04bba2aba68aa0c0cf96dc409c70e3b52b490db04f5",
+    "cohort": "dad369a6deda6a7b3c49d98da33918f9f997366d5775821275d88ad975fea036",
+    "partitions": "d4c944874f7e24ee7f2107ae70d108a9e2116eec41ea519017e54e9bec805500",
+    "sensor_statistics": "6c8d42764076ebb6ba83107c32b1828d1fa67a53832c6cc490f5ae1c1a82d13f",
+    "feature_metadata": "8dccd1e815fc1a02865e73ec7faa761480c957f019fe4358d9f3ce214340bc58",
+    "original_pretrained_identity": "94ef7d0b1f97320fdf0bcfc1d43be269621ab15b2309be450a797168894c5828",
+    "runtime_identity": "366f5bd30086a5d405ac00d4bc96205e9d3cf85bbe7eeb5e956c0dbb95d82e1d",
+    "config": "ab8534492cf999dcedaa770ed87125c1b239bd9a52f6d9f5717173ac5af60ebe",
+    "sources": {
+      "common.py": "ad43f11a4384beb6e9f14515d7ad06eb5661a44784e66251e7d7ffbea7a3d938",
+      "data.py": "6f54d5ce792af97f8f04df872417800bba70c9285c3ad05cd1cb9f277075d7dd",
+      "fusion.py": "b5079de1e72d7ea36fcc440eb287ef35065f3c0c2b34be549e130afdb9779e86",
+      "visual_model.py": "d66793a8a2cfd3f58cff0afcdd59ff98f6c2b184ded5386a78e2be7336216e8f",
+      "pixel_access.py": "6971d1d6a5ac54a7c8f659024c2d62bd0990aebd2d10258bc83a987cad51e269",
+      "training.py": "0cd1c2733efdf28c13df4566cd58fe7f12ac6472d63aee6be3e6ad6cdcf3316d",
+      "study.sh": "2e5e8783eaacd678af92f3d8d4cc2441875c18bbeb92cd579db773d4d203b359",
+      "budget.py": "338b45b04c4cc0a8b249ac1afb4c2b883ec94c2a4721a9c4f1f14a63a717f1ef",
+      "fast_input.py": "760820f652e40f572703f6a145a50ecb4b4292c9bcb6fa0dbd750429b8e202d0",
+      "amend_training_support.py": "988475e397207755d786d8550c2adcc9e101b6f326026ed4e383825274dc9710"
+    }
+  },
+  "completed_paired_folds": 0,
+  "stop_reason": "COMPLETE_OUTER_CYCLE_NOT_ADMITTED"
+}

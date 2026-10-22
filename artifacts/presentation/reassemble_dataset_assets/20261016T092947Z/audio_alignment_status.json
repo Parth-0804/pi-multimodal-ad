@@ -1,0 +1,81 @@
+{
+  "source_path": "runs/reassemble/20260927T204649Z-audio-gate/results.json",
+  "source_sha256": "e3c0e71998ecbb0b7ebc56a9321bc993260395ea949c762a3b3254811ce7860e",
+  "actual_source_values": {
+    "streams": {
+      "hama1_audio": {
+        "segments": 4530,
+        "decodable": 4477,
+        "nominal_valid_segments": 4408,
+        "nominal_valid_percent": 97.30684326710816,
+        "nominal_valid_failures": 491,
+        "nominal_valid_failure_percent": 96.46365422396856,
+        "nominal_valid_recordings": 148,
+        "verified_segments": 0,
+        "verified_failures": 0,
+        "verified_recordings": 0,
+        "reported_vs_decoded_frame_mismatch_recordings": 63,
+        "nearly_silent_segments": 0
+      },
+      "hama2_audio": {
+        "segments": 4530,
+        "decodable": 4435,
+        "nominal_valid_segments": 4358,
+        "nominal_valid_percent": 96.20309050772627,
+        "nominal_valid_failures": 486,
+        "nominal_valid_failure_percent": 95.48133595284872,
+        "nominal_valid_recordings": 148,
+        "verified_segments": 0,
+        "verified_failures": 0,
+        "verified_recordings": 0,
+        "reported_vs_decoded_frame_mismatch_recordings": 52,
+        "nearly_silent_segments": 0
+      },
+      "hand_audio": {
+        "segments": 4530,
+        "decodable": 4530,
+        "nominal_valid_segments": 4530,
+        "nominal_valid_percent": 100.0,
+        "nominal_valid_failures": 509,
+        "nominal_valid_failure_percent": 100.0,
+        "nominal_valid_recordings": 148,
+        "verified_segments": 0,
+        "verified_failures": 0,
+        "verified_recordings": 0,
+        "reported_vs_decoded_frame_mismatch_recordings": 148,
+        "nearly_silent_segments": 0
+      }
+    },
+    "recordings_audited": 148,
+    "nonempty_audio_attribute_recordings": [],
+    "alignment_requirement": "Reliable segment start/end transfer is sufficient; frame-perfect alignment and per-sample timestamps are not required. No independently documented start offset/drift or segment anchor was found in available evidence.",
+    "decoding_evidence": "Reuse prior full-stream decoding and per-segment checks from immutable inventory; raw sizes/mtime and audited-record hashes verified. Header inspection repeated now; no new audio payload cache.",
+    "decision": "AUDIO NOT INCLUDED \u2014 SEGMENT-ALIGNMENT OR COVERAGE PRECONDITION FAILED",
+    "reason": "Nominal origin is inferred from the earliest non-audio timestamp, not a measured audio clock mapping. Decoder-reported and actually decoded sample counts can disagree. Nominal overlap does not establish correct action-segment association."
+  },
+  "requested_rounded_percentages": {
+    "hama1_audio": [
+      97.31,
+      96.46
+    ],
+    "hama2_audio": [
+      96.2,
+      95.48
+    ],
+    "hand_audio": [
+      100.0,
+      100.0
+    ]
+  },
+  "discrepancies": [],
+  "audio_alignment_status": "unverified",
+  "independently_verified_annotation_offset": false,
+  "independently_verified_drift": false,
+  "independently_verified_action_intervals": 0,
+  "action_clock": "Absolute Unix-style timestamps stored in segments_info start/end; video and robot_state are indexed with their timestamps datasets. Hardware clock provenance is not independently established here.",
+  "nominal_audio_origin": "Inventory nominal_audio_origin: minimum first timestamp across available non-audio timestamp arrays (src/reassemble/inventory.py). This is an inferred origin, not an audio-to-annotation clock calibration.",
+  "why_unverified": "No audio timestamp arrays or dataset clock attributes establish an independently documented offset, drift correction, or action-segment anchor. Header sample counts can disagree with decoded counts. A zero-based decoded sample clock plus an assumed recording origin cannot verify action identity.",
+  "why_excluded": "Nominal overlap measures coverage under an assumed origin; it does not prove label-safe extraction of each completed action. Audio was excluded by the timing/coverage prerequisite, not by a predictive-model result.",
+  "illustration_recording": "2025-01-09-14-47-32",
+  "illustration_rule": "Central 10 seconds of each full decoded stream of the lexicographically first selected recording, independent of action timing; no exported audio files."
+}
