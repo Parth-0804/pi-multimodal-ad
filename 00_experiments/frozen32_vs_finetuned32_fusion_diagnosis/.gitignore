@@ -1,0 +1,42 @@
+# Scope: this completed study only. The repository-wide policy is unchanged.
+# Keep checkpoints, caches, bulk prediction banks and archives local.
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.npy
+*.npz
+*.zip
+**/matplotlib_cache/
+__pycache__/
+/results/writer.lock
+/results/provenance/events.jsonl
+/tests/synthetic_report_fixture/
+/git_handoff/
+
+# Explicitly reviewed compact final tables; other CSV outputs remain ignored.
+!/results/comparison/F2_coefficients.csv
+!/results/comparison/bootstrap_new_contrast_draws.csv
+!/results/comparison/budget_comparison.csv
+!/results/comparison/calibration_comparison.csv
+!/results/comparison/cause_assessment.csv
+!/results/comparison/complementarity.csv
+!/results/comparison/correctness_overlap.csv
+!/results/comparison/fit_evidence_index.csv
+!/results/comparison/fold_comparisons.csv
+!/results/comparison/fusion_results.csv
+!/results/comparison/oof_vs_assessment.csv
+!/results/comparison/paired_intervals.csv
+!/results/comparison/reliability_bins.csv
+!/results/comparison/seed_stability.csv
+!/results/comparison/visual_results.csv
+
+# Two-row training curves are compact fit evidence, not prediction banks.
+!/results/seed_*/*/fold_*/*/learning_curve.csv
+
+# Small retained check logs include the documented preflight attempts.
+!/results/checks/focused_tests.log
+!/results/checks/focused_tests_attempt_01_namespace.log
+!/results/checks/focused_tests_attempt_02_before_interval_test.log
+!/results/checks/preparation.log
+!/results/checks/report_rendering_test.log

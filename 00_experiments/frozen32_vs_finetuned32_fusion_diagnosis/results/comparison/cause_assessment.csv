@@ -1,0 +1,6 @@
+candidate,evidence_for,evidence_against_or_limit,status
+Seed instability,"F2 effects by seed: [-0.000796187072331811, -0.0028219224160057066]; sign reversal=False",Only two seed families; recording intervals do not estimate a seed-variance distribution,Unresolved
+Unequal training budget,"visual: old contrast +0.011182, matched +0.007902; F2: old contrast -0.001017, matched -0.000796",Direct fixed-seed budget comparison is bounded to seed42; same-seed reuse is not independent replication,Unresolved
+Limited sensor complementarity,"Predeclared Pattern B by seed: [np.True_, np.False_]; class-conditional true-label changes in complementarity.csv",Not improving AP does not establish absence of image information; probabilities and operating points can differ,Weak evidence
+Calibration/F2 interaction,"Predeclared Pattern A by seed: [np.False_, np.False_]; F2 coefficients and calibrators retained",Uniform and F2 use the same calibrated inputs; no causal calibration intervention was performed,Unresolved
+OOF-to-assessment mismatch,"Folds with OOF deficit, assessment gain and reduced visual coefficient by seed: [1, 2]/5",Different fits/training sizes/calibration sets; OOF banks overlap; F2 learned on those rows,Weak evidence

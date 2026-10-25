@@ -1,0 +1,36 @@
+test_F2_feature_order_arithmetic (test_protocol.ProtocolTests.test_F2_feature_order_arithmetic) ... ok
+test_exact_two_epoch_stop_and_batch_policy (test_protocol.ProtocolTests.test_exact_two_epoch_stop_and_batch_policy) ... ok
+test_head_checkpoint_optimizer_and_rng_restore (test_protocol.ProtocolTests.test_head_checkpoint_optimizer_and_rng_restore) ... ok
+test_locked_frames_and_memberships (test_protocol.ProtocolTests.test_locked_frames_and_memberships) ... ok
+test_seed_families_preserve_partitions (test_protocol.ProtocolTests.test_seed_families_preserve_partitions) ... ok
+test_sensor_source_is_independent_of_visual_seed (test_protocol.ProtocolTests.test_sensor_source_is_independent_of_visual_seed) ... ERROR
+test_uniform_probability_arithmetic (test_protocol.ProtocolTests.test_uniform_probability_arithmetic) ... ok
+
+======================================================================
+ERROR: test_sensor_source_is_independent_of_visual_seed (test_protocol.ProtocolTests.test_sensor_source_is_independent_of_visual_seed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/tests/test_protocol.py", line 56, in test_sensor_source_is_independent_of_visual_seed
+    a,ia=canonical_sensor(job);b,ib=canonical_sensor(job)
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/code/pipeline.py", line 21, in canonical_sensor
+    frame=load_cohort();expected=frame.iloc[job['predict']].sample_id.tolist()
+          ^^^^^^^^^^^^^
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/source/data.py", line 154, in load_cohort
+    def load_cohort():return pd.DataFrame(read(ROOT/'data_manifests/cohort_and_frames.json'))
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/code/common.py", line 25, in read
+    def read(path):return json.loads(Path(path).read_text())
+                                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1029, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/student/Master_Thesis_WS/pi-multimodal-ad/00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/data_manifests/cohort_and_frames.json'
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.656s
+
+FAILED (errors=1)
