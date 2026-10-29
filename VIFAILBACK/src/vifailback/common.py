@@ -9,6 +9,9 @@ import hashlib
 import json
 import os
 import shutil
+import subprocess
+import sys
+import importlib.metadata
 
 PROJECT = Path(__file__).resolve().parents[2]
 REPO = PROJECT.parent
@@ -99,3 +102,23 @@ def event(c, stage, **extra):
         stream.write(json.dumps(row, allow_nan=False) + '\n')
         stream.flush()
     print(json.dumps(row), flush=True)
+
+
+def code_identity():
+    return {str(p.relative_to(REPO)):sha(p) for folder in [PROJECT/'src',PROJECT/'scripts',PROJECT/'configs']
+            for p in sorted(folder.rglob('*')) if p.is_file() and p.suffix in ['.py','.json']}
+
+
+def provenance(c):
+    from .reference import identities
+    packages={}
+    for package in ['torch','transformers','numpy','scipy','scikit-learn','pyarrow','opencv-python','Pillow','requests','pytest']:
+        try:packages[package]=importlib.metadata.version(package)
+        except importlib.metadata.PackageNotFoundError:packages[package]='not installed as named'
+    return {'utc':utc(),'configuration':c,'command':sys.argv,'python':sys.version,'packages':packages,
+            'git_HEAD':subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip(),
+            'git_dirty':bool(subprocess.check_output(['git','status','--porcelain','--untracked-files=normal'],cwd=REPO,text=True)),
+            'implementation':code_identity(),'reused_source':identities(),
+            'warnings':['Task independence only; session/operator identities unknown',
+                        'Native intervention exclusions do not establish absence of incidental humans',
+                        'Relative converted clock alignment is not independently measured hardware synchronization']}
