@@ -1,0 +1,1117 @@
+ROLE:
+Act as a senior machine learning research engineer,
+independent scientific reviewer, and reproducibility auditor.
+
+PROJECT:
+pi-multimodal-ad
+
+PRIMARY DATASET:
+ViFailback
+
+PRIMARY RESEARCH OBJECTIVE:
+Independently evaluate whether multimodal fusion using visual
+representations and measured robot-state data improves
+whole-action failure classification over strong unimodal
+baselines, including under degraded or missing modalities.
+
+SECONDARY OBJECTIVES:
+1. Test whether fully fine-tuning a CNN for 100 epochs improves
+   visual representations and fusion performance.
+2. Evaluate whether REASSEMBLE-trained CNN representations
+   transfer to ViFailback.
+3. Reproduce the original REASSEMBLE F2 fusion architecture
+   on an independently labeled dataset.
+4. Determine whether quality-aware fusion improves robustness.
+5. Produce a scientifically defensible, reproducible experiment.
+
+THIS IS A COMPLETE IMPLEMENTATION TASK.
+
+I WILL BE AWAY.
+
+Work autonomously through all scientifically valid stages.
+Do not stop after planning, inspection or creating documentation.
+
+Do not request routine approval between stages.
+
+However, never bypass permission restrictions or fabricate
+evidence to overcome a genuine blocker.
+
+Do not impose artificial GPU-time or epoch limits.
+
+Preserve all previous research and experiments.
+
+========================================================
+0. FIRST ACTION — GIT AUDIT AND INITIAL COMMITS
+========================================================
+
+Before beginning new implementation:
+
+1. Inspect the current repository status.
+2. Identify existing modified and untracked files.
+3. Examine their diffs and provenance.
+4. Identify files belonging to the completed ViFailback
+   investigation and associated research documentation.
+5. Commit the relevant existing work before making new changes.
+
+IMPORTANT GIT RULES:
+
+- Stage only specific, relevant files.
+- Do not use indiscriminate git add -A or git add .
+- Do not accidentally include unrelated user changes.
+- Do not commit credentials, secrets, large raw datasets,
+  large model checkpoints or temporary caches.
+- Do not rewrite, squash or amend historical commits.
+- Do not reset or discard existing work.
+- Do not force checkout operations.
+- Do not change unrelated branches.
+- Do not push to any remote.
+
+Create meaningful commits grouped by scientific purpose.
+
+Suggested initial commit:
+
+docs(vifailback): preserve dataset verification and pilot audits
+
+Subsequent commits should separate:
+- Dataset QC and preprocessing
+- Model implementations
+- Fusion implementations
+- Tests and validation
+- Evaluation and scientific reports
+
+Example commit messages:
+
+feat(vifailback): implement full video quality screening
+
+feat(vifailback): establish verified multimodal dataset contract
+
+feat(vifailback): implement leakage-safe evaluation splits
+
+feat(vifailback): add sensor and visual baselines
+
+feat(vifailback): implement 100-epoch CNN fine-tuning
+
+feat(vifailback): reproduce F2 and quality-aware fusion
+
+test(vifailback): verify data lineage and evaluation integrity
+
+docs(vifailback): report independent fusion experiments
+
+Use appropriate messages for the actual changes.
+
+DO NOT PUSH ANY COMMITS.
+
+I will push manually after reviewing your work.
+
+If a relevant pre-existing change has unclear ownership,
+preserve it without automatically committing it and document
+the issue. Continue with non-conflicting work.
+
+Record the initial and final HEAD, commit hashes and worktree
+status in the final handoff.
+
+========================================================
+1. VERIFY THE EXISTING VIFAILBACK INVESTIGATION
+========================================================
+
+Begin by reading the existing evidence under:
+
+DATASET_RESEARCH/VIFAILBACK_VERIFICATION/
+
+Including:
+
+- Native label audit
+- Modality and alignment audit
+- Group independence audit
+- Visual observability review
+- Source provenance
+- Research decisions
+- Researcher handoff
+- Blinded pilot review
+- Follow-up unblinding results
+- Sensor quality audit
+- REASSEMBLE checkpoint audit
+- Proposed evaluation protocol
+
+Do not simply trust the summaries.
+
+Independently reproduce important findings from source data
+and saved manifests.
+
+Previously reported:
+
+Original episodes: 5,202
+
+Original labels:
+- Success/no-failure: 657
+- Failure: 4,545
+
+Conservative V2 core:
+- 4,384 episodes
+- 3,755 failures
+- 629 no-failures
+- 99 canonical tasks
+
+Quarantined or excluded:
+- 818 episodes
+
+Important issues:
+- Duplicate episode identities
+- Constant-position telemetry
+- Human interventions
+- Coordinate-regime inconsistency
+- Incomplete video quality verification
+- Unverified session/operator independence
+
+Blinded visual pilot:
+- 20 reviewed episodes
+- 19 decided observations agreed with native labels
+- B02 remained uncertain
+- Three camera views per episode
+- 16 timestamps per camera
+
+REVERIFY ALL COUNTS.
+
+Distinguish source-verified evidence from previously reported
+claims and unresolved assumptions.
+
+========================================================
+2. CREATE A CLEAN VIFAILBACK PROJECT STRUCTURE
+========================================================
+
+Use the existing MSM dataset structure as the preferred
+organizational reference.
+
+Keep all ViFailback-specific implementation, preprocessing,
+models, experiments, results and documentation together.
+
+Suggested organization:
+
+VIFAILBACK/
+|
+|-- README.md
+|
+|-- 01_original_dataset/
+|   |-- source_manifest/
+|   |-- original_labels/
+|   |-- source_provenance/
+|
+|-- 02_dataset_verification/
+|   |-- label_audit/
+|   |-- sensor_audit/
+|   |-- video_audit/
+|   |-- alignment_audit/
+|   |-- exclusion_manifest/
+|
+|-- 03_preprocessing/
+|   |-- visual_preprocessing/
+|   |-- sensor_preprocessing/
+|   |-- data_contracts/
+|   |-- processed_manifests/
+|
+|-- 04_evaluation_splits/
+|   |-- group_independence/
+|   |-- train_validation_test/
+|   |-- split_integrity_tests/
+|
+|-- 05_model_implementations/
+|   |-- visual_models/
+|   |-- sensor_models/
+|   |-- fusion_models/
+|
+|-- 06_training_experiments/
+|   |-- visual_frozen/
+|   |-- visual_finetuned100/
+|   |-- reassemble_transfer/
+|   |-- sensor_baselines/
+|   |-- fusion_experiments/
+|
+|-- 07_robustness_experiments/
+|   |-- missing_modalities/
+|   |-- visual_degradation/
+|   |-- sensor_degradation/
+|   |-- combined_corruption/
+|
+|-- 08_visual_examples_and_eda/
+|   |-- real_examples/
+|   |-- prediction_galleries/
+|   |-- feature_visualizations/
+|
+|-- 09_evaluation_results/
+|   |-- unimodal_results/
+|   |-- fusion_results/
+|   |-- statistical_comparisons/
+|   |-- calibration/
+|
+|-- 10_final_research_reports/
+|   |-- scientific_conclusion/
+|   |-- reproducibility/
+|   |-- researcher_handoff/
+|
+|-- configs/
+|-- scripts/
+|-- tests/
+
+Adapt this to existing repository conventions.
+
+Avoid unnecessary duplication.
+
+Prefer source manifests and references over copying large
+datasets multiple times.
+
+Maintain readable filenames.
+
+Use descriptive naming for configurations, artifacts and
+experiments.
+
+Never overwrite historical results.
+
+========================================================
+3. COMPLETE FULL-DATASET VIDEO QC
+========================================================
+
+Current evidence suggests:
+
+19 pilot episodes have verified three-camera visual examples.
+
+Approximately 4,365 additional provisional core episodes
+still require complete video QC.
+
+Perform systematic video verification for every episode
+in the provisional core.
+
+Check:
+
+1. Video existence
+2. Successful video decoding
+3. Source file identity
+4. Episode-to-video identity joins
+5. Frame timestamps
+6. Video duration
+7. Sensor/video interval correspondence
+8. Three-camera availability
+9. Frame corruption
+10. Duplicate or repeated frames
+11. Severe blur
+12. Empty/black recordings
+13. Occlusion of the robot interaction
+14. Visibility of the manipulated object
+15. Human intervention
+16. Other outcome-correlated visual shortcuts
+
+Use automated checks where possible.
+
+Generate representative blinded contact sheets for human
+inspection across tasks and quality categories.
+
+Do not use target labels to choose informative frames.
+
+Distinguish:
+
+A. Technically valid video
+B. Technically valid but visually uninformative video
+C. Partially missing or degraded video
+D. Unusable video
+E. Video requiring manual review
+
+A visually weak recording should not automatically be deleted
+from the dataset.
+
+It may be valuable for robustness testing.
+
+Preserve the distinction between technical eligibility and
+predictive visual quality.
+
+Document all exclusions.
+
+========================================================
+4. VERIFY NUMERICAL SENSOR MODALITY
+========================================================
+
+Use original recorded robot observations.
+
+Available measurements may include:
+
+- Robot joint positions
+- Joint velocities
+- Joint effort arrays
+- Gripper effort
+- Other verified state measurements
+
+Do not invent force/torque measurements.
+
+Do not describe placeholder effort channels as calibrated
+physical force.
+
+Identify constant, missing and invalid channels.
+
+Verify original HDF5 values against converted records.
+
+Check:
+
+- Shapes
+- Sampling
+- Timestamps
+- Coordinate conventions
+- Missing values
+- Constant channels
+- Alignment with video
+- Episode boundaries
+- Feature provenance
+
+Maintain the conservative coordinate-regime quarantine unless
+original source evidence resolves it.
+
+Do not guess coordinate transformations.
+
+Create a documented sensor data contract.
+
+========================================================
+5. FINALIZE DATASET AND LABEL CONTRACT
+========================================================
+
+Prediction task:
+
+WHOLE-ACTION BINARY CLASSIFICATION.
+
+Native target:
+
+1 = Failure
+0 = Success / no failure
+
+Use original verified labels.
+
+No artificial target creation.
+
+No relabeling based on image appearance.
+
+One complete action episode represents one prediction example.
+
+Each example must join:
+
+- One native label
+- One episode identity
+- One task identity
+- Three synchronized camera streams, where eligible
+- Numerical robot-state observations
+- A defined episode time interval
+
+Generate a final eligible-episode manifest.
+
+Include every excluded episode and its exact exclusion reason.
+
+Produce a machine-readable dataset contract and an
+independently understandable Markdown explanation.
+
+========================================================
+6. DEFINE LEAKAGE-SAFE EVALUATION
+========================================================
+
+Primary evaluation:
+
+TASK-DISJOINT GENERALIZATION.
+
+Use independent canonical tasks as outer evaluation groups.
+
+Before training:
+
+1. Define the outer evaluation folds.
+2. Define training-only inner validation groups.
+3. Verify both classes occur in evaluation partitions.
+4. Verify no duplicate identities cross partitions.
+5. Verify preprocessing is fitted on training data only.
+6. Verify calibration is training-side only.
+7. Verify fusion fitting is training-side only.
+
+Use the existing project evaluation conventions where
+scientifically valid.
+
+Target at least:
+
+- Three outer group-disjoint folds
+- Three fixed random seeds
+- Training-side inner validation or grouped OOF fitting
+
+Document any deviation and its justification.
+
+Check the number of independent groups and positive/negative
+examples in every split before training.
+
+Session/operator independence is not established.
+
+Do not claim it is.
+
+If task-disjoint evaluation is feasible but session-level
+independence is unverified, report that limitation.
+
+Preserve exact split manifests.
+
+========================================================
+7. VISUAL INPUT PREPARATION
+========================================================
+
+Use:
+
+16 TEMPORAL TIMESTAMPS PER EPISODE.
+
+Do not switch to 32 frames.
+
+Use the three available cameras according to a fixed,
+documented input policy.
+
+Each camera should provide 16 temporally corresponding frames.
+
+Do not cherry-pick frames based on labels or visible failures.
+
+Establish a reproducible visual representation procedure.
+
+Start from the REASSEMBLE 16-frame CNN architecture.
+
+Verify actual source code.
+
+Remember:
+
+The historical REASSEMBLE visual branch used a pretrained
+RT-DETR CNN backbone as a feature extractor.
+
+It did not use the RT-DETR detection transformer or bounding-box
+head in that branch.
+
+Do not describe CNN features as object detections.
+
+Define how:
+- Frames are encoded
+- Temporal features are aggregated
+- Multiple cameras are combined
+- Classifier predictions are generated
+
+Keep camera aggregation reproducible.
+
+Include a single-camera versus three-camera ablation if
+feasible without changing the primary protocol.
+
+========================================================
+8. TRAIN VISUAL MODELS
+========================================================
+
+Implement three primary visual configurations.
+
+MODEL V1:
+FROZEN PRETRAINED CNN
+
+- Same backbone family as the REASSEMBLE reference
+- Frozen convolutional backbone
+- Trainable classifier
+- 16 frames per episode
+- Fixed multiview aggregation
+- Train classifier for up to 100 scheduled epochs
+- Select checkpoint using validation data only
+
+MODEL V2:
+FULLY FINE-TUNED CNN — 100 EPOCHS
+
+This experiment is REQUIRED.
+
+- Initialize from original verified pretrained CNN weights
+- Train the complete supported CNN backbone
+- Train the classification head
+- Use 16 timestamps per episode
+- Use the same multiview input definition
+- Execute the full 100-epoch training schedule
+- Save the best validation-selected checkpoint
+- Save final-epoch checkpoint
+- Record every epoch's metrics
+- Record learning rate, optimizer, batch size and loss
+- Record GPU memory and training time
+
+Preserve the training recipe used in the verified REASSEMBLE
+100-epoch experiment where appropriate.
+
+Adapt optimizer and data loading only when scientifically
+necessary.
+
+Do not silently freeze the backbone.
+
+Verify which CNN parameters actually receive gradients and
+are updated.
+
+Normalization-affine parameters and running statistics must be
+documented explicitly.
+
+MODEL V3:
+REASSEMBLE-TRAINED CNN TRANSFER
+
+Verify the existing REASSEMBLE checkpoint:
+
+C_full_finetuned16
+Selected epoch: 47
+Original completed schedule: 100 epochs
+Seed: 42
+
+Use its trained CNN backbone as a donor representation.
+
+Replace the task-specific classification head.
+
+Adapt to ViFailback using a documented training procedure.
+
+Do not transfer the previous task classifier without
+justification.
+
+Compare transfer initialization against V2's original
+pretrained initialization.
+
+Clearly distinguish:
+
+- Training from original pretrained weights
+- Transfer from REASSEMBLE-fine-tuned weights
+- Training a new ViFailback classifier
+
+Run multiple seeds and independent group folds.
+
+Preserve all checkpoints and histories.
+
+Do not claim transfer helps unless held-out evidence supports it.
+
+========================================================
+9. TRAIN SENSOR-ONLY BASELINES
+========================================================
+
+Use verified robot-state features.
+
+Create at least:
+
+S1:
+Static sensor logistic-regression baseline
+
+S2:
+Strong nonlinear sensor baseline, such as
+HistGradientBoosting
+
+S3:
+The exact static sensor method used in the original
+REASSEMBLE F2 implementation
+
+If S1 and S3 are identical, document that fact instead of
+duplicating training unnecessarily.
+
+Sensor features must be calculated from valid episode data.
+
+Exclude:
+- Labels disguised as features
+- Evaluation results
+- Outcome annotations
+- Post-hoc manual judgments
+- Source identifiers that leak targets
+- Invalid telemetry channels
+
+Fit transformations using training groups only.
+
+Preserve sensor feature names and definitions.
+
+========================================================
+10. IMPLEMENT MULTIMODAL FUSION
+========================================================
+
+Read and reproduce the original REASSEMBLE F2 implementation.
+
+Do not invent a new F2 formulation.
+
+F2 refers to our existing late-fusion method,
+not the F2 classification metric.
+
+Evaluate:
+
+F1:
+Simple averaging of visual and sensor probabilities
+
+F2:
+Original REASSEMBLE F2 late fusion
+
+F3:
+Quality-aware/gated fusion, based on the verified existing
+implementation and scientifically justified extensions
+
+Use each eligible visual model with the defined sensor branch.
+
+Minimum combinations:
+
+- V1 + S3 with averaging
+- V1 + S3 with F2
+- V2 + S3 with averaging
+- V2 + S3 with F2
+- V3 + S3 with averaging
+- V3 + S3 with F2
+
+Also evaluate quality-aware fusion with appropriate visual
+representations.
+
+Fit F2 and gate parameters using group-safe training-side
+predictions.
+
+Do not fit fusion on in-sample predictions that falsely
+appear independent.
+
+Use grouped OOF predictions or a properly separated
+training-side calibration partition.
+
+Never use outer-test labels to adjust coefficients.
+
+Preserve the coefficients and their fitting evidence.
+
+========================================================
+11. TEST ADAPTIVE FUSION ROBUSTNESS
+========================================================
+
+This is central to the thesis.
+
+Evaluate clean data and controlled degradation.
+
+Visual corruption:
+- Missing frames
+- Frame drops
+- Blur
+- Occlusion
+- Camera unavailable
+- Reduced image quality
+- Temporal misalignment where validly simulated
+
+Sensor corruption:
+- Missing channels
+- Missing intervals
+- Added noise
+- Frozen sensor readings
+- Channel dropout
+- Controlled temporal shifts
+
+Combined corruption:
+- Degraded visual and sensor streams together
+- One modality missing completely
+- Both modalities partially degraded
+
+Use documented corruption intensities.
+
+Generate corruptions without consulting evaluation labels.
+
+Do not fit corruption severity or gates on held-out results.
+
+Compare:
+
+- Best visual-only model
+- Best sensor-only model
+- Averaging
+- F2
+- Quality-aware fusion
+
+Distinguish learned adaptation from explicitly programmed
+fallback behavior.
+
+A hard-coded surviving-modality fallback is not evidence
+that a learned gate recognized modality reliability.
+
+Do not assume quality-aware fusion is superior.
+
+========================================================
+12. METRICS AND SCIENTIFIC EVALUATION
+========================================================
+
+The provisional dataset is highly imbalanced.
+
+Approximately:
+- 85.7% failure
+- 14.3% success
+
+Therefore, do not rely on failure-class AP alone.
+
+Report:
+
+PRIMARY:
+- Failure-class Average Precision
+- Success-class Average Precision
+- Macro Average Precision
+
+SECONDARY:
+- AUROC
+- Balanced accuracy
+- Macro F1
+- Precision and recall for both classes
+- Brier score
+- Log loss
+- Calibration
+- Confusion matrices
+
+Report class prevalence and corresponding prevalence
+baselines.
+
+Include:
+- Three-seed results
+- Group/fold results
+- Means and variability
+- Paired model differences
+- Appropriate grouped uncertainty intervals
+
+Do not pool correlated action episodes as if every frame
+were an independent test example.
+
+Use the same held-out episodes when comparing models.
+
+Evaluate statistical uncertainty honestly.
+
+Avoid selecting a winner from tiny AP differences.
+
+========================================================
+13. REQUIRED MODEL COMPARISONS
+========================================================
+
+Produce comparisons answering:
+
+Q1.
+Does 100-epoch full CNN fine-tuning improve visual-only
+performance over a frozen CNN?
+
+Q2.
+Does REASSEMBLE-trained CNN initialization transfer better
+than original pretrained CNN initialization?
+
+Q3.
+Does visual-only prediction outperform prevalence baseline?
+
+Q4.
+Does static sensor-only prediction outperform visual-only?
+
+Q5.
+Does F2 fusion improve over sensor-only prediction?
+
+Q6.
+Does F2 fusion improve over the STRONGEST unimodal baseline?
+
+Q7.
+Does using a fully fine-tuned CNN improve F2 performance
+compared with using a frozen CNN?
+
+Q8.
+Does the REASSEMBLE-trained visual representation improve
+fusion performance on ViFailback?
+
+Q9.
+Does quality-aware fusion improve over F2 and averaging?
+
+Q10.
+Which fusion method is most robust when visual input degrades?
+
+Q11.
+Which fusion method is most robust when sensors degrade?
+
+Q12.
+Does a fusion advantage remain consistent across seeds,
+groups, and corruption conditions?
+
+For every question:
+
+Report the supporting experiments, numerical evidence,
+limitations and scientific conclusion.
+
+If evidence does not support an improvement, say so.
+
+========================================================
+14. VISUAL EXPLANATIONS AND REAL EXAMPLES
+========================================================
+
+Create real prediction galleries.
+
+For selected held-out episodes, show:
+
+- Native label
+- Model prediction
+- Visual-only probability
+- Sensor-only probability
+- F2 probability
+- Quality-aware fusion probability
+- Relevant camera frames
+- Sensor timeline
+- Whether the prediction was correct
+
+Use actual saved predictions.
+
+Include examples where:
+
+1. Both modalities agree correctly
+2. Both modalities agree incorrectly
+3. Vision is correct and sensors are wrong
+4. Sensors are correct and vision is wrong
+5. Fusion corrects a unimodal error
+6. Fusion introduces an error
+7. Degraded-modality behavior changes the prediction
+
+Do not generate fictional examples.
+
+Keep sample IDs and source provenance traceable.
+
+Do not use these examples to tune the model after testing.
+
+========================================================
+15. INDEPENDENT VERIFICATION
+========================================================
+
+Apply the four-eye scientific verification principle.
+
+Verify:
+
+- Native label lineage
+- Source identity
+- Dataset eligibility
+- Video/sensor joins
+- Task and recording independence
+- Training-only preprocessing
+- CNN weight updates
+- Checkpoint identity
+- OOF prediction correctness
+- Fusion fitting
+- Calibration
+- Evaluation metric calculations
+- Corruption generation
+- Saved result provenance
+
+Recompute all final metrics independently from saved
+per-example predictions.
+
+Compare recomputed values with reported results.
+
+Every scientific result must map to:
+
+Source dataset
+→ Episode manifest
+→ Split
+→ Preprocessing
+→ Model configuration
+→ Checkpoint
+→ Predictions
+→ Metric computation
+→ Reported result
+
+Mark any broken lineage explicitly.
+
+Never invent missing historical evidence.
+
+========================================================
+16. STORAGE AND COMPUTE MANAGEMENT
+========================================================
+
+The project has limited available storage.
+
+Avoid unnecessary duplication of raw videos.
+
+Before downloading or extracting substantial data:
+
+- Estimate required storage
+- Check available disk space
+- Prefer streaming or verified caches
+- Avoid duplicate model checkpoints
+- Save best and final checkpoints as appropriate
+
+Aim to keep additional project storage within approximately
+40 GiB where reasonably possible.
+
+Preserve sufficient free space for system operation.
+
+Do not delete existing research evidence to make space.
+
+Do not interrupt the ongoing REASSEMBLE 75-fit study.
+
+If GPU resources conflict, schedule work sequentially.
+
+Use resumable checkpoints and experiment logs.
+
+For the full CNN:
+
+100 epochs are explicitly required.
+
+Do not silently reduce to 10, 20 or 25 epochs.
+
+Do not terminate simply because training is slow.
+
+If an external interruption occurs, preserve the model,
+optimizer, scheduler and RNG state where available.
+
+Resume correctly rather than restarting unnecessarily.
+
+========================================================
+17. AUTOMATIC PROGRESSION AND STOP CONDITIONS
+========================================================
+
+Work through the stages without waiting for me.
+
+If dataset verification passes:
+Proceed to preprocessing.
+
+If preprocessing passes:
+Proceed to split verification.
+
+If splits are valid:
+Proceed to training.
+
+If model training completes:
+Proceed to fusion.
+
+If fusion completes:
+Proceed to robustness experiments.
+
+If evaluation completes:
+Proceed to independent verification and final reporting.
+
+Do not pause for routine choices.
+
+Make scientifically conservative decisions and document them.
+
+However, STOP THE AFFECTED SCIENTIFIC STAGE if:
+
+- Native labels cannot be verified
+- Evaluation groups overlap
+- Required modalities cannot be joined
+- Major dataset corruption cannot be resolved
+- Training would require test leakage
+- A necessary source or checkpoint is unavailable
+- Required permissions are denied
+
+Continue other independently valid work.
+
+Never manufacture a replacement label, sensor signal,
+checkpoint or evaluation result to keep the pipeline running.
+
+========================================================
+18. FINAL DOCUMENTATION
+========================================================
+
+Create:
+
+VIFAILBACK/10_final_research_reports/
+
+Required reports:
+
+01_EXECUTIVE_SUMMARY.md
+02_DATASET_AND_LABEL_VERIFICATION.md
+03_DATA_PREPROCESSING.md
+04_ARCHITECTURE_EXPLANATION.md
+05_TRAINING_AND_CHECKPOINTS.md
+06_UNIMODAL_BASELINE_RESULTS.md
+07_FUSION_RESULTS.md
+08_ROBUSTNESS_EVALUATION.md
+09_STATISTICAL_COMPARISON.md
+10_INDEPENDENT_VERIFICATION.md
+11_LIMITATIONS_AND_THREATS_TO_VALIDITY.md
+12_FINAL_SCIENTIFIC_CONCLUSION.md
+13_RESEARCHER_HANDOFF.md
+
+Additionally create:
+
+VIFAILBACK/README.md
+
+The README must guide a new researcher through:
+
+Input
+→ Dataset validation
+→ Preprocessing
+→ Model inputs
+→ Unimodal architectures
+→ Fusion
+→ Predictions
+→ Evaluation
+→ Results
+→ Conclusions
+
+Include exact relative paths.
+
+Document how to reproduce each experiment.
+
+Include the final training commands, configurations, seeds,
+checkpoint paths and source hashes.
+
+========================================================
+19. FINAL GIT COMMITS
+========================================================
+
+After each scientifically complete implementation stage,
+create an appropriate commit containing only relevant
+source code, tests, configs and reasonably sized documentation.
+
+Do not include raw datasets, caches or large model weights
+in Git unless the repository explicitly manages such artifacts
+through an established mechanism.
+
+Do not mix unrelated changes into commits.
+
+At the end:
+
+- Show all commits created
+- Show each commit message
+- Show final HEAD
+- Show remaining modified/untracked files
+- Explain why anything was left uncommitted
+
+IMPORTANT:
+
+DO NOT PUSH.
+
+Do not open a pull request.
+
+I will review and push manually.
+
+========================================================
+20. FINAL HANDOFF — REQUIRED
+========================================================
+
+When the work finishes, provide a comprehensive but
+human-readable final response.
+
+Include:
+
+1. Final dataset size and class distribution
+2. Number of tasks and independent evaluation groups
+3. Video and sensor QC results
+4. Training/validation/test protocol
+5. Models trained
+6. CNN 100-epoch training results
+7. REASSEMBLE transfer results
+8. Unimodal baseline comparison
+9. F2 fusion comparison
+10. Quality-aware fusion results
+11. Missing/noisy-modality robustness
+12. Three-seed and fold variability
+13. Statistical uncertainty
+14. Which approach actually performed best
+15. Whether fusion beat the strongest unimodal baseline
+16. Whether CNN fine-tuning improved fusion
+17. Any unresolved scientific limitations
+18. Complete report paths
+19. Checkpoint and prediction paths
+20. Git commits created and confirmation that nothing was pushed
+
+Create one final top-level document:
+
+VIFAILBACK/RESEARCH_COMPLETION_STATUS.md
+
+It must provide a one-page overview of:
+
+- Completed work
+- Verified results
+- Remaining blockers
+- Scientific verdict
+- Files I should read first
+- Git commit status
+- Any unfinished/resumable experiments
+
+FINAL REQUIREMENT:
+
+Do not report GO, success, superiority or robustness merely
+because a script finished without errors.
+
+All scientific conclusions must be supported by the saved
+predictions, evaluation protocol and verified metrics.
+
+Do not stop after the initial implementation.
+
+Continue until all scientifically permissible experiments,
+verification and reporting are complete.
+
+I will review everything when I return.
+
+DO NOT PUSH TO GIT.
