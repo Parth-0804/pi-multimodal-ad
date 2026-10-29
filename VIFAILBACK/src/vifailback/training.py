@@ -106,7 +106,7 @@ def fit(c,condition,job,seed,device):
         history=saved['history'];best=saved['best'];best_epoch=saved['best_epoch'];start_epoch=saved['completed_epochs'];initial=saved['initial']
         restore_rng(saved['rng'])
     target=lambda ids:np.asarray([lookup[e]['label'] for e in ids])
-    t_y=target(job['ids']['T']);positive_weight=torch.tensor((len(t_y)-t_y.sum())/t_y.sum(),device=device)
+    t_y=target(job['ids']['T']);positive_weight=torch.tensor((len(t_y)-t_y.sum())/t_y.sum(),device=device,dtype=torch.float32)
     total_seconds=sum(h['epoch_seconds'] for h in history)
     for epoch in range(start_epoch,100):
         disk_reserve(c,200*1024**2);model.train()
