@@ -1,0 +1,9 @@
+# 10 INDEPENDENT VERIFICATION
+
+Run `20261029T004900Z`. Published 2026-10-29T02:15:32.074020+00:00. Pipeline state: **FULL_VIDEO_QC_IN_PROGRESS**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T021531975083Z`.
+
+Native joins are independently recounted from109 source annotation files; raw SHA identities, converted metadata and V2 labels agree. All original and follow-up artifact manifests were rehashed before preservation. The locked20-example review is unchanged; B02 stays uncertain.
+
+Synthetic checks exercise task disjointness, contamination rejection, exact source statistics/F2, both-class AP and prevalence baselines, 48-image chunked/full-graph gradient parity, availability masks, deterministic corruptions, optimizer/RNG reload and the actual100epoch orchestration. Real-image CPU preflight independently checks executed CNN scopes,73updated tensors, fixed moments and exact replay. Source donor115tensor compatibility is verified separately from adaptation performance.
+
+`src/vifailback/verification.py` rejoins native source records and independently recomputes saved-prediction metrics. Direct AP threshold integration, rank-pair AUROC, confusion-derived precision/recall/F1/accuracy, Brier and logloss formulas are separate from sklearn report calculations. OOF tables are rechecked against exact T/V/C/A IDs. This is automated independent calculation, not a signed second-human review. Final scientific interpretation still merits researcher review.

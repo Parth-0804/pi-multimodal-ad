@@ -1,25 +1,15 @@
-# Research completion status
+# ViFailback research completion status
 
-**Active implementation. No ViFailback neural model has been trained yet.**
+**CPU_SENSOR_BASELINES_COMPLETE_VISUAL_FEATURES_RUNNING.** 
 
-Completed: preserved the existing investigation in local commit `9414da8f8`;
-independently recounted native 5,202 labels and the 4,384-row conservative core;
-verified 1,274 original and 5,358 follow-up artifact hashes; implemented selective,
-immutable, hash-verified three-camera acquisition with synthetic HTTP tests.
+Acquisition: {'ACQUIRED_VERIFIED': 13095, 'VERIFIED_EXISTING': 57}. Camera QC: (13150, 13152). Final cohort: 4382. Completed fits: {'visual_frozen': 0, 'visual_frozen_high_only': 0, 'visual_finetuned100': 0, 'reassemble_transfer': 0, 'sensor_baselines': 36}.
 
-In progress: full three-camera acquisition and video QC; preprocessing, split
-lineage, models, fusion, corruption evaluation and independent result validation
-remain implementation work. Their completion will be established by artifacts,
-not by successful script exit alone.
+Verified native5202episodes:4545failure/657no-failure. Provisional conservative4384episodes:3755/629,99tasks;818excluded/quarantined. Final common cohort: **4382 episodes**, 3753 failures, 629 no-failures, 99 canonical tasks; 820 unique exclusions/quarantines. Sensor280feature contract, native joins and real48-image CPU gradient/reload checks are available. Pipeline/code validation does not establish fusion benefit.
 
-Resource constraint: one Tesla T4 is occupied by the unrelated REASSEMBLE study.
-It showed 4/75 completed fits at the initial resource check. Do not interrupt it.
-The ViFailback GPU stage must be scheduled sequentially after that study.
+Three task-disjoint outer folds,3inner OOF folds, seeds42/123/20261023; 100executed epochs for V2/V3. GPU work waits for the ongoing REASSEMBLE75-fit study. There is no shortened epoch schedule. Full training, transfer and robustness questions remain unresolved until their saved artifacts complete.
 
-Unchanged historical limitations: task 55 coordinate quarantine; native human
-category is not an exhaustive human-presence mask; session/operator identities
-and original hardware clock calibration are unavailable. The locked B02 review
-remains uncertain regardless of its native failure label.
+Read `10_final_research_reports/01_EXECUTIVE_SUMMARY.md`, `05_TRAINING_AND_CHECKPOINTS.md`, `11_LIMITATIONS_AND_THREATS_TO_VALIDITY.md`, and `13_RESEARCHER_HANDOFF.md`. Live stage/PID/errors: `logs/20261029T004900Z/PIPELINE_STATUS.json`; immutable report snapshot: `10_final_research_reports/report_snapshots/20261029T004900Z/20261029T034902912165Z`.
 
-Read `README.md`, `configs/experiment.json`, and the historical follow-up audit
-before interpreting this active project. Local commits only; nothing is pushed.
+Scientific status: technically reproducible investigation in progress; no superiority/robustness claim. Native failure is whole-episode, positions/velocities/gripper-effort are not force/torque, hardware clocks and session independence are unverified, task55 remains quarantined, B02 remains uncertain.
+
+Commits are local only; no push or PR. Exact hashes/worktree exclusions: `10_final_research_reports/researcher_handoff/GIT_HANDOFF.json`. Historical evidence and unrelated work remain preserved.

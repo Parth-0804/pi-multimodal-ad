@@ -1,0 +1,13 @@
+# 02 DATASET AND LABEL VERIFICATION
+
+Run `20261029T004900Z`. Published 2026-10-29T03:49:05.228393+00:00. Pipeline state: **CPU_SENSOR_BASELINES_COMPLETE_VISUAL_FEATURES_RUNNING**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T034902912165Z`.
+
+Pinned converted source `sii-rhos-ai/vifailback-dataset-lerobot` revision `619791b94f61667333fe179d471051e0bca0e06f`. Original source `sii-rhos-ai/ViFailback-Dataset`, revision `21df46c2585c52e5a62df5f4b946bae6cbc6fed7`.
+
+Native5202 episodes:4545 failure,657 no-failure across100 canonical tasks/109 source directories. Independently rejoined all native records, not README labels. Conservative provisional core4384:3755 failure,629 no-failure,99 tasks;818 unique excluded/quarantined. Final eligible count only exists after complete three-camera QC.
+
+Acquisition: {'ACQUIRED_VERIFIED': 13095, 'VERIFIED_EXISTING': 57}. Camera QC: (13150, 13152). Final cohort: 4382. Completed fits: {'visual_frozen': 0, 'visual_frozen_high_only': 0, 'visual_finetuned100': 0, 'reassemble_transfer': 0, 'sensor_baselines': 36}.
+
+Exact native verification: `VIFAILBACK/02_dataset_verification/label_audit/20261029T004900Z/INDEPENDENT_NATIVE_RECOUNT.json`. Every original annotation hash and converted metadata identity is recorded there. Video QC includes source SHA/size, full decoding, count, dimensions, PTS, black frames, blur/repetition flags and selected RGB hashes. Semantic uncertainty is separate from technical validity; weak images are retained. Acquisition failures must be inspected/retried rather than silently called corrupt data.
+
+Final common cohort: **4382 episodes**, 3753 failures, 629 no-failures, 99 canonical tasks; 820 unique exclusions/quarantines.
