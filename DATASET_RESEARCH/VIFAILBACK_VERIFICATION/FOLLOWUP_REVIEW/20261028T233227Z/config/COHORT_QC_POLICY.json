@@ -1,0 +1,14 @@
+{
+  "methodology": "VIFAILBACK-full-numerical-and-published-RGB-identity-QC-v1",
+  "position_variation_epsilon": 1e-8,
+  "minimum_frames": 16,
+  "constant_position": "Quarantine all-14-channel constant qpos; not individual stationary joints or zero effort placeholders",
+  "duplicate_rule": "Keep lowest original episode index only when all three published RGB SHA-256 hashes and all actual measured sensor arrays agree; preserve raw files",
+  "grouping_rule": "Canonical task IDs, transitively combined across exact sensor or video duplicate components",
+  "human_rule": "Exclude native human-intervention category for explicitly restricted primary acquisition cohort; report inclusive sensor cohort separately. This rule uses native outcome-derived metadata and is not label-blind human detection.",
+  "B02": "Retain native label in dataset; locked visual judgment remains uncertain; do not exclude a valid native episode because a sparse reviewer abstains",
+  "video_rule": "Full release RGB identity/file-presence audit uses pinned publisher inventory. Only previously decoded pilot media are payload-verified. Never mark the entire visual cohort training-ready based on inventory presence.",
+  "split_rule": "Five outer task-disjoint folds; four inner task-disjoint folds; hash-ordered identities with seed20261029, no class-label balancing",
+  "missing_session_ids": "No claim of session/operator/object-instance independence",
+  "fit_models": false
+}

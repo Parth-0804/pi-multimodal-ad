@@ -1,0 +1,21 @@
+blind_id,locked_prediction,original_completion,visibility,visible_outcome,physical_evidence,confidence,episode_index,source_hdf5,canonical_task_id,native_outcome,native_failure_type,comparison,native_human_intervention
+B01,success,Yes,Clear,Drawer opened; marker appears deposited inside.,None evident,High,775,raw_data/open_drawer_put_marker/episode_1.hdf5,21,success,,AGREEMENT,False
+B02,uncertain,**Uncertain**,Partial for drawn ink line,Marker retrieved and returned; distinct new line cannot be reliably separated from existing tabletop marks.,**Indeterminate**,Low,1827,raw_data/pick_marker_draw_line/episode_6.hdf5,42,failure,task planning,UNCERTAIN_RETAINED,False
+B03,failure,No,Clear,Cup stays off the closed book.,Cup not placed on book,High,4918,raw_data/stack_cup_on_book/episode_12.hdf5,95,failure,gripper 6d-pose,AGREEMENT,False
+B04,success,Yes,Clear,Spoon enters red pot; lid covers it.,None evident,High,3666,raw_data/place_spoon_into_pot_cover_lid/episode_2.hdf5,73,success,,AGREEMENT,False
+B05,success,Yes,Clear,Plate tilted; sausages appear to enter white basket.,None evident,High,3718,raw_data/pour_sausage_into_basket/episode_6.hdf5,76,success,,AGREEMENT,False
+B06,failure,No,Clear,"Cube handed between grippers, but ends outside basket.",Cube outside target,High,1574,raw_data/pick_cube_transfer_place_basket_ep1/episode_124.hdf5,36,failure,gripper state,AGREEMENT,False
+B07,failure,No,Clear,Sausages remain on source plate; basket appears empty.,No visible transfer,High,3723,raw_data/pour_sausage_into_basket/episode_11.hdf5,76,failure,gripper 6d-pose,AGREEMENT,False
+B08,failure,No,Clear,Drawer opened; marker remains on table instead of inside.,Marker outside target,High,789,raw_data/open_drawer_put_marker/episode_15.hdf5,21,failure,gripper state,AGREEMENT,False
+B09,failure,No,Clear with enlarged frame; object small,Tube remains horizontal beside holder/shelf at end.,Tube not upright on shelf,High,385,raw_data/grasp_cube_place_shelf/episode_14.hdf5,5,failure,gripper state,AGREEMENT,False
+B10,success,Yes,Clear,Visible ink line on table and marker returned to cup.,None evident,High,1823,raw_data/pick_marker_draw_line/episode_2.hdf5,42,success,,AGREEMENT,False
+B11,success,Yes,Clear with enlarged final frame,White plug seated in power strip/socket.,None evident,High,521,raw_data/hold_socket_plug/episode_0.hdf5,14,success,,AGREEMENT,False
+B12,success,Yes,Clear,Cube transferred and ends inside basket.,None evident,High,1453,raw_data/pick_cube_transfer_place_basket_ep1/episode_3.hdf5,36,success,,AGREEMENT,False
+B13,success,Yes,Clear with enlarged final frame,Tube ends upright in the rack/shelf.,None evident,High,371,raw_data/grasp_cube_place_shelf/episode_0.hdf5,5,success,,AGREEMENT,False
+B14,success,Yes,Clear,Cup placed upright on closed book.,None evident,High,4908,raw_data/stack_cup_on_book/episode_2.hdf5,95,success,,AGREEMENT,False
+B15,failure,No,Clear overall; small tube,Tube remains in source cup; rack placement not observed.,No visible insertion into rack,Medium–high,3467,raw_data/pick_test_tube_place_left_slot/episode_11.hdf5,61,failure,gripper 6d-pose,AGREEMENT,False
+B16,success,Yes,Clear,Mouse ends in white basket.,None evident,High,4428,raw_data/put_mouse_basket_from_tray_ep1/episode_2.hdf5,88,success,,AGREEMENT,False
+B17,success,Yes,Clear with enlarged final frame,Tube appears upright in left-side rack position.,None evident,High,3456,raw_data/pick_test_tube_place_left_slot/episode_0.hdf5,61,success,,AGREEMENT,False
+B18,failure,No,Clear with enlarged final frame,White plug remains separate from power strip/socket.,Plug not inserted,High,532,raw_data/hold_socket_plug/episode_11.hdf5,14,failure,gripper 6d-pose,AGREEMENT,False
+B19,failure,No,Clear,"Spoon placed on saucer, not red pot; lid remains aside.",Wrong placement and missing lid action,High,3669,raw_data/place_spoon_into_pot_cover_lid/episode_5.hdf5,73,failure,task planning,AGREEMENT,False
+B20,failure,No,"Clear, but **human hand enters scene**","Mouse remains on tray, basket empty; person intervenes toward end.",No robot completion; **human intervention is a confound**,High for visible state,4570,raw_data/put_mouse_basket_from_tray_ep1/episode_144.hdf5,88,failure,human intervention,AGREEMENT,True

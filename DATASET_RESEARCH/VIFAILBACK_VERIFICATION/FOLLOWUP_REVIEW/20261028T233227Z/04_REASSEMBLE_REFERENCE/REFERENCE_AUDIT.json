@@ -1,0 +1,168 @@
+{
+  "utc": "2026-10-28T23:43:36.666055+00:00",
+  "gpu_initialized_by_this_audit": false,
+  "original_pretrained_revision": "ac77a11ff0170a41b771c03264987f8ce2b0d753",
+  "original_weights_directory": "../datasets/REASSEMBLE/cache/section1_models/ac77a11ff0170a41b771c03264987f8ce2b0d753",
+  "completed_100epoch_checkpoint_audits": [
+    {
+      "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_BEST_MODEL.pt",
+      "sha256": "8c71fe8da4e300678ea40a280964c891e12b84b9c91c228d215cfd48c7d538c7",
+      "bytes": 470549,
+      "role": "completed selected checkpoint; CPU read only",
+      "arm": "B_frozen100",
+      "executed_epochs": 100,
+      "selected_epoch": 14,
+      "training_seconds": 219.5725945159793,
+      "assessment_recordings": 26,
+      "assessment_episodes_or_actions": 753,
+      "backbone_tensors": 0,
+      "changed_backbone_tensors": 0,
+      "unchanged_backbone_tensors": 0,
+      "incompatible_backbone_tensors": [],
+      "changed_scopes": {},
+      "valid_full_backbone_transfer_source": false,
+      "target_domain_transfer_executed": false
+    },
+    {
+      "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_BEST_MODEL.pt",
+      "sha256": "5700e8912cf360c845087923e4b417631a886daf928e1655b1031c9ac27c8ce0",
+      "bytes": 45347917,
+      "role": "completed selected checkpoint; CPU read only",
+      "arm": "C_full_finetuned16",
+      "executed_epochs": 100,
+      "selected_epoch": 47,
+      "training_seconds": 86271.08825251705,
+      "assessment_recordings": 26,
+      "assessment_episodes_or_actions": 753,
+      "backbone_tensors": 115,
+      "changed_backbone_tensors": 69,
+      "unchanged_backbone_tensors": 46,
+      "incompatible_backbone_tensors": [],
+      "changed_scopes": {
+        "embedder": 9,
+        "encoder.stages.0": 15,
+        "encoder.stages.1": 15,
+        "encoder.stages.2": 15,
+        "encoder.stages.3": 15
+      },
+      "valid_full_backbone_transfer_source": true,
+      "target_domain_transfer_executed": false
+    }
+  ],
+  "completed_100epoch_metrics_recomputed": {
+    "B_frozen100": {
+      "n": 753,
+      "failures": 77,
+      "prevalence": 0.10225763612217796,
+      "AP": 0.19377557761499092,
+      "AUROC": 0.6646046261430877,
+      "Brier": 0.08957016827648595,
+      "log_loss": 0.3196927182671314
+    },
+    "C_full_finetuned16": {
+      "n": 753,
+      "failures": 77,
+      "prevalence": 0.10225763612217796,
+      "AP": 0.21258450333908707,
+      "AUROC": 0.6753246753246753,
+      "Brier": 0.08925516920785566,
+      "log_loss": 0.3173831431596419
+    }
+  },
+  "historical_metrics_recomputed": [
+    {
+      "name": "sensor_statistics",
+      "prediction_path": "runs/reassemble/20260927T154732Z-section1/predictions/sensor_statistics_perm00.npz",
+      "n": 4530,
+      "failures": 509,
+      "prevalence": 0.11236203090507726,
+      "AP": 0.42939186936802726,
+      "AUROC": 0.7793245578590593,
+      "Brier": 0.08044814771184297,
+      "log_loss": 0.28756345796617794,
+      "verification_scope": "recomputed metrics from saved probabilities, not retraining or inference reproduction"
+    },
+    {
+      "name": "visual_frozen",
+      "prediction_path": "runs/reassemble/20260927T154732Z-section1/predictions/rtdetr_perm00.npz",
+      "n": 4530,
+      "failures": 509,
+      "prevalence": 0.11236203090507726,
+      "AP": 0.23065831504271656,
+      "AUROC": 0.6977948286232056,
+      "Brier": 0.09429877740531123,
+      "log_loss": 0.32523334468289683,
+      "verification_scope": "recomputed metrics from saved probabilities, not retraining or inference reproduction"
+    },
+    {
+      "name": "F2_static",
+      "prediction_path": "runs/reassemble/20260927T175336Z-section1b/stacking/oof.npz",
+      "n": 4530,
+      "failures": 509,
+      "prevalence": 0.11236203090507726,
+      "AP": 0.44729855144048974,
+      "AUROC": 0.794968361094431,
+      "Brier": 0.07844301221744863,
+      "log_loss": 0.2799123946547242,
+      "verification_scope": "recomputed metrics from saved probabilities, not retraining or inference reproduction"
+    },
+    {
+      "name": "F5_quality_gate",
+      "prediction_path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+      "n": 4530,
+      "failures": 509,
+      "prevalence": 0.11236203090507726,
+      "AP": 0.44454929401483734,
+      "AUROC": 0.7759869721291315,
+      "Brier": 0.08064015702864147,
+      "log_loss": 0.2873061700324238,
+      "verification_scope": "recomputed metrics from saved probabilities, not retraining or inference reproduction"
+    },
+    {
+      "name": "F6_action_quality_gate",
+      "prediction_path": "runs/reassemble/20260927T192852Z-section2/predictions/oof.npz",
+      "n": 4530,
+      "failures": 509,
+      "prevalence": 0.11236203090507726,
+      "AP": 0.44135589063026875,
+      "AUROC": 0.7755232964070262,
+      "Brier": 0.08071092579740805,
+      "log_loss": 0.287197934511826,
+      "verification_scope": "recomputed metrics from saved probabilities, not retraining or inference reproduction"
+    }
+  ],
+  "main_completed_C_fit_receipts": [
+    {
+      "receipt": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold01/PHASE1_FIT_COMPLETE.json",
+      "checkpoint": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold01/PHASE1_BEST_MODEL.pt",
+      "checkpoint_sha256": "4963ef367c889098565c5ceece31a9768a54a301ed4d72838376778f78601b66",
+      "seed": 42,
+      "job_index": 0,
+      "executed_epochs": 20,
+      "selected_epoch": 19
+    },
+    {
+      "receipt": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold02/PHASE1_FIT_COMPLETE.json",
+      "checkpoint": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold02/PHASE1_BEST_MODEL.pt",
+      "checkpoint_sha256": "5564d612cc89e8e40f14aa5a055e37cc60426ff0be6e8146d7ad5be1f3a52abc",
+      "seed": 42,
+      "job_index": 1,
+      "executed_epochs": 20,
+      "selected_epoch": 16
+    },
+    {
+      "receipt": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold03/PHASE1_FIT_COMPLETE.json",
+      "checkpoint": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold03/PHASE1_BEST_MODEL.pt",
+      "checkpoint_sha256": "cb062c34b8210a4a90a659b657b3633e85af5dfdb8587fbe3b755ba4d137a0a5",
+      "seed": 42,
+      "job_index": 2,
+      "executed_epochs": 20,
+      "selected_epoch": 19
+    }
+  ],
+  "main_status_snapshot_sha256": "a371bff545f4faf72d246ad0720baff77832bfb1f1804faa5c7d29abaf7f1acc",
+  "main_study_complete": false,
+  "no_model_training_or_inference": true,
+  "ViFailback_weight_transfer_performed": false,
+  "selected_job_metadata_note": "prediction_recordings in selected-job config retains original-inner bookkeeping; actual predictions use 26 outer-assessment recordings, checked directly against T/V/C sample identities"
+}

@@ -1,0 +1,19 @@
+{
+  "version": "VIFAILBACK-conservative-native-sensor-core-v2",
+  "supersedes_for_proposed_primary_cohort_only": "COHORT_QC_POLICY.json; V1 files remain unchanged",
+  "trigger": "Full payload audit revealed finite gross spikes and a systematic task-dependent position/velocity sign regime absent from the pilot",
+  "gross_position_absolute_limit_native_units": 10,
+  "gross_velocity_absolute_limit_native_units": 10,
+  "bounds_interpretation": "Conservative quarantine of extreme mixed-scale records, not calibrated physical joint limits and not clipping or correction",
+  "systematic_coordinate_regime": {
+    "grouping": "canonical task identity",
+    "minimum_episodes_with_derivative_diagnostic": 20,
+    "minimum_negative_correlation_fraction": 0.95,
+    "maximum_group_median_correlation": -0.5,
+    "action": "Quarantine entire affected task pending native coordinate-convention clarification; do not invert signs automatically"
+  },
+  "individual_low_correlation": "Diagnostic only; no automatic exclusion because static axes, noise and sampling can lower correlation",
+  "inherits": ["constant-position quarantine", "verified exact multimodal duplicate representative rule", "explicitly native-human-intervention-restricted primary estimand"],
+  "label_use": "No prediction/test metrics exist. Numerical thresholds and coordinate flags use input signals. Native human-intervention restriction remains explicitly outcome-derived.",
+  "status": "Conservative acquisition/protocol core; full RGB payload QC and researcher protocol review remain necessary before training"
+}

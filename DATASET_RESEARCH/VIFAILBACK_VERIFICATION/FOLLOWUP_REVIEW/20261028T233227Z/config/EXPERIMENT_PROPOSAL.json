@@ -1,0 +1,189 @@
+{
+  "protocol": "VIFAILBACK-REASSEMBLE-PORTABILITY-PROPOSAL-v1",
+  "status": "DRAFT_FOR_RESEARCHER_REVIEW_NO_TRAINING_AUTHORIZED",
+  "dataset_revision": "619791b94f61667333fe179d471051e0bca0e06f",
+  "original_revision": "21df46c2585c52e5a62df5f4b946bae6cbc6fed7",
+  "cohort_manifest": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/02_COHORT_AND_SPLITS/V2_CONSERVATIVE_CORE/ELIGIBLE_CORE_EPISODES_V2.csv",
+  "cohort_version": "VIFAILBACK-conservative-native-sensor-core-v2",
+  "cohort_size": 4384,
+  "cohort_requires_full_visual_qc": true,
+  "unit": "one original episode",
+  "target": {
+    "positive": "original annotation.failure_detection == yes",
+    "negative": "original annotation.failure_detection == no",
+    "conversion_field": "episode_success is derived from failure_detection; not separately validated mechanical final success"
+  },
+  "seeds": [
+    42,
+    123,
+    20261023
+  ],
+  "split_seed": 20261029,
+  "split_manifest": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/02_COHORT_AND_SPLITS/V2_CONSERVATIVE_CORE/OUTER_INNER_SPLITS_V2.json",
+  "base_fit_manifest": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/02_COHORT_AND_SPLITS/V2_CONSERVATIVE_CORE/BASE_FIT_T_V_C_ASSESSMENT_V2.json",
+  "grouping": "canonical task and exact duplicate components; no session/operator/robot independence claimed",
+  "visual": {
+    "backbone": "PekingU/rtdetr_r18vd: model.backbone.model only",
+    "pretrained_revision": "ac77a11ff0170a41b771c03264987f8ce2b0d753",
+    "weight_directory": "../datasets/REASSEMBLE/cache/section1_models/ac77a11ff0170a41b771c03264987f8ce2b0d753",
+    "primary_camera": "cam_high",
+    "frames": 16,
+    "frame_rule": "round(linspace(0,N-1,16)); assert unique and ordered; no annotation-keyframe access",
+    "input": "[B,16,3,640,640] float32, bilinear resize and /255, do_normalize=false",
+    "pooling": "spatial mean of stage2,stage3,stage4 maps; concatenate128+256+512; temporal arithmetic mean",
+    "feature_width": 896,
+    "head": "Linear(896,128),ReLU,Dropout(0.1),Linear(128,1)",
+    "backbone_rules": [
+      "frozen",
+      "all_CNN_convolution_and_normalization_affine_trainable_running_moments_fixed"
+    ],
+    "epoch_budgets": [
+      25,
+      50
+    ],
+    "schedule_horizon": 50,
+    "budget_sharing": "A single50-epoch trajectory per rule/seed/fit can preserve independently selected <=25 and <=50 checkpoints; shared cosine50 prefix explicitly reported",
+    "selection": "highest V AP within budget; tie lower weighted V BCE then earliest epoch",
+    "normalizer": "fixed initial-backbone target T feature mean/std only; no source-domain feature moments transferred",
+    "head_lr": 0.001,
+    "backbone_lr": 1e-05,
+    "weight_decay": 0.001,
+    "gradient_clip": 1,
+    "precision": "float32 reference until numerical parity is demonstrated",
+    "microbatch": 1,
+    "accumulation": 8,
+    "augmentation": "none in portability reference",
+    "loss": "BCEWithLogits pos_weight=N_negative/N_positive fitted on T"
+  },
+  "sensors": {
+    "streams": {
+      "observation.state": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "observation.velocity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "observation.effort": [
+        6,
+        13
+      ]
+    },
+    "measurement_semantics": "native observed position/velocity and two gripper-effort fields; not force/torque",
+    "statistics": [
+      "mean",
+      "std",
+      "median",
+      "min",
+      "max",
+      "q25",
+      "q75",
+      "range",
+      "RMS",
+      "slope_over_normalized_episode_progress"
+    ],
+    "feature_width": 280,
+    "interval": "complete same original episode; no frame-level labels inferred",
+    "logistic": {
+      "C_candidates": [
+        0.1,
+        1,
+        10
+      ],
+      "class_weight": "balanced",
+      "max_iter": 2000,
+      "selection": "V AP"
+    },
+    "nonlinear": {
+      "class": "HistGradientBoostingClassifier",
+      "max_leaf_nodes_candidates": [
+        7,
+        15,
+        31
+      ],
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "l2_regularization": 0.1,
+      "min_samples_leaf": 20,
+      "early_stopping": false,
+      "sample_weight": "inverse class frequency on T",
+      "selection": "V AP"
+    },
+    "normalization": "T only; preserve feature behavior in reassemble.section1_features.statistics",
+    "calibration": "unweighted sigmoid LogisticRegression C1 on C raw scores; same procedure for visual/sensor"
+  },
+  "fusion": {
+    "averaging": "(p_visual+p_sensor)/2",
+    "F2": "unweighted LogisticRegression C1 on two calibrated inner-OOF probabilities; newly fit per visual/sensor condition/seed/outer fold",
+    "quality_gate": "reuse DecisionGate F5 quality-only context; hidden16,ReLU,two outputs,masked softmax; convex mixture of clipped branch logits",
+    "gate_training": "fixed40 epochs,AdamW lr0.003 weight_decay0.001; unweighted BCE; no test-selected settings",
+    "quality_inputs": [
+      "sampled RGB blur/brightness/contrast and decode coverage",
+      "sensor finite/constant/saturation/derivative-consistency summaries",
+      "availability masks"
+    ],
+    "forbidden_context": [
+      "native outcome",
+      "failure category",
+      "human-intervention annotation",
+      "task/source ID",
+      "task instruction",
+      "annotation keyframes",
+      "collection metadata inferred from filenames"
+    ],
+    "threshold": 0.5,
+    "meta_selection": "F2/gate fixed a priori; changing hyperparameters requires deeper nested, group-safe branch regeneration"
+  },
+  "metrics": {
+    "primary": "Average Precision for native failure",
+    "secondary": [
+      "AP_success",
+      "macro_AP",
+      "macro_task_AP",
+      "AUROC",
+      "balanced_accuracy",
+      "MCC",
+      "macro_F1",
+      "per_class_precision_recall",
+      "Brier",
+      "log_loss",
+      "10_fixed_bin_ECE"
+    ],
+    "report": "all outer folds and seeds plus pooled OOF; paired deltas and prevalence; no best-fold/seed selection",
+    "uncertainty": "2000 paired canonical-task-cluster bootstrap replicates of mean per-seed metric differences; seeds/folds not independent replicates"
+  },
+  "optional_source_transfer": {
+    "status": "controlled extension, not performed",
+    "source_checkpoint": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_BEST_MODEL.pt",
+    "source_sha256": "5700e8912cf360c845087923e4b417631a886daf928e1655b1031c9ac27c8ce0",
+    "selected_source_epoch": 47,
+    "source_selection": "Fixed existing REASSEMBLE validation selection; never choose using ViFailback outer tests",
+    "load": "compatible backbone tensors only; discard head, feature moments, calibrators, F2 and gate weights",
+    "comparison": "P/R share cohort, T/V/C/assessment, target heads, budget/freezing rule, seeds, metrics; same source checkpoint across target seeds"
+  },
+  "optional_camera_extension": "All three cameras at the same16 positions =48 images, explicitly separate from primary16-image contract; same primary cohort and no test-driven camera selection",
+  "training_performed": false
+}

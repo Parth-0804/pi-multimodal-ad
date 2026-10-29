@@ -1,0 +1,86 @@
+{
+  "created_utc": "2026-10-29T00:07:20.285705+00:00",
+  "created_Europe_Berlin": "2026-10-29T01:07:20.285961+01:00",
+  "run_directory": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z",
+  "git_commit": "94f61529116ebdc966bcf87704a93e4d02fa5e89",
+  "tracked_status_unchanged": true,
+  "tracked_status": " M README.md\n M REPO_MAP.md\n M docs/thesis_research_direction/THESIS_EVIDENCE_GAPS.md\n",
+  "tracked_diff_stat": " README.md                                              |  4 ++++\n REPO_MAP.md                                            |  6 ++++++\n docs/thesis_research_direction/THESIS_EVIDENCE_GAPS.md | 12 ++++++++++++\n 3 files changed, 22 insertions(+)\n",
+  "software": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "pandas": "2.3.3",
+      "pyarrow": "24.0.0",
+      "h5py": "3.16.0",
+      "requests": "2.34.2",
+      "matplotlib": "3.11.1",
+      "torch": "2.13.0",
+      "safetensors": "0.8.0",
+      "scikit-learn": "1.7.2"
+    }
+  },
+  "commands": [
+    "ma_thesis_env/bin/python -B DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/code/acquire_sensor_tables.py",
+    "ma_thesis_env/bin/python -B DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/code/audit_unblinding_and_labels.py",
+    "ma_thesis_env/bin/python -B DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/code/audit_sensors_and_splits.py",
+    "ma_thesis_env/bin/python -B DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/code/audit_reassemble_reference.py",
+    "ma_thesis_env/bin/python -B DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/code/inspect_sensor_anomalies.py",
+    "ma_thesis_env/bin/python -B DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/code/refine_sensor_qc_v2.py",
+    "ma_thesis_env/bin/python -B DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/code/plot_sensor_diagnostics.py",
+    "ma_thesis_env/bin/python -B DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/code/write_followup_reports.py",
+    "ma_thesis_env/bin/python -B DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/code/validate_followup.py",
+    "ma_thesis_env/bin/python -B DATASET_RESEARCH/VIFAILBACK_VERIFICATION/FOLLOWUP_REVIEW/20261028T233227Z/code/finalize_followup_provenance.py"
+  ],
+  "thread_overrides_for_numerical_audits": {
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2"
+  },
+  "review_lock": {
+    "method": "Byte-identical copy and Markdown case-table parse before unblinding; timestamp and SHA preserved in00_LOCKED_REVIEW/REVIEW_LOCK.json",
+    "initial_header_parser_error": "Corrected before lock completion and before comparison; original review untouched"
+  },
+  "configurations": [
+    {
+      "path": "config/ACQUISITION_CONFIG.json",
+      "sha256": "0626fc06822fd4641259bdd8cb24555213a9f11e7f2f8e02504082e68a3ac94d"
+    },
+    {
+      "path": "config/COHORT_QC_POLICY.json",
+      "sha256": "46fcc32c631bc10180325cc870d524eb39f5230364dbaab447f879ef619357be"
+    },
+    {
+      "path": "config/COHORT_QC_POLICY_V2.json",
+      "sha256": "005a6e3f2c6f8387132fb621b60c1b685ad4ec9f78a401877829880a25071a61"
+    },
+    {
+      "path": "config/EXPERIMENT_PROPOSAL.json",
+      "sha256": "20ca1638cf07814cc66d19f67b074c1db6a185e72e969e90974808d9e6d268f8"
+    }
+  ],
+  "new_acquisition_scope": "All missing numerical Parquet tables plus three tiny original-HDF5 numerical/range checks and directory metadata",
+  "new_parquet_files": 5180,
+  "new_parquet_bytes": 213092922,
+  "reused_verified_parquet_files": 22,
+  "original_HDF5_range_bytes": 160512,
+  "full_videos_downloaded": 0,
+  "model_training": false,
+  "neural_inference": false,
+  "calibration_or_fusion_fitted": false,
+  "GPU_managed_or_initialized": false,
+  "existing_training_processes_managed": false,
+  "source_evidence_rewritten_deleted_moved": false,
+  "staged_or_committed": false,
+  "source_and_prior_export_hash_validation_passed": true,
+  "assertions_passed": 6732,
+  "new_outputs_ignored_by_git": true,
+  "disk_free_bytes_at_completion": 75614691328,
+  "limitations": [
+    "Full RGB payload QC remains for4365 V2 episodes",
+    "Canonical-task55 coordinate conventions unresolved",
+    "Native human category is not exhaustive visual human detection",
+    "Device-clock calibration and hidden session/near-duplicate independence unverified",
+    "Source75-fit study incomplete; no ViFailback transfer/learning outcome exists"
+  ]
+}
