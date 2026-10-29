@@ -109,14 +109,19 @@ def code_identity():
             for p in sorted(folder.rglob('*')) if p.is_file() and p.suffix in ['.py','.json']}
 
 
-def provenance(c):
-    from .reference import identities
+def software_versions():
     packages={}
     for package in ['torch','transformers','numpy','scipy','scikit-learn','pyarrow','opencv-python','Pillow','requests','pytest']:
         try:packages[package]=importlib.metadata.version(package)
         except importlib.metadata.PackageNotFoundError:packages[package]='not installed as named'
-    return {'utc':utc(),'configuration':c,'command':sys.argv,'python':sys.version,'packages':packages,
+    return {'python':sys.version,'packages':packages}
+
+
+def provenance(c):
+    from .reference import identities
+    return {'utc':utc(),'configuration':c,'command':sys.argv,**software_versions(),
             'git_HEAD':subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip(),
+            'git_branch':subprocess.check_output(['git','branch','--show-current'],cwd=REPO,text=True).strip(),
             'git_dirty':bool(subprocess.check_output(['git','status','--porcelain','--untracked-files=normal'],cwd=REPO,text=True)),
             'implementation':code_identity(),'reused_source':identities(),
             'warnings':['Task independence only; session/operator identities unknown',

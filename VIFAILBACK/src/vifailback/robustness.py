@@ -8,7 +8,7 @@ from scipy.special import expit
 from .common import PROJECT,config,event,read,sha,signature,write
 from .cohort import finalize
 from .corruptions import SCENARIOS,alter_visual,alter_sensor,visual_quality
-from .fusion import visual_root,gate_predict
+from .fusion import visual_root,augmentation_root,gate_predict
 from .metrics import metrics,independent_check
 from .reference import primitives
 from .sensors import load_episode,sensor_sources,statistics,quality
@@ -36,6 +36,9 @@ def run(c=None,conditions=('V1','V2','V3'),device='cuda'):
     for condition in conditions:
         for seed in c['seeds']:
             for job in [j for j in jobs if j['inner']==-1]:
+                if str(device).startswith('cuda'):
+                    from .resources import wait_for_gpu
+                    wait_for_gpu(c)
                 outer=job['outer'];root=PROJECT/'07_robustness_experiments/combined_corruption/runs'/c['run_id']/condition/f'seed{seed}'/f'outer{outer}'
                 if (root/'COMPLETE.json').exists():
                     receipt=read(root/'COMPLETE.json');assert sha(root/'predictions.json')==receipt['prediction_sha256'];continue
@@ -53,9 +56,18 @@ def run(c=None,conditions=('V1','V2','V3'),device='cuda'):
                 calibrator=read(vr/'CALIBRATOR.json');s3=read(sr/'S3_MODEL.json');s2=joblib.load(sr/'S2_MODEL.joblib')
                 s2cal=read(sr/'S2_SELECTION_AND_CALIBRATION.json')['calibrator']
                 f2=read(fr/'F2_COEFFICIENTS.json');gate=torch.load(fr/'QUALITY_GATE.pt',map_location='cpu',weights_only=True)
+                assert sha(fr/'QUALITY_NEUTRAL_GATE.pt')==freceipt['gate_static_sha256']
+                neutral=torch.load(fr/'QUALITY_NEUTRAL_GATE.pt',map_location='cpu',weights_only=True)
+                ar=augmentation_root(c,condition,seed,outer);aug_receipt=read(ar/'COMPLETE.json') if (ar/'COMPLETE.json').exists() else None
+                if aug_receipt:
+                    assert sha(ar/'F2_AUGMENTED.json')==aug_receipt['F2_sha256']
+                    assert sha(ar/'GATE_AUGMENTED.pt')==aug_receipt['gate_sha256']
+                    assert sha(ar/'GATE_STATIC_AUGMENTED.pt')==aug_receipt['gate_static_sha256']
+                    aug_f2=read(ar/'F2_AUGMENTED.json');aug_gate=torch.load(ar/'GATE_AUGMENTED.pt',map_location='cpu',weights_only=True)
+                    aug_neutral=torch.load(ar/'GATE_STATIC_AUGMENTED.pt',map_location='cpu',weights_only=True)
                 scale=training_scale(c,job,lookup,inventory)
                 prior=float(np.mean([lookup[e]['label'] for e in job['ids']['T']]))
-                identity=signature({'visual':vreceipt,'sensor':sreceipt,'fusion':freceipt,'scenarios':SCENARIOS})
+                identity=signature({'visual':vreceipt,'sensor':sreceipt,'fusion':freceipt,'augmented_meta':aug_receipt,'scenarios':SCENARIOS})
                 all_predictions=[]
                 for number,e in enumerate(job['ids']['A']):
                     out=root/'episodes'/f'{e:06d}.json'
@@ -83,6 +95,7 @@ def run(c=None,conditions=('V1','V2','V3'),device='cuda'):
                         else:sq=np.zeros(5,dtype='float32')
                         probs=np.asarray([[pv,ps]],dtype='float32');context=np.r_[visual_quality(altered),sq][None,:]
                         pg,w=gate_predict(gate,probs,context,np.asarray([[va,sa]],dtype='float32'))
+                        pn,_=gate_predict(neutral,probs,np.zeros_like(context),np.asarray([[va,sa]],dtype='float32'))
                         # Common deterministic fallback is reported, never credited to learned reliability.
                         average=float(probs.mean()) if va and sa else pv if va else ps
                         pf2=float(source['fused'](probs,f2)[0]) if va and sa else pv if va else ps
@@ -90,17 +103,40 @@ def run(c=None,conditions=('V1','V2','V3'),device='cuda'):
                             'label':lookup[e]['label'],'scenario':name,'seed':seed,'outer':outer,'condition':condition,
                             'status':'PREDICTED','visual_available':va,'sensor_available':sa,
                             'visual_probability':pv,'S3_probability':ps,'S2_probability':p2,
-                            'F1_average':average,'F2_probability':pf2,'gate_probability':float(pg[0]),'gate_visual_weight':float(w[0,0]),
+                            'F1_average':average,'F2_probability':pf2,'gate_probability':float(pg[0]) if va and sa else pv if va else ps,'gate_visual_weight':float(w[0,0]),
+                            'gate_static_probability':float(pn[0]) if va and sa else pv if va else ps,
                             'hardcoded_surviving_branch_fallback':not(va and sa),'absent_unimodal_prior_fallback':prior})
+                        if aug_receipt:
+                            ga,_=gate_predict(aug_gate,probs,context,np.asarray([[va,sa]],dtype='float32'))
+                            na,_=gate_predict(aug_neutral,probs,np.zeros_like(context),np.asarray([[va,sa]],dtype='float32'))
+                            predictions[-1].update(F2_aug_probability=float(source['fused'](probs,aug_f2)[0]) if va and sa else pv if va else ps,
+                                 gate_aug_probability=float(ga[0]) if va and sa else pv if va else ps,
+                                 gate_static_aug_probability=float(na[0]) if va and sa else pv if va else ps)
                     write(out,{'identity':identity,'predictions':predictions});all_predictions.extend(predictions)
                     if (number+1)%10==0:event(c,'ROBUSTNESS_EPISODES',condition=condition,seed=seed,outer=outer,episodes=number+1,total=len(job['ids']['A']))
+                reference={r['episode_index']:r for r in read(fr/'predictions.json')}
+                replay=[r for r in all_predictions if r['scenario']=='clean']
+                assert len(replay)==len(reference)==len(job['ids']['A'])
+                deltas={}
+                for stress_key,main_key in [('visual_probability','visual_probability'),('S3_probability','sensor_probability'),
+                                           ('F2_probability','F2_probability'),('gate_probability','gate_probability'),('gate_static_probability','gate_static_probability')]:
+                    delta=np.asarray([abs(r[stress_key]-reference[r['episode_index']][main_key]) for r in replay])
+                    deltas[stress_key]={'max_absolute_probability_delta':float(delta.max()),'mean_absolute_probability_delta':float(delta.mean())}
+                write(root/'CLEAN_BACKEND_REPLAY_AUDIT.json',{'tolerance_probability':.001,'differences':deltas,
+                    'reason':'Frozen bank/head may be CPU; stress uses the same GPU inference path for clean and corruptions. Input hashes and selected weights must reproduce probabilities within the prospectively fixed numerical tolerance.'})
+                assert max(r['max_absolute_probability_delta'] for r in deltas.values())<=.001,'CLEAN_BACKEND_REPLAY_MISMATCH_AFFECTED_STRESS_STAGE'
                 write(root/'predictions.json',all_predictions);reports={}
                 for scenario in SCENARIOS:
                     part=[r for r in all_predictions if r['scenario']==scenario['name'] and r['status']=='PREDICTED']
                     result={'eligible':len(job['ids']['A']),'scored':len(part),'abstained':len(job['ids']['A'])-len(part)}
                     if part:
+                        result['visual_available_fraction']=float(np.mean([r['visual_available'] for r in part]))
+                        result['sensor_available_fraction']=float(np.mean([r['sensor_available'] for r in part]))
+                        result['hardcoded_fallback_examples']=sum(r['hardcoded_surviving_branch_fallback'] for r in part)
                         y=np.asarray([r['label'] for r in part])
-                        for key in ['visual_probability','S3_probability','S2_probability','F1_average','F2_probability','gate_probability']:
+                        columns=['visual_probability','S3_probability','S2_probability','F1_average','F2_probability','gate_probability','gate_static_probability']
+                        if aug_receipt:columns+=['F2_aug_probability','gate_aug_probability','gate_static_aug_probability']
+                        for key in columns:
                             p=np.asarray([r[key] for r in part]);report=metrics(y,p);independent_check(y,p,report);result[key]=report
                     reports[scenario['name']]=result
                 write(root/'metrics.json',reports)

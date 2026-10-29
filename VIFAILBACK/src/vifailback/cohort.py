@@ -40,8 +40,11 @@ def finalize(c=None):
         keep=['episode_index','canonical_task_id','label','frame_count','data','video_high','video_left','video_right',
               'sensor_content_sha256','video_triplet_hash','source_hdf5']
         eligible.append({**{k:row[k] for k in keep},'frame_indices':expected,
+                         'episode_interval_start_seconds':0.,'episode_interval_stop_exclusive_seconds':row['frame_count']/25,
                          'frame_times_seconds':[i/25 for i in expected],
                          'camera_sha256':[v['source_sha256'] for v in views],
+                         'camera_bytes':[v['source_bytes'] for v in views],
+                         'camera_mtime_ns':[v['mtime_ns'] for v in views],
                          'selected_RGB_sha256':[v['selected_RGB_sha256'] for v in views],
                          'visual_quality_categories':[v['visual_quality_category'] for v in views],
                          'semantic_review':'UNRESOLVED_NOT_A_HUMAN_FREE_GUARANTEE'})
@@ -65,7 +68,11 @@ def finalize(c=None):
               'independence':'canonical task only; session/operator/object-instance independence unverified',
               'full_semantic_review_complete':False,'eligible':len(eligible),'excluded':len(exclusions),
               'labels':dict(Counter(r['label'] for r in eligible)),
-              'tasks':len({r['canonical_task_id'] for r in eligible})}
+              'tasks':len({r['canonical_task_id'] for r in eligible}),
+              'camera_streams_with_repeated_selected_RGB_content':sum(v.get('distinct_selected_RGB_images',16)<16 for v in qc['cameras'] if v['technical_valid']),
+              'distinctness_contract':'16 distinct temporal indices per camera; identical stationary image content is retained and flagged',
+              'task_label_counts':{str(g):dict(Counter(r['label'] for r in eligible if r['canonical_task_id']==g))
+                                   for g in sorted({r['canonical_task_id'] for r in eligible})}}
     write(PROJECT/'03_preprocessing/data_contracts'/c['run_id']/'DATASET_CONTRACT.json',contract)
     write(completed,{**contract,'video_qc_sha256':sha(qc_path),'config_sha256':signature(c),
                      'eligible_sha256':sha(out/'eligible.json'),'exclusions_sha256':sha(out/'exclusions.csv')})

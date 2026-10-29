@@ -67,6 +67,10 @@ def visual_root(c,condition,seed,job):
     return PROJECT/'06_training_experiments'/dict(V1='visual_frozen',V2='visual_finetuned100',V3='reassemble_transfer')[condition]/'runs'/c['run_id']/f'seed{seed}'/job['id']
 
 
+def augmentation_root(c,condition,seed,outer):
+    return PROJECT/'06_training_experiments/fusion_experiments/augmentation/runs'/c['run_id']/condition/f'seed{seed}'/f'outer{outer}'
+
+
 def paired_records(c,condition,seed,job):
     vr=visual_root(c,condition,seed,job)
     sr=PROJECT/'06_training_experiments/sensor_baselines/runs'/c['run_id']/f'seed{seed}'/job['id']
@@ -103,21 +107,24 @@ def run(c=None,conditions=('V1','V2','V3')):
                             np.asarray([r['label'] for r in records]),np.stack([quality[r['episode_index']] for r in records]))
                 p,y,q=arrays(train);pt,yt,qt=arrays(test)
                 f2=source['stacker'](p,y);gate=fit_gate(p,q,y,seed)
-                pf2=source['fused'](pt,f2);pg,weights=gate_predict(gate,pt,qt);avg=pt.mean(1)
+                neutral=fit_gate(p,np.zeros_like(q),y,seed);neutral['context_policy']='trained availability-only control; quality always zero'
+                pf2=source['fused'](pt,f2);pg,weights=gate_predict(gate,pt,qt);pn,_=gate_predict(neutral,pt,np.zeros_like(qt));avg=pt.mean(1)
                 root.mkdir(parents=True,exist_ok=True)
                 write(root/'F2_COEFFICIENTS.json',f2);atomic_checkpoint(root/'QUALITY_GATE.pt',gate)
+                atomic_checkpoint(root/'QUALITY_NEUTRAL_GATE.pt',neutral)
                 write(root/'META_TRAINING_PREDICTIONS.json',train)
                 predictions=[{**row,'condition':condition,'seed':seed,'outer':outer,'F1_average':float(a),
-                              'F2_probability':float(b),'gate_probability':float(d),'gate_visual_weight':float(w[0])}
-                             for row,a,b,d,w in zip(test,avg,pf2,pg,weights)]
+                              'F2_probability':float(b),'gate_probability':float(d),'gate_static_probability':float(n),'gate_visual_weight':float(w[0])}
+                             for row,a,b,d,n,w in zip(test,avg,pf2,pg,pn,weights)]
                 write(root/'predictions.json',predictions)
-                reports={name:metrics(yt,pred) for name,pred in [('F1_average',avg),('F2',pf2),('quality_gate',pg)]}
-                for name,pred in [('F1_average',avg),('F2',pf2),('quality_gate',pg)]:independent_check(yt,pred,reports[name])
+                reports={name:metrics(yt,pred) for name,pred in [('F1_average',avg),('F2',pf2),('quality_gate',pg),('gate_static',pn)]}
+                for name,pred in [('F1_average',avg),('F2',pf2),('quality_gate',pg),('gate_static',pn)]:independent_check(yt,pred,reports[name])
                 write(root/'metrics.json',reports)
                 receipt={'condition':condition,'seed':seed,'outer':outer,'meta_rows':len(train),'outer_rows':len(test),
                          'group_safe_OOF_verified':True,'inner_prediction_sha256':lineage,'outer_prediction_sha256':testidentity,
                          'meta_training_sha256':sha(root/'META_TRAINING_PREDICTIONS.json'),'f2_sha256':sha(root/'F2_COEFFICIENTS.json'),
                          'gate_sha256':sha(root/'QUALITY_GATE.pt'),'prediction_sha256':sha(root/'predictions.json'),
+                         'gate_static_sha256':sha(root/'QUALITY_NEUTRAL_GATE.pt'),
                          'seconds':time.perf_counter()-started,'source':identities()}
                 write(root/'COMPLETE.json',receipt);all_receipts.append(receipt)
     return all_receipts

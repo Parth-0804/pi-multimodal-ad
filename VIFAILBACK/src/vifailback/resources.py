@@ -2,7 +2,16 @@
 import os
 import subprocess
 import time
+import psutil
 from .common import PROJECT,read,resolve,utc,write
+
+
+def process_alive(receipt):
+    """PID plus creation time avoids confusing a recycled unrelated process."""
+    try:
+        p=psutil.Process(receipt['pid'])
+        return abs(p.create_time()-receipt['create_time'])<.01 and p.status()!=psutil.STATUS_ZOMBIE
+    except (psutil.NoSuchProcess,psutil.AccessDenied,KeyError):return False
 
 
 def gpu_state(c):

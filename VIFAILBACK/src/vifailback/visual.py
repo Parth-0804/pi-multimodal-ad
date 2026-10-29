@@ -34,11 +34,36 @@ def backbone(c,condition,device='cpu'):
 
 def make(c,condition,mean,std,seed,device):
     source=primitives();torch.set_num_threads(c['cpu_threads'])
+    torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
     cnn=None if condition=='V1' else backbone(c,condition,device)
     torch.manual_seed(seed)
     if str(device).startswith('cuda'):torch.cuda.manual_seed_all(seed)
     # PhaseVisual reuses original Head and promotes all FrozenBN affine for V2/V3.
-    return source['PhaseVisual'](cnn,896,mean,std,condition!='V1').to(device)
+    model=multiview_class()(cnn,896,mean,std,condition!='V1').to(device)
+    assert all(p.dtype==torch.float32 for p in model.parameters())
+    return model
+
+
+@lru_cache(maxsize=1)
+def multiview_class():
+    base=primitives()['PhaseVisual']
+    class MultiviewVisual(base):
+        """One output per action; preserve source modules, fix the camera batch axis.
+
+        Frozen input is[B,896]. Full RGB input is[B,3,16,3,H,W], or
+        [3,16,3,H,W] for one episode. Training uses chunked_backward to avoid
+        retaining all48 frame activation graphs; forward also supports ordinary
+        gradients when sufficient memory is available.
+        """
+        def forward(self,x):
+            if self.backbone is None:
+                assert x.ndim==2 and x.shape[1]==len(self.mean)
+                return super().forward(x)
+            if x.ndim==5:x=x.unsqueeze(0)
+            assert x.ndim==6 and tuple(x.shape[1:4])==(3,16,3)
+            z=torch.stack([features(self.backbone,episode,4,grad=torch.is_grad_enabled()).mean(0) for episode in x])
+            return self.head(torch.nan_to_num((z-self.mean)/self.std,nan=0,posinf=0,neginf=0))
+    return MultiviewVisual
 
 
 @lru_cache(maxsize=1)
@@ -50,12 +75,24 @@ def processor(weights):
     return p
 
 
+@lru_cache(maxsize=16384)
+def verify_changed_source(path,size,mtime,expected):
+    assert sha(Path(path))==expected,'VIDEO_SOURCE_CHANGED_AFTER_QC'
+    return True
+
+
 def pixels(c,row):
     """48 RGB images in [camera,time,C,H,W] order; same16 indices in each view."""
     index=positions(row['frame_count'])
     views=[]
-    for key in ['video_high','video_left','video_right']:
-        frames=rgb_frames(video_path(c,row[key]),index)
+    for view,key in enumerate(['video_high','video_left','video_right']):
+        path=video_path(c,row[key])
+        if 'camera_sha256' in row:
+            st=path.stat();assert st.st_size==row['camera_bytes'][view]
+            if st.st_mtime_ns!=row['camera_mtime_ns'][view]:verify_changed_source(str(path),st.st_size,st.st_mtime_ns,row['camera_sha256'][view])
+        frames=rgb_frames(path,index)
+        if 'selected_RGB_sha256' in row:
+            assert [hashlib.sha256(f.tobytes()).hexdigest() for f in frames]==row['selected_RGB_sha256'][view],'FRAME_IDENTITY_OR_ORDER_DRIFT'
         # Use the verified original processor, including its PIL bilinear resize.
         x=torch.from_numpy(processor(c['pretrained_weights'])(images=list(frames),return_tensors='np')['pixel_values'])
         views.append(x)

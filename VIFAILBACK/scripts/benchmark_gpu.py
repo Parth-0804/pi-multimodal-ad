@@ -10,8 +10,10 @@ from vifailback.common import PROJECT,config,read,write
 from vifailback.cohort import finalize
 from vifailback.resources import wait_for_gpu
 from vifailback.splits import prepare
-from vifailback.training import Episodes
-from vifailback.visual import make,pixels,chunked_backward,gradient_evidence
+from vifailback.training import Episodes,optimizer_for,atomic_checkpoint,rng_state,restore_rng
+from vifailback.feature_bank import pooled_bank
+from vifailback.reference import primitives
+from vifailback.visual import make,pixels,chunked_backward,gradient_evidence,snapshot
 
 
 def main():
@@ -30,16 +32,30 @@ def main():
     fastest=max(r['episodes_per_second'] for r in loading)
     selected=min(r['workers'] for r in loading if r['episodes_per_second']>=.95*fastest)
     x=pixels(c,chosen[0]).cuda();bench=[]
+    bank,bank_receipt=pooled_bank(c,'V1');index={r['episode_index']:i for i,r in enumerate(rows)}
+    mean,std=primitives()['standardizer'](bank[[index[e] for e in job['ids']['T']]])
+    positive=sum(lookup[e]['label'] for e in job['ids']['T']);weight=torch.tensor((len(job['ids']['T'])-positive)/positive,device='cuda',dtype=torch.float32)
     for chunk in [4,8]:
-        model=make(c,'V2',np.zeros(896),np.ones(896),42,'cuda');opt=torch.optim.AdamW(model.parameters(),lr=1e-5)
+        model=make(c,'V2',mean,std,42,'cuda');opt=optimizer_for(c,model)
         torch.cuda.reset_peak_memory_stats();timings=[]
+        recovery=out.with_name('GPU_DISPOSABLE_RECOVERY.pt');expected=None;replay_passed=False
         for step in range(3):
+            if chunk==4 and step==2:
+                saved=torch.load(recovery,map_location='cpu',weights_only=True);model.load_state_dict(saved['model']);opt.load_state_dict(saved['optimizer']);restore_rng(saved['rng'])
             torch.cuda.synchronize();started=time.perf_counter();opt.zero_grad(set_to_none=True)
-            loss,_=chunked_backward(model,x,torch.tensor([float(chosen[0]['label'])],device='cuda'),torch.tensor(.2,device='cuda'),chunk=chunk)
+            loss,_=chunked_backward(model,x,torch.tensor([float(chosen[0]['label'])],device='cuda'),weight,chunk=chunk)
             assert torch.isfinite(loss);gradients=gradient_evidence(model);torch.nn.utils.clip_grad_norm_(model.parameters(),1);opt.step()
             torch.cuda.synchronize();timings.append(time.perf_counter()-started)
+            if chunk==4 and step==0:atomic_checkpoint(recovery,{'model':model.state_dict(),'optimizer':opt.state_dict(),'rng':rng_state()})
+            if chunk==4 and step==1:expected={'loss':float(loss),'model':snapshot(model),'rng':rng_state()}
+            if chunk==4 and step==2:
+                assert float(loss)==expected['loss'] and snapshot(model)==expected['model'],'GPU_RESUME_REPLAY_MISMATCH'
+                assert torch.equal(torch.get_rng_state(),expected['rng']['torch'])
+                assert all(torch.equal(a,b) for a,b in zip(torch.cuda.get_rng_state_all(),expected['rng']['cuda']))
+                replay_passed=True
         bench.append({'CNN_frame_chunk':chunk,'step_seconds':timings,'warm_steps_episode_per_second':2/sum(timings[1:]),
-                      'peak_GPU_bytes':torch.cuda.max_memory_allocated(),'finite_gradient_tensors':len(gradients),'nonfinite_loss':False})
+                      'peak_GPU_bytes':torch.cuda.max_memory_allocated(),'finite_gradient_tensors':len(gradients),'nonfinite_loss':False,
+                      'exact_full_CNN_optimizer_CUDA_RNG_replay':replay_passed if chunk==4 else 'tested with primary_chunk4'})
         del model,opt;torch.cuda.empty_cache()
     write(out,{'GPU':subprocess.check_output(['nvidia-smi','--query-gpu=name,memory.total,driver_version','--format=csv,noheader'],text=True).strip(),
                'input_shape':list(x.shape),'loading':loading,'selected_loader_workers':selected,'CNN_benchmarks':bench,

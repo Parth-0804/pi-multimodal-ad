@@ -33,3 +33,20 @@ def test_camera_temporal_pool_is_equal_mean_and_order_invariant():
     a=features(cnn,x,4).reshape(3,16,4)
     b=features(cnn,x.flip(1),4).reshape(3,16,4)
     assert torch.allclose(a.mean((0,1)),b.mean((0,1)),atol=1e-6)
+
+
+def test_high_camera_ablation_has_same_prediction_width_and_uses_only_that_view():
+    from vifailback.feature_bank import pool
+    bank=np.zeros((2,3,16,896),dtype='float32');bank[:,0]=3
+    assert pool(bank).shape==pool(bank,True).shape==(2,896)
+    assert np.all(pool(bank)==1) and np.all(pool(bank,True)==3)
+
+
+def test_adapted_forward_produces_one_logit_per_episode_not_per_camera():
+    from vifailback.visual import multiview_class
+    model=multiview_class()(None,4,np.zeros(4),np.ones(4),False)
+    model.backbone=TinyCNN();model.eval();x=torch.rand(2,3,16,3,8,8)
+    output=model(x);assert output.shape==(2,)
+    expected=model.head(features(model.backbone,x[0],4,grad=True).mean(0,keepdim=True))
+    assert torch.allclose(output[:1],expected,atol=1e-6)
+    output.sum().backward();assert model.backbone.conv.weight.grad.abs().sum()>0

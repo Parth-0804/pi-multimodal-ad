@@ -64,22 +64,41 @@ def paired_task_bootstrap(y,a,b,task_ids,seed_ids,repeats=2000,seed=20261029):
     """
     y=np.asarray(y);a=np.asarray(a);b=np.asarray(b);g=np.asarray(task_ids);s=np.asarray(seed_ids)
     groups=np.unique(g);seeds=np.unique(s);rng=np.random.default_rng(seed)
-    group_rows={group:np.flatnonzero(g==group) for group in groups}
-    def delta(ix):
+    group_index={group:i for i,group in enumerate(groups)}
+    gi=np.asarray([group_index[group] for group in g]);kernels=[]
+    for sd in seeds:
+        j=np.flatnonzero(s==sd);pairs=[]
+        for p in [a,b]:
+            classes=[]
+            for target,score in [(y[j],p[j]),(1-y[j],1-p[j])]:
+                order=np.argsort(-score,kind='stable');ends=np.r_[np.flatnonzero(np.diff(score[order])!=0),len(order)-1]
+                classes.append((target[order],gi[j][order],ends))
+            pairs.append(classes)
+        kernels.append(pairs)
+    def delta(counts):
         values=[]
-        for sd in seeds:
-            j=ix[s[ix]==sd]
-            if len(np.unique(y[j]))<2:return None
-            def macro(p):return (independent_ap(y[j],p[j])+independent_ap(1-y[j],1-p[j]))/2
-            values.append(macro(a)-macro(b))
-        return float(np.mean(values))
+        for pairs in kernels:
+            scores=[]
+            for classes in pairs:
+                ap=[]
+                for target,index,ends in classes:
+                    weights=counts[index];tp=np.cumsum(weights*target)[ends];den=np.cumsum(weights)[ends]
+                    if not tp[-1]:return None
+                    ap.append(float(np.sum(np.diff(np.r_[0,tp])*tp/np.maximum(den,1))/tp[-1]))
+                scores.append(np.asarray([ap[0],ap[1],sum(ap)/2]))
+            values.append(scores[0]-scores[1])
+        return np.mean(values,axis=0)
     samples=[]
     for _ in range(repeats):
-        ix=np.concatenate([group_rows[group] for group in rng.choice(groups,len(groups),replace=True)])
-        d=delta(ix)
+        counts=np.bincount(rng.integers(0,len(groups),len(groups)),minlength=len(groups))
+        d=delta(counts)
         if d is not None:samples.append(d)
     assert samples
-    return {'macro_AP_A_minus_B':delta(np.arange(len(y))),
-            'task_bootstrap_95_percentile':np.quantile(samples,[.025,.975]).tolist(),
+    point=delta(np.ones(len(groups),dtype=int));interval=np.quantile(samples,[.025,.975],axis=0)
+    return {'macro_AP_A_minus_B':float(point[2]),'AP_failure_A_minus_B':float(point[0]),'AP_success_A_minus_B':float(point[1]),
+            'task_bootstrap_95_percentile':interval[:,2].tolist(),
+            'AP_failure_task_bootstrap_95_percentile':interval[:,0].tolist(),
+            'AP_success_task_bootstrap_95_percentile':interval[:,1].tolist(),
             'valid_resamples':len(samples),'seed':seed,'resampling_unit':'canonical task shared across models/seeds',
+            'implementation':'integer task multiplicities; weighted threshold AP exactly equals explicitly repeated episode rows',
             'limitation':'conditional on fitted models; task dependence beyond canonical identity remains unknown'}
