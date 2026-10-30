@@ -1,15 +1,32 @@
-# ViFailback independent multimodal evaluation
+# ViFailback: original REASSEMBLE architecture replication
+
+The primary question is whether the original REASSEMBLE fusion approach gives
+comparable benefits on independently evaluated ViFailback episodes. The primary
+models are the original pretrained frozen CNN, original static sensor Logistic
+Regression (S1=S3), fully fine-tuned original CNN for 100 epochs, simple probability
+averaging and original grouped-OOF F2. Report within-dataset differences before
+cross-dataset consistency, followed by the locked missing/degraded-modality
+evaluation. HGB is a preserved exploratory baseline; it does not enter original
+F2 or determine the replication's primary conclusion.
+
+Read the dated [research priority correction](10_final_research_reports/researcher_handoff/20261030_RESEARCH_PRIORITY_CORRECTION/PRIMARY_REPLICATION_PRIORITY.md)
+first, then the [measured frozen-branch status](10_final_research_reports/researcher_handoff/20261030_RESEARCH_PRIORITY_CORRECTION/FROZEN_REPLICATION_STATUS.md)
+and live execution records below. The correction preserves the locked protocol,
+running jobs, completed results and hash-protected report publications. V3 donor
+transfer, camera ablations, HGB and gated-fusion extensions remain supplementary.
 
 The researcher authorized full implementation, three-camera 16-timestamp inputs,
-three model seeds and 100-epoch visual experiments. This project is currently
-being implemented; no ViFailback neural result is established by this README.
+three model seeds and 100-epoch visual experiments. Frozen-CNN heads and their
+fusion fits have completed; full CNN 100-epoch and robustness results remain
+pending as of 2026-10-30. Completion and performance are separate evidence questions.
 
 Historical evidence remains under
 `DATASET_RESEARCH/VIFAILBACK_VERIFICATION/`. The initial preservation commit is
 `9414da8f8ecc73299e442609f6e41e437dce9ec7`. No original data was moved or copied.
-The conservative starting manifest contains 4,384 episodes, 3,755 native failures,
-629 native no-failure episodes and 99 canonical tasks. Final eligibility still
-depends on actual three-camera video QC.
+The conservative starting manifest contains 4,384 episodes. Completed camera QC
+fixes the common cohort at 4,382 episodes: 3,753 native failures, 629 native no-failures
+and 99 canonical tasks. The two source-defective episodes remain preserved and
+excluded from analysis.
 
 The domain folders follow the existing MSM organization. Implementation lives in
 `src/vifailback/`; scripts bootstrap both this package and reusable repository
@@ -48,7 +65,7 @@ Long-run status and exact resumable commands will be recorded in
    and libaom; source bytes are preserved. The final common cohort contains
    4,382 episodes:3,753failures/629no-failures,99tasks,820unique exclusions.
 3. `03_preprocessing/processed_manifests/20261029T004900Z/eligible.json` and
-   `exclusions.csv` define the common cohort once QC finishes. The data contract
+   `exclusions.csv` define the fixed common cohort after QC. The data contract
    is under `03_preprocessing/data_contracts/20261029T004900Z/`.
 4. `04_evaluation_splits/train_validation_test/20261029T004900Z/fit_partitions.json`
    records disjoint task T/V/C/assessment IDs. All inner assessment records are

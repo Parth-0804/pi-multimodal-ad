@@ -46,3 +46,33 @@ the corresponding completed artifacts and independent calculations exist.
 Only specific relevant local files were committed. Unrelated pre-existing
 changes to rootREADME,REPO_MAP andTHESIS_EVIDENCE_GAPS remain unstaged. No push,
 PR, amend, reset, raw-data deletion or old-evidence replacement was performed.
+
+## 2026-10-30: researcher priority correction
+
+The primary scientific question is controlled replication of original REASSEMBLE
+fusion on ViFailback. Original frozen V1, original static sensor S1=S3 Logistic
+Regression, original-initialized full CNN V2 for 100 executed epochs, F1 averaging,
+original OOF-fitted F2 and missing/degraded-modality evaluation take priority in
+interpretation. Report within-dataset differences before cross-dataset consistency.
+HGB remains completed, preserved exploratory work; it does not replace S3 in F2.
+V3 transfer, camera ablations and gated extensions remain supplementary. The
+older description of V3 as a primary visual condition above records the earlier
+framing, not the corrected research emphasis.
+
+The live controller has completed 36 V1 fits, 36 high-only fits and frozen fusion;
+both frozen and donor initial feature banks are complete. It is waiting for
+the source REASSEMBLE 75-fit study and GPU availability. That source study reported
+10/75 fits completed at 2026-10-30T16:29:35Z. No process was signaled or restarted,
+and no source/configuration, queue order, split, epoch budget or fitting rule was
+changed. The 31 frozen implementation/configuration files and 5 reused source files
+still match their recorded hashes.
+
+The dated reporting correction and saved-result check live in
+`10_final_research_reports/researcher_handoff/20261030_RESEARCH_PRIORITY_CORRECTION/`.
+The check recomputes AP/AUROC from all 9 frozen outer prediction tables, verifies
+the original LR joins and inner OOF lineage, reconstructs averaging/F2 using
+saved coefficients and checks 100-epoch completion receipts for all 36 V1 fits.
+It does not retrain, refit, retune, reload model payloads or produce new bootstrap
+intervals. Frozen F2 exceeds vision but falls below original LR in pooled macro
+AP for each of the three seeds. The full CNN 100-epoch and robustness conclusions remain
+pending; this partial result does not establish cross-dataset fusion consistency.

@@ -1,0 +1,1062 @@
+{
+  "utc": "2026-10-30T16:35:34.542553+00:00",
+  "run": "20261029T004900Z",
+  "git_HEAD": "4dfecc06364d187395ba9456fdb3910d5737a2aa",
+  "command": "ma_thesis_env/bin/python -B VIFAILBACK/10_final_research_reports/researcher_handoff/20261030_RESEARCH_PRIORITY_CORRECTION/check_saved_frozen_results.py --output VIFAILBACK/10_final_research_reports/researcher_handoff/20261030_RESEARCH_PRIORITY_CORRECTION/SAVED_FROZEN_RESULTS_RECHECK.json",
+  "scope": "Saved-prediction consistency, saved OOF lineage and schedule receipts only; no retraining, coefficient refitting, new model selection, checkpoint payload reload, or bootstrap performed.",
+  "controller": {
+    "pid": 290646,
+    "create_time": 1793244798.4,
+    "status": "sleeping"
+  },
+  "code_config_reused_source_and_published_reports_match": true,
+  "cohort": {
+    "episodes": 4382,
+    "failures": 3753,
+    "no_failures": 629,
+    "tasks": 99
+  },
+  "pooled_per_seed": [
+    {
+      "seed": 42,
+      "model": "V1",
+      "episodes": 4382,
+      "AP_failure": 0.8530522581074125,
+      "AP_success": 0.13726020099905578,
+      "macro_AP": 0.49515622955323413,
+      "AUROC": 0.47940238164529325
+    },
+    {
+      "seed": 42,
+      "model": "S3",
+      "episodes": 4382,
+      "AP_failure": 0.9543702942648841,
+      "AP_success": 0.34357742849634954,
+      "macro_AP": 0.6489738613806169,
+      "AUROC": 0.784370489829652
+    },
+    {
+      "seed": 42,
+      "model": "F1_V1",
+      "episodes": 4382,
+      "AP_failure": 0.931759787499518,
+      "AP_success": 0.2890372814415081,
+      "macro_AP": 0.6103985344705131,
+      "AUROC": 0.716501308756916
+    },
+    {
+      "seed": 42,
+      "model": "F2_V1",
+      "episodes": 4382,
+      "AP_failure": 0.9451684741866947,
+      "AP_success": 0.31240462448740164,
+      "macro_AP": 0.6287865493370481,
+      "AUROC": 0.7527006481725059
+    },
+    {
+      "seed": 123,
+      "model": "V1",
+      "episodes": 4382,
+      "AP_failure": 0.8457487804896652,
+      "AP_success": 0.14699111352663025,
+      "macro_AP": 0.49636994700814774,
+      "AUROC": 0.4751573410058387
+    },
+    {
+      "seed": 123,
+      "model": "S3",
+      "episodes": 4382,
+      "AP_failure": 0.9543702942648841,
+      "AP_success": 0.34357742849634954,
+      "macro_AP": 0.6489738613806169,
+      "AUROC": 0.784370489829652
+    },
+    {
+      "seed": 123,
+      "model": "F1_V1",
+      "episodes": 4382,
+      "AP_failure": 0.9332265434877004,
+      "AP_success": 0.31701105801599605,
+      "macro_AP": 0.6251188007518482,
+      "AUROC": 0.7315099695548277
+    },
+    {
+      "seed": 123,
+      "model": "F2_V1",
+      "episodes": 4382,
+      "AP_failure": 0.9435433824494734,
+      "AP_success": 0.30725711926424476,
+      "macro_AP": 0.6254002508568591,
+      "AUROC": 0.7461981660034982
+    },
+    {
+      "seed": 20261023,
+      "model": "V1",
+      "episodes": 4382,
+      "AP_failure": 0.8397078189884617,
+      "AP_success": 0.12906658976281216,
+      "macro_AP": 0.4843872043756369,
+      "AUROC": 0.4634075463529548
+    },
+    {
+      "seed": 20261023,
+      "model": "S3",
+      "episodes": 4382,
+      "AP_failure": 0.9543702942648841,
+      "AP_success": 0.34357742849634954,
+      "macro_AP": 0.6489738613806169,
+      "AUROC": 0.784370489829652
+    },
+    {
+      "seed": 20261023,
+      "model": "F1_V1",
+      "episodes": 4382,
+      "AP_failure": 0.9311239742828198,
+      "AP_success": 0.3077452224949282,
+      "macro_AP": 0.619434598388874,
+      "AUROC": 0.7264390924991857
+    },
+    {
+      "seed": 20261023,
+      "model": "F2_V1",
+      "episodes": 4382,
+      "AP_failure": 0.9405870905278976,
+      "AP_success": 0.3015473956893149,
+      "macro_AP": 0.6210672431086062,
+      "AUROC": 0.7337231433718949
+    }
+  ],
+  "within_dataset_differences": [
+    {
+      "seed": 42,
+      "A": "F2_V1",
+      "B": "V1",
+      "AP_failure": 0.09211621607928222,
+      "AP_success": 0.17514442348834586,
+      "macro_AP": 0.133630319783814,
+      "AUROC": 0.2732982665272127
+    },
+    {
+      "seed": 42,
+      "A": "F2_V1",
+      "B": "S3",
+      "AP_failure": -0.009201820078189371,
+      "AP_success": -0.031172804008947896,
+      "macro_AP": -0.020187312043568717,
+      "AUROC": -0.031669841657146036
+    },
+    {
+      "seed": 42,
+      "A": "F2_V1",
+      "B": "F1_V1",
+      "AP_failure": 0.013408686687176652,
+      "AP_success": 0.02336734304589355,
+      "macro_AP": 0.018388014866535074,
+      "AUROC": 0.03619933941558995
+    },
+    {
+      "seed": 42,
+      "A": "F1_V1",
+      "B": "S3",
+      "AP_failure": -0.022610506765366023,
+      "AP_success": -0.05454014705484145,
+      "macro_AP": -0.03857532691010379,
+      "AUROC": -0.06786918107273598
+    },
+    {
+      "seed": 42,
+      "A": "F1_V1",
+      "B": "V1",
+      "AP_failure": 0.07870752939210557,
+      "AP_success": 0.1517770804424523,
+      "macro_AP": 0.11524230491727894,
+      "AUROC": 0.23709892711162273
+    },
+    {
+      "seed": 123,
+      "A": "F2_V1",
+      "B": "V1",
+      "AP_failure": 0.09779460195980827,
+      "AP_success": 0.16026600573761451,
+      "macro_AP": 0.1290303038487114,
+      "AUROC": 0.2710408249976595
+    },
+    {
+      "seed": 123,
+      "A": "F2_V1",
+      "B": "S3",
+      "AP_failure": -0.010826911815410623,
+      "AP_success": -0.036320309232104775,
+      "macro_AP": -0.023573610523757726,
+      "AUROC": -0.038172323826153765
+    },
+    {
+      "seed": 123,
+      "A": "F2_V1",
+      "B": "F1_V1",
+      "AP_failure": 0.010316838961773045,
+      "AP_success": -0.00975393875175129,
+      "macro_AP": 0.0002814501050109053,
+      "AUROC": 0.014688196448670476
+    },
+    {
+      "seed": 123,
+      "A": "F1_V1",
+      "B": "S3",
+      "AP_failure": -0.021143750777183667,
+      "AP_success": -0.026566370480353485,
+      "macro_AP": -0.023855060628768632,
+      "AUROC": -0.05286052027482424
+    },
+    {
+      "seed": 123,
+      "A": "F1_V1",
+      "B": "V1",
+      "AP_failure": 0.08747776299803522,
+      "AP_success": 0.1700199444893658,
+      "macro_AP": 0.1287488537437005,
+      "AUROC": 0.25635262854898905
+    },
+    {
+      "seed": 20261023,
+      "A": "F2_V1",
+      "B": "V1",
+      "AP_failure": 0.10087927153943588,
+      "AP_success": 0.17248080592650272,
+      "macro_AP": 0.13668003873296924,
+      "AUROC": 0.27031559701894015
+    },
+    {
+      "seed": 20261023,
+      "A": "F2_V1",
+      "B": "S3",
+      "AP_failure": -0.013783203736986493,
+      "AP_success": -0.042030032807034656,
+      "macro_AP": -0.027906618272010686,
+      "AUROC": -0.050647346457757036
+    },
+    {
+      "seed": 20261023,
+      "A": "F2_V1",
+      "B": "F1_V1",
+      "AP_failure": 0.009463116245077785,
+      "AP_success": -0.006197826805613316,
+      "macro_AP": 0.0016326447197321237,
+      "AUROC": 0.007284050872709225
+    },
+    {
+      "seed": 20261023,
+      "A": "F1_V1",
+      "B": "S3",
+      "AP_failure": -0.02324631998206428,
+      "AP_success": -0.03583220600142134,
+      "macro_AP": -0.02953926299174281,
+      "AUROC": -0.05793139733046626
+    },
+    {
+      "seed": 20261023,
+      "A": "F1_V1",
+      "B": "V1",
+      "AP_failure": 0.09141615529435809,
+      "AP_success": 0.17867863273211604,
+      "macro_AP": 0.13504739401323712,
+      "AUROC": 0.2630315461462309
+    }
+  ],
+  "per_fold": [
+    {
+      "seed": 42,
+      "outer": 0,
+      "model": "V1",
+      "episodes": 1107,
+      "AP_failure": 0.7877876422132877,
+      "AP_success": 0.1636751841854014,
+      "macro_AP": 0.47573141319934453,
+      "AUROC": 0.43812569521690764
+    },
+    {
+      "seed": 42,
+      "outer": 0,
+      "model": "S3",
+      "episodes": 1107,
+      "AP_failure": 0.9601165184272904,
+      "AP_success": 0.4558761932840161,
+      "macro_AP": 0.7079963558556532,
+      "AUROC": 0.8385171558141526
+    },
+    {
+      "seed": 42,
+      "outer": 0,
+      "model": "F1_V1",
+      "episodes": 1107,
+      "AP_failure": 0.9427590891526576,
+      "AP_success": 0.4548215408443375,
+      "macro_AP": 0.6987903149984975,
+      "AUROC": 0.8277840763241209
+    },
+    {
+      "seed": 42,
+      "outer": 0,
+      "model": "F2_V1",
+      "episodes": 1107,
+      "AP_failure": 0.9607045468503113,
+      "AP_success": 0.4557316567835442,
+      "macro_AP": 0.7082181018169278,
+      "AUROC": 0.839287242234962
+    },
+    {
+      "seed": 42,
+      "outer": 1,
+      "model": "V1",
+      "episodes": 1586,
+      "AP_failure": 0.865327474186201,
+      "AP_success": 0.1737946940310306,
+      "macro_AP": 0.5195610841086158,
+      "AUROC": 0.5659319131869998
+    },
+    {
+      "seed": 42,
+      "outer": 1,
+      "model": "S3",
+      "episodes": 1586,
+      "AP_failure": 0.9707086955293344,
+      "AP_success": 0.4931814089004669,
+      "macro_AP": 0.7319450522149007,
+      "AUROC": 0.8589149917475203
+    },
+    {
+      "seed": 42,
+      "outer": 1,
+      "model": "F1_V1",
+      "episodes": 1586,
+      "AP_failure": 0.9561543171150717,
+      "AP_success": 0.4973109720707742,
+      "macro_AP": 0.726732644592923,
+      "AUROC": 0.8362924000061701
+    },
+    {
+      "seed": 42,
+      "outer": 1,
+      "model": "F2_V1",
+      "episodes": 1586,
+      "AP_failure": 0.9708836768282906,
+      "AP_success": 0.49418752358843804,
+      "macro_AP": 0.7325356002083643,
+      "AUROC": 0.8590106279597095
+    },
+    {
+      "seed": 42,
+      "outer": 2,
+      "model": "V1",
+      "episodes": 1689,
+      "AP_failure": 0.909864227588844,
+      "AP_success": 0.12820383448375242,
+      "macro_AP": 0.5190340310362982,
+      "AUROC": 0.5343494588027391
+    },
+    {
+      "seed": 42,
+      "outer": 2,
+      "model": "S3",
+      "episodes": 1689,
+      "AP_failure": 0.9808741786826982,
+      "AP_success": 0.3022137164278039,
+      "macro_AP": 0.6415439475552511,
+      "AUROC": 0.8497901480008836
+    },
+    {
+      "seed": 42,
+      "outer": 2,
+      "model": "F1_V1",
+      "episodes": 1689,
+      "AP_failure": 0.9793122738338945,
+      "AP_success": 0.2769770914257093,
+      "macro_AP": 0.6281446826298019,
+      "AUROC": 0.8383219203298726
+    },
+    {
+      "seed": 42,
+      "outer": 2,
+      "model": "F2_V1",
+      "episodes": 1689,
+      "AP_failure": 0.9807037369053379,
+      "AP_success": 0.30274393681874046,
+      "macro_AP": 0.6417238368620392,
+      "AUROC": 0.8488734261100066
+    },
+    {
+      "seed": 123,
+      "outer": 0,
+      "model": "V1",
+      "episodes": 1107,
+      "AP_failure": 0.7801585012560652,
+      "AP_success": 0.15562724905763115,
+      "macro_AP": 0.4678928751568482,
+      "AUROC": 0.4110871053307093
+    },
+    {
+      "seed": 123,
+      "outer": 0,
+      "model": "S3",
+      "episodes": 1107,
+      "AP_failure": 0.9601165184272904,
+      "AP_success": 0.4558761932840161,
+      "macro_AP": 0.7079963558556532,
+      "AUROC": 0.8385171558141526
+    },
+    {
+      "seed": 123,
+      "outer": 0,
+      "model": "F1_V1",
+      "episodes": 1107,
+      "AP_failure": 0.9367788937228413,
+      "AP_success": 0.4462566031926285,
+      "macro_AP": 0.6915177484577348,
+      "AUROC": 0.8156017369727048
+    },
+    {
+      "seed": 123,
+      "outer": 0,
+      "model": "F2_V1",
+      "episodes": 1107,
+      "AP_failure": 0.9590971215101682,
+      "AP_success": 0.4554700671757254,
+      "macro_AP": 0.7072835943429469,
+      "AUROC": 0.837148113288269
+    },
+    {
+      "seed": 123,
+      "outer": 1,
+      "model": "V1",
+      "episodes": 1586,
+      "AP_failure": 0.8732597790786858,
+      "AP_success": 0.20080202730612726,
+      "macro_AP": 0.5370309031924065,
+      "AUROC": 0.5893751253297136
+    },
+    {
+      "seed": 123,
+      "outer": 1,
+      "model": "S3",
+      "episodes": 1586,
+      "AP_failure": 0.9707086955293344,
+      "AP_success": 0.4931814089004669,
+      "macro_AP": 0.7319450522149007,
+      "AUROC": 0.8589149917475203
+    },
+    {
+      "seed": 123,
+      "outer": 1,
+      "model": "F1_V1",
+      "episodes": 1586,
+      "AP_failure": 0.959492384102659,
+      "AP_success": 0.5049333540336697,
+      "macro_AP": 0.7322128690681644,
+      "AUROC": 0.8405466689290286
+    },
+    {
+      "seed": 123,
+      "outer": 1,
+      "model": "F2_V1",
+      "episodes": 1586,
+      "AP_failure": 0.9709712654733202,
+      "AP_success": 0.49823235751373657,
+      "macro_AP": 0.7346018114935284,
+      "AUROC": 0.8594425334341113
+    },
+    {
+      "seed": 123,
+      "outer": 2,
+      "model": "V1",
+      "episodes": 1689,
+      "AP_failure": 0.894376795529995,
+      "AP_success": 0.11332029188301203,
+      "macro_AP": 0.5038485437065036,
+      "AUROC": 0.489573669096532
+    },
+    {
+      "seed": 123,
+      "outer": 2,
+      "model": "S3",
+      "episodes": 1689,
+      "AP_failure": 0.9808741786826982,
+      "AP_success": 0.3022137164278039,
+      "macro_AP": 0.6415439475552511,
+      "AUROC": 0.8497901480008836
+    },
+    {
+      "seed": 123,
+      "outer": 2,
+      "model": "F1_V1",
+      "episodes": 1689,
+      "AP_failure": 0.9807868929282734,
+      "AP_success": 0.2907127596653865,
+      "macro_AP": 0.63574982629683,
+      "AUROC": 0.8483764082173624
+    },
+    {
+      "seed": 123,
+      "outer": 2,
+      "model": "F2_V1",
+      "episodes": 1689,
+      "AP_failure": 0.98088565568085,
+      "AP_success": 0.30207473206360547,
+      "macro_AP": 0.6414801938722277,
+      "AUROC": 0.8498269641410795
+    },
+    {
+      "seed": 20261023,
+      "outer": 0,
+      "model": "V1",
+      "episodes": 1107,
+      "AP_failure": 0.7887494894580466,
+      "AP_success": 0.15692935552196874,
+      "macro_AP": 0.47283942249000765,
+      "AUROC": 0.4245689655172414
+    },
+    {
+      "seed": 20261023,
+      "outer": 0,
+      "model": "S3",
+      "episodes": 1107,
+      "AP_failure": 0.9601165184272904,
+      "AP_success": 0.4558761932840161,
+      "macro_AP": 0.7079963558556532,
+      "AUROC": 0.8385171558141526
+    },
+    {
+      "seed": 20261023,
+      "outer": 0,
+      "model": "F1_V1",
+      "episodes": 1107,
+      "AP_failure": 0.9396191752277061,
+      "AP_success": 0.4465508427388319,
+      "macro_AP": 0.693085008983269,
+      "AUROC": 0.8151525198938993
+    },
+    {
+      "seed": 20261023,
+      "outer": 0,
+      "model": "F2_V1",
+      "episodes": 1107,
+      "AP_failure": 0.9433734338469919,
+      "AP_success": 0.4503546337234584,
+      "macro_AP": 0.6968640337852252,
+      "AUROC": 0.8224202104902885
+    },
+    {
+      "seed": 20261023,
+      "outer": 1,
+      "model": "V1",
+      "episodes": 1586,
+      "AP_failure": 0.8686006214175724,
+      "AP_success": 0.16935240336493074,
+      "macro_AP": 0.5189765123912515,
+      "AUROC": 0.568810254669978
+    },
+    {
+      "seed": 20261023,
+      "outer": 1,
+      "model": "S3",
+      "episodes": 1586,
+      "AP_failure": 0.9707086955293344,
+      "AP_success": 0.4931814089004669,
+      "macro_AP": 0.7319450522149007,
+      "AUROC": 0.8589149917475203
+    },
+    {
+      "seed": 20261023,
+      "outer": 1,
+      "model": "F1_V1",
+      "episodes": 1586,
+      "AP_failure": 0.958512019155064,
+      "AP_success": 0.4995947274448507,
+      "macro_AP": 0.7290533732999573,
+      "AUROC": 0.8404633728732511
+    },
+    {
+      "seed": 20261023,
+      "outer": 1,
+      "model": "F2_V1",
+      "episodes": 1586,
+      "AP_failure": 0.9707639215126707,
+      "AP_success": 0.4942610044904813,
+      "macro_AP": 0.732512463001576,
+      "AUROC": 0.8589427570994463
+    },
+    {
+      "seed": 20261023,
+      "outer": 2,
+      "model": "V1",
+      "episodes": 1689,
+      "AP_failure": 0.8879433140561223,
+      "AP_success": 0.09801837326583546,
+      "macro_AP": 0.49298084366097883,
+      "AUROC": 0.4683160297474413
+    },
+    {
+      "seed": 20261023,
+      "outer": 2,
+      "model": "S3",
+      "episodes": 1689,
+      "AP_failure": 0.9808741786826982,
+      "AP_success": 0.3022137164278039,
+      "macro_AP": 0.6415439475552511,
+      "AUROC": 0.8497901480008836
+    },
+    {
+      "seed": 20261023,
+      "outer": 2,
+      "model": "F1_V1",
+      "episodes": 1689,
+      "AP_failure": 0.9795980375917501,
+      "AP_success": 0.2732458239751788,
+      "macro_AP": 0.6264219307834644,
+      "AUROC": 0.8396951623591783
+    },
+    {
+      "seed": 20261023,
+      "outer": 2,
+      "model": "F2_V1",
+      "episodes": 1689,
+      "AP_failure": 0.9808149871494767,
+      "AP_success": 0.30482678441772754,
+      "macro_AP": 0.6428208857836021,
+      "AUROC": 0.8497422870186291
+    }
+  ],
+  "visual_schedule_receipts": [
+    {
+      "seed": 42,
+      "fit": "outer0_inner0",
+      "executed_epochs": 100,
+      "selected_epoch": 11
+    },
+    {
+      "seed": 42,
+      "fit": "outer0_inner1",
+      "executed_epochs": 100,
+      "selected_epoch": 1
+    },
+    {
+      "seed": 42,
+      "fit": "outer0_inner2",
+      "executed_epochs": 100,
+      "selected_epoch": 6
+    },
+    {
+      "seed": 42,
+      "fit": "outer0_final",
+      "executed_epochs": 100,
+      "selected_epoch": 41
+    },
+    {
+      "seed": 42,
+      "fit": "outer1_inner0",
+      "executed_epochs": 100,
+      "selected_epoch": 52
+    },
+    {
+      "seed": 42,
+      "fit": "outer1_inner1",
+      "executed_epochs": 100,
+      "selected_epoch": 12
+    },
+    {
+      "seed": 42,
+      "fit": "outer1_inner2",
+      "executed_epochs": 100,
+      "selected_epoch": 74
+    },
+    {
+      "seed": 42,
+      "fit": "outer1_final",
+      "executed_epochs": 100,
+      "selected_epoch": 77
+    },
+    {
+      "seed": 42,
+      "fit": "outer2_inner0",
+      "executed_epochs": 100,
+      "selected_epoch": 53
+    },
+    {
+      "seed": 42,
+      "fit": "outer2_inner1",
+      "executed_epochs": 100,
+      "selected_epoch": 60
+    },
+    {
+      "seed": 42,
+      "fit": "outer2_inner2",
+      "executed_epochs": 100,
+      "selected_epoch": 1
+    },
+    {
+      "seed": 42,
+      "fit": "outer2_final",
+      "executed_epochs": 100,
+      "selected_epoch": 27
+    },
+    {
+      "seed": 123,
+      "fit": "outer0_inner0",
+      "executed_epochs": 100,
+      "selected_epoch": 3
+    },
+    {
+      "seed": 123,
+      "fit": "outer0_inner1",
+      "executed_epochs": 100,
+      "selected_epoch": 1
+    },
+    {
+      "seed": 123,
+      "fit": "outer0_inner2",
+      "executed_epochs": 100,
+      "selected_epoch": 10
+    },
+    {
+      "seed": 123,
+      "fit": "outer0_final",
+      "executed_epochs": 100,
+      "selected_epoch": 29
+    },
+    {
+      "seed": 123,
+      "fit": "outer1_inner0",
+      "executed_epochs": 100,
+      "selected_epoch": 20
+    },
+    {
+      "seed": 123,
+      "fit": "outer1_inner1",
+      "executed_epochs": 100,
+      "selected_epoch": 15
+    },
+    {
+      "seed": 123,
+      "fit": "outer1_inner2",
+      "executed_epochs": 100,
+      "selected_epoch": 97
+    },
+    {
+      "seed": 123,
+      "fit": "outer1_final",
+      "executed_epochs": 100,
+      "selected_epoch": 16
+    },
+    {
+      "seed": 123,
+      "fit": "outer2_inner0",
+      "executed_epochs": 100,
+      "selected_epoch": 60
+    },
+    {
+      "seed": 123,
+      "fit": "outer2_inner1",
+      "executed_epochs": 100,
+      "selected_epoch": 17
+    },
+    {
+      "seed": 123,
+      "fit": "outer2_inner2",
+      "executed_epochs": 100,
+      "selected_epoch": 1
+    },
+    {
+      "seed": 123,
+      "fit": "outer2_final",
+      "executed_epochs": 100,
+      "selected_epoch": 2
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer0_inner0",
+      "executed_epochs": 100,
+      "selected_epoch": 21
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer0_inner1",
+      "executed_epochs": 100,
+      "selected_epoch": 30
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer0_inner2",
+      "executed_epochs": 100,
+      "selected_epoch": 10
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer0_final",
+      "executed_epochs": 100,
+      "selected_epoch": 44
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer1_inner0",
+      "executed_epochs": 100,
+      "selected_epoch": 25
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer1_inner1",
+      "executed_epochs": 100,
+      "selected_epoch": 8
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer1_inner2",
+      "executed_epochs": 100,
+      "selected_epoch": 66
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer1_final",
+      "executed_epochs": 100,
+      "selected_epoch": 18
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer2_inner0",
+      "executed_epochs": 100,
+      "selected_epoch": 16
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer2_inner1",
+      "executed_epochs": 100,
+      "selected_epoch": 24
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer2_inner2",
+      "executed_epochs": 100,
+      "selected_epoch": 10
+    },
+    {
+      "seed": 20261023,
+      "fit": "outer2_final",
+      "executed_epochs": 100,
+      "selected_epoch": 1
+    }
+  ],
+  "input_sha256": {
+    "VIFAILBACK/10_final_research_reports/researcher_handoff/20261030_RESEARCH_PRIORITY_CORRECTION/check_saved_frozen_results.py": "3452dc11caf864f60d1a07492b914ca082b1138c338c56c38296881e60ab619c",
+    "VIFAILBACK/10_final_research_reports/reproducibility/PROTOCOL_FREEZE.json": "c3332dda9c8b63b26cea1d4a641fe6cf7840335d00b634c06593c844fc37e366",
+    "VIFAILBACK/logs/20261029T004900Z/EXECUTION_PROVENANCE.json": "dafc9e4e1ab707b11dce4fca97529cb4ab9d8b201bb4530fd3335d668cfd7e6b",
+    "VIFAILBACK/03_preprocessing/processed_manifests/20261029T004900Z/eligible.json": "69ef64b012f683c5c8be7882c7e047675f88ed6a448f53c3aa21f432e9858560",
+    "VIFAILBACK/04_evaluation_splits/train_validation_test/20261029T004900Z/fit_partitions.json": "ad003bba25de31072612b6a3346690087ecb9f8c94f9558d2663fe99da150231",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_final/COMPLETE.json": "f13aa1df16344be6d85ec92cba0b4fe833eb44ec1c6ed2edbd6e478b99b716aa",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_final/predictions.json": "2eef28ecc9856b8111b1a19e0c277cc26c932c8739b115fa8940a1926fa5956c",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer0_final/COMPLETE.json": "354cb23213595a49cedc7bd285da206674db91b6c1718d6099b105e639b02d54",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer0_final/predictions.json": "9fccf4f55cdb65322b6eaf2a9279e167c085f6fd0a53f0c3e1f7d32763257c5d",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer0/COMPLETE.json": "2b9d5cbf63e5e5e1effe4ea93fe8324fa5c2defcaeb8542c97a70bf02f0e55a7",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer0/predictions.json": "067ab7a852c56a0d053f28d8cc63ec4c6cdd972698d9654dac82ef6d2f3d6c60",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer0/META_TRAINING_PREDICTIONS.json": "7856033e56c09f12bea760eb5a27a875e1e8b8957636e2e94beb103f02c527b3",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer0/F2_COEFFICIENTS.json": "86f66ab619e63d0efa386705aaabda2fd6d1c409a5c9caafe0c651cd0589ef1c",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner0/COMPLETE.json": "a5f8aea6b8176a8b3e7d1254240e080ce8f714e13a70d5c0f1e6f03f039aeecf",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner0/predictions.json": "8d3dc04a09a385c8e7e371fff13e74e9355197e62514e47be05eb44c4e2b851e",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer0_inner0/COMPLETE.json": "e7b067089ebbaf6ee26d202e0be95452a1ec3515dfdf7c5ec8c2191584eafed1",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer0_inner0/predictions.json": "1c35abb938c122e5a72663bea617e61a04aa346dcb097aae7fcafdda1d1bd282",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner1/COMPLETE.json": "a1e5e883864a750d5bbb9080d8ff1d04d27fafa82b861a2973ff5ea06c3184ea",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner1/predictions.json": "941bdc922108b74e5c58954f5fc7283ed559d29783abe64885880feb7895ea03",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer0_inner1/COMPLETE.json": "8c731e781d1fb9790d7d04858a8cc4788819200d5b65c6d29cddf92b0bd14771",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer0_inner1/predictions.json": "25149f6e982757bd986054a316c3b16c321c238a8881c0508299fc2287d177e4",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner2/COMPLETE.json": "7400d15467c7453d0e94d83baf509a082fca5392dfcc72d27a40895dfb801f38",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner2/predictions.json": "6e238602403887f16851497db28c35763dd91f3d790b29fa9f79d71f1d97ea7d",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer0_inner2/COMPLETE.json": "b12cbf30a65f830aa277cbc4d30000fd175f566b56ec66051265240c79ff74f2",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer0_inner2/predictions.json": "882dc1c937b43e1f1ed903993c2baf07d3966bfe0d606033886433324656fc69",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_final/metrics.json": "9d63764f65b504d00898fdf05c7a05f9b1dbcf283497e6ce5bc1917399c22d6e",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer0_final/metrics.json": "75bd68203876d4b3f53b759cbd0792ad2fcc5aa1ec0617600b580caffbec4297",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer0/metrics.json": "11ef84daae3da4a20e209a9f69d0f7a87c535d07492087d3c89c227bbed11104",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_final/COMPLETE.json": "5c8f42998666a17a6adfb811b2806eaa2b45bdb115be146bd1520eba9974d998",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_final/predictions.json": "9d54aa8594cc4c694617e2bb5326b395844f0dd433335c142049a4626903ba0e",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer1_final/COMPLETE.json": "2575ab37e8d69c840f66b873c5d34e72d839ce57910c38b71bf50478c0709759",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer1_final/predictions.json": "79426a60dd41c5bf4ac9fa41aae3638a04ca59a6f2edb2fc540d208ddaffe70d",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer1/COMPLETE.json": "ec9cf1208cbad650ecd73046a41c0e6f3325e7a9e0abb9a68c6f4bd9e68dc818",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer1/predictions.json": "08057c101253b7fb4f0a2c3d0deb70d85b8152e669de30a1e1304188afe0a766",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer1/META_TRAINING_PREDICTIONS.json": "b3b7475c7f4ee9f04133d18a8892cfc7a7d73c90b9283d0016de748a790a73ad",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer1/F2_COEFFICIENTS.json": "3a6665bd0bc4da5af671e1ebe5506f41fca466b72b678f8770885f0e9503793f",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_inner0/COMPLETE.json": "aa4bc6c9a8845c1ab424dc1b3bdfc2debcdc1cd7f03081002194d03504055e5a",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_inner0/predictions.json": "4447fb3ab63af434e4eae5522cc56b8b6e2f1180cd539c848b2c74058beffa46",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer1_inner0/COMPLETE.json": "8d7c6f02af6b29c152659ba07d8fb30155fa2e9c9853dfc3ca9634623d72868e",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer1_inner0/predictions.json": "244b21b7057b50bf0e4532a0992dbe59f6800ce3b428332f981bba388e528cc9",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_inner1/COMPLETE.json": "f1495384c582a101985ec2e46f51d72d93315f0eb43ca16e1a1c686220c88522",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_inner1/predictions.json": "fd62a8bb95c852fe545b827e3a7988526fec492963c22cf1d34a61803cd65df3",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer1_inner1/COMPLETE.json": "1ac14d2b37dc347e5a5e425cce21b02396c13f1bfa5bc6b652da7af8e468b44e",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer1_inner1/predictions.json": "eeaecdb43b89ffee0e376c6d72d882b027288ae7b9c72fa4a89c7105bc99b71a",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_inner2/COMPLETE.json": "05c0cbfa11bc9e4855c5d5f6dba6356ab8749f9a93f5981d33a36d8f09b89203",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_inner2/predictions.json": "61f99d3ca01468e3752d42ffc1e28ecf0e58dfb1791a6b52eb590dc07d97698a",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer1_inner2/COMPLETE.json": "7a774f5d0bbbb2d8f7b3a0852cb5fa30bce8e1f696f05564ebe129c8b3a79dbb",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer1_inner2/predictions.json": "d248ba851438a9eafb85b3af72076a1485d6235b225a4cc6c66fe6e794b49e8b",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_final/metrics.json": "76449ba122ba4b49d54a3082f75a14e9fe69984f16e160a46c6a017c84f7efdc",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer1_final/metrics.json": "13d1815d3c2c28255dbbdd778f88ac9a2853c87428754c2e4aac98d4aca62dbb",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer1/metrics.json": "6a9699bebb5fa323df65b64d41806382f0cc078c537e4a686a9f2d0425d48a33",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_final/COMPLETE.json": "3ae4fc34c6b21fc8f36342047a4c94e62d20f25adfb369f33ebdf652cf26b500",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_final/predictions.json": "ad619905ac200e71c2f4609e4ddb424a6138fb2c4ebcb50999783280659aaeec",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer2_final/COMPLETE.json": "33fe54e217961249ecd881a54413a10f9c58dc3523a73863573d20f1a6e2c7f3",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer2_final/predictions.json": "8b067872f5be70bedfe612da11eaed72a59b8b6c1196907d43e538028386570f",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer2/COMPLETE.json": "d3a652450428048a459e89fd618d3771e6ea2b98e525e743c8accebef4b43a84",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer2/predictions.json": "ba5308556f783f8d8b4087733f578cb9178aac836524132acd190d43055dfdad",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer2/META_TRAINING_PREDICTIONS.json": "ec25e6a72fdf7b04ec351005b3418f9b4a7ec87d9e417e9fbc40639b9db9b080",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer2/F2_COEFFICIENTS.json": "77ec052107fdbd071351f506939482fc46d8adfd56490d21271d10caa2c9e862",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_inner0/COMPLETE.json": "6f012b47e0777dc39a099b31fe1440a40cafc3a99da3a76de2ca90ed7264bec4",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_inner0/predictions.json": "1ff7591be57ae5dcbd22698e6251842bd41e4371d2d0b1b9dd9bc134d1d143a3",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer2_inner0/COMPLETE.json": "cffac87311ece81530a6a815cdf359c2247e9cfd697dccd9a6d035cc67182a79",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer2_inner0/predictions.json": "e12a5c63798a7a16a331c13904e497897301f684da7866a4b1d951a161d65e42",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_inner1/COMPLETE.json": "68979c2bfe033fc66ab72d32a0725f74e5113f37105c2c88f798f61a0a1ba6e4",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_inner1/predictions.json": "b7d60547ac4e5426595fa5c76d16f0a160080880b4cf7905b355f3c754a9952e",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer2_inner1/COMPLETE.json": "1f3254b804c7dd12d4f54c5ac22e1e55b20ff630ae2de9f55d58ce9a7c985b57",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer2_inner1/predictions.json": "457093873be687646f3b35877e3752028837783859ab0c62801630b9bc60b438",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_inner2/COMPLETE.json": "2ca91d879b57e375be929dd5ef4d41016dc91bec97789e7981351ecca998fc95",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_inner2/predictions.json": "a7f830a2ee65cca6dcb1086ffd816e40c69d7f31616c291895032d5dbfa34386",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer2_inner2/COMPLETE.json": "46c98be822f8f81ac966000419198f845b3afbd5444c91c6a3e51991a7ef0b0c",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer2_inner2/predictions.json": "e33a67ec27bb2cd238e3805794e5fa6e3415eebe427965916b65c2964c7394f2",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_final/metrics.json": "92431e2e7aa883dd35bb4cf767bba176372b5c204c1bd8cb30f31c22faa44836",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed42/outer2_final/metrics.json": "6da41f184e7beddc82a0ba061a8569e97b3585b95e65c6a890aa535297801089",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed42/outer2/metrics.json": "70bc6978b8d68aeaf788bee03a20f12a635db79e1fa4a6cbd55810a518210155",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_final/COMPLETE.json": "607b13ae37011ff021b8c2880cf47d8693d04d1b206ce1474b385bf61c9a5577",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_final/predictions.json": "4f1bc7f65666ac7114f65ef48efe7c4c33a5a65531171f657357c4a38df49c06",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer0_final/COMPLETE.json": "13023653f8968938ae8fccf620568c2aa80364bf15b2801a2f9f0d26fb309230",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer0_final/predictions.json": "246854a8af7b78821e34454c27177a90760a234e408d3778f96c348504c370bd",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer0/COMPLETE.json": "84c670ee21f9615c64a0ac8838d576bd2cd70a6c4bbb0481b7180b0379e5eb85",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer0/predictions.json": "26aefa10f676dcdf81a23101b62ce5eacf386ed79ca090e7ecb2e2ac3728e927",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer0/META_TRAINING_PREDICTIONS.json": "a5285798ce96c4fc9d6938cbefae1dbaeb460484cb6951dc43779bfd56a62dd7",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer0/F2_COEFFICIENTS.json": "269b2a1ae125d72dc4006a27e63034be1a99176d2ddc2ed23069faf4f7358d91",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_inner0/COMPLETE.json": "80a6bd70e9b2de39a5e0cc89dc8aa1a5136267e4903af5482af6876287e7c43b",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_inner0/predictions.json": "639f12a670d7bbca80aa75a53296d31218404f94f951f901ef0db2bf8df77bae",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer0_inner0/COMPLETE.json": "d0f601de87091d0b497255ee9e6c55514ef04c93e25587e770fdd200481d846c",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer0_inner0/predictions.json": "aa8db9c3b1d8b01ece1675219e0cc20b98d10c7fd2b7d35f0cd2e17415e07490",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_inner1/COMPLETE.json": "97f121bc8114d2d8cc07fd16db49183b031ab9a8cc131656117647c2995e623b",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_inner1/predictions.json": "9b9e65a5fc34dcc03bb687618d22da1910ed2b864cffba60afab7f45ff5d7a55",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer0_inner1/COMPLETE.json": "d69c9f11f06f6e7a69322ec0b35bac11f5adae4a844d2076b37dff7fbf9d2b03",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer0_inner1/predictions.json": "c649055493ca2db0b4affaf6a76f790b277d211597c06dbe75de955a6b796ab5",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_inner2/COMPLETE.json": "d3baf156a69db2aed387c6a80fe75a449ea95ab967d7d9704e4884c13e7b399b",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_inner2/predictions.json": "82ba194777821a5c13cab892854f86c0fb14627c5f258c48b97a1e88131ade45",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer0_inner2/COMPLETE.json": "a41ebf9a4a6dafffe3d107612715e4ac09838cc3afd4f91ba1a3cd269938d732",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer0_inner2/predictions.json": "b3f66a5c89fc51bf9312a82893659d4a4e383d036dddd1d06e8fe70c22d75e6b",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_final/metrics.json": "3bcaf8a66a5d01784c139e65af8ca35dbcbbde361fcc48de9c1a42fd8bc645e8",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer0_final/metrics.json": "75bd68203876d4b3f53b759cbd0792ad2fcc5aa1ec0617600b580caffbec4297",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer0/metrics.json": "3804489e91a8e072457fa818d95dd7fc594ba32a8ffcff41635d42b49ced82c8",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_final/COMPLETE.json": "6e145e6c1cc3ac21c28300d50da42ba903ca7d4b55645103804dfa0937125de4",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_final/predictions.json": "6e5377822585c05eba3cc9e57584793bc4d66554d8cb39b45c1ec20b4475a8fe",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer1_final/COMPLETE.json": "6d05b7c0e9ea8e616e810a2fdefa18e7f3c1578ff29a3a24881ea1c3ee14a1c0",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer1_final/predictions.json": "373429e5382efeb6d8b40d4666af81c6ffe90f2922a6a9fa6fb95eb4fe9121e7",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer1/COMPLETE.json": "099d37349f94ac9fbde387d3016cec79db0b29684afca704531c2ffbc571ac5f",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer1/predictions.json": "6844650476f1d480687def4abdf46bb74084dc31cd02c5ebfeb46bbd78f1a44d",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer1/META_TRAINING_PREDICTIONS.json": "909f4a480f2d6b1dc9ef4bd94f92c65bc6121cf2a7c36104b232f18d405b6d41",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer1/F2_COEFFICIENTS.json": "aa234fb8c4d5522e7a9b6e96debc88d4c01802e585323435d5c03478f7ac6770",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_inner0/COMPLETE.json": "12899dbaf669e34bab7ec8f52141be5c998846d0ed7ddc227923d6e424ff2a52",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_inner0/predictions.json": "3c9cb8cd0cb26c30cc2746a7d39967992c6dac91acca8806c98113614cf0f327",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer1_inner0/COMPLETE.json": "5aeb0dca1df52aa724a696b2b27a2389640b5954d704cd0799a4b518bf7ad98f",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer1_inner0/predictions.json": "c594c2ae29809ff200de93bd8b20636734cd1b6f954cb65a270c8be79214d7ee",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_inner1/COMPLETE.json": "39698bdaf3a33d00cbb7e5f45d2df851a52ad5adc18d24aa1d6a6374147988c0",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_inner1/predictions.json": "f26f2730d6c79d533b48e991595fc0bbad48cf1bad331a59c6dafc2b935dddbf",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer1_inner1/COMPLETE.json": "761d128f5ed8193d6fb8cd3e2e691fc1a44d60abd2986d5ba98842753720880b",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer1_inner1/predictions.json": "d54cba9266f245beed9a3b9d276306c691f556f9cce096adba4930601f7fa837",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_inner2/COMPLETE.json": "bcc085a69887a3386c7b0a8329debcba2dd765a61ab9a0074622d20125c58e82",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_inner2/predictions.json": "da0ea0ab999a59f9748e303f631cb8298dac4b57bab2eac582616fa141a2a742",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer1_inner2/COMPLETE.json": "c5c1b59692160da58ab33e0d457ed30edf262806370dcdaaa8199963529b2725",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer1_inner2/predictions.json": "b8264b8eb678b645348630e255dad2b0c3737f561331fa0e0b9b44165e93a65c",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_final/metrics.json": "53551690b76b9750303a69a7bf316b700260e29efb797f3f86d51d93148e5a55",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer1_final/metrics.json": "13d1815d3c2c28255dbbdd778f88ac9a2853c87428754c2e4aac98d4aca62dbb",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer1/metrics.json": "c965dafc9da89beeeecca8960684aca13dc6f70ef6c8aca61e0a7bc44b1539f5",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_final/COMPLETE.json": "f3ddfcc214485e037a04ad319ffe228329adb4fa1c81b64d456ff46a9df91ccd",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_final/predictions.json": "6ad2060795078cb6345c14e02613b1bae8fedb961cd9426354d5b6a2d85b2826",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer2_final/COMPLETE.json": "75b6d38f6baff5fbf4cba3913eae81c3ceaebc1e91f943044732b3095f97452c",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer2_final/predictions.json": "7e12ce57765919dd54dc2a8c8a845f2b4fb8a305c24337b61591d38155398b24",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer2/COMPLETE.json": "65837ab96a5eed69e74168bea5915d2321e3b7d0f80a2da3a98c9e3becdb3f20",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer2/predictions.json": "af4399786c6dd19bf765bdbadb19b1f5f08bcfdb0c925dcc50a1ab490efc2daa",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer2/META_TRAINING_PREDICTIONS.json": "519c0367d3ed352a47135393b4e880d484bbb4e592b65f389ff20508a5ae9351",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer2/F2_COEFFICIENTS.json": "12cc7a9113a912a2c98cd7c86a21a0466a281254d10ddbba8b528189069cfa49",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_inner0/COMPLETE.json": "e51c869a7dac1a615f6fd8e8a89a8bb5b935b71f5d8aa3a1dc0a0a24e41f9403",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_inner0/predictions.json": "9cb1be59a636c39b475b0799d3c6fa2a83eb2087b4690674f725257c69c7c2bd",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer2_inner0/COMPLETE.json": "2368e17a18aa0bf2446abf3c58a359e1f1cc2f568a2b85e0aa668ceaaef43b3d",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer2_inner0/predictions.json": "6db3cb5c75c011b2726b714e74ebf0117b58c1891819c0e9b042b88756888ae3",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_inner1/COMPLETE.json": "c0534662d2463b9bf7f30cc10c4054d25b04d867dd50ecc50c11182412926bae",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_inner1/predictions.json": "da93b44c43b66c11ec68443b90cd4cd27bc20796ac1e7caabb2b62efecfe13ee",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer2_inner1/COMPLETE.json": "54031bcaa66f0fb7648f10d90dd806be6c3ef5a4eedc84206d02c67ffaf35bce",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer2_inner1/predictions.json": "3021a9a07defa858fa22be8fd38f028ee0bf903ecca723c1774a077aa4bbc814",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_inner2/COMPLETE.json": "f9590c83bee5d03f29df89ff53dc71d8e58862c434c02b07a0823671844af51a",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_inner2/predictions.json": "cd81e81a19569db261e20fb6c620e3b4e5988fa426aa7dbe7dec496fbf1c08c7",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer2_inner2/COMPLETE.json": "101367170468f48c834f92191c227b2d35c866b7d8043d790a17f8cdb20d3a01",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer2_inner2/predictions.json": "e0671c535839cd236559faf4facfad40904ecf2ef6984d3993d4ccc46b6ff76e",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_final/metrics.json": "bac755005cdd9a2fc530ccdf9a60e935510aa65047cfc8aa2138579581ef384a",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed123/outer2_final/metrics.json": "6da41f184e7beddc82a0ba061a8569e97b3585b95e65c6a890aa535297801089",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed123/outer2/metrics.json": "dbe46aa7b4ae63793d1161c3b392d918c3fbcba4b6522cbafcb2ffec1cb1a22a",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_final/COMPLETE.json": "e45ca733bd190f1c4a4131228e8e0bd040e5f9173198aacbea0c611483bb1594",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_final/predictions.json": "c6968f5a886723ac658ece12ae62300c87355fa713fc8c5777e4e16f16b49992",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer0_final/COMPLETE.json": "6af23a060079fef8875072aa50091014e6373845461e9263aac8bf8ce942c4ee",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer0_final/predictions.json": "6ae9bb14c872084c11f8b7b521629fce240c8eda312fed231d42e3f57dec41bc",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer0/COMPLETE.json": "b89f9260196cfbc3221eb3731bc5d2aaef8d6d9a82651a3e9db3fd654fd63d78",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer0/predictions.json": "3bf0b60e0ffa83593f8c4bdce16752611233bb0adfce0ce4c45de54b33f4e0be",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer0/META_TRAINING_PREDICTIONS.json": "957de1bceda03a3ad009a740554e20b4e4c36a6ae5e4868bae57fb2bb8d901d1",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer0/F2_COEFFICIENTS.json": "ff45dbb9255831950aeca620bdf99a9fff18a4ec268099668f2cac19c7ac1237",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_inner0/COMPLETE.json": "9491635961784052163e8f7c1795b2e273a4c49fff8c6d3380291d38e0603979",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_inner0/predictions.json": "a8e19d9b13b84420a69bf369390857fa3b1f70507b61ab339d25bacfabc739e0",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer0_inner0/COMPLETE.json": "a56a4c33363ec9bea12404c88eeeda2f361eca9e1749ef6dc50502bb64f3b069",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer0_inner0/predictions.json": "4094c1307c155f7f6519b3481b3d254cb063487f29b478621d185bf44e2a6f4e",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_inner1/COMPLETE.json": "6ba790ce9c2554bc02bafc6499c30edfde38de401c5bf493d6229f585600435c",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_inner1/predictions.json": "2d1a0ec66dda75be4ec5b2794bdf525851737113e6776e94448443ce2f8d913e",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer0_inner1/COMPLETE.json": "576e3a6917ae89615d71e296139df8e115ebc2f158e96fbac626e12ff288bc12",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer0_inner1/predictions.json": "1ff34336acba98b96b70b8b66a9b9a01fe23a42357dfd585f9ea06bb278b88d9",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_inner2/COMPLETE.json": "5b558a4bc768ab1505482731691c3b0a759118e7c474f728b3e0550c2105e2fc",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_inner2/predictions.json": "30e850ae50f1ca4f0de9c917c286025501238a76d54e643afb0a27d799e4f598",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer0_inner2/COMPLETE.json": "0513fb77c2f68b652448791349a2378faeb15b38762d0fa0c643cb9803a28433",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer0_inner2/predictions.json": "a9ecaa0a1018a0c5dbfdbc09c03b8fd45c1d3d96fe0f09ef6a83b7ec29bfd040",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_final/metrics.json": "4e6629864f1e657209813993d52efb977c4b0691fd83fbabbe6215ad1e55e796",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer0_final/metrics.json": "75bd68203876d4b3f53b759cbd0792ad2fcc5aa1ec0617600b580caffbec4297",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer0/metrics.json": "b888dca084fafa088426915deb02a9f485125cf21891337f05002465de8e4ff2",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_final/COMPLETE.json": "5c0472433a7383c045dc867e58ce30080e41a8d3ee04aaf303f44bc3f13adbcf",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_final/predictions.json": "f39cbb470cd246fa66e0ac1ca9710bff10b36996594095ae2bf873dca1e726e6",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer1_final/COMPLETE.json": "d597e2943b70cd6816208ad3fc4e9664aba3a6baef2e1d8880f12440797a7d34",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer1_final/predictions.json": "14f3b2c23e9bb7b22d8b10520790a20edf037ce86054dd7bb5f17c9d66dafdca",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer1/COMPLETE.json": "8695cec93712e06b8a123a3c30ea055d122598dfe0b5b7e3e7c15beb292fefa6",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer1/predictions.json": "61538edf962e3149339b56a716979b748a1eae0910896daeb633dbf7c65923c7",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer1/META_TRAINING_PREDICTIONS.json": "fdee12f4af0fca032eac7d8856e99b425e06bcca0048b0d3f2d54ee5a4bbc9fa",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer1/F2_COEFFICIENTS.json": "dfff504154144da29f90c5baae11932a7901a91f7e9bbc6ff95db030e57be99c",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_inner0/COMPLETE.json": "9cace1e7b92b6e070aadccbe5149c278a7e93185153ee654cd8c4039c6185bd8",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_inner0/predictions.json": "e305e7bb3016d370de9dd99e461d77812a6f05ede82e9360f3201d60d061b997",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer1_inner0/COMPLETE.json": "8f9455f49314888e2d414ee6451d79743069a2d990469203af4f0d2ba8d2cfe8",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer1_inner0/predictions.json": "50d5f14412bf98e4d3b41f9e44ad8f9cc0034e909642ac1dcd8f5a1f25df0c2d",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_inner1/COMPLETE.json": "b377ff85374b886f37923c819985aebffb72df345479a2495e35574aabc9964e",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_inner1/predictions.json": "46e7b8d869ed7049a2bc65d80643538f24678037fa8d45a83e4f36f6c542066a",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer1_inner1/COMPLETE.json": "53e19e3f450ba5bf44fa6b8335f5512ebf610bf346b756d92d060b7230b4b8bf",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer1_inner1/predictions.json": "bf910f4dd006d0e84ffda005949428e988f8fcfdc17b995490a6527748306ee5",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_inner2/COMPLETE.json": "56d4a21c5e72bcb8bb68f707251beef9f1413d54c3641eef0abdc295bc2422dd",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_inner2/predictions.json": "346d77b6ebc34ff28fec443f8425a43ef199c2a5eb79641f3fd61904176b4f57",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer1_inner2/COMPLETE.json": "f286045e42f7197c3c28328f792ba1c5e6054215c40f12c4896f17019037b5b5",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer1_inner2/predictions.json": "493afdd916b17bc464b7574fe42b17c2818c61599e7b2e7cec7fd97f3faf7200",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_final/metrics.json": "0e53ad23c36b0608671dc0aed1e65df11bdb7981a9ab6baab169f05fdb7c5fff",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer1_final/metrics.json": "13d1815d3c2c28255dbbdd778f88ac9a2853c87428754c2e4aac98d4aca62dbb",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer1/metrics.json": "2ada5fc12387c03ce823ca4ef33acf9fa9651211edbba7eafd6615fe5cab925f",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_final/COMPLETE.json": "3346f7f2b9fba32adb1bc6a60287e37eac2d3cadff662cd52c1eb368d72383a6",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_final/predictions.json": "95f9208fdaf06c925186b991b869ab0e3e15e9fae5ebe0d4f7b9607aac5bc273",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer2_final/COMPLETE.json": "a3a8d3c2f539c3ccb61477f4c2e3a378898f96959e498ff058c566eb5fb3b771",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer2_final/predictions.json": "1501e63f5d2b01e9dfe32cf372bd75d62b223be7b49e96f21f57d0920e44b097",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer2/COMPLETE.json": "1bc4597f30b619bd1183ba393bdfc14a366d04c6cc2c9fa3e6d83e8fc08b5c6e",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer2/predictions.json": "0b666c7f5a9ae06de9a9dd4a7487ef227d3d819adc3c67845d069f930ed5f0b6",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer2/META_TRAINING_PREDICTIONS.json": "a939efaea9f748b375d15c282ab665f0b2c0c2dcea34a77a96cbc4b10667a7de",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer2/F2_COEFFICIENTS.json": "78185df9f2777bfc953610914caecc90c0c6dc10820191433c611cbdc1d14362",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_inner0/COMPLETE.json": "2e60451313d305caa91d6aa45c1542dadd29a8a1900a6cc01c645ad73d2295a6",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_inner0/predictions.json": "ff32fa12627bac9975cd69b50cfd5654679cd6917d93e307d0e99e1ae19f7e77",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer2_inner0/COMPLETE.json": "dd4b496f6cb9652f47a88bd4997347351c9de21526f97fbd271fb1666d3a2150",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer2_inner0/predictions.json": "9171b9df4a0405af36a44940dde836d9a9b2234e4433a9439268eae781622435",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_inner1/COMPLETE.json": "13872aff2bd75c25aa1aca66f30a0863dfd84f7e30d9cd4625ea455dfdde473d",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_inner1/predictions.json": "9f5242dfff83407947174acaacc882a6880b485a8d76249ed0d77feaa7f7884f",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer2_inner1/COMPLETE.json": "f53cb5dd01d077c20a296a56a95a4040ed6ab428c5b77eddb481ea95ca5cfe2c",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer2_inner1/predictions.json": "0afe2783e61836ca089bf479b7abeeab09cfffefc1ecd4a552a53865d7016dec",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_inner2/COMPLETE.json": "86484b9e8f9d020926356f0979258ef37507d691f98f02da29732d01c14e973e",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_inner2/predictions.json": "6a7dc475dc4d2acda689d98b887883643d6e640d30649a102bb44f4855d30f6a",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer2_inner2/COMPLETE.json": "934e94b601bdc63a17b1c621c5880887f3e0be8961db1e1d7f251f68a7399b6f",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer2_inner2/predictions.json": "a589cbeda5266c886a33602a6c638a69df3c4b4f504720678f01669b9c06f0b4",
+    "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_final/metrics.json": "8012118d4aeea66f7cbfe9f52f1402a1a5100fb558b27840d19ca5a51aee7e09",
+    "VIFAILBACK/06_training_experiments/sensor_baselines/runs/20261029T004900Z/seed20261023/outer2_final/metrics.json": "6da41f184e7beddc82a0ba061a8569e97b3585b95e65c6a890aa535297801089",
+    "VIFAILBACK/06_training_experiments/fusion_experiments/runs/20261029T004900Z/V1/seed20261023/outer2/metrics.json": "eac18c9a41e0c3b400cc0f49c11e83755870dcc178300738e4dd5b764fd3de4f",
+    "VIFAILBACK/logs/20261029T004900Z/CONTROLLER_PROCESS.json": "15af5f6e8c524ead0d6f5ea7610dd4516588fb356c09412ba310a25f964e188e",
+    "VIFAILBACK/10_final_research_reports/LATEST_PUBLICATION.json": "927c2147e912f38d93ad23186aefae898353a62dc5bbad1c03d42def7180e9d3"
+  }
+}
