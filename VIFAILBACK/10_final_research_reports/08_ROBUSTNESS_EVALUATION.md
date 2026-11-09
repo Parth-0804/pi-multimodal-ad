@@ -1,6 +1,6 @@
 # 08 ROBUSTNESS EVALUATION
 
-Run `20261029T004900Z`. Published 2026-10-29T03:49:05.228393+00:00. Pipeline state: **CPU_SENSOR_BASELINES_COMPLETE_VISUAL_FEATURES_RUNNING**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T034902912165Z`.
+Run `20261029T004900Z`. Published 2026-10-30T15:22:30.469658+00:00. Pipeline state: **DONOR_INITIAL_FEATURES_CPU**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261030T152227157750Z`.
 
 Stress tests are fixed in `src/vifailback/corruptions.py`: missing25/50%frames, dropped temporal windows25/50%, blur kernels5/15, square occlusion25/50%area,1/2 cameras unavailable, JPEG20/5, visual shifts10/25%; sensor channels missing25/50%, intervals20/40%, Gaussian noise0.5/1.0 T-channel std, frozen readings, shifts10/25%; combined partial degradation and complete modality loss. Selection/masks never consult labels.
 

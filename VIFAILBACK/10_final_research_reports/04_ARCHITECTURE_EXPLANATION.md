@@ -1,6 +1,6 @@
 # 04 ARCHITECTURE EXPLANATION
 
-Run `20261029T004900Z`. Published 2026-10-29T03:49:05.228393+00:00. Pipeline state: **CPU_SENSOR_BASELINES_COMPLETE_VISUAL_FEATURES_RUNNING**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T034902912165Z`.
+Run `20261029T004900Z`. Published 2026-10-30T15:22:30.469658+00:00. Pipeline state: **DONOR_INITIAL_FEATURES_CPU**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261030T152227157750Z`.
 
 The visual branch executes the RT-DETR-derived ResNet18VD CNN only, not its detection transformer or bounding-box head. Spatial means of128/256/512 feature maps concatenate to896; mean over16times and3cameras produces896; original new-task head896→128 ReLU dropout0.1→1 predicts an episode logit. T-only feature scaling and C-only sigmoid calibration follow the source workflow.
 

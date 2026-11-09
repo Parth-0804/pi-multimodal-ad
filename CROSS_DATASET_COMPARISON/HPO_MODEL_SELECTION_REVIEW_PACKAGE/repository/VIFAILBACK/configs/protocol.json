@@ -1,0 +1,54 @@
+{
+  "status": "prospectively frozen before any ViFailback held-out prediction",
+  "prediction_unit": "complete native action episode",
+  "target": "native failure=1, native success/no-failure=0; not frame-level failure localization",
+  "cohort": "historical4384-row V2 core intersect complete valid three-camera payload QC; all weak/uncertain semantic views retained and flagged",
+  "outer_groups": "canonical task,3 hash-assigned folds; no session/operator independence claim",
+  "inner_groups": "3 grouped OOF assessments per outer-training pool; each branch uses disjoint task T60/V20/C20; final outer branch uses same partition policy",
+  "split_assignment_uses_labels": false,
+  "seeds": [42,123,20261023],
+  "metrics": {
+    "co_primary": ["AP_failure","AP_success","macro_AP"],
+    "secondary": ["AUROC","balanced_accuracy","macro_F1","precision_and_recall_both_classes","Brier","log_loss","ECE10","confusion_matrix"],
+    "classification_threshold": 0.5,
+    "prevalence_reference": "constant-probability AP equals test class prevalence within a fold; also save a genuine T-only prevalence predictor and its pooled metrics, which can differ from the global constant-score baseline",
+    "uncertainty": "paired task-cluster2000-resample percentile intervals, same tasks across methods/seeds; conditional on fitted models; no9-fold independence assumption",
+    "multiplicity": "multiple comparisons remain exploratory; no unadjusted interval establishes universal superiority"
+  },
+  "visual": {
+    "input": "3 cameras x16 fixed uniform matching indices =48 RGB images",
+    "preprocessing": "original local RTDetrImageProcessor,640x640 bilinear, /255, do_normalize=false",
+    "representation": "CNN spatial means128+256+512=896; equal mean across16 timestamps and3 views",
+    "head": "original896->128 ReLU dropout0.1 ->1; new target head for each fit",
+    "V1": "original pretrained frozen CNN; new head100 epochs",
+    "V2": "original pretrained CNN; full CNN conv and promoted FrozenBN affine plus new head,100 executed epochs",
+    "V3": "verified REASSEMBLE seed42 selected epoch47 after100; CNN-only donor; matched V2 adaptation100 epochs",
+    "selection": "highest V macro_AP, earliest tie; execute100; score C/A only after best checkpoint selected",
+    "optimizer": "AdamW head1e-3 backbone1e-5 wd1e-3 clip1; cosine100 epochs to0.1initial LR; FP32; balanced T positive weight",
+    "effective_batch": 8,
+    "full_CNN_memory": "microepisode1, exact two-pass CNN frame chunks4; head evaluated once; moments fixed",
+    "resume": "full model, optimizer, scheduler, Python/NumPy/Torch/CUDA RNG at epoch boundary; interrupted epoch replays deterministically",
+    "retention": "best selected checkpoint, full final100 recovery checkpoint, every epoch history; final/recovery hardlink shares immutable bytes"
+  },
+  "sensors": {
+    "channels": "14 position fields,12 nonplaceholder velocities,2 gripper-effort fields; not force/torque",
+    "statistics": "exact original10stat/channel routine,280 stat-major features; no target/source/task/action metadata inputs",
+    "S1_equals_S3": "source-exact balanced C1 logistic T standardization; unweighted C1 sigmoid calibration on C; deterministic method shared rather than separate S1 fits",
+    "S2": "balanced HistGradientBoosting200iter lr0.05 L2=0.1 minleaf20, no internal early stopping; leaves7/15/31 selected on V macro_AP; sigmoid calibration C"
+  },
+  "fusion": {
+    "F1": "unweighted mean of calibrated branch probabilities",
+    "F2": "source-exact unweighted C1 logistic on [visual_probability,S3_probability]; new coefficients per condition/outer/seed; fit grouped OOF only",
+    "quality_gate": "source DecisionGate(F5) quality-only plus availability,13inputs hidden16 ReLU2softmax weighted branch logits;40fixed epochs AdamW1e-3 wd1e-3; fit OOF only",
+    "quality_context": "6 image-quality fields measured on selected inputs +5 sensor-quality fields +2 availability flags; OOF-only normalization; no task/action identity",
+    "gate_selection": "fixed architecture and budget, no meta selection on outer test",
+    "quality_attribution_control": "same DecisionGate architecture, seed, OOF inputs and40epoch budget, but all quality fields held at zero during fitting/inference; learned static logit mixture with availability masking",
+    "corruption_training": "clean-trained F2 and gate; no special augmentation advantage; learned reliability assessed only when both branches present",
+    "matched_augmented_controls": "separately fit F2_aug, Gate_aug and availability-only Gate_static_aug on cleanOOF plus exactly1label-blind corruptedOOF record per native episode; corruption chosen by episode hash from blur5,occlusion0.25,missing_channels0.25,noise0.5,combined_partial; original inner-held-out branch checkpoint/calibrator generates each record; noise scale uses its own T only;20gate epochs on2N records matches40epochs onNclean presentations; no CNN/sensor retraining; repeated augmented rows are not independent examples",
+    "complete_missing": "same explicit surviving-branch fallback for averaging/F2/gate; absent unimodal gets T prevalence reference; both absent abstain"
+  },
+  "robustness": "fixed label-blind scenarios and intensities in src/vifailback/corruptions.py; T-only observed channel std for noise; edge-padded within-episode shifts are sampling perturbations, not physical clock calibration; clean replay must agree with saved main probabilities within0.001 absolute, without consulting labels; otherwise stop affected stress stage for numerical investigation",
+  "comparisons": ["V2-V1","V3-V2","visual vs prevalence","S3/S2 vs visual","F2 vs S3 and S2 and each visual","F2_V2-F2_V1","F2_V3-F2_V2","quality gate vs F2 and averaging","all fixed missing/noisy scenarios"],
+  "single_camera_ablation": "secondary V1_high_only: retrain a new frozen-CNN head on16cam_high timestamps, same common cohort/TVC/100epochs/3seeds/3folds; high camera fixed before held-out predictions; reuse verified per-camera feature bank; no fine-tuned single-camera or fusion ablation",
+  "resource_policy": "CPU2 threads, low process priority; wait until REASSEMBLE75-fit completion marker and no other GPU compute process; no epoch or GPU-hour cutoff"
+}

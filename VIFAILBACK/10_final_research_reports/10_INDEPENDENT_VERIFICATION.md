@@ -1,6 +1,6 @@
 # 10 INDEPENDENT VERIFICATION
 
-Run `20261029T004900Z`. Published 2026-10-29T03:49:05.228393+00:00. Pipeline state: **CPU_SENSOR_BASELINES_COMPLETE_VISUAL_FEATURES_RUNNING**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T034902912165Z`.
+Run `20261029T004900Z`. Published 2026-10-30T15:22:30.469658+00:00. Pipeline state: **DONOR_INITIAL_FEATURES_CPU**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261030T152227157750Z`.
 
 Native joins are independently recounted from109 source annotation files; raw SHA identities, converted metadata and V2 labels agree. All original and follow-up artifact manifests were rehashed before preservation. The locked20-example review is unchanged; B02 stays uncertain.
 

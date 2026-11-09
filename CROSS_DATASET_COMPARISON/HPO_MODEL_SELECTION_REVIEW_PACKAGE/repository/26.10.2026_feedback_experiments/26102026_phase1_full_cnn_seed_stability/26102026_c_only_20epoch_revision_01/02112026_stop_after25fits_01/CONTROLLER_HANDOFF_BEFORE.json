@@ -1,0 +1,64 @@
+{
+  "utc": "2026-11-02T22:49:11.656645+00:00",
+  "prior_status": {
+    "utc": "2026-11-02T22:48:54.430883+00:00",
+    "stage": "C_ONLY_TRAINING",
+    "status": "RUNNING",
+    "arm": "C_full_finetuned16",
+    "epoch_budget": 20,
+    "pending_B_fits": 0,
+    "completed_C_fits": 22,
+    "required_C_fits": 75,
+    "remaining_CNN_training_hours": 277.06459231153013,
+    "remaining_planning_GPU_job_hours": [
+      332.4775107738362,
+      387.89042923614215
+    ],
+    "remaining_planning_days_exclusive_GPU": [
+      13.853229615576508,
+      16.16210121817259
+    ],
+    "host_resources": {
+      "process_tree_RSS_GiB": 11.939716339111328,
+      "process_tree_threads": 224,
+      "system_available_RAM_GiB": 34.43411636352539,
+      "disk_free_GiB": 40.029052734375,
+      "system_load_average": [
+        2.7822265625,
+        2.91064453125,
+        2.40087890625
+      ]
+    },
+    "controller_pid": 2987,
+    "child_pid": 3034,
+    "seed": 42,
+    "job_index": 22,
+    "outer_fold": 4,
+    "role": "inner_fold_03",
+    "active_child_elapsed_seconds": 1477.2635891240002,
+    "log": "26102026_c_only_20epoch_revision_01/26102026_execution/26102026_logs/PHASE1_C_SEED42_JOB22_ATTEMPT002.log"
+  },
+  "controller": {
+    "pid": 2987,
+    "create_time": 1793658248.11,
+    "command": [
+      "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+      "-B",
+      "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/26102026_source/c20_controller.py"
+    ]
+  },
+  "child": {
+    "pid": 3034,
+    "create_time": 1793658256.57,
+    "command": [
+      "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+      "-B",
+      "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/26102026_source/c20_train.py",
+      "--seed",
+      "42",
+      "--job",
+      "22"
+    ]
+  },
+  "training_process_will_not_be_signaled": true
+}

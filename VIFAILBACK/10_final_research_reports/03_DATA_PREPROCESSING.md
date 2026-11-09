@@ -1,6 +1,6 @@
 # 03 DATA PREPROCESSING
 
-Run `20261029T004900Z`. Published 2026-10-29T03:49:05.228393+00:00. Pipeline state: **CPU_SENSOR_BASELINES_COMPLETE_VISUAL_FEATURES_RUNNING**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T034902912165Z`.
+Run `20261029T004900Z`. Published 2026-10-30T15:22:30.469658+00:00. Pipeline state: **DONOR_INITIAL_FEATURES_CPU**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261030T152227157750Z`.
 
 One complete episode is one target, not48 independent labeled frames. Uniform rounded linspace selects16 matching frame indices in each camera, without avoid/correct keyframes or outcome labels. Three views pool equally after the original image processor. No full decoded-image cache is retained; resumable per-frame CNN feature banks retain896float32 values per frame.
 

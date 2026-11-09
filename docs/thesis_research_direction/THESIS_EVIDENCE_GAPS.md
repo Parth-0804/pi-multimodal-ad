@@ -269,3 +269,15 @@ No validation step requiring additional approval was attempted. Neural padding d
 A targeted PHM padding diagnostic or saved-artifact quality/content control may be small, but each goes beyond the current task's permission (neural forward or new fitted heads). No dependent validation requiring that approval was performed. Existing documentation/arithmetic work is complete; no required background job remains running.
 
 **ONE recommended next activity:** researcher–supervisor evidence and final-scope review using this package, with the concrete decisions in the [chapter plan](THESIS_CHAPTER_PLAN.md). Decide final title/task wording and original-question coverage, accept/disallow precise contribution claims, and determine whether any gap truly warrants a separately approved experiment. Do not reopen the accepted dataset switch. **STOP after this handoff.**
+
+## Operational addendum — cache retention, 2026-10-26
+
+After the evidence-consolidation task, the researcher authorized removal of the
+43.2 GiB September frozen-prefix array cache and 23.8 GiB shared visual pixel
+cache. Their historical metadata, predictions, checkpoints and reports remain
+preserved. This changes future replay readiness, not the reported results or
+scientific conclusions. Historical completion records are no longer proof of
+cache availability. See [retention decision, deletion evidence and preflight](../maintenance/REASSEMBLE_CACHE_RETENTION.md).
+Prefix recovery needs a separately developed cache-only runner into a new output
+directory; pixel decoding already exists but must use an isolated new cache.
+No recovery benchmark, neural forward or new experimental validation was performed.

@@ -24,6 +24,12 @@ Scripts run from repository root and PHM entry points locate `src/` themselves. 
 
 Preserved history: all `runs/`, `artifacts/`, `experiments/`, `archive/`, raw data and Task 4 recovery evidence. Dated `docs/planning/`, historical prompts, tutorial reports and run manifests can retain old source paths; use their original Git revision for historical reproduction and the migration CSV for current navigation. The compatibility namespace and old PHM script paths contain forwarding only.
 
+Cache-retention exception (researcher approval, 2026-10-26): the September frozen-prefix
+arrays and older shared pixel-cache arrays were evicted. Historical
+metadata and research results remain preserved. Check the [current retention and
+recovery record](docs/maintenance/REASSEMBLE_CACHE_RETENTION.md) before replaying
+these studies; an old completion flag does not prove the arrays are still present.
+
 For former paths such as `src/pi_multimodal_ad/`, `scripts/training/`, or `tests/unit/`, see [path_mapping.csv](docs/repository_restructure/path_mapping.csv). Current interface support is defined in [COMPATIBILITY_CONTRACT.md](docs/repository_restructure/COMPATIBILITY_CONTRACT.md); validation in [COMPATIBILITY_VALIDATION.md](docs/repository_restructure/COMPATIBILITY_VALIDATION.md).
 
 Legacy forwarding locations: `src/pi_multimodal_ad/` and `scripts/{dataset,features,targets,training,results}/`. Canonical code remains in the domain-owned locations above.

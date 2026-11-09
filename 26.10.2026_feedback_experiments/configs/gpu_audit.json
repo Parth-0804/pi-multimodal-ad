@@ -1,0 +1,33 @@
+{
+  "study_root": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01",
+  "output_root": "26.10.2026_feedback_experiments/runs",
+  "protocol": "F2-CLEAN-CNN-2x2-MEAN-v1",
+  "frames": 16,
+  "training_samples": 24,
+  "training_selection": "first 24 positions of the existing first outer-assessment G epoch-0 permutation",
+  "effective_batch_segments": 8,
+  "microbatch_segments": 1,
+  "precision": "float32",
+  "window_seconds": 60,
+  "repetitions": 2,
+  "warmup_updates": 2,
+  "max_updates_per_window": 80,
+  "max_cache_bytes": 1073741824,
+  "minimum_free_bytes": 10737418240,
+  "cpu_threads": 4,
+  "monitor_interval_seconds": 0.5,
+  "parity_atol": 1e-7,
+  "parity_rtol": 1e-5,
+  "configurations": [
+    {"name": "serial_npz", "workers": 0, "pin_memory": false, "persistent_workers": false, "prefetch_factor": null, "legacy_sync": true},
+    {"name": "workers2_pinned", "workers": 2, "pin_memory": true, "persistent_workers": true, "prefetch_factor": 2, "legacy_sync": false},
+    {"name": "workers4_pinned", "workers": 4, "pin_memory": true, "persistent_workers": true, "prefetch_factor": 2, "legacy_sync": false}
+  ],
+  "full_execution_allowed": false,
+  "warnings": [
+    "Training-only disposable audit; no evaluation labels, predictions or scientific checkpoints are consumed or changed.",
+    "Bounded warm-cache subset timing does not prove whole-cohort cold decoding throughput.",
+    "No multi-seed matrix has been specified; estimate the existing one-seed 25-fit-per-condition matrix only.",
+    "Microbatch and precision remain fixed by the existing protocol; AMP, larger action microbatches and compile are not silently enabled."
+  ]
+}

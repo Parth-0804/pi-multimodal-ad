@@ -1,0 +1,16 @@
+{
+  "torch_threads": 4,
+  "FFmpeg_decoder_threads": 1,
+  "backend": "torchscript_frozen_FP32",
+  "selection_basis": "Fixed-shape FP32 inference graph compilation; predefined calibration control only; no label or model choice",
+  "measured_eager_seconds_threads4": 6.081457254011184,
+  "measured_compiled_seconds_threads4": [2.402545387041755, 2.615441033965908],
+  "calibration_control_max_absolute_eager_logit_difference": 0.0000095367431640625,
+  "required_full_saved_GPU_control_absolute_logit_tolerance": 0.001,
+  "available_CPU_affinity_count": 16,
+  "GPU_study_interruption": false,
+  "learned_parameters_changed": false,
+  "precision": "float32",
+  "shape_contract": "1 action,16 distinct source RGB frames,640x640",
+  "existing_eager_predictions": "Preserved; same checkpoint/FP32/frame hashes, original controls passed; each cached row retains its CPU runtime evidence"
+}

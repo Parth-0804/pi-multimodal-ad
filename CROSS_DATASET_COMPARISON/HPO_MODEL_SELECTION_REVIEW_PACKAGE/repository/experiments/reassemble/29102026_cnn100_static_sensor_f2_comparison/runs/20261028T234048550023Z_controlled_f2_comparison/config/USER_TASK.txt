@@ -1,0 +1,462 @@
+TASK: REASSEMBLE — 100-EPOCH CNN + STATIC SENSOR F2 FUSION COMPARISON
+
+PROJECT:
+pi-multimodal-ad
+
+DATASET:
+REASSEMBLE ONLY.
+
+OBJECTIVE:
+Conduct a scientifically controlled comparison of our frozen
+and fully fine-tuned 100-epoch CNN visual models when combined
+with the original REASSEMBLE static sensor branch using F2 fusion.
+
+This is an IMPLEMENTATION and EVALUATION task, not merely a
+research proposal.
+
+Do not assume fine-tuning improves fusion.
+
+=========================================================
+1. FIRST — VERIFY EXISTING EXPERIMENTS
+=========================================================
+
+Inspect the repository and locate:
+
+A. Original REASSEMBLE experiments
+- Original 16-frame frozen CNN implementation
+- Static sensor representation and classifier
+- Original F2 fusion implementation
+- Training, validation and outer-test splits
+- Original F2 coefficients and fitting procedure
+- Original prediction files and evaluation results
+- Calibration and OOF prediction procedures
+
+B. Completed 100-epoch experiment
+- B_frozen100
+- C_full_finetuned16
+- Original fit 3
+- Seed 42
+- Selected checkpoints
+- Training histories
+- Saved predictions
+- Group identities and sample IDs
+- Calibration evidence
+- Evaluation scripts
+
+The reported completed checkpoints are:
+
+B_frozen100:
+100 epochs executed
+Selected epoch: 14
+Held-out AP: 0.193776
+
+C_full_finetuned16:
+100 epochs executed
+Selected epoch: 47
+Held-out AP: 0.212585
+
+Both were evaluated on 753 actions from outer fold 1.
+
+VERIFY these numbers independently from saved artifacts.
+
+Do not assume checkpoint availability or correctness merely
+because a report mentions it.
+
+Produce a brief verification report before proceeding.
+
+=========================================================
+2. RECONSTRUCT THE EXACT ORIGINAL F2 ARCHITECTURE
+=========================================================
+
+Read the implementation, not just the documentation.
+
+Determine:
+
+1. Which static sensor features were used?
+2. How were the sensor features normalized?
+3. Which sensor classifier was used?
+4. How was the sensor classifier trained?
+5. Were its probabilities calibrated?
+6. How were visual predictions generated?
+7. What exact F2 fusion formula was used?
+8. How were F2 coefficients learned?
+9. Was fitting based on group-disjoint OOF predictions?
+10. How were evaluation splits protected from leakage?
+
+Document exact source paths and configurations.
+
+IMPORTANT:
+
+F2 refers to our existing fusion method.
+
+Do not confuse F2 fusion with the F2 classification metric.
+
+Do not introduce PatchTST, audio, object-detection heads,
+new temporal architectures or other modalities.
+
+Preserve the original static sensor implementation.
+
+=========================================================
+3. CONSTRUCT THE COMPARISON
+=========================================================
+
+Evaluate these model configurations:
+
+M1 — Frozen CNN only
+     B_frozen100
+
+M2 — Fully fine-tuned CNN only
+     C_full_finetuned16
+
+M3 — Original static sensor-only model
+
+M4 — F2 fusion
+     B_frozen100 + static sensor
+
+M5 — F2 fusion
+     C_full_finetuned16 + static sensor
+
+M6 — Simple averaging
+     B_frozen100 + static sensor
+
+M7 — Simple averaging
+     C_full_finetuned16 + static sensor
+
+M8 — Original historical REASSEMBLE F2
+     Reference result, subject to comparability checks.
+
+Use 16 frames per action.
+
+Do not use 32 frames.
+
+Both F2 configurations must use the SAME:
+
+- Eligible examples
+- Static sensor features
+- Sensor classifier definition
+- Sensor predictions
+- Outer test split
+- Evaluation metrics
+- Fusion fitting protocol
+
+Only the visual branch should differ between M4 and M5.
+
+Any necessary branch-specific calibration must follow an
+identical training-only protocol.
+
+=========================================================
+4. PREVENT DATA LEAKAGE
+=========================================================
+
+This is critical.
+
+The 753 outer-fold-1 assessment actions must remain excluded
+from:
+
+- CNN training
+- Sensor-model training
+- F2 coefficient fitting
+- Probability calibration
+- Hyperparameter selection
+- Checkpoint selection
+
+Verify the actual recording/group identities.
+
+Do not use predictions on training examples from a model that
+was trained on those same examples as if they were OOF.
+
+If valid saved OOF or calibration predictions already exist,
+reuse them only after verifying their provenance.
+
+Otherwise regenerate the necessary training-side predictions
+using leakage-safe grouping.
+
+If additional CNN fits are required, run them using the
+documented frozen100 and full-finetuning recipes.
+
+Do not substitute in-sample predictions to save computation.
+
+The 100-epoch models have already been examined on this outer
+fold. Therefore, this fusion follow-up is exploratory on a
+previously inspected test set, not independent confirmation.
+
+Keep fusion decisions fixed before examining its test results.
+
+=========================================================
+5. FIT F2 FOR BOTH VISUAL MODELS
+=========================================================
+
+Fit two separate F2 configurations:
+
+F2_FROZEN100:
+Static sensor probabilities
++
+Frozen CNN probabilities
+
+F2_FINETUNED100:
+Static sensor probabilities
++
+Fine-tuned CNN probabilities
+
+Use the original verified F2 formulation.
+
+Fit fusion parameters using training-side evidence only.
+
+For both configurations:
+
+- Save learned coefficients
+- Save calibration parameters
+- Save exact input probabilities
+- Save prediction IDs
+- Save training-group identities
+- Save configuration and random seed
+
+If the original method has constraints on coefficients,
+optimization or calibration, preserve them.
+
+Do not change fusion methods after observing outer-test results.
+
+=========================================================
+6. EVALUATE ON IDENTICAL HELD-OUT EXAMPLES
+=========================================================
+
+For every model, calculate:
+
+PRIMARY:
+- Average Precision (AP)
+
+SECONDARY:
+- AUROC
+- Precision
+- Recall
+- F1
+- Brier score
+- Log loss
+- Calibration error, if supported reliably
+
+Also report:
+- Positive-class prevalence
+- Number of actions
+- Number of positive and negative examples
+- Number of independent evaluation recordings/groups
+
+Use the same positive-class definition throughout.
+
+Evaluate M1–M7 on the exact same held-out examples.
+
+Include paired comparisons:
+
+A. Fine-tuned CNN minus frozen CNN
+
+B. F2_finetuned100 minus F2_frozen100
+
+C. F2_finetuned100 minus static sensor-only
+
+D. F2_frozen100 minus static sensor-only
+
+E. F2_finetuned100 minus fine-tuned CNN-only
+
+F. F2_frozen100 minus frozen CNN-only
+
+Calculate paired uncertainty intervals with an appropriate
+recording/group-level resampling unit.
+
+Document that these intervals are conditional on the selected
+split and fitted models.
+
+Do not interpret intervals crossing zero as established
+improvements.
+
+=========================================================
+7. COMPARE AGAINST ORIGINAL REASSEMBLE RESULTS
+=========================================================
+
+Locate the original REASSEMBLE F2 results.
+
+Determine whether they use:
+
+- The same outer test recordings
+- The same labels
+- The same visual-frame policy
+- The same sensor representation
+- The same group-splitting protocol
+- The same positive-class definition
+- The same evaluation metric implementation
+
+If directly comparable, include them in the paired table.
+
+If not directly comparable:
+
+Show them separately as historical results.
+
+Clearly explain the differences.
+
+Never present results from different test cohorts as
+a controlled model improvement.
+
+Do not mix the separate 75-fit study results into this
+one-fold comparison unless their evaluation protocol
+supports the comparison.
+
+=========================================================
+8. SCIENTIFIC QUESTIONS TO ANSWER
+=========================================================
+
+Answer these explicitly:
+
+Q1.
+Does full CNN fine-tuning improve visual-only prediction
+relative to the frozen CNN?
+
+Q2.
+Does combining frozen CNN predictions with static sensors
+improve over the static sensor-only model?
+
+Q3.
+Does combining fine-tuned CNN predictions with static sensors
+improve over the static sensor-only model?
+
+Q4.
+Does F2 with the fine-tuned CNN outperform F2 with the
+frozen CNN?
+
+Q5.
+Does F2 outperform simple probability averaging?
+
+Q6.
+Does improved visual-only AP translate into improved
+multimodal fusion?
+
+Q7.
+Are any improvements consistent with their uncertainty
+intervals, or are conclusions limited to one seed/fold?
+
+Q8.
+Does the fusion behave as expected when visual and sensor
+predictions disagree?
+
+For Q8, provide diagnostic examples from the held-out data,
+without selecting or modifying the model based on those examples.
+
+No assumptions of superiority or novelty.
+
+=========================================================
+9. RESULTS AND DOCUMENTATION
+=========================================================
+
+Create a dedicated, human-readable experiment directory
+inside the existing REASSEMBLE structure.
+
+Suggested organization:
+
+REASSEMBLE/
+  experiments/
+    cnn100_static_sensor_f2_comparison/
+      01_experiment_definition/
+      02_checkpoint_verification/
+      03_static_sensor_evidence/
+      04_training_side_predictions/
+      05_fusion_models/
+      06_held_out_predictions/
+      07_evaluation_results/
+      08_visual_diagnostics/
+      09_reproducibility/
+      10_final_research_report/
+
+Adapt this to the actual repository structure without
+unnecessarily duplicating large files.
+
+Preserve original checkpoints in their existing locations.
+
+Reference them using verified paths and hashes.
+
+Required final documents:
+
+1. EXPERIMENT_OVERVIEW.md
+2. ARCHITECTURE_VERIFICATION.md
+3. DATA_SPLIT_AND_LEAKAGE_AUDIT.md
+4. MODEL_COMPARISON_RESULTS.md
+5. PAIRED_STATISTICAL_COMPARISON.md
+6. FUSION_COEFFICIENT_ANALYSIS.md
+7. REPRODUCIBILITY_REPORT.md
+8. FINAL_SCIENTIFIC_CONCLUSION.md
+
+Include an easy-to-understand model comparison table.
+
+Create visualizations for:
+
+- Visual versus sensor versus fusion AP
+- Frozen versus fine-tuned CNN fusion
+- Precision–recall curves
+- Training-side versus held-out behavior
+- Prediction disagreements
+- Calibration, where valid
+
+Every plotted number must trace to a saved prediction or
+metric artifact.
+
+=========================================================
+10. REPRODUCIBILITY AND INDEPENDENT VERIFICATION
+=========================================================
+
+Verify:
+
+- Prediction sample IDs align exactly
+- No duplicate test examples
+- No training/test recording overlap
+- Same test sample set across comparisons
+- Same static sensor predictions across both F2 arms
+- Same metric definitions
+- Checkpoint identity and hashes
+- Model parameters were loaded correctly
+- All fusion parameters fitted without outer-test labels
+- Metric calculations reproduce saved predictions
+
+Rerun metric calculations independently.
+
+Use at least one separate verification implementation
+where practical.
+
+Preserve all existing historical experiments.
+
+Do not overwrite previous outputs.
+
+Do not stage or commit files.
+
+Do not interrupt or corrupt the ongoing original 75-fit study.
+
+If it is still running, coordinate GPU usage safely.
+
+No artificial time or epoch budget is imposed for necessary
+leakage-safe reproduction.
+
+=========================================================
+FINAL RESPONSE REQUIRED
+=========================================================
+
+Return:
+
+1. Experiment completion status
+2. Exact models evaluated
+3. Comparison table with all metrics
+4. F2 frozen versus fine-tuned AP difference
+5. Each F2 model's difference from sensor-only
+6. Paired uncertainty intervals
+7. Whether CNN fine-tuning improved F2
+8. Whether F2 improved over unimodal baselines
+9. Any unresolved scientific limitations
+10. Exact paths to all saved reports and artifacts
+
+Most importantly:
+
+Clearly distinguish:
+
+- What was executed
+- What was independently verified
+- What the numbers demonstrate
+- What remains uncertain
+
+If a genuinely required artifact is missing, identify it
+precisely and stop only the affected stage.
+
+Do not invent predictions, coefficients or results.

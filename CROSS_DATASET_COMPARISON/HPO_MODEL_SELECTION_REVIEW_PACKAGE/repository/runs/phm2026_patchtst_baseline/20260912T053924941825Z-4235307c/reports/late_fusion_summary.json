@@ -1,0 +1,156 @@
+{
+  "exp_f_evaluations_performed": 1,
+  "preregistration": "docs/thesis/PREREGISTRATION_20260912T053329Z.md",
+  "schema_version": "1.0.0",
+  "selected_variant": "fused_all_three",
+  "selection_rule": "lowest EXP-A (validation) raw MAE; EXP-F not consulted",
+  "target_definition_version": "phm2026_image_damage_v3",
+  "test_result": {
+    "constant_mae": 0.734766365953464,
+    "constant_monotonic_mse": 0.5942893072831259,
+    "evaluations_performed": 1,
+    "mae": 0.6548105776309967,
+    "mae_delta_vs_constant": -0.0799557883224673,
+    "monotonic_mse": 0.38239029547094583,
+    "mse": 0.7287686907292326,
+    "sample_count": 8,
+    "spearman": 0.2142857142857143,
+    "split": "test",
+    "variant": "fused_all_three"
+  },
+  "variants": [
+    {
+      "best_epoch": 8,
+      "epochs_completed": 18,
+      "groups": [
+        "process_context"
+      ],
+      "parameter_count": 119266,
+      "status": "ok",
+      "training_seconds": 2.053043207968585,
+      "validation_degeneracy": null,
+      "validation_mae": 0.8030555725097657,
+      "validation_monotonic_mse": 0.11702668075058682,
+      "validation_mse": 1.1974364578687529,
+      "validation_spearman": 0.5642880936468347,
+      "variant": "solo_process_context"
+    },
+    {
+      "best_epoch": 1,
+      "epochs_completed": 11,
+      "groups": [
+        "organiser_rms"
+      ],
+      "parameter_count": 85474,
+      "status": "ok",
+      "training_seconds": 0.7806695239851251,
+      "validation_degeneracy": null,
+      "validation_mae": 0.8466462135314942,
+      "validation_monotonic_mse": 0.036537834672071764,
+      "validation_mse": 1.2336374348525623,
+      "validation_spearman": 0.6668859288553501,
+      "variant": "solo_organiser_rms"
+    },
+    {
+      "best_epoch": 1,
+      "epochs_completed": 11,
+      "groups": [
+        "condition_indicators"
+      ],
+      "parameter_count": 153058,
+      "status": "ok",
+      "training_seconds": 1.5038719259900972,
+      "validation_degeneracy": null,
+      "validation_mae": 1.0974056243896484,
+      "validation_monotonic_mse": 0.8150888637693606,
+      "validation_mse": 2.0523005732903585,
+      "validation_spearman": -0.8720815992723809,
+      "variant": "solo_condition_indicators"
+    },
+    {
+      "best_epoch": 1,
+      "epochs_completed": 11,
+      "groups": [
+        "process_context",
+        "organiser_rms",
+        "condition_indicators"
+      ],
+      "parameter_count": 357540,
+      "status": "ok",
+      "training_seconds": 2.998796482977923,
+      "validation_degeneracy": null,
+      "validation_mae": 0.7577496528625488,
+      "validation_monotonic_mse": 0.6977064622279007,
+      "validation_mse": 0.9863796437412475,
+      "validation_spearman": -0.15389675281277312,
+      "variant": "fused_all_three"
+    },
+    {
+      "best_epoch": 3,
+      "epochs_completed": 13,
+      "groups": [
+        "all_9ch"
+      ],
+      "parameter_count": 169825,
+      "status": "ok",
+      "training_seconds": 3.4471208180184476,
+      "validation_degeneracy": null,
+      "validation_mae": 0.9709839344024658,
+      "validation_monotonic_mse": 0.7513352095967434,
+      "validation_mse": 1.4763704420087038,
+      "validation_spearman": -0.6668859288553501,
+      "variant": "single_encoder_all_9ch"
+    },
+    {
+      "best_epoch": 1,
+      "epochs_completed": 11,
+      "groups": [
+        "organiser_rms",
+        "condition_indicators"
+      ],
+      "parameter_count": 238403,
+      "status": "ok",
+      "training_seconds": 2.0374546970124356,
+      "validation_degeneracy": null,
+      "validation_mae": 1.0058216094970702,
+      "validation_monotonic_mse": 0.7513352095967434,
+      "validation_mse": 1.658729102846428,
+      "validation_spearman": -0.6668859288553501,
+      "variant": "loo_drop_process_context"
+    },
+    {
+      "best_epoch": 1,
+      "epochs_completed": 11,
+      "groups": [
+        "process_context",
+        "condition_indicators"
+      ],
+      "parameter_count": 272195,
+      "status": "ok",
+      "training_seconds": 2.2660913889994845,
+      "validation_degeneracy": null,
+      "validation_mae": 1.0254462242126465,
+      "validation_monotonic_mse": 0.7513352095967434,
+      "validation_mse": 1.567109856470006,
+      "validation_spearman": -0.6668859288553501,
+      "variant": "loo_drop_organiser_rms"
+    },
+    {
+      "best_epoch": 7,
+      "epochs_completed": 17,
+      "groups": [
+        "process_context",
+        "organiser_rms"
+      ],
+      "parameter_count": 204611,
+      "status": "ok",
+      "training_seconds": 2.704268701025285,
+      "validation_degeneracy": null,
+      "validation_mae": 0.9699993133544922,
+      "validation_monotonic_mse": 0.027118507982800112,
+      "validation_mse": 1.2326065971185016,
+      "validation_spearman": 0.9746794344808964,
+      "variant": "loo_drop_condition_indicators"
+    }
+  ]
+}

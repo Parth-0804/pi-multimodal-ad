@@ -1,0 +1,5 @@
+# Predeclared baselines and training
+
+Prevalence/majority: constant training positive prevalence, threshold 0.5. Sensor logistic: balanced L2 C1, lbfgs, 2000 iterations, training-only standardization. Strong sensor control: HistGradientBoosting, 100 iterations, learning rate0.1, max15 leaves, min10 leaf rows, L2=1, no early stopping, training-only balanced sample weights. Vision: the new frozen-CNN head, AdamW lr0.001/wd0.001, 10 fixed epochs, batch32, weighted BCE from training prevalence, gradient norm clip1, FP32. All use seeds42,123,20261023; existing MSM composition derives OOF seed=nominal+k and final refit seed=nominal+99. No search, early stopping, calibration or assessment-selected threshold.
+
+Averaging and original F2 use the same visual/logistic-sensor branches. QG_clean/QG_aug use 40 fixed epochs, AdamW lr0.003/wd0.001, batch128 and clip1. F2_aug controls for its extra corruption exposure. No single-frame ablation was added. In-sample training scores are marked diagnostic and computed after fitting; they never fit F2. Saved OOF provenance proves exclusion of every row's group from each base fit.

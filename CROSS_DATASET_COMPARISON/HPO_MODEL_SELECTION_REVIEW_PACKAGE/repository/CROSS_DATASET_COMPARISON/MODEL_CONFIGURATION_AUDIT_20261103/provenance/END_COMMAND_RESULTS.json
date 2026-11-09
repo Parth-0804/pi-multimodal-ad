@@ -1,0 +1,71 @@
+[
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "output": "GIT_HEAD_AT_END.txt",
+    "returncode": 0
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--short",
+      "--branch",
+      "--untracked-files=all"
+    ],
+    "output": "GIT_STATUS_AT_END.txt",
+    "returncode": 0
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--stat"
+    ],
+    "output": "GIT_DIFF_STAT_AT_END.txt",
+    "returncode": 0
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "output": "GIT_DIFF_CHECK.txt",
+    "returncode": 0
+  },
+  {
+    "command": [
+      "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+      "-B",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "output": "PIP_CHECK.txt",
+    "returncode": 0
+  },
+  {
+    "command": [
+      "nvidia-smi",
+      "--query-gpu=index,name,uuid,memory.total,memory.used,utilization.gpu,driver_version",
+      "--format=csv"
+    ],
+    "output": "GPU_RESOURCE_SNAPSHOT.txt",
+    "returncode": 0
+  },
+  {
+    "command": [
+      "ps",
+      "-u",
+      "1001",
+      "-o",
+      "pid,comm,etimes"
+    ],
+    "output": "USER_PROCESS_SNAPSHOT.txt",
+    "returncode": 0
+  }
+]

@@ -1,8 +1,8 @@
 # 13 RESEARCHER HANDOFF
 
-Run `20261029T004900Z`. Published 2026-10-29T03:49:05.228393+00:00. Pipeline state: **CPU_SENSOR_BASELINES_COMPLETE_VISUAL_FEATURES_RUNNING**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T034902912165Z`.
+Run `20261029T004900Z`. Published 2026-10-30T15:22:30.469658+00:00. Pipeline state: **DONOR_INITIAL_FEATURES_CPU**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261030T152227157750Z`.
 
-Acquisition: {'ACQUIRED_VERIFIED': 13095, 'VERIFIED_EXISTING': 57}. Camera QC: (13150, 13152). Final cohort: 4382. Completed fits: {'visual_frozen': 0, 'visual_frozen_high_only': 0, 'visual_finetuned100': 0, 'reassemble_transfer': 0, 'sensor_baselines': 36}.
+Acquisition: {'ACQUIRED_VERIFIED': 13095, 'VERIFIED_EXISTING': 57}. Camera QC: (13150, 13152). Final cohort: 4382. Completed fits: {'visual_frozen': 36, 'visual_frozen_high_only': 36, 'visual_finetuned100': 0, 'reassemble_transfer': 0, 'sensor_baselines': 36}.
 
 Configuration: `VIFAILBACK/configs/experiment.json` and `VIFAILBACK/configs/protocol.json`.
 Controller: `VIFAILBACK/scripts/run_pipeline.py`; live status: `VIFAILBACK/logs/20261029T004900Z/PIPELINE_STATUS.json`.

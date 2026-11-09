@@ -1,0 +1,243 @@
+MSM/99_preserved_previous_work/MILLING_DATASET/source/write_stage3_reports.py:270:    candidates = list(run.rglob("*")) + list((root / "source/msm").glob("*.py")) + [root / "source/write_stage3_reports.py", root / "configs/stage3_protocol.json", root / "tests/test_stage3.py", root / ".gitignore"]
+parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/source/data.py:42:  candidates=np.array([i for i in indices if int(i) not in selected]);chosen=np.array(sorted(selected));distance=np.min(abs(ts[candidates,None]-ts[chosen][None,:]),axis=1)
+MSM/99_preserved_previous_work/MILLING_DATASET/source/stage2/probe_media.py:98:            candidates = np.arange(round(shift*100)-50, round(shift*100)+51)
+MSM/99_preserved_previous_work/MILLING_DATASET/source/write_stage4_reports.py:271:    candidates = [*run.rglob("*"), Path(__file__), Path("MILLING DATASET/source/msm/transfer.py"),
+MSM/99_preserved_previous_work/MILLING_DATASET/source/msm/stage4_audit.py:160:    candidates = []
+MSM/99_preserved_previous_work/MILLING_DATASET/source/stage2/finalize_alignment.py:23:        rejected_candidates = []
+MSM/99_preserved_previous_work/MILLING_DATASET/source/full_lab_audit.py:182:        candidates=[i for i,r in enumerate(pre) if r['accepted'] and int(labels.iloc[i].label)==native]
+VIFAILBACK/src/vifailback/training.py:157:                'learning_rates':[g['lr'] for g in optimizer.param_groups],
+00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/code/prepare.py:60:        for name in ['complete.json','calibrator.json','full_fit_weight_checks.json','learning_curve.csv','model.pt','identified_branch_predictions.csv']:
+VIFAILBACK/src/vifailback/cohort.py:23:    qc=read(qc_path); candidates=core(c)
+VIFAILBACK/src/vifailback/verification.py:36:    candidates=core(c);assert all(targets[r['episode_index']]==r['label'] for r in candidates)
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_02/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+VIFAILBACK/src/vifailback/gallery.py:92:            candidates=sorted(groups[category],key=lambda r:signature(['posthoc_gallery',r['episode_index']]))[:1]
+src/phm2026/reporting/target_audit.py:367:        candidates=rows,
+src/phm2026/reporting/target_audit.py:379:    candidates = frame["candidate_id"].drop_duplicates().tolist()
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_04/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+VIFAILBACK/src/vifailback/baselines.py:40:            candidates=[];selected=None
+00_experiments/fusion_noise_test/code/selection.py:65:    candidates={};reasons=[]
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_02/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/code/branch_fit.py:60:    for name in ['calibrator.json','learning_curve.csv','full_fit_weight_checks.json','calibration_holdout_logits.csv']:
+VIFAILBACK/src/vifailback/git_handoff.py:20:            snapshot=REPO/publication['snapshot'];candidates=[]
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_02/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+scripts/intel_welding/04_foundations.py:72:        candidates = sorted(folder.glob('*' + ext))
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_04/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_04/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+src/phm2026/profiling/alignment_pipeline.py:275:        sensor_candidates = set(_SENSOR_EVENT_MODALITIES)
+src/phm2026/profiling/alignment_pipeline.py:1172:    candidates = sorted(
+00_experiments/adaptive_fusion_robustness/code/audit.py:64:    candidates=active[-3:] if 'last action' in WARNINGS[record.recording_id] else active
+src/phm2026/profiling/dataset_description.py:474:    candidates = sensor_clock[
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_02/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+scripts/phm2026/training/train_rtdetr_multitask.py:1039:            candidates=data["validation_selection"]["confidence_candidates"],
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_02/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+scripts/reassemble/10_validate_section2.py:78:                assert meta['branches']['sensor_statistics']['selected'] in base['logistic_C']
+scripts/reassemble/10_validate_section2.py:83:            candidates = config['concat_configs'] if m == 'F3' else config['gate_configs']
+src/phm2026/profiling/alignment.py:556:        scope_candidates = [
+src/phm2026/profiling/alignment.py:563:        verified_candidates = [
+src/phm2026/profiling/alignment.py:581:                    scope_candidates=scope_candidates,
+src/phm2026/profiling/alignment.py:593:                    scope_candidates=scope_candidates,
+src/phm2026/profiling/alignment.py:610:                    scope_candidates=scope_candidates,
+src/phm2026/profiling/alignment.py:639:                    scope_candidates=scope_candidates,
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_04/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+scripts/phm2026/training/train_rtdetr_detector.py:437:            candidates=data["validation_selection"]["confidence_candidates"],
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_04/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_04/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/provenance/source_snapshots/section1b.py:62:    candidates=base['visual']['epochs'] if kind=='rtdetr' else base['logistic_C']
+parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/provenance/source_snapshots/section1_models.py:154:            candidates=config['sensor' if kind=='patchtst' else 'visual']['epochs'] if neural else config['logistic_C']
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_02/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_04/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_02/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/provenance/preparation_implementation_at_cohort_lock/data.py:42:  candidates=np.array([i for i in indices if int(i) not in selected]);chosen=np.array(sorted(selected));distance=np.min(abs(ts[candidates,None]-ts[chosen][None,:]),axis=1)
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_04/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_02/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_04/outer_assessment/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_02/outer_assessment/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/provenance/technical_repair_01_bounded_pixel_cache/data_before.py:42:  candidates=np.array([i for i in indices if int(i) not in selected]);chosen=np.array(sorted(selected));distance=np.min(abs(ts[candidates,None]-ts[chosen][None,:]),axis=1)
+src/reassemble/additional_improvements/anchored.py:99:            candidates=[]
+parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/provenance/preparation_cache_compression_optimization/data_before.py:42:  candidates=np.array([i for i in indices if int(i) not in selected]);chosen=np.array(sorted(selected));distance=np.min(abs(ts[candidates,None]-ts[chosen][None,:]),axis=1)
+parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/provenance/base_section1_config.json:51:  "logistic_C": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_02/outer_assessment/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+src/reassemble/boundary_visual/training.py:55: candidates=read(run/'config.json')['epochs'][variant];inner={e:np.full(len(y),np.nan) for e in candidates};scores={e:[] for e in candidates};logs=[]
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_04/outer_assessment/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_01/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_03/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+src/reassemble/audit_report.py:34:    candidates=[s for s in segments if s['action'] in ['pick','insert','remove','place']]
+src/reassemble/section2.py:71:    candidates = {kind: config['concat_configs'] if kind == 'F3' else config['gate_configs'] for kind in kinds}
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_01/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_03/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_01/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_03/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+src/reassemble/additional_improvements/robust_fusion.py:139:                penalties=c['adaptation']['lambdas'] if kind=='A-ADAPTIVE' else [0.];candidates=[]
+src/reassemble/additional_improvements/unimodal_report.py:47:    for filename,rows in [('selected_epochs',epochrows),('per_seed_fold_metrics',seedrows),('learning_curves',historyrows),('fit_compute',compute)]:pd.DataFrame(rows).to_csv(destination/(filename+'.csv'),index=False)
+src/reassemble/section1b.py:62:    candidates=base['visual']['epochs'] if kind=='rtdetr' else base['logistic_C']
+src/reassemble/section1_models.py:154:            candidates=config['sensor' if kind=='patchtst' else 'visual']['epochs'] if neural else config['logistic_C']
+src/reassemble/additional_improvements/fit_summaries.py:46:    for suffix in ['png','pdf']:fig.savefig(destination/(prefix+'_learning_curves.'+suffix),dpi=160)
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_03/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_01/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_03/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/fusion_AP_explanation_addendum_01/source/select_pooled_examples.py:12:    candidates=data[mask].sort_values(['visual_pooled_rank_change','sample_id'],ascending=[True,True]).head(2)
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_01/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_02/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_03/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_03/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_01/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_02/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_01/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_02/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_03/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_05/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_03/outer_assessment/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_01/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_01/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_02/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_02/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_01/outer_assessment/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_05/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_03/outer_assessment/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_01/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_05/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_01/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_02/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_05/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_02/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_01/outer_assessment/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_01/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_01/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_02/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_02/outer_assessment/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_05/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_05/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_05/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_05/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_01/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_01/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_02/outer_assessment/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_05/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_05/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_05/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_05/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_02/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_05/outer_assessment/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_01/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_01/outer_assessment/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/source/training.py:143:   if updates==1:write(folder/'first_real_update_checks.json',{'fit_id':fit_id,'gradients':gradient_evidence,'head_nonzero':any(v['nonzero'] for n,v in gradient_evidence.items() if n.startswith('head.')),'all_backbone_modules_eval':all(not module.training for module in model.backbone.modules()) if adapted else True,'learning_rates':[g['lr'] for g in opt.param_groups],'target_epochs':target_epochs,'physical_batch_segments':c['microbatch_segments'],'effective_batch_segments':c['effective_batch_segments'],'disposable_optimizer_steps_added':0,'loader_wait_seconds_so_far':loader_wait_seconds,'H2D_seconds_so_far':H2D_seconds,'forward_backward_optimizer_CUDA_seconds_so_far':gpu_compute_ms/1000})
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/source/training.py:157: write(folder/'full_fit_weight_checks.json',{'fit_id':fit_id,'head_changed':True,'changed_backbone_tensor_names':changed,'earlier_backbone_and_running_buffers_unchanged':True,'frozen_CNN_used_as_hash_bound_original_feature_cache':not adapted,'first_observed_post_resume_gradient_parameters':gradient_evidence,'trainable_parameter_names':[n for n,p in model.named_parameters() if p.requires_grad],'resumed_from_saved_optimizer':checkpoint.exists() and epoch0>0,'final_epoch':target_epochs,'scheduler':'none; constant original learning-rate prefix','learning_rates':[g['lr'] for g in opt.param_groups]})
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_05/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_05/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_05/outer_assessment/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_05/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_02/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_01/outer_assessment/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_03/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_04/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_02/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_02/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_03/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/source/data.py:42:  candidates=np.array([i for i in indices if int(i) not in selected]);chosen=np.array(sorted(selected));distance=np.min(abs(ts[candidates,None]-ts[chosen][None,:]),axis=1)
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_03/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/provenance/original_source_snapshot/data.py:42:  candidates=np.array([i for i in indices if int(i) not in selected]);chosen=np.array(sorted(selected));distance=np.min(abs(ts[candidates,None]-ts[chosen][None,:]),axis=1)
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_03/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_03/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_02/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_02/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_05/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_02/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_02/outer_assessment/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_05/outer_assessment/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_03/outer_assessment/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_04/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_02/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_02/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_04/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_03/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_02/outer_assessment/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_04/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_03/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_04/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_32_frames/fold_05/outer_assessment/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_02/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_04/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_03/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_02/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_04/outer_assessment/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_03/outer_assessment/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_04/outer_assessment/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_04/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_32_frames/fold_04/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_02/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_03/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_03/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_04/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_02/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_04/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_03/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_02/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_03/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_04/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_03/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_03/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_02/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/outer_assessment/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_03/outer_assessment/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_04/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_04/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_02/outer_assessment/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_02/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_04/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_04/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_03/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_03/outer_assessment/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_03/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_05/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_04/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_01/outer_assessment/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_04/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_02/outer_assessment/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_04/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_03/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_04/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_04/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_05/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_05/fusion_training/inner_fold_01/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_05/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_05/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_05/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_05/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_05/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_05/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_04/outer_assessment/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_04/outer_assessment/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_05/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_04/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_03/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_04/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_04/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_05/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_03/fusion_training/inner_fold_02/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_05/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_05/outer_assessment/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_05/fusion_training/inner_fold_01/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_03/fusion_training/inner_fold_04/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_05/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_05/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_05/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_03/outer_assessment/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_03/fusion_training/inner_fold_04/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_05/outer_assessment/visual_fit/full_fit_weight_checks.json:34:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_03/fusion_training/inner_fold_03/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_03/outer_assessment/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_03/fusion_training/inner_fold_02/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_04/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/frozen_16_frames/fold_05/outer_assessment/visual_fit/first_real_update_checks.json:23:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_05/outer_assessment/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_04/outer_assessment/visual_fit/full_fit_weight_checks.json:65:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_04/outer_assessment/visual_fit/first_real_update_checks.json:43:  "learning_rates": [
+00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning/fine_tuned_16_frames/fold_03/fusion_training/inner_fold_03/visual_fit/first_real_update_checks.json:43:  "learning_rates": [

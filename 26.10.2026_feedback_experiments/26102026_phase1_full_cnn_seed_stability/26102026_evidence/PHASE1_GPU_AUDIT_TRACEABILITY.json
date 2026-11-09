@@ -1,0 +1,36 @@
+{
+  "old_report_exists": true,
+  "old_benchmark": [
+    {
+      "name": "selected16_workers2_pinned",
+      "actions_s": 3.622846176658835,
+      "gpu_percent": 49.004464285714285,
+      "vram_MiB": 4247.0,
+      "epoch_s": 818.6933298767294,
+      "range_actions_s": [
+        3.6170503493398107,
+        3.6286606078254184
+      ]
+    },
+    {
+      "name": "selected16_workers4_pinned",
+      "actions_s": 6.637244899369428,
+      "gpu_percent": 97.88825178389399,
+      "vram_MiB": 4249.0,
+      "epoch_s": 446.9151872272862,
+      "range_actions_s": [
+        6.5727017191539465,
+        6.701765063602441
+      ]
+    }
+  ],
+  "source_artifacts_present_and_matching": true,
+  "old_full_execution_allowed": false,
+  "new_authorization": "Phase1 user attachment explicitly supersedes old no-training scope; the old gate is preserved unchanged",
+  "old_workload": "final-stage CNN fine-tuning, not full-backbone",
+  "unit_tests": {
+    "new_phase1": 8,
+    "new_phase1_result": "passed",
+    "scope": "synthetic normalization, recording-disjointness, two loader epochs, early exception cleanup, completed-epoch resume, integrity and metrics"
+  }
+}

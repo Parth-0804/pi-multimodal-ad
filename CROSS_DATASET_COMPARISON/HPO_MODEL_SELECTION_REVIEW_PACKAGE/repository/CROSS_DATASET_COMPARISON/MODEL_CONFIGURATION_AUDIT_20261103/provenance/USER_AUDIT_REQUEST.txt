@@ -1,0 +1,1217 @@
+ROLE
+Act as a senior machine learning research engineer, independent
+scientific auditor, and reproducibility specialist.
+
+PROJECT
+Master's thesis: Multimodal Anomaly Detection and Robust Fusion.
+
+Repository:
+ /home/student/Master_Thesis_WS/pi-multimodal-ad
+
+OBJECTIVE
+
+Perform a comprehensive, evidence-based audit of the ACTUAL
+implemented models, training configurations, hyperparameters,
+checkpoints, evaluation protocols, and experimental results.
+
+I need to understand:
+
+1. Exactly which models were implemented.
+2. How every model was architected.
+3. Which hyperparameters were used.
+4. Whether those hyperparameters were tuned or simply predefined.
+5. How many epochs were actually executed.
+6. Which checkpoints were selected and why.
+7. Which seeds, folds, datasets and splits were used.
+8. What every model achieved during training, validation and testing.
+9. Whether the reported results can be traced to real model artifacts.
+10. Which models can legitimately be compared.
+11. Which experiments are complete, partial, running or blocked.
+12. What evidence is available for a future hyperparameter tuning study.
+
+CRITICAL:
+
+THIS IS AN AUDIT, NOT A NEW TRAINING EXPERIMENT.
+
+Do not select the final best model.
+Do not perform hyperparameter tuning.
+Do not launch new model training.
+Do not modify existing trained models or checkpoints.
+Do not interrupt or restart active experiments.
+
+The output must enable an independent researcher to understand
+and verify our entire modeling history without relying on
+previous conversations or assumptions.
+
+
+=========================================================
+PHASE 1 — REPOSITORY AND EXPERIMENT DISCOVERY
+=========================================================
+
+Start by examining the actual current repository.
+
+Do not assume that the folder structure or experiment status
+remains identical to earlier reports.
+
+Discover:
+
+- All dataset directories
+- Source-code directories
+- Experiment configurations
+- Training scripts
+- Evaluation scripts
+- Saved model artifacts
+- Checkpoints
+- Training logs
+- Validation logs
+- Prediction files
+- Evaluation results
+- Fusion implementations
+- Research summaries
+- Historical experiment archives
+- Currently running or paused experiments
+- Git history relevant to model implementations
+
+Priority datasets:
+
+1. REASSEMBLE
+2. ViFailback
+3. MSM
+4. Handover
+
+Also identify other datasets with actual trained models,
+including PHM or legacy experiments, if relevant.
+
+However, distinguish historical preliminary experiments
+from the current primary research architecture.
+
+Create a complete inventory.
+
+For every experiment identify:
+
+- Experiment ID
+- Dataset
+- Model family
+- Experiment objective
+- Actual entry-point script
+- Configuration source
+- Output directory
+- Training status
+- Number of completed runs
+- Number of planned runs
+- Available checkpoints
+- Available results
+- Git commit or code revision
+- Execution date, if recorded
+
+Do not trust folder names alone.
+
+Trace each experiment back to its executing code.
+
+
+=========================================================
+PHASE 2 — RECONSTRUCT EXACT MODEL ARCHITECTURES
+=========================================================
+
+For EVERY implemented model family, reconstruct the
+actual computational architecture from source code.
+
+Include:
+
+A. VISUAL BRANCH
+
+Identify:
+
+- Pretrained architecture
+- Exact backbone implementation
+- Pretrained weight source
+- Pretrained weight version/checksum
+- Input image resolution
+- Image normalization
+- Color-channel handling
+- Number of frames
+- Frame sampling strategy
+- Temporal sampling method
+- Single-camera or multicamera input
+- Frame ordering
+- Feature dimensions
+- Feature aggregation method
+- Classifier head architecture
+- Hidden layer dimensions
+- Number of layers
+- Activation functions
+- Dropout
+- Normalization layers
+- Output dimension
+- Output activation
+
+Explicitly determine:
+
+Is the implementation using:
+
+- RT-DETR CNN backbone only?
+- RT-DETR transformer components?
+- Object detection outputs?
+- Another visual backbone?
+
+Do not infer architecture from experiment names.
+
+Inspect actual forward passes.
+
+Identify precisely which parameters are:
+
+- Frozen
+- Trainable
+- Partially trainable
+
+Report:
+
+- Total parameter count
+- Trainable parameter count
+- Frozen parameter count
+
+For fine-tuned CNN experiments, investigate:
+
+- Whether all convolutional layers were trained
+- Whether normalization affine parameters were trained
+- Whether batch-normalization running statistics were frozen
+- Whether the classifier was initialized from scratch
+- Whether pretrained weights were reused
+- Whether training started from another checkpoint
+
+B. SENSOR BRANCH
+
+Identify:
+
+- Original numerical channels
+- Number of channels
+- Sampling frequency, where known
+- Input window duration
+- Synchronization method
+- Missing-value handling
+- Signal filtering
+- Resampling
+- Statistical feature extraction
+- Feature dimensionality
+- Feature normalization
+- Feature selection
+- Sensor model architecture
+
+Inspect every implemented sensor baseline:
+
+- Logistic regression
+- HistGradientBoosting
+- Neural networks
+- Time-series models, if implemented
+- Any other sensor classifier
+
+For each, retrieve actual estimator parameters.
+
+C. FUSION ARCHITECTURE
+
+Identify every implemented fusion method, including:
+
+- Original F2
+- Simple averaging
+- Quality-aware fusion
+- Gated fusion
+- Augmented variants
+- Other historical fusion models
+
+For each method provide:
+
+1. Exact mathematical formulation.
+2. Source-code function or class.
+3. Inputs consumed.
+4. Whether inputs are features, logits or probabilities.
+5. Whether probabilities are calibrated.
+6. How fusion parameters are estimated.
+7. Whether parameters are learned or manually assigned.
+8. Whether weights are constant or sample-dependent.
+9. Whether fitting uses out-of-fold predictions.
+10. Whether validation or test information enters fitting.
+11. Behavior under missing modalities.
+12. Exact output prediction.
+
+Clearly distinguish F2 fusion from architectures merely
+described as multimodal.
+
+Explain whether all datasets use genuinely equivalent
+fusion logic or dataset-specific adaptations.
+
+
+=========================================================
+PHASE 3 — COMPLETE HYPERPARAMETER INVENTORY
+=========================================================
+
+This is one of the MOST IMPORTANT parts.
+
+For every trained model and every experimental run,
+extract the ACTUAL EFFECTIVE hyperparameter values.
+
+Do not report only configuration-file defaults.
+
+Resolve the final effective values after considering:
+
+- Config files
+- Command-line arguments
+- Script defaults
+- Environment overrides
+- Checkpoint metadata
+- Experiment launch commands
+- Training logs
+- Resume settings
+- Hyperparameter overrides
+- Saved estimator parameters
+
+Capture at least:
+
+GENERAL
+
+- Random seed
+- Dataset version
+- Split identifier
+- Outer fold
+- Inner fold
+- Class weighting
+- Loss function
+- Decision threshold
+- Metric used for selection
+
+OPTIMIZATION
+
+- Optimizer
+- Learning rate
+- Backbone learning rate
+- Head learning rate
+- Weight decay
+- Momentum
+- Adam beta values
+- Epsilon
+- Gradient clipping
+- Batch size
+- Microbatch size
+- Gradient accumulation
+- Effective batch size
+- Precision (FP32, FP16, BF16)
+- Learning-rate scheduler
+- Scheduler parameters
+- Warmup
+- Minimum learning rate
+- Number of optimizer updates
+
+ARCHITECTURE
+
+- Backbone
+- Feature dimensionality
+- Hidden dimensions
+- Dropout
+- Normalization configuration
+- Number of layers
+- Trainable layers
+
+TRAINING
+
+- Maximum configured epochs
+- Actually completed epochs
+- Early stopping enabled/disabled
+- Early stopping patience
+- Minimum improvement criterion
+- Checkpoint selection metric
+- Selected checkpoint epoch
+- Data augmentation
+- Sampling method
+- Number of workers
+- Initialization strategy
+
+CLASSICAL ML
+
+For logistic regression:
+
+- C
+- Penalty
+- Solver
+- Class weights
+- Maximum iterations
+- Tolerance
+
+For HistGradientBoosting:
+
+- Learning rate
+- Maximum iterations
+- Maximum leaf nodes
+- Maximum depth
+- Minimum samples per leaf
+- L2 regularization
+- Early stopping
+- Other non-default parameters
+
+For any additional model:
+
+Extract its complete effective hyperparameter configuration.
+
+IMPORTANT:
+
+If a value cannot be recovered, write:
+
+"NOT RECORDED"
+
+If it exists only as a likely default, write:
+
+"FRAMEWORK DEFAULT — NOT VERIFIED"
+
+Never invent missing configuration values.
+
+Produce one machine-readable configuration record per run.
+
+
+=========================================================
+PHASE 4 — DETERMINE WHETHER HYPERPARAMETER TUNING OCCURRED
+=========================================================
+
+Independently determine whether the project has ever
+performed systematic hyperparameter optimization.
+
+Search for:
+
+- GridSearchCV
+- RandomizedSearchCV
+- Optuna
+- Ray Tune
+- Bayesian optimization
+- Hyperband
+- Successive halving
+- Manual parameter sweeps
+- Shell-based parameter loops
+- Multiple learning-rate experiments
+- Dropout experiments
+- Weight-decay experiments
+- Batch-size experiments
+- Architecture searches
+- Config-driven tuning experiments
+- Training-history evidence of parameter comparisons
+
+For every suspected tuning experiment report:
+
+- Which parameter was varied
+- Values tested
+- Search strategy
+- Number of configurations
+- Number of trials
+- Optimization objective
+- Validation protocol
+- Selected configuration
+- Selection evidence
+- Final held-out evaluation
+- Whether results are reproducible
+
+Distinguish these concepts:
+
+A. Hyperparameter optimization
+
+Deliberately varying configurations and selecting them
+using an appropriate validation protocol.
+
+B. Checkpoint selection
+
+Selecting an epoch from one training configuration.
+
+C. Model comparison
+
+Comparing frozen CNN versus fine-tuned CNN, or
+comparing different model families.
+
+D. Seed stability analysis
+
+Repeating the same configuration with different seeds.
+
+E. Fusion coefficient estimation
+
+Learning fusion weights from training-side predictions.
+
+F. Calibration
+
+Fitting probability calibration parameters.
+
+These are NOT automatically equivalent to hyperparameter tuning.
+
+Provide a precise verdict for each model:
+
+- SYSTEMATICALLY TUNED
+- LIMITED/MANUAL TUNING
+- PREDEFINED CONFIGURATION
+- CHECKPOINT SELECTION ONLY
+- INSUFFICIENT EVIDENCE
+
+Every verdict must have file-level evidence.
+
+
+=========================================================
+PHASE 5 — REASSEMBLE DEEP AUDIT
+=========================================================
+
+Give REASSEMBLE the most detailed examination.
+
+Investigate all original visual, sensor and fusion experiments.
+
+Specifically locate the previously reported 100-epoch experiment:
+
+B_frozen100
+C_full_finetuned16
+
+Previously reported facts to VERIFY, not assume:
+
+- Seed 42
+- Original fit 3
+- One selected outer fold
+- 16 visual frames
+- Frozen model completed 100 epochs
+- Frozen selected epoch 14
+- Full fine-tuning completed 100 epochs
+- Fine-tuned selected epoch 47
+- Frozen test AP approximately 0.193776
+- Fine-tuned test AP approximately 0.212585
+- 753 held-out actions
+- Fine-tuning training duration approximately 23.96 hours
+- Total GPU job time approximately 25.89 hours
+
+Check the actual logs, metrics and checkpoint artifacts.
+
+Also investigate:
+
+1. Original REASSEMBLE experimental study.
+2. The planned 75-fit experiment.
+3. How many fits have completed now.
+4. Current status of any running experiments.
+5. Every seed used.
+6. Every completed outer/inner fold.
+7. Any later 100-epoch F2 fusion follow-up.
+8. Static sensor branch configurations used with F2.
+9. CNN checkpoint transfer experiments.
+10. Any subsequent changes not captured in historical summaries.
+
+For every 100-epoch model produce:
+
+- Epoch-by-epoch training loss
+- Epoch-by-epoch validation loss
+- Validation AP by epoch
+- Validation AUROC by epoch
+- Learning rate by epoch
+- Best epoch
+- Final epoch
+- Checkpoint selected for evaluation
+- Held-out predictions
+- Final metrics
+- Training duration
+- GPU memory
+- GPU utilization, if measured
+
+If both models were evaluated on identical held-out actions,
+document the exact cohort identity.
+
+If a fusion follow-up was performed, recover its results.
+
+Do not confuse improved visual-only AP with improved fusion.
+
+Report any differences between the 100-epoch follow-up
+and the original broader experimental protocol.
+
+Do not present a single-seed, single-fold result as a
+multi-seed finding.
+
+
+=========================================================
+PHASE 6 — MSM AND HANDOVER AUDIT
+=========================================================
+
+For MSM:
+
+Verify the previously reported model families:
+
+- Prevalence baseline
+- Visual classifier
+- Sensor logistic regression
+- Sensor HistGradientBoosting
+- Simple averaging
+- F2
+- F2 augmented
+- Quality-aware clean
+- Quality-aware augmented
+
+Recover actual configurations and all available per-seed,
+per-fold results.
+
+Inspect:
+
+- Original labels
+- Positive-class definition
+- Group identifiers
+- Number of eligible examples
+- Feature extraction settings
+- Inner/outer evaluation protocol
+- Fusion coefficient fitting
+- Model selection
+- Test cohort identity
+
+Previously reported approximate held-out AP:
+
+Visual:              0.298901
+Sensor logistic:     0.828616
+Sensor HGB:          0.901299
+Averaging:           0.735594
+F2:                  0.756879
+F2 augmented:        0.760170
+Quality-aware clean: 0.837418
+Quality-aware aug:   0.826521
+
+Reconcile these values to saved results.
+
+For Handover:
+
+Recover all completed baseline configurations and results.
+
+Determine exactly why F2 and quality-aware fusion were blocked.
+
+Do not create results for experiments that never ran.
+
+Distinguish data eligibility, model-training completion
+and evaluation validity.
+
+
+=========================================================
+PHASE 7 — VIFAILBACK AUDIT
+=========================================================
+
+Inspect the current status of ViFailback.
+
+Earlier reports described a provisional core of:
+
+- 4,384 episodes
+- 3,755 failures
+- 629 successes
+- 99 tasks
+
+These are historical figures, not assumed current values.
+
+Identify:
+
+- Current verified cohort
+- Current video QC status
+- Actual train/validation/test protocol
+- Available visual/sensor branches
+- Current training status
+- Frozen CNN runs
+- Fully fine-tuned CNN runs
+- REASSEMBLE checkpoint transfer
+- Sensor-only baselines
+- F2 fusion
+- Quality-aware fusion
+- Multi-seed experiments
+- Robustness experiments
+
+If models have since been trained, audit all configurations,
+checkpoints, histories and results.
+
+If experiments have not run, mark them NOT EXECUTED.
+
+Do not infer performance from planning documents.
+
+Report any unresolved barriers to scientifically
+defensible comparisons.
+
+
+=========================================================
+PHASE 8 — COMPLETE RESULTS EXTRACTION
+=========================================================
+
+For every completed model evaluation, extract ALL
+available metrics.
+
+PRIMARY
+
+- Average Precision
+- Positive-class prevalence
+- Precision-recall AUC definition
+- AUROC
+
+SECONDARY
+
+- Precision
+- Recall
+- F1
+- Balanced accuracy
+- Specificity
+- Confusion matrix
+- Brier score
+- Log loss
+- ECE/calibration error
+- Other recorded metrics
+
+Provide metric definitions and averaging conventions.
+
+For ViFailback, where failures dominate the dataset,
+include both classes' performance where available.
+
+Avoid comparing AP without its positive-class prevalence.
+
+For every result record:
+
+- Dataset
+- Experiment ID
+- Model
+- Seed
+- Split/fold
+- Number of training examples
+- Number of validation examples
+- Number of held-out examples
+- Test positive count
+- Test negative count
+- Metric
+- Metric value
+- Threshold, if applicable
+- Checkpoint ID
+- Evaluation script
+- Saved prediction file
+- Metric output file
+
+Separate:
+
+- Training metrics
+- Validation metrics
+- Inner-fold metrics
+- Out-of-fold metrics
+- Final held-out metrics
+
+NEVER merge these categories.
+
+Where statistical intervals exist, extract:
+
+- Interval estimate
+- Confidence level
+- Bootstrap or statistical method
+- Resampling unit
+- Number of draws
+
+If no interval exists, report NOT AVAILABLE.
+
+Do not manufacture confidence intervals by assuming
+independent actions when observations are grouped.
+
+
+=========================================================
+PHASE 9 — FAIR COMPARISON AND LEAKAGE AUDIT
+=========================================================
+
+Determine which experimental results are
+legitimately comparable.
+
+For every important model comparison verify:
+
+1. Same dataset version?
+2. Same label definition?
+3. Same eligible sample population?
+4. Same outer-fold test identities?
+5. Same train/validation/test separation?
+6. Same evaluation metric?
+7. Same positive class?
+8. Same threshold-selection convention?
+9. Same data quality exclusions?
+10. Same preprocessing scope?
+11. Equivalent access to training data?
+12. Test labels excluded from training and tuning?
+13. Group independence respected?
+14. Calibration and fusion fitted without test leakage?
+
+Investigate:
+
+- Duplicate episodes
+- Repeated recordings
+- Same-task dependence
+- Same-participant dependence
+- Sensor normalization leakage
+- Feature extraction leakage
+- Fusion OOF fitting leakage
+- Hyperparameter tuning on test data
+- Checkpoint selection using held-out test metrics
+
+Classify comparisons:
+
+A. DIRECTLY COMPARABLE
+B. COMPARABLE WITH LIMITATIONS
+C. NOT DIRECTLY COMPARABLE
+D. INSUFFICIENT EVIDENCE
+
+Explain each classification.
+
+Do not rank models across incompatible datasets,
+target definitions, splits or evaluation protocols.
+
+When different seeds share the same held-out data,
+document that dependence.
+
+Identify any potential test-set reuse or repeated
+post-selection that limits inferential validity.
+
+
+=========================================================
+PHASE 10 — CHECKPOINT AND REPRODUCIBILITY AUDIT
+=========================================================
+
+For each important experiment identify:
+
+- Best checkpoint path
+- Last checkpoint path
+- Whether checkpoint files exist
+- File size
+- Checkpoint epoch
+- Model state-dict availability
+- Optimizer state availability
+- Scheduler state availability
+- RNG state availability
+- Model configuration availability
+- Dataset/split manifest availability
+- Code revision
+- Saved predictions availability
+- Training-history availability
+- Evaluation reproducibility evidence
+
+Compute appropriate file hashes for important artifacts
+where feasible without excessive memory usage.
+
+Do not load large checkpoints fully into GPU memory
+just to inspect metadata.
+
+Prefer safe CPU-side inspection.
+
+Do not execute unsafe deserialization on untrusted files.
+
+Check whether a model could be:
+
+- Loaded for inference
+- Evaluated again
+- Resumed for training
+- Reproduced from initialization
+
+These are different levels of reproducibility.
+
+Assign each model an evidence status:
+
+COMPLETE
+PARTIAL
+INFERENCE_ONLY
+METRICS_ONLY
+MISSING_ARTIFACTS
+
+Document reasons.
+
+Only perform lightweight, non-destructive verification
+using already-saved predictions and metadata.
+
+Do not rerun expensive training or feature extraction.
+
+
+=========================================================
+PHASE 11 — GPU AND COMPUTATIONAL COST AUDIT
+=========================================================
+
+Recover resource measurements where available:
+
+- GPU model
+- Peak allocated VRAM
+- Maximum reserved VRAM
+- GPU kernel-busy utilization
+- GPU job hours
+- Training-only hours
+- Validation overhead
+- Feature extraction time
+- Mean epoch duration
+- Actions/second
+- Batch size
+- Effective batch size
+- Number of epochs
+- Total optimizer steps
+
+Differentiate:
+
+- GPU allocated job time
+- Actual GPU compute utilization
+- Total wall-clock time
+- Training-only processing time
+
+Do not equate them.
+
+Identify which expensive experiments would need
+additional repetitions for strong statistical evidence.
+
+However, do NOT launch them or select a compute budget yet.
+
+
+=========================================================
+PHASE 12 — OUTPUT STRUCTURE
+=========================================================
+
+Create a NEW, self-contained audit folder:
+
+CROSS_DATASET_COMPARISON/
+  MODEL_CONFIGURATION_AUDIT_20261103/
+
+Use the following structure:
+
+MODEL_CONFIGURATION_AUDIT_20261103/
+│
+├── README.md
+│
+├── 01_executive_overview/
+│   ├── EXECUTIVE_AUDIT_SUMMARY.md
+│   ├── CURRENT_EXPERIMENT_STATUS.md
+│   └── KEY_FINDINGS_AND_LIMITATIONS.md
+│
+├── 02_model_architecture/
+│   ├── COMPLETE_MODEL_INVENTORY.md
+│   ├── VISUAL_ARCHITECTURES.md
+│   ├── SENSOR_ARCHITECTURES.md
+│   ├── FUSION_ARCHITECTURES.md
+│   └── MODEL_PARAMETER_COUNTS.csv
+│
+├── 03_hyperparameter_configuration/
+│   ├── ALL_RUN_HYPERPARAMETERS.csv
+│   ├── EFFECTIVE_CONFIGURATIONS.json
+│   ├── HYPERPARAMETER_TUNING_HISTORY.md
+│   ├── CONFIGURATION_DIFFERENCES.md
+│   └── PARAMETER_PROVENANCE.csv
+│
+├── 04_training_and_checkpoints/
+│   ├── TRAINING_RUN_INVENTORY.csv
+│   ├── CHECKPOINT_INVENTORY.csv
+│   ├── TRAINING_DURATION_AND_GPU_USAGE.csv
+│   ├── CHECKPOINT_SELECTION_AUDIT.md
+│   └── REPRODUCIBILITY_ASSESSMENT.md
+│
+├── 05_results/
+│   ├── ALL_RECORDED_METRICS_LONG.csv
+│   ├── ALL_MODEL_RESULTS_SUMMARY.csv
+│   ├── TRAIN_VS_VALIDATION_VS_TEST.md
+│   ├── COMPARABILITY_MATRIX.csv
+│   └── RESULTS_PROVENANCE.csv
+│
+├── 06_dataset_specific/
+│   ├── REASSEMBLE/
+│   │   ├── MODEL_AND_CONFIGURATION_AUDIT.md
+│   │   ├── FROZEN_VS_FINETUNED_100_EPOCHS.md
+│   │   ├── FUSION_RESULTS_AND_CONFIGURATIONS.md
+│   │   ├── EPOCH_HISTORIES.csv
+│   │   └── COMPLETE_RESULTS.csv
+│   │
+│   ├── MSM/
+│   │   ├── MODEL_AND_CONFIGURATION_AUDIT.md
+│   │   └── COMPLETE_RESULTS.csv
+│   │
+│   ├── HANDOVER/
+│   │   ├── MODEL_AND_CONFIGURATION_AUDIT.md
+│   │   └── COMPLETE_RESULTS.csv
+│   │
+│   └── VIFAILBACK/
+│       ├── MODEL_AND_CONFIGURATION_AUDIT.md
+│       └── COMPLETE_RESULTS.csv
+│
+├── 07_scientific_validity/
+│   ├── LEAKAGE_AND_SELECTION_AUDIT.md
+│   ├── SEED_AND_FOLD_COVERAGE.md
+│   ├── MISSING_EVIDENCE.md
+│   └── SCIENTIFIC_COMPARABILITY_VERDICT.md
+│
+├── 08_future_hpo_readiness/
+│   ├── MODEL_SELECTION_EVIDENCE_TABLE.md
+│   ├── HYPERPARAMETERS_ALREADY_EXPLORED.md
+│   ├── PARAMETERS_NOT_YET_TUNED.md
+│   └── HPO_READINESS_AND_CONSTRAINTS.md
+│
+└── 09_reviewer_handoff/
+    ├── RESEARCHER_HANDOFF.md
+    ├── FILE_AND_SOURCE_MANIFEST.csv
+    └── AUDIT_VALIDATION_RESULTS.md
+
+Add supporting plots under the appropriate dataset folder.
+
+Required plots where underlying data exists:
+
+1. Training versus validation loss by epoch.
+2. Validation AP by epoch.
+3. Learning-rate schedules.
+4. Frozen versus fine-tuned learning curves.
+5. Metric distributions across seeds.
+6. Comparable sensor versus visual versus fusion results.
+
+Use actual data only.
+
+Label plots clearly as:
+
+TRAINING
+VALIDATION
+HELD-OUT
+
+Do not create synthetic curves.
+
+Do not copy giant datasets, checkpoints or raw prediction
+tables into the audit folder.
+
+Link to their original locations.
+
+
+=========================================================
+PHASE 13 — ESSENTIAL SUMMARY TABLES
+=========================================================
+
+The executive overview must include:
+
+TABLE A — ALL IMPLEMENTED MODELS
+
+Dataset | Model | Architecture | Status | Results available
+
+TABLE B — MODEL CONFIGURATIONS
+
+Model | Optimizer | LR | Weight decay | Batch size |
+Max epochs | Executed epochs | Selected epoch |
+Trainable parameters | Seed
+
+TABLE C — MODEL RESULTS
+
+Dataset | Model | Seed | Fold | Held-out N |
+Prevalence | AP | AUROC | F1 | Brier | Status
+
+TABLE D — FROZEN VS FINETUNED CNN
+
+Model | Epochs executed | Selected epoch |
+Training hours | Peak VRAM | AP | AUROC |
+Checkpoint path
+
+TABLE E — FUSION COMPARISON
+
+Dataset | Visual AP | Sensor AP |
+Averaging AP | F2 AP | Quality-aware AP |
+Comparability status
+
+TABLE F — HYPERPARAMETER OPTIMIZATION STATUS
+
+Model | Tuning performed? | Parameters tested |
+Configurations evaluated | Selection method |
+Evidence source
+
+TABLE G — REPRODUCIBILITY
+
+Model | Code available | Config available |
+Checkpoint available | Predictions available |
+Split available | Overall status
+
+TABLE H — MISSING EVIDENCE
+
+Experiment | Missing evidence | Impact |
+Can it be recovered? | Required next action
+
+
+=========================================================
+PHASE 14 — SCIENTIFIC QUESTIONS TO ANSWER
+=========================================================
+
+Answer these questions explicitly:
+
+Q1.
+Did we perform systematic hyperparameter tuning?
+
+If yes, where and how?
+
+If no, explain exactly what optimization or selection
+was performed instead.
+
+Q2.
+Which hyperparameters were used for the original
+REASSEMBLE visual CNN?
+
+Q3.
+Which hyperparameters were used for the 100-epoch
+fully fine-tuned CNN?
+
+Q4.
+Apart from training the backbone, what configuration
+differences existed between frozen and fine-tuned models?
+
+Q5.
+Was the improvement caused by full fine-tuning,
+different training conditions, or is the evidence
+insufficient to distinguish them?
+
+Q6.
+What are the exact configurations of the static
+sensor model and original F2 fusion?
+
+Q7.
+Were the sensor, visual and fusion models tuned
+independently?
+
+Q8.
+Did fusion improve after using the 100-epoch CNN?
+Only answer if an actual completed experiment exists.
+
+Q9.
+Which results were repeated across multiple seeds
+and which exist for only one seed?
+
+Q10.
+Which experiments have a complete, reproducible
+training-to-checkpoint-to-prediction-to-metric chain?
+
+Q11.
+Which models are genuinely comparable under the
+same held-out protocol?
+
+Q12.
+What would need to be fixed or verified BEFORE
+we could scientifically justify hyperparameter tuning?
+
+Q13.
+Which model candidates have sufficient evidence
+to be considered in a future tuning decision?
+
+Provide facts and constraints only.
+
+DO NOT select the final model yet.
+
+
+=========================================================
+PHASE 15 — VALIDATION AND EVIDENCE REQUIREMENTS
+=========================================================
+
+For every important claim provide:
+
+- Exact source-file path
+- Relevant function/configuration key
+- Experiment identifier
+- Actual log or metric file
+- Checkpoint reference where applicable
+
+When possible include Git commit/revision.
+
+Cross-check:
+
+1. Logged training configurations against saved configs.
+2. Saved configs against actual code defaults.
+3. Checkpoint epochs against training histories.
+4. Metric tables against original result files.
+5. Model names against checkpoint contents.
+6. Experiment IDs against split manifests.
+7. Claimed seed counts against completed run records.
+
+If evidence conflicts, preserve both versions and explain.
+
+Never silently select one source.
+
+Use these statuses:
+
+VERIFIED
+PARTIALLY VERIFIED
+CONTRADICTED
+NOT RECORDED
+NOT EXECUTED
+
+Audit scripts should be read-only with respect to
+existing experiment files.
+
+Add tests for new audit scripts where useful.
+
+Do not alter source training code simply to make
+historical experiments appear consistent.
+
+
+=========================================================
+PHASE 16 — GIT AND SAFETY REQUIREMENTS
+=========================================================
+
+Before starting:
+
+- Check git status.
+- Record current HEAD.
+- Identify existing uncommitted changes.
+- Preserve all historical experiments.
+
+DO NOT:
+
+- Delete data.
+- Overwrite training logs.
+- Replace checkpoints.
+- Modify completed predictions.
+- Change dataset labels.
+- Restart training.
+- Modify a running job.
+- Alter experimental conclusions.
+- Push to any remote repository.
+
+Create only the new audit documents, tables,
+plots and minimal audit utilities.
+
+If appropriate, commit newly created audit files
+in a narrowly scoped commit such as:
+
+docs(audit): inventory model configurations and results
+
+Stage ONLY files belonging to this audit.
+
+Do not stage unrelated changes.
+
+Do not commit large model binaries or datasets.
+
+NEVER PUSH.
+
+Report the commit hash, or clearly explain if the
+audit remains uncommitted.
+
+
+=========================================================
+PHASE 17 — FINAL HANDOFF
+=========================================================
+
+After completing the audit, provide a comprehensive
+final response containing:
+
+1. Executive conclusion.
+2. Number of model families discovered.
+3. Number of actual completed training runs.
+4. Number of available checkpoints.
+5. Number of reconstructed effective configurations.
+6. Number of recovered held-out metric records.
+7. Whether systematic hyperparameter tuning occurred.
+8. All REASSEMBLE CNN configurations.
+9. All sensor and fusion configurations.
+10. Exact 100-epoch experiment findings.
+11. Current status of the 75-fit experiment.
+12. Current status of ViFailback.
+13. A table of every model and its results.
+14. A table of every model and its hyperparameters.
+15. Scientific comparability limitations.
+16. Missing evidence.
+17. Files generated.
+18. Validation results.
+19. Git commit status.
+20. Suggested information for the next research discussion.
+
+MOST IMPORTANT:
+
+End your response with:
+
+"INFORMATION REQUIRED FOR MODEL SELECTION AND
+FUTURE HYPERPARAMETER OPTIMIZATION"
+
+Under this heading, provide a concise decision-ready table.
+
+Do not make the selection yourself.
+
+I will take your audit results to an independent
+ML research review before deciding which model
+to optimize.
+
+Continue the investigation independently until the
+entire audit is complete.
+
+Only stop if a genuine access, integrity or
+permission blocker prevents further work.
+
+Do not fabricate missing results or configurations.

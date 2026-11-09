@@ -1,6 +1,6 @@
 # 05 TRAINING AND CHECKPOINTS
 
-Run `20261029T004900Z`. Published 2026-10-29T03:49:05.228393+00:00. Pipeline state: **CPU_SENSOR_BASELINES_COMPLETE_VISUAL_FEATURES_RUNNING**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T034902912165Z`.
+Run `20261029T004900Z`. Published 2026-10-30T15:22:30.469658+00:00. Pipeline state: **DONOR_INITIAL_FEATURES_CPU**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261030T152227157750Z`.
 
 V1 uses frozen original pretrained CNN features and a new896→128→1 head. V2 trains the complete CNN convolution and promoted FrozenBN affine from the original pretrained source. V3 uses the verified REASSEMBLE full-CNN donor, a new head, and the same adaptation recipe as V2. All100 epochs execute; highest validation macro_AP selects the checkpoint, earliest tie. T-only balanced BCE; AdamW head1e-3/backbone1e-5, wd1e-3, clip1, cosine100→0.1initial LR, FP32, effective batch8. FrozenBN moments stay fixed. Full models use exact two-pass frame chunks4 with all48 images.
 
@@ -13,4 +13,4 @@ Donor: `26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/
 
 Measured disposable CPU preflight: [63.62, 58.592, 54.466]seconds/update; all73 CNN/head trainable tensors changed, moments fixed and replay exact when the preflight receipt passes. These updates are not retained as a target classifier or evaluated as evidence.
 
-Acquisition: {'ACQUIRED_VERIFIED': 13095, 'VERIFIED_EXISTING': 57}. Camera QC: (13150, 13152). Final cohort: 4382. Completed fits: {'visual_frozen': 0, 'visual_frozen_high_only': 0, 'visual_finetuned100': 0, 'reassemble_transfer': 0, 'sensor_baselines': 36}.
+Acquisition: {'ACQUIRED_VERIFIED': 13095, 'VERIFIED_EXISTING': 57}. Camera QC: (13150, 13152). Final cohort: 4382. Completed fits: {'visual_frozen': 36, 'visual_frozen_high_only': 36, 'visual_finetuned100': 0, 'reassemble_transfer': 0, 'sensor_baselines': 36}.

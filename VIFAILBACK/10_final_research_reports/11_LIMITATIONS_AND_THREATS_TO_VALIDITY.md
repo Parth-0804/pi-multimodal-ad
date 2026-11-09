@@ -1,6 +1,6 @@
 # 11 LIMITATIONS AND THREATS TO VALIDITY
 
-Run `20261029T004900Z`. Published 2026-10-29T03:49:05.228393+00:00. Pipeline state: **CPU_SENSOR_BASELINES_COMPLETE_VISUAL_FEATURES_RUNNING**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T034902912165Z`.
+Run `20261029T004900Z`. Published 2026-10-30T15:22:30.469658+00:00. Pipeline state: **DONOR_INITIAL_FEATURES_CPU**. Immutable report snapshot: `VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261030T152227157750Z`.
 
 Canonical-task independence is tested; session, operator, robot and object-instance independence are not established. The native outcome is an episode failure annotation, not a frame-level fault time or independently scored final mechanical success. The known human-intervention category is excluded; incidental human presence and semantic visibility remain incompletely reviewed. Whole-episode sensors and RGB are retrospective inputs, so these results cannot establish early warning.
 

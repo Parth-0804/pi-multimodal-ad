@@ -1,0 +1,41 @@
+{
+  "request_id": "20261102_stop_after25_complete_fits_seed42",
+  "utc": "2026-11-02T22:45:53.546347+00:00",
+  "user_instruction": "okay make it stop after 25 fits",
+  "stop_after_completed_fits": 25,
+  "allowed_seed": 42,
+  "epochs_per_fit": 20,
+  "original_planned_fits": 75,
+  "remaining_seeds_deferred": [
+    123,
+    20261023
+  ],
+  "training_configuration_changed": false,
+  "stop_rule": "Complete all first-seed inner and outer fits; do not start another seed",
+  "existing_controller": {
+    "pid": 2987,
+    "create_time": 1793658248.11,
+    "command": [
+      "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+      "-B",
+      "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/26102026_source/c20_controller.py"
+    ]
+  },
+  "existing_child": {
+    "pid": 3034,
+    "create_time": 1793658256.57,
+    "command": [
+      "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+      "-B",
+      "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/26102026_source/c20_train.py",
+      "--seed",
+      "42",
+      "--job",
+      "22"
+    ]
+  },
+  "study_root": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability",
+  "revision_root": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01",
+  "cap_root": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/02112026_stop_after25fits_01",
+  "scientific_scope": "Five outer folds for one seed; no between-seed stability claim"
+}

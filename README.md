@@ -38,6 +38,10 @@ and what would need to change before combining them.
 
 The PHM background above is preserved study context, not a statement that later REASSEMBLE work is unfinished. Current REASSEMBLE closure is recorded in `artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md`.
 
+REASSEMBLE cache availability changed under researcher approval on 2026-10-26.
+Before reusing the September prefix cache or shared visual pixel cache, consult
+[cache retention, preflight and recovery requirements](docs/maintenance/REASSEMBLE_CACHE_RETENTION.md).
+
 Legacy imports (`pi_multimodal_ad.*`) and former PHM script paths are supported through thin forwarding. See [COMPATIBILITY_CONTRACT.md](docs/repository_restructure/COMPATIBILITY_CONTRACT.md) and [COMPATIBILITY_VALIDATION.md](docs/repository_restructure/COMPATIBILITY_VALIDATION.md).
 
 Migration map, checks and preserved historical paths: [`FINAL_STRUCTURE.md`](docs/repository_restructure/FINAL_STRUCTURE.md).

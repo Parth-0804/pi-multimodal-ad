@@ -1,0 +1,69 @@
+schema_version: "1.0.0"
+study: phm2026_rtdetr_multitask
+seed: 20260814
+output_root: runs/phm2026_rtdetr_multitask
+source_runs:
+  pseudo_boxes:
+    run_id: 20260814T040854991567Z-3fa0f794
+    directory: runs/phm2026_rtdetr_pseudo_boxes/20260814T040854991567Z-3fa0f794
+    artifacts:
+      tables/annotation_image_manifest.parquet: 2ad4251a856757426aa75c7e9785ca7fbcd70edd6c2ebfd98be00e34661ccb87
+      tables/annotation_manifest.parquet: 42d43c2ed35026853a1eee54922e55ed6b93c1eae52cbe308b248f251e381641
+      reports/annotation_quality.json: dba902e14bda7f96fdd93288ce377e799f4cadfad7a699d5ef5328c1a77b0cc4
+      manifests/materialized_cache.parquet: 14f080a1c98d7ec21d3b9fc1fc83609ce2ca29d230c988a4834fd2456e7b5595
+  detector:
+    run_id: 20260814T043751107678Z-7f1e13af
+    directory: runs/phm2026_rtdetr_detection/20260814T043751107678Z-7f1e13af
+    artifacts:
+      checkpoints/best_detector.pt: 129d143cf7511fc4b0d95a0ffff064ac117e92e8a6eb5290c76d777d70fe7970
+      tables/detection_metrics.parquet: c0cd7b7d91b254f859d02f7a1f3bbef18b1bfbcfcf77caee450d8c7c7f805bb2
+      manifests/outputs.json: 8da9eec1db9cd1589356b757bf05ff1055301d7bd158da0afde87df6714bd1e5
+  frozen_regression:
+    run_id: 20260814T020338751021Z-d0f225c8
+    directory: runs/phm2026_rtdetr_regression/20260814T020338751021Z-d0f225c8
+    artifacts:
+      tables/metrics.parquet: 181fcc1568dad6ce0f06665c84b254f5110b37498e2d8540d9ba3dd9779ff468
+      tables/predictions.parquet: c26046e1dbc75f220d2edaeec90090b515b0d3402ef20f29cc7c9989e6a0ec20
+  naive_baselines:
+    run_id: 20260814T015914190145Z-4423f1fa
+    directory: runs/phm2026_evaluation/20260814T015914190145Z-4423f1fa
+    artifacts:
+      tables/baseline_metrics.parquet: 9f9c9a8bbbba5d23da7a3ae09d9dff094b6b6fd5809bfdf55eac51fe8bbd9539
+      tables/baseline_predictions.parquet: 4c9e44ee3161f6f4c5d2873d98d1661ef83af50cf502a5e682b4f2347bcefd84
+model:
+  architecture: rtdetr-l
+  formulation: genuine_rtdetr_detection_plus_shared_encoder_scalar_head
+  feature_layer: 27
+  feature_dimension: 256
+  scalar_hidden_dimension: 128
+  scalar_dropout: 0.1
+  image_size: 640
+  maximum_detections: 300
+  minimum_inference_confidence: 0.001
+training:
+  device: cuda
+  batch_size: 4
+  workers: 2
+  amp: true
+  frozen_detector_layers: 9
+  detector_learning_rate: 0.00001
+  scalar_head_learning_rate: 0.0005
+  weight_decay: 0.0005
+  maximum_epochs: 6
+  patience: 2
+  gradient_clip_norm: 10.0
+  lambda_balance_minimum: 0.1
+  lambda_balance_maximum: 100.0
+  tiny_overfit_steps: 12
+  tiny_overfit_batch_size: 2
+  augmentation:
+    horizontal_flip: true
+validation_selection:
+  confidence_candidates: [0.01, 0.025, 0.05, 0.075, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6]
+  operating_iou: 0.5
+  test_evaluations: 1
+evaluation:
+  bootstrap_repetitions: 500
+storage_limits:
+  minimum_free_bytes: 53687091200
+  maximum_new_artifacts_bytes: 32212254720

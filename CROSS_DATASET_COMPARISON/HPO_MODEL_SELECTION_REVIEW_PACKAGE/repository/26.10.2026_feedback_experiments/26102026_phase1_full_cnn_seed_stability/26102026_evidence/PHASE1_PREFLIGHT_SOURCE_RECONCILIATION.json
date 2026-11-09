@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "name": "phase_metrics.py",
+      "preflight_sha256": "249e80c191a407c9724bf05e3024968b5580d5a6aa3ede6801a7824dc0744af2",
+      "final_sha256": "249e80c191a407c9724bf05e3024968b5580d5a6aa3ede6801a7824dc0744af2",
+      "exact_preflight_source_retained": true
+    },
+    {
+      "name": "phase_model.py",
+      "preflight_sha256": "ce735eff4b893f3f980a1ad0b83682893ee209292b6c1a7e3fefe1870d53d493",
+      "final_sha256": "ce735eff4b893f3f980a1ad0b83682893ee209292b6c1a7e3fefe1870d53d493",
+      "exact_preflight_source_retained": true
+    },
+    {
+      "name": "phase_common.py",
+      "preflight_sha256": "b4a5c0b41622127cd389c98f031bbb9ce853f61fffafd23d44c83541dbbfeaaa",
+      "final_sha256": "448999568817c113943ac8d601da27e8fb0752df110839f698231d1ef5e92520",
+      "exact_preflight_source_retained": true
+    },
+    {
+      "name": "phase_preflight.py",
+      "preflight_sha256": "ea7a440abf39115c5aaf3af3dfbbf0d06e77912fa43508881bafdbfd4c18ed82",
+      "final_sha256": "ea7a440abf39115c5aaf3af3dfbbf0d06e77912fa43508881bafdbfd4c18ed82",
+      "exact_preflight_source_retained": true
+    },
+    {
+      "name": "phase_checkpoint.py",
+      "preflight_sha256": "736ef28fd1a16412f8e207c39707650d302ee95df28f70d86eddcfe0609c3c07",
+      "final_sha256": "7a926df7df4b986691f678f2d1cadecb66218fbc09bbfe4ae9dd00692ab9e8d6",
+      "exact_preflight_source_retained": true
+    },
+    {
+      "name": "phase_loader.py",
+      "preflight_sha256": "fb22a18f6348336a7f1dff6ddba5c1832cc77e66c2cf6c2d5f51d69e7a1348ce",
+      "final_sha256": "fb22a18f6348336a7f1dff6ddba5c1832cc77e66c2cf6c2d5f51d69e7a1348ce",
+      "exact_preflight_source_retained": true
+    },
+    {
+      "name": "verify_inputs.py",
+      "preflight_sha256": "8ad7e8fc63e63614ac80e7a0f472f6ae900b609aeb439430bb713ecdce87f418",
+      "final_sha256": "e2fe6caa1edd1da00b98b2d3404794401b9dabe97e66c3ea3b537695fa80077f",
+      "exact_preflight_source_retained": true
+    },
+    {
+      "name": "phase_training.py",
+      "preflight_sha256": "08f42cdf48e8531c7cdc886ce070d6bb6224de45a01182bb28a598bd419e2f22",
+      "final_sha256": "f8cda57aca3852603572f4f54108b7230c5e717febdb72ba6487ea4a6c434bbd",
+      "exact_preflight_source_retained": true
+    }
+  ],
+  "method": "Byte-identical source reconstruction reversing the documented subsequent checkpoint, telemetry and metadata-validation additions; every retained file SHA256 equals the preflight-recorded SHA256.",
+  "scope": "Model, loader, metrics and real-CNN preflight are unchanged; selected-state crash recovery and bookkeeping extensions have separate synthetic regressions."
+}
