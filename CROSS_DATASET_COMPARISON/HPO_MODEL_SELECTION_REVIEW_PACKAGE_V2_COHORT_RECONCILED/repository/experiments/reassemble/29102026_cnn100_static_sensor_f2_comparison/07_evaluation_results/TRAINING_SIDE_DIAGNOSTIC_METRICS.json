@@ -1,0 +1,1195 @@
+{
+  "role_warning": "Base predictions are genuinely held out from base fitting. F2 apparent-fit metrics reuse its fitting labels; meta-crossfit is a separate group diagnostic. No diagnostic changes primary models.",
+  "scores": {
+    "M1_frozen100": {
+      "AP": 0.1638141166945201,
+      "AUROC": 0.6196339767759391,
+      "precision": 0.0,
+      "recall": 0.0,
+      "F1": 0.0,
+      "Brier": 0.09371858015235017,
+      "log_loss": 0.3317416317701249,
+      "ECE15": 0.028498140371212375,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 105,
+          "mean_probability": 0.050737757943670386,
+          "fraction_failure": 0.0380952380952381
+        },
+        {
+          "bin": 1,
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 405,
+          "mean_probability": 0.10066514072423216,
+          "fraction_failure": 0.0962962962962963
+        },
+        {
+          "bin": 2,
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 272,
+          "mean_probability": 0.16375189659692757,
+          "fraction_failure": 0.09926470588235294
+        },
+        {
+          "bin": 3,
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 113,
+          "mean_probability": 0.22223956804711076,
+          "fraction_failure": 0.17699115044247787
+        },
+        {
+          "bin": 4,
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 24,
+          "mean_probability": 0.2967243900497978,
+          "fraction_failure": 0.2916666666666667
+        },
+        {
+          "bin": 5,
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 1,
+          "mean_probability": 0.34647013923300457,
+          "fraction_failure": 0.0
+        },
+        {
+          "bin": 6,
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 7,
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 8,
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 9,
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 10,
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 11,
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 12,
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 13,
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 14,
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        }
+      ],
+      "threshold": 0.5,
+      "actions": 920,
+      "positives": 97,
+      "negatives": 823,
+      "prevalence": 0.10543478260869565,
+      "confusion_matrix_TN_FP_FN_TP": [
+        823,
+        0,
+        97,
+        0
+      ],
+      "classification_report": {
+        "nonfailure": {
+          "precision": 0.8945652173913043,
+          "recall": 1.0,
+          "f1-score": 0.9443488238668961,
+          "support": 823.0
+        },
+        "failure": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 97.0
+        },
+        "accuracy": 0.8945652173913043,
+        "macro avg": {
+          "precision": 0.4472826086956522,
+          "recall": 0.5,
+          "f1-score": 0.47217441193344806,
+          "support": 920.0
+        },
+        "weighted avg": {
+          "precision": 0.8002469281663516,
+          "recall": 0.8945652173913043,
+          "f1-score": 0.8447816109157126,
+          "support": 920.0
+        }
+      }
+    },
+    "M2_finetuned100": {
+      "AP": 0.18359448628234318,
+      "AUROC": 0.637997770289737,
+      "precision": 0.0,
+      "recall": 0.0,
+      "F1": 0.0,
+      "Brier": 0.09334266190008658,
+      "log_loss": 0.32969983468972447,
+      "ECE15": 0.021570588795267145,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 97,
+          "mean_probability": 0.0516291004024924,
+          "fraction_failure": 0.041237113402061855
+        },
+        {
+          "bin": 1,
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 510,
+          "mean_probability": 0.10152358962514839,
+          "fraction_failure": 0.0803921568627451
+        },
+        {
+          "bin": 2,
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 239,
+          "mean_probability": 0.15934423265537342,
+          "fraction_failure": 0.14644351464435146
+        },
+        {
+          "bin": 3,
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 53,
+          "mean_probability": 0.22329364591707984,
+          "fraction_failure": 0.18867924528301888
+        },
+        {
+          "bin": 4,
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 10,
+          "mean_probability": 0.2856436342201818,
+          "fraction_failure": 0.3
+        },
+        {
+          "bin": 5,
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 5,
+          "mean_probability": 0.3660446291584002,
+          "fraction_failure": 0.4
+        },
+        {
+          "bin": 6,
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 1,
+          "mean_probability": 0.40745370903547284,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 7,
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 2,
+          "mean_probability": 0.49938837520904167,
+          "fraction_failure": 0.5
+        },
+        {
+          "bin": 8,
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 1,
+          "mean_probability": 0.5933574317011793,
+          "fraction_failure": 0.0
+        },
+        {
+          "bin": 9,
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 10,
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 1,
+          "mean_probability": 0.7052410704001055,
+          "fraction_failure": 0.0
+        },
+        {
+          "bin": 11,
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 12,
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 13,
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 14,
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 1,
+          "mean_probability": 0.936344850884944,
+          "fraction_failure": 0.0
+        }
+      ],
+      "threshold": 0.5,
+      "actions": 920,
+      "positives": 97,
+      "negatives": 823,
+      "prevalence": 0.10543478260869565,
+      "confusion_matrix_TN_FP_FN_TP": [
+        819,
+        4,
+        97,
+        0
+      ],
+      "classification_report": {
+        "nonfailure": {
+          "precision": 0.8941048034934498,
+          "recall": 0.9951397326852977,
+          "f1-score": 0.9419206440483037,
+          "support": 823.0
+        },
+        "failure": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 97.0
+        },
+        "accuracy": 0.8902173913043478,
+        "macro avg": {
+          "precision": 0.4470524017467249,
+          "recall": 0.4975698663426488,
+          "f1-score": 0.47096032202415183,
+          "support": 920.0
+        },
+        "weighted avg": {
+          "precision": 0.7998350579077274,
+          "recall": 0.8902173913043478,
+          "f1-score": 0.8426094457084281,
+          "support": 920.0
+        }
+      }
+    },
+    "M3_sensor": {
+      "AP": 0.4965536546856526,
+      "AUROC": 0.7920607282885095,
+      "precision": 0.7352941176470589,
+      "recall": 0.25773195876288657,
+      "F1": 0.3816793893129771,
+      "Brier": 0.07193699792626004,
+      "log_loss": 0.2625957970983437,
+      "ECE15": 0.030196272579169424,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 414,
+          "mean_probability": 0.03644133851236744,
+          "fraction_failure": 0.04106280193236715
+        },
+        {
+          "bin": 1,
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 268,
+          "mean_probability": 0.09738959760439254,
+          "fraction_failure": 0.0708955223880597
+        },
+        {
+          "bin": 2,
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 118,
+          "mean_probability": 0.16604579614381332,
+          "fraction_failure": 0.11016949152542373
+        },
+        {
+          "bin": 3,
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 41,
+          "mean_probability": 0.23221628883262052,
+          "fraction_failure": 0.0975609756097561
+        },
+        {
+          "bin": 4,
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 21,
+          "mean_probability": 0.2937229681129139,
+          "fraction_failure": 0.2857142857142857
+        },
+        {
+          "bin": 5,
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 12,
+          "mean_probability": 0.36708691203984495,
+          "fraction_failure": 0.3333333333333333
+        },
+        {
+          "bin": 6,
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 9,
+          "mean_probability": 0.4374255912750875,
+          "fraction_failure": 0.7777777777777778
+        },
+        {
+          "bin": 7,
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 5,
+          "mean_probability": 0.49523727384442573,
+          "fraction_failure": 0.6
+        },
+        {
+          "bin": 8,
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 6,
+          "mean_probability": 0.5600077812908011,
+          "fraction_failure": 0.5
+        },
+        {
+          "bin": 9,
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 7,
+          "mean_probability": 0.6418444523276695,
+          "fraction_failure": 0.7142857142857143
+        },
+        {
+          "bin": 10,
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 9,
+          "mean_probability": 0.6884142683103378,
+          "fraction_failure": 0.7777777777777778
+        },
+        {
+          "bin": 11,
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 4,
+          "mean_probability": 0.7673773017654401,
+          "fraction_failure": 0.75
+        },
+        {
+          "bin": 12,
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 3,
+          "mean_probability": 0.8371059980028416,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 13,
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 2,
+          "mean_probability": 0.8978828895704911,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 14,
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 1,
+          "mean_probability": 0.941440152850375,
+          "fraction_failure": 1.0
+        }
+      ],
+      "threshold": 0.5,
+      "actions": 920,
+      "positives": 97,
+      "negatives": 823,
+      "prevalence": 0.10543478260869565,
+      "confusion_matrix_TN_FP_FN_TP": [
+        814,
+        9,
+        72,
+        25
+      ],
+      "classification_report": {
+        "nonfailure": {
+          "precision": 0.9187358916478555,
+          "recall": 0.9890643985419199,
+          "f1-score": 0.9526038619075483,
+          "support": 823.0
+        },
+        "failure": {
+          "precision": 0.7352941176470589,
+          "recall": 0.25773195876288657,
+          "f1-score": 0.3816793893129771,
+          "support": 97.0
+        },
+        "accuracy": 0.9119565217391304,
+        "macro avg": {
+          "precision": 0.8270150046474571,
+          "recall": 0.6233981786524032,
+          "f1-score": 0.6671416256102627,
+          "support": 920.0
+        },
+        "weighted avg": {
+          "precision": 0.8993947480847281,
+          "recall": 0.9119565217391304,
+          "f1-score": 0.8924085642535554,
+          "support": 920.0
+        }
+      }
+    },
+    "M4_F2_frozen_apparent_fit": {
+      "AP": 0.4980642816088856,
+      "AUROC": 0.7942152797785321,
+      "precision": 0.7857142857142857,
+      "recall": 0.2268041237113402,
+      "F1": 0.352,
+      "Brier": 0.07247611368656454,
+      "log_loss": 0.26458751373618516,
+      "ECE15": 0.026179533783319702,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 382,
+          "mean_probability": 0.0574474219277464,
+          "fraction_failure": 0.03664921465968586
+        },
+        {
+          "bin": 1,
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 424,
+          "mean_probability": 0.08773272297288398,
+          "fraction_failure": 0.08490566037735849
+        },
+        {
+          "bin": 2,
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 50,
+          "mean_probability": 0.15860091667124823,
+          "fraction_failure": 0.12
+        },
+        {
+          "bin": 3,
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 14,
+          "mean_probability": 0.23396435577859162,
+          "fraction_failure": 0.5
+        },
+        {
+          "bin": 4,
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 8,
+          "mean_probability": 0.29076894347057447,
+          "fraction_failure": 0.375
+        },
+        {
+          "bin": 5,
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 8,
+          "mean_probability": 0.36532275336150405,
+          "fraction_failure": 0.75
+        },
+        {
+          "bin": 6,
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 5,
+          "mean_probability": 0.44909280200963336,
+          "fraction_failure": 0.4
+        },
+        {
+          "bin": 7,
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 3,
+          "mean_probability": 0.5012444027290629,
+          "fraction_failure": 0.6666666666666666
+        },
+        {
+          "bin": 8,
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 7,
+          "mean_probability": 0.5773321321811195,
+          "fraction_failure": 0.7142857142857143
+        },
+        {
+          "bin": 9,
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 9,
+          "mean_probability": 0.6410313211553906,
+          "fraction_failure": 0.7777777777777778
+        },
+        {
+          "bin": 10,
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 1,
+          "mean_probability": 0.7090539504356952,
+          "fraction_failure": 0.0
+        },
+        {
+          "bin": 11,
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 5,
+          "mean_probability": 0.7528190083575501,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 12,
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 4,
+          "mean_probability": 0.8350782022739717,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 13,
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 14,
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        }
+      ],
+      "threshold": 0.5,
+      "actions": 920,
+      "positives": 97,
+      "negatives": 823,
+      "prevalence": 0.10543478260869565,
+      "confusion_matrix_TN_FP_FN_TP": [
+        817,
+        6,
+        75,
+        22
+      ],
+      "classification_report": {
+        "nonfailure": {
+          "precision": 0.9159192825112108,
+          "recall": 0.9927095990279465,
+          "f1-score": 0.9527696793002915,
+          "support": 823.0
+        },
+        "failure": {
+          "precision": 0.7857142857142857,
+          "recall": 0.2268041237113402,
+          "f1-score": 0.352,
+          "support": 97.0
+        },
+        "accuracy": 0.9119565217391304,
+        "macro avg": {
+          "precision": 0.8508167841127483,
+          "recall": 0.6097568613696434,
+          "f1-score": 0.6523848396501457,
+          "support": 920.0
+        },
+        "weighted avg": {
+          "precision": 0.9021911469793611,
+          "recall": 0.9119565217391304,
+          "f1-score": 0.8894276587653696,
+          "support": 920.0
+        }
+      }
+    },
+    "M5_F2_finetuned_apparent_fit": {
+      "AP": 0.5019349398961743,
+      "AUROC": 0.798925229547419,
+      "precision": 0.7777777777777778,
+      "recall": 0.21649484536082475,
+      "F1": 0.3387096774193548,
+      "Brier": 0.07245862653569786,
+      "log_loss": 0.2639364821540964,
+      "ECE15": 0.02445844573539912,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 388,
+          "mean_probability": 0.057272494330791505,
+          "fraction_failure": 0.030927835051546393
+        },
+        {
+          "bin": 1,
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 412,
+          "mean_probability": 0.08719064697561779,
+          "fraction_failure": 0.08495145631067962
+        },
+        {
+          "bin": 2,
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 57,
+          "mean_probability": 0.15915307909755935,
+          "fraction_failure": 0.15789473684210525
+        },
+        {
+          "bin": 3,
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 13,
+          "mean_probability": 0.23034631776588424,
+          "fraction_failure": 0.5384615384615384
+        },
+        {
+          "bin": 4,
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 8,
+          "mean_probability": 0.2992068675443357,
+          "fraction_failure": 0.375
+        },
+        {
+          "bin": 5,
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 7,
+          "mean_probability": 0.36122003333961966,
+          "fraction_failure": 0.8571428571428571
+        },
+        {
+          "bin": 6,
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 4,
+          "mean_probability": 0.4439944031976489,
+          "fraction_failure": 0.5
+        },
+        {
+          "bin": 7,
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 4,
+          "mean_probability": 0.4789485987508194,
+          "fraction_failure": 0.5
+        },
+        {
+          "bin": 8,
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 8,
+          "mean_probability": 0.5690991510215033,
+          "fraction_failure": 0.625
+        },
+        {
+          "bin": 9,
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 7,
+          "mean_probability": 0.6293041498748974,
+          "fraction_failure": 0.7142857142857143
+        },
+        {
+          "bin": 10,
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 4,
+          "mean_probability": 0.6955201912397566,
+          "fraction_failure": 0.75
+        },
+        {
+          "bin": 11,
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 4,
+          "mean_probability": 0.7522337996996551,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 12,
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 3,
+          "mean_probability": 0.8298289876465405,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 13,
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 1,
+          "mean_probability": 0.8673352898193603,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 14,
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        }
+      ],
+      "threshold": 0.5,
+      "actions": 920,
+      "positives": 97,
+      "negatives": 823,
+      "prevalence": 0.10543478260869565,
+      "confusion_matrix_TN_FP_FN_TP": [
+        817,
+        6,
+        76,
+        21
+      ],
+      "classification_report": {
+        "nonfailure": {
+          "precision": 0.9148936170212766,
+          "recall": 0.9927095990279465,
+          "f1-score": 0.9522144522144522,
+          "support": 823.0
+        },
+        "failure": {
+          "precision": 0.7777777777777778,
+          "recall": 0.21649484536082475,
+          "f1-score": 0.3387096774193548,
+          "support": 97.0
+        },
+        "accuracy": 0.9108695652173913,
+        "macro avg": {
+          "precision": 0.8463356973995272,
+          "recall": 0.6046022221943856,
+          "f1-score": 0.6454620648169035,
+          "support": 920.0
+        },
+        "weighted avg": {
+          "precision": 0.9004368383184295,
+          "recall": 0.9108695652173913,
+          "f1-score": 0.8875297096545344,
+          "support": 920.0
+        }
+      }
+    },
+    "M4_F2_frozen_meta_crossfit": {
+      "AP": 0.4725883247803646,
+      "AUROC": 0.7695882551890868,
+      "precision": 0.8,
+      "recall": 0.20618556701030927,
+      "F1": 0.32786885245901637,
+      "Brier": 0.07434980278407761,
+      "log_loss": 0.2708938267781266,
+      "ECE15": 0.02505848078260215,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 314,
+          "mean_probability": 0.05883330536096679,
+          "fraction_failure": 0.044585987261146494
+        },
+        {
+          "bin": 1,
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 501,
+          "mean_probability": 0.08703775530672841,
+          "fraction_failure": 0.07385229540918163
+        },
+        {
+          "bin": 2,
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 45,
+          "mean_probability": 0.16336803180063417,
+          "fraction_failure": 0.17777777777777778
+        },
+        {
+          "bin": 3,
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 13,
+          "mean_probability": 0.2391167333671376,
+          "fraction_failure": 0.3076923076923077
+        },
+        {
+          "bin": 4,
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 9,
+          "mean_probability": 0.30370693692401934,
+          "fraction_failure": 0.6666666666666666
+        },
+        {
+          "bin": 5,
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 8,
+          "mean_probability": 0.3701121564287363,
+          "fraction_failure": 0.625
+        },
+        {
+          "bin": 6,
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 2,
+          "mean_probability": 0.44736409760742435,
+          "fraction_failure": 0.5
+        },
+        {
+          "bin": 7,
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 7,
+          "mean_probability": 0.5032301159605772,
+          "fraction_failure": 0.7142857142857143
+        },
+        {
+          "bin": 8,
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 9,
+          "mean_probability": 0.5623145680899029,
+          "fraction_failure": 0.7777777777777778
+        },
+        {
+          "bin": 9,
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 4,
+          "mean_probability": 0.6207646225648926,
+          "fraction_failure": 0.75
+        },
+        {
+          "bin": 10,
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 4,
+          "mean_probability": 0.694157875821933,
+          "fraction_failure": 0.75
+        },
+        {
+          "bin": 11,
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 3,
+          "mean_probability": 0.7730565189757016,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 12,
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 1,
+          "mean_probability": 0.8144026532507215,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 13,
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 14,
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        }
+      ],
+      "threshold": 0.5,
+      "actions": 920,
+      "positives": 97,
+      "negatives": 823,
+      "prevalence": 0.10543478260869565,
+      "confusion_matrix_TN_FP_FN_TP": [
+        818,
+        5,
+        77,
+        20
+      ],
+      "classification_report": {
+        "nonfailure": {
+          "precision": 0.9139664804469274,
+          "recall": 0.9939246658566221,
+          "f1-score": 0.9522700814901047,
+          "support": 823.0
+        },
+        "failure": {
+          "precision": 0.8,
+          "recall": 0.20618556701030927,
+          "f1-score": 0.32786885245901637,
+          "support": 97.0
+        },
+        "accuracy": 0.9108695652173913,
+        "macro avg": {
+          "precision": 0.8569832402234637,
+          "recall": 0.6000551164334657,
+          "f1-score": 0.6400694669745606,
+          "support": 920.0
+        },
+        "weighted avg": {
+          "precision": 0.9019504493563274,
+          "recall": 0.9108695652173913,
+          "f1-score": 0.8864364736466096,
+          "support": 920.0
+        }
+      }
+    },
+    "M5_F2_finetuned_meta_crossfit": {
+      "AP": 0.47197494572668736,
+      "AUROC": 0.7724067091731283,
+      "precision": 0.7916666666666666,
+      "recall": 0.1958762886597938,
+      "F1": 0.3140495867768595,
+      "Brier": 0.07451847845605308,
+      "log_loss": 0.27088059277886967,
+      "ECE15": 0.0271269665409046,
+      "calibration_bins": [
+        {
+          "bin": 0,
+          "lower": 0.0,
+          "upper": 0.06666666666666667,
+          "count": 329,
+          "mean_probability": 0.05891916388714135,
+          "fraction_failure": 0.03951367781155015
+        },
+        {
+          "bin": 1,
+          "lower": 0.06666666666666667,
+          "upper": 0.13333333333333333,
+          "count": 479,
+          "mean_probability": 0.08690419737502222,
+          "fraction_failure": 0.07515657620041753
+        },
+        {
+          "bin": 2,
+          "lower": 0.13333333333333333,
+          "upper": 0.2,
+          "count": 53,
+          "mean_probability": 0.1631463014891183,
+          "fraction_failure": 0.18867924528301888
+        },
+        {
+          "bin": 3,
+          "lower": 0.2,
+          "upper": 0.26666666666666666,
+          "count": 10,
+          "mean_probability": 0.23465094562176914,
+          "fraction_failure": 0.4
+        },
+        {
+          "bin": 4,
+          "lower": 0.26666666666666666,
+          "upper": 0.3333333333333333,
+          "count": 10,
+          "mean_probability": 0.29623032074449973,
+          "fraction_failure": 0.5
+        },
+        {
+          "bin": 5,
+          "lower": 0.3333333333333333,
+          "upper": 0.4,
+          "count": 8,
+          "mean_probability": 0.3687968365935107,
+          "fraction_failure": 0.75
+        },
+        {
+          "bin": 6,
+          "lower": 0.4,
+          "upper": 0.4666666666666667,
+          "count": 2,
+          "mean_probability": 0.4351944444225961,
+          "fraction_failure": 0.5
+        },
+        {
+          "bin": 7,
+          "lower": 0.4666666666666667,
+          "upper": 0.5333333333333333,
+          "count": 7,
+          "mean_probability": 0.4922625703644666,
+          "fraction_failure": 0.7142857142857143
+        },
+        {
+          "bin": 8,
+          "lower": 0.5333333333333333,
+          "upper": 0.6,
+          "count": 11,
+          "mean_probability": 0.5656491206395338,
+          "fraction_failure": 0.7272727272727273
+        },
+        {
+          "bin": 9,
+          "lower": 0.6,
+          "upper": 0.6666666666666666,
+          "count": 4,
+          "mean_probability": 0.6368101058759067,
+          "fraction_failure": 0.75
+        },
+        {
+          "bin": 10,
+          "lower": 0.6666666666666666,
+          "upper": 0.7333333333333333,
+          "count": 3,
+          "mean_probability": 0.696868172674912,
+          "fraction_failure": 0.6666666666666666
+        },
+        {
+          "bin": 11,
+          "lower": 0.7333333333333333,
+          "upper": 0.8,
+          "count": 2,
+          "mean_probability": 0.7556854773378131,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 12,
+          "lower": 0.8,
+          "upper": 0.8666666666666667,
+          "count": 2,
+          "mean_probability": 0.8211954199765139,
+          "fraction_failure": 1.0
+        },
+        {
+          "bin": 13,
+          "lower": 0.8666666666666667,
+          "upper": 0.9333333333333333,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        },
+        {
+          "bin": 14,
+          "lower": 0.9333333333333333,
+          "upper": 1.0,
+          "count": 0,
+          "mean_probability": null,
+          "fraction_failure": null
+        }
+      ],
+      "threshold": 0.5,
+      "actions": 920,
+      "positives": 97,
+      "negatives": 823,
+      "prevalence": 0.10543478260869565,
+      "confusion_matrix_TN_FP_FN_TP": [
+        818,
+        5,
+        78,
+        19
+      ],
+      "classification_report": {
+        "nonfailure": {
+          "precision": 0.9129464285714286,
+          "recall": 0.9939246658566221,
+          "f1-score": 0.951716114019779,
+          "support": 823.0
+        },
+        "failure": {
+          "precision": 0.7916666666666666,
+          "recall": 0.1958762886597938,
+          "f1-score": 0.3140495867768595,
+          "support": 97.0
+        },
+        "accuracy": 0.9097826086956522,
+        "macro avg": {
+          "precision": 0.8523065476190477,
+          "recall": 0.5949004772582079,
+          "f1-score": 0.6328828503983193,
+          "support": 920.0
+        },
+        "weighted avg": {
+          "precision": 0.9001593232401657,
+          "recall": 0.9097826086956522,
+          "f1-score": 0.8844838823430798,
+          "support": 920.0
+        }
+      }
+    }
+  }
+}

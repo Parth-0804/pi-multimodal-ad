@@ -1,0 +1,79 @@
+schema_version: "1.0.0"
+
+dataset:
+  name: phm2026
+  data_root: gtc-data-experiment
+  excluded_repository_roots:
+    - data/Full Dataset
+
+include:
+  experiments:
+    EXP-A:
+      runs: [1, 2, 3, 4, 5]
+    EXP-B:
+      runs: [1, 2, 3, 4, 5, 6, 7]
+    EXP-F:
+      runs: [1, 2, 3, 4, 5, 6, 7, 8]
+  modality_roots:
+    high_frequency:
+      - high_frequency/EXP A
+      - high_frequency/EXP B
+      - high_frequency/EXP F
+    low_frequency:
+      - low-frequency (CIs + Oil + Environment)
+    condition_indicator:
+      - low-frequency (CIs)
+    image:
+      - photos/EXP-A
+      - photos/EXP-B
+      - photos/EXP-F
+  file_extensions: [.zip]
+  expectation_mode_by_modality:
+    high_frequency: runs
+    low_frequency: experiments
+    condition_indicator: experiments
+    image: runs
+
+exclude:
+  experiments: []
+  runs: []
+  path_globs:
+    - "**/*.part"
+
+phm_rules:
+  hdf5_path_aliases:
+    vibration: [/Vibration]
+    operating_context: [/Context]
+    condition_indicator: [/CI, /CI_4s]
+    oil: [/Oil]
+    environment: [/Environment]
+    timestamp: [/Timestamp, /Time]
+  hdf5_attribute_aliases:
+    unit: [unit_string, NI_UnitDescription, unit, units]
+    sampling_rate: [sampling_rate, sample_rate, samplerate, fs, frequency]
+    sampling_interval: [wf_increment]
+    start_timestamp: [wf_start_time]
+  sampling_frequency_policy:
+    recorded_attribute: preferred
+    derive_from_positive_interval: true
+    default_hz: null
+  photo_stage_aliases:
+    "0 Hours - Test Start": test_start
+    Pre-Run: pre_run
+    Break-In: break_in
+    "Break In": break_in
+  exp_a_run_2_duplicate_warning:
+    reported_overlap_with_run: 1
+    reported_overlapping_files: 311
+    independently_verified: false
+    default_policy: report_and_include
+
+target:
+  status: unverified
+  enabled: false
+  target_name: null
+  physical_meaning: null
+  unit: null
+  timestamp_source: null
+  six_hour_interpretation: null
+  computation_version: null

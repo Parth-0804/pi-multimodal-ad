@@ -1,0 +1,44 @@
+{
+  "validated_utc": "2026-10-26T21:24:44.105378+00:00",
+  "synthetic_tests": {
+    "command": "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 ma_thesis_env/bin/python -B -m pytest tests/reassemble/test_cache_preflight.py --import-mode=importlib -p no:cacheprovider -q",
+    "exit_code": 0,
+    "passed": 6
+  },
+  "pip_check": {
+    "command": "ma_thesis_env/bin/python -B -m pip check",
+    "exit_code": 0,
+    "result": "No broken requirements found."
+  },
+  "prefix_cli_after_cleanup": {
+    "exit_code": 2,
+    "expected": true,
+    "status": "BLOCKED_REGENERATION_REQUIRED",
+    "missing_arrays": 4530
+  },
+  "pixel_cli_after_cleanup": {
+    "exit_code": 0,
+    "status": "READY_WITH_REDECODING",
+    "cached_samples": 0,
+    "samples_needing_decode": 4530,
+    "source_videos": 148,
+    "missing_videos": 0,
+    "changed_video_metadata": 0,
+    "missing_model_files": []
+  },
+  "git_diff_check": {
+    "exit_code": 0
+  },
+  "new_source_ast_parse": "passed",
+  "new_text_whitespace": "passed",
+  "new_document_local_links": "passed",
+  "preservation_details": "See completion.json: 4536 retained hashes equal; 111916 retained file metadata records equal. Cache payload contents and raw data not scanned or rehashed.",
+  "historical_model_source_modified": false,
+  "model_forward_training_download_or_regeneration": false,
+  "preflight_limit": "Standalone prerequisite, not automatically injected into old entry points; metadata checks do not establish numerical equality or experimental permission.",
+  "concurrent_unrelated_paths_left_untouched": [
+    "26.10.2026_feedback_experiments/.gitignore",
+    "26.10.2026_feedback_experiments/configs/gpu_audit.json"
+  ],
+  "committed_or_pushed": false
+}

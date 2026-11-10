@@ -1,0 +1,109 @@
+schema_version: "1.0.0"
+study: phm2026_dataset_description
+dataset_config: configs/datasets/phm2026.yaml
+seed: 20260813
+output_root: runs/phm2026_dataset_description
+
+inventory:
+  inspection_mode: zip_central_directory
+  extract_members: false
+  decompress_members: false
+  full_payload_hashing: false
+  duplicate_evidence:
+    - central_directory_sha256
+    - zip_crc32_and_uncompressed_size
+
+source_runs:
+  asset_inventory:
+    run_id: 20260813T202043619114Z-ad7f9832
+    directory: runs/phm2026_dataset_description/20260813T202043619114Z-ad7f9832
+    artifacts:
+      tables/asset_inventory.parquet: 3e6b1c488fab9faa5b3700187d3b789469b8020ff04c6f4c5f4239da11d9ab4e
+      tables/archive_members.parquet: 01bfc91ed669f93502f9bb2225e58bc4069184fae16242964758809881c3ae3d
+      reports/summary.json: f5db7f36aef8d9b86908388a48799024e9ac97d160a6b6d132c5fcebcdf0a013
+      manifests/inputs.json: 444786ce1fdb121f0205e274b8c9f48cf3ef82513031269cbd69b7a8a8535ddb
+      manifests/outputs.json: 443dd9c0fde541d925e483e7f52a6766cfcfbc4fac801216b834d1553431f578
+      provenance.json: 25450b19798c6e8faed7b3494d255ce11350b02edb8fca380516b5e04ace6882
+  sensor_profile:
+    run_id: 20260813T212734652736Z-f7c665fd
+    directory: runs/phm2026_dataset_description/20260813T212734652736Z-f7c665fd
+    artifacts:
+      tables/hdf5_members.parquet: 454a331a81caebc26a5b7b046d229a599345490b7b258b08538e65717c209664
+      tables/sensor_profile.parquet: 922693091a8be4558f1eb74e512ae8a85ea1fd7f368143d86cde02de9d430322
+      reports/sensor_summary.json: 1e3bb106e94ab873b5ed601fc76a767ad95e793b498bce680301457961df4654
+      reports/hdf5_schema.json: cb678d869843ede481677753b1b9e7e4010beac2ced96d36dfdf2d6c68910237
+      manifests/inputs.json: 3c8046ddbd725a6d56dfc88b2c46df123d3380a70dae9212f48c6e62166a7e58
+      manifests/outputs.json: 04d72505571c892c1fe86a1b33aa914780fadf2d603cfa0c954c66be1c10c46a
+      provenance.json: a6a56cffe8995c378c74fcd8bc79f650a575d937ddca7f102f32b0d2c3f14f7a
+  image_profile:
+    run_id: 20260813T215718624432Z-bd9395ad
+    directory: runs/phm2026_dataset_description/20260813T215718624432Z-bd9395ad
+    artifacts:
+      tables/image_profile.parquet: c4b1f68dd428be558bbe433574ed2ac7bacd943d0e58afc020e5673818ec55cc
+      reports/image_summary.json: d9f6807b34b19a68383f934727eefdaaeefe5fc39415f1c3b4593d7c19174649
+      manifests/inputs.json: 39412b3501df0bb2337076c54599f9893787a8867dc75a29843cc15c1cf497f7
+      manifests/outputs.json: a12b4216cc39346a61c7fff5e9602ca5684fd4f8261d6caa2348d974235d3970
+      provenance.json: ed0732d1ddf91a9b516e23c9c8a133706bda86e4badf8ef686d7a96c89534d46
+
+  image_quality_profile:
+    run_id: 20260813T215756728445Z-bd9395ad
+    directory: runs/phm2026_dataset_description/20260813T215756728445Z-bd9395ad
+    artifacts:
+      tables/image_profile.parquet: a1965b274547ec2419da166b8ebbc32647f4aa65632001d94444103b2f383d5b
+      reports/image_summary.json: 91a759f44eb29f68912938f4d2c8f78f33ecf9f95c9413dabff46aae9e88eda8
+      manifests/inputs.json: 39412b3501df0bb2337076c54599f9893787a8867dc75a29843cc15c1cf497f7
+      manifests/outputs.json: 107184e07342c8c73539ee8a8f8939da43dcf3db005f949034698be3e1ca18f4
+      provenance.json: ea146e7173b975ad5e62d674c297e51a0636c0eb0237a494918ff8bb8fd1ed57
+
+  alignment_audit:
+    run_id: 20260813T223944047252Z-d6474ff4
+    directory: runs/phm2026_dataset_description/20260813T223944047252Z-d6474ff4
+    artifacts:
+      tables/modality_events.parquet: fed30b19bd16ad8021f7f65e77944736cbd115b9b5bf7320e087d48f8d2335cb
+      tables/image_clock_audit.parquet: fb309f1451a30a3b3e27db242154272bccdc91c29b48bea57a86da2bdfcd41f3
+      tables/sensor_clock_audit.parquet: 83191eb6e37f168cbacc99996009d839e732999c176f7cfca10ed74f08785ce6
+      tables/candidate_sample_traces.parquet: 6957fc36e954462542d9064c27ce6c92f0277ae9069eb5a526dde8663491c65c
+      tables/source_artifact_index.csv: 699a19b18e103c26d2f32cc79f017269a3bb36dcadbb03c97ba60071022bd491
+      reports/alignment_blockers.json: f774ecea6dc00129561092843ab188570590d6b7261e38ca49df896b9b9d3341
+      reports/alignment_summary.json: d63211282dd2a9eceaeaab4ba87a47582c6985c881741829858af356ff3e5782
+      manifests/inputs.json: a792842b284994696e6fb96c7619985fe6f73bc6a0de642df6a46d3c905410bb
+      manifests/outputs.json: e1b1bd47b7c4047b57db1f9668384f5efb049317dfef64058ab367841a531ea5
+      provenance.json: f0e5a459014e2293021d1020b9c60e35584d95d80aa42bf87883316d2f2c1305
+
+sensor_profile:
+  default_mode: metadata
+  supported_modes: [metadata, sampled, full]
+  sample_points: 4096
+  max_block_bytes: 16777216
+  full_mode_requires_limit: true
+  expected_paths:
+    high_frequency:
+      required:
+        - /Vibration/Accel 1
+        - /Vibration/Accel 2
+        - /Context/PAU Speed
+        - /Context/PAU Torque
+        - /Context/Temperature
+      alternatives:
+        fm4: [/CI/FM4, /CI_4s/FM4]
+        na4: [/CI/NA4, /CI_4s/NA4]
+        m6a: [/CI/M6A, /CI_4s/M6A]
+        alr: [/CI/ALR, /CI_4s/ALR]
+
+image_profile:
+  default_mode: header
+  supported_modes: [header, sampled, full]
+  sample_size: 104
+  max_member_bytes: 8388608
+  max_pixels: 50000000
+  near_duplicate_hamming: 4
+  full_mode_requires_limit: true
+
+alignment_audit:
+  join_tolerance_seconds: 21600
+  join_tolerance_interpretation: exploratory audit boundary, not a forecast horizon
+  match_direction: past_only
+  six_hour_interval_seconds: 21600
+  six_hour_tolerance_seconds: 60
+  require_verified_utc: true
+  require_matching_clock_domain: true

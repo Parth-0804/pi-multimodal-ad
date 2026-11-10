@@ -1,0 +1,7 @@
+{
+  "commands": [
+    "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH='src:MILLING DATASET/source' ma_thesis_env/bin/python -B -m msm.evidence_audit --config 'MILLING DATASET/configs/stage5_audit.json' --output 'MILLING DATASET/runs/20261027T011419561081Z-stage5-validated'",
+    "PYTHONPATH='src:MILLING DATASET/source' ma_thesis_env/bin/python -B 'MILLING DATASET/source/write_stage5_reports.py' --run 'MILLING DATASET/runs/20261027T011419561081Z-stage5-validated'"
+  ],
+  "no_training_or_training_test_command": true
+}

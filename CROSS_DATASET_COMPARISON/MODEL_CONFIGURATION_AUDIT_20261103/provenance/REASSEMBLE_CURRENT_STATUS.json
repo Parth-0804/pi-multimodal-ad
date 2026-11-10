@@ -1,0 +1,54 @@
+{
+  "status": {
+    "utc": "2026-11-03T12:23:30.074113+00:00",
+    "stage": "STOPPED_AFTER_25_COMPLETED_FITS",
+    "status": "STOPPED",
+    "arm": "C_full_finetuned16",
+    "epoch_budget": 20,
+    "pending_B_fits": 0,
+    "completed_C_fits": 25,
+    "required_C_fits": 25,
+    "original_required_C_fits": 75,
+    "deferred_C_fits": 50,
+    "allowed_seed": 42,
+    "remaining_CNN_training_hours": 0,
+    "remaining_planning_GPU_job_hours": [
+      0,
+      0
+    ],
+    "remaining_planning_days_exclusive_GPU": [
+      0,
+      0
+    ],
+    "stop_request_id": "20261102_stop_after25_complete_fits_seed42",
+    "controller_pid": 18119,
+    "host_resources": {
+      "process_tree_RSS_GiB": 0.8580703735351562,
+      "process_tree_threads": 14,
+      "system_available_RAM_GiB": 58.277591705322266,
+      "disk_free_GiB": 39.2612419128418,
+      "system_load_average": [
+        3.97314453125,
+        4.54833984375,
+        3.61181640625
+      ]
+    },
+    "approved_fit_target_reached": true,
+    "complete_75_fit_study": false
+  },
+  "stop_receipt": {
+    "utc": "2026-11-03T12:23:30.061517+00:00",
+    "request_id": "20261102_stop_after25_complete_fits_seed42",
+    "reason": "User requested stop after 25 completed20-epoch fits",
+    "completed_C_fits": 25,
+    "allowed_seed": 42,
+    "do_not_start_remaining_seeds": true,
+    "all25_completion_and_model_prediction_hashes_verified": true,
+    "five_outer_folds_complete": true,
+    "epochs_per_fit": 20,
+    "original_75_fit_study_complete": false,
+    "deferred_fits": 50,
+    "additional_CNN_training_launched_after_cap": false,
+    "original_training_configuration_sha256": "dca336fbcf4a2947f0dd460f2e7f4dcab7851d4ac19d59576140dccfe140d39b"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "status": "PROPOSED_ONLY_BLOCKED_PENDING_LABEL_VISIBILITY_AND_GROUP_GATES",
+  "training_allowed": false,
+  "primary_sensor_allowlist": [
+    "left_joint_0.pos",
+    "left_joint_1.pos",
+    "left_joint_2.pos",
+    "left_joint_3.pos",
+    "left_joint_4.pos",
+    "left_joint_5.pos",
+    "left_left_carriage_joint.pos",
+    "right_joint_0.pos",
+    "right_joint_1.pos",
+    "right_joint_2.pos",
+    "right_joint_3.pos",
+    "right_joint_4.pos",
+    "right_joint_5.pos",
+    "right_left_carriage_joint.pos"
+  ],
+  "primary_sensor_statistics": [
+    "mean",
+    "population_std_ddof0",
+    "rms",
+    "minimum",
+    "maximum",
+    "peak_to_peak"
+  ],
+  "primary_sensor_dimensions": 84,
+  "excluded_primary_inputs": [
+    "action_commands",
+    "task_object_identity",
+    "operator_session_ids",
+    "future_recovery_information",
+    "invented_force_torque"
+  ],
+  "visual_frames": 16,
+  "CNN": "Frozen original pinned RT-DETR R18vd CNN only",
+  "CNN_pooling": "Last3 spatial means and16-frame mean",
+  "candidate_baselines": [
+    "visual",
+    "sensor_logistic",
+    "strong_sensor_only",
+    "averaging",
+    "F2_group_OOF"
+  ],
+  "quality_gate": "Deferred until independent OOF support and matched controls justified",
+  "outer_inner_target": [
+    3,
+    2
+  ],
+  "seeds_if_feasible": [
+    42,
+    123,
+    20261023
+  ],
+  "grouping": "Verified physical recording/session and paired-run aliases, never raw repository membership alone",
+  "split_definitions_created": false,
+  "current_verified_binary_examples": 0,
+  "current_verified_pairs": 0,
+  "required_prerequisites": [
+    "resolved native annotation semantics/defects",
+    "verified matched clean/failure intervals",
+    "human visibility review",
+    "physical group/pair identities",
+    "independent class support",
+    "physical timing uncertainty and sensor unit clarification"
+  ],
+  "alternative": "Qualitative pilot or new independent session/task/object holdout; no forced folds"
+}

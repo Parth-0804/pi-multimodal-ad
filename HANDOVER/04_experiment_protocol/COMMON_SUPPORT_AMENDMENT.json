@@ -1,0 +1,16 @@
+{
+  "utc_before_any_handover_model_score": "2026-10-27T22:23:39.215286+00:00",
+  "reason": "Full-video horizon wrongly demands force readings after their actual recording stopped in 92 test HSR trials. A fixed label-blind common observation window avoids out-of-support sensor padding and preserves official partitions.",
+  "previous_preserved_protocol": "HANDOVER/04_experiment_protocol/experiment_config.json",
+  "previous_eligible_counts": {
+    "train": 335,
+    "validation": 101,
+    "test": 59
+  },
+  "new_observation_policy": "Intersection of camera source timestamp support and raw wrench timestamp support, for every task/outcome/robot; keep the contiguous common camera rows. All six wrench values must still equal the provided nearest-source resampling exactly; maximum source timing gap stays <=0.1 s.",
+  "sampling": "16 equal source-clock bin centers inside this same common recorded span, labels/actions never used",
+  "unchanged": "Native outcome labels, official train/validation/test assignments, CNN/model/seeds/training budgets, sensors/statistics and corruption settings.",
+  "participant_oof": "Still blocked when no official individual mapping exists; no substitute trial-OOF.",
+  "model_results_inspected": false,
+  "active_root": "HANDOVER/experiments/common_support_v2"
+}

@@ -1,0 +1,1546 @@
+{
+  "audit_id": "20261028T115408Z",
+  "project_root": "/home/student/Master_Thesis_WS/pi-multimodal-ad",
+  "output_root": "/home/student/Master_Thesis_WS/pi-multimodal-ad/STORAGE_AUDIT/20261028T115408Z",
+  "created_utc": "2026-10-28T11:54:08.830131+00:00",
+  "created_Europe_Berlin": "2026-10-28T12:54:08+01:00",
+  "inventory_started_utc": "2026-10-28T11:50:59.327718+00:00",
+  "inventory_finished_utc": "2026-10-28T11:51:26.427873+00:00",
+  "git_commit": "94f61529116ebdc966bcf87704a93e4d02fa5e89",
+  "dirty": true,
+  "configuration_snapshot": {
+    "mode": "audit_only",
+    "scope": "project including hidden dirs plus explicitly referenced sibling REASSEMBLE sizes and metadata",
+    "follow_symlinks": false,
+    "hard_link_policy": "group by device and inode; unique blocks per subtree and whole root",
+    "duplicate_policy": "report_and_preserve; bounded fresh SHA256 for important independent copies",
+    "top_file_count": 100,
+    "large_file_threshold_bytes": 500000000,
+    "reserve_bytes": 16106127360,
+    "working_budget_bytes": [
+      40000000000,
+      50000000000
+    ],
+    "depth": "optional; no verified column-exclusion savings",
+    "raw_writes": false,
+    "raw_extraction": false,
+    "model_execution": false,
+    "cleanup": false,
+    "credential_contents_read": false
+  },
+  "software": {
+    "audit_python": "3.12.3",
+    "project_python": "3.12.3",
+    "git": "git version 2.43.0",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39"
+  },
+  "capacity": {
+    "total": 531415142400,
+    "used": 477895196672,
+    "available": 53503168512,
+    "quota": "unverified",
+    "statvfs": {
+      "f_bsize": 4096,
+      "f_frsize": 4096,
+      "f_blocks": 129740025,
+      "f_bfree": 13066393,
+      "f_bavail": 13062297,
+      "f_files": 66977792,
+      "f_ffree": 66429279,
+      "f_favail": 66429279
+    },
+    "filesystem": "ext4 /dev/sda1, df alias /dev/root",
+    "project_allocated": 101673512960,
+    "git_allocated": 15899389952,
+    "external_reassemble_allocated": 330622394368,
+    "approx_unassigned_used": 45599289344
+  },
+  "recovery_estimate_bytes": {
+    "green": 499712,
+    "yellow": 2548764672,
+    "unknown_preserve": 51671040,
+    "red_project": 99072577536,
+    "red_external": 330622394368,
+    "actually_reclaimed": 0
+  },
+  "source_matched_bytecode_candidates": [
+    "scripts/ops/__pycache__/repin_source_run.cpython-312.pyc",
+    "scripts/paderborn/__pycache__/common.cpython-312.pyc",
+    "scripts/rawvib/__pycache__/angular_features.cpython-312.pyc",
+    "src/reassemble/__pycache__/__init__.cpython-312.pyc",
+    "src/reassemble/__pycache__/acquire.cpython-312.pyc",
+    "src/reassemble/__pycache__/alignment.cpython-312.pyc",
+    "src/reassemble/__pycache__/inventory.cpython-312.pyc",
+    "src/reassemble/__pycache__/media.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/__init__.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/anchored.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/branch_banks.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/common.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/corruptions.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/finalize.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/finetune.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/historical_robustness.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/hybrid.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/models.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/neural.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/prefix_cache.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/reporting.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/robust_fusion.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/robust_report.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/supervisor.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/task3_report.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/unimodal.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/unimodal_report.cpython-312.pyc",
+    "src/reassemble/additional_improvements/__pycache__/visual_features.cpython-312.pyc"
+  ],
+  "unmatched_source_bytecode_preserve": [
+    "scripts/__pycache__/audit_alignment.cpython-312.pyc",
+    "scripts/__pycache__/audit_target.cpython-312.pyc",
+    "scripts/__pycache__/build_model_dataset.cpython-312.pyc",
+    "scripts/__pycache__/build_rtdetr_pseudo_boxes.cpython-312.pyc",
+    "scripts/__pycache__/build_sensor_features.cpython-312.pyc",
+    "scripts/__pycache__/derive_image_targets.cpython-312.pyc",
+    "scripts/__pycache__/describe_dataset.cpython-312.pyc",
+    "scripts/__pycache__/evaluate_naive_baselines.cpython-312.pyc",
+    "scripts/__pycache__/generate_dataset_evidence.cpython-312.pyc",
+    "scripts/__pycache__/generate_patchtst_results.cpython-312.pyc",
+    "scripts/__pycache__/generate_professor_presentation.cpython-312.pyc",
+    "scripts/__pycache__/generate_rtdetr_r4_results.cpython-312.pyc",
+    "scripts/__pycache__/generate_rtdetr_results.cpython-312.pyc",
+    "scripts/__pycache__/profile_images.cpython-312.pyc",
+    "scripts/__pycache__/profile_sensors.cpython-312.pyc",
+    "scripts/__pycache__/run_rtdetr_feasibility.cpython-312.pyc",
+    "scripts/__pycache__/train_patchtst.cpython-312.pyc",
+    "scripts/__pycache__/train_rtdetr_detector.cpython-312.pyc",
+    "scripts/__pycache__/train_rtdetr_multitask.cpython-312.pyc",
+    "scripts/__pycache__/train_rtdetr_regression.cpython-312.pyc",
+    "scripts/paderborn/__pycache__/extract_features.cpython-312.pyc",
+    "scripts/rawvib/__pycache__/l1_screen.cpython-312.pyc"
+  ],
+  "commands": [
+    {
+      "command": [
+        "df",
+        "-B1",
+        "."
+      ],
+      "returncode": 0,
+      "stdout": "Filesystem        1B-blocks         Used   Available Use% Mounted on\n/dev/root      531415142400 477895196672 53503168512  90% /\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "df",
+        "-i",
+        "."
+      ],
+      "returncode": 0,
+      "stdout": "Filesystem       Inodes  IUsed    IFree IUse% Mounted on\n/dev/root      66977792 548513 66429279    1% /\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "du",
+        "-x",
+        "-B1",
+        "-s",
+        "."
+      ],
+      "returncode": 0,
+      "stdout": "101673512960\t.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "du",
+        "-x",
+        "-B1",
+        "-s",
+        ".git"
+      ],
+      "returncode": 0,
+      "stdout": "15899389952\t.git\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--stat"
+      ],
+      "returncode": 0,
+      "stdout": " README.md                                              |  4 ++++\n REPO_MAP.md                                            |  6 ++++++\n docs/thesis_research_direction/THESIS_EVIDENCE_GAPS.md | 12 ++++++++++++\n 3 files changed, 22 insertions(+)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "git version 2.43.0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--stat"
+      ],
+      "returncode": 0,
+      "stdout": " README.md                                              |  4 ++++\n REPO_MAP.md                                            |  6 ++++++\n docs/thesis_research_direction/THESIS_EVIDENCE_GAPS.md | 12 ++++++++++++\n 3 files changed, 22 insertions(+)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ma_thesis_env/bin/python",
+        "-B",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "returncode": 0,
+      "stdout": "No broken requirements found.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ma_thesis_env/bin/python",
+        "-B",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "Python 3.12.3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--short",
+        "--branch",
+        "--untracked-files=all"
+      ],
+      "returncode": 0,
+      "output_sha256": "9164e7aaba559dbdf8c290fcf444fb80303d4bb4d2a9c75dbd005b4ac9015e69",
+      "path_entries": 1587
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--stat"
+      ],
+      "returncode": 0,
+      "stdout": " README.md                                              |  4 ++++\n REPO_MAP.md                                            |  6 ++++++\n docs/thesis_research_direction/THESIS_EVIDENCE_GAPS.md | 12 ++++++++++++\n 3 files changed, 22 insertions(+)\n"
+    }
+  ],
+  "audit_helper_commands": [
+    "python3 -B /tmp/project_storage_inventory.py",
+    "python3 -B /tmp/storage_audit_refine.py",
+    "python3 -B /tmp/storage_audit_evidence.py",
+    "python3 -B /tmp/write_storage_reports.py"
+  ],
+  "audit_helper_sha256": {
+    "/tmp/project_storage_inventory.py": "0c7d01c9c48a40eec10f1b6b014d97e62db403934bfab306f83ab20eaf771e14",
+    "/tmp/storage_audit_refine.py": "f1b30c84d889f6ad4bf7208b37a3abb5ec0860ffaafca53dca9dc043f28c0911",
+    "/tmp/storage_audit_evidence.py": "1691d683f529f7cdc089281458e6d63ae56bad94aa4c7be6ea5d344cad664694",
+    "/tmp/write_storage_reports.py": "80605afb010b5399b955612d7af4c1689cd9078f6c8857793e8e6c70be2cf8fe"
+  },
+  "methodology_version": "storage_audit_metadata_v1",
+  "input_manifest": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 4084,
+      "sha256": "88cb4f36ff41724b368337f0515254d2d5b369d581df4b8b39e4b798055295ee",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5733,
+      "sha256": "7bf6996c70f2fa7bbda996fdcef3e2f48eb4bc95a2102e9e6adacfa2d4ce3b54",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "REPO_MAP.md",
+      "bytes": 4021,
+      "sha256": "63aafba9b5f5dfd154444e8342d616e83c7873f98fb9438e9b95f5cf3341a92c",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "docs/active_scope.md",
+      "bytes": 2733,
+      "sha256": "c4cf9b5f154167dce0507d50322402d6070a812489b2d0e68008f9289f4961df",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "docs/data_boundaries.md",
+      "bytes": 3351,
+      "sha256": "004733d8ee63642bcf309f503fd13faadfc653f49dfc89e6f1418c355ab1a42e",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "docs/output_policy.md",
+      "bytes": 4474,
+      "sha256": "b3cd3d04184d7789bf7828c0717808a2f37bd33daed1fd8801fe9db6cff51d91",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "docs/repository_restructure/MIGRATION_PLAN.md",
+      "bytes": 5860,
+      "sha256": "bf6d4ad140b543442937936c4ac1b9eeed4497c336f61a4eec5b82741e967337",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "docs/maintenance/REASSEMBLE_CACHE_RETENTION.md",
+      "bytes": 7495,
+      "sha256": "7cdb8203043548bbe31441e83635d2d83c99edaa849e182750332b92216194d2",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "artifacts/phm2026/PHM_RAW_RETIREMENT_REPORT.md",
+      "bytes": 5754,
+      "sha256": "ca2253b403e9008ed0490d9cce3d4503c22c665f0a10b17a518a55209cb8f2ae",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "docs/phm2026/RAW_DATA_RECOVERY.md",
+      "bytes": 9205,
+      "sha256": "7259aa1802e2f52b5e0b72840a4929417b0f2ed7f781323445d893235fb0318e",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "docs/intel_welding/RESULTS_REVIEW.md",
+      "bytes": 4429,
+      "sha256": "1e873611adbd5af05bf5ff9d0e4eecccbaff262cc443fbde99fef2c67adb17bd",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "docs/thesis/FINAL_THESIS_REPRODUCIBILITY.md",
+      "bytes": 39565,
+      "sha256": "5011659ac41cff78fe3a09504b6703a2a8ebedc5f4f0856e2ab8ac5dc86123b1",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md",
+      "bytes": 1510,
+      "sha256": "fd9c0fcbb6b555f0efc4aa4e9a5dd053f9d861f61e7f786eaa60da381dfccdbe",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "MSM/README.md",
+      "bytes": 1020,
+      "sha256": "140ca54372743742dec27044a99b39ec7a86a075e4a1721f0699c2c151d2aea8",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "MSM/09_final_reports/REPRODUCIBILITY.md",
+      "bytes": 3040,
+      "sha256": "31fa27ceecf7047f59aa4d2d3d0ff01dfa6ab4afe5cc227b1765ed95703f69f3",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "HANDOVER/README.md",
+      "bytes": 1070,
+      "sha256": "2d8304373ceee46c2d8233a96ebcfd96b2ae4dc73e44a670edc16baa2379402e",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "HANDOVER/09_final_reports/REPRODUCIBILITY.md",
+      "bytes": 3115,
+      "sha256": "72ccd64e7f0c4ba720246316d408a496694e34d1a99a9802d1953be6a424302d",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "CROSS_DATASET_COMPARISON/REVIEW_HANDOFF.md",
+      "bytes": 1308,
+      "sha256": "0cfcc928e74373b3a73fab55eb9fa61f6ac60278ee2f0b066e25173fd8b75213",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "CROSS_DATASET_COMPARISON/configs/frozen_core.json",
+      "bytes": 9301,
+      "sha256": "41b1b5a0aa1d25ebcff47410e94f65d98ea08cdc0e5055e2b0548475d9bc69e8",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "CROSS_DATASET_COMPARISON/configs/execution_plan.json",
+      "bytes": 391,
+      "sha256": "86e1d60be819f55f31b3f706d3c2f25e0df100b1dc1ebbd48ef0ba0ae7a90063",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "CROSS_DATASET_COMPARISON/INDEPENDENT_REVIEW_PACKAGE/README_FOR_REVIEWER.md",
+      "bytes": 12791,
+      "sha256": "2c347c17674664b5114e57755d833e80d846326aa5987e9d24f8d18aace9eeab",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "REBOOT/00_dataset_overview/PINNED_DATASET_INVENTORY.json",
+      "bytes": 338481,
+      "sha256": "c156de81b9afc434b5f3c5ee41ae2a12e6f82481efb9309b6d1951b44a525a44",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/PHASE1_ACTIVE_REVISION.json",
+      "bytes": 224,
+      "sha256": "21072314d5bfe789d2394e1749fe4c95028398dbe238ab888d01cd6153132e84",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": ".pytest_cache/README.md",
+      "bytes": 302,
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": ".pytest_cache/CACHEDIR.TAG",
+      "bytes": 191,
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "REBOOT/03_video_sensor_alignment/NUMERICAL_ACQUISITION_MANIFEST.json",
+      "bytes": 32714,
+      "sha256": "f7671b5d443482af8ecd1ca56e2f7915cf11b89f0bd976c647a56d08945f5719",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "REBOOT/00_dataset_overview/PILOT_DOWNLOAD_PLAN.json",
+      "bytes": 11675,
+      "sha256": "8aef05e6e1296f82fb70f290ca44e3bdf4ae093640d462e8150f77b59792916f",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "REBOOT/02_labels_and_annotations/LABEL_GATE_SUMMARY.json",
+      "bytes": 1405,
+      "sha256": "0f9c5d5fec8c6f5439a00f017ef325fc59f3e16f7d5f92e3763c19641f3ca8fd",
+      "role": "explicitly inspected policy/research evidence"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/16mm-bar_install.json",
+      "bytes": 30828,
+      "sha256": "47ca07cde06390a8ea80c18623c8c4e6fcfa8e8dfafb6549d0eb6a820e49591f",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/16mm-bar_recovery_install.json",
+      "bytes": 34499,
+      "sha256": "dd1f53847c4f54407d8b61550151d3a0f09b6cf1f06e1275f617d2f6812e36b7",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/16mm-bar_recovery_remove.json",
+      "bytes": 9724,
+      "sha256": "359470b1da06074fd67be61a4ca4a4986c264fa9cac6a81cf9c0b6ce465f0c16",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/16mm-bar_remove.json",
+      "bytes": 24715,
+      "sha256": "207e64777d9d633473a5bb6cbe797cc1c7ec374e7e0b09259f7ff967bc22dd61",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/16mm-cylinder_install.json",
+      "bytes": 30795,
+      "sha256": "40187f74b218906dee6479538c13b9af427b675b21f1bdf950432dca14da8576",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/16mm-cylinder_recovery_install.json",
+      "bytes": 28141,
+      "sha256": "9e6c165429fe6fe7a7248ed1f6f34757030cc60ee6219523e0bf8710b73d20f8",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/16mm-cylinder_recovery_remove.json",
+      "bytes": 24715,
+      "sha256": "fa12546f006506916de986bdabe6adb217db563c5f4b5ef899e7383b712e41ca",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/16mm-cylinder_remove.json",
+      "bytes": 24715,
+      "sha256": "4114a5fbe5bf11df07c634c80b66787abee41a134e6bca2c54e51272f4980e06",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/HAN10E_recovery_remove.json",
+      "bytes": 24715,
+      "sha256": "a737288e085518a8749b2d5ac2f884a6cf22f9d7d9442d068c945543798a058d",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/HAN10e-install.json",
+      "bytes": 27138,
+      "sha256": "7e734830582448c20b09b8032b413471e917643c9fa3d562c80dc44b85f0aa9d",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/M12-fastener_install.json",
+      "bytes": 26789,
+      "sha256": "ecbeb68fd5e023312fc89f26ccb2a94799da62f037c0c60556a4244ed2acb985",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/M12-fastener_remove.json",
+      "bytes": 26787,
+      "sha256": "00fed01ca17fdfaa52fada250b7a28bee3e232ca9d1c87e5d530d021091276b7",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/RJ45_recovery_remove.json",
+      "bytes": 26714,
+      "sha256": "e79886826d0b3ebc737b313ad6eaeaf068635b849b67ed20ef086b154a690ca8",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/USB-A_recovery_install.json",
+      "bytes": 27134,
+      "sha256": "3a5f0defd77e12b0584e57da376b1aa0c416287b621d696f4cd59fd629a5144c",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/USB-A_recovery_remove.json",
+      "bytes": 26716,
+      "sha256": "ab69b2794952bebccb03694d59b7bd6131bc1e30acbc03978bea715edb9ac898",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/USBC_recovery_remove.json",
+      "bytes": 27061,
+      "sha256": "fa0d48f993d9fc487c9827ce9d7ff89bfe756f0b0d1df3d0cbc3ead0edd57521",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/han10e_recovery_install.json",
+      "bytes": 27803,
+      "sha256": "1582546310e77574b3dcddd89f2a37dac161f84ca52916543116176a7ff45e4b",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/han10e_remove.json",
+      "bytes": 24715,
+      "sha256": "96034b1abb47cd8a10732bf51cdac0424fdf7aa03cd30281771bbed45c21bc3d",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/m12_recovery_install.json",
+      "bytes": 26787,
+      "sha256": "74d6a8dffea10dc6735e5ca910954d22ed7eb54e62b21da7be1af36fe2c53f7d",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/m12_recovery_remove.json",
+      "bytes": 26787,
+      "sha256": "d2b4833ae75c1f465dc192830729d53d4202614242a5bf9e7fcda6e7046fa75a",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/nema1-15-plug_install.json",
+      "bytes": 29147,
+      "sha256": "a756128e2e4b57c674fdf32e94b75873fc246fe7de79cf09bf7d42f032023f8f",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/nema1-15-plug_recovery_install.json",
+      "bytes": 27833,
+      "sha256": "75b2ac2680f56fe8c00d96714647084ac40ac5632a1c8263b7227d49e9aa4263",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/nema1-15-plug_recovery_remove2.json",
+      "bytes": 26071,
+      "sha256": "6f5097f8b5e8fe557872f5537a617c193f9a8332f5048739344581e9133af65d",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/nema1-15-plug_remove.json",
+      "bytes": 25064,
+      "sha256": "beb86a449d4f9ad4301a8360c7206fce1256ceeac3d591b941bf1b71f267b75b",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/rca_install.json",
+      "bytes": 28831,
+      "sha256": "9d209c03a655bb3541736b0a29c188112c741dbdbcb62cca9b0ae551693567cf",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/rca_recovery_install.json",
+      "bytes": 15588,
+      "sha256": "08f1aba9b5ccee5a4c4ac063fef043de5ba3d2c8cef08733bb8dc4356406f891",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/rca_recovery_install1.json",
+      "bytes": 15586,
+      "sha256": "3cff985af5b8f8a945f8e2d045064b009e63cece34124791a74885ec1c49b88f",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/rca_remove.json",
+      "bytes": 25066,
+      "sha256": "8c9a9fa650d09dfd8acb1c2b13ab6947e5047dcdf54dc33ad6e8330cea364254",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/rj45-install.json",
+      "bytes": 33133,
+      "sha256": "975f51c66e40ba95b12d60259cbc10256d308dcdce960bd7c2d4aab57a909011",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/rj45_recovery_install.json",
+      "bytes": 27484,
+      "sha256": "6cebe106a493b4ff3310f319c2ff2bae0f68280339f6fc270027a0f1699c171c",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/rj45_remove.json",
+      "bytes": 28690,
+      "sha256": "1863f66956a7e73fcf4a70811ed9033a81dcb010cfe5624ec9c96347effdfbbf",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/sample_recovery-demonstration.json",
+      "bytes": 27764,
+      "sha256": "5033dc48ca5f35578da91259d84c9e10435133424f697d2701616b1f9e2b04b8",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/usb-c_install.json",
+      "bytes": 27826,
+      "sha256": "4cd3f7059912122dea88a0b0722fefdea304ab3e3ad84affab9bb501563a7db0",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/usb-c_remove.json",
+      "bytes": 25064,
+      "sha256": "563e8d58aa12334ccbe09ff1be6b0663a250f6cfe199ec27d5be6fb42d341467",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/usbA-install.json",
+      "bytes": 27138,
+      "sha256": "6468376f88c5643605c9e2a885f39f113692067f343c481acaff0a9fdf21b834",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/usbA_remove.json",
+      "bytes": 24713,
+      "sha256": "21262cfd63d396c9d775100ab988c082b2d5657c6f28c53c01c911f0ebe561c4",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/usbc_recovery_install.json",
+      "bytes": 16852,
+      "sha256": "8fc28698fbcb4b815f4ec845af18ed525d850d46784010649550febbd8a80252",
+      "role": "pinned public dataset file-tree metadata"
+    },
+    {
+      "path": "REBOOT/runs/20261028T113139848361Z-independent-feasibility-v1/evidence/file_trees/usbc_recovery_install2.json",
+      "bytes": 15584,
+      "sha256": "0c32865d3a82731d699c48a266a7c9edc629dacd70bebd9a6e15da5bd38701ca",
+      "role": "pinned public dataset file-tree metadata"
+    }
+  ],
+  "hash_verification": [
+    {
+      "path": "runs/phm2026_rtdetr_regression/20260814T020338751021Z-d0f225c8/checkpoints/rtdetr-l.pt",
+      "sha256": "6de60b10d4bc566f00cda0f5b4d64afe4b66d48dc9695d2171effb7859d8e73f",
+      "bytes": 66511432,
+      "unchanged": true
+    },
+    {
+      "path": "tutorials/rtdetr_storybook/rtdetr-l.pt",
+      "sha256": "6de60b10d4bc566f00cda0f5b4d64afe4b66d48dc9695d2171effb7859d8e73f",
+      "bytes": 66511432,
+      "unchanged": true
+    },
+    {
+      "path": "MILLING DATASET/runs/20261027T190717486889Z-matched-visual-review/MATCHED_CUT_REVIEW.pdf",
+      "sha256": "08ed80dc000cfd94000883144c2ab0781b7f5e8defb3ad88a13c6aaf63da427b",
+      "bytes": 46151763,
+      "unchanged": true
+    },
+    {
+      "path": "CROSS_DATASET_COMPARISON/INDEPENDENT_REVIEW_PACKAGE/01_Research_Reports/MILLING DATASET/runs/20261027T190717486889Z-matched-visual-review/MATCHED_CUT_REVIEW.pdf",
+      "sha256": "08ed80dc000cfd94000883144c2ab0781b7f5e8defb3ad88a13c6aaf63da427b",
+      "bytes": 46151763,
+      "unchanged": true
+    },
+    {
+      "path": "MILLING DATASET/data/raw/msm/versions/2/imi_vm20i/dataset25/20240302_080006.243000_s2.wav",
+      "sha256": "5123b74fad6564fb12edb81b50c91b9978c9d74cb69542299e25a578e0fb28a3",
+      "bytes": 43209068,
+      "unchanged": true
+    },
+    {
+      "path": "CROSS_DATASET_COMPARISON/INDEPENDENT_REVIEW_PACKAGE/10_Visual_And_Sensor_Examples/MILLING DATASET/data/raw/msm/versions/2/imi_vm20i/dataset25/20240302_080006.243000_s2.wav",
+      "sha256": "5123b74fad6564fb12edb81b50c91b9978c9d74cb69542299e25a578e0fb28a3",
+      "bytes": 43209068,
+      "unchanged": true
+    },
+    {
+      "path": "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_01/inner_fold_01/model.pt",
+      "sha256": "9f3a57597d0be2058f500c45ff14fc79da7f61adefa587da0a32763c0f7d95b2",
+      "bytes": 34070524,
+      "unchanged": true
+    },
+    {
+      "path": "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_01/inner_fold_02/model.pt",
+      "sha256": "f56061723ebbe1003639cdb2fd209ca12dbc199fbacc4b963e6e25692f46f8d4",
+      "bytes": 34070524,
+      "unchanged": true
+    }
+  ],
+  "zip_metadata_check": {
+    "method": "central-directory names and sizes versus expanded paths; no extraction, decompression, CRC scan or full archive SHA256",
+    "entries": 8595,
+    "missing": [],
+    "size_mismatch": [],
+    "archive_bytes": 1170486128
+  },
+  "external_zip_metadata_check": {
+    "file": "../datasets/REASSEMBLE/downloads/data.zip",
+    "members": 149,
+    "uncompressed_bytes": 263983579379,
+    "existing_name_size_matches": 149,
+    "payload_content_checked": false
+  },
+  "process_snapshot": {
+    "timestamp": "2026-10-28T11:40:52.617232+00:00",
+    "scope": "same UID comm, cwd and project/external data fd targets/modes; no arguments/environments/private state",
+    "processes": [
+      {
+        "pid": 1847011,
+        "name": "bash",
+        "cwd": ".",
+        "project_fds": []
+      },
+      {
+        "pid": 1849778,
+        "name": "bash",
+        "cwd": ".",
+        "project_fds": []
+      },
+      {
+        "pid": 1850298,
+        "name": "MainThread",
+        "cwd": ".",
+        "project_fds": []
+      },
+      {
+        "pid": 1850407,
+        "name": "bash",
+        "cwd": ".",
+        "project_fds": []
+      },
+      {
+        "pid": 1856569,
+        "name": "MainThread",
+        "cwd": ".",
+        "project_fds": []
+      },
+      {
+        "pid": 2691799,
+        "name": "python",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/PHASE1_COMPARISON_CONTROLLER.log",
+            "mode": "write"
+          },
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/PHASE1_COMPARISON_SINGLE_WRITER.lock",
+            "mode": "write"
+          },
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/PHASE1_SINGLE_WRITER.lock",
+            "mode": "write"
+          },
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          },
+          {
+            "path": "ma_thesis_env/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/LastResortHE-Regular.ttf",
+            "mode": "read"
+          },
+          {
+            "path": "ma_thesis_env/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf",
+            "mode": "read"
+          },
+          {
+            "path": "ma_thesis_env/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSansDisplay.ttf",
+            "mode": "read"
+          }
+        ]
+      },
+      {
+        "pid": 2729629,
+        "name": "MainThread",
+        "cwd": ".",
+        "project_fds": []
+      },
+      {
+        "pid": 2823659,
+        "name": "python",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          }
+        ]
+      },
+      {
+        "pid": 2823718,
+        "name": "python",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          }
+        ]
+      },
+      {
+        "pid": 2823722,
+        "name": "pt_data_worker",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/7fc8c0d55e2c2f8067518b2fe3691afd659822e70a7b8148bb1ecf51604dba20/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/ebc55d309ab16ae6b2f7525b00ee38558b4cf9ace9859e6328e1dda5dd4c9b34/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/1fec9ab339c7a53f6bad1f210769bbf7b1757bd29e2129a8f7d98a4612137f3f/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/0d97502ce3abb59bbfe7206b4e0b6997960339fb7cd328f7989ef6ab3830a32c/hand.mp4",
+            "mode": "read"
+          }
+        ]
+      },
+      {
+        "pid": 2823786,
+        "name": "pt_data_worker",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/c2637f2a165e579c63009c1a12aceb7fe036555d1a9e0707da18c1cc5ad13ce0/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/9e5301d035c45fd1af8ff665ff7838f332874a3f05f1a15013013e18a0f05a24/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/22690cd6c24d89406000175ba7981ae1e655b521d045e2fed6eafe9fb03aafa9/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/a32f571d55fbde564f8823d87b922553aac61e6d4243cd73956d8a527a7846f2/hand.mp4",
+            "mode": "read"
+          }
+        ]
+      },
+      {
+        "pid": 2823826,
+        "name": "pt_data_worker",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/d5c2015f812d795d7b04c19997ac3f7d76f83ed52e37cfecaa7fa0e1a7b31b4a/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/1fec9ab339c7a53f6bad1f210769bbf7b1757bd29e2129a8f7d98a4612137f3f/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/2509f290d2153371bcce546ce559f4bd9551d3c161f912ffece789c7048d8410/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/77634ca24b69189e1fb50c4e0391374cfd476c51f096add22746b59b5d7c1dea/hand.mp4",
+            "mode": "read"
+          }
+        ]
+      },
+      {
+        "pid": 2823865,
+        "name": "pt_data_worker",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/1cfdac8707f6f0c6396d944d4a9cf9c40ef6a35f06887046d14c6631fc386cc9/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/24b09e528806a6e3bd113dbcf3488a11689e30b3e30b565796078666243609ba/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/bbd5c2f86f695f17d4759568a342c7506691f8931c24ae6f45170d3eaf8d7879/hand.mp4",
+            "mode": "read"
+          },
+          {
+            "path": "../datasets/REASSEMBLE/cache/encoded_media/8e5fd7007b3cd3267e0b9ef9605860adc07b3fa42cec17f7e9a83f1b650538d1/hand.mp4",
+            "mode": "read"
+          }
+        ]
+      },
+      {
+        "pid": 2834331,
+        "name": "pt_data_worker",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          }
+        ]
+      },
+      {
+        "pid": 2834383,
+        "name": "pt_data_worker",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          }
+        ]
+      },
+      {
+        "pid": 2834400,
+        "name": "pt_data_worker",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          }
+        ]
+      },
+      {
+        "pid": 2834418,
+        "name": "pt_data_worker",
+        "cwd": ".",
+        "project_fds": [
+          {
+            "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+            "mode": "write"
+          }
+        ]
+      },
+      {
+        "pid": 3276423,
+        "name": "python3",
+        "cwd": ".",
+        "project_fds": []
+      }
+    ],
+    "access_errors": {
+      "PermissionError": 3
+    }
+  },
+  "complete_inventory_summary": {
+    "file_paths": 253185,
+    "directories": 26129,
+    "symlinks": 74,
+    "hardlink_groups": 11682,
+    "hardlink_extra_names": 11682,
+    "errors": [],
+    "top_directory_stats": [
+      {
+        "path": "data",
+        "allocated": 26939195392,
+        "apparent": 26909429006,
+        "files": 8296,
+        "dirs": 8319,
+        "links": 0,
+        "direct_files": 1,
+        "direct_dirs": 3,
+        "subtree_allocated": 26939195392
+      },
+      {
+        "path": "HANDOVER",
+        "allocated": 17334890496,
+        "apparent": 17315520748,
+        "files": 17370,
+        "dirs": 1311,
+        "links": 8,
+        "direct_files": 2,
+        "direct_dirs": 14,
+        "subtree_allocated": 17334890496
+      },
+      {
+        "path": ".git",
+        "allocated": 15899389952,
+        "apparent": 15889186001,
+        "files": 3400,
+        "dirs": 294,
+        "links": 0,
+        "direct_files": 8,
+        "direct_dirs": 6,
+        "subtree_allocated": 15899389952
+      },
+      {
+        "path": "runs",
+        "allocated": 9101754368,
+        "apparent": 9041755809,
+        "files": 27316,
+        "dirs": 1408,
+        "links": 8,
+        "direct_files": 1,
+        "direct_dirs": 22,
+        "subtree_allocated": 9101754368
+      },
+      {
+        "path": "00_experiments",
+        "allocated": 7234711552,
+        "apparent": 6933856762,
+        "files": 96779,
+        "dirs": 1234,
+        "links": 8,
+        "direct_files": 0,
+        "direct_dirs": 6,
+        "subtree_allocated": 7234711552
+      },
+      {
+        "path": "ma_thesis_env",
+        "allocated": 7214895104,
+        "apparent": 7068510170,
+        "files": 60656,
+        "dirs": 7579,
+        "links": 4,
+        "direct_files": 2,
+        "direct_dirs": 5,
+        "subtree_allocated": 7214895104
+      },
+      {
+        "path": "MILLING DATASET",
+        "allocated": 4358512640,
+        "apparent": 4352709211,
+        "files": 2586,
+        "dirs": 388,
+        "links": 0,
+        "direct_files": 2,
+        "direct_dirs": 7,
+        "subtree_allocated": 4358512640
+      },
+      {
+        "path": "26.10.2026_feedback_experiments",
+        "allocated": 4246818816,
+        "apparent": 4227451650,
+        "files": 5602,
+        "dirs": 144,
+        "links": 0,
+        "direct_files": 3,
+        "direct_dirs": 5,
+        "subtree_allocated": 4246818816
+      },
+      {
+        "path": "REBOOT",
+        "allocated": 3590254592,
+        "apparent": 3586391997,
+        "files": 1905,
+        "dirs": 304,
+        "links": 0,
+        "direct_files": 1,
+        "direct_dirs": 11,
+        "subtree_allocated": 3590254592
+      },
+      {
+        "path": "CROSS_DATASET_COMPARISON",
+        "allocated": 2711584768,
+        "apparent": 2690166462,
+        "files": 8761,
+        "dirs": 2371,
+        "links": 0,
+        "direct_files": 10,
+        "direct_dirs": 6,
+        "subtree_allocated": 2711584768
+      },
+      {
+        "path": "MSM",
+        "allocated": 1434316800,
+        "apparent": 1424453442,
+        "files": 6708,
+        "dirs": 1023,
+        "links": 2,
+        "direct_files": 3,
+        "direct_dirs": 13,
+        "subtree_allocated": 1434316800
+      },
+      {
+        "path": "artifacts",
+        "allocated": 504311808,
+        "apparent": 503190663,
+        "files": 481,
+        "dirs": 56,
+        "links": 0,
+        "direct_files": 0,
+        "direct_dirs": 5,
+        "subtree_allocated": 504311808
+      },
+      {
+        "path": "parth_ws_bootstrap",
+        "allocated": 471080960,
+        "apparent": 442572764,
+        "files": 11751,
+        "dirs": 1349,
+        "links": 4,
+        "direct_files": 11,
+        "direct_dirs": 6,
+        "subtree_allocated": 471080960
+      },
+      {
+        "path": "experiments",
+        "allocated": 369889280,
+        "apparent": 369046273,
+        "files": 323,
+        "dirs": 55,
+        "links": 36,
+        "direct_files": 1,
+        "direct_dirs": 6,
+        "subtree_allocated": 369889280
+      },
+      {
+        "path": "tutorials",
+        "allocated": 123179008,
+        "apparent": 122855674,
+        "files": 132,
+        "dirs": 27,
+        "links": 0,
+        "direct_files": 0,
+        "direct_dirs": 5,
+        "subtree_allocated": 123179008
+      },
+      {
+        "path": "docs",
+        "allocated": 74080256,
+        "apparent": 73072997,
+        "files": 433,
+        "dirs": 111,
+        "links": 0,
+        "direct_files": 4,
+        "direct_dirs": 9,
+        "subtree_allocated": 74080256
+      },
+      {
+        "path": "scratch",
+        "allocated": 51249152,
+        "apparent": 51070692,
+        "files": 92,
+        "dirs": 7,
+        "links": 0,
+        "direct_files": 0,
+        "direct_dirs": 1,
+        "subtree_allocated": 51249152
+      },
+      {
+        "path": "src",
+        "allocated": 2416640,
+        "apparent": 1878547,
+        "files": 213,
+        "dirs": 39,
+        "links": 0,
+        "direct_files": 0,
+        "direct_dirs": 4,
+        "subtree_allocated": 2416640
+      },
+      {
+        "path": "scripts",
+        "allocated": 1961984,
+        "apparent": 1527092,
+        "files": 167,
+        "dirs": 25,
+        "links": 0,
+        "direct_files": 0,
+        "direct_dirs": 14,
+        "subtree_allocated": 1961984
+      },
+      {
+        "path": ".cache",
+        "allocated": 1871872,
+        "apparent": 1686545,
+        "files": 86,
+        "dirs": 35,
+        "links": 0,
+        "direct_files": 0,
+        "direct_dirs": 1,
+        "subtree_allocated": 1871872
+      },
+      {
+        "path": "tests",
+        "allocated": 430080,
+        "apparent": 299016,
+        "files": 57,
+        "dirs": 12,
+        "links": 0,
+        "direct_files": 0,
+        "direct_dirs": 7,
+        "subtree_allocated": 430080
+      },
+      {
+        "path": "STORAGE_AUDIT",
+        "allocated": 303104,
+        "apparent": 286441,
+        "files": 10,
+        "dirs": 1,
+        "links": 0,
+        "direct_files": 0,
+        "direct_dirs": 1,
+        "subtree_allocated": 303104
+      },
+      {
+        "path": "configs",
+        "allocated": 196608,
+        "apparent": 132720,
+        "files": 31,
+        "dirs": 6,
+        "links": 0,
+        "direct_files": 0,
+        "direct_dirs": 5,
+        "subtree_allocated": 196608
+      },
+      {
+        "path": ".pytest_cache",
+        "allocated": 65536,
+        "apparent": 48683,
+        "files": 5,
+        "dirs": 2,
+        "links": 0,
+        "direct_files": 3,
+        "direct_dirs": 1,
+        "subtree_allocated": 65536
+      },
+      {
+        "path": "archive",
+        "allocated": 57344,
+        "apparent": 33989,
+        "files": 9,
+        "dirs": 1,
+        "links": 0,
+        "direct_files": 1,
+        "direct_dirs": 1,
+        "subtree_allocated": 57344
+      },
+      {
+        "path": "DATASET_RESEARCH",
+        "allocated": 12288,
+        "apparent": 5864,
+        "files": 2,
+        "dirs": 0,
+        "links": 4,
+        "direct_files": 2,
+        "direct_dirs": 0,
+        "subtree_allocated": 12288
+      },
+      {
+        "path": ".github",
+        "allocated": 8192,
+        "apparent": 7109,
+        "files": 1,
+        "dirs": 0,
+        "links": 0,
+        "direct_files": 1,
+        "direct_dirs": 0,
+        "subtree_allocated": 8192
+      },
+      {
+        "path": ".vscode",
+        "allocated": 8192,
+        "apparent": 4134,
+        "files": 1,
+        "dirs": 0,
+        "links": 0,
+        "direct_files": 1,
+        "direct_dirs": 0,
+        "subtree_allocated": 8192
+      }
+    ]
+  },
+  "git_ignore_check": {
+    "scope": "100 largest files plus named policy checks; exhaustive check stopped because CPU expensive",
+    "returncode": 0,
+    "paths": [
+      "HANDOVER/01_raw_dataset/official_dataset/archives/training_set.tar.gz",
+      "HANDOVER/01_raw_dataset/official_dataset/archives/training_set.tar.gz.part",
+      "HANDOVER/01_raw_dataset/official_dataset/archives/test_set.tar.gz",
+      "HANDOVER/01_raw_dataset/official_dataset/archives/test_set.tar.gz.part",
+      "HANDOVER/01_raw_dataset/official_dataset/archives/val_set.tar.gz",
+      "HANDOVER/01_raw_dataset/official_dataset/archives/val_set.tar.gz.part",
+      "CROSS_DATASET_COMPARISON/INDEPENDENT_REVIEW_PACKAGE/INDEPENDENT_REVIEW_PACKAGE.zip",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cu13/lib/libcublasLt.so.13",
+      "ma_thesis_env/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so",
+      "ma_thesis_env/lib/python3.12/site-packages/triton/_C/libtriton.so",
+      "ma_thesis_env/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so",
+      "MILLING DATASET/data/raw/msm/versions/2/imi_vm20i/dataset19/20240226_083623.908287_acc.csv",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2/staging/imi_vm20i/dataset19/20240226_083623.908287_acc.csv",
+      "MILLING DATASET/data/raw/msm/versions/2/imi_vm20i/dataset1/20240229_053831.227000_acc.csv",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2/staging/imi_vm20i/dataset1/20240229_053831.227000_acc.csv",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cu13/lib/libcufft.so.12",
+      "MILLING DATASET/data/raw/msm/versions/2/imi_vm20i/dataset4/20240229_062017.610010_acc.csv",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2/staging/imi_vm20i/dataset4/20240229_062017.610010_acc.csv",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn_engines_precompiled.so.9",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/nccl/lib/libnccl.so.2",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cusparselt/lib/libcusparseLt.so.0",
+      "ma_thesis_env/lib/python3.12/site-packages/_polars_runtime_32/_polars_runtime.abi3.so",
+      "artifacts/thesis/HUMAN_REVIEW_INTERFACE/20260929T142000Z.zip",
+      "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a/videos/observation.images.cam_left_wrist/chunk-000/file-004.mp4",
+      "REBOOT/01_raw_dataset/official_release/16mm-cylinder_install/77385af9a9acf3da3c76e8a8031e67623ff401e2/videos/observation.images.cam_right_wrist/chunk-000/file-000.mp4",
+      "REBOOT/01_raw_dataset/official_release/16mm-cylinder_install/77385af9a9acf3da3c76e8a8031e67623ff401e2/videos/observation.images.cam_low/chunk-000/file-000.mp4",
+      "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a/videos/observation.images.cam_low/chunk-000/file-000.mp4",
+      "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a/videos/observation.images.cam_right_wrist/chunk-000/file-000.mp4",
+      "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a/videos/observation.images.cam_high/chunk-000/file-002.mp4",
+      "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a/videos/observation.images.cam_high/chunk-000/file-000.mp4",
+      "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a/videos/observation.images.cam_high/chunk-000/file-004.mp4",
+      "REBOOT/01_raw_dataset/official_release/16mm-cylinder_install/77385af9a9acf3da3c76e8a8031e67623ff401e2/videos/observation.images.cam_high/chunk-000/file-000.mp4",
+      "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a/videos/observation.images.cam_left_wrist/chunk-000/file-000.mp4",
+      "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a/videos/observation.images.cam_left_wrist/chunk-000/file-002.mp4",
+      "REBOOT/01_raw_dataset/official_release/16mm-cylinder_install/77385af9a9acf3da3c76e8a8031e67623ff401e2/videos/observation.images.cam_left_wrist/chunk-000/file-000.mp4",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_EPOCH_SLOT_0.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_EPOCH_SLOT_1.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold02/PHASE1_EPOCH_SLOT_0.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold02/PHASE1_EPOCH_SLOT_1.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold01/PHASE1_EPOCH_SLOT_0.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_paused_study_checkpoint/PHASE1_EPOCH_SLOT_1.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold04/PHASE1_EPOCH_SLOT_1.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold01/PHASE1_EPOCH_SLOT_1.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold04/PHASE1_EPOCH_SLOT_0.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold03/PHASE1_EPOCH_SLOT_0.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold03/PHASE1_EPOCH_SLOT_1.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/26102026_execution/26102026_transition_checkpoint/PHASE1_EPOCH_SLOT_1.pt",
+      "ma_thesis_env/lib/python3.12/site-packages/llvmlite/binding/libllvmlite.so",
+      "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a/videos/observation.images.cam_right_wrist/chunk-000/file-002.mp4",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cu13/lib/libcusparse.so.12",
+      "runs/phm2026_rtdetr_pseudo_boxes/20260814T040854991567Z-3fa0f794/tables/component_decisions.csv",
+      "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a/videos/observation.images.cam_low/chunk-000/file-002.mp4",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cu13/lib/libcusolver.so.12",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner3_seed20260927/micro2/slot1.pt",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner3_seed20260927/micro2/slot0.pt",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner0_seed20260927/micro2/slot0.pt",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner0_seed20260927/micro2/slot1.pt",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner2_seed20260927/micro2/slot1.pt",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner2_seed20260927/micro2/slot0.pt",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner1_seed20260927/micro2/slot1.pt",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner1_seed20260927/micro2/slot0.pt",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/refit_seed20260927/micro2/slot0.pt",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_full_cnn_preflight_01/PHASE1_EPOCH_SLOT_1.pt",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cu13/lib/libcurand.so.10",
+      "runs/phm2026_rtdetr_multitask/20260814T050026535618Z-9b00f099/checkpoints/best_multitask.pt",
+      "runs/phm2026_rtdetr_multitask/20260814T050026535618Z-9b00f099/checkpoints/last_multitask.pt",
+      "MILLING DATASET/runs/20261027T190717486889Z-matched-visual-review/MSM_MATCHED_CUT_REVIEW.zip",
+      "26.10.2026_feedback_experiments/runs/20261026T212550Z-934ad6c7/checks/serial_npz_disposable.pt",
+      "26.10.2026_feedback_experiments/runs/20261026T212550Z-934ad6c7/checks/workers2_pinned_disposable.pt",
+      "26.10.2026_feedback_experiments/runs/20261026T212550Z-934ad6c7/checks/workers4_pinned_disposable.pt",
+      "26.10.2026_feedback_experiments/runs/20261026T213457Z-stream-a8efd0e8/checks/stream_serial_npz_disposable.pt",
+      "26.10.2026_feedback_experiments/runs/20261026T213457Z-stream-a8efd0e8/checks/stream_workers2_pinned_disposable.pt",
+      "26.10.2026_feedback_experiments/runs/20261026T213457Z-stream-a8efd0e8/checks/stream_workers4_pinned_disposable.pt",
+      "26.10.2026_feedback_experiments/runs/20261026T214258Z-stream-ca88704c/checks/stream_serial_npz_disposable.pt",
+      "26.10.2026_feedback_experiments/runs/20261026T214258Z-stream-ca88704c/checks/stream_workers2_pinned_disposable.pt",
+      "26.10.2026_feedback_experiments/runs/20261026T214258Z-stream-ca88704c/checks/stream_workers4_pinned_disposable.pt",
+      "26.10.2026_feedback_experiments/runs/20261026T215300Z-selected16-e15865ad/checks/selected16_workers2_pinned_disposable.pt",
+      "26.10.2026_feedback_experiments/runs/20261026T215300Z-selected16-e15865ad/checks/selected16_workers4_pinned_disposable.pt",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cu13/lib/libnvrtc.alt.so.13",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cu13/lib/libnvrtc.so.13",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn_adv.so.9",
+      "ma_thesis_env/lib/python3.12/site-packages/nvidia/cu13/lib/libcusolverMg.so.12",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/inner0_seed20260928/micro2/slot0.pt",
+      "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/training_recovery/outer0/refit_seed20260927/micro2/slot1.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_04/inner_fold_02/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_04/inner_fold_04/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_01/inner_fold_01/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_01/inner_fold_02/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_01/inner_fold_03/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_01/inner_fold_04/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_02/inner_fold_01/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_02/inner_fold_02/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_02/inner_fold_03/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_02/inner_fold_04/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_02/outer_assessment/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_03/inner_fold_01/optimizer_checkpoint.pt",
+      "00_experiments/frozen32_vs_finetuned32_fusion_diagnosis/results/seed_20261023/finetuned32_two_epochs/fold_03/inner_fold_02/optimizer_checkpoint.pt",
+      ".pytest_cache/CACHEDIR.TAG",
+      "synology_cookies.txt"
+    ],
+    "ignored_count": 100
+  },
+  "existing_file_metadata_recheck": {
+    "baseline_files": 253185,
+    "missing_count": 0,
+    "missing_paths": [],
+    "changed_count": 5,
+    "changed_paths": [
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/PHASE1_COMPARISON_PROCESS_ATTEMPTS.json",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/PHASE1_COMPARISON_STATUS.json",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/PHASE1_PROGRESS.json",
+      "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_reports/PHASE1_100EPOCH_COMPARISON_REPORT.md",
+      "REBOOT/src/select_pilot.py"
+    ],
+    "note": "Size/mtime/inode comparison only; concurrent experiment/source-audit changes are not attributed to this audit. No existing file was opened for writing by audit scripts."
+  },
+  "working_tree_delta": {
+    "added_status_entries": [
+      "?? REBOOT/tests/test_feasibility_gates.py",
+      "?? STORAGE_AUDIT/20261028T115408Z/COMPLETE_DIRECTORY_STRUCTURE.md",
+      "?? STORAGE_AUDIT/20261028T115408Z/DATASET_STORAGE_BREAKDOWN.md",
+      "?? STORAGE_AUDIT/20261028T115408Z/EXPERIMENT_ARTIFACT_AUDIT.md",
+      "?? STORAGE_AUDIT/20261028T115408Z/POTENTIAL_SPACE_RECOVERY.md",
+      "?? STORAGE_AUDIT/20261028T115408Z/PROJECT_STORAGE_OVERVIEW.md",
+      "?? STORAGE_AUDIT/20261028T115408Z/REBOOT_STORAGE_FEASIBILITY.md",
+      "?? STORAGE_AUDIT/20261028T115408Z/RESEARCHER_HANDOFF.md"
+    ],
+    "removed_status_entries": [],
+    "baseline_status_sha256": "6b302fb92075e435af587c8d87e763669779db29f47d8920995c17243aefd717",
+    "final_status_sha256": "ff307c088df3e7a45df0e3791b69a51f3008d0419e2e844163ebd3e0b31fa777",
+    "baseline_index_mtime_ns": 1793030452002336933,
+    "final_index_mtime_ns": 1793030452002336933
+  },
+  "validation": {
+    "top100_count": 100,
+    "sorted_descending": true,
+    "all_top100_git_status_checked": true,
+    "all_requested_reports_exist": true,
+    "recovery_partition_sums_to_project": true,
+    "duplicate_bytes_freshly_hashed": 379885574,
+    "sha_duplicate_pairs": 3,
+    "same_size_nonduplicate_pairs": 1,
+    "git_diff_check_exit": 0,
+    "pip_check_exit": 0,
+    "pytest": "not run; reports-only task"
+  },
+  "warnings": [
+    "Live writers: non-atomic snapshot; recheck capacity and dependencies before any cleanup.",
+    "User quota unverified; quota executable not found.",
+    "No unrelated home/system caches or other users scanned.",
+    "SHA-256 bounded to eight selected files; no full raw payload hash or archive CRC scan.",
+    "ZIP central-directory name/size agreement is not current full-content verification.",
+    "Exhaustive Git-ignore helper stopped after CPU overrun; all top-100 worktree candidates successfully checked separately.",
+    "Git internals have no worktree tracking classification.",
+    "Conditional feature regeneration not independently executed; preserve until verification and researcher approval.",
+    "Prior authorized PHM retirement and cache eviction excluded from present recovery.",
+    "Hugging Face dataset web opens failed; remote file sizes use local pinned receipts.",
+    "No reflink/shared-extent survey; potential released-block counts are upper bounds.",
+    "Proc visibility excludes other users and inaccessible process state; missing open descriptors do not prove inactivity.",
+    "Concurrent REBOOT acquisition changed project size and largest-file ranking; final refreshed inventory includes current pilot and supersedes the first dated report set."
+  ],
+  "output_manifest": [
+    {
+      "path": "PROJECT_STORAGE_OVERVIEW.md",
+      "bytes": 4784,
+      "sha256": "cad5e9f4be9c1298b57c697f811b8c93f61d48dcf2bceb88c1b3d48727e594f3",
+      "role": "audit report"
+    },
+    {
+      "path": "COMPLETE_DIRECTORY_STRUCTURE.md",
+      "bytes": 77200,
+      "sha256": "9b9aaee3d9e86268c93b3d3d5a9edd5f4afe19ea1cd4e8658990498bae18af7e",
+      "role": "audit report"
+    },
+    {
+      "path": "LARGEST_FILES.csv",
+      "bytes": 80222,
+      "sha256": "cb22dad350fa3e2198407a73f2a9a0b09d61eed82f3ff02de0f9934b3a6982f1",
+      "role": "audit report"
+    },
+    {
+      "path": "DATASET_STORAGE_BREAKDOWN.md",
+      "bytes": 5688,
+      "sha256": "1ad80fe5c1dc7c24c23fc99779fa339a22839d250d61c3914d50510143160505",
+      "role": "audit report"
+    },
+    {
+      "path": "EXPERIMENT_ARTIFACT_AUDIT.md",
+      "bytes": 7797,
+      "sha256": "92e2cbd999e233119d93bcd4f365f93f988ad87f7e827ba98dd8c1b54c7b03bf",
+      "role": "audit report"
+    },
+    {
+      "path": "DUPLICATE_FILE_CANDIDATES.csv",
+      "bytes": 18879,
+      "sha256": "ea9ba01fc3bbf915b0e1b908dfd444e1c70c75fe1175ec347a8fc9450530d3c0",
+      "role": "audit report"
+    },
+    {
+      "path": "POTENTIAL_SPACE_RECOVERY.md",
+      "bytes": 6871,
+      "sha256": "9908d8f49dadf6480874170883fe6c0965a7b05c319e64e0ab285c101473c857",
+      "role": "audit report"
+    },
+    {
+      "path": "REBOOT_STORAGE_FEASIBILITY.md",
+      "bytes": 9154,
+      "sha256": "93c8e4e5b87ff549e547df5555a549b5cff8688f2b78f77a718fe21c3aaaa6ee",
+      "role": "audit report"
+    },
+    {
+      "path": "RESEARCHER_HANDOFF.md",
+      "bytes": 4940,
+      "sha256": "f5d457367bdee195ee316289d01efbed7d907dd8ee063d739da9253dcf2cce36",
+      "role": "audit report"
+    }
+  ],
+  "manifest_self_reference_note": "AUDIT_PROVENANCE.json records the nine report identities and excludes its own recursive hash.",
+  "concurrent_reboot_work": {
+    "initial_inventory_allocated_bytes": 24637440,
+    "final_inventory_allocated_bytes": 3590254592,
+    "difference_bytes": 3565617152,
+    "separate_workflow": "Selected pilot RGB/numerical inputs, range receipts, annotation gates and review derivatives appeared while audit was in progress; none initiated by this storage audit",
+    "numerical_receipt_count": 10,
+    "range_projection_episode_count": 2,
+    "recorded_range_transfer_bytes": 225771,
+    "recorded_full_source_bytes_avoided": 1078422618,
+    "receipt_validation_scope": "Receipt summaries and filesystem metadata read; no transfer/decode/projection replay and no full source hash claimed",
+    "earlier_audit_snapshot": "STORAGE_AUDIT/20261028T114917Z",
+    "supersedes": "Earlier assessment reports for handoff; earlier dated snapshot retained unchanged"
+  }
+}

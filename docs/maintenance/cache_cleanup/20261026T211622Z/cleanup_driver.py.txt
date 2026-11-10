@@ -1,0 +1,243 @@
+"""One-off, researcher-authorized cleanup of two literal derived-cache roots.
+
+Prepare writes an exact inventory. Execute rechecks every entry before unlinking
+only the inventoried NPZ files. This script cannot select other cleanup roots.
+"""
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import platform
+import stat
+import subprocess
+import sys
+
+REPO = Path.cwd().resolve()
+AUDIT = REPO / 'docs/maintenance/cache_cleanup/20261026T211622Z'
+PREFIX = Path('runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/frozen_prefix')
+PIXEL_RUN = Path('parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01')
+ROOTS = {'prefix': PREFIX, 'pixels': PIXEL_RUN / 'shared_cache/pixels'}
+EXPECTED = {'prefix': 4530, 'pixels': 2711}
+
+
+def utc():
+    return datetime.now(timezone.utc).isoformat()
+
+
+def sha(path):
+    h = hashlib.sha256()
+    with path.open('rb') as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b''):
+            h.update(block)
+    return h.hexdigest()
+
+
+def write(path, value):
+    with path.open('x') as stream:
+        json.dump(value, stream, indent=2)
+        stream.write('\n')
+
+
+def stamp(path):
+    s = path.lstat()
+    return dict(bytes=s.st_size, allocated_bytes=s.st_blocks * 512,
+                mtime_ns=s.st_mtime_ns, inode=s.st_ino, device=s.st_dev,
+                links=s.st_nlink, mode=s.st_mode)
+
+
+def disk():
+    v = os.statvfs(REPO)
+    return dict(total_bytes=v.f_blocks * v.f_frsize,
+                available_bytes=v.f_bavail * v.f_frsize,
+                used_bytes=(v.f_blocks - v.f_bfree) * v.f_frsize)
+
+
+def no_open_arrays():
+    matches = []
+    denied = 0
+    for p in Path('/proc').iterdir():
+        if not p.name.isdigit():
+            continue
+        try:
+            descriptors = list((p / 'fd').iterdir())
+        except OSError:
+            denied += 1
+            continue
+        for fd in descriptors:
+            try:
+                target = os.readlink(fd)
+            except OSError:
+                continue
+            if target.endswith('.npz') and any(target.startswith(str(REPO / root) + '/') for root in ROOTS.values()):
+                matches.append(int(p.name))
+    if matches:
+        raise RuntimeError('Cache arrays have accessible open handles; stop cleanup')
+    return dict(accessible_open_array_handles=0, inaccessible_process_fd_directories=denied,
+                limitation='Other-user process descriptors may be inaccessible; no command lines or environments inspected')
+
+
+def scan():
+    entries = []
+    for name, relative in ROOTS.items():
+        root = REPO / relative
+        assert root.is_dir() and root.resolve() == root and not root.is_symlink()
+        for parent, dirs, files in os.walk(root, followlinks=False):
+            assert not any((Path(parent) / d).is_symlink() for d in dirs)
+            for filename in sorted(files):
+                path = Path(parent) / filename
+                assert not path.is_symlink()
+                if path.suffix != '.npz':
+                    assert name == 'prefix' and path.suffix == '.json'
+                    continue
+                s = stamp(path)
+                assert stat.S_ISREG(s['mode']) and s['links'] == 1
+                assert path.resolve().is_relative_to(root)
+                entries.append(dict(cache=name, path=str(path.relative_to(REPO)), **s))
+    for name in ROOTS:
+        assert sum(e['cache'] == name for e in entries) == EXPECTED[name]
+    return sorted(entries, key=lambda e: e['path'])
+
+
+def protected_snapshot():
+    snapshots = {}
+    for root in [REPO / PREFIX.parent, REPO / PIXEL_RUN, REPO / '00_experiments']:
+        for parent, dirs, files in os.walk(root, followlinks=False):
+            dirs[:] = [d for d in dirs if not (Path(parent) / d).is_symlink()]
+            for filename in files:
+                p = Path(parent) / filename
+                if p.is_symlink() or filename in {'CACHE_EVICTED.json'} or filename.startswith('.env') or filename == 'synology_cookies.txt':
+                    continue
+                if p.suffix == '.npz' and any(p.is_relative_to(REPO / r) for r in ROOTS.values()):
+                    continue
+                snapshots[str(p.relative_to(REPO))] = stamp(p)
+    return snapshots
+
+
+def retained_hashes():
+    paths = list((REPO / PREFIX).glob('*.json')) + [
+        REPO / PIXEL_RUN / 'data_manifests/cohort_and_frames.json',
+        REPO / PIXEL_RUN / 'config/resolved_config.json',
+    ]
+    return {str(p.relative_to(REPO)): sha(p) for p in paths}
+
+
+def prepare():
+    assert REPO.name == 'pi-multimodal-ad' and (REPO / 'AGENTS.md').is_file()
+    assert not AUDIT.exists(), 'Use a distinct reviewed cleanup run; do not overwrite evidence'
+    entries = scan()
+    tracked = subprocess.check_output(['git', 'ls-files', '-z', '--', *(str(r) for r in ROOTS.values())]).decode().split('\0')
+    assert not any(p.endswith('.npz') for p in tracked), 'Unexpected tracked cache array'
+    prefix = json.loads((REPO / PREFIX / 'manifest.json').read_text())['files']
+    prefix_lookup = {p['path']: p for p in prefix}
+    samples = json.loads((REPO / PIXEL_RUN / 'data_manifests/cohort_and_frames.json').read_text())
+    pixel_lookup = {str(PIXEL_RUN / p['pixel_cache']): p for p in samples}
+    for e in entries:
+        if e['cache'] == 'prefix':
+            original = prefix_lookup[e['path']]
+            assert e['bytes'] == original['bytes']
+            e['preserved_recorded_array_sha256'] = original['sha256']
+        else:
+            original = pixel_lookup[e['path']]
+            e['sample_id'] = original['sample_id']
+            e['preserved_pixel_content_sha256'] = original['pixel_content_sha256']
+    sys.path.insert(0, str(REPO / 'src'))
+    from reassemble.cache_preflight import assess
+    preflight = assess(REPO)
+    assert preflight['ok'], preflight
+    process_check = no_open_arrays()
+    AUDIT.mkdir(parents=True)
+    write(AUDIT / 'array_inventory.json', entries)
+    write(AUDIT / 'retained_metadata_sha256.json', retained_hashes())
+    write(AUDIT / 'protected_files_metadata.json', protected_snapshot())
+    write(AUDIT / 'preflight_before.json', preflight)
+    plan = dict(status='prepared_not_deleted', prepared_utc=utc(),
+                authorization='Researcher explicitly requested removal of both identified derived caches, recovery documentation and code prechecks on 2026-10-26; no fresh reproduction requested or performed.',
+                scope={k: str(v) for k, v in ROOTS.items()}, expected_array_counts=EXPECTED,
+                git_HEAD=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+                git_status=subprocess.check_output(['git', 'status', '--short', '--branch', '--untracked-files=all'], text=True),
+                python=platform.python_version(), script_sha256=sha(Path(__file__)),
+                command='python3 -B /tmp/pi_multimodal_cache_cleanup_20261026.py execute',
+                disk_before=disk(), process_check=process_check,
+                inventory_sha256=sha(AUDIT / 'array_inventory.json'),
+                expected_allocated_array_bytes=sum(e['allocated_bytes'] for e in entries),
+                preservation='All cache JSON metadata is hashed. Other files in the three affected study areas are compared by lstat metadata; no full raw scan or array rehash.',
+                reproduction='Not performed; existing timing, source code and input-path evidence only')
+    write(AUDIT / 'plan.json', plan)
+    print(json.dumps({k:plan[k] for k in ['status','expected_array_counts','expected_allocated_array_bytes','disk_before']}, indent=2))
+
+
+def execute():
+    plan = json.loads((AUDIT / 'plan.json').read_text())
+    assert not (AUDIT / 'completion.json').exists()
+    assert plan['script_sha256'] == sha(Path(__file__))
+    assert plan['inventory_sha256'] == sha(AUDIT / 'array_inventory.json')
+    entries = json.loads((AUDIT / 'array_inventory.json').read_text())
+    current = scan()
+    assert [{k:e[k] for k in c} for e,c in zip(entries,current)] == current and len(entries) == len(current)
+    before_hashes = json.loads((AUDIT / 'retained_metadata_sha256.json').read_text())
+    assert retained_hashes() == before_hashes
+    before_protected = json.loads((AUDIT / 'protected_files_metadata.json').read_text())
+    assert protected_snapshot() == before_protected
+    process_check = no_open_arrays()
+    for name, relative in ROOTS.items():
+        write(REPO / relative / 'CACHE_EVICTED.json', dict(
+            recorded_utc=utc(), cache=name, action='Researcher-authorized eviction of inventoried NPZ arrays',
+            authoritative_completion=str((AUDIT / 'completion.json').relative_to(REPO)),
+            inventory=str((AUDIT / 'array_inventory.json').relative_to(REPO)),
+            recovery_guide='docs/maintenance/REASSEMBLE_CACHE_RETENTION.md',
+            historical_complete_json_is_not_current_availability=True,
+            no_rebuild_or_training_authorized=True))
+    deleted = 0
+    with (AUDIT / 'deletion_log.jsonl').open('x') as log:
+        for e in entries:
+            path = REPO / e['path']
+            assert path.suffix == '.npz' and path.resolve().is_relative_to(REPO / ROOTS[e['cache']])
+            assert stamp(path) == {k:e[k] for k in stamp(path)}
+            path.unlink()
+            log.write(json.dumps(dict(path=e['path'], result='unlinked')) + '\n')
+            deleted += 1
+        log.flush()
+        os.fsync(log.fileno())
+    # Additive eviction markers are intentionally excluded from these snapshots.
+    after_hashes = {rel:sha(REPO / rel) for rel in before_hashes}
+    assert after_hashes == before_hashes
+    assert protected_snapshot() == before_protected
+    for relative in ROOTS.values():
+        assert not any((REPO / relative).rglob('*.npz'))
+    sys.path.insert(0, str(REPO / 'src'))
+    from reassemble.cache_preflight import assess
+    preflight = assess(REPO)
+    write(AUDIT / 'preflight_after.json', preflight)
+    assert preflight['checks'][0]['missing_arrays'] == EXPECTED['prefix']
+    assert preflight['checks'][1]['cached_samples'] == 0
+    assert preflight['checks'][1]['ok']
+    after = disk()
+    completion = dict(status='complete', completed_utc=utc(), deleted_arrays=deleted,
+                      counts=EXPECTED, allocated_array_bytes_unlinked=sum(e['allocated_bytes'] for e in entries),
+                      retained_metadata_hashes_checked=len(before_hashes),
+                      protected_files_metadata_checked=len(before_protected),
+                      retained_metadata_unchanged=True, protected_files_metadata_unchanged=True,
+                      disk_before=plan['disk_before'], disk_after=after,
+                      available_bytes_change=after['available_bytes']-plan['disk_before']['available_bytes'],
+                      process_check=process_check,
+                      numerical_reproduction_performed=False,
+                      note='Free-space change also includes concurrent filesystem activity; unlink size is measured from the exact approved file inventory.')
+    write(AUDIT / 'completion.json', completion)
+    print(json.dumps(completion, indent=2))
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('action', choices=['prepare', 'execute'])
+    action = parser.parse_args().action
+    if action == 'prepare':
+        prepare()
+    else:
+        try:
+            execute()
+        except BaseException as error:
+            if AUDIT.is_dir() and not (AUDIT / 'failure.json').exists():
+                write(AUDIT / 'failure.json', dict(utc=utc(), error=repr(error), status='requires_inspection; consult deletion_log.jsonl before any retry'))
+            raise

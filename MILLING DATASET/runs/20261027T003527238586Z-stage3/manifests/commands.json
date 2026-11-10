@@ -1,0 +1,31 @@
+{
+  "UTC": "2026-10-27T00:48:19.249383+00:00",
+  "commands": [
+    {
+      "command": "PYTHONPATH='src:MILLING DATASET/source' ma_thesis_env/bin/python -B -m msm.smoke --config 'MILLING DATASET/configs/stage3_protocol.json' --output 'MILLING DATASET/runs/20261027T003527238586Z-stage3'",
+      "status": "passed",
+      "evidence": "manifests/smoke_validation.json"
+    },
+    {
+      "command": "PYTHONPATH='src:MILLING DATASET/source' ma_thesis_env/bin/python -B -m msm.benchmark --run 'MILLING DATASET/runs/20261027T003527238586Z-stage3'",
+      "status": "refused before work: another GPU compute process at admission",
+      "evidence": "MSM_IMPLEMENTATION_VALIDATION.md"
+    },
+    {
+      "command": "PYTHONPATH='src:MILLING DATASET/source' ma_thesis_env/bin/python -B -m msm.head_benchmark --run 'MILLING DATASET/runs/20261027T003527238586Z-stage3'",
+      "status": "passed",
+      "evidence": "reports/cached_head_benchmark.json"
+    },
+    {
+      "command": "PYTHONPATH='src:MILLING DATASET/source' ma_thesis_env/bin/python -B -m msm.validate --run 'MILLING DATASET/runs/20261027T003527238586Z-stage3'",
+      "status": "passed",
+      "evidence": "validation.json"
+    }
+  ],
+  "common_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+  },
+  "report_writer_sha256": "a0486df840b821df094a096a46a905c6b33d13507805d17c8d3f2f3b442cb92d"
+}

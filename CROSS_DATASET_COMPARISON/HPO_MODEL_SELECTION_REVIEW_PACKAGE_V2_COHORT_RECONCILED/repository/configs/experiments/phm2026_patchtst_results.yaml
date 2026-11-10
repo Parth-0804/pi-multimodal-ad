@@ -1,0 +1,37 @@
+schema_version: "1.0.0"
+study: phm2026_patchtst_results
+seed: 20260814
+output_root: runs/phm2026_patchtst_results
+source_runs:
+  sensor_features:
+    run_id: 20260814T121146792755Z-4016432b
+    directory: runs/phm2026_sensor_features/20260814T121146792755Z-4016432b
+    artifacts:
+      tables/minute_feature_table.parquet: 74a1170ff8facd81e38459e84a9396f5c828e1934325dea8a00836508f6de7a0
+      tables/sensor_run_sequences.parquet: eee61b0628c6bb0984d6c68141f97408ec4523a56e427ea20cbf72e4e53069e8
+      tables/channel_availability.parquet: d992cdd583bfc4bfb94f36f4e0ff8fca5344beea6b7434ff70d124b7c164c5cf
+      reports/sensor_feature_summary.json: 5a244abc2ee869f662855a8f975b3bd7edada21ca6d3b69fba74a8542527fd48
+  patchtst:
+    run_id: 20260911T193200607744Z-433d4154
+    directory: runs/phm2026_patchtst_baseline/20260911T193200607744Z-433d4154
+    artifacts:
+      tables/predictions.parquet: ae48d13b22c73b54bf3618f6de57481a486dc7c54bc141240fde161a8fde97ce
+      tables/training_history.parquet: 37f5e19621b8f530cd31ab49710a4c7bad2d3d70a430bef33312d8b98f28d190
+      tables/architecture_tensor_shapes.parquet: 47f5d736657f3dbad6fd5edad0a021bb572468b304b2e70ea6a36538793e010f
+      reports/feature_normalizer.json: 0759dcc4cd869db026efa759f5ff047cc9977052958d68c21e7d3c7675fd6947
+      reports/training_summary.json: b8f1b8d708c56f34affff727cb000a5cf99c04149ece19d3c8d70677b6f8f64c
+      reports/environment.json: 07fa86a91df45407ee877afc64b38277a8ccc1664968e08b3c250d38bab254ed
+  image_regression:
+    run_id: 20260814T020338751021Z-d0f225c8
+    directory: runs/phm2026_rtdetr_regression/20260814T020338751021Z-d0f225c8
+    artifacts:
+      tables/run_predictions.parquet: b9c0e93d9a7fd65af944a677dc1a286ef041e833e725425095a2d0e086c8b42e
+evaluation:
+  bootstrap_repetitions: 2000
+  deterministic_example_sequence: EXP-A/run-1
+  primary_target: raw_top3_mean_pct
+  secondary_target: causal_monotonic_top3_mean_pct
+  target_status: provisional_pending_human_review
+storage_limits:
+  minimum_free_bytes: 53687091200
+  maximum_new_artifacts_bytes: 536870912

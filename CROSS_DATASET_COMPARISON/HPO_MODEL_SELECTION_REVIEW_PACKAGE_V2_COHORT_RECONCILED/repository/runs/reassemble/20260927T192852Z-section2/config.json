@@ -1,0 +1,84 @@
+{
+  "run_dir": "runs/reassemble/20260927T192852Z-section2",
+  "section1_config": "configs/reassemble/section1.json",
+  "section1b_config": "configs/reassemble/section1b.json",
+  "section1b_run": "runs/reassemble/20260927T175336Z-section1b",
+  "seed": 20260927,
+  "seeds": [
+    20260927,
+    20260928,
+    20260929
+  ],
+  "threads": 4,
+  "blas_threads": 16,
+  "bootstrap_replicates": 2000,
+  "concat_configs": [
+    {
+      "hidden": 32,
+      "epochs": 10,
+      "lr": 0.001,
+      "weight_decay": 0.001
+    },
+    {
+      "hidden": 64,
+      "epochs": 20,
+      "lr": 0.001,
+      "weight_decay": 0.001
+    }
+  ],
+  "gate_configs": [
+    {
+      "hidden": 8,
+      "epochs": 40,
+      "lr": 0.003,
+      "weight_decay": 0.001
+    },
+    {
+      "hidden": 16,
+      "epochs": 40,
+      "lr": 0.003,
+      "weight_decay": 0.001
+    }
+  ],
+  "batch_size": 128,
+  "dropout": 0.1,
+  "quality_visual": [
+    "valid_frame_ratio",
+    "decode_failure_ratio",
+    "mean_brightness",
+    "brightness_std",
+    "focus_proxy",
+    "motion_proxy"
+  ],
+  "quality_sensor": [
+    "finite_fraction",
+    "resampled_finite_fraction",
+    "interpolation_fraction",
+    "within_segment_mad_outlier_fraction",
+    "constant_channels",
+    "missing_channels"
+  ],
+  "actions": [
+    "pick",
+    "insert",
+    "remove",
+    "place"
+  ],
+  "probability_clip": 1e-06,
+  "selection": "mean frozen-inner-fold AP of the three-seed mean probability; tie first configuration",
+  "gate_loss": "unweighted BCE on calibrated branch logits; no final intercept, calibrator or action bypass",
+  "concat_loss": "training-class-balanced BCE; sigmoid calibrator on selected inner OOF logits only",
+  "threshold": "selected inner OOF mean probabilities; balanced accuracy grid .01..99, tie nearest .5",
+  "decision": {
+    "meaningful_AP_gain": 0.01,
+    "paired_AP_lower_gt": 0,
+    "positive_folds_at_least": 3,
+    "AUROC_lower_gt": -0.01,
+    "multiplicity": "seven required paired contrasts: marginal 95% intervals reported; adaptive claims additionally require simultaneous Bonferroni percentile lower AP bound >0 across the three adaptive-vs-F2 comparisons",
+    "prefer_simple": "No adaptive value claim from point rank alone. E if no adaptive qualifies and all adaptive AP upper95<=.01; otherwise A with uncertainty stated. B/C/D according to qualifying mechanism, prefer F4/F5 unless F6 also improves by >=.01 over qualifying simpler gate with positive paired AP interval and AUROC lower>-.01. F if reused F2 fails numerical/metric parity.",
+    "minimum_mean_absolute_context_weight_change": 0.01
+  },
+  "ablation": "one fixed seeded action permutation within each test fold; zero action; quality training mean after training-only standardization; masks unchanged",
+  "interpretation": "Adaptive exploratory same-cohort study, not independent confirmation. SQ3 NOT YET ANSWERED.",
+  "quality_missing": "Unavailable audited values imputed to current fitting-subset means (zero after scaling); no extra missing indicators or label-based exclusion"
+}

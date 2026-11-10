@@ -1,0 +1,5 @@
+# Pre-analysis sensor-role clarification
+
+Before fitting either F2 model or inspecting any new sensor/fusion evaluation metric, the implementation audit identified the original sensor's inner-fit/outer-refit roles. The initial protocol draft would have applied the smaller inner model to the outer test. Protocol02 instead preserves the original full outer-training sensor baseline for M3–M7, while retaining the genuinely held-out inner3 sensor predictions for F2 fitting. All visual and fusion settings remain fixed.
+
+The inner model uses G2171/C686; the outer model uses G2966/C811. Both exclude their own assessment recordings. Both F2 arms receive exactly the same sensor inputs for each corresponding role. Existing fitted weights are reused, without model training or selection. The initial protocol is retained as a superseded draft; the authoritative protocol is LOCKED_PROTOCOL_02.json. This clarification was made from source/provenance inspection, without using new test metrics to choose a sensor fit.

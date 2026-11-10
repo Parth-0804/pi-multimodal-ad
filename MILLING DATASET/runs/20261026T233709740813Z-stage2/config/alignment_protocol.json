@@ -1,0 +1,18 @@
+{
+  "method": "label-blind ambient S2-to-smartphone AAC audio; 800\u20131800 Hz log-energy at 100 Hz; cross-correlation followed by local anchors",
+  "local_window_s": 12,
+  "anchor_stride_s": 5,
+  "local_lag_search_half_width_s": 0.5,
+  "local_min_correlation": 0.75,
+  "calibration_and_validation": "alternating window indices; odd indices held out from offset estimation",
+  "inlier_tolerance_s": 0.1,
+  "min_calibration_anchors": 3,
+  "min_validation_anchors": 3,
+  "min_anchor_span_s": 30,
+  "uncertainty_bound": "max(0.05 seconds, maximum accepted held-out residual + 0.02 seconds); empirical engineering bound, not a calibrated CI",
+  "support": "union of accepted calibration and held-out windows; no extrapolation beyond supported audio regions",
+  "mapping": "constant video_time = sensor_time + offset; do not force an affine warp",
+  "frame_guard": "alignment uncertainty plus half a native frame; targets are 16 equal bin centers in the guarded interval; verify actual decoded PTS with full uncertainty against the original interval",
+  "visual_policy": "review every proposed 16-frame contact sheet; require recognizable spindle/workpiece/cutting context; exclude fully obscured views; optical tool-defect visibility is a separate stricter claim",
+  "notes": "Protocol was chosen during exploratory signal inspection without consulting anomaly classes. S2 resolves microphone mismatch seen with S0. It is not claimed to be externally preregistered."
+}

@@ -1,0 +1,182 @@
+{
+  "utc": "2026-10-30T15:35:30.605215+00:00",
+  "stage": "WAITING_REASSEMBLE75_COMPLETE_AND_GPU_IDLE",
+  "controller_pid": 290646,
+  "completed_stages": [
+    {
+      "stage": "NATIVE_LABEL_VERIFICATION",
+      "started_utc": "2026-10-29T03:33:21.114096+00:00",
+      "utc": "2026-10-29T03:33:51.132335+00:00",
+      "wall_seconds": 30.018260878045112,
+      "returncode": 0,
+      "pid": 290696,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "labels"
+      ]
+    },
+    {
+      "stage": "FINAL_COHORT_AND_SPLITS",
+      "started_utc": "2026-10-29T03:33:51.163577+00:00",
+      "utc": "2026-10-29T03:34:21.179535+00:00",
+      "wall_seconds": 30.015999061986804,
+      "returncode": 0,
+      "pid": 290988,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "cohort"
+      ]
+    },
+    {
+      "stage": "BLINDED_FULL_TASK_QC_GALLERY",
+      "started_utc": "2026-10-29T03:34:21.211165+00:00",
+      "utc": "2026-10-29T03:37:21.229390+00:00",
+      "wall_seconds": 180.01824684801977,
+      "returncode": 0,
+      "pid": 291276,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "qc_gallery"
+      ]
+    },
+    {
+      "stage": "SENSOR_FEATURES",
+      "started_utc": "2026-10-29T03:37:21.259876+00:00",
+      "utc": "2026-10-29T03:37:51.272727+00:00",
+      "wall_seconds": 30.01287533296272,
+      "returncode": 0,
+      "pid": 300755,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "sensors"
+      ]
+    },
+    {
+      "stage": "SENSOR_BASELINES",
+      "started_utc": "2026-10-29T03:37:51.311663+00:00",
+      "utc": "2026-10-29T03:40:51.325871+00:00",
+      "wall_seconds": 180.01423307007644,
+      "returncode": 0,
+      "pid": 301046,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "baselines"
+      ]
+    },
+    {
+      "stage": "ORIGINAL_FROZEN_FEATURES_CPU",
+      "started_utc": "2026-10-29T03:40:51.363109+00:00",
+      "utc": "2026-10-29T21:43:33.251406+00:00",
+      "wall_seconds": 64961.888322214014,
+      "returncode": 0,
+      "pid": 302851,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "features",
+        "--condition",
+        "V1"
+      ]
+    },
+    {
+      "stage": "FROZEN_CLASSIFIER_100_EPOCHS",
+      "started_utc": "2026-10-29T21:43:33.279228+00:00",
+      "utc": "2026-10-29T22:02:03.298287+00:00",
+      "wall_seconds": 1110.0190783760045,
+      "returncode": 0,
+      "pid": 1285885,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "train",
+        "--condition",
+        "V1"
+      ]
+    },
+    {
+      "stage": "FROZEN_HIGH_ONLY_ABLATION",
+      "started_utc": "2026-10-29T22:02:03.331315+00:00",
+      "utc": "2026-10-29T22:20:03.351738+00:00",
+      "wall_seconds": 1080.0207575130044,
+      "returncode": 0,
+      "pid": 1288199,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "train",
+        "--condition",
+        "V1_high_only"
+      ]
+    },
+    {
+      "stage": "FROZEN_FUSION",
+      "started_utc": "2026-10-29T22:20:03.382767+00:00",
+      "utc": "2026-10-29T22:21:03.399770+00:00",
+      "wall_seconds": 60.017029889975674,
+      "returncode": 0,
+      "pid": 1290699,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "fusion",
+        "--condition",
+        "V1"
+      ]
+    },
+    {
+      "stage": "FROZEN_REPORTS",
+      "started_utc": "2026-10-29T22:21:03.429284+00:00",
+      "utc": "2026-10-29T22:21:33.443067+00:00",
+      "wall_seconds": 30.013812168035656,
+      "returncode": 0,
+      "pid": 1290801,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "reports"
+      ]
+    },
+    {
+      "stage": "DONOR_INITIAL_FEATURES_CPU",
+      "started_utc": "2026-10-29T22:21:33.471931+00:00",
+      "utc": "2026-10-30T15:35:30.595527+00:00",
+      "wall_seconds": 62037.12362428103,
+      "returncode": 0,
+      "pid": 1290975,
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/scripts/worker.py",
+        "--stage",
+        "features",
+        "--condition",
+        "V3"
+      ]
+    }
+  ]
+}

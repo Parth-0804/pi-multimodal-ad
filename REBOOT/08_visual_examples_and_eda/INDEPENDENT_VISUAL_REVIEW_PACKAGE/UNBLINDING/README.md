@@ -1,0 +1,1 @@
+Open only after saving the independent review. Native annotation values remain uncorrected and do not certify binary targets. Original source paths refer to the researcher workspace; pinned public URLs and revisions identify remote originals.

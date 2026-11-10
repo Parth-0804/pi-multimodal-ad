@@ -1,0 +1,35 @@
+{
+  "read_only": true,
+  "validation": "metadata only; no contents decoded or hashed",
+  "guide": "docs/maintenance/REASSEMBLE_CACHE_RETENTION.md",
+  "checks": [
+    {
+      "cache": "prefix",
+      "ok": true,
+      "status": "READY_METADATA_ONLY",
+      "expected_arrays": 4530,
+      "missing_arrays": 0,
+      "size_mismatches": 0,
+      "examples": [],
+      "historical_complete_record": true,
+      "eviction_record_present": false,
+      "action": "Task 1 remains cancelled. A cache-only rebuild needs a separate plan; do not run the legacy supervisor or generator in place."
+    },
+    {
+      "cache": "pixels",
+      "ok": true,
+      "status": "READY_WITH_REDECODING",
+      "manifest_samples": 4530,
+      "cached_samples": 2711,
+      "samples_needing_decode": 1819,
+      "source_videos": 148,
+      "missing_videos": 0,
+      "changed_video_metadata": 0,
+      "missing_model_files": [],
+      "examples": [],
+      "eviction_record_present": false,
+      "action": "Exact decoding/hash checks already exist in the saved loaders. Reuse them in a new run; do not write through historical shared-cache symlinks. No run is authorized by this check."
+    }
+  ],
+  "ok": true
+}

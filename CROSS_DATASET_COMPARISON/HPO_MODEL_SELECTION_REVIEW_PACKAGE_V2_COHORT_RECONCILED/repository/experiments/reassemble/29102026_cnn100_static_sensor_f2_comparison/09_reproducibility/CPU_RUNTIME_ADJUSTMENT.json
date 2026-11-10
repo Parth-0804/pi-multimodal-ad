@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-28T23:52:09.634027+00:00",
+  "action": "Interrupt only this task CPU inference at a resumable prediction boundary; do not touch GPU training",
+  "pid": 3740709,
+  "command": [
+    "ma_thesis_env/bin/python",
+    "-B",
+    "experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/src/infer.py"
+  ],
+  "reason": "Measured identical FP32 control logit with8 threads at4.11s versus2 threads at8.35s;16 CPUs available"
+}

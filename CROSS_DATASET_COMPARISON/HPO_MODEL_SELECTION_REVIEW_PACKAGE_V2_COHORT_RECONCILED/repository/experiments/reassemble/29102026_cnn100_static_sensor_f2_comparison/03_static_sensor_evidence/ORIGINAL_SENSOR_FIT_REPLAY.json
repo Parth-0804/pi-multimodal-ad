@@ -1,0 +1,102 @@
+{
+  "passed": true,
+  "verification_replays_only": true,
+  "fitting_recipe_changed": false,
+  "receipts": [
+    {
+      "role": "inner_holdout",
+      "source_model": {
+        "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_sensor_outer1_inner_fold_03/PHASE1_SENSOR_MODEL.json",
+        "bytes": 55541,
+        "sha256": "03072923902a4ef810a93e81016d865ab025c03b2c16dc2200cf4cfcdf7fbbc4"
+      },
+      "source_predictions": {
+        "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_sensor_outer1_inner_fold_03/PHASE1_SENSOR_PREDICTIONS.json",
+        "bytes": 201640,
+        "sha256": "449d660e8e9856a24340d287758ef4f03f851240c3e3a030335d39cbc9c84c3d"
+      },
+      "gradient_fit_actions": 2171,
+      "calibration_actions": 686,
+      "replay_parameter_max_abs": 0.0,
+      "replay_raw_intercept_abs": 0.0,
+      "replay_calibrated_probability_max_abs": 0.0,
+      "numeric_tolerance": 1e-06,
+      "normalizer_exact": true,
+      "original_saved_model_replaced": false,
+      "passed": true
+    },
+    {
+      "role": "outer_assessment",
+      "source_model": {
+        "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_sensor_outer1_outer_assessment/PHASE1_SENSOR_MODEL.json",
+        "bytes": 63060,
+        "sha256": "c4fe7fbac5a49a8cd23a288c818fc2ac0d816b0569051cbdb5a3e4a10a88a39b"
+      },
+      "source_predictions": {
+        "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_sensor_outer1_outer_assessment/PHASE1_SENSOR_PREDICTIONS.json",
+        "bytes": 165249,
+        "sha256": "f7428ccc55fbfc09072559ee0917193f8de30cccd216c3a71fc5d5aa881c0c5f"
+      },
+      "gradient_fit_actions": 2966,
+      "calibration_actions": 811,
+      "replay_parameter_max_abs": 0.0,
+      "replay_raw_intercept_abs": 0.0,
+      "replay_calibrated_probability_max_abs": 0.0,
+      "numeric_tolerance": 1e-06,
+      "normalizer_exact": true,
+      "original_saved_model_replaced": false,
+      "passed": true
+    }
+  ],
+  "original_OpenBLAS_reduction_threads_matched": 16,
+  "verification_CPU_affinity_count": 4,
+  "numerical_libraries": [
+    {
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "num_threads": 4,
+      "prefix": "libscipy_openblas",
+      "filepath": "ma_thesis_env/lib/python3.12/site-packages/numpy.libs/libscipy_openblas64_-32a4b2a6.so",
+      "version": "0.3.31.188.0",
+      "threading_layer": "pthreads",
+      "architecture": "Haswell"
+    },
+    {
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "num_threads": 4,
+      "prefix": "libscipy_openblas",
+      "filepath": "ma_thesis_env/lib/python3.12/site-packages/scipy.libs/libscipy_openblas-5f890258.so",
+      "version": "0.3.31.dev",
+      "threading_layer": "pthreads",
+      "architecture": "Haswell"
+    },
+    {
+      "user_api": "openmp",
+      "internal_api": "openmp",
+      "num_threads": 1,
+      "prefix": "libgomp",
+      "filepath": "ma_thesis_env/lib/python3.12/site-packages/scikit_learn.libs/libgomp-a34b3233.so.1.0.0",
+      "version": null
+    },
+    {
+      "user_api": "openmp",
+      "internal_api": "openmp",
+      "num_threads": 4,
+      "prefix": "libgomp",
+      "filepath": "ma_thesis_env/lib/python3.12/site-packages/torch/lib/libgomp.so.1",
+      "version": null
+    },
+    {
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "num_threads": 4,
+      "prefix": "libopenblas",
+      "filepath": "ma_thesis_env/lib/python3.12/site-packages/opencv_python_headless.libs/libopenblasp-r0-59ffcd50.3.15.so",
+      "version": "0.3.15",
+      "threading_layer": "pthreads",
+      "architecture": "Zen"
+    }
+  ],
+  "earlier_single_thread_replay_differences_preserved": "SENSOR_REFIT_DIFFERENCE_DIAGNOSTIC.json"
+}

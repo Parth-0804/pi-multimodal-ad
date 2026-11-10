@@ -1,0 +1,40 @@
+{
+  "ready": false,
+  "canonical_source_folder": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_outerassessment",
+  "rule": {
+    "arm": "C_full_finetuned16",
+    "seed": 42,
+    "outer_fold_original": 0,
+    "role": "outer_assessment",
+    "selection": "Canonical source role fixed before any MSM results; require completed C-fit receipt and matching selected-checkpoint hash. No fallback to active, preflight, frozen B, last-stage-only or MSM-score-selected sources.",
+    "all_150_source_fits_required": false
+  },
+  "canonical_job_index": 4,
+  "completed_C_fits_observed": 0,
+  "full_150_fit_completion_marker_exists": false,
+  "full_matrix_completion_required_for_single_valid_source": false,
+  "source_numeric_gate": "PASSED",
+  "candidates": [
+    {
+      "folder": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_B_long_frozen16_outer1_innerfold01",
+      "completion_receipt": true,
+      "selected_checkpoint_exists": true,
+      "source_eligible": false,
+      "active_checkpoint_payload_read": false,
+      "arm": "B_long_frozen16",
+      "seed": 42,
+      "job_index": 0,
+      "receipt_sha256": "60dee016f41f29c2c3e8895c06aedb21fc1283288ca04fcc11f421a08da61c4c",
+      "reason": "Completed frozen B head has no REASSEMBLE-trained full CNN"
+    },
+    {
+      "folder": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold01",
+      "completion_receipt": false,
+      "selected_checkpoint_exists": true,
+      "source_eligible": false,
+      "active_checkpoint_payload_read": false,
+      "reason": "Active/incomplete fit; no final completion receipt"
+    }
+  ],
+  "reason": "No completed-fit receipt; active/preflight checkpoint is inadmissible"
+}

@@ -1,0 +1,21 @@
+{
+  "method": "label-blind ambient S2-to-smartphone AAC audio; 800\u20131800 Hz log-energy at 100 Hz; cross-correlation followed by local anchors",
+  "local_window_s": 8,
+  "anchor_stride_s": 8,
+  "local_lag_search_half_width_s": 0.5,
+  "local_min_correlation": 0.75,
+  "calibration_and_validation": "alternating nonoverlapping 8-second windows; odd indices held out from offset estimation",
+  "inlier_tolerance_s": 0.1,
+  "min_calibration_anchors": 3,
+  "min_validation_anchors": 3,
+  "min_anchor_span_s": 30,
+  "uncertainty_bound": "max(0.08 seconds, maximum accepted held-out residual + 0.04 seconds); empirical engineering bound, not a calibrated CI",
+  "support": "union of accepted calibration and held-out windows; no extrapolation beyond supported audio regions",
+  "mapping": "constant video_time = sensor_time + offset; do not force an affine warp",
+  "frame_guard": "alignment uncertainty plus half a native frame; targets are 16 equal bin centers in the guarded interval; verify actual decoded PTS with full uncertainty against the original interval",
+  "visual_policy": "review every proposed 16-frame contact sheet; require recognizable spindle/workpiece/cutting context; exclude fully obscured views; optical tool-defect visibility is a separate stricter claim",
+  "notes": "Protocol was chosen during exploratory signal inspection without consulting anomaly classes. S2 resolves microphone mismatch seen with S0. It is not claimed to be externally preregistered.",
+  "coarse_method": "calibration_consensus_v2",
+  "reference_policy": "Use the same ambient S2 channel on every laboratory pilot. The corrected estimator supplies enough calibration anchors for dataset9.",
+  "cross_microphone_timing_bound": "For dataset9, add a 0.10 s empirical guard to cover the observed 0.06 s S0/S2 offset difference plus 0.04 s feature-resolution allowance."
+}

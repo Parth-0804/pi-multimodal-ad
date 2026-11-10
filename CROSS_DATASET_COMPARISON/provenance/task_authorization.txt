@@ -1,0 +1,1348 @@
+ROLE
+You are the lead ML research engineer responsible for completing
+an independent, reproducible evaluation of our existing REASSEMBLE
+multimodal fusion architecture on two external datasets:
+
+1. MSM — Multi-Sensor and MTConnect metal milling anomaly dataset.
+2. Handover Failure Detection — robotic handover success/failure dataset.
+
+PROJECT ROOT
+/home/student/Master_Thesis_WS/pi-multimodal-ad
+
+You must inspect the actual repository, historical implementations,
+dataset documentation, configuration files, checkpoints, and
+existing scientific evidence before modifying or running anything.
+
+This task authorizes complete implementation and model evaluation
+WITHOUT additional researcher approval, provided the explicit
+data-integrity, label-validity, split, and leakage gates below pass.
+
+Do not stop merely because a pilot or smoke test has finished.
+
+Use available CPU/GPU computing resources responsibly.
+Long-running training is authorized.
+
+Do not invent successful results, fabricate missing labels,
+silently change model definitions, or bypass scientific gates.
+
+
+============================================================
+1. PRIMARY RESEARCH OBJECTIVE
+============================================================
+
+Our central research question:
+
+Can the multimodal fusion architecture developed using REASSEMBLE
+generalize to independent datasets, and does combining vision
+and numerical sensors improve failure/anomaly detection compared
+with using either modality independently?
+
+We also want to evaluate:
+
+A. Architecture portability across datasets.
+B. Predictive benefit of multimodal fusion.
+C. Robustness to missing or degraded modalities.
+D. Performance stability across random seeds.
+E. Generalization to independent experiments or participants.
+F. Limitations caused by modality quality and dataset differences.
+
+Do not assume that fusion will outperform unimodal models.
+
+Negative results are scientifically valid.
+
+Distinguish clearly between:
+
+- Successfully reusing the model architecture.
+- Transferring pretrained CNN weights.
+- Transferring weights learned on REASSEMBLE.
+- Achieving better predictive performance.
+- Demonstrating robustness to modality corruption.
+
+These are separate claims and require separate evidence.
+
+
+============================================================
+2. CREATE A CLEAN PROJECT STRUCTURE
+============================================================
+
+Create two clearly separated top-level dataset folders:
+
+MSM/
+HANDOVER/
+
+Use readable, consistent folder names.
+
+Each dataset should have the following structure:
+
+DATASET_NAME/
+|
+|-- README.md
+|
+|-- 01_raw_dataset/
+|   |-- official_dataset/
+|   |-- download_manifest.csv
+|   |-- source_information.md
+|
+|-- 02_labels_and_alignment/
+|   |-- original_label_inventory.csv
+|   |-- validated_labels.csv
+|   |-- alignment_manifest.csv
+|   |-- excluded_examples.csv
+|   |-- data_validation_report.md
+|
+|-- 03_processed_model_inputs/
+|   |-- final_sample_manifest.csv
+|   |-- sensor_features/
+|   |-- visual_features/
+|   |-- split_manifests/
+|   |-- data_contract.md
+|
+|-- 04_experiment_protocol/
+|   |-- experiment_config.json
+|   |-- architecture_description.md
+|   |-- baseline_definitions.md
+|   |-- split_protocol.md
+|
+|-- 05_trained_models/
+|   |-- visual_only/
+|   |-- sensor_only/
+|   |-- averaging_fusion/
+|   |-- f2_fusion/
+|   |-- adaptive_fusion_if_applicable/
+|
+|-- 06_evaluation_results/
+|   |-- predictions/
+|   |-- metrics/
+|   |-- confusion_matrices/
+|   |-- precision_recall_curves/
+|   |-- calibration/
+|
+|-- 07_robustness_experiments/
+|   |-- missing_modalities/
+|   |-- noisy_sensors/
+|   |-- degraded_video/
+|   |-- comparison_reports/
+|
+|-- 08_visual_examples_and_eda/
+|   |-- sample_previews/
+|   |-- sensor_visualizations/
+|   |-- prediction_examples/
+|
+|-- 09_final_reports/
+|   |-- DATASET_OVERVIEW.md
+|   |-- DATASET_VALIDATION.md
+|   |-- MODEL_IMPLEMENTATION.md
+|   |-- EXPERIMENT_RESULTS.md
+|   |-- ROBUSTNESS_RESULTS.md
+|   |-- RESEARCH_CONCLUSIONS.md
+|   |-- REPRODUCIBILITY.md
+|   |-- REVIEW_HANDOFF.md
+|
+|-- 99_preserved_previous_work/
+|
+|-- src/
+|-- tests/
+|-- logs/
+
+The structure is illustrative. Improve it where necessary while
+preserving these clear scientific stages.
+
+Keep everything specifically related to MSM under MSM/.
+Keep everything specifically related to Handover under HANDOVER/.
+
+Create one additional folder:
+
+CROSS_DATASET_COMPARISON/
+
+This should contain:
+- ARCHITECTURE_COMPARISON.md
+- PERFORMANCE_COMPARISON.md
+- ROBUSTNESS_COMPARISON.md
+- FINAL_RESEARCH_SUMMARY.md
+- comparison_tables.csv
+
+Do not mix raw data, processed features, predictions, and model
+checkpoints in the same folders.
+
+
+============================================================
+3. PRESERVE AND ORGANIZE EXISTING MSM WORK
+============================================================
+
+Existing MSM work is currently under:
+
+MILLING DATASET/
+
+This contains substantial completed research:
+
+Stage 1: Official dataset acquisition and label audit.
+Stage 2: Video alignment and multimodal input validation.
+Stage 3: Architecture adaptation and bounded smoke test.
+Stage 4: Blocked historical model evaluation and CNN-transfer audit.
+Stage 5: Complete laboratory feasibility audit.
+PILOT_FINDINGS: Consolidated research evidence.
+
+DO NOT REPEAT THIS WORK UNNECESSARILY.
+
+Inspect the existing folder and its provenance first.
+
+Create a migration plan that makes MSM/ the canonical dataset root.
+
+If safe, relocate the existing MSM directory into MSM/ and preserve
+backward compatibility with existing paths using a verified symlink.
+
+If moving would disrupt active processes or break provenance,
+keep the original data intact and create safe canonical references
+until migration can be verified.
+
+Do not duplicate large raw videos or sensor files.
+
+Preserve:
+- Original raw files.
+- Native label files.
+- Existing alignment evidence.
+- Previously validated manifests.
+- Historical reports.
+- Scripts and tests.
+- Existing input hashes.
+- Previous negative or blocked findings.
+
+Never overwrite an existing historical result.
+
+Do not delete unrelated files or existing dataset evidence.
+
+Record exactly what was moved, reused, linked, or created.
+
+All new MSM training and evaluation outputs must use the new
+MSM/ organization.
+
+
+============================================================
+4. MSM DATASET — EXISTING VERIFIED EVIDENCE
+============================================================
+
+Dataset:
+
+manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2
+
+Official Kaggle dataset ID: 8392825.
+
+Existing full laboratory audit reported:
+
+56 laboratory experiments.
+
+2,512 native labeled cutting intervals:
+
+Label 0: 1,877
+Label 1: 458
+Label 2: 177
+
+Technically eligible aligned multimodal cohort:
+
+1,895 intervals:
+
+Label 0: 1,434
+Label 1: 336
+Label 2: 125
+
+45 nominal experiment folders.
+17 folders containing positive label-1 intervals.
+
+These are historical reported counts.
+Independently reproduce them from the preserved evidence.
+
+Do not simply copy the figures into a new report.
+
+Only laboratory machines are in scope for video-plus-sensor fusion:
+
+- imi_vm20i
+- imi_vmx30ui
+
+Industrial tmf_vf10 has no provided video and is OUT OF SCOPE
+for the primary video-plus-sensor experiment.
+
+Do not download industrial data unnecessarily.
+
+Existing laboratory video, MTC, S2 audio, labels, NC information,
+and alignment evidence should already be present.
+
+Reuse verified files. Download only missing required files.
+
+Do not download the complete 40 GB Kaggle archive.
+
+Keep the official dataset version pinned.
+
+
+============================================================
+5. MSM TARGET DEFINITION
+============================================================
+
+Preserve all original native labels.
+
+Their meanings are:
+
+0 = normal stable cutting
+1 = abnormal cutting requiring intervention
+2 = stable cutting with a defective tool
+
+Primary task:
+
+Label 1 versus labels 0 and 2.
+
+This follows the existing Stage 3 frozen protocol.
+
+Secondary sensitivity:
+
+Label 1 versus label 0, excluding label 2.
+
+Do not silently redefine label 2 as abnormal.
+
+Do not use experiment remarks or program metadata as proxy labels.
+
+One prediction example must correspond to exactly one native
+annotated cutting interval.
+
+Do not invent frame-level abnormality annotations.
+
+Retrospective interval classification is the intended task.
+Do not call this online prediction or early-warning detection.
+
+
+============================================================
+6. MSM VIDEO AND SENSOR ALIGNMENT
+============================================================
+
+Reuse the corrected and validated Stage 2/Stage 5 alignment method.
+
+IMPORTANT:
+
+VMX30Ui/dataset9 has a validated offset of +49.73 seconds.
+
+The earlier +16.04-second alignment was rejected.
+
+Do not revive the exploratory mapping.
+
+For every admitted interval:
+
+- Use exactly 16 ordered, distinct native video frames.
+- Retain original source frame indices and timestamps.
+- Preserve the native interval label.
+- Ensure all selected frames lie inside supported alignment regions.
+- Apply the existing timing-uncertainty guards.
+- Use the matching MTC sensor interval.
+- Enforce the existing sensor coverage and gap rules.
+
+The current MSM sensor representation is:
+
+15 numerical channels × 6 statistics = 90 features.
+
+Do not change this definition for the primary reproduction.
+
+Verify the exact channel names and feature order from the
+existing implementation.
+
+Do not use native label columns, tool identifiers, NC programs,
+cutting direction, or folder names as prediction features.
+
+Perform an additional diagnostic:
+
+Analyze the relationship between cutting direction and labels
+across the entire eligible laboratory cohort.
+
+The earlier matched visual review found five pairs where:
+
+Normal = DOWN
+Abnormal = UP
+
+Determine whether this is a broader dataset confound.
+
+Report:
+- Label-by-direction contingency table.
+- Direction-only predictive baseline.
+- Class support within each direction.
+- Whether direction-controlled evaluation is feasible.
+
+Do not automatically discard MSM because of this issue.
+
+Instead, quantify the limitation and report appropriately.
+
+
+============================================================
+7. HANDOVER DATASET — ACQUISITION
+============================================================
+
+Official dataset:
+
+Handover Failure Detection dataset.
+
+Source:
+https://zenodo.org/records/10708763
+
+Dataset DOI:
+10.5281/zenodo.10708763
+
+Associated publication:
+
+Thoduka et al.,
+A Multimodal Handover Failure Detection Dataset and Baselines,
+ICRA 2024.
+
+Publication DOI:
+10.1109/ICRA57147.2024.10610143
+
+The official dataset describes 589 robot handover trials.
+
+It contains:
+- RGB video.
+- Robot joint states.
+- Force/torque measurements.
+- Trial outcome labels.
+- Human and robot action annotations.
+- Published train/validation/test partitions.
+
+The archive is approximately 13 GB.
+
+FIRST:
+
+1. Verify the official Zenodo record and version.
+2. Inspect the official datasheet.
+3. Inspect the 60 MB sample archive.
+4. Verify the real file hierarchy and readable sensor arrays.
+5. Verify that video timestamps and sensor timestamps can be joined.
+6. Verify that outcome labels can be matched to trials.
+7. Verify sufficient successful and failed trials.
+
+If the sample passes, automatically download the complete
+official dataset.
+
+Do not ask for additional approval.
+
+Use verified official file URLs and record source identities,
+checksums, download sizes, and acquisition timestamps.
+
+Do not bypass access restrictions.
+
+Before downloading, confirm enough disk space for the archives,
+extracted data, feature caches, and a reasonable free-space reserve.
+
+Resume interrupted downloads safely.
+
+Do not overwrite mismatching existing files.
+
+Use the provided train, validation and test archives and label files.
+
+Do not train on the sample archive as though it were
+an independent test dataset.
+
+
+============================================================
+8. HANDOVER LABEL VERIFICATION
+============================================================
+
+The official dataset includes successful and failed handovers.
+
+Inspect the actual class_names.json and trial label files.
+
+Confirm class meanings directly from the official files.
+
+Expected outcome structure includes:
+
+- Successful handover.
+- No approach.
+- No grasp / no release.
+- Dropped object.
+
+Do not assume a class-ID mapping without verifying it.
+
+Construct the primary binary task:
+
+Success = 0
+Failure = 1
+
+Preserve original multiclass outcome labels in the manifest.
+
+Verify:
+
+- Number of trials.
+- Unique trial identifiers.
+- Number of participants.
+- Number of robots.
+- Number of success/failure examples.
+- Class balance by official split.
+- Missing or invalid label entries.
+- Timestamps and sensor coverage.
+- Video availability.
+- Minimum number of distinct frames.
+
+If individual samples are unsuitable, record exact exclusion
+reasons without silently modifying their labels.
+
+The official source reports participant-disjoint splits:
+
+Training: 337 trials
+Validation: 101 trials
+Test: 151 trials
+
+Reproduce these counts and verify participant independence.
+
+Use the official split assignments for the main evaluation.
+
+Never merge or reshuffle the official test set into training.
+
+Do not inspect test labels to choose model settings.
+
+
+============================================================
+9. HANDOVER MULTIMODAL INPUT CONTRACT
+============================================================
+
+Adapt the REASSEMBLE architecture to Handover without changing
+the core architecture unnecessarily.
+
+Visual input:
+
+Exactly 16 frames sampled deterministically from each eligible
+trial using one label-independent temporal sampling policy.
+
+Record:
+- Original video identity.
+- Native frame indices.
+- Actual timestamps.
+- Sampling rule.
+- Frame validity.
+- Trial label identity.
+
+Do not use label-specific frame selection.
+
+Sensor input:
+
+Use numerical robot measurements covering the same observation
+period as the 16-frame visual input.
+
+Candidate channels:
+
+- Force X/Y/Z.
+- Torque X/Y/Z.
+- Gripper position.
+- Other common, validated robot-state channels where appropriate.
+
+Inspect the actual dataset schema before finalizing features.
+
+Use real sensor measurements, not metadata-based substitutes.
+
+Handle different robot configurations explicitly.
+
+Do not fabricate absent joints or force measurements.
+
+Prefer a common physically meaningful sensor contract.
+
+Construct deterministic statistical features using the same general
+principle as MSM, while allowing different channel counts.
+
+For example:
+
+6 statistics per validated numerical channel.
+
+The Handover feature vector need not have 90 dimensions.
+
+The sensor classifier should accept dataset-specific input sizes.
+
+Document the exact features.
+
+Important:
+
+The label describes the completed trial outcome.
+
+Use the same observation-horizon policy across all outcome classes.
+
+Do not use future data relative to an earlier claimed prediction time.
+
+Our primary experiment is retrospective trial outcome classification,
+not real-time failure forecasting.
+
+
+============================================================
+10. REASSEMBLE — REUSE THE ACTUAL ARCHITECTURE
+============================================================
+
+Inspect and verify the actual canonical REASSEMBLE implementation.
+
+Do not invent a new architecture and call it REASSEMBLE.
+
+The previously validated MSM adaptation used:
+
+VISUAL BRANCH
+
+PekingU/rtdetr_r18vd pretrained model.
+
+Previously verified revision:
+
+ac77a11ff0170a41b771c03264987f8ce2b0d753
+
+Use the ResNet CNN backbone only.
+
+Do not use:
+- RT-DETR transformer encoder.
+- RT-DETR decoder.
+- Bounding-box detection heads.
+- Object detection predictions.
+
+Visual input:
+16 RGB frames per example.
+
+CNN:
+Frozen during primary experiments.
+
+Temporal pooling:
+Mean of the 16 frame embeddings.
+
+Existing representation:
+896-dimensional visual feature vector.
+
+Visual classifier:
+
+Standardization fitted on training data only.
+
+Linear(896,128)
+ReLU
+Dropout(0.1)
+Linear(128,1)
+
+Train a new visual classification head for each dataset.
+
+Do not transfer REASSEMBLE outcome-classification heads.
+
+
+SENSOR BRANCH
+
+Training-only sensor standardization.
+
+Balanced L2 logistic regression.
+
+C = 1
+Solver = lbfgs
+Maximum iterations = 2000
+
+Sensor feature dimensions must follow each dataset's
+validated sensor contract.
+
+
+FUSION
+
+The verified F2 method is late fusion trained from out-of-fold
+base-model probabilities.
+
+Input:
+
+[p_visual, p_sensor]
+
+Fusion estimator:
+
+Unweighted L2 logistic regression.
+C = 1.
+
+Train F2 using leakage-safe OOF predictions.
+
+Never fit F2 on in-sample base-model predictions.
+
+Train new F2 coefficients independently for MSM and Handover.
+
+Do not reuse REASSEMBLE fusion coefficients.
+
+
+IMPORTANT METHODOLOGICAL DISTINCTION
+
+The above F2 implementation is learned logistic late fusion.
+
+It must not automatically be described as a quality-aware
+adaptive gating network.
+
+If additional adaptive or quality-aware fusion code exists in
+the verified repository, audit and evaluate it as a separately
+named model.
+
+If such code does not exist, a NEW quality-aware gated model
+may be implemented as an explicitly identified extension,
+provided its features, training protocol, and ablation comparisons
+are predefined before held-out testing.
+
+Do not imply that a newly developed gate was the original
+REASSEMBLE result.
+
+
+============================================================
+11. SOURCE-WEIGHT TRANSFER
+============================================================
+
+Distinguish two initialization conditions.
+
+P:
+The original verified pretrained RT-DETR CNN backbone.
+
+R:
+The CNN backbone obtained from a completed, validated
+REASSEMBLE full-backbone fine-tuning experiment.
+
+Stage 4 previously found that the required R source checkpoint
+had not yet completed.
+
+Reinspect completion receipts READ-ONLY.
+
+The historical canonical R source is:
+
+C_full_finetuned16
+Source seed 42
+Original outer fold 0
+Role outer_assessment
+Job index 4
+
+Use R only if its exact completed source identity,
+selection receipt, and checkpoint hashes are valid.
+
+Never use an incomplete recovery checkpoint as R.
+
+Do not interrupt or interfere with the continuing
+REASSEMBLE Phase 1 work.
+
+IMPORTANT:
+
+A missing R checkpoint must NOT block the primary
+architecture portability evaluation.
+
+Run the complete primary P-based evaluation independently.
+
+Run R as an additional pretrained-weight transfer comparison
+only when the canonical verified checkpoint is available.
+
+Record P and R results as separate conditions.
+
+Never select a source checkpoint based on MSM or Handover
+held-out performance.
+
+
+============================================================
+12. PREDECLARE THE MODEL COMPARISON
+============================================================
+
+Run the following models on the same eligible examples
+and exactly the same splits.
+
+MODEL 0:
+Majority-class / prevalence baseline.
+
+MODEL 1:
+Sensor-only logistic regression.
+
+MODEL 2:
+Sensor-only stronger classical baseline.
+
+Use a reproducible, well-supported method such as
+HistGradientBoosting or Random Forest.
+
+Predeclare its settings.
+Avoid an uncontrolled hyperparameter search.
+
+MODEL 3:
+Vision-only REASSEMBLE CNN representation
+with newly fitted classification head.
+
+MODEL 4:
+Simple averaging fusion:
+
+(p_visual + p_sensor) / 2
+
+MODEL 5:
+REASSEMBLE F2 learned logistic late fusion.
+
+MODEL 6:
+Quality-aware adaptive fusion, only if explicitly implemented
+and distinguished as a new additional research experiment.
+
+A small single-frame visual ablation may also be included to
+measure whether 16-frame aggregation provides additional value.
+
+For every model:
+
+- Same sample cohort.
+- Same target.
+- Same outer train/test assignments.
+- Same relevant random seeds.
+- No test-aware model selection.
+- Training-only preprocessing.
+- Independent model fitting.
+- Saved configuration and reproducible checkpoints.
+
+If a model cannot be implemented faithfully, report SKIPPED
+with the exact reason rather than silently replacing it.
+
+
+============================================================
+13. TRAINING CONFIGURATION
+============================================================
+
+Preserve the existing frozen MSM protocol wherever applicable.
+
+Visual-head training:
+
+Optimizer: AdamW
+Learning rate: 0.001
+Weight decay: 0.001
+Epochs: 10
+Batch size: 32 intervals
+Dropout: 0.1
+Gradient clipping: norm 1
+Precision: FP32
+
+Use the final epoch under the existing frozen protocol.
+
+No test-informed early stopping.
+
+Use seeds:
+
+42
+123
+20261023
+
+Run the full model comparison for all seeds.
+
+Do not report only the best seed.
+
+The frozen CNN representation is expensive to extract.
+
+Cache verified frozen CNN embeddings once per
+dataset/preprocessing/weight identity.
+
+Do not recompute all 16 CNN frame forwards for every
+fold, model, and random seed.
+
+Do not cache unnecessary duplicated full-resolution frames.
+
+Cache compact embeddings with:
+- Example IDs.
+- Frame identities.
+- Feature dimensions.
+- CNN checkpoint hash.
+- Preprocessing identity.
+- Output hash.
+
+Separate P and R caches.
+
+Use available GPUs for CNN extraction.
+Use CPU where cheaper for lightweight classifiers.
+
+Respect other active jobs and available GPU memory.
+
+Do not kill unrelated processes.
+
+
+============================================================
+14. SPLIT AND LEAKAGE PROTECTION
+============================================================
+
+MSM:
+
+Reuse the frozen Stage 3 three-outer/two-inner grouped protocol
+when its prerequisites pass on the expanded validated cohort.
+
+Original design:
+
+3 outer group-disjoint folds.
+2 inner group-disjoint folds.
+
+Keep complete machine/experiment folders together.
+
+Test the feasibility of stricter calendar-date and
+machine/date grouping.
+
+Use existing Stage 5 independence reports.
+
+Do not assume physical session independence merely because
+folders have different names.
+
+If strict grouping is feasible, report its results as a
+separate sensitivity or use a justified predefined primary
+grouping policy.
+
+Do not invent pseudo-independent trials.
+
+Do not change fold counts or search split seeds simply
+to obtain more favorable performance.
+
+If a scientifically defensible grouped split is impossible,
+mark MSM confirmatory evaluation BLOCKED and explain why.
+Continue Handover independently.
+
+
+HANDOVER:
+
+Use official participant-disjoint train/validation/test splits.
+
+Never let the same participant appear across partitions.
+
+Use participant-disjoint OOF training predictions when fitting F2.
+
+If a proposed OOF design is impossible because of class support,
+report that precise limitation and continue permissible
+unimodal evaluations.
+
+Do not train F2 using predictions from examples whose labels
+or groups were already involved in their base-model fitting.
+
+
+BOTH DATASETS:
+
+Prevent leakage through:
+- Normalization.
+- Hyperparameter selection.
+- Calibration.
+- Corruption generation.
+- Duplicate frames.
+- Overlapping source intervals.
+- Reused tool/participant identities.
+- Source metadata.
+- Model checkpoint selection.
+
+Freeze configurations and split manifests before held-out scoring.
+
+
+============================================================
+15. RUN THE COMPLETE EVALUATION
+============================================================
+
+Once data, labels, inputs, and split gates pass:
+
+PROCEED AUTOMATICALLY.
+
+Do not ask the researcher for another GO decision.
+
+Do not stop after another smoke test.
+
+Train the complete predeclared model matrix.
+
+Evaluate on independently held-out examples.
+
+For MSM, use the outer grouped test partitions.
+
+For Handover, use the official held-out test partition.
+
+Report:
+
+PRIMARY METRIC
+
+Average Precision / area under the precision-recall curve.
+
+SECONDARY METRICS
+
+- AUROC.
+- F1.
+- Precision.
+- Recall.
+- Balanced accuracy.
+- Specificity.
+- Confusion matrix.
+- False positives.
+- False negatives.
+- Brier score.
+- Log loss.
+- Class prevalence.
+
+Distinguish the F2 fusion name from the F-beta=2 metric.
+
+Calculate paired comparisons:
+
+F2 fusion minus vision-only.
+F2 fusion minus sensor-only.
+F2 fusion minus averaging fusion.
+
+Also compare adaptive fusion if it was implemented.
+
+Report values for each seed and their descriptive variability.
+
+Do not choose a winner using held-out results and then
+reuse that selection as though it were independently validated.
+
+Use appropriate group-level uncertainty intervals where feasible.
+
+Compare models fairly and explicitly state when differences
+are small or uncertain.
+
+
+============================================================
+16. MODALITY ROBUSTNESS EXPERIMENTS
+============================================================
+
+Once clean-data evaluation is established, test robustness.
+
+Predeclare corruptions and severity levels before inspecting
+their effects on held-out scores.
+
+VISION CORRUPTIONS
+
+- Gaussian blur.
+- Reduced brightness/contrast.
+- Partial occlusion.
+- Frame dropout.
+- Completely missing visual modality.
+
+SENSOR CORRUPTIONS
+
+- Additive noise based on training-set scale.
+- Channel dropout.
+- Missing sensor channels.
+- Completely missing sensor modality.
+
+Use multiple predefined severity levels.
+
+Never change labels or test groups.
+
+Do not refit scalers on corrupted test data.
+
+For corrupted video, regenerate CNN features from the altered
+video frames instead of pretending corruption of embeddings
+is equivalent to visual corruption.
+
+Evaluate:
+
+- Vision-only.
+- Sensor-only.
+- Averaging fusion.
+- F2 fusion.
+- Adaptive fusion, where available.
+
+For missing modalities, implement and document explicit
+fallback behavior.
+
+A fusion model that was only trained with both inputs must not
+silently receive fabricated model predictions when one input
+is unavailable.
+
+Evaluate deterministic unimodal fallback separately from any
+fusion mechanism trained to handle missing inputs.
+
+Report clean performance, corrupted performance, absolute
+degradation, and relative degradation.
+
+Do not describe adaptive robustness as proven if the fusion
+model performs no better than the appropriate unimodal fallback.
+
+
+============================================================
+17. QUALITATIVE EVALUATION AND EDA
+============================================================
+
+Create useful visual outputs for both datasets.
+
+For each dataset include:
+
+- At least 5 normal/successful examples.
+- At least 5 abnormal/failed examples.
+- Exactly 16 selected frames for each example.
+- Corresponding sensor plots.
+- Original label and sample identity.
+- Model predictions and confidence scores after evaluation.
+- Correct and incorrect prediction examples.
+
+MSM:
+
+Use full camera frames and cutting-region crops.
+Preserve coolant occlusion.
+Do not use generative image enhancement.
+
+Handover:
+
+Show the visible human/robot interaction in the
+original camera view.
+
+Where possible, display the grasp/contact region.
+
+Create representative confusion matrices,
+precision-recall curves, and robustness comparison plots.
+
+Do not select only visually impressive or successful examples.
+
+Include representative failures and limitations.
+
+Make the plots understandable to a human researcher
+who has not read the source code.
+
+
+============================================================
+18. DOCUMENT THE RESEARCH IN PLAIN ENGLISH
+============================================================
+
+Every dataset folder needs a complete, readable research report.
+
+Use this explanation structure:
+
+1. What dataset did we use?
+2. Why was it selected?
+3. What raw data entered the pipeline?
+4. What labels were available?
+5. How were video and sensors aligned?
+6. Which examples were excluded and why?
+7. What preprocessing was performed?
+8. What entered each model?
+9. Which parts of REASSEMBLE were reused?
+10. Which parts were newly trained?
+11. What baselines were evaluated?
+12. How was fusion fitted?
+13. How were data splits created?
+14. What metrics were used?
+15. What results were obtained?
+16. Did fusion actually help?
+17. What happened when modalities were degraded?
+18. What limitations remain?
+19. What can legitimately be concluded?
+20. How can the complete experiment be reproduced?
+
+Do not create reports consisting only of file paths
+or technical logs.
+
+Explain results with human-readable tables and figures.
+
+For example:
+
+Input:
+16 RGB frames + validated numerical sensor features.
+
+Visual processing:
+Pretrained frozen RT-DETR CNN backbone.
+
+Sensor processing:
+Statistical sensor representation and classifier.
+
+Fusion:
+Out-of-fold-trained REASSEMBLE F2 logistic late fusion.
+
+Output:
+One abnormal/failure probability per interval or trial.
+
+Evaluation:
+Independent grouped or participant-disjoint test examples.
+
+Conclusions:
+Evidence-backed interpretation of predictive performance.
+
+Every result must link back to:
+- Raw source sample.
+- Native label.
+- Split role.
+- Model configuration.
+- Prediction file.
+- Checkpoint identity.
+- Software and source version.
+
+
+============================================================
+19. CROSS-DATASET SCIENTIFIC COMPARISON
+============================================================
+
+Create:
+
+CROSS_DATASET_COMPARISON/FINAL_RESEARCH_SUMMARY.md
+
+Compare MSM and Handover on:
+
+- Number of usable labeled examples.
+- Number of independent groups.
+- Visual quality.
+- Sensor modalities.
+- Label definitions.
+- Alignment quality.
+- Model architecture.
+- Training settings.
+- Unimodal performance.
+- Fusion performance.
+- Improvement over unimodal baselines.
+- Corruption robustness.
+- Seed stability.
+- Practical integration challenges.
+
+Do NOT compare raw accuracy or AP across datasets as though
+the tasks, class prevalences, and distributions were identical.
+
+Emphasize within-dataset model differences.
+
+Explain whether success on one dataset generalized to the other.
+
+Separate:
+
+ARCHITECTURE PORTABILITY
+from
+LEARNED-WEIGHT TRANSFER
+from
+PREDICTIVE GENERALIZATION
+from
+ROBUSTNESS.
+
+If CNN source weights from REASSEMBLE were unavailable,
+do not claim learned representation transfer.
+
+If only the architecture transferred, say so explicitly.
+
+
+============================================================
+20. AUTOMATED EXECUTION AND STOP CONDITIONS
+============================================================
+
+Implement an idempotent, resumable end-to-end runner.
+
+The runner should:
+
+1. Inspect and verify existing inputs.
+2. Download missing authorized dataset files.
+3. Validate labels.
+4. Validate synchronization and modality coverage.
+5. Build sample manifests.
+6. Verify grouped splits.
+7. Freeze experiment configuration.
+8. Extract and cache CNN features.
+9. Fit unimodal models.
+10. Generate training OOF predictions.
+11. Fit fusion models.
+12. Evaluate held-out examples.
+13. Run corruption experiments.
+14. Generate figures and metrics.
+15. Write final research reports.
+
+Automatically continue between these stages when checks pass.
+
+DO NOT REQUEST ADDITIONAL RESEARCHER APPROVAL FOR:
+
+- Downloading the official Handover dataset.
+- Reusing existing validated MSM data.
+- Preprocessing.
+- CNN feature extraction.
+- Training.
+- Full model comparisons.
+- Robustness experiments.
+- Report generation.
+
+STOP ONLY FOR GENUINE BLOCKERS SUCH AS:
+
+- Invalid or unverifiable native labels.
+- Insufficient class support for required training/testing.
+- Irreconcilable video-sensor alignment.
+- Actual split leakage.
+- Missing dataset access authorization.
+- Insufficient storage that cannot be safely resolved.
+- Invalid or incompatible model inputs.
+- Protected workflow or permission denial.
+- An action that would overwrite or delete unrelated work.
+
+A blocked dataset must not block the other dataset.
+
+If a model-specific comparison is blocked, continue other
+scientifically valid comparisons and record the omission.
+
+Avoid infinite retries and uncontrolled experiment expansion.
+
+Do not silently downgrade the scientific protocol.
+
+
+============================================================
+21. TESTING AND REPRODUCIBILITY
+============================================================
+
+Implement and execute tests covering:
+
+- Download integrity.
+- Dataset identity.
+- Label mapping.
+- Frame timestamps.
+- Sensor timestamps.
+- Feature dimensions.
+- Missing-value rules.
+- 16-frame consistency.
+- CNN feature reproducibility.
+- Split group disjointness.
+- OOF leakage prevention.
+- Training gradients.
+- Checkpoint serialization.
+- Exact checkpoint reload.
+- Metric calculations.
+- Corruption reproducibility.
+- Correct handling of unavailable modalities.
+
+Record:
+
+- Git revision and dirty-tree status.
+- Software versions.
+- Dataset versions.
+- Download hashes.
+- Raw input hashes.
+- Split identities.
+- Model configuration hashes.
+- Pretrained weight hashes.
+- Random seeds.
+- Training duration.
+- GPU information.
+- Prediction identities.
+- Validation results.
+
+Preserve historical code, evidence and model artifacts.
+
+Do not modify PHM, Intel Welding, or other unrelated datasets.
+
+Do not overwrite active REASSEMBLE experiments.
+
+Do not stage or commit files unless separately instructed.
+
+Keep large raw data, checkpoints, and feature caches appropriately
+Git-ignored.
+
+Avoid redundant data copies and excessive intermediate caches.
+
+
+============================================================
+22. FINAL REQUIRED DELIVERABLES
+============================================================
+
+At completion, provide:
+
+A. MSM/README.md
+B. HANDOVER/README.md
+C. MSM/09_final_reports/EXPERIMENT_RESULTS.md
+D. HANDOVER/09_final_reports/EXPERIMENT_RESULTS.md
+E. MSM/09_final_reports/ROBUSTNESS_RESULTS.md
+F. HANDOVER/09_final_reports/ROBUSTNESS_RESULTS.md
+G. CROSS_DATASET_COMPARISON/FINAL_RESEARCH_SUMMARY.md
+H. One reproducibility/validation report per dataset.
+I. Machine-readable predictions and metrics.
+J. Saved checkpoints and model configuration identities.
+K. A final human-readable review handoff.
+
+Provide a concise terminal summary with:
+
+MSM STATUS:
+PASS / PARTIAL / BLOCKED
+
+HANDOVER STATUS:
+PASS / PARTIAL / BLOCKED
+
+For each dataset report:
+
+- Total raw examples.
+- Total verified labels.
+- Total usable visual-sensor examples.
+- Train/validation/test group counts.
+- Number of completed models.
+- Number of completed experimental seeds.
+- Primary AP for each model.
+- Fusion improvement over vision-only and sensor-only.
+- Main robustness findings.
+- Any failed scientific gates.
+- Exact paths to final deliverables.
+
+Then provide a single overall conclusion:
+
+Did the REASSEMBLE architecture transfer successfully?
+Did F2 improve detection over unimodal baselines?
+Was the improvement robust across seeds?
+Did it remain useful with degraded modalities?
+Which scientific claims remain unsupported?
+
+Avoid declaring an experiment successful merely because
+the code executed.
+
+Proceed independently with the entire workflow now.

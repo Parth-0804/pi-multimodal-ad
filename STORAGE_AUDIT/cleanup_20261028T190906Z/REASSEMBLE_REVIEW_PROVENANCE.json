@@ -1,0 +1,303 @@
+{
+  "review_utc": "2026-10-28T19:15:51.402017+00:00",
+  "dataset_root": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE",
+  "external_allocated_bytes": 330622394368,
+  "file_count": 827,
+  "directory_allocated_bytes": 700416,
+  "classification_counts": {
+    "OPTIONAL": 299,
+    "ACTIVE": 151,
+    "REQUIRED": 377
+  },
+  "classification_file_bytes": {
+    "OPTIONAL": 63731466240,
+    "ACTIVE": 2839625728,
+    "REQUIRED": 264050601984
+  },
+  "optional_file_block_upper_bound_bytes_NOT_AUTHORIZED": 63731466240,
+  "encoded_camera_file_bytes": {
+    "hama1": 2493308928,
+    "hama2": 2356813824,
+    "hand": 2758709248
+  },
+  "optional_file_count": 299,
+  "model_recordings": 148,
+  "model_segments": 4530,
+  "active_identity_samples": 4530,
+  "active_recordings": 148,
+  "all_audited_recordings": 149,
+  "model_unused_recordings": [
+    "2025-01-10-16-17-40"
+  ],
+  "model_unused_explanation": "2025-01-10-16-17-40 lacks usable hand camera; retained for original data/integrity/negative finding; no whole raw file certified unreferenced by every existing/planned audit",
+  "source_hash_checks": {
+    "historical_full_sha256_recordings": 149,
+    "current_size_and_mtime_matches": 149,
+    "fresh_full_raw_h5_hashes": 0,
+    "all_current_phase1_source_video_metadata_and_source_manifest_hashes_match": true,
+    "duplicate_recording_full_sha256_groups": []
+  },
+  "archive_checks": [
+    {
+      "archive": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/downloads/data.zip",
+      "members": 149,
+      "uncompressed_bytes": 263983579379,
+      "missing_or_size_mismatch": [],
+      "member_content_check": "Names and sizes only; no HDF5 decompression or payload scan",
+      "all_metadata_content_matches": null
+    },
+    {
+      "archive": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/downloads/poses.zip",
+      "members": 153,
+      "uncompressed_bytes": 99475,
+      "missing_or_size_mismatch": [],
+      "member_content_check": "SHA256 metadata members only",
+      "all_metadata_content_matches": true
+    },
+    {
+      "archive": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/downloads/splits.zip",
+      "members": 2,
+      "uncompressed_bytes": 2960,
+      "missing_or_size_mismatch": [],
+      "member_content_check": "SHA256 metadata members only",
+      "all_metadata_content_matches": true
+    }
+  ],
+  "fresh_small_download_md5": [
+    {
+      "path": "downloads/README.txt",
+      "algorithm": "md5",
+      "fresh": "2e1394a2fa65e4ebb6c1fd64136cb0a0",
+      "official_and_historical_expected": "2e1394a2fa65e4ebb6c1fd64136cb0a0",
+      "match": true
+    },
+    {
+      "path": "downloads/poses.zip",
+      "algorithm": "md5",
+      "fresh": "2f3f86b65dc6312b504072a2460314c2",
+      "official_and_historical_expected": "2f3f86b65dc6312b504072a2460314c2",
+      "match": true
+    },
+    {
+      "path": "downloads/splits.zip",
+      "algorithm": "md5",
+      "fresh": "641882928ef3a8b2c3db41ac7c60b994",
+      "official_and_historical_expected": "641882928ef3a8b2c3db41ac7c60b994",
+      "match": true
+    }
+  ],
+  "fresh_model_hash_checks": [
+    {
+      "path": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/section1_models/ac77a11ff0170a41b771c03264987f8ce2b0d753/config.json",
+      "bytes": 5267,
+      "fresh_sha256": "8493be71f51a1c0a741f8f71ec151039227579379de7bcba047c0470d9320c3c",
+      "pinned_sha256_match": true
+    },
+    {
+      "path": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/section1_models/ac77a11ff0170a41b771c03264987f8ce2b0d753/preprocessor_config.json",
+      "bytes": 841,
+      "fresh_sha256": "ffb4b9461a1dad746be8f0f9c8330ed7743a1ba5fba4f75c232cd281b3d4c64a",
+      "pinned_sha256_match": true
+    },
+    {
+      "path": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/section1_models/ac77a11ff0170a41b771c03264987f8ce2b0d753/model.safetensors",
+      "bytes": 80904152,
+      "fresh_sha256": "fe87a5a30f5daf298d10794c7682a63b6107986f97d6a770ba948d89e4340093",
+      "pinned_sha256_match": true
+    }
+  ],
+  "fresh_representative_encoded_bytecopy_checks": [
+    {
+      "camera": "hama1",
+      "path": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/bef0903e9c3a4172cf0598dbc14f9bd1d5b8f25ed5f6f31ca99c7178726ec603/hama1.mp4",
+      "recording_id": "2025-01-11-14-43-37",
+      "source_h5": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/raw/data/2025-01-11-14-43-37.h5",
+      "hdf5_dataset": "hama1",
+      "bytes": 1188072,
+      "fresh_sha256": "90e0c6f01c79a9c5179e6eca0c0c59e53f9661bb69652664ca89645bbe484757",
+      "matches_embedded_source_encoded_bytes": true,
+      "meaning": "MP4 is a byte copy of encoded HDF5 dataset, not a second sensor recording or transcode; bounded representative only"
+    },
+    {
+      "camera": "hama2",
+      "path": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/bef0903e9c3a4172cf0598dbc14f9bd1d5b8f25ed5f6f31ca99c7178726ec603/hama2.mp4",
+      "recording_id": "2025-01-11-14-43-37",
+      "source_h5": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/raw/data/2025-01-11-14-43-37.h5",
+      "hdf5_dataset": "hama2",
+      "bytes": 1086973,
+      "fresh_sha256": "8d872b067739411dd828c122174c857453b32d1ced7ba49567267ac349063a63",
+      "matches_embedded_source_encoded_bytes": true,
+      "meaning": "MP4 is a byte copy of encoded HDF5 dataset, not a second sensor recording or transcode; bounded representative only"
+    },
+    {
+      "camera": "hand",
+      "path": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/bef0903e9c3a4172cf0598dbc14f9bd1d5b8f25ed5f6f31ca99c7178726ec603/hand.mp4",
+      "recording_id": "2025-01-11-14-43-37",
+      "source_h5": "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/raw/data/2025-01-11-14-43-37.h5",
+      "hdf5_dataset": "hand",
+      "bytes": 1220656,
+      "fresh_sha256": "62dac5695916f41ad81bafa0edef92c0fb4648c2fec13d3573d1b45b7b0e8037",
+      "matches_embedded_source_encoded_bytes": true,
+      "meaning": "MP4 is a byte copy of encoded HDF5 dataset, not a second sensor recording or transcode; bounded representative only"
+    }
+  ],
+  "hardlink_groups": [],
+  "files_with_external_hardlink_aliases": [],
+  "symlinks": [],
+  "active_process_snapshot": [
+    {
+      "pid": 2691799,
+      "name": "python",
+      "paths": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/PHASE1_COMPARISON_CONTROLLER.log",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/PHASE1_COMPARISON_SINGLE_WRITER.lock",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/PHASE1_SINGLE_WRITER.lock"
+      ]
+    },
+    {
+      "pid": 2823659,
+      "name": "python",
+      "paths": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log"
+      ]
+    },
+    {
+      "pid": 2823718,
+      "name": "python",
+      "paths": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log"
+      ]
+    },
+    {
+      "pid": 2823722,
+      "name": "pt_data_worker",
+      "paths": [
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/4de7eb62fc9aa63f52fef77f86ffc1fa7d95ba683b11176791725e8a0aa366e7/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/a32f571d55fbde564f8823d87b922553aac61e6d4243cd73956d8a527a7846f2/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/cb15da0959646ed6188af89097b18c712c0950ef9664bf68bf4544436b53eae6/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/d970eacf0593f475b13e888a6718e54f441f60d7e89ccfed2d5cef9d1338c8d1/hand.mp4",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log"
+      ]
+    },
+    {
+      "pid": 2823786,
+      "name": "pt_data_worker",
+      "paths": [
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/20aaa4b268c211f28fc7eb642d3a0dffa0e70b6112a39be76a4c995413f964d6/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/8a6b50d8bbfc951f058b9ba95e97a783aaca63c2080f82b8942c328a0cd8ffda/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/8e5fd7007b3cd3267e0b9ef9605860adc07b3fa42cec17f7e9a83f1b650538d1/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/ed6910a5c616e72c313d34aeb24ab7720a332fb454a69dfa161959035379d2ee/hand.mp4",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log"
+      ]
+    },
+    {
+      "pid": 2823826,
+      "name": "pt_data_worker",
+      "paths": [
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/53b075cc6bf220c04e7a58d47fe24c6f65a32d5f2b674bad89ace83be866c0a8/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/732e727b5d7a900a1284e8fb0449560d118a1e184f7eb997699eb6513e976218/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/8e5fd7007b3cd3267e0b9ef9605860adc07b3fa42cec17f7e9a83f1b650538d1/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/9e5301d035c45fd1af8ff665ff7838f332874a3f05f1a15013013e18a0f05a24/hand.mp4",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log"
+      ]
+    },
+    {
+      "pid": 2823865,
+      "name": "pt_data_worker",
+      "paths": [
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/07855775bcc8ce4f31905a55c0b78ee716e3cddcbd64f4b2226c9ad246116c8e/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/2509f290d2153371bcce546ce559f4bd9551d3c161f912ffece789c7048d8410/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/3a0d3f2b1021d7455b5cc97294b292914878f3b87612d1fbed55b897de09bc07/hand.mp4",
+        "/home/student/Master_Thesis_WS/datasets/REASSEMBLE/cache/encoded_media/a32f571d55fbde564f8823d87b922553aac61e6d4243cd73956d8a527a7846f2/hand.mp4",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log"
+      ]
+    },
+    {
+      "pid": 2834331,
+      "name": "pt_data_worker",
+      "paths": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log"
+      ]
+    },
+    {
+      "pid": 2834383,
+      "name": "pt_data_worker",
+      "paths": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log"
+      ]
+    },
+    {
+      "pid": 2834400,
+      "name": "pt_data_worker",
+      "paths": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log"
+      ]
+    },
+    {
+      "pid": 2834418,
+      "name": "pt_data_worker",
+      "paths": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log"
+      ]
+    }
+  ],
+  "process_visibility_errors": [
+    {
+      "pid": 897,
+      "name": "(sd-pam)",
+      "operation": "fd",
+      "error": "PermissionError"
+    },
+    {
+      "pid": 1849958,
+      "name": "sshd",
+      "operation": "fd",
+      "error": "PermissionError"
+    }
+  ],
+  "external_file_metadata_preservation": {
+    "files": 827,
+    "all_size_mtime_inode_mode_unchanged": true,
+    "changed_paths": []
+  },
+  "restore_sources": {
+    "README.txt": {
+      "name": "README.txt",
+      "size_bytes": 8138,
+      "md5": "2e1394a2fa65e4ebb6c1fd64136cb0a0",
+      "source": "https://researchdata.tuwien.ac.at/api/records/0ewrv-8cb44/files/README.txt/content"
+    },
+    "poses.zip": {
+      "name": "poses.zip",
+      "size_bytes": 89431,
+      "md5": "2f3f86b65dc6312b504072a2460314c2",
+      "source": "https://researchdata.tuwien.ac.at/api/records/0ewrv-8cb44/files/poses.zip/content"
+    },
+    "splits.zip": {
+      "name": "splits.zip",
+      "size_bytes": 1094,
+      "md5": "641882928ef3a8b2c3db41ac7c60b994",
+      "source": "https://researchdata.tuwien.ac.at/api/records/0ewrv-8cb44/files/splits.zip/content"
+    },
+    "data.zip": {
+      "name": "data.zip",
+      "size_bytes": 58881334586,
+      "md5": "812103a652ca9201e87a3bcecfee4ef3",
+      "source": "https://researchdata.tuwien.ac.at/api/records/0ewrv-8cb44/files/data.zip/content"
+    }
+  },
+  "native_source_v1": "https://researchdata.tuwien.ac.at/records/0ewrv-8cb44",
+  "official_current_data_zip_md5": "812103a652ca9201e87a3bcecfee4ef3",
+  "official_landing_page_checked": true,
+  "no_external_writes_or_deletions": true,
+  "no_data_downloads": true,
+  "warnings": [
+    "No full current raw HDF5 or 58.9 GB archive hash pass; historical hashes plus current metadata and bounded byte comparisons have explicit scope.",
+    "No full isolated cache rebuild or archive round-trip restore executed.",
+    "All OPTIONAL rows remain preserved; future removal needs researcher review and fresh active-dependency/content checks.",
+    "Other unused modalities share authoritative HDF5 containers; removing members would rewrite originals and is not proposed.",
+    "Blinded review media are evidence, not disposable caches.",
+    "No live process interruption, inference, training, signal recomputation, or payload acquisition performed."
+  ]
+}

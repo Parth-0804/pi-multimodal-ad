@@ -1,0 +1,92 @@
+{
+  "run_dir": "runs/reassemble/additional_improvements_executed/20260928T000346Z",
+  "seed": 20260927,
+  "seeds": [
+    20260927,
+    20260928,
+    20260929
+  ],
+  "section1_config": "configs/reassemble/section1.json",
+  "section1b_config": "configs/reassemble/section1b.json",
+  "section2_config": "configs/reassemble/section2.json",
+  "completed_config": "configs/reassemble/completion.json",
+  "data_root": "../datasets/REASSEMBLE",
+  "threads": 4,
+  "blas_threads": 16,
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 20400928,
+  "minimum_free_GiB": 20,
+  "large_cache_minimum_free_GiB": 30,
+  "neural": {
+    "max_epochs": 100,
+    "minimum_epochs": 10,
+    "patience": 12,
+    "batch_size": 128,
+    "lr": 0.001,
+    "weight_decay": 0.001,
+    "gradient_clip": 1.0
+  },
+  "temporal": {
+    "projection": 128,
+    "heads": 4,
+    "layers": 1,
+    "ffn": 256,
+    "dropout": 0.1,
+    "position": "fixed sinusoidal",
+    "normalization": "training segment-mean moments; shared with V-MEAN"
+  },
+  "finetune": {
+    "max_epochs": 20,
+    "patience": 5,
+    "pretrained_lr": 1e-05,
+    "head_lr": 0.0001,
+    "weight_decay": 0.001,
+    "batch_size": 128,
+    "initial_microbatch": 2,
+    "maximum_OOM_reductions": 2,
+    "BN": "running statistics frozen"
+  },
+  "adaptation": {
+    "hidden": 16,
+    "lambdas": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "max_epochs": 100,
+    "minimum_epochs": 10,
+    "patience": 12,
+    "lr": 0.003,
+    "weight_decay": 0.001,
+    "gradient_clip": 1.0,
+    "batch_size": 128
+  },
+  "corruption_training": {
+    "mixture": [
+      0.5,
+      0.25,
+      0.25
+    ],
+    "realizations": 4,
+    "visual_sigma": [
+      0.01,
+      0.08
+    ],
+    "sensor_alpha": [
+      0.05,
+      0.8
+    ],
+    "test_realizations": 5,
+    "selection_weights": [
+      0.5,
+      0.25,
+      0.25
+    ],
+    "F6_hidden": 16,
+    "static_C": 1.0,
+    "noninferiority_AP_margin": 0.01
+  },
+  "practical_AP_reference": 0.01,
+  "status_label": "ADDITIONAL EXPLORATORY EXPERIMENTS",
+  "wall_time_limit_hours": null
+}

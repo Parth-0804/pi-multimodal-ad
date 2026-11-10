@@ -1,0 +1,3489 @@
+{
+  "dataset_handle": "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+  "native_intervals": 2512,
+  "native_class_counts": {
+    "0": 1877,
+    "1": 458,
+    "2": 177
+  },
+  "native_nominal_groups": 56,
+  "native_positive_groups": 25,
+  "aligned_experiments": 45,
+  "alignment_failed_experiments": [
+    "imi_vm20i/dataset12",
+    "imi_vm20i/dataset15",
+    "imi_vm20i/dataset17",
+    "imi_vm20i/dataset18",
+    "imi_vm20i/dataset2",
+    "imi_vm20i/dataset22",
+    "imi_vm20i/dataset33",
+    "imi_vm20i/dataset7",
+    "imi_vm20i/dataset8",
+    "imi_vm20i/dataset9",
+    "imi_vmx30ui/dataset1"
+  ],
+  "alignment_pass": 2381,
+  "frame_contract_pass": 1924,
+  "common_mtc_sensor_gate_pass": 2448,
+  "joint_technical_pass": 1895,
+  "exclusion_reason_counts": {
+    "outside_validated_audio_support": 444,
+    "mtc_time_gap_exceeds_0.5s": 48,
+    "alignment_rejected:ambiguous_equal_calibration_consensus": 64,
+    "insufficient_mtc_rows": 21,
+    "alignment_rejected:insufficient_validation_support": 66,
+    "alignment_rejected:no_calibration_anchors": 1,
+    "fewer_than_16_distinct_native_frames": 13
+  },
+  "new_context_visibility_pending": 1808,
+  "all_frame_valid_independent_visibility_pending": 1924,
+  "joint_independent_visibility_pending": 1895,
+  "acquisition": {
+    "planned_files": 226,
+    "new_files": 204,
+    "reused_files": 22,
+    "new_bytes": 2533736741,
+    "plan_bytes": 2639855432,
+    "missing_or_failed_files": 0,
+    "historical_timeout_attempts": 1,
+    "acquisition_run": "MILLING DATASET/runs/20261027T013606719154Z-stage5-full-lab",
+    "free_disk_bytes_after": 77605027840,
+    "inventory_sha256": "871e4b547643eed1340c8d76bc9c924441916c5a5e105589212defc4410ac6b8"
+  },
+  "targets": {
+    "stable_negative": {
+      "intervals": 1895,
+      "positive_prevalence": 0.17730870712401056,
+      "class_counts": {
+        "0": 1434,
+        "1": 336,
+        "2": 125
+      },
+      "groupings": {
+        "group_id": {
+          "grouping": "group_id",
+          "groups": 45,
+          "positive_groups": 17,
+          "mixed_groups": 14,
+          "group_distribution": [
+            {
+              "group": "imi_vm20i/dataset1",
+              "intervals": 8,
+              "label_0": 0,
+              "label_1": 8,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset10",
+              "intervals": 17,
+              "label_0": 17,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset11",
+              "intervals": 53,
+              "label_0": 53,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset13",
+              "intervals": 62,
+              "label_0": 62,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset14",
+              "intervals": 55,
+              "label_0": 55,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset16",
+              "intervals": 57,
+              "label_0": 39,
+              "label_1": 18,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset19",
+              "intervals": 18,
+              "label_0": 18,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset20",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset21",
+              "intervals": 62,
+              "label_0": 62,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset23",
+              "intervals": 20,
+              "label_0": 20,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset24",
+              "intervals": 55,
+              "label_0": 0,
+              "label_1": 55,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset25",
+              "intervals": 47,
+              "label_0": 4,
+              "label_1": 43,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset26",
+              "intervals": 64,
+              "label_0": 0,
+              "label_1": 19,
+              "label_2": 45,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset27",
+              "intervals": 64,
+              "label_0": 39,
+              "label_1": 25,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset28",
+              "intervals": 24,
+              "label_0": 15,
+              "label_1": 9,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset29",
+              "intervals": 38,
+              "label_0": 8,
+              "label_1": 30,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset3",
+              "intervals": 12,
+              "label_0": 0,
+              "label_1": 0,
+              "label_2": 12,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset30",
+              "intervals": 24,
+              "label_0": 9,
+              "label_1": 15,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset31",
+              "intervals": 61,
+              "label_0": 61,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset32",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset34",
+              "intervals": 59,
+              "label_0": 59,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset35",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset36",
+              "intervals": 59,
+              "label_0": 59,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset37",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset4",
+              "intervals": 11,
+              "label_0": 0,
+              "label_1": 0,
+              "label_2": 11,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset5",
+              "intervals": 7,
+              "label_0": 3,
+              "label_1": 4,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset6",
+              "intervals": 28,
+              "label_0": 16,
+              "label_1": 12,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset10",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset11",
+              "intervals": 55,
+              "label_0": 55,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset12",
+              "intervals": 49,
+              "label_0": 49,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset13",
+              "intervals": 48,
+              "label_0": 48,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset14",
+              "intervals": 36,
+              "label_0": 3,
+              "label_1": 33,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset15",
+              "intervals": 49,
+              "label_0": 5,
+              "label_1": 44,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset16",
+              "intervals": 53,
+              "label_0": 53,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset17",
+              "intervals": 25,
+              "label_0": 24,
+              "label_1": 1,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset18",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset19",
+              "intervals": 50,
+              "label_0": 0,
+              "label_1": 14,
+              "label_2": 36,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset2",
+              "intervals": 12,
+              "label_0": 0,
+              "label_1": 0,
+              "label_2": 12,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset3",
+              "intervals": 9,
+              "label_0": 0,
+              "label_1": 0,
+              "label_2": 9,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset4",
+              "intervals": 4,
+              "label_0": 0,
+              "label_1": 4,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset5",
+              "intervals": 17,
+              "label_0": 17,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset6",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset7",
+              "intervals": 61,
+              "label_0": 61,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset8",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset9",
+              "intervals": 13,
+              "label_0": 11,
+              "label_1": 2,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            }
+          ],
+          "outer_folds": 3,
+          "inner_folds": 2,
+          "seed": 42,
+          "final_split_frozen": false,
+          "passed": true,
+          "reason": "Frozen single-seed nested construction passes technical group/class gates",
+          "fold_summary": [
+            {
+              "fold": 0,
+              "train_intervals": 1328,
+              "test_intervals": 567,
+              "train_positive": 179,
+              "test_positive": 157,
+              "train_groups": 32,
+              "test_groups": 13,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vm20i/20240302",
+                  "imi_vmx30ui/20240227",
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240229",
+                  "imi_vmx30ui/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240227",
+                  "20240228",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 1,
+              "train_intervals": 1165,
+              "test_intervals": 730,
+              "train_positive": 299,
+              "test_positive": 37,
+              "train_groups": 28,
+              "test_groups": 17,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vmx30ui/20240227",
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240229",
+                  "imi_vmx30ui/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240227",
+                  "20240228",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 2,
+              "train_intervals": 1297,
+              "test_intervals": 598,
+              "train_positive": 194,
+              "test_positive": 142,
+              "train_groups": 30,
+              "test_groups": 15,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vm20i/20240302",
+                  "imi_vmx30ui/20240227",
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240229"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240227",
+                  "20240228",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240227",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240227",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            }
+          ]
+        },
+        "machine_date_group": {
+          "grouping": "machine_date_group",
+          "groups": 7,
+          "positive_groups": 7,
+          "mixed_groups": 7,
+          "group_distribution": [
+            {
+              "group": "imi_vm20i/20240226",
+              "intervals": 443,
+              "label_0": 409,
+              "label_1": 34,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 11
+            },
+            {
+              "group": "imi_vm20i/20240229",
+              "intervals": 487,
+              "label_0": 402,
+              "label_1": 62,
+              "label_2": 23,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 12
+            },
+            {
+              "group": "imi_vm20i/20240302",
+              "intervals": 230,
+              "label_0": 43,
+              "label_1": 142,
+              "label_2": 45,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 4
+            },
+            {
+              "group": "imi_vmx30ui/20240227",
+              "intervals": 177,
+              "label_0": 144,
+              "label_1": 33,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 4
+            },
+            {
+              "group": "imi_vmx30ui/20240228",
+              "intervals": 341,
+              "label_0": 295,
+              "label_1": 46,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 7
+            },
+            {
+              "group": "imi_vmx30ui/20240229",
+              "intervals": 25,
+              "label_0": 0,
+              "label_1": 4,
+              "label_2": 21,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 3
+            },
+            {
+              "group": "imi_vmx30ui/20240302",
+              "intervals": 192,
+              "label_0": 141,
+              "label_1": 15,
+              "label_2": 36,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 4
+            }
+          ],
+          "outer_folds": 3,
+          "inner_folds": 2,
+          "seed": 42,
+          "final_split_frozen": false,
+          "passed": true,
+          "reason": "Frozen single-seed nested construction passes technical group/class gates",
+          "fold_summary": [
+            {
+              "fold": 0,
+              "train_intervals": 1427,
+              "test_intervals": 468,
+              "train_positive": 298,
+              "test_positive": 38,
+              "train_groups": 5,
+              "test_groups": 2,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": [
+                  "20240229"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": [
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": [
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 1,
+              "train_intervals": 1231,
+              "test_intervals": 664,
+              "train_positive": 241,
+              "test_positive": 95,
+              "train_groups": 5,
+              "test_groups": 2,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": [
+                  "20240229"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 2,
+              "train_intervals": 1132,
+              "test_intervals": 763,
+              "train_positive": 133,
+              "test_positive": 203,
+              "train_groups": 4,
+              "test_groups": 3,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": []
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": [
+                    "20240229"
+                  ]
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": [
+                    "20240229"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            }
+          ]
+        },
+        "calendar_date_group": {
+          "grouping": "calendar_date_group",
+          "groups": 5,
+          "positive_groups": 5,
+          "mixed_groups": 5,
+          "group_distribution": [
+            {
+              "group": "20240226",
+              "intervals": 443,
+              "label_0": 409,
+              "label_1": 34,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 11
+            },
+            {
+              "group": "20240227",
+              "intervals": 177,
+              "label_0": 144,
+              "label_1": 33,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 4
+            },
+            {
+              "group": "20240228",
+              "intervals": 341,
+              "label_0": 295,
+              "label_1": 46,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 7
+            },
+            {
+              "group": "20240229",
+              "intervals": 512,
+              "label_0": 402,
+              "label_1": 66,
+              "label_2": 44,
+              "both_classes": true,
+              "machines": "imi_vm20i,imi_vmx30ui",
+              "nominal_folders": 15
+            },
+            {
+              "group": "20240302",
+              "intervals": 422,
+              "label_0": 184,
+              "label_1": 157,
+              "label_2": 81,
+              "both_classes": true,
+              "machines": "imi_vm20i,imi_vmx30ui",
+              "nominal_folders": 8
+            }
+          ],
+          "outer_folds": 3,
+          "inner_folds": 2,
+          "seed": 42,
+          "final_split_frozen": false,
+          "passed": true,
+          "reason": "Frozen single-seed nested construction passes technical group/class gates",
+          "fold_summary": [
+            {
+              "fold": 0,
+              "train_intervals": 1473,
+              "test_intervals": 422,
+              "train_positive": 179,
+              "test_positive": 157,
+              "train_groups": 4,
+              "test_groups": 1,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": []
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 1,
+              "train_intervals": 1206,
+              "test_intervals": 689,
+              "train_positive": 237,
+              "test_positive": 99,
+              "train_groups": 3,
+              "test_groups": 2,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": []
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 2,
+              "train_intervals": 1111,
+              "test_intervals": 784,
+              "train_positive": 256,
+              "test_positive": 80,
+              "train_groups": 3,
+              "test_groups": 2,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": []
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            }
+          ]
+        }
+      },
+      "machine_nominal_gates": {
+        "imi_vm20i": {
+          "grouping": "group_id",
+          "groups": 27,
+          "positive_groups": 11,
+          "mixed_groups": 9,
+          "group_distribution": [
+            {
+              "group": "imi_vm20i/dataset1",
+              "intervals": 8,
+              "label_0": 0,
+              "label_1": 8,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset10",
+              "intervals": 17,
+              "label_0": 17,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset11",
+              "intervals": 53,
+              "label_0": 53,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset13",
+              "intervals": 62,
+              "label_0": 62,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset14",
+              "intervals": 55,
+              "label_0": 55,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset16",
+              "intervals": 57,
+              "label_0": 39,
+              "label_1": 18,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset19",
+              "intervals": 18,
+              "label_0": 18,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset20",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset21",
+              "intervals": 62,
+              "label_0": 62,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset23",
+              "intervals": 20,
+              "label_0": 20,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset24",
+              "intervals": 55,
+              "label_0": 0,
+              "label_1": 55,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset25",
+              "intervals": 47,
+              "label_0": 4,
+              "label_1": 43,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset26",
+              "intervals": 64,
+              "label_0": 0,
+              "label_1": 19,
+              "label_2": 45,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset27",
+              "intervals": 64,
+              "label_0": 39,
+              "label_1": 25,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset28",
+              "intervals": 24,
+              "label_0": 15,
+              "label_1": 9,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset29",
+              "intervals": 38,
+              "label_0": 8,
+              "label_1": 30,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset3",
+              "intervals": 12,
+              "label_0": 0,
+              "label_1": 0,
+              "label_2": 12,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset30",
+              "intervals": 24,
+              "label_0": 9,
+              "label_1": 15,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset31",
+              "intervals": 61,
+              "label_0": 61,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset32",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset34",
+              "intervals": 59,
+              "label_0": 59,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset35",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset36",
+              "intervals": 59,
+              "label_0": 59,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset37",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset4",
+              "intervals": 11,
+              "label_0": 0,
+              "label_1": 0,
+              "label_2": 11,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset5",
+              "intervals": 7,
+              "label_0": 3,
+              "label_1": 4,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset6",
+              "intervals": 28,
+              "label_0": 16,
+              "label_1": 12,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            }
+          ],
+          "outer_folds": 3,
+          "inner_folds": 2,
+          "seed": 42,
+          "final_split_frozen": false,
+          "passed": true,
+          "reason": "Frozen single-seed nested construction passes technical group/class gates",
+          "fold_summary": [
+            {
+              "fold": 0,
+              "train_intervals": 854,
+              "test_intervals": 306,
+              "train_positive": 197,
+              "test_positive": 41,
+              "train_groups": 20,
+              "test_groups": 7,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vm20i/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240229",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240229",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 1,
+              "train_intervals": 693,
+              "test_intervals": 467,
+              "train_positive": 138,
+              "test_positive": 100,
+              "train_groups": 16,
+              "test_groups": 11,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vm20i/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240229"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240229"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 2,
+              "train_intervals": 773,
+              "test_intervals": 387,
+              "train_positive": 141,
+              "test_positive": 97,
+              "train_groups": 18,
+              "test_groups": 9,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vm20i/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240229",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240229",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            }
+          ]
+        },
+        "imi_vmx30ui": {
+          "grouping": "group_id",
+          "groups": 18,
+          "positive_groups": 6,
+          "mixed_groups": 5,
+          "group_distribution": [
+            {
+              "group": "imi_vmx30ui/dataset10",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset11",
+              "intervals": 55,
+              "label_0": 55,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset12",
+              "intervals": 49,
+              "label_0": 49,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset13",
+              "intervals": 48,
+              "label_0": 48,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset14",
+              "intervals": 36,
+              "label_0": 3,
+              "label_1": 33,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset15",
+              "intervals": 49,
+              "label_0": 5,
+              "label_1": 44,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset16",
+              "intervals": 53,
+              "label_0": 53,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset17",
+              "intervals": 25,
+              "label_0": 24,
+              "label_1": 1,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset18",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset19",
+              "intervals": 50,
+              "label_0": 0,
+              "label_1": 14,
+              "label_2": 36,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset2",
+              "intervals": 12,
+              "label_0": 0,
+              "label_1": 0,
+              "label_2": 12,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset3",
+              "intervals": 9,
+              "label_0": 0,
+              "label_1": 0,
+              "label_2": 9,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset4",
+              "intervals": 4,
+              "label_0": 0,
+              "label_1": 4,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset5",
+              "intervals": 17,
+              "label_0": 17,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset6",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset7",
+              "intervals": 61,
+              "label_0": 61,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset8",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset9",
+              "intervals": 13,
+              "label_0": 11,
+              "label_1": 2,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            }
+          ],
+          "outer_folds": 3,
+          "inner_folds": 2,
+          "seed": 42,
+          "final_split_frozen": false,
+          "passed": true,
+          "reason": "Frozen single-seed nested construction passes technical group/class gates",
+          "fold_summary": [
+            {
+              "fold": 0,
+              "train_intervals": 549,
+              "test_intervals": 186,
+              "train_positive": 35,
+              "test_positive": 63,
+              "train_groups": 12,
+              "test_groups": 6,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240229",
+                  "imi_vmx30ui/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240228",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228"
+                  ],
+                  "calendar_date_group": [
+                    "20240227",
+                    "20240228"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228"
+                  ],
+                  "calendar_date_group": [
+                    "20240227",
+                    "20240228"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 1,
+              "train_intervals": 441,
+              "test_intervals": 294,
+              "train_positive": 96,
+              "test_positive": 2,
+              "train_groups": 12,
+              "test_groups": 6,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vmx30ui/20240227",
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240227",
+                  "20240228",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240229"
+                  ],
+                  "calendar_date_group": [
+                    "20240227",
+                    "20240228",
+                    "20240229"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240229"
+                  ],
+                  "calendar_date_group": [
+                    "20240227",
+                    "20240228",
+                    "20240229"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 2,
+              "train_intervals": 480,
+              "test_intervals": 255,
+              "train_positive": 65,
+              "test_positive": 33,
+              "train_groups": 12,
+              "test_groups": 6,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vmx30ui/20240227",
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240229"
+                ],
+                "calendar_date_group": [
+                  "20240227",
+                  "20240228",
+                  "20240229"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240228",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240228",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            }
+          ]
+        }
+      }
+    },
+    "exclude": {
+      "intervals": 1770,
+      "positive_prevalence": 0.18983050847457628,
+      "class_counts": {
+        "0": 1434,
+        "1": 336
+      },
+      "groupings": {
+        "group_id": {
+          "grouping": "group_id",
+          "groups": 41,
+          "positive_groups": 17,
+          "mixed_groups": 12,
+          "group_distribution": [
+            {
+              "group": "imi_vm20i/dataset1",
+              "intervals": 8,
+              "label_0": 0,
+              "label_1": 8,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset10",
+              "intervals": 17,
+              "label_0": 17,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset11",
+              "intervals": 53,
+              "label_0": 53,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset13",
+              "intervals": 62,
+              "label_0": 62,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset14",
+              "intervals": 55,
+              "label_0": 55,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset16",
+              "intervals": 57,
+              "label_0": 39,
+              "label_1": 18,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset19",
+              "intervals": 18,
+              "label_0": 18,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset20",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset21",
+              "intervals": 62,
+              "label_0": 62,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset23",
+              "intervals": 20,
+              "label_0": 20,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset24",
+              "intervals": 55,
+              "label_0": 0,
+              "label_1": 55,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset25",
+              "intervals": 47,
+              "label_0": 4,
+              "label_1": 43,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset26",
+              "intervals": 19,
+              "label_0": 0,
+              "label_1": 19,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset27",
+              "intervals": 64,
+              "label_0": 39,
+              "label_1": 25,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset28",
+              "intervals": 24,
+              "label_0": 15,
+              "label_1": 9,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset29",
+              "intervals": 38,
+              "label_0": 8,
+              "label_1": 30,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset30",
+              "intervals": 24,
+              "label_0": 9,
+              "label_1": 15,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset31",
+              "intervals": 61,
+              "label_0": 61,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset32",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset34",
+              "intervals": 59,
+              "label_0": 59,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset35",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset36",
+              "intervals": 59,
+              "label_0": 59,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset37",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset5",
+              "intervals": 7,
+              "label_0": 3,
+              "label_1": 4,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset6",
+              "intervals": 28,
+              "label_0": 16,
+              "label_1": 12,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset10",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset11",
+              "intervals": 55,
+              "label_0": 55,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset12",
+              "intervals": 49,
+              "label_0": 49,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset13",
+              "intervals": 48,
+              "label_0": 48,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset14",
+              "intervals": 36,
+              "label_0": 3,
+              "label_1": 33,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset15",
+              "intervals": 49,
+              "label_0": 5,
+              "label_1": 44,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset16",
+              "intervals": 53,
+              "label_0": 53,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset17",
+              "intervals": 25,
+              "label_0": 24,
+              "label_1": 1,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset18",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset19",
+              "intervals": 14,
+              "label_0": 0,
+              "label_1": 14,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset4",
+              "intervals": 4,
+              "label_0": 0,
+              "label_1": 4,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset5",
+              "intervals": 17,
+              "label_0": 17,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset6",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset7",
+              "intervals": 61,
+              "label_0": 61,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset8",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset9",
+              "intervals": 13,
+              "label_0": 11,
+              "label_1": 2,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            }
+          ],
+          "outer_folds": 3,
+          "inner_folds": 2,
+          "seed": 42,
+          "final_split_frozen": false,
+          "passed": true,
+          "reason": "Frozen single-seed nested construction passes technical group/class gates",
+          "fold_summary": [
+            {
+              "fold": 0,
+              "train_intervals": 1058,
+              "test_intervals": 712,
+              "train_positive": 198,
+              "test_positive": 138,
+              "train_groups": 25,
+              "test_groups": 16,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vm20i/20240302",
+                  "imi_vmx30ui/20240227",
+                  "imi_vmx30ui/20240228"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240227",
+                  "20240228",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302",
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240227",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302",
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240227",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 1,
+              "train_intervals": 1341,
+              "test_intervals": 429,
+              "train_positive": 214,
+              "test_positive": 122,
+              "train_groups": 29,
+              "test_groups": 12,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vm20i/20240302",
+                  "imi_vmx30ui/20240227",
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240227",
+                  "20240228",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302",
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240227",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302",
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240227",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 2,
+              "train_intervals": 1141,
+              "test_intervals": 629,
+              "train_positive": 260,
+              "test_positive": 76,
+              "train_groups": 28,
+              "test_groups": 13,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vm20i/20240302",
+                  "imi_vmx30ui/20240227",
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240227",
+                  "20240228",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302",
+                    "imi_vmx30ui/20240228"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302",
+                    "imi_vmx30ui/20240228"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240228",
+                    "20240229",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            }
+          ]
+        },
+        "machine_date_group": {
+          "grouping": "machine_date_group",
+          "groups": 7,
+          "positive_groups": 7,
+          "mixed_groups": 6,
+          "group_distribution": [
+            {
+              "group": "imi_vm20i/20240226",
+              "intervals": 443,
+              "label_0": 409,
+              "label_1": 34,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 11
+            },
+            {
+              "group": "imi_vm20i/20240229",
+              "intervals": 464,
+              "label_0": 402,
+              "label_1": 62,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 10
+            },
+            {
+              "group": "imi_vm20i/20240302",
+              "intervals": 185,
+              "label_0": 43,
+              "label_1": 142,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 4
+            },
+            {
+              "group": "imi_vmx30ui/20240227",
+              "intervals": 177,
+              "label_0": 144,
+              "label_1": 33,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 4
+            },
+            {
+              "group": "imi_vmx30ui/20240228",
+              "intervals": 341,
+              "label_0": 295,
+              "label_1": 46,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 7
+            },
+            {
+              "group": "imi_vmx30ui/20240229",
+              "intervals": 4,
+              "label_0": 0,
+              "label_1": 4,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/20240302",
+              "intervals": 156,
+              "label_0": 141,
+              "label_1": 15,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 4
+            }
+          ],
+          "outer_folds": 3,
+          "inner_folds": 2,
+          "seed": 42,
+          "final_split_frozen": false,
+          "passed": true,
+          "reason": "Frozen single-seed nested construction passes technical group/class gates",
+          "fold_summary": [
+            {
+              "fold": 0,
+              "train_intervals": 1323,
+              "test_intervals": 447,
+              "train_positive": 298,
+              "test_positive": 38,
+              "train_groups": 5,
+              "test_groups": 2,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": [
+                  "20240229"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": [
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": [
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 1,
+              "train_intervals": 1129,
+              "test_intervals": 641,
+              "train_positive": 241,
+              "test_positive": 95,
+              "train_groups": 5,
+              "test_groups": 2,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": [
+                  "20240229"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 2,
+              "train_intervals": 1088,
+              "test_intervals": 682,
+              "train_positive": 133,
+              "test_positive": 203,
+              "train_groups": 4,
+              "test_groups": 3,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": []
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": [
+                    "20240229"
+                  ]
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": [
+                    "20240229"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            }
+          ]
+        },
+        "calendar_date_group": {
+          "grouping": "calendar_date_group",
+          "groups": 5,
+          "positive_groups": 5,
+          "mixed_groups": 5,
+          "group_distribution": [
+            {
+              "group": "20240226",
+              "intervals": 443,
+              "label_0": 409,
+              "label_1": 34,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 11
+            },
+            {
+              "group": "20240227",
+              "intervals": 177,
+              "label_0": 144,
+              "label_1": 33,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 4
+            },
+            {
+              "group": "20240228",
+              "intervals": 341,
+              "label_0": 295,
+              "label_1": 46,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 7
+            },
+            {
+              "group": "20240229",
+              "intervals": 468,
+              "label_0": 402,
+              "label_1": 66,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i,imi_vmx30ui",
+              "nominal_folders": 11
+            },
+            {
+              "group": "20240302",
+              "intervals": 341,
+              "label_0": 184,
+              "label_1": 157,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i,imi_vmx30ui",
+              "nominal_folders": 8
+            }
+          ],
+          "outer_folds": 3,
+          "inner_folds": 2,
+          "seed": 42,
+          "final_split_frozen": false,
+          "passed": true,
+          "reason": "Frozen single-seed nested construction passes technical group/class gates",
+          "fold_summary": [
+            {
+              "fold": 0,
+              "train_intervals": 1125,
+              "test_intervals": 645,
+              "train_positive": 237,
+              "test_positive": 99,
+              "train_groups": 3,
+              "test_groups": 2,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": []
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 1,
+              "train_intervals": 1429,
+              "test_intervals": 341,
+              "train_positive": 179,
+              "test_positive": 157,
+              "train_groups": 4,
+              "test_groups": 1,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": []
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 2,
+              "train_intervals": 986,
+              "test_intervals": 784,
+              "train_positive": 256,
+              "test_positive": 80,
+              "train_groups": 3,
+              "test_groups": 2,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [],
+                "calendar_date_group": []
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                },
+                {
+                  "machine_date_group": [],
+                  "calendar_date_group": []
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            }
+          ]
+        }
+      },
+      "machine_nominal_gates": {
+        "imi_vm20i": {
+          "grouping": "group_id",
+          "groups": 25,
+          "positive_groups": 11,
+          "mixed_groups": 8,
+          "group_distribution": [
+            {
+              "group": "imi_vm20i/dataset1",
+              "intervals": 8,
+              "label_0": 0,
+              "label_1": 8,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset10",
+              "intervals": 17,
+              "label_0": 17,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset11",
+              "intervals": 53,
+              "label_0": 53,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset13",
+              "intervals": 62,
+              "label_0": 62,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset14",
+              "intervals": 55,
+              "label_0": 55,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset16",
+              "intervals": 57,
+              "label_0": 39,
+              "label_1": 18,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset19",
+              "intervals": 18,
+              "label_0": 18,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset20",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset21",
+              "intervals": 62,
+              "label_0": 62,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset23",
+              "intervals": 20,
+              "label_0": 20,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset24",
+              "intervals": 55,
+              "label_0": 0,
+              "label_1": 55,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset25",
+              "intervals": 47,
+              "label_0": 4,
+              "label_1": 43,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset26",
+              "intervals": 19,
+              "label_0": 0,
+              "label_1": 19,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset27",
+              "intervals": 64,
+              "label_0": 39,
+              "label_1": 25,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset28",
+              "intervals": 24,
+              "label_0": 15,
+              "label_1": 9,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset29",
+              "intervals": 38,
+              "label_0": 8,
+              "label_1": 30,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset30",
+              "intervals": 24,
+              "label_0": 9,
+              "label_1": 15,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset31",
+              "intervals": 61,
+              "label_0": 61,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset32",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset34",
+              "intervals": 59,
+              "label_0": 59,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset35",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset36",
+              "intervals": 59,
+              "label_0": 59,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset37",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset5",
+              "intervals": 7,
+              "label_0": 3,
+              "label_1": 4,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vm20i/dataset6",
+              "intervals": 28,
+              "label_0": 16,
+              "label_1": 12,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vm20i",
+              "nominal_folders": 1
+            }
+          ],
+          "outer_folds": 3,
+          "inner_folds": 2,
+          "seed": 42,
+          "final_split_frozen": false,
+          "passed": true,
+          "reason": "Frozen single-seed nested construction passes technical group/class gates",
+          "fold_summary": [
+            {
+              "fold": 0,
+              "train_intervals": 642,
+              "test_intervals": 450,
+              "train_positive": 167,
+              "test_positive": 71,
+              "train_groups": 16,
+              "test_groups": 9,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vm20i/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226"
+                  ],
+                  "calendar_date_group": [
+                    "20240226"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226"
+                  ],
+                  "calendar_date_group": [
+                    "20240226"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 1,
+              "train_intervals": 873,
+              "test_intervals": 219,
+              "train_positive": 167,
+              "test_positive": 71,
+              "train_groups": 18,
+              "test_groups": 7,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240229"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240229",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229",
+                    "imi_vm20i/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240229",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 2,
+              "train_intervals": 669,
+              "test_intervals": 423,
+              "train_positive": 142,
+              "test_positive": 96,
+              "train_groups": 16,
+              "test_groups": 9,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vm20i/20240226",
+                  "imi_vm20i/20240229",
+                  "imi_vm20i/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240226",
+                  "20240229",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240229"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vm20i/20240226",
+                    "imi_vm20i/20240229"
+                  ],
+                  "calendar_date_group": [
+                    "20240226",
+                    "20240229"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            }
+          ]
+        },
+        "imi_vmx30ui": {
+          "grouping": "group_id",
+          "groups": 16,
+          "positive_groups": 6,
+          "mixed_groups": 4,
+          "group_distribution": [
+            {
+              "group": "imi_vmx30ui/dataset10",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset11",
+              "intervals": 55,
+              "label_0": 55,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset12",
+              "intervals": 49,
+              "label_0": 49,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset13",
+              "intervals": 48,
+              "label_0": 48,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset14",
+              "intervals": 36,
+              "label_0": 3,
+              "label_1": 33,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset15",
+              "intervals": 49,
+              "label_0": 5,
+              "label_1": 44,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset16",
+              "intervals": 53,
+              "label_0": 53,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset17",
+              "intervals": 25,
+              "label_0": 24,
+              "label_1": 1,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset18",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset19",
+              "intervals": 14,
+              "label_0": 0,
+              "label_1": 14,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset4",
+              "intervals": 4,
+              "label_0": 0,
+              "label_1": 4,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset5",
+              "intervals": 17,
+              "label_0": 17,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset6",
+              "intervals": 63,
+              "label_0": 63,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset7",
+              "intervals": 61,
+              "label_0": 61,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset8",
+              "intervals": 64,
+              "label_0": 64,
+              "label_1": 0,
+              "label_2": 0,
+              "both_classes": false,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            },
+            {
+              "group": "imi_vmx30ui/dataset9",
+              "intervals": 13,
+              "label_0": 11,
+              "label_1": 2,
+              "label_2": 0,
+              "both_classes": true,
+              "machines": "imi_vmx30ui",
+              "nominal_folders": 1
+            }
+          ],
+          "outer_folds": 3,
+          "inner_folds": 2,
+          "seed": 42,
+          "final_split_frozen": false,
+          "passed": true,
+          "reason": "Frozen single-seed nested construction passes technical group/class gates",
+          "fold_summary": [
+            {
+              "fold": 0,
+              "train_intervals": 477,
+              "test_intervals": 201,
+              "train_positive": 17,
+              "test_positive": 81,
+              "train_groups": 11,
+              "test_groups": 5,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vmx30ui/20240227",
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240227",
+                  "20240228",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240227",
+                    "20240228",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240227",
+                    "20240228",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 1,
+              "train_intervals": 508,
+              "test_intervals": 170,
+              "train_positive": 96,
+              "test_positive": 2,
+              "train_groups": 12,
+              "test_groups": 4,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240228",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240227",
+                    "20240228",
+                    "20240302"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240227",
+                    "imi_vmx30ui/20240228",
+                    "imi_vmx30ui/20240302"
+                  ],
+                  "calendar_date_group": [
+                    "20240227",
+                    "20240228",
+                    "20240302"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            },
+            {
+              "fold": 2,
+              "train_intervals": 371,
+              "test_intervals": 307,
+              "train_positive": 83,
+              "test_positive": 15,
+              "train_groups": 9,
+              "test_groups": 7,
+              "outer_related_date_overlaps": {
+                "machine_date_group": [
+                  "imi_vmx30ui/20240227",
+                  "imi_vmx30ui/20240228",
+                  "imi_vmx30ui/20240302"
+                ],
+                "calendar_date_group": [
+                  "20240227",
+                  "20240228",
+                  "20240302"
+                ]
+              },
+              "inner_related_date_overlaps": [
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240228"
+                  ],
+                  "calendar_date_group": [
+                    "20240228"
+                  ]
+                },
+                {
+                  "machine_date_group": [
+                    "imi_vmx30ui/20240228"
+                  ],
+                  "calendar_date_group": [
+                    "20240228"
+                  ]
+                }
+              ],
+              "complete_both_class_group_disjoint_oof": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "machine_summary": [
+    {
+      "machine": "imi_vm20i",
+      "native_intervals": 1585,
+      "native_counts": [
+        1173,
+        325,
+        87
+      ],
+      "joint_intervals": 1160,
+      "joint_counts": [
+        854,
+        238,
+        68
+      ],
+      "joint_nominal_groups": 27,
+      "joint_positive_groups": 11
+    },
+    {
+      "machine": "imi_vmx30ui",
+      "native_intervals": 927,
+      "native_counts": [
+        704,
+        133,
+        90
+      ],
+      "joint_intervals": 735,
+      "joint_counts": [
+        580,
+        98,
+        57
+      ],
+      "joint_nominal_groups": 18,
+      "joint_positive_groups": 6
+    }
+  ],
+  "independence": {
+    "verified_exact_nc_reuse": {
+      "6c3c75987e424b5a2e104d0ffe5d581b13211946e0887a5ae4e1de4d71b0cbd5": [
+        "imi_vm20i/dataset17",
+        "imi_vm20i/dataset18"
+      ],
+      "bd1354f33c823e8d175186b2c18b2b0b07f465e88ac145b49b518ad839e90d41": [
+        "imi_vm20i/dataset26",
+        "imi_vm20i/dataset27"
+      ],
+      "66729ee4a1ad3d0d57da206cc7bece273d4e7a971ea55904872484db498d60ef": [
+        "imi_vm20i/dataset33",
+        "imi_vm20i/dataset34"
+      ]
+    },
+    "verified_machine_reference_date_clusters": 7,
+    "verified_calendar_dates": 5,
+    "inferred_dependencies": "Shared reference dates and exact programs suggest related setups; not proof of a single physical session.",
+    "unresolved": [
+      "physical session IDs",
+      "tool serial/reuse history",
+      "workpiece serial/reuse history",
+      "cross-date shared setup dependencies"
+    ],
+    "metadata_not_features": [
+      "Tool",
+      "Workpiece",
+      "NC/program comments and names",
+      "label remarks",
+      "session/date/group IDs",
+      "annotation cutting parameters"
+    ]
+  },
+  "total_completed_experiment_wall_seconds": 860.3840197734535,
+  "workers": 2,
+  "models_trained": 0,
+  "gpu_work": false,
+  "final_split_frozen": false,
+  "decision": "CONDITIONAL GO"
+}

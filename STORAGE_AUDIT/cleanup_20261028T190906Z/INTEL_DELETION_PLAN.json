@@ -1,0 +1,103 @@
+{
+  "created_utc": "2026-10-28T19:11:10.089770+00:00",
+  "run_directory": "/home/student/Master_Thesis_WS/pi-multimodal-ad/STORAGE_AUDIT/cleanup_20261028T190906Z",
+  "target_absolute": "/home/student/Master_Thesis_WS/pi-multimodal-ad/data/Full Dataset",
+  "target_relative": "data/Full Dataset",
+  "resolved_target": "/home/student/Master_Thesis_WS/pi-multimodal-ad/data/Full Dataset",
+  "root_identity": {
+    "device": 2049,
+    "inode": 793969,
+    "mode": 16893,
+    "mtime_ns": 1783065692269520345
+  },
+  "regular_files": 8286,
+  "subdirectories": 8316,
+  "logical_bytes": 26813483096,
+  "allocated_bytes": 26877308928,
+  "extension_counts": {
+    ".csv": 2726,
+    ".txt": 1,
+    ".avi": 2723,
+    ".flac": 2723,
+    ".jpg": 113
+  },
+  "manifest_rows": 4040,
+  "manifest_sessions": 236,
+  "manifest_categories": 12,
+  "historical_payload_hash_matches": 8284,
+  "fresh_hashed_bytes": 26813483096,
+  "fresh_hash_seconds": 97.68398308753967,
+  "raw_file_manifest": "STORAGE_AUDIT/cleanup_20261028T190906Z/INTEL_REMOVED_FILES.csv",
+  "raw_file_manifest_sha256": "c612c3f4e1ce59419252b9a6d745c8d984cdda18ed0be5433b9677a19e4a63d6",
+  "metadata_copies": [
+    {
+      "original_path": "data/Full Dataset/manifest.csv",
+      "retained_path": "STORAGE_AUDIT/cleanup_20261028T190906Z/intel_retained_metadata/manifest.csv",
+      "bytes": 587626,
+      "sha256": "9c4fb4df70bb137fc851dd858ac22d53eed86ba08c3806d7177e40b300406826",
+      "purpose": "original labels/splits/process metadata"
+    },
+    {
+      "original_path": "data/Full Dataset/LICENSE.txt",
+      "retained_path": "STORAGE_AUDIT/cleanup_20261028T190906Z/intel_retained_metadata/LICENSE.txt",
+      "bytes": 3646,
+      "sha256": "ba9ae1787e84cb8fd8f75cc362880a4087a05ca1c67526f765658795c3558908",
+      "purpose": "original licence/source identity"
+    }
+  ],
+  "protected_evidence_files_hashed": 86,
+  "protected_metadata_file_count": 245110,
+  "git_tracked_target_files": 0,
+  "git_ignore_check": {
+    "command": [
+      "git",
+      "check-ignore",
+      "--",
+      "data/Full Dataset/manifest.csv",
+      "data/Full Dataset/LICENSE.txt"
+    ],
+    "returncode": 0,
+    "stdout": "data/Full Dataset/manifest.csv\ndata/Full Dataset/LICENSE.txt\n",
+    "stderr": ""
+  },
+  "nested_mounts": [],
+  "symlinks": 0,
+  "special_files": 0,
+  "hard_links": 0,
+  "target_du": {
+    "command": [
+      "du",
+      "-x",
+      "-s",
+      "-B1",
+      "/home/student/Master_Thesis_WS/pi-multimodal-ad/data/Full Dataset"
+    ],
+    "returncode": 0,
+    "stdout": "26877308928\t/home/student/Master_Thesis_WS/pi-multimodal-ad/data/Full Dataset\n",
+    "stderr": ""
+  },
+  "source_information": {
+    "dataset": "IntelLabs/Intel_Robotic_Welding_Multimodal_Dataset",
+    "source_url": "https://huggingface.co/datasets/IntelLabs/Intel_Robotic_Welding_Multimodal_Dataset",
+    "public_card_checked_utc": "2026-10-28T19:11:10.128182+00:00",
+    "source_access": "Public card reachable; hosted payload access gated; no credential state checked or payload downloaded",
+    "original_historical_remote_revision": "Not recorded; current hosted main is not claimed byte-identical",
+    "recovery": "Conditional redownload after authorized gated access; verify selected local files against SHA256 manifest; no payload backup created",
+    "metadata_restore": "Original manifest and licence preserved byte-for-byte outside target"
+  },
+  "dependency_assessment": {
+    "current_stage": "Intel foundation NO-GO; no modelling or approved active Intel job identified",
+    "dormant_consumers": [
+      "scripts/intel_welding/01_inventory.py",
+      "scripts/intel_welding/02_label_audit.py",
+      "scripts/intel_welding/04_foundations.py",
+      "configs/intel_welding/foundations.json",
+      "archive/legacy_intel_welding_dataset/*"
+    ],
+    "dormant_replay_consequence": "Raw-reading historical scripts require restoration; preserved report/label inventories remain available",
+    "ongoing_jobs": "Observed Phase 1 CNN jobs depend on external REASSEMBLE media and project run state, not Intel target",
+    "no_active_intel_target_handles_or_maps": true
+  },
+  "authorization": "Latest user explicitly authorizes permanent removal of only data/Full Dataset after checks; scoped exception to AGENTS raw immutability and deletion confirmation; preserve labels/code/results/provenance",
+  "delete_executed": false
+}

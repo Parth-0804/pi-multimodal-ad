@@ -1,0 +1,30 @@
+{
+  "dataset_id": 8392825,
+  "handle": "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+  "version": 2,
+  "stage1_run": "MILLING DATASET/runs/20261026T230520276818Z-stage1",
+  "data_root": "MILLING DATASET/data/raw/msm/versions/2",
+  "run_root": "MILLING DATASET/runs/20261026T233709740813Z-stage2",
+  "selected_groups": [
+    "imi_vm20i/dataset1"
+  ],
+  "max_download_bytes": 1500000000,
+  "free_space_reserve_gib": 5,
+  "frames_per_interval": 16,
+  "frame_policy": "16 equally spaced bin centers inside a conservatively trimmed mapped cutting interval; nearest unique native decoded frame; no frame repetition/padding",
+  "alignment_policy": "label-blind shared audio timing where available; filename offsets are hypotheses only; independent multi-anchor and held-out checks; no anomaly-label optimization",
+  "training_performed": false,
+  "cpu_threads": 1,
+  "download_plan": [
+    {
+      "name": "imi_vm20i/dataset1/20240229_053831.227000_s2.wav",
+      "bytes": 10728620,
+      "modality": "audio_s2",
+      "cohort": "alignment_check",
+      "acquisition_status": "proposed_only"
+    }
+  ],
+  "storage_free_bytes_before": 82065862656,
+  "started_utc": "2026-10-26T23:37:10.299955+00:00",
+  "rationale": "The near-tool S0 audio provides weak local timing evidence on dataset1. Obtain one independent synchronized ambient microphone channel to test the timing hypothesis without labels."
+}

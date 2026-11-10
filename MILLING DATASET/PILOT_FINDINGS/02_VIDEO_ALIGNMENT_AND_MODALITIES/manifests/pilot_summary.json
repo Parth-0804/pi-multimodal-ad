@@ -1,0 +1,94 @@
+{
+  "recommendation": "LIMITED GO",
+  "primary_contract": "16 ordered aspect-corrected RGB frames plus a fixed 90-value vector (15 common MTC channels x six statistics)",
+  "pilot_intervals": 127,
+  "frame_contract_pass": 116,
+  "verified_multimodal_examples": 114,
+  "excluded_primary_examples": 13,
+  "primary_class_counts": {
+    "1": 10,
+    "2": 11,
+    "0": 93
+  },
+  "primary_positive_experiment_groups": [
+    "imi_vm20i/dataset1",
+    "imi_vmx30ui/dataset9"
+  ],
+  "separate_video_acc_examples": 39,
+  "separate_video_acc_class_counts": {
+    "1": 8,
+    "2": 12,
+    "0": 19
+  },
+  "by_group": {
+    "imi_vm20i/dataset1": {
+      "native_intervals": 12,
+      "frame_contract_pass": 8,
+      "verified_multimodal_examples": 8,
+      "excluded": 4,
+      "class_counts": {
+        "1": 8
+      },
+      "separate_video_acc_examples": 8
+    },
+    "imi_vm20i/dataset4": {
+      "native_intervals": 12,
+      "frame_contract_pass": 12,
+      "verified_multimodal_examples": 11,
+      "excluded": 1,
+      "class_counts": {
+        "2": 11
+      },
+      "separate_video_acc_examples": 12
+    },
+    "imi_vm20i/dataset19": {
+      "native_intervals": 19,
+      "frame_contract_pass": 19,
+      "verified_multimodal_examples": 18,
+      "excluded": 1,
+      "class_counts": {
+        "0": 18
+      },
+      "separate_video_acc_examples": 19
+    },
+    "imi_vmx30ui/dataset8": {
+      "native_intervals": 64,
+      "frame_contract_pass": 64,
+      "verified_multimodal_examples": 64,
+      "excluded": 0,
+      "class_counts": {
+        "0": 64
+      },
+      "separate_video_acc_examples": 0
+    },
+    "imi_vmx30ui/dataset9": {
+      "native_intervals": 14,
+      "frame_contract_pass": 13,
+      "verified_multimodal_examples": 13,
+      "excluded": 1,
+      "class_counts": {
+        "0": 11,
+        "1": 2
+      },
+      "separate_video_acc_examples": 0
+    },
+    "tmf_vf10/dataset1": {
+      "native_intervals": 6,
+      "frame_contract_pass": 0,
+      "verified_multimodal_examples": 0,
+      "excluded": 6,
+      "class_counts": {},
+      "separate_video_acc_examples": 0
+    }
+  },
+  "exclusion_reason_counts_nonexclusive": {
+    "outside_validated_audio_support": 4,
+    "mtc_time_gap_exceeds_0.5s": 8,
+    "insufficient_mtc_rows": 1,
+    "fewer_than_16_distinct_native_frames": 1,
+    "no_video_provided": 6,
+    "common_mtc_schema_absent": 6
+  },
+  "warning": "Counts verify data construction and coarse scene context, not label visibility, causal signal information, independent physical trials, or classifier performance.",
+  "no_training": true
+}

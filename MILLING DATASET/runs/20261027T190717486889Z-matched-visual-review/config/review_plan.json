@@ -1,0 +1,133 @@
+{
+  "dataset_handle": "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+  "authoritative_cohort": "MILLING DATASET/runs/20261027T015205931708Z-stage5-full-lab-validated",
+  "pairs": [
+    {
+      "pair_id": "P01",
+      "group_id": "imi_vm20i/dataset16",
+      "normal": "P01_normal",
+      "abnormal": "P01_abnormal",
+      "normal_interval": "imi_vm20i/dataset16/row25",
+      "abnormal_interval": "imi_vm20i/dataset16/row24",
+      "matching_parameters": {
+        "N": 9250,
+        "ap": 38.1,
+        "ae": 0.635,
+        "F": 35.98333,
+        "Z": 5,
+        "D": 12.7,
+        "Tool": "E",
+        "Workpiece": "AISI 1018"
+      },
+      "normal_direction": "DOWN",
+      "abnormal_direction": "UP",
+      "direction_matched": false,
+      "selection_note": "Same experiment, exact recorded numerical parameters, same generic tool/material; nearest timing among these matches in the chosen experiment. Direction differs.",
+      "selection_basis": "metadata only; no visibility, CNN scores or predictive results used"
+    },
+    {
+      "pair_id": "P02",
+      "group_id": "imi_vm20i/dataset25",
+      "normal": "P02_normal",
+      "abnormal": "P02_abnormal",
+      "normal_interval": "imi_vm20i/dataset25/row9",
+      "abnormal_interval": "imi_vm20i/dataset25/row8",
+      "matching_parameters": {
+        "N": 9000,
+        "ap": 12.7,
+        "ae": 0.254,
+        "F": 27.09333,
+        "Z": 2,
+        "D": 6.35,
+        "Tool": "A",
+        "Workpiece": "AA 6061"
+      },
+      "normal_direction": "DOWN",
+      "abnormal_direction": "UP",
+      "direction_matched": false,
+      "selection_note": "Same experiment, exact recorded numerical parameters, same generic tool/material; nearest timing among these matches in the chosen experiment. Direction differs.",
+      "selection_basis": "metadata only; no visibility, CNN scores or predictive results used"
+    },
+    {
+      "pair_id": "P03",
+      "group_id": "imi_vm20i/dataset27",
+      "normal": "P03_normal",
+      "abnormal": "P03_abnormal",
+      "normal_interval": "imi_vm20i/dataset27/row25",
+      "abnormal_interval": "imi_vm20i/dataset27/row24",
+      "matching_parameters": {
+        "N": 9250,
+        "ap": 38.1,
+        "ae": 0.635,
+        "F": 38.1,
+        "Z": 5,
+        "D": 12.7,
+        "Tool": "E",
+        "Workpiece": "AISI 4140"
+      },
+      "normal_direction": "DOWN",
+      "abnormal_direction": "UP",
+      "direction_matched": false,
+      "selection_note": "Same experiment, exact recorded numerical parameters, same generic tool/material; nearest timing among these matches in the chosen experiment. Direction differs.",
+      "selection_basis": "metadata only; no visibility, CNN scores or predictive results used"
+    },
+    {
+      "pair_id": "P04",
+      "group_id": "imi_vmx30ui/dataset14",
+      "normal": "P04_normal",
+      "abnormal": "P04_abnormal",
+      "normal_interval": "imi_vmx30ui/dataset14/row41",
+      "abnormal_interval": "imi_vmx30ui/dataset14/row40",
+      "matching_parameters": {
+        "N": 9000,
+        "ap": 38.1,
+        "ae": 0.0635,
+        "F": 22.01333,
+        "Z": 2,
+        "D": 6.35,
+        "Tool": "A",
+        "Workpiece": "AA 6061"
+      },
+      "normal_direction": "DOWN",
+      "abnormal_direction": "UP",
+      "direction_matched": false,
+      "selection_note": "Same experiment, exact recorded numerical parameters, same generic tool/material; nearest timing among these matches in the chosen experiment. Direction differs.",
+      "selection_basis": "metadata only; no visibility, CNN scores or predictive results used"
+    },
+    {
+      "pair_id": "P05",
+      "group_id": "imi_vmx30ui/dataset9",
+      "normal": "P05_normal",
+      "abnormal": "P05_abnormal",
+      "normal_interval": "imi_vmx30ui/dataset9/row13",
+      "abnormal_interval": "imi_vmx30ui/dataset9/row14",
+      "matching_parameters": {
+        "N": 4700,
+        "ap": 19.05,
+        "ae": 1.27,
+        "F": 25.4,
+        "Z": 4,
+        "D": 12.7,
+        "Tool": "D",
+        "Workpiece": "AISI 1018"
+      },
+      "normal_direction": "DOWN",
+      "abnormal_direction": "UP",
+      "direction_matched": false,
+      "selection_note": "Same experiment, exact recorded numerical parameters, same generic tool/material; nearest timing among these matches in the chosen experiment. Direction differs.",
+      "selection_basis": "metadata only; no visibility, CNN scores or predictive results used"
+    }
+  ],
+  "pair_count": 5,
+  "normal_cuts": 5,
+  "abnormal_cuts": 5,
+  "source_frames": 160,
+  "normal_machine_count": {
+    "imi_vm20i": 3,
+    "imi_vmx30ui": 2
+  },
+  "selection_disclosure": "No exact complete nine-field match including native direction was found within eligible mixed-label experiments. Exact eight-field matches retained with direction mismatch explicitly reported.",
+  "new_training": false,
+  "new_downloads": false,
+  "roi_policy": "Fixed shared rectangle per pair, chosen from both midpoint full views to encompass tool/workpiece context; not an anomaly localization."
+}

@@ -1,0 +1,297 @@
+{
+  "version": "EXTERNAL-REASSEMBLE-EVALUATION-v1",
+  "freeze_utc": "2026-10-27T22:03:44.913102+00:00",
+  "seeds": [
+    42,
+    123,
+    20261023
+  ],
+  "split_seed": 42,
+  "outer_folds": 3,
+  "inner_folds": 2,
+  "initializations": [
+    "P",
+    "R_if_canonical_complete"
+  ],
+  "pretrained_revision": "ac77a11ff0170a41b771c03264987f8ce2b0d753",
+  "msm_stage3_configuration": {
+    "protocol": "MSM-STAGE3-FROZEN-CNN-INTERVAL-F2-v1",
+    "dataset_handle": "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+    "stage1": "MILLING DATASET/runs/20261026T230520276818Z-stage1",
+    "stage2": "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated",
+    "data_root": "MILLING DATASET/data/raw/msm/versions/2",
+    "output_root": "MILLING DATASET/runs",
+    "reassemble_config": "configs/reassemble/section1.json",
+    "pretrained_identity": "runs/reassemble/20260927T154732Z-section1/pretrained_model.json",
+    "target": "native label 1 versus stable cutting labels 0 and 2",
+    "label2": "stable_negative",
+    "label2_sensitivity": "exclude; rerun entire split/fitting pipeline with same declared seeds and gates",
+    "visual": {
+      "model": "PekingU/rtdetr_r18vd",
+      "revision": "ac77a11ff0170a41b771c03264987f8ce2b0d753",
+      "frames": 16,
+      "size": 640,
+      "geometry": "source SAR 3:8; aspect-preserving centered black letterbox to 640x640",
+      "normalization": "RGB divide 255; no ImageNet normalization",
+      "frozen": true,
+      "pooling": "spatial mean last three maps -> 896; temporal mean of 16",
+      "epochs": 10,
+      "batch_size": 32,
+      "learning_rate": 0.001,
+      "weight_decay": 0.001,
+      "clip_grad_norm": 1.0,
+      "feature_microbatch": 2,
+      "precision": "FP32 CNN extraction, FP32 head fitting"
+    },
+    "sensor": {
+      "channels": [
+        "watt",
+        "Spindle_Speed",
+        "S_Axis_Load",
+        "Feed_Rate",
+        "X_Axis_Load",
+        "Y_Axis_Load",
+        "Z_Axis_Load",
+        "smarms",
+        "xmarms",
+        "ymarms",
+        "zmarms",
+        "smvrms",
+        "xmvrms",
+        "ymvrms",
+        "zmvrms"
+      ],
+      "statistics": [
+        "mean",
+        "std",
+        "rms",
+        "min",
+        "max",
+        "peak_to_peak"
+      ],
+      "population_std_ddof": 0,
+      "minimum_rows": 5,
+      "maximum_gap_seconds": 0.5,
+      "classifier": "training-only standardization; balanced L2 logistic regression C=1, lbfgs max_iter=2000"
+    },
+    "fusion": {
+      "columns": [
+        "visual_probability",
+        "sensor_probability"
+      ],
+      "C": 1.0,
+      "class_weight": null,
+      "threshold": 0.5,
+      "calibration": "none; evaluate calibration rather than fit on scarce groups"
+    },
+    "outer_folds": 3,
+    "inner_folds": 2,
+    "split_seed": 42,
+    "training_seeds": [
+      42,
+      123,
+      20261023
+    ],
+    "model_selection": "No search, early stopping, validation-based epoch choice, seed selection, or threshold tuning. Fixed final epoch. Inner validation creates OOF probabilities only.",
+    "primary_metric": "pooled held-out interval average precision; fusion minus each unimodal baseline paired by group",
+    "secondary_metrics": [
+      "per-fold AP",
+      "AUROC",
+      "balanced_accuracy",
+      "F1",
+      "precision",
+      "recall",
+      "confusion matrix",
+      "Brier",
+      "log_loss",
+      "prevalence",
+      "machine and native-label subgroup summaries"
+    ],
+    "bootstrap": {
+      "replicates": 2000,
+      "seed": 20261027,
+      "unit": "experiment group",
+      "seeds_are_independent_samples": false
+    },
+    "smoke": {
+      "seed": 42,
+      "epochs": 2,
+      "max_intervals": 24,
+      "maximum_head_updates": 12,
+      "maximum_cnn_frame_forwards_including_benchmark": 768,
+      "protected_group": "imi_vm20i/dataset19",
+      "selection": "first 8 admitted VM20i/d1; first 6 d4; first 6 VMX/d8; first 2 normal and first 2 abnormal VMX/d9",
+      "gpu_memory_reserve_mib": 3072,
+      "gpu_process_memory_cap_mib": 2048,
+      "maximum_runtime_seconds": 600,
+      "worker_settings": [
+        0,
+        2
+      ],
+      "prefetch_factor": 1,
+      "decoder_threads": 1,
+      "cpu_threads": 1,
+      "outer_predictions_allowed": false
+    },
+    "full_matrix_authorized": false
+  },
+  "visual": {
+    "model": "PekingU/rtdetr_r18vd",
+    "revision": "ac77a11ff0170a41b771c03264987f8ce2b0d753",
+    "frames": 16,
+    "size": 640,
+    "geometry": "source SAR 3:8; aspect-preserving centered black letterbox to 640x640",
+    "normalization": "RGB divide 255; no ImageNet normalization",
+    "frozen": true,
+    "pooling": "spatial mean last three maps -> 896; temporal mean of 16",
+    "epochs": 10,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "weight_decay": 0.001,
+    "clip_grad_norm": 1.0,
+    "feature_microbatch": 2,
+    "precision": "FP32 CNN extraction, FP32 head fitting"
+  },
+  "sensor": {
+    "classifier": "balanced L2 logistic C1 lbfgs max_iter2000; training-only standardization"
+  },
+  "strong_sensor": {
+    "kind": "HistGradientBoostingClassifier",
+    "learning_rate": 0.1,
+    "max_iter": 100,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 10,
+    "l2_regularization": 1.0,
+    "early_stopping": false,
+    "sample_weight": "training-only inverse class frequency"
+  },
+  "model_names": [
+    "prevalence",
+    "sensor_logistic",
+    "sensor_histgradient",
+    "visual",
+    "averaging",
+    "F2",
+    "QG_clean",
+    "F2_aug",
+    "QG_aug"
+  ],
+  "optional_single_frame_ablation": "not included; no scope expansion",
+  "quality_gate": {
+    "implementation": "reassemble.section2_models.DecisionGate (original quality-only F5 gate); new dataset context adapter",
+    "hidden": 16,
+    "epochs": 40,
+    "learning_rate": 0.003,
+    "weight_decay": 0.001,
+    "batch_size": 128,
+    "clip_grad_norm": 1.0,
+    "visual_quality": [
+      "mean_luminance",
+      "luminance_std",
+      "log1p_laplacian_variance",
+      "dark_fraction",
+      "saturated_fraction",
+      "retained_frame_fraction"
+    ],
+    "sensor_quality": "per-channel log1p population std and explicit missing fraction, numerical channels only",
+    "context": "training-only standardized quality plus two availability flags; no action/direction/participant/robot metadata",
+    "QG_clean": "clean training OOF probabilities/quality only",
+    "QG_aug": "clean plus lowest-severity OOF corruptions; fixed epochs, no assessment selection",
+    "F2_aug": "exposure-matched augmentation control; original F2 remains clean-OOF only",
+    "augmentation_weights": "clean 0.5; seven lowest-severity nonmissing corruption views share 0.5"
+  },
+  "corruptions": {
+    "gaussian_blur": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "brightness_contrast": [
+      [
+        0.8,
+        0.8
+      ],
+      [
+        0.5,
+        0.5
+      ],
+      [
+        0.2,
+        0.2
+      ]
+    ],
+    "partial_occlusion": [
+      0.1,
+      0.25,
+      0.4
+    ],
+    "frame_dropout": [
+      4,
+      8,
+      12
+    ],
+    "sensor_noise": [
+      0.1,
+      0.5,
+      1.0
+    ],
+    "channel_dropout": [
+      0.1,
+      0.3,
+      0.5
+    ],
+    "missing_sensor_channels": [
+      0.1,
+      0.3,
+      0.5
+    ],
+    "missing_modality": [
+      "visual",
+      "sensor"
+    ],
+    "random_seed": 20261027,
+    "video_policy": "real RGB pixels within the resized image content, before CNN, padding unchanged; all severities fixed",
+    "sensor_noise_policy": "noise added to actual interval measurements, using pooled RAW training-partition channel SD; recompute fixed statistics",
+    "channel_dropout_policy": "deterministically chosen channels become all zero measurements; recompute statistics",
+    "missing_channels_policy": "explicitly missing channels; replace their statistics with CLEAN training-partition feature means; masks sent only to gate",
+    "frame_dropout_policy": "omit deterministic native frames; pool the retained cached per-frame embeddings (exact frozen-CNN equivalence)",
+    "missing_modality_policy": "unavailable unimodal predictions are NA; average/F2/gates use explicitly named deterministic available-branch fallback; no fabricated branch probability"
+  },
+  "metrics": [
+    "AP",
+    "AUROC",
+    "F1",
+    "precision",
+    "recall",
+    "balanced_accuracy",
+    "specificity",
+    "TN",
+    "FP",
+    "FN",
+    "TP",
+    "Brier",
+    "log_loss",
+    "prevalence"
+  ],
+  "threshold": 0.5,
+  "model_selection": "fixed final epoch; no search, early stopping, calibrator or test-dependent threshold",
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 20261027,
+    "cluster": "group, paired model differences; average seeds descriptively, not independent observations"
+  },
+  "inference_precision": "FP32",
+  "cnn_microbatch": 4,
+  "cpu_threads": 1,
+  "gpu_process_cap_mib": 2048,
+  "gpu_free_reserve_mib": 3072,
+  "source_R": {
+    "arm": "C_full_finetuned16",
+    "seed": 42,
+    "outer_fold": 0,
+    "role": "outer_assessment",
+    "job_index": 4,
+    "folder": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_outerassessment"
+  },
+  "architectural_claims": "architecture portability and learned-weight transfer are separate; no fine optical anomaly visibility assumed"
+}

@@ -1,0 +1,92 @@
+{
+  "record": {
+    "sample_id": "test/trial0134",
+    "interval_id": "test/trial0134",
+    "group_id": "test/trial0134",
+    "native_trial_id": "trial0134",
+    "group_id_role": "trial identity for traceability only; not a verified participant grouping",
+    "official_split": "test",
+    "participant_id": "",
+    "participant_identity_status": "not supplied by native task/label metadata",
+    "native_label": 0,
+    "native_label_name": "success",
+    "target": 0,
+    "robot": "Toyota HSR",
+    "task": "robot to human handover",
+    "trial_folder": "HANDOVER/01_raw_dataset/official_dataset/data/test/test_set/trial0134",
+    "label_file": "HANDOVER/01_raw_dataset/official_dataset/labels/test/test_labels/trial0134.json",
+    "label_sha256": "3cb528d2f99a7df05e9748e7eaaa0934b1d5ba1b1d3d05404af22511c72f1c0e",
+    "video_file": "HANDOVER/01_raw_dataset/official_dataset/data/test/test_set/trial0134/head_cam.mp4",
+    "start_s": 0.001863241195678711,
+    "end_s": 7.041760206222534,
+    "duration_s": 7.0398969650268555,
+    "frame_indices_json": "[10, 23, 37, 50, 63, 76, 89, 102, 115, 128, 141, 154, 167, 180, 193, 206]",
+    "video_pts_s_json": "[0.5, 1.1500000000000001, 1.85, 2.5, 3.1500000000000004, 3.8000000000000003, 4.45, 5.1000000000000005, 5.75, 6.4, 7.050000000000001, 7.7, 8.35, 9.0, 9.65, 10.3]",
+    "mapped_sensor_pts_s_json": "[0.2044539451599121, 0.6411914825439453, 1.1091861724853516, 1.5450022220611572, 1.982119083404541, 2.415393114089966, 2.8607287406921387, 3.287865161895752, 3.7418313026428223, 4.158158540725708, 4.610236406326294, 5.029810190200806, 5.468042612075806, 5.914780616760254, 6.336785554885864, 6.7735583782196045]",
+    "sar_num": 1,
+    "sar_den": 1,
+    "mtc_rows_inside_cut": 214,
+    "sensor_dimensions": 36,
+    "sensor_file": "HANDOVER/01_raw_dataset/official_dataset/data/test/test_set/trial0134/wrench_resampled.npy",
+    "exclusion_reasons": "frame_timing_guard_crosses_observation_horizon;wrench_nearest_time_gap_exceeds_0.1s",
+    "eligible": false,
+    "timing_bound_s": 0.20305252075195312,
+    "clock_mapping": "native frame index -> supplied head_cam_ts -> supplied wrench_resampled row",
+    "video_sha256": "05638e8dd81af434309f3d0a1d8070cec3a2fb8fd2177b68ef69d7af0464658d"
+  },
+  "frames": [],
+  "features": null,
+  "clock": {
+    "max_nearest_wrench_gap_s": 0.20305252075195312,
+    "provided_vs_nearest_max_abs_difference": 0.0,
+    "source_clock_span": [
+      0.001863241195678711,
+      7.008348703384399
+    ],
+    "raw_wrench_rows": 639,
+    "aligned_rows": 214
+  },
+  "inputs": [
+    {
+      "path": "HANDOVER/01_raw_dataset/official_dataset/data/test/test_set/trial0134/task_info.json",
+      "bytes": 58,
+      "sha256": "d3fe76d28f04a3792e8e02bdc58fffb73229a67f4a0a2d8e2cde95c0aed3a7ce"
+    },
+    {
+      "path": "HANDOVER/01_raw_dataset/official_dataset/data/test/test_set/trial0134/head_cam.mp4",
+      "bytes": 3973728,
+      "sha256": "05638e8dd81af434309f3d0a1d8070cec3a2fb8fd2177b68ef69d7af0464658d"
+    },
+    {
+      "path": "HANDOVER/01_raw_dataset/official_dataset/data/test/test_set/trial0134/head_cam_ts.npy",
+      "bytes": 1840,
+      "sha256": "797886dd55d22594c6bd20702cebeb53afdd782864897116ec170e072c21532d"
+    },
+    {
+      "path": "HANDOVER/01_raw_dataset/official_dataset/data/test/test_set/trial0134/wrench.npy",
+      "bytes": 30800,
+      "sha256": "236c98724414c0aeb6dfc1afc1a598c748cb486ccd70531f3f5fe22adae79549"
+    },
+    {
+      "path": "HANDOVER/01_raw_dataset/official_dataset/data/test/test_set/trial0134/wrench_ts.npy",
+      "bytes": 5240,
+      "sha256": "9228f4f10138b4ba3670463d5ed773d87ab63b8ef45a8e95cfbe7e649d33e589"
+    },
+    {
+      "path": "HANDOVER/01_raw_dataset/official_dataset/data/test/test_set/trial0134/wrench_resampled.npy",
+      "bytes": 10400,
+      "sha256": "f81e32e0c8c294beb8abea9868287405cca90eeb211c28ec3cde6e271b4f5b3c"
+    },
+    {
+      "path": "HANDOVER/01_raw_dataset/official_dataset/labels/test/test_labels/trial0134.json",
+      "bytes": 72,
+      "sha256": "3cb528d2f99a7df05e9748e7eaaa0934b1d5ba1b1d3d05404af22511c72f1c0e"
+    }
+  ],
+  "metadata_keys": [
+    "outcome",
+    "robot",
+    "task"
+  ],
+  "participant_mapping": {}
+}

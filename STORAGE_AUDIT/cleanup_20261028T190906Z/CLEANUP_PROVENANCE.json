@@ -1,0 +1,314 @@
+{
+  "created_utc": "2026-10-28T19:18:47.514672+00:00",
+  "created_Europe_Berlin": "2026-10-28T20:18:47.514672+01:00",
+  "git_head": "94f61529116ebdc966bcf87704a93e4d02fa5e89",
+  "dirty_working_tree": true,
+  "scope": {
+    "delete_only": "data/Full Dataset",
+    "external_reassemble": "read_only_review; zero writes/deletions",
+    "additional_reboot_downloads": false,
+    "interrupt_training": false,
+    "stage_or_commit": false,
+    "preserve_original_labels_and_license": true,
+    "planned_reboot_additional_budget_bytes": 40000000000,
+    "minimum_remaining_reserve_bytes": 20000000000
+  },
+  "user_authorization": "Latest researcher instruction explicitly authorized permanent removal of only verified unused Intel raw dataset after dependency/preservation checks; overrides raw-immutability rule only for this named operation",
+  "methodology": "Full fresh Intel per-file SHA256 versus prior foundation inventory; path/inode/tracked/open-use/mount checks; fd-based exact directory deletion; preserved metadata and Intel evidence hashes; per-file read-only REASSEMBLE dependency review",
+  "software": {
+    "python": "3.12.3",
+    "git": "git version 2.43.0",
+    "pyarrow": "24.0.0",
+    "h5py": "3.16.0"
+  },
+  "exact_commands": [
+    "ma_thesis_env/bin/python -B /tmp/intel_cleanup_preflight.py",
+    "ma_thesis_env/bin/python -B /tmp/execute_intel_retirement.py",
+    "ma_thesis_env/bin/python -B /tmp/reassemble_retention_review.py",
+    "ma_thesis_env/bin/python -B /tmp/write_final_cleanup_report.py"
+  ],
+  "helper_script_sha256": {
+    "/tmp/intel_cleanup_preflight.py": "14583fbbe4b5cf6723eeccb92ee6c97d97ea14a409cdd992e57c1123bce5b4b8",
+    "/tmp/execute_intel_retirement.py": "5dd3fa2fdcd492c725e2b4d86b35f53bdf8ef0174653c5fefebc30865bb04239",
+    "/tmp/reassemble_retention_review.py": "7b6718a1f1d49cfc319bfc0d035818894223b1e4b3f5360d07f1956acce72bd6",
+    "/tmp/write_final_cleanup_report.py": "c9d7a262f382b3e67c6c71d390f14cf04f94479893d73a1fa79843675462f1fe"
+  },
+  "input_manifest": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 4084,
+      "sha256": "88cb4f36ff41724b368337f0515254d2d5b369d581df4b8b39e4b798055295ee"
+    },
+    {
+      "path": "docs/data_boundaries.md",
+      "bytes": 3351,
+      "sha256": "004733d8ee63642bcf309f503fd13faadfc653f49dfc89e6f1418c355ab1a42e"
+    },
+    {
+      "path": "docs/output_policy.md",
+      "bytes": 4474,
+      "sha256": "b3cd3d04184d7789bf7828c0717808a2f37bd33daed1fd8801fe9db6cff51d91"
+    },
+    {
+      "path": "docs/intel_welding/research_contract.md",
+      "bytes": 8144,
+      "sha256": "5dbfeb81585d91ecef9d1b7f9d4087126172674a71fb295b601d044308f3022b"
+    },
+    {
+      "path": "docs/intel_welding/RESULTS_REVIEW.md",
+      "bytes": 4429,
+      "sha256": "1e873611adbd5af05bf5ff9d0e4eecccbaff262cc443fbde99fef2c67adb17bd"
+    },
+    {
+      "path": "configs/intel_welding/foundations.json",
+      "bytes": 435,
+      "sha256": "d93c5436aefe8aef43da390c05143977495eba50ee513013e4c8745e87c2bc0b"
+    },
+    {
+      "path": "artifacts/intel_welding/audits/foundation_runs/20260927T114705163655Z/file_inventory.parquet",
+      "bytes": 793694,
+      "sha256": "3c5e7eb7333a6d50df8e8dba75bf204e2ff5c0980e799e2d269cc346354ae494"
+    },
+    {
+      "path": "configs/reassemble/section1.json",
+      "bytes": 2383,
+      "sha256": "dd3e29d2bcd61caadcbc0bd18a95a2a0c6b1cb6aba7f31fbd906a681a319bbea"
+    },
+    {
+      "path": "configs/reassemble/additional_improvements/execution.json",
+      "bytes": 2040,
+      "sha256": "23bacc53c5bc78953964896fb48a9882a1e03026377caf81fa3b7b7cdc314b73"
+    },
+    {
+      "path": "src/reassemble/inventory.py",
+      "bytes": 8390,
+      "sha256": "b56fd03f1c795959b4ebf9b1b12423faa34cdddda6ca4205027c1f5696b30d6d"
+    },
+    {
+      "path": "src/reassemble/media.py",
+      "bytes": 6470,
+      "sha256": "5912f94cc2d8b31f8812adefca1291bf9b1dd4436889470caa52e711b697c26d"
+    },
+    {
+      "path": "src/reassemble/section1_features.py",
+      "bytes": 6452,
+      "sha256": "0aba08d10b9b080e77ac499649d5a3c2defc9e40d291713c08919a4e6a07bee0"
+    },
+    {
+      "path": "src/reassemble/section3_visual.py",
+      "bytes": 5798,
+      "sha256": "ed6c4699ed71f14870920b4342aa01163520712649af7699ccd6a5b8969994b9"
+    },
+    {
+      "path": "runs/reassemble/20260927T141645Z-inventory/recordings.parquet",
+      "bytes": 380920,
+      "sha256": "cd37575b63a0539aff55b70276065d7a39818121804808497b33baad3c06477e"
+    },
+    {
+      "path": "runs/reassemble/20260927T154732Z-section1/cohort.parquet",
+      "bytes": 86530,
+      "sha256": "ef224314224a1bdff8ee5f01bcea64f03458a30026011cd0b2096a105ff81aea"
+    },
+    {
+      "path": "runs/reassemble/20260927T154732Z-section1/pretrained_model.json",
+      "bytes": 1068,
+      "sha256": "1394ff2aff76784b91a1209837fa06cecd0fdc0b29fc574345c9ab3424d5ba2e"
+    },
+    {
+      "path": "runs/reassemble/20260927T134437Z/acquisition.json",
+      "bytes": 1165,
+      "sha256": "2d178a0a60e0cd0351e70cefd7361d4a03130a4e1abc2201f0c180661cb5419c"
+    },
+    {
+      "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_evidence/PHASE1_INPUT_IDENTITY_MANIFEST.json",
+      "bytes": 14033184,
+      "sha256": "138d9401b31bcf3e1b0fdb72de17ccce3a1adb5af5669860393544d503cbbd8f"
+    }
+  ],
+  "output_manifest": [
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/FINAL_VALIDATION.json",
+      "bytes": 68929,
+      "sha256": "6e6c22979eac4fdfe8c63551a7197f587b41727a7f1dddb40db59167329046b3"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/INTEL_DELETE_EXECUTION_GATE.json",
+      "bytes": 9163,
+      "sha256": "e49991a410b73489c92fd0247587e12e2610ac219127cbd597d27c67dfecf49b"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/INTEL_DELETE_RESULT.json",
+      "bytes": 1655,
+      "sha256": "a79aa5ce0c6018aa9fa131bf6b6daba69f820f8ca90fbfd3c7a7f6fceec5732b"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/INTEL_DELETION_PLAN.json",
+      "bytes": 4358,
+      "sha256": "5473f153d5b1a7c2ea1030657c5d2292dcbed00bd7454fb4121986449992aa2b"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/INTEL_REMOVED_DIRECTORIES.csv",
+      "bytes": 781054,
+      "sha256": "9a9e1eed7438cb3315178a832c8affcf062d5c480b5fad51a39d3736f0b67484"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/INTEL_REMOVED_FILES.csv",
+      "bytes": 3174541,
+      "sha256": "c612c3f4e1ce59419252b9a6d745c8d984cdda18ed0be5433b9677a19e4a63d6"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/REASSEMBLE_FILE_RETENTION.csv",
+      "bytes": 694482,
+      "sha256": "3849d52955ab626bd81d419e976495b90929e66128663c0dc695100ef1aaf6e9"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/REASSEMBLE_METADATA_BEFORE.json",
+      "bytes": 357728,
+      "sha256": "6b7354fd91d4421b376d8bad07359f66db9eec958e9cee2b6af264d5cb5459cb"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/REASSEMBLE_RECORDING_USAGE.csv",
+      "bytes": 68858,
+      "sha256": "352fa1fd74fe47340952f7696d8a172159ba7360dbab7a614532e71412468fa9"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/REASSEMBLE_REVIEW_PROVENANCE.json",
+      "bytes": 15427,
+      "sha256": "e257ab8c459992b546840ea08be14736bc0ed15ac6bcb3109e96fe6c271b3999"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/intel_evidence_preservation_after.json",
+      "bytes": 12384,
+      "sha256": "24611b0410b50177f0fb404e753c19c05a16652e7e1f62954d243a94d4a681f9"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/intel_evidence_preservation_before.json",
+      "bytes": 18306,
+      "sha256": "4c6349677519eb6451336c7b3858eae7d063d6e0ab5f6a040f37daef9c7dae8e"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/intel_retained_metadata/LICENSE.txt",
+      "bytes": 3646,
+      "sha256": "ba9ae1787e84cb8fd8f75cc362880a4087a05ca1c67526f765658795c3558908"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/intel_retained_metadata/manifest.csv",
+      "bytes": 587626,
+      "sha256": "9c4fb4df70bb137fc851dd858ac22d53eed86ba08c3806d7177e40b300406826"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/process_preflight.json",
+      "bytes": 16419,
+      "sha256": "4d97c5eb3f3ddaf08d1e32fa23aef5a26e064e9f56e765d61e471cd59964a806"
+    },
+    {
+      "path": "STORAGE_AUDIT/cleanup_20261028T190906Z/retained_metadata_manifest.json",
+      "bytes": 640,
+      "sha256": "5804c3908df0779f14531b30e6d7230be2272e549feee5eb11d185162c510af8"
+    },
+    {
+      "path": "STORAGE_AUDIT/FINAL_CLEANUP_REPORT.md",
+      "bytes": 15778,
+      "sha256": "8dbd4f0e1a2a39e000af637da57044a442069568441806e603228ec24adbb5a6"
+    }
+  ],
+  "intel_deletion": {
+    "status": "COMPLETED",
+    "exact_deleted_target": "/home/student/Master_Thesis_WS/pi-multimodal-ad/data/Full Dataset",
+    "started_utc": "2026-10-28T19:12:34.930950+00:00",
+    "finished_utc": "2026-10-28T19:12:40.134280+00:00",
+    "removed_regular_files": 8286,
+    "removed_directories_including_target": 8317,
+    "removed_payload_files": 8284,
+    "removed_original_metadata_files_after_preserving_copies": 2,
+    "expected_allocated_bytes": 26877308928,
+    "before": {
+      "total_bytes": 531415142400,
+      "used_bytes": 478400737280,
+      "available_bytes": 52997627904,
+      "free_inodes": 66429090,
+      "utc": "2026-10-28T19:12:34.930927+00:00"
+    },
+    "after": {
+      "total_bytes": 531415142400,
+      "used_bytes": 451523440640,
+      "available_bytes": 79874924544,
+      "free_inodes": 66445692,
+      "utc": "2026-10-28T19:12:40.126658+00:00"
+    },
+    "measured_available_space_increase_bytes": 26877296640,
+    "concurrency_note": "Filesystem delta can differ from allocated target blocks because authorized jobs continue writing; no sync or process interruption performed",
+    "exact_removed_file_list": "STORAGE_AUDIT/cleanup_20261028T190906Z/INTEL_REMOVED_FILES.csv",
+    "exact_removed_directory_list": "STORAGE_AUDIT/cleanup_20261028T190906Z/INTEL_REMOVED_DIRECTORIES.csv",
+    "target_absent": true,
+    "data_parent_preserved": true,
+    "other_project_or_external_deletions": 0,
+    "scientific_evidence_hashes_all_unchanged": true,
+    "retained_evidence_files_verified": 86,
+    "local_raw_payload_backup": false,
+    "recovery": "Conditional official gated redownload, then per-file SHA256 verification. Original label/split manifest and licence retained byte-for-byte."
+  },
+  "validation_file": "STORAGE_AUDIT/cleanup_20261028T190906Z/FINAL_VALIDATION.json",
+  "checks": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--stat"
+      ],
+      "returncode": 0,
+      "stdout": " README.md                                              |  4 ++++\n REPO_MAP.md                                            |  6 ++++++\n docs/thesis_research_direction/THESIS_EVIDENCE_GAPS.md | 12 ++++++++++++\n 3 files changed, 22 insertions(+)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ma_thesis_env/bin/python",
+        "-B",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "returncode": 0,
+      "stdout": "No broken requirements found.\n",
+      "stderr": ""
+    }
+  ],
+  "final_capacity": {
+    "total_bytes": 531415142400,
+    "available_bytes": 79870943232,
+    "quota": "unverified",
+    "free_inodes": 66445669,
+    "after_additional_40_GB_bytes": 39870943232,
+    "minimum_reserve_bytes": 20000000000,
+    "margin_bytes": 19870943232
+  },
+  "web_sources_checked": [
+    {
+      "url": "https://huggingface.co/datasets/IntelLabs/Intel_Robotic_Welding_Multimodal_Dataset",
+      "observation": "Public card reachable; payload access requires accepted conditions; no credentials or access tested"
+    },
+    {
+      "url": "https://researchdata.tuwien.ac.at/records/0ewrv-8cb44",
+      "observation": "Official v1.0.0 public metadata and file MD5 references agree with historical acquisition receipt; no download"
+    }
+  ],
+  "warnings": [
+    "No local Intel raw-payload backup exists; restore depends on authorized source access and hash equality.",
+    "Current REASSEMBLE large-file hashes were not all recomputed; preservation/content checks have explicit bounded scope.",
+    "OPTIONAL external candidates remain untouched and are not recommended for current removal.",
+    "Filesystem availability changes under ongoing jobs; quota remains unverified.",
+    "Existing scientific documents/configs were preserved exactly and may still refer to the now-retired Intel raw location.",
+    "Process visibility exceptions are limited to same-user systemd/PAM/SSH service state; no active Intel target paths found."
+  ],
+  "self_hash_note": "This provenance manifest excludes its own recursive hash."
+}

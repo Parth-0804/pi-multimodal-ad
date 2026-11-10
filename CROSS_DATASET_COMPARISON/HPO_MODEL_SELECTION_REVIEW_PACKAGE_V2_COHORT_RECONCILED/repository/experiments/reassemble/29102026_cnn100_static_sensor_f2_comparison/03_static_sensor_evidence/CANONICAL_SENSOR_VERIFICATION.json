@@ -1,0 +1,63 @@
+{
+  "utc": "2026-10-29T00:49:37.118280+00:00",
+  "passed": true,
+  "earliest_section1_sensor_only_prediction_parity_max_abs": 0.0,
+  "recipes": [
+    {
+      "role": "TRAINING_BANK",
+      "training_actions": 2857,
+      "prediction_actions": 920,
+      "selected_C": 0.1,
+      "native_threshold": 0.16,
+      "OOF_calibration_reproduced": true,
+      "reconstructed_probability_max_abs": 0.0,
+      "model": {
+        "path": "experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/03_static_sensor_evidence/CANONICAL_TRAINING_BANK_MODEL.json",
+        "bytes": 257717,
+        "sha256": "5e2f352f8f7d94f134a595390514c32fca64a3f0fbba31bd68f41699c17b43a3"
+      },
+      "predictions": {
+        "path": "experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/03_static_sensor_evidence/CANONICAL_TRAINING_BANK_PREDICTIONS.json",
+        "bytes": 216840,
+        "sha256": "0d3d98a6329958865415bd6bfb0f4e36eaa934127e44c57bc566cc7d13b0087a"
+      },
+      "original_source": {
+        "path": "runs/reassemble/20260927T175336Z-section1b/stacking/outer0_inner2.npz",
+        "bytes": 15801,
+        "sha256": "cc88f44499bf2f1c6386afecaa34e3a7187acd4be059799ad457d2dac67184c6"
+      }
+    },
+    {
+      "role": "OUTER_TEST",
+      "training_actions": 3777,
+      "prediction_actions": 753,
+      "selected_C": 1.0,
+      "native_threshold": 0.14,
+      "OOF_calibration_reproduced": true,
+      "reconstructed_probability_max_abs": 0.0,
+      "model": {
+        "path": "experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/03_static_sensor_evidence/CANONICAL_OUTER_TEST_MODEL.json",
+        "bytes": 329454,
+        "sha256": "5c39c622a8fa796ae06d65db05db505b0effad4fbe2833e0161fe331089cb63a"
+      },
+      "predictions": {
+        "path": "experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/03_static_sensor_evidence/CANONICAL_OUTER_TEST_PREDICTIONS.json",
+        "bytes": 177456,
+        "sha256": "9ed9270ade121c49cb90e9d57eb0a7e645bbd2eb72ba436c8bec69a5a8322cf8"
+      },
+      "original_source": {
+        "path": "runs/reassemble/20260927T175336Z-section1b/stacking/outer0.npz",
+        "bytes": 82634,
+        "sha256": "b888c72014a07f1817e8e8f5abc7cbff742cc1240986ac55fd1ab7aa9f47e79c"
+      }
+    }
+  ],
+  "source": {
+    "path": "src/reassemble/section1_models.py",
+    "bytes": 13169,
+    "sha256": "b421b295b984908423876018ed02cd519a8ce60d1162a0ee60d64ade18aded66"
+  },
+  "original_source_files_modified": false,
+  "primary_recipe": "Earliest original Section1b nested OOF-calibrated static sensor",
+  "later_clean_CNN_C1_separate_calibration_recipe": "Retained only as provenance/reference; not substituted for original primary sensor"
+}

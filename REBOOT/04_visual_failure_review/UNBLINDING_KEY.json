@@ -1,0 +1,413 @@
+{
+  "random_seed": 20261028,
+  "examples": [
+    {
+      "masked_id": "B001",
+      "repo_id": "REBOOT26/16mm-cylinder_install",
+      "revision": "77385af9a9acf3da3c76e8a8031e67623ff401e2",
+      "local_root": "REBOOT/01_raw_dataset/official_release/16mm-cylinder_install/77385af9a9acf3da3c76e8a8031e67623ff401e2",
+      "episode_index": 0,
+      "native_annotation": null,
+      "investigated_phase": "whole_episode_context_phase_labels_not_released",
+      "window_start_frame": 0,
+      "window_end_frame_exclusive": 898,
+      "label_status": "EXPERT_COLLECTION_CANDIDATE_NO_VERIFIED_PHASE_NORMAL_LABEL",
+      "source_collection": "non_recovery_named_repository",
+      "binary_target": null,
+      "selection": "First two expert-named same-object/install repository episodes; not claimed as verified phase-matched negatives"
+    },
+    {
+      "masked_id": "B002",
+      "repo_id": "REBOOT26/sample_recovery-demonstration",
+      "revision": "0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "local_root": "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "episode_index": 11,
+      "native_annotation": {
+        "repo_id": "REBOOT26/sample_recovery-demonstrations",
+        "task_id": "16mm-cylinder-install",
+        "episode_index": "11",
+        "task_description": "Pick the 16mm cylinder and install on the taskboard",
+        "episode_type": "recovery",
+        "duration_frames": 897,
+        "fps": 30,
+        "phase_boundaries": {
+          "tau_0": 0,
+          "tau_1": 150,
+          "tau_2": 240,
+          "tau_3": 450,
+          "tau_4": 630,
+          "tau_5": 897
+        },
+        "phase_names": [
+          "Align (pick)",
+          "Engage (pick)",
+          "Transport",
+          "Align (place)",
+          "Engage (place)"
+        ],
+        "failure": {
+          "originating_phase": 2,
+          "failure_mode": "slip",
+          "induced_at_frame": 150,
+          "recovery_started_at_frame": 300,
+          "language_description": "Slip of grippers on object; reoriented arm to align grippers with object center."
+        },
+        "operator_id": "op-01",
+        "collection_session": "2026-04-15"
+      },
+      "investigated_phase": "Engage (pick)",
+      "window_start_frame": 120,
+      "window_end_frame_exclusive": 330,
+      "label_status": "UNVERIFIED_NATIVE_ANNOTATION_DIAGNOSTIC_ONLY",
+      "source_collection": "native_episode_type_recovery",
+      "binary_target": null,
+      "selection": "First two source-ID-ordered annotation candidates with onset inside phase under explicit one-based diagnostic interpretation"
+    },
+    {
+      "masked_id": "B003",
+      "repo_id": "REBOOT26/sample_recovery-demonstration",
+      "revision": "0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "local_root": "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "episode_index": 30,
+      "native_annotation": {
+        "repo_id": "REBOOT26/sample_recovery-demonstrations",
+        "task_id": "16mm-cylinder-install",
+        "episode_index": "30",
+        "task_description": "Pick the 16mm cylinder and install on the taskboard",
+        "episode_type": "recovery",
+        "duration_frames": 897,
+        "fps": 30,
+        "phase_boundaries": {
+          "tau_0": 0,
+          "tau_1": 180,
+          "tau_2": 240,
+          "tau_3": 750,
+          "tau_4": 840,
+          "tau_5": 897
+        },
+        "phase_names": [
+          "Align (pick)",
+          "Engage (pick)",
+          "Transport",
+          "Align (place)",
+          "Engage (place)"
+        ],
+        "failure": {
+          "originating_phase": 3,
+          "failure_mode": "premature_release",
+          "induced_at_frame": 300,
+          "recovery_started_at_frame": 450,
+          "language_description": "Gripper force dropped before reaching goal"
+        },
+        "operator_id": "op-01",
+        "collection_session": "2026-04-15"
+      },
+      "investigated_phase": "Transport",
+      "window_start_frame": 270,
+      "window_end_frame_exclusive": 480,
+      "label_status": "UNVERIFIED_NATIVE_ANNOTATION_DIAGNOSTIC_ONLY",
+      "source_collection": "native_episode_type_recovery",
+      "binary_target": null,
+      "selection": "First two source-ID-ordered annotation candidates with onset inside phase under explicit one-based diagnostic interpretation"
+    },
+    {
+      "masked_id": "B004",
+      "repo_id": "REBOOT26/16mm-cylinder_install",
+      "revision": "77385af9a9acf3da3c76e8a8031e67623ff401e2",
+      "local_root": "REBOOT/01_raw_dataset/official_release/16mm-cylinder_install/77385af9a9acf3da3c76e8a8031e67623ff401e2",
+      "episode_index": 1,
+      "native_annotation": null,
+      "investigated_phase": "whole_episode_context_phase_labels_not_released",
+      "window_start_frame": 0,
+      "window_end_frame_exclusive": 898,
+      "label_status": "EXPERT_COLLECTION_CANDIDATE_NO_VERIFIED_PHASE_NORMAL_LABEL",
+      "source_collection": "non_recovery_named_repository",
+      "binary_target": null,
+      "selection": "First two expert-named same-object/install repository episodes; not claimed as verified phase-matched negatives"
+    },
+    {
+      "masked_id": "B005",
+      "repo_id": "REBOOT26/sample_recovery-demonstration",
+      "revision": "0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "local_root": "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "episode_index": 29,
+      "native_annotation": {
+        "repo_id": "REBOOT26/sample_recovery-demonstrations",
+        "task_id": "16mm-cylinder-install",
+        "episode_index": "29",
+        "task_description": "Pick the 16mm cylinder and install on the taskboard",
+        "episode_type": "recovery",
+        "duration_frames": 897,
+        "fps": 30,
+        "phase_boundaries": {
+          "tau_0": 0,
+          "tau_1": 180,
+          "tau_2": 240,
+          "tau_3": 540,
+          "tau_4": 720,
+          "tau_5": 897
+        },
+        "phase_names": [
+          "Align (pick)",
+          "Engage (pick)",
+          "Transport",
+          "Align (place)",
+          "Engage (place)"
+        ],
+        "failure": {
+          "originating_phase": 3,
+          "failure_mode": "premature_release",
+          "induced_at_frame": 300,
+          "recovery_started_at_frame": 420,
+          "language_description": "Gripper force dropped before reaching goal"
+        },
+        "operator_id": "op-01",
+        "collection_session": "2026-04-15"
+      },
+      "investigated_phase": "Transport",
+      "window_start_frame": 270,
+      "window_end_frame_exclusive": 450,
+      "label_status": "UNVERIFIED_NATIVE_ANNOTATION_DIAGNOSTIC_ONLY",
+      "source_collection": "native_episode_type_recovery",
+      "binary_target": null,
+      "selection": "First two source-ID-ordered annotation candidates with onset inside phase under explicit one-based diagnostic interpretation"
+    },
+    {
+      "masked_id": "B006",
+      "repo_id": "REBOOT26/sample_recovery-demonstration",
+      "revision": "0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "local_root": "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "episode_index": 35,
+      "native_annotation": {
+        "repo_id": "REBOOT26/sample_recovery-demonstrations",
+        "task_id": "16mm-cylinder-install",
+        "episode_index": "35",
+        "task_description": "Pick the 16mm cylinder and install on the taskboard",
+        "episode_type": "recovery",
+        "duration_frames": 897,
+        "fps": 30,
+        "phase_boundaries": {
+          "tau_0": 0,
+          "tau_1": 180,
+          "tau_2": 270,
+          "tau_3": 390,
+          "tau_4": 450,
+          "tau_5": 897
+        },
+        "phase_names": [
+          "Align (pick)",
+          "Engage (pick)",
+          "Transport",
+          "Align (place)",
+          "Engage (place)"
+        ],
+        "failure": {
+          "originating_phase": 4,
+          "failure_mode": "misalignment",
+          "induced_at_frame": 390,
+          "recovery_started_at_frame": 390,
+          "language_description": "Misalignment with lucky success"
+        },
+        "operator_id": "op-01",
+        "collection_session": "2026-04-15"
+      },
+      "investigated_phase": "Align (place)",
+      "window_start_frame": 360,
+      "window_end_frame_exclusive": 420,
+      "label_status": "UNVERIFIED_NATIVE_ANNOTATION_DIAGNOSTIC_ONLY",
+      "source_collection": "native_episode_type_recovery",
+      "binary_target": null,
+      "selection": "First two source-ID-ordered annotation candidates with onset inside phase under explicit one-based diagnostic interpretation"
+    },
+    {
+      "masked_id": "B007",
+      "repo_id": "REBOOT26/sample_recovery-demonstration",
+      "revision": "0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "local_root": "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "episode_index": 41,
+      "native_annotation": {
+        "repo_id": "REBOOT26/sample_recovery-demonstrations",
+        "task_id": "16mm-cylinder-install",
+        "episode_index": "41",
+        "task_description": "Pick the 16mm cylinder and install on the taskboard",
+        "episode_type": "recovery",
+        "duration_frames": 897,
+        "fps": 30,
+        "phase_boundaries": {
+          "tau_0": 0,
+          "tau_1": 660,
+          "tau_2": 720,
+          "tau_3": 750,
+          "tau_4": 840,
+          "tau_5": 897
+        },
+        "phase_names": [
+          "Align (pick)",
+          "Engage (pick)",
+          "Transport",
+          "Align (place)",
+          "Engage (place)"
+        ],
+        "failure": {
+          "originating_phase": 1,
+          "failure_mode": "delayed_start",
+          "induced_at_frame": 30,
+          "recovery_started_at_frame": 630,
+          "language_description": "Late task start; resume object pick and place"
+        },
+        "operator_id": "op-01",
+        "collection_session": "2026-04-15"
+      },
+      "investigated_phase": "Align (pick)",
+      "window_start_frame": 0,
+      "window_end_frame_exclusive": 660,
+      "label_status": "UNVERIFIED_NATIVE_ANNOTATION_DIAGNOSTIC_ONLY",
+      "source_collection": "native_episode_type_recovery",
+      "binary_target": null,
+      "selection": "First two source-ID-ordered annotation candidates with onset inside phase under explicit one-based diagnostic interpretation"
+    },
+    {
+      "masked_id": "B008",
+      "repo_id": "REBOOT26/sample_recovery-demonstration",
+      "revision": "0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "local_root": "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "episode_index": 1,
+      "native_annotation": {
+        "repo_id": "REBOOT26/sample_recovery-demonstrations",
+        "task_id": "16mm-cylinder-install",
+        "episode_index": "01",
+        "task_description": "Pick the 16mm cylinder and install on the taskboard",
+        "episode_type": "recovery",
+        "duration_frames": 897,
+        "fps": 30,
+        "phase_boundaries": {
+          "tau_0": 0,
+          "tau_1": 210,
+          "tau_2": 450,
+          "tau_3": 510,
+          "tau_4": 630,
+          "tau_5": 897
+        },
+        "phase_names": [
+          "Align (pick)",
+          "Engage (pick)",
+          "Transport",
+          "Align (place)",
+          "Engage (place)"
+        ],
+        "failure": {
+          "originating_phase": 1,
+          "failure_mode": "misalignment",
+          "induced_at_frame": 180,
+          "recovery_started_at_frame": 330,
+          "language_description": "Misalignment with object; reoriented arm to align grippers with object center."
+        },
+        "operator_id": "op-01",
+        "collection_session": "2026-04-15"
+      },
+      "investigated_phase": "Align (pick)",
+      "window_start_frame": 150,
+      "window_end_frame_exclusive": 360,
+      "label_status": "UNVERIFIED_NATIVE_ANNOTATION_DIAGNOSTIC_ONLY",
+      "source_collection": "native_episode_type_recovery",
+      "binary_target": null,
+      "selection": "First two source-ID-ordered annotation candidates with onset inside phase under explicit one-based diagnostic interpretation"
+    },
+    {
+      "masked_id": "B009",
+      "repo_id": "REBOOT26/sample_recovery-demonstration",
+      "revision": "0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "local_root": "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "episode_index": 3,
+      "native_annotation": {
+        "repo_id": "REBOOT26/sample_recovery-demonstrations",
+        "task_id": "16mm-cylinder-install",
+        "episode_index": "03",
+        "task_description": "Pick the 16mm cylinder and install on the taskboard",
+        "episode_type": "recovery",
+        "duration_frames": 897,
+        "fps": 30,
+        "phase_boundaries": {
+          "tau_0": 0,
+          "tau_1": 180,
+          "tau_2": 420,
+          "tau_3": 480,
+          "tau_4": 660,
+          "tau_5": 897
+        },
+        "phase_names": [
+          "Align (pick)",
+          "Engage (pick)",
+          "Transport",
+          "Align (place)",
+          "Engage (place)"
+        ],
+        "failure": {
+          "originating_phase": 2,
+          "failure_mode": "slip",
+          "induced_at_frame": 180,
+          "recovery_started_at_frame": 330,
+          "language_description": "Slip of grippers on object; reoriented arm to align grippers with object center."
+        },
+        "operator_id": "op-01",
+        "collection_session": "2026-04-15"
+      },
+      "investigated_phase": "Engage (pick)",
+      "window_start_frame": 150,
+      "window_end_frame_exclusive": 360,
+      "label_status": "UNVERIFIED_NATIVE_ANNOTATION_DIAGNOSTIC_ONLY",
+      "source_collection": "native_episode_type_recovery",
+      "binary_target": null,
+      "selection": "First two source-ID-ordered annotation candidates with onset inside phase under explicit one-based diagnostic interpretation"
+    },
+    {
+      "masked_id": "B010",
+      "repo_id": "REBOOT26/sample_recovery-demonstration",
+      "revision": "0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "local_root": "REBOOT/01_raw_dataset/official_release/sample_recovery-demonstration/0633573d0438be1185bddebdf1a2c8f5505f7b2a",
+      "episode_index": 36,
+      "native_annotation": {
+        "repo_id": "REBOOT26/sample_recovery-demonstrations",
+        "task_id": "16mm-cylinder-install",
+        "episode_index": "36",
+        "task_description": "Pick the 16mm cylinder and install on the taskboard",
+        "episode_type": "recovery",
+        "duration_frames": 897,
+        "fps": 30,
+        "phase_boundaries": {
+          "tau_0": 0,
+          "tau_1": 180,
+          "tau_2": 240,
+          "tau_3": 390,
+          "tau_4": 780,
+          "tau_5": 897
+        },
+        "phase_names": [
+          "Align (pick)",
+          "Engage (pick)",
+          "Transport",
+          "Align (place)",
+          "Engage (place)"
+        ],
+        "failure": {
+          "originating_phase": 4,
+          "failure_mode": "misalignment",
+          "induced_at_frame": 390,
+          "recovery_started_at_frame": 780,
+          "language_description": "Misalignment with goal; picked up object, realigned grippers with object center and completed task."
+        },
+        "operator_id": "op-01",
+        "collection_session": "2026-04-15"
+      },
+      "investigated_phase": "Align (place)",
+      "window_start_frame": 360,
+      "window_end_frame_exclusive": 810,
+      "label_status": "UNVERIFIED_NATIVE_ANNOTATION_DIAGNOSTIC_ONLY",
+      "source_collection": "native_episode_type_recovery",
+      "binary_target": null,
+      "selection": "First two source-ID-ordered annotation candidates with onset inside phase under explicit one-based diagnostic interpretation"
+    }
+  ],
+  "binary_targets_verified": false,
+  "warning": "Collection/annotation status is shown after review; these are not certified normal/failure labels or matched pairs."
+}

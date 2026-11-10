@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-27T23:25:02.579509+00:00",
+  "problem": "Attached feature job completed and exited during polling sleep; controller did not recheck its completion receipt before testing process liveness.",
+  "feature_complete_sha256": "0c1d271cb36847736b24c0a3806573140aa249a95e06fac40a0505edc1634cec",
+  "feature_bank_preserved": true,
+  "correction": "Check receipt again after polling sleep. Invoke the identical frozen MSM evaluator directly while Handover extraction continues.",
+  "actual_command": "ma_thesis_env/bin/python -B -m external_eval.dispatch --stage evaluate --root MSM --condition P",
+  "log": "MSM/logs/P_evaluation_after_attach_race.txt",
+  "training_protocol_changed": false,
+  "model_input_or_source_changed": false
+}

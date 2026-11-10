@@ -1,0 +1,121 @@
+{
+  "protocol": "MSM-STAGE3-FROZEN-CNN-INTERVAL-F2-v1",
+  "dataset_handle": "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+  "stage1": "MILLING DATASET/runs/20261026T230520276818Z-stage1",
+  "stage2": "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated",
+  "data_root": "MILLING DATASET/data/raw/msm/versions/2",
+  "output_root": "MILLING DATASET/runs",
+  "reassemble_config": "configs/reassemble/section1.json",
+  "pretrained_identity": "runs/reassemble/20260927T154732Z-section1/pretrained_model.json",
+  "target": "native label 1 versus stable cutting labels 0 and 2",
+  "label2": "stable_negative",
+  "label2_sensitivity": "exclude; rerun entire split/fitting pipeline with same declared seeds and gates",
+  "visual": {
+    "model": "PekingU/rtdetr_r18vd",
+    "revision": "ac77a11ff0170a41b771c03264987f8ce2b0d753",
+    "frames": 16,
+    "size": 640,
+    "geometry": "source SAR 3:8; aspect-preserving centered black letterbox to 640x640",
+    "normalization": "RGB divide 255; no ImageNet normalization",
+    "frozen": true,
+    "pooling": "spatial mean last three maps -> 896; temporal mean of 16",
+    "epochs": 10,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "weight_decay": 0.001,
+    "clip_grad_norm": 1.0,
+    "feature_microbatch": 2,
+    "precision": "FP32 CNN extraction, FP32 head fitting"
+  },
+  "sensor": {
+    "channels": [
+      "watt",
+      "Spindle_Speed",
+      "S_Axis_Load",
+      "Feed_Rate",
+      "X_Axis_Load",
+      "Y_Axis_Load",
+      "Z_Axis_Load",
+      "smarms",
+      "xmarms",
+      "ymarms",
+      "zmarms",
+      "smvrms",
+      "xmvrms",
+      "ymvrms",
+      "zmvrms"
+    ],
+    "statistics": [
+      "mean",
+      "std",
+      "rms",
+      "min",
+      "max",
+      "peak_to_peak"
+    ],
+    "population_std_ddof": 0,
+    "minimum_rows": 5,
+    "maximum_gap_seconds": 0.5,
+    "classifier": "training-only standardization; balanced L2 logistic regression C=1, lbfgs max_iter=2000"
+  },
+  "fusion": {
+    "columns": [
+      "visual_probability",
+      "sensor_probability"
+    ],
+    "C": 1.0,
+    "class_weight": null,
+    "threshold": 0.5,
+    "calibration": "none; evaluate calibration rather than fit on scarce groups"
+  },
+  "outer_folds": 3,
+  "inner_folds": 2,
+  "split_seed": 42,
+  "training_seeds": [
+    42,
+    123,
+    20261023
+  ],
+  "model_selection": "No search, early stopping, validation-based epoch choice, seed selection, or threshold tuning. Fixed final epoch. Inner validation creates OOF probabilities only.",
+  "primary_metric": "pooled held-out interval average precision; fusion minus each unimodal baseline paired by group",
+  "secondary_metrics": [
+    "per-fold AP",
+    "AUROC",
+    "balanced_accuracy",
+    "F1",
+    "precision",
+    "recall",
+    "confusion matrix",
+    "Brier",
+    "log_loss",
+    "prevalence",
+    "machine and native-label subgroup summaries"
+  ],
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 20261027,
+    "unit": "experiment group",
+    "seeds_are_independent_samples": false
+  },
+  "smoke": {
+    "seed": 42,
+    "epochs": 2,
+    "max_intervals": 24,
+    "maximum_head_updates": 12,
+    "maximum_cnn_frame_forwards_including_benchmark": 768,
+    "protected_group": "imi_vm20i/dataset19",
+    "selection": "first 8 admitted VM20i/d1; first 6 d4; first 6 VMX/d8; first 2 normal and first 2 abnormal VMX/d9",
+    "gpu_memory_reserve_mib": 3072,
+    "gpu_process_memory_cap_mib": 2048,
+    "maximum_runtime_seconds": 600,
+    "worker_settings": [
+      0,
+      2
+    ],
+    "prefetch_factor": 1,
+    "decoder_threads": 1,
+    "cpu_threads": 1,
+    "outer_predictions_allowed": false
+  },
+  "full_matrix_authorized": false
+}

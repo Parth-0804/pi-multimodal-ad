@@ -1,0 +1,32 @@
+{
+  "status": "prepared_not_deleted",
+  "prepared_utc": "2026-10-26T21:20:44.946555+00:00",
+  "authorization": "Researcher explicitly requested removal of both identified derived caches, recovery documentation and code prechecks on 2026-10-26; no fresh reproduction requested or performed.",
+  "scope": {
+    "prefix": "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/frozen_prefix",
+    "pixels": "parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01/shared_cache/pixels"
+  },
+  "expected_array_counts": {
+    "prefix": 4530,
+    "pixels": 2711
+  },
+  "git_HEAD": "94f61529116ebdc966bcf87704a93e4d02fa5e89",
+  "git_status": "## main...origin/main\n M README.md\n M REPO_MAP.md\n M docs/thesis_research_direction/THESIS_EVIDENCE_GAPS.md\n?? docs/maintenance/REASSEMBLE_CACHE_RETENTION.md\n?? docs/maintenance/cache_cleanup/20261026T211622Z/array_inventory.json\n?? docs/maintenance/cache_cleanup/20261026T211622Z/preflight_before.json\n?? docs/maintenance/cache_cleanup/20261026T211622Z/protected_files_metadata.json\n?? docs/maintenance/cache_cleanup/20261026T211622Z/retained_metadata_sha256.json\n?? scripts/reassemble/check_cache_availability.py\n?? src/reassemble/cache_preflight.py\n?? tests/reassemble/test_cache_preflight.py\n",
+  "python": "3.12.3",
+  "script_sha256": "ff1b763d696ff6fa83200028eafc3ded57749b4e186a42a7b126e2e2a2a1a702",
+  "command": "python3 -B /tmp/pi_multimodal_cache_cleanup_20261026.py execute",
+  "disk_before": {
+    "total_bytes": 531415142400,
+    "available_bytes": 12974882816,
+    "used_bytes": 518423482368
+  },
+  "process_check": {
+    "accessible_open_array_handles": 0,
+    "inaccessible_process_fd_directories": 248,
+    "limitation": "Other-user process descriptors may be inaccessible; no command lines or environments inspected"
+  },
+  "inventory_sha256": "f1f143d1c3e85f7617a6e23cd611255c9e3797ea78c9a0590b7372566ce098e9",
+  "expected_allocated_array_bytes": 71868174336,
+  "preservation": "All cache JSON metadata is hashed. Other files in the three affected study areas are compared by lstat metadata; no full raw scan or array rehash.",
+  "reproduction": "Not performed; existing timing, source code and input-path evidence only"
+}

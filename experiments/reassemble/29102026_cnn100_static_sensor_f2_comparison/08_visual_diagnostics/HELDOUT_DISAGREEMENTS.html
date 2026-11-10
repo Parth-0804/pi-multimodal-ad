@@ -1,0 +1,93 @@
+<!doctype html><meta charset="utf-8"><style>body{font:16px system-ui;margin:2rem;max-width:1200px}img{max-width:640px}td,th{padding:.4rem;border:1px solid #ddd}table{border-collapse:collapse}</style>
+<h1>Fixed-model held-out disagreements</h1><p>Post-fit examples include correct and incorrect predictions under predefined rules. Unavailable categories are reported separately. None was used for fitting, calibration or model choice. Native labels are shown.</p>
+<h2>078658a8e5dc01dbee3d95ef — native failure=1</h2>
+<p>Recording 2025-01-13-14-57-37; segment 23; action insert; source interval 1736776930.5776658–1736776947.444413.</p>
+<table><tr><th>Model</th><th>Failure probability</th><th>Prediction at0.5</th><th>Correct at0.5?</th><th>Original native threshold</th><th>Native prediction</th><th>Native correct?</th></tr>
+<tr><td>Frozen CNN only</td><td>0.250029</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN only</td><td>0.147185</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+<tr><td>Static sensor only</td><td>0.831071</td><td>1</td><td>True</td><td>0.14</td><td>1</td><td>True</td></tr>
+<tr><td>Frozen CNN + F2</td><td>0.797215</td><td>1</td><td>True</td><td>0.10</td><td>1</td><td>True</td></tr>
+<tr><td>Fine-tuned CNN + F2</td><td>0.783141</td><td>1</td><td>True</td><td>0.14</td><td>1</td><td>True</td></tr>
+<tr><td>Frozen CNN + averaging</td><td>0.540550</td><td>1</td><td>True</td><td>0.50</td><td>1</td><td>True</td></tr>
+<tr><td>Fine-tuned CNN + averaging</td><td>0.489128</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+</table>
+<p>Selection: finetuned;label=1;sensor_high_visual_low;largest_absolute_probability_gap;tie_sample_id</p>
+<img src="frames/078658a8e5dc01dbee3d95ef/contact_sheet.png">
+<h2>1dace0c0e2137e1f96f0e0ec — native failure=1</h2>
+<p>Recording 2025-01-13-18-45-09; segment 9; action insert; source interval 1736790422.3295064–1736790429.662949.</p>
+<table><tr><th>Model</th><th>Failure probability</th><th>Prediction at0.5</th><th>Correct at0.5?</th><th>Original native threshold</th><th>Native prediction</th><th>Native correct?</th></tr>
+<tr><td>Frozen CNN only</td><td>0.205335</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN only</td><td>0.105791</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+<tr><td>Static sensor only</td><td>0.501833</td><td>1</td><td>True</td><td>0.14</td><td>1</td><td>True</td></tr>
+<tr><td>Frozen CNN + F2</td><td>0.415086</td><td>0</td><td>False</td><td>0.10</td><td>1</td><td>True</td></tr>
+<tr><td>Fine-tuned CNN + F2</td><td>0.393230</td><td>0</td><td>False</td><td>0.14</td><td>1</td><td>True</td></tr>
+<tr><td>Frozen CNN + averaging</td><td>0.353584</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN + averaging</td><td>0.303812</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+</table>
+<p>Selection: frozen;label=1;fusion_harms_sensor;largest_absolute_fusion_sensor_gap;tie_sample_id; finetuned;label=1;fusion_harms_sensor;largest_absolute_fusion_sensor_gap;tie_sample_id</p>
+<img src="frames/1dace0c0e2137e1f96f0e0ec/contact_sheet.png">
+<h2>221874d13c9b26c8b37a1301 — native failure=0</h2>
+<p>Recording 2025-01-09-19-28-18; segment 8; action remove; source interval 1736447367.12903–1736447371.465454.</p>
+<table><tr><th>Model</th><th>Failure probability</th><th>Prediction at0.5</th><th>Correct at0.5?</th><th>Original native threshold</th><th>Native prediction</th><th>Native correct?</th></tr>
+<tr><td>Frozen CNN only</td><td>0.082085</td><td>0</td><td>True</td><td>0.50</td><td>0</td><td>True</td></tr>
+<tr><td>Fine-tuned CNN only</td><td>0.063554</td><td>0</td><td>True</td><td>0.50</td><td>0</td><td>True</td></tr>
+<tr><td>Static sensor only</td><td>0.530936</td><td>1</td><td>False</td><td>0.14</td><td>1</td><td>False</td></tr>
+<tr><td>Frozen CNN + F2</td><td>0.422681</td><td>0</td><td>True</td><td>0.10</td><td>1</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN + F2</td><td>0.417285</td><td>0</td><td>True</td><td>0.14</td><td>1</td><td>False</td></tr>
+<tr><td>Frozen CNN + averaging</td><td>0.306511</td><td>0</td><td>True</td><td>0.50</td><td>0</td><td>True</td></tr>
+<tr><td>Fine-tuned CNN + averaging</td><td>0.297245</td><td>0</td><td>True</td><td>0.50</td><td>0</td><td>True</td></tr>
+</table>
+<p>Selection: frozen;label=0;fusion_corrects_sensor;largest_absolute_fusion_sensor_gap;tie_sample_id; finetuned;label=0;fusion_corrects_sensor;largest_absolute_fusion_sensor_gap;tie_sample_id</p>
+<img src="frames/221874d13c9b26c8b37a1301/contact_sheet.png">
+<h2>8c931a578e30415438a0c2c6 — native failure=1</h2>
+<p>Recording 2025-01-13-14-57-37; segment 5; action insert; source interval 1736776699.511034–1736776709.6276762.</p>
+<table><tr><th>Model</th><th>Failure probability</th><th>Prediction at0.5</th><th>Correct at0.5?</th><th>Original native threshold</th><th>Native prediction</th><th>Native correct?</th></tr>
+<tr><td>Frozen CNN only</td><td>0.177842</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN only</td><td>0.180041</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+<tr><td>Static sensor only</td><td>0.789772</td><td>1</td><td>True</td><td>0.14</td><td>1</td><td>True</td></tr>
+<tr><td>Frozen CNN + F2</td><td>0.748636</td><td>1</td><td>True</td><td>0.10</td><td>1</td><td>True</td></tr>
+<tr><td>Fine-tuned CNN + F2</td><td>0.752448</td><td>1</td><td>True</td><td>0.14</td><td>1</td><td>True</td></tr>
+<tr><td>Frozen CNN + averaging</td><td>0.483807</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN + averaging</td><td>0.484906</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+</table>
+<p>Selection: frozen;label=1;sensor_high_visual_low;largest_absolute_probability_gap;tie_sample_id</p>
+<img src="frames/8c931a578e30415438a0c2c6/contact_sheet.png">
+<h2>dab16299508458550630e2c4 — native failure=0</h2>
+<p>Recording 2025-01-10-17-25-29; segment 18; action insert; source interval 1736526575.0891545–1736526588.705767.</p>
+<table><tr><th>Model</th><th>Failure probability</th><th>Prediction at0.5</th><th>Correct at0.5?</th><th>Original native threshold</th><th>Native prediction</th><th>Native correct?</th></tr>
+<tr><td>Frozen CNN only</td><td>0.195675</td><td>0</td><td>True</td><td>0.50</td><td>0</td><td>True</td></tr>
+<tr><td>Fine-tuned CNN only</td><td>0.618485</td><td>1</td><td>False</td><td>0.50</td><td>1</td><td>False</td></tr>
+<tr><td>Static sensor only</td><td>0.055897</td><td>0</td><td>True</td><td>0.14</td><td>0</td><td>True</td></tr>
+<tr><td>Frozen CNN + F2</td><td>0.068263</td><td>0</td><td>True</td><td>0.10</td><td>0</td><td>True</td></tr>
+<tr><td>Fine-tuned CNN + F2</td><td>0.107571</td><td>0</td><td>True</td><td>0.14</td><td>0</td><td>True</td></tr>
+<tr><td>Frozen CNN + averaging</td><td>0.125786</td><td>0</td><td>True</td><td>0.50</td><td>0</td><td>True</td></tr>
+<tr><td>Fine-tuned CNN + averaging</td><td>0.337191</td><td>0</td><td>True</td><td>0.50</td><td>0</td><td>True</td></tr>
+</table>
+<p>Selection: finetuned;label=0;visual_high_sensor_low;largest_absolute_probability_gap;tie_sample_id</p>
+<img src="frames/dab16299508458550630e2c4/contact_sheet.png">
+<h2>dba477e8fcfd70e655841f61 — native failure=1</h2>
+<p>Recording 2025-01-13-18-53-43; segment 34; action pick; source interval 1736791034.8128746–1736791040.712829.</p>
+<table><tr><th>Model</th><th>Failure probability</th><th>Prediction at0.5</th><th>Correct at0.5?</th><th>Original native threshold</th><th>Native prediction</th><th>Native correct?</th></tr>
+<tr><td>Frozen CNN only</td><td>0.128095</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN only</td><td>0.588149</td><td>1</td><td>True</td><td>0.50</td><td>1</td><td>True</td></tr>
+<tr><td>Static sensor only</td><td>0.073984</td><td>0</td><td>False</td><td>0.14</td><td>0</td><td>False</td></tr>
+<tr><td>Frozen CNN + F2</td><td>0.070059</td><td>0</td><td>False</td><td>0.10</td><td>0</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN + F2</td><td>0.113208</td><td>0</td><td>False</td><td>0.14</td><td>0</td><td>False</td></tr>
+<tr><td>Frozen CNN + averaging</td><td>0.101039</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN + averaging</td><td>0.331067</td><td>0</td><td>False</td><td>0.50</td><td>0</td><td>False</td></tr>
+</table>
+<p>Selection: finetuned;label=1;visual_high_sensor_low;largest_absolute_probability_gap;tie_sample_id</p>
+<img src="frames/dba477e8fcfd70e655841f61/contact_sheet.png">
+<h2>dbe71bb8aae5b4e7a4bbca2d — native failure=0</h2>
+<p>Recording 2025-01-09-15-02-21; segment 1; action remove; source interval 1736431345.390151–1736431360.209684.</p>
+<table><tr><th>Model</th><th>Failure probability</th><th>Prediction at0.5</th><th>Correct at0.5?</th><th>Original native threshold</th><th>Native prediction</th><th>Native correct?</th></tr>
+<tr><td>Frozen CNN only</td><td>0.167825</td><td>0</td><td>True</td><td>0.50</td><td>0</td><td>True</td></tr>
+<tr><td>Fine-tuned CNN only</td><td>0.065614</td><td>0</td><td>True</td><td>0.50</td><td>0</td><td>True</td></tr>
+<tr><td>Static sensor only</td><td>0.838305</td><td>1</td><td>False</td><td>0.14</td><td>1</td><td>False</td></tr>
+<tr><td>Frozen CNN + F2</td><td>0.790515</td><td>1</td><td>False</td><td>0.10</td><td>1</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN + F2</td><td>0.773525</td><td>1</td><td>False</td><td>0.14</td><td>1</td><td>False</td></tr>
+<tr><td>Frozen CNN + averaging</td><td>0.503065</td><td>1</td><td>False</td><td>0.50</td><td>1</td><td>False</td></tr>
+<tr><td>Fine-tuned CNN + averaging</td><td>0.451960</td><td>0</td><td>True</td><td>0.50</td><td>0</td><td>True</td></tr>
+</table>
+<p>Selection: frozen;label=0;sensor_high_visual_low;largest_absolute_probability_gap;tie_sample_id; finetuned;label=0;sensor_high_visual_low;largest_absolute_probability_gap;tie_sample_id</p>
+<img src="frames/dbe71bb8aae5b4e7a4bbca2d/contact_sheet.png">

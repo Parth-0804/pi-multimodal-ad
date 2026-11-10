@@ -1,0 +1,17 @@
+{
+  "primary_sensor_contract": "15 common numerical MTConnect channels, six statistics each; no metadata predictors",
+  "minimum_finite_samples_per_channel": 5,
+  "maximum_within_cut_mtc_gap_s": 0.5,
+  "stats": [
+    "mean",
+    "std",
+    "rms",
+    "min",
+    "max",
+    "peak_to_peak"
+  ],
+  "features_are_unscaled_diagnostics_not_a_fitted_model": true,
+  "alternative_sensor_contract": "VM20i raw acc0/acc1, same six statistics, considered separately; never substituted silently into the common-MTC vector",
+  "visual_minimum": "recognizable spindle and workpiece/cutting context in the 16 sampled frames; partial coolant occlusion allowed and flagged; no claim of visible tool damage",
+  "preprocessing_prototype": "sample-aspect correction followed by aspect-preserving letterbox to 224x224 RGB; 16 ordered frames; no learned transform"
+}

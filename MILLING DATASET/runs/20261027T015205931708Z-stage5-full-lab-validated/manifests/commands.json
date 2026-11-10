@@ -1,0 +1,9 @@
+[
+  "ma_thesis_env/bin/python -B 'MILLING DATASET/source/prepare_full_lab.py'",
+  "ma_thesis_env/bin/python -B 'MILLING DATASET/source/stage2/download_msm.py' --handle manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2 --dest 'MILLING DATASET/data/raw/msm/versions/2' --mode pilot --config 'MILLING DATASET/runs/20261027T013606719154Z-stage5-full-lab/config/download_config.json'",
+  "ma_thesis_env/bin/python -B 'MILLING DATASET/source/acquire_full_lab.py' --run 'MILLING DATASET/runs/20261027T013606719154Z-stage5-full-lab' --execute (initial attempt and one timeout retry)",
+  "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH='MILLING DATASET/source' ma_thesis_env/bin/python -B 'MILLING DATASET/source/full_lab_audit.py' --run 'MILLING DATASET/runs/20261027T013606719154Z-stage5-full-lab' (initial attempt and checkpoint resume)",
+  "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH='MILLING DATASET/source' ma_thesis_env/bin/python -B 'MILLING DATASET/source/finish_full_lab.py' --parent 'MILLING DATASET/runs/20261027T013606719154Z-stage5-full-lab'",
+  "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH='MILLING DATASET/source' ma_thesis_env/bin/python -B -m pytest -q 'MILLING DATASET/tests/test_download_msm.py' 'MILLING DATASET/tests/test_audit_annotations.py' 'MILLING DATASET/tests/test_stage2_acquisition.py' 'MILLING DATASET/tests/test_stage2_contract.py' 'MILLING DATASET/tests/test_full_lab_audit.py'",
+  "ma_thesis_env/bin/python -B 'MILLING DATASET/source/seal_full_lab.py' --final 'MILLING DATASET/runs/20261027T015205931708Z-stage5-full-lab-validated'"
+]

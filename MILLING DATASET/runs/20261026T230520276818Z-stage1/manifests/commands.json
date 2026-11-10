@@ -1,0 +1,125 @@
+[
+  {
+    "phase": "metadata_and_inventory",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/inspect_official.py",
+      "--run",
+      "MILLING DATASET/runs/20261026T230520276818Z-stage1"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "preview",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/download_msm.py",
+      "--handle",
+      "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+      "--dest",
+      "MILLING DATASET/data/raw/msm/versions/2",
+      "--mode",
+      "labels",
+      "--backend",
+      "public-api",
+      "--inventory",
+      "MILLING DATASET/runs/20261026T230520276818Z-stage1/manifests/official_file_inventory.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "labels_only_download",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/download_msm.py",
+      "--handle",
+      "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+      "--dest",
+      "MILLING DATASET/data/raw/msm/versions/2",
+      "--mode",
+      "labels",
+      "--backend",
+      "public-api",
+      "--inventory",
+      "MILLING DATASET/runs/20261026T230520276818Z-stage1/manifests/official_file_inventory.json",
+      "--run"
+    ],
+    "exit_code": 0,
+    "started_utc": "2026-10-26T23:07:14.108045+00:00",
+    "finished_utc": "2026-10-26T23:07:57.188054+00:00",
+    "log": "MILLING DATASET/runs/20261026T230520276818Z-stage1/logs/download_labels.log"
+  },
+  {
+    "phase": "audit",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/audit_annotations.py",
+      "--run",
+      "MILLING DATASET/runs/20261026T230520276818Z-stage1"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "reports",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/build_reports.py",
+      "--run",
+      "MILLING DATASET/runs/20261026T230520276818Z-stage1"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "synthetic_tests",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "--import-mode=importlib",
+      "-p",
+      "no:cacheprovider",
+      "MILLING DATASET/tests"
+    ],
+    "exit_code": 0,
+    "result": "14 passed"
+  },
+  {
+    "phase": "reproduction",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/audit_annotations.py",
+      "--run",
+      "MILLING DATASET/runs/20261026T230520276818Z-stage1/reproduction"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "environment",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0,
+    "result": "No broken requirements found."
+  },
+  {
+    "phase": "whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0
+  }
+]

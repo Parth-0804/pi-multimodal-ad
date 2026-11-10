@@ -1,0 +1,213 @@
+{
+  "M8_matched_outer1_historical_reference": {
+    "AP": 0.3671552457154409,
+    "AUROC": 0.7443710136017829,
+    "precision": 0.22099447513812154,
+    "recall": 0.5194805194805194,
+    "F1": 0.31007751937984496,
+    "Brier": 0.07924474615357754,
+    "log_loss": 0.2858553867952878,
+    "ECE15": 0.02516081032698893,
+    "calibration_bins": [
+      {
+        "bin": 0,
+        "lower": 0.0,
+        "upper": 0.06666666666666667,
+        "count": 403,
+        "mean_probability": 0.04939680055073519,
+        "fraction_failure": 0.04714640198511166
+      },
+      {
+        "bin": 1,
+        "lower": 0.06666666666666667,
+        "upper": 0.13333333333333333,
+        "count": 233,
+        "mean_probability": 0.08919115217346017,
+        "fraction_failure": 0.10300429184549356
+      },
+      {
+        "bin": 2,
+        "lower": 0.13333333333333333,
+        "upper": 0.2,
+        "count": 43,
+        "mean_probability": 0.16412572536966857,
+        "fraction_failure": 0.18604651162790697
+      },
+      {
+        "bin": 3,
+        "lower": 0.2,
+        "upper": 0.26666666666666666,
+        "count": 23,
+        "mean_probability": 0.23247358213213823,
+        "fraction_failure": 0.13043478260869565
+      },
+      {
+        "bin": 4,
+        "lower": 0.26666666666666666,
+        "upper": 0.3333333333333333,
+        "count": 14,
+        "mean_probability": 0.2891225401790263,
+        "fraction_failure": 0.07142857142857142
+      },
+      {
+        "bin": 5,
+        "lower": 0.3333333333333333,
+        "upper": 0.4,
+        "count": 2,
+        "mean_probability": 0.37528904240103556,
+        "fraction_failure": 0.0
+      },
+      {
+        "bin": 6,
+        "lower": 0.4,
+        "upper": 0.4666666666666667,
+        "count": 9,
+        "mean_probability": 0.4438533325589709,
+        "fraction_failure": 0.5555555555555556
+      },
+      {
+        "bin": 7,
+        "lower": 0.4666666666666667,
+        "upper": 0.5333333333333333,
+        "count": 4,
+        "mean_probability": 0.5074063615683914,
+        "fraction_failure": 0.25
+      },
+      {
+        "bin": 8,
+        "lower": 0.5333333333333333,
+        "upper": 0.6,
+        "count": 4,
+        "mean_probability": 0.5607270232060388,
+        "fraction_failure": 1.0
+      },
+      {
+        "bin": 9,
+        "lower": 0.6,
+        "upper": 0.6666666666666666,
+        "count": 4,
+        "mean_probability": 0.6406696070015248,
+        "fraction_failure": 0.75
+      },
+      {
+        "bin": 10,
+        "lower": 0.6666666666666666,
+        "upper": 0.7333333333333333,
+        "count": 2,
+        "mean_probability": 0.7191538055390053,
+        "fraction_failure": 0.5
+      },
+      {
+        "bin": 11,
+        "lower": 0.7333333333333333,
+        "upper": 0.8,
+        "count": 2,
+        "mean_probability": 0.7935291227781949,
+        "fraction_failure": 0.5
+      },
+      {
+        "bin": 12,
+        "lower": 0.8,
+        "upper": 0.8666666666666667,
+        "count": 2,
+        "mean_probability": 0.8577866922708828,
+        "fraction_failure": 0.5
+      },
+      {
+        "bin": 13,
+        "lower": 0.8666666666666667,
+        "upper": 0.9333333333333333,
+        "count": 5,
+        "mean_probability": 0.9141444606542418,
+        "fraction_failure": 0.6
+      },
+      {
+        "bin": 14,
+        "lower": 0.9333333333333333,
+        "upper": 1.0,
+        "count": 3,
+        "mean_probability": 0.9360274372064051,
+        "fraction_failure": 1.0
+      }
+    ],
+    "threshold": 0.09999999999999999,
+    "actions": 753,
+    "positives": 77,
+    "negatives": 676,
+    "prevalence": 0.10225763612217796,
+    "confusion_matrix_TN_FP_FN_TP": [
+      535,
+      141,
+      37,
+      40
+    ],
+    "classification_report": {
+      "nonfailure": {
+        "precision": 0.9353146853146853,
+        "recall": 0.7914201183431953,
+        "f1-score": 0.8573717948717948,
+        "support": 676.0
+      },
+      "failure": {
+        "precision": 0.22099447513812154,
+        "recall": 0.5194805194805194,
+        "f1-score": 0.31007751937984496,
+        "support": 77.0
+      },
+      "accuracy": 0.7636122177954847,
+      "macro avg": {
+        "precision": 0.5781545802264034,
+        "recall": 0.6554503189118573,
+        "f1-score": 0.5837246571258199,
+        "support": 753.0
+      },
+      "weighted avg": {
+        "precision": 0.8622699891877326,
+        "recall": 0.7636122177954847,
+        "f1-score": 0.801406775996788,
+        "support": 753.0
+      }
+    },
+    "recordings": 26
+  },
+  "historical_all_folds_pooled": {
+    "AP": 0.44729855144048974,
+    "AUROC": 0.794968361094431,
+    "actions": 4530
+  },
+  "model": {
+    "coefficient": [
+      3.1142870718353524,
+      6.555473656516644
+    ],
+    "intercept": -3.462645774559234,
+    "threshold": 0.09999999999999999,
+    "meta_crossfit_Brier": 0.07682600397218557
+  },
+  "directly_controlled_comparison": false,
+  "comparability_findings": [
+    "Same753 test IDs/native labels/recordings and16-frame rule are verified.",
+    "Original section1b uses full nested4-fold branch OOF, inner hyperparameter search and outer branch refits.",
+    "The primary sensor is exactly this original selected-C/nested-OOF-calibrated branch; its saved test probabilities are identical. Later clean-CNN separate-C sensor models are retained only as reference evidence.",
+    "Original frozen visual extraction uses FP16 autocast,5/10-epoch head selection and its original seed; current CNN100 features/training use FP32 and seed42.",
+    "The same original F2 fitter/threshold-selection rule is used, but its new fitting bank covers one held-out inner fold rather than all3777 outer-training OOF rows. Main common-threshold scores and original native-threshold scores are both retained.",
+    "Therefore M8 is a matched-cohort historical reference, not a controlled visual-fine-tuning treatment; pooled4530-action AP is a separate historical summary."
+  ],
+  "sources": [
+    {
+      "path": "runs/reassemble/20260927T175336Z-section1b/stacking/outer0.npz",
+      "bytes": 82634,
+      "sha256": "b888c72014a07f1817e8e8f5abc7cbff742cc1240986ac55fd1ab7aa9f47e79c"
+    },
+    {
+      "path": "runs/reassemble/20260927T175336Z-section1b/stacking/outer0.json",
+      "bytes": 89465,
+      "sha256": "365decd18283c0ba3f6012f96f7dceed6156dd2d7c4d1227b3bd848ffdf94a7a"
+    },
+    {
+      "path": "runs/reassemble/20260927T175336Z-section1b/stacking/oof.npz",
+      "bytes": 37309,
+      "sha256": "14b4901674b9a00494137a38720ede6e3cdb5af4fa3c94d3487488c6e2f640a1"
+    }
+  ]
+}

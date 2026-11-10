@@ -1,0 +1,108 @@
+{
+  "gpu_before": {
+    "gpu": "0, Tesla T4, 16384, 9189, 6741, 100",
+    "processes": "1966772, 9184"
+  },
+  "gpu_after": {
+    "gpu": "0, Tesla T4, 16384, 9311, 6619, 100",
+    "processes": "1966772, 9184\n2029180, 122"
+  },
+  "settings": [
+    {
+      "workers": 0,
+      "intervals": 4,
+      "frames": 64,
+      "wall_seconds_including_first_batch": 8.326904095010832,
+      "intervals_per_second": 0.4803706100562212,
+      "parent_cpu_seconds": 8.279999999999998,
+      "worker_cpu_seconds": 0,
+      "parent_plus_workers_rss_bytes": 1492393984,
+      "cpu_core_equivalents": 0.9943671628163776,
+      "loader_wait_seconds": 6.87704852106981,
+      "worker_decode_seconds_sum": 6.7840342848794535,
+      "worker_exit_codes": [],
+      "workers_reaped": true,
+      "gpu_samples_device_wide_not_process_attributable": [
+        {
+          "gpu": "0, Tesla T4, 16384, 9725, 6205, 100",
+          "processes": "1966772, 9184\n2029180, 536"
+        }
+      ],
+      "peak_torch_allocated_bytes": 320019968,
+      "peak_torch_reserved_bytes": 434110464
+    },
+    {
+      "workers": 2,
+      "intervals": 4,
+      "frames": 64,
+      "wall_seconds_including_first_batch": 4.374956159037538,
+      "intervals_per_second": 0.9142948762439654,
+      "parent_cpu_seconds": 1.3999999999999986,
+      "worker_cpu_seconds": 19.76,
+      "parent_plus_workers_rss_bytes": 3382321152,
+      "cpu_core_equivalents": 4.8366198953305775,
+      "loader_wait_seconds": 2.9885883962269872,
+      "worker_decode_seconds_sum": 6.755948480917141,
+      "worker_exit_codes": [
+        0,
+        0
+      ],
+      "workers_reaped": true,
+      "gpu_samples_device_wide_not_process_attributable": [
+        {
+          "gpu": "0, Tesla T4, 16384, 9725, 6205, 100",
+          "processes": "1966772, 9184\n2029180, 536"
+        }
+      ],
+      "peak_torch_allocated_bytes": 320019968,
+      "peak_torch_reserved_bytes": 434110464
+    }
+  ],
+  "extraction": {
+    "workers": 0,
+    "intervals": 24,
+    "frames": 384,
+    "wall_seconds_including_first_batch": 48.533590567996725,
+    "intervals_per_second": 0.4945028735587865,
+    "parent_cpu_seconds": 48.25,
+    "worker_cpu_seconds": 0,
+    "parent_plus_workers_rss_bytes": 1546862592,
+    "cpu_core_equivalents": 0.9941568187171438,
+    "loader_wait_seconds": 40.049397801281884,
+    "worker_decode_seconds_sum": 39.841802440118045,
+    "worker_exit_codes": [],
+    "workers_reaped": true,
+    "gpu_samples_device_wide_not_process_attributable": [
+      {
+        "gpu": "0, Tesla T4, 16384, 9725, 6205, 100",
+        "processes": "1966772, 9184\n2029180, 536"
+      },
+      {
+        "gpu": "0, Tesla T4, 16384, 9725, 6205, 100",
+        "processes": "1966772, 9184\n2029180, 536"
+      },
+      {
+        "gpu": "0, Tesla T4, 16384, 9725, 6205, 100",
+        "processes": "1966772, 9184\n2029180, 536"
+      },
+      {
+        "gpu": "0, Tesla T4, 16384, 9725, 6205, 100",
+        "processes": "1966772, 9184\n2029180, 536"
+      },
+      {
+        "gpu": "0, Tesla T4, 16384, 9725, 6205, 100",
+        "processes": "1966772, 9184\n2029180, 536"
+      },
+      {
+        "gpu": "0, Tesla T4, 16384, 9725, 6205, 100",
+        "processes": "1966772, 9184\n2029180, 536"
+      }
+    ],
+    "peak_torch_allocated_bytes": 320019968,
+    "peak_torch_reserved_bytes": 434110464
+  },
+  "preprocessing_max_absolute_error": 5.960464477539063e-08,
+  "worker_embedding_exact_parity": true,
+  "shared_gpu": true,
+  "warning": "Short warm page-cache timings on shared busy T4; device utilization cannot be attributed to MSM; not a sustained exclusive benchmark."
+}

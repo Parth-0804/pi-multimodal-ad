@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "device": "cpu",
+      "intervals": 24,
+      "epochs": 2,
+      "updates": 2,
+      "initialization_plus_training_seconds": 0.011120109003968537,
+      "interval_presentations_per_second_including_initialization": 4316.504449989635,
+      "finite_losses": true,
+      "nonzero_finite_head_gradients": true,
+      "peak_torch_allocated_bytes": null
+    },
+    {
+      "device": "cuda",
+      "intervals": 24,
+      "epochs": 2,
+      "updates": 2,
+      "initialization_plus_training_seconds": 0.4534337379736826,
+      "interval_presentations_per_second_including_initialization": 105.85890722314521,
+      "finite_losses": true,
+      "nonzero_finite_head_gradients": true,
+      "peak_torch_allocated_bytes": 70070784
+    }
+  ],
+  "CPU_CUDA_untrained_forward_max_abs_difference": 8.940696716308594e-08,
+  "gpu_before": {
+    "gpu": "0, Tesla T4, 16384, 9371, 6559, 100",
+    "processes": "2030327, 9264\n2032299, 102"
+  },
+  "shared_gpu": true,
+  "combined_optimizer_updates": 10,
+  "combined_cnn_frames": 528,
+  "source_sha256": "0d31acccff681643369f5adc9bc7a67e6b53cd537bab05dc0966303f0b920bc4",
+  "outer_predictions": 0,
+  "limitations": "Two updates per device; includes construction/optimizer startup; GPU shared; no sustained timing or efficacy interpretation."
+}

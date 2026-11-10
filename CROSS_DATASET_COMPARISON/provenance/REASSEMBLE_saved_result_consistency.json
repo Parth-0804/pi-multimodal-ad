@@ -1,0 +1,52 @@
+{
+  "scope": "Saved prediction/label/cohort/outer-group/metric/coefficient consistency only; no new source training, raw label binding or CNN replay.",
+  "examples": 4530,
+  "positive": 509,
+  "recording_groups": 148,
+  "positive_prevalence": 0.11236203090507726,
+  "outer_folds": 5,
+  "models": [
+    {
+      "model": "sensor_statistics",
+      "AP": 0.42939186936802726,
+      "AUROC": 0.7793245578590593
+    },
+    {
+      "model": "rtdetr",
+      "AP": 0.23065831504271656,
+      "AUROC": 0.6977948286232056
+    },
+    {
+      "model": "patchtst",
+      "AP": 0.24159124413116922,
+      "AUROC": 0.7053514236896765
+    },
+    {
+      "model": "F2",
+      "AP": 0.44729855144048974,
+      "AUROC": 0.794968361094431
+    }
+  ],
+  "F2_saved_coefficient_replay_max_abs_difference": 0.0,
+  "input_hashes": {
+    "runs/reassemble/20260927T154732Z-section1/cohort.parquet": "ef224314224a1bdff8ee5f01bcea64f03458a30026011cd0b2096a105ff81aea",
+    "runs/reassemble/20260927T154732Z-section1/assessment/results.json": "90fbb2a24a3e3c52a84ef6a58a925265f1f8a3ea45613bdc711a3cf483d1bc3a",
+    "runs/reassemble/20260927T175336Z-section1b/assessment/results.json": "0eeb2917ae32819477221585b388057d7ea36591d35025c29555f131bb5a044b",
+    "runs/reassemble/20260927T154732Z-section1/predictions/sensor_statistics_perm00.npz": "7113f40880df7b839dd3d1fb7522cb712f7dfcae74d6c1be182f982cf1bf5e1e",
+    "runs/reassemble/20260927T154732Z-section1/predictions/rtdetr_perm00.npz": "5a8c656571b44e35ecdba5dbc24cc96291e4183a6c750bc53745719838b769d8",
+    "runs/reassemble/20260927T154732Z-section1/predictions/patchtst_perm00.npz": "2ff53f7ae05e2221dee164bb26726b3a6e85a92dd65e79d198a685c6f0de46da",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/oof.npz": "14b4901674b9a00494137a38720ede6e3cdb5af4fa3c94d3487488c6e2f640a1",
+    "runs/reassemble/20260927T154732Z-section1/nested_splits.json": "56dd1f32282a5771e16f780180e3cf62aa2684ae8e855ffd441418f91f14a668",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/outer0.npz": "b888c72014a07f1817e8e8f5abc7cbff742cc1240986ac55fd1ab7aa9f47e79c",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/outer0.json": "365decd18283c0ba3f6012f96f7dceed6156dd2d7c4d1227b3bd848ffdf94a7a",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/outer1.npz": "cc9d3bc7098ddfb36e02f8d406fd7029c69700fddf349fe754462cbdb958108c",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/outer1.json": "042c19a4e356f729d8b1143be23a2c7db10dff620ad1772a140e94f2adb7068a",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/outer2.npz": "b6ae7041bb5ff83dbe8cbd33ecf0c81fa9bfe13f3296f8c72a256ce4628f8655",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/outer2.json": "8f0d374837ed92340fb41ea6b87774bd07e4f5847092684603cbb3b9352dc2d9",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/outer3.npz": "ac4529641dd74acc8d3c018d602470591ddcc439f2fb9eda5ee42b73cc5e0a5c",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/outer3.json": "bda1c5a224389692d459b8f9cefad358e7edacb3500980d36fc417450a345bd9",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/outer4.npz": "417ad0caabc1b3b64700ea2bc238cf9e572711c4eb3be9a1d7cf21b6d8e0528e",
+    "runs/reassemble/20260927T175336Z-section1b/stacking/outer4.json": "ef2ba03990fdc20094be68b3543f403dfc7fc4bbde21814bc3938062cf28688d"
+  },
+  "prior_broader_audit": "MILLING DATASET/runs/20261027T011419561081Z-stage5-validated/MSM_FINAL_EVIDENCE_REVIEW.md"
+}

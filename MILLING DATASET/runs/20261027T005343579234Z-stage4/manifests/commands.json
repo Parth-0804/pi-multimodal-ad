@@ -1,0 +1,17 @@
+{
+  "common_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONPATH": "src:MILLING DATASET/source"
+  },
+  "commands": [
+    "ma_thesis_env/bin/python -B -m msm.stage4_audit --config 'MILLING DATASET/configs/stage4_execution.json' --output 'MILLING DATASET/runs/20261027T005343579234Z-stage4'",
+    "ma_thesis_env/bin/python -B -m pytest -q 'MILLING DATASET/tests' --disable-warnings",
+    "ma_thesis_env/bin/python -B -m pip check",
+    "git diff --check",
+    "git diff --stat",
+    "ma_thesis_env/bin/python -B 'MILLING DATASET/source/write_stage4_reports.py' --run 'MILLING DATASET/runs/20261027T005343579234Z-stage4'"
+  ],
+  "no_training_command_executed": true,
+  "report_writer_sha256": "f38358d81d06a012cbe9daef14cff56d6518a4c5a8cbc1e5d1283ffa64cf516c"
+}

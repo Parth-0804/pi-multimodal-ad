@@ -1,0 +1,279 @@
+{
+  "dataset_id": 8392825,
+  "handle": "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+  "version": 2,
+  "stage1_run": "MILLING DATASET/runs/20261026T230520276818Z-stage1",
+  "data_root": "MILLING DATASET/data/raw/msm/versions/2",
+  "run_root": "MILLING DATASET/runs/20261026T233709740813Z-stage2",
+  "selected_groups": [
+    "imi_vm20i/dataset1",
+    "imi_vm20i/dataset4",
+    "imi_vm20i/dataset19",
+    "imi_vmx30ui/dataset8",
+    "imi_vmx30ui/dataset9",
+    "tmf_vf10/dataset1"
+  ],
+  "max_download_bytes": 1500000000,
+  "free_space_reserve_gib": 5,
+  "frames_per_interval": 16,
+  "frame_policy": "16 equally spaced bin centers inside a conservatively trimmed mapped cutting interval; nearest unique native decoded frame; no frame repetition/padding",
+  "alignment_policy": "label-blind shared audio timing where available; filename offsets are hypotheses only; independent multi-anchor and held-out checks; no anomaly-label optimization",
+  "training_performed": false,
+  "cpu_threads": 1,
+  "download_plan": [
+    {
+      "name": "dataset_summary.xlsx",
+      "bytes": "11784",
+      "modality": "xlsx",
+      "cohort": "metadata",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i.xml",
+      "bytes": "16596",
+      "modality": "xml",
+      "cohort": "metadata",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset1/20240229_053831.227000_mtc.csv",
+      "bytes": "287755",
+      "modality": "mtc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset1/20240229_053831.227000_s0.wav",
+      "bytes": "10728620",
+      "modality": "audio_s0",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset1/20240229_053833440_comp_reduced.mp4",
+      "bytes": "4802507",
+      "modality": "video",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset1/A_N2-a3_ab.nc",
+      "bytes": "1083",
+      "modality": "nc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset1/label.csv",
+      "bytes": "833",
+      "modality": "label",
+      "cohort": "lab_primary",
+      "acquisition_status": "already_acquired"
+    },
+    {
+      "name": "imi_vm20i/dataset19/20240226_083508421_comp_reduced.mp4",
+      "bytes": "5031932",
+      "modality": "video",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset19/20240226_083623.908287_mtc.csv",
+      "bytes": "330970",
+      "modality": "mtc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset19/20240226_083623.908287_s0.wav",
+      "bytes": "12436336",
+      "modality": "audio_s0",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset19/E_P1S-a3.nc",
+      "bytes": "5050",
+      "modality": "nc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset19/label.csv",
+      "bytes": "1271",
+      "modality": "label",
+      "cohort": "lab_primary",
+      "acquisition_status": "already_acquired"
+    },
+    {
+      "name": "imi_vm20i/dataset4/20240229_062017.610010_mtc.csv",
+      "bytes": "245931",
+      "modality": "mtc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset4/20240229_062017.610010_s0.wav",
+      "bytes": "9277484",
+      "modality": "audio_s0",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset4/20240229_062019896_comp_reduced.mp4",
+      "bytes": "4233467",
+      "modality": "video",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset4/E_P3-a3_ab.nc",
+      "bytes": "1064",
+      "modality": "nc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset4/label.csv",
+      "bytes": "867",
+      "modality": "label",
+      "cohort": "lab_primary",
+      "acquisition_status": "already_acquired"
+    },
+    {
+      "name": "imi_vmx30ui.xml",
+      "bytes": "13831",
+      "modality": "xml",
+      "cohort": "metadata",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vmx30ui/dataset8/20240228_074220540_comp_reduced.mp4",
+      "bytes": "16966173",
+      "modality": "video",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vmx30ui/dataset8/20240228_074323.317000_mtc.csv",
+      "bytes": "451638",
+      "modality": "mtc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vmx30ui/dataset8/20240228_074323.317000_s0.wav",
+      "bytes": "19925420",
+      "modality": "audio_s0",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vmx30ui/dataset8/F2_N2-a5.nc",
+      "bytes": "5077",
+      "modality": "nc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vmx30ui/dataset8/label.csv",
+      "bytes": "4182",
+      "modality": "label",
+      "cohort": "lab_primary",
+      "acquisition_status": "already_acquired"
+    },
+    {
+      "name": "imi_vmx30ui/dataset9/20240228_035647972_comp_reduced.mp4",
+      "bytes": "8875147",
+      "modality": "video",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vmx30ui/dataset9/20240228_035911.495000_mtc.csv",
+      "bytes": "270417",
+      "modality": "mtc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vmx30ui/dataset9/20240228_035911.495000_s0.wav",
+      "bytes": "12207404",
+      "modality": "audio_s0",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vmx30ui/dataset9/D_P1-a5.nc",
+      "bytes": "4789",
+      "modality": "nc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vmx30ui/dataset9/label.csv",
+      "bytes": "937",
+      "modality": "label",
+      "cohort": "lab_primary",
+      "acquisition_status": "already_acquired"
+    },
+    {
+      "name": "tmf_vf10.xml",
+      "bytes": "4859",
+      "modality": "xml",
+      "cohort": "industrial_optional",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "tmf_vf10/dataset1/20240115_141431.622703_ct.csv",
+      "bytes": "1799",
+      "modality": "ct",
+      "cohort": "industrial_optional",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "tmf_vf10/dataset1/20240115_141431.622703_mtc.csv",
+      "bytes": "419945",
+      "modality": "mtc",
+      "cohort": "industrial_optional",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "tmf_vf10/dataset1/20240115_141431.622703_s0.wav",
+      "bytes": "96329264",
+      "modality": "audio_s0",
+      "cohort": "industrial_optional",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "tmf_vf10/dataset1/label.csv",
+      "bytes": "436",
+      "modality": "label",
+      "cohort": "industrial_optional",
+      "acquisition_status": "already_acquired"
+    },
+    {
+      "name": "imi_vm20i/dataset1/20240229_053831.227000_acc.csv",
+      "bytes": "309034449",
+      "modality": "acc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset19/20240226_083623.908287_acc.csv",
+      "bytes": "357861576",
+      "modality": "acc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    },
+    {
+      "name": "imi_vm20i/dataset4/20240229_062017.610010_acc.csv",
+      "bytes": "262053767",
+      "modality": "acc",
+      "cohort": "lab_primary",
+      "acquisition_status": "proposed_only"
+    }
+  ],
+  "storage_free_bytes_before": 82065862656,
+  "started_utc": "2026-10-26T23:37:10.299955+00:00"
+}

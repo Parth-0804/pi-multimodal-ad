@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "UTC": "2026-10-27T00:43:41.574069+00:00",
+  "checks": [
+    {
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "MILLING DATASET/tests",
+        "--disable-warnings"
+      ],
+      "returncode": 0,
+      "output": "..............................................                           [100%]\n46 passed in 8.03s\n"
+    },
+    {
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "returncode": 0,
+      "output": "No broken requirements found.\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "output": ""
+    }
+  ],
+  "historical_preservation": [
+    {
+      "run": "MILLING DATASET/runs/20261026T230520276818Z-stage1",
+      "protected_artifacts_verified": 41
+    },
+    {
+      "run": "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated",
+      "protected_artifacts_verified": 100
+    }
+  ],
+  "all_114_annotation_and_frame_policies_revalidated": true,
+  "raw_input_hashes_verified_during_smoke": 41,
+  "Git_bulk_exclusions": {
+    "MILLING DATASET/runs/20261027T003527238586Z-stage3/cache/smoke_features.npz": true,
+    "MILLING DATASET/runs/20261027T003527238586Z-stage3/checkpoints/development_only.pt": true,
+    "MILLING DATASET/data/raw/msm/versions/2/imi_vm20i/dataset1/label.csv": true
+  },
+  "combined_optimizer_updates": 10,
+  "combined_cnn_frame_forwards": 528,
+  "outer_predictions": 0,
+  "full_evaluation_ready": false
+}

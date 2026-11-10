@@ -1,0 +1,158 @@
+{
+  "settings": {
+    "replicates": 2000,
+    "seed": 20261029,
+    "unit": "recording",
+    "interval": "percentile95",
+    "conditional_on": "selected split and fitted models"
+  },
+  "assessment_groups": 26,
+  "differences": {
+    "A_visual_finetuned_minus_frozen": {
+      "treatment": "M2_finetuned100",
+      "control": "M1_frozen100",
+      "AP": {
+        "estimate": 0.01880892572409615,
+        "lower95": -0.03699454924316646,
+        "upper95": 0.09590987141307046,
+        "valid_draws": 2000,
+        "interval_excludes_zero": false
+      },
+      "AUROC": {
+        "estimate": 0.010720049181587643,
+        "lower95": -0.03238464269406602,
+        "upper95": 0.04972712415437739,
+        "valid_draws": 2000,
+        "interval_excludes_zero": false
+      }
+    },
+    "B_F2_finetuned_minus_frozen": {
+      "treatment": "M5_F2_finetuned",
+      "control": "M4_F2_frozen",
+      "AP": {
+        "estimate": 0.01411686855886568,
+        "lower95": -0.0007726175500666299,
+        "upper95": 0.029089335711597518,
+        "valid_draws": 2000,
+        "interval_excludes_zero": false
+      },
+      "AUROC": {
+        "estimate": 0.011622992392223197,
+        "lower95": 0.0010697750970259906,
+        "upper95": 0.022796595704440228,
+        "valid_draws": 2000,
+        "interval_excludes_zero": true
+      }
+    },
+    "C_F2_finetuned_minus_sensor": {
+      "treatment": "M5_F2_finetuned",
+      "control": "M3_sensor",
+      "AP": {
+        "estimate": 0.021389655615641434,
+        "lower95": -0.0003453037903533294,
+        "upper95": 0.03635822908728587,
+        "valid_draws": 2000,
+        "interval_excludes_zero": false
+      },
+      "AUROC": {
+        "estimate": 0.016617997387228023,
+        "lower95": 0.004580556583224135,
+        "upper95": 0.03157263725426016,
+        "valid_draws": 2000,
+        "interval_excludes_zero": true
+      }
+    },
+    "D_F2_frozen_minus_sensor": {
+      "treatment": "M4_F2_frozen",
+      "control": "M3_sensor",
+      "AP": {
+        "estimate": 0.0072727870567757535,
+        "lower95": -0.003151398723702964,
+        "upper95": 0.01537746535049398,
+        "valid_draws": 2000,
+        "interval_excludes_zero": false
+      },
+      "AUROC": {
+        "estimate": 0.004995004995004826,
+        "lower95": -0.004793719413795983,
+        "upper95": 0.01606417467042301,
+        "valid_draws": 2000,
+        "interval_excludes_zero": false
+      }
+    },
+    "E_F2_finetuned_minus_visual": {
+      "treatment": "M5_F2_finetuned",
+      "control": "M2_finetuned100",
+      "AP": {
+        "estimate": 0.13650971678211798,
+        "lower95": 0.02710083202691661,
+        "upper95": 0.234603257437483,
+        "valid_draws": 2000,
+        "interval_excludes_zero": true
+      },
+      "AUROC": {
+        "estimate": 0.06497348805041103,
+        "lower95": 0.018472112086865788,
+        "upper95": 0.11568277867591899,
+        "valid_draws": 2000,
+        "interval_excludes_zero": true
+      }
+    },
+    "F_F2_frozen_minus_visual": {
+      "treatment": "M4_F2_frozen",
+      "control": "M1_frozen100",
+      "AP": {
+        "estimate": 0.14120177394734845,
+        "lower95": 0.055646977375608815,
+        "upper95": 0.22961252696326975,
+        "valid_draws": 2000,
+        "interval_excludes_zero": true
+      },
+      "AUROC": {
+        "estimate": 0.06407054483977548,
+        "lower95": 0.027307976093741363,
+        "upper95": 0.1004588785929588,
+        "valid_draws": 2000,
+        "interval_excludes_zero": true
+      }
+    },
+    "G_F2_frozen_minus_average": {
+      "treatment": "M4_F2_frozen",
+      "control": "M6_average_frozen",
+      "AP": {
+        "estimate": -0.013029400477910513,
+        "lower95": -0.03306679044008318,
+        "upper95": 0.003664869857694659,
+        "valid_draws": 2000,
+        "interval_excludes_zero": false
+      },
+      "AUROC": {
+        "estimate": 0.00743487281948807,
+        "lower95": -0.012888047907545214,
+        "upper95": 0.026942163472905702,
+        "valid_draws": 2000,
+        "interval_excludes_zero": false
+      }
+    },
+    "H_F2_finetuned_minus_average": {
+      "treatment": "M5_F2_finetuned",
+      "control": "M7_average_finetuned",
+      "AP": {
+        "estimate": -0.009439182094606147,
+        "lower95": -0.05117183348103608,
+        "upper95": 0.021665575464302603,
+        "valid_draws": 2000,
+        "interval_excludes_zero": false
+      },
+      "AUROC": {
+        "estimate": -0.0056866210712366305,
+        "lower95": -0.026206633864735304,
+        "upper95": 0.014340931032531942,
+        "valid_draws": 2000,
+        "interval_excludes_zero": false
+      }
+    }
+  },
+  "excluded_single_class_resamples": 0,
+  "not_adjusted_for_multiple_comparisons": true
+}

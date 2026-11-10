@@ -1,0 +1,85 @@
+{
+  "passed_input_contract": true,
+  "raw_trials": 589,
+  "native_label_files": 589,
+  "usable_examples": 495,
+  "native_outcomes": {
+    "3": 162,
+    "0": 156,
+    "2": 140,
+    "1": 131
+  },
+  "eligible_binary_counts": {
+    "1": 365,
+    "0": 130
+  },
+  "official_partitions": {
+    "train": {
+      "native_trials": 337,
+      "eligible_trials": 335,
+      "positive": 245
+    },
+    "validation": {
+      "native_trials": 101,
+      "eligible_trials": 101,
+      "positive": 76
+    },
+    "test": {
+      "native_trials": 151,
+      "eligible_trials": 59,
+      "positive": 44
+    }
+  },
+  "robots": [
+    "Kinova Gen3",
+    "Toyota HSR"
+  ],
+  "participants_reported_by_datasheet": 17,
+  "participant_mapping_present": false,
+  "participant_independence": "Official subject-based partition claim verified in datasheet; identity-level disjointness not independently testable without participant IDs.",
+  "participant_named_members": [],
+  "native_metadata_keys": [
+    "outcome",
+    "robot",
+    "task"
+  ],
+  "participant_oof_passed": false,
+  "participant_oof_blocker": "No explicit participant-to-trial mapping in official native metadata or author code; no trial-number/face grouping is invented.",
+  "allowed_models": [
+    "prevalence",
+    "sensor_logistic",
+    "sensor_histgradient",
+    "visual",
+    "averaging"
+  ],
+  "blocked_models": {
+    "F2": "Participant-disjoint OOF training probabilities cannot be verified without participant IDs.",
+    "F2_aug": "Participant-disjoint OOF training probabilities cannot be verified without participant IDs.",
+    "QG_clean": "Participant-disjoint OOF training probabilities cannot be verified without participant IDs.",
+    "QG_aug": "Participant-disjoint OOF training probabilities cannot be verified without participant IDs."
+  },
+  "exclusion_counts": {
+    "frame_timing_guard_crosses_observation_horizon;wrench_nearest_time_gap_exceeds_0.1s": 76,
+    "wrench_nearest_time_gap_exceeds_0.1s": 18
+  },
+  "sensor_channels": [
+    "force_x",
+    "force_y",
+    "force_z",
+    "torque_x",
+    "torque_y",
+    "torque_z"
+  ],
+  "sensor_statistics": [
+    "mean",
+    "std",
+    "rms",
+    "min",
+    "max",
+    "peak_to_peak"
+  ],
+  "sensor_width": 36,
+  "clock_validation": "Every admitted provided wrench_resampled array is exactly reproduced using closest raw wrench timestamp, as in author resample.py; max nearest-source gap <=0.1s.",
+  "video_policy": "16 equal source-clock bin centers over complete trial; no human/robot action or outcome annotations used for sampling",
+  "no_test_label_model_selection": true
+}

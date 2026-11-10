@@ -1,0 +1,15 @@
+# Execution and methodology notes
+
+The full laboratory audit uses the final corrected Stage 2 estimator and fixed Stage 3 data/split contracts. The only additional synchronization acceptance gate rejects equally voted distant calibration aliases with independent validation support. This conservative gate rejects VM20i/dataset12; it does not optimize timing or select a model result. Existing pilot mappings are reused unchanged. All new AAC time origins were explicitly checked. No target label or cutting boundary participates in calibration.
+
+One public acquisition request timed out. Per-file hashes/receipts allowed a safe retry, with no overwrite and no final missing file. Interrupted attempts remain preserved.
+
+Rejected recordings can have an infinite residual when no validation anchor survives. Strict JSON initially refused this diagnostic. The failure exposed a report-serialization defect, not a scientific result change. Existing Stage 2 finite-value serialization now maps undefined residuals to null. A synthetic regression covers this case. Complete markers are published atomically; the incomplete earlier marker remains preserved. All 56 complete checkpoints were consolidated into this fresh validated run without repeating valid video decodes. Exact executed source preimages, logs and hashes are indexed in manifests/execution_failures.json.
+
+The extra data support seven machine/reference-date groups and five calendar-date groups. Both label definitions pass the existing fixed three-outer/two-inner construction under both proxies and nominal folders. Five dates remain a small basis for uncertainty estimation; date proxies do not resolve physical tool/workpiece reuse across dates. No final split is frozen. The researcher must approve the target and grouping before future evaluation.
+
+The 1,895 technically paired intervals are not independently certified visually informative. Contact sheets for every experiment are available, but only representative new sequences were generated. A representative view cannot certify all intervals; independent review remains pending. The original pilot's Codex context assessment is retained as historical evidence, not expert anomaly-observability validation.
+
+All 280 experiment input hashes and 56 original label identities were rechecked. Two XML files are also hash-verified against their acquisition receipts in the download manifest. The actual MTC vectors were independently recomputed with the existing fixed implementation: maximum difference 0.0 in the float32 contract. These checks reproduce data eligibility and saved-statistic consistency, not model efficacy.
+
+No CNN features, model fits, F2 evaluation, new source checkpoint audit, Phase 1 execution command, GPU benchmark or model-performance claim was produced. All changes remain under MILLING DATASET/. Three pre-existing tracked edits (22 insertions) are unchanged; nothing is staged or committed. Raw data, decoded caches and bulky per-experiment checkpoints remain local generated evidence.

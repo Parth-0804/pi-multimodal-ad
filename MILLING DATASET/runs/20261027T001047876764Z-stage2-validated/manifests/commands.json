@@ -1,0 +1,312 @@
+[
+  {
+    "phase": "preview",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/download_msm.py",
+      "--handle",
+      "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+      "--dest",
+      "MILLING DATASET/data/raw/msm/versions/2",
+      "--mode",
+      "pilot",
+      "--config",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2/config/resolved_config.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "selected_acquisition",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/download_msm.py",
+      "--handle",
+      "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+      "--dest",
+      "MILLING DATASET/data/raw/msm/versions/2",
+      "--mode",
+      "pilot",
+      "--config",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2/config/resolved_config.json",
+      "--run"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "preview",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/download_msm.py",
+      "--handle",
+      "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+      "--dest",
+      "MILLING DATASET/data/raw/msm/versions/2",
+      "--mode",
+      "pilot",
+      "--config",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2/config/audio_alignment_addon.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "selected_acquisition",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/download_msm.py",
+      "--handle",
+      "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+      "--dest",
+      "MILLING DATASET/data/raw/msm/versions/2",
+      "--mode",
+      "pilot",
+      "--config",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2/config/audio_alignment_addon.json",
+      "--run"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "preview",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/download_msm.py",
+      "--handle",
+      "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+      "--dest",
+      "MILLING DATASET/data/raw/msm/versions/2",
+      "--mode",
+      "pilot",
+      "--config",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2/config/audio_alignment_validation_addon.json"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "selected_acquisition",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/download_msm.py",
+      "--handle",
+      "manufuturetoday/multi-sensor-for-metal-milling-anomaly/versions/2",
+      "--dest",
+      "MILLING DATASET/data/raw/msm/versions/2",
+      "--mode",
+      "pilot",
+      "--config",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2/config/audio_alignment_validation_addon.json",
+      "--run"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "isolated_tool_install",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "-m",
+      "pip",
+      "--isolated",
+      "install",
+      "--no-deps",
+      "--no-cache-dir",
+      "--target",
+      "MILLING DATASET/.tools",
+      "--index-url",
+      "https://pypi.org/simple",
+      "imageio-ffmpeg==0.6.0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "probe_media.py",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/probe_media.py",
+      "--run",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2"
+    ],
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0
+  },
+  {
+    "phase": "audit_sensors.py",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/audit_sensors.py",
+      "--run",
+      "MILLING DATASET/runs/20261026T233709740813Z-stage2"
+    ],
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0
+  },
+  {
+    "phase": "align_audio.py",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/align_audio.py",
+      "--run",
+      "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated"
+    ],
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0
+  },
+  {
+    "phase": "finalize_alignment.py",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/finalize_alignment.py",
+      "--run",
+      "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated"
+    ],
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0
+  },
+  {
+    "phase": "frame_contract.py",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/frame_contract.py",
+      "--run",
+      "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated"
+    ],
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0
+  },
+  {
+    "phase": "finalize_pilot.py",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/finalize_pilot.py",
+      "--run",
+      "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated"
+    ],
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0
+  },
+  {
+    "phase": "diagnostics.py",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/diagnostics.py",
+      "--run",
+      "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated"
+    ],
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0
+  },
+  {
+    "phase": "raw_waveform_check.py",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/raw_waveform_check.py",
+      "--run",
+      "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated"
+    ],
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0
+  },
+  {
+    "phase": "write_reports.py",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/write_reports.py",
+      "--run",
+      "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated"
+    ],
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0
+  },
+  {
+    "phase": "validate_stage2.py",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "MILLING DATASET/source/stage2/validate_stage2.py",
+      "--run",
+      "MILLING DATASET/runs/20261027T001047876764Z-stage2-validated"
+    ],
+    "env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0
+  },
+  {
+    "phase": "MSM_tests",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "--import-mode=importlib",
+      "-p",
+      "no:cacheprovider",
+      "MILLING DATASET/tests"
+    ],
+    "exit_code": 0,
+    "result": "26 passed"
+  },
+  {
+    "phase": "pip_check",
+    "argv": [
+      "ma_thesis_env/bin/python",
+      "-B",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0
+  },
+  {
+    "phase": "whitespace",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0
+  }
+]

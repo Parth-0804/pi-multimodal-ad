@@ -1,0 +1,37 @@
+{
+  "stage": "MSM-STAGE4-INDEPENDENT-EVALUATION-v1",
+  "stage3_config": "MILLING DATASET/configs/stage3_protocol.json",
+  "stage3_run": "MILLING DATASET/runs/20261027T003527238586Z-stage3",
+  "output_root": "MILLING DATASET/runs",
+  "current_user_authorizes_stage4": true,
+  "readiness_gates_remain_required": true,
+  "conditions": [
+    "P",
+    "R"
+  ],
+  "models": [
+    "visual",
+    "sensor",
+    "F2"
+  ],
+  "training_seeds": [
+    42,
+    123,
+    20261023
+  ],
+  "outer_folds": 3,
+  "inner_folds": 2,
+  "matching": "Same audited cohort, frames, splits, new MSM head, fixed epochs, target, metrics and seeds; both CNN initializations frozen per Stage 3",
+  "reassemble_phase1_root": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability",
+  "source_rule": {
+    "arm": "C_full_finetuned16",
+    "seed": 42,
+    "outer_fold_original": 0,
+    "role": "outer_assessment",
+    "selection": "Canonical source role fixed before any MSM results; require completed C-fit receipt and matching selected-checkpoint hash. No fallback to active, preflight, frozen B, last-stage-only or MSM-score-selected sources.",
+    "all_150_source_fits_required": false
+  },
+  "no_dataset_expansion_in_this_frozen_cohort_execution": true,
+  "other_gpu_process_policy": "Do not stop or modify unrelated jobs; no GPU work while scientific gates fail",
+  "on_dependency_failure": "Produce source compatibility audit, cohort/split/generalization audits and explicit unavailable-result artifacts; do not train an alternative evaluation design"
+}

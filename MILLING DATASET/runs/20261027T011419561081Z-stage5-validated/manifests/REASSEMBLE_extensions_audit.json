@@ -1,0 +1,153 @@
+{
+  "encoder": [
+    {
+      "condition": "cnn_only",
+      "branch": "visual",
+      "AP": 0.22164376360829535,
+      "AUROC": 0.6687723440151386
+    },
+    {
+      "condition": "cnn_only",
+      "branch": "sensor",
+      "AP": 0.42092569952771697,
+      "AUROC": 0.7721813133309458
+    },
+    {
+      "condition": "cnn_only",
+      "branch": "fused",
+      "AP": 0.440764046990671,
+      "AUROC": 0.7829675148495937
+    },
+    {
+      "condition": "cnn_plus_encoder",
+      "branch": "visual",
+      "AP": 0.17191489505764374,
+      "AUROC": 0.6049326497577306
+    },
+    {
+      "condition": "cnn_plus_encoder",
+      "branch": "sensor",
+      "AP": 0.42092569952771697,
+      "AUROC": 0.7721813133309458
+    },
+    {
+      "condition": "cnn_plus_encoder",
+      "branch": "fused",
+      "AP": 0.42497880786031256,
+      "AUROC": 0.7717469532498586
+    }
+  ],
+  "controlled32": [
+    {
+      "seed": 42,
+      "condition": "frozen32_two_epochs",
+      "branch": "visual",
+      "AP": 0.22270779954756764,
+      "AUROC": 0.6849115815837189,
+      "recall": 0.0
+    },
+    {
+      "seed": 42,
+      "condition": "frozen32_two_epochs",
+      "branch": "sensor",
+      "AP": 0.42080289397058523,
+      "AUROC": 0.772127567989079,
+      "recall": 0.18860510805500982
+    },
+    {
+      "seed": 42,
+      "condition": "frozen32_two_epochs",
+      "branch": "F2",
+      "AP": 0.43936262813435767,
+      "AUROC": 0.7859562444514042,
+      "recall": 0.1944990176817289
+    },
+    {
+      "seed": 42,
+      "condition": "finetuned32_two_epochs",
+      "branch": "visual",
+      "AP": 0.23060948822085053,
+      "AUROC": 0.6835889575797789,
+      "recall": 0.007858546168958742
+    },
+    {
+      "seed": 42,
+      "condition": "finetuned32_two_epochs",
+      "branch": "sensor",
+      "AP": 0.42080289397058523,
+      "AUROC": 0.772127567989079,
+      "recall": 0.18860510805500982
+    },
+    {
+      "seed": 42,
+      "condition": "finetuned32_two_epochs",
+      "branch": "F2",
+      "AP": 0.43856644106202586,
+      "AUROC": 0.7843165229304501,
+      "recall": 0.20235756385068762
+    },
+    {
+      "seed": 20261023,
+      "condition": "frozen32_two_epochs",
+      "branch": "visual",
+      "AP": 0.21679941309445577,
+      "AUROC": 0.6810370310291401,
+      "recall": 0.0
+    },
+    {
+      "seed": 20261023,
+      "condition": "frozen32_two_epochs",
+      "branch": "sensor",
+      "AP": 0.42080289397058523,
+      "AUROC": 0.772127567989079,
+      "recall": 0.18860510805500982
+    },
+    {
+      "seed": 20261023,
+      "condition": "frozen32_two_epochs",
+      "branch": "F2",
+      "AP": 0.43520210129829034,
+      "AUROC": 0.7808289388373124,
+      "recall": 0.206286836935167
+    },
+    {
+      "seed": 20261023,
+      "condition": "finetuned32_two_epochs",
+      "branch": "visual",
+      "AP": 0.20051732408927284,
+      "AUROC": 0.6675498817846776,
+      "recall": 0.005893909626719057
+    },
+    {
+      "seed": 20261023,
+      "condition": "finetuned32_two_epochs",
+      "branch": "sensor",
+      "AP": 0.42080289397058523,
+      "AUROC": 0.772127567989079,
+      "recall": 0.18860510805500982
+    },
+    {
+      "seed": 20261023,
+      "condition": "finetuned32_two_epochs",
+      "branch": "F2",
+      "AP": 0.43238017888228464,
+      "AUROC": 0.7780849948380042,
+      "recall": 0.19646365422396855
+    }
+  ],
+  "controlled32_fit_receipts_verified": 100,
+  "controlled32_epoch_budgets": [
+    2
+  ],
+  "controlled32_missing_checkpoint_paths": [],
+  "boundary_selected_descriptive_variant": "V3",
+  "boundary_visual_AP": {
+    "V0": 0.23065831504271656,
+    "V1": 0.2555515996644963,
+    "V2": 0.3080322356919925,
+    "V3": 0.31914611093168466,
+    "V4": 0.2922363295460871,
+    "V5": 0.22503203434720692
+  },
+  "boundary_fusion_AP": 0.4934367306003173
+}
