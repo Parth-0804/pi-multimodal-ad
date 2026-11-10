@@ -2,6 +2,8 @@
 
 This isolated experiment was created on **11 November 2026 (Europe/Berlin)**, using the actual local date rather than the suggested November 10 directory name. The user explicitly authorized training, evaluation, local commits and scientific reporting. No push is authorized.
 
+A concise [initial completed-results snapshot](14_final_research_reports/00_INITIAL_COMPLETED_RESULTS.md) summarizes the completed frozen/donor stage.
+
 Start with [current study status](VIFAILBACK_MATCHED_CNN_STUDY_STATUS.md) and [executive report](14_final_research_reports/01_EXECUTIVE_SUMMARY.md). These reports describe completed evidence and running or pending work separately. Long GPU fits are resumable and retain every requested epoch.
 
 ## Scientific scope
