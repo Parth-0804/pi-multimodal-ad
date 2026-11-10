@@ -1,0 +1,974 @@
+{
+  "CPU_head": "One batched CPU head per actual up-to8episode update; matched initial weights and RNG; GPU CNN only",
+  "CPU_vs_GPU_original_feature_max_abs": 5.960464477539062e-07,
+  "GPU": "Tesla T4",
+  "GPU_utilization_percent": 99.5,
+  "active_fit_checkpoint_peak_bytes_estimate": 589235120,
+  "checks": {
+    "48_frame_tensor": true,
+    "CNN_parameters": true,
+    "all_gradients_match_reference": true,
+    "all_stages_updated": true,
+    "checkpointed_reference_agrees": true,
+    "donor_lineage": true,
+    "episode_level_loss": true,
+    "frozen_CNN_unchanged": true,
+    "frozen_head_updated": true,
+    "head_parameters": true,
+    "loss_finite": true,
+    "matched_initial_head": true,
+    "optimizer_groups": true,
+    "resume_exact_next_update": true,
+    "running_moments_fixed": true,
+    "saved_CPU_vs_GPU_feature_equivalence": true,
+    "selected_reload_exact": true
+  },
+  "compute_estimate_scope": "Single training-T episode, no campaign-time guarantee; decoder and validation overhead separate",
+  "decode_seconds_per_episode": 1.6917882569996436,
+  "disposable_optimizer_updates": 4,
+  "donor": {
+    "CNN_tensor_count": 115,
+    "changed_CNN_tensors": [
+      "embedder.embedder.0.convolution.weight",
+      "embedder.embedder.0.normalization.weight",
+      "embedder.embedder.0.normalization.bias",
+      "embedder.embedder.1.convolution.weight",
+      "embedder.embedder.1.normalization.weight",
+      "embedder.embedder.1.normalization.bias",
+      "embedder.embedder.2.convolution.weight",
+      "embedder.embedder.2.normalization.weight",
+      "embedder.embedder.2.normalization.bias",
+      "encoder.stages.0.layers.0.shortcut.convolution.weight",
+      "encoder.stages.0.layers.0.shortcut.normalization.weight",
+      "encoder.stages.0.layers.0.shortcut.normalization.bias",
+      "encoder.stages.0.layers.0.layer.0.convolution.weight",
+      "encoder.stages.0.layers.0.layer.0.normalization.weight",
+      "encoder.stages.0.layers.0.layer.0.normalization.bias",
+      "encoder.stages.0.layers.0.layer.1.convolution.weight",
+      "encoder.stages.0.layers.0.layer.1.normalization.weight",
+      "encoder.stages.0.layers.0.layer.1.normalization.bias",
+      "encoder.stages.0.layers.1.layer.0.convolution.weight",
+      "encoder.stages.0.layers.1.layer.0.normalization.weight",
+      "encoder.stages.0.layers.1.layer.0.normalization.bias",
+      "encoder.stages.0.layers.1.layer.1.convolution.weight",
+      "encoder.stages.0.layers.1.layer.1.normalization.weight",
+      "encoder.stages.0.layers.1.layer.1.normalization.bias",
+      "encoder.stages.1.layers.0.shortcut.1.convolution.weight",
+      "encoder.stages.1.layers.0.shortcut.1.normalization.weight",
+      "encoder.stages.1.layers.0.shortcut.1.normalization.bias",
+      "encoder.stages.1.layers.0.layer.0.convolution.weight",
+      "encoder.stages.1.layers.0.layer.0.normalization.weight",
+      "encoder.stages.1.layers.0.layer.0.normalization.bias",
+      "encoder.stages.1.layers.0.layer.1.convolution.weight",
+      "encoder.stages.1.layers.0.layer.1.normalization.weight",
+      "encoder.stages.1.layers.0.layer.1.normalization.bias",
+      "encoder.stages.1.layers.1.layer.0.convolution.weight",
+      "encoder.stages.1.layers.1.layer.0.normalization.weight",
+      "encoder.stages.1.layers.1.layer.0.normalization.bias",
+      "encoder.stages.1.layers.1.layer.1.convolution.weight",
+      "encoder.stages.1.layers.1.layer.1.normalization.weight",
+      "encoder.stages.1.layers.1.layer.1.normalization.bias",
+      "encoder.stages.2.layers.0.shortcut.1.convolution.weight",
+      "encoder.stages.2.layers.0.shortcut.1.normalization.weight",
+      "encoder.stages.2.layers.0.shortcut.1.normalization.bias",
+      "encoder.stages.2.layers.0.layer.0.convolution.weight",
+      "encoder.stages.2.layers.0.layer.0.normalization.weight",
+      "encoder.stages.2.layers.0.layer.0.normalization.bias",
+      "encoder.stages.2.layers.0.layer.1.convolution.weight",
+      "encoder.stages.2.layers.0.layer.1.normalization.weight",
+      "encoder.stages.2.layers.0.layer.1.normalization.bias",
+      "encoder.stages.2.layers.1.layer.0.convolution.weight",
+      "encoder.stages.2.layers.1.layer.0.normalization.weight",
+      "encoder.stages.2.layers.1.layer.0.normalization.bias",
+      "encoder.stages.2.layers.1.layer.1.convolution.weight",
+      "encoder.stages.2.layers.1.layer.1.normalization.weight",
+      "encoder.stages.2.layers.1.layer.1.normalization.bias",
+      "encoder.stages.3.layers.0.shortcut.1.convolution.weight",
+      "encoder.stages.3.layers.0.shortcut.1.normalization.weight",
+      "encoder.stages.3.layers.0.shortcut.1.normalization.bias",
+      "encoder.stages.3.layers.0.layer.0.convolution.weight",
+      "encoder.stages.3.layers.0.layer.0.normalization.weight",
+      "encoder.stages.3.layers.0.layer.0.normalization.bias",
+      "encoder.stages.3.layers.0.layer.1.convolution.weight",
+      "encoder.stages.3.layers.0.layer.1.normalization.weight",
+      "encoder.stages.3.layers.0.layer.1.normalization.bias",
+      "encoder.stages.3.layers.1.layer.0.convolution.weight",
+      "encoder.stages.3.layers.1.layer.0.normalization.weight",
+      "encoder.stages.3.layers.1.layer.0.normalization.bias",
+      "encoder.stages.3.layers.1.layer.1.convolution.weight",
+      "encoder.stages.3.layers.1.layer.1.normalization.weight",
+      "encoder.stages.3.layers.1.layer.1.normalization.bias"
+    ],
+    "checkpoint_sha256": "5700e8912cf360c845087923e4b417631a886daf928e1655b1031c9ac27c8ce0",
+    "excluded_source_state_keys": [
+      "mean",
+      "std",
+      "head.projection.0.weight",
+      "head.projection.0.bias",
+      "head.classifier.weight",
+      "head.classifier.bias"
+    ],
+    "executed_epochs": 100,
+    "receipt_sha256": "94b4998d17fb482e9e80abbd413a076ee650c68ced665f7a27b1e8462f2b91cc",
+    "selected_epoch": 47,
+    "transfer_scope": "Frozen donor feature bank only; new target head and T-only target scaler"
+  },
+  "episode_index": 355,
+  "full_fit_checkpoint_bytes_estimate": 226642926,
+  "gradient_comparisons": [
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 3.5762786865234375e-07,
+      "parameter": "backbone.embedder.embedder.0.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.2351741790771484e-08,
+      "parameter": "backbone.embedder.embedder.0.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.0675361156463623e-07,
+      "parameter": "backbone.embedder.embedder.0.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 1.7881393432617188e-07,
+      "parameter": "backbone.embedder.embedder.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.embedder.embedder.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 6.332993507385254e-08,
+      "parameter": "backbone.embedder.embedder.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 7.450580596923828e-08,
+      "parameter": "backbone.embedder.embedder.2.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 4.470348358154297e-08,
+      "parameter": "backbone.embedder.embedder.2.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.embedder.embedder.2.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 7.450580596923828e-08,
+      "parameter": "backbone.encoder.stages.0.layers.0.shortcut.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.21540641784668e-08,
+      "parameter": "backbone.encoder.stages.0.layers.0.shortcut.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.0.layers.0.shortcut.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 1.1920928955078125e-07,
+      "parameter": "backbone.encoder.stages.0.layers.0.layer.0.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 4.470348358154297e-08,
+      "parameter": "backbone.encoder.stages.0.layers.0.layer.0.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.384185791015625e-07,
+      "parameter": "backbone.encoder.stages.0.layers.0.layer.0.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.384185791015625e-07,
+      "parameter": "backbone.encoder.stages.0.layers.0.layer.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.0.layers.0.layer.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.0.layers.0.layer.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 8.940696716308594e-08,
+      "parameter": "backbone.encoder.stages.0.layers.1.layer.0.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.0.layers.1.layer.0.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 6.705522537231445e-08,
+      "parameter": "backbone.encoder.stages.0.layers.1.layer.0.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 4.6566128730773926e-08,
+      "parameter": "backbone.encoder.stages.0.layers.1.layer.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.0.layers.1.layer.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.0.layers.1.layer.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 8.940696716308594e-08,
+      "parameter": "backbone.encoder.stages.1.layers.0.shortcut.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.1.layers.0.shortcut.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 1.1920928955078125e-07,
+      "parameter": "backbone.encoder.stages.1.layers.0.shortcut.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 4.470348358154297e-08,
+      "parameter": "backbone.encoder.stages.1.layers.0.layer.0.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 4.470348358154297e-08,
+      "parameter": "backbone.encoder.stages.1.layers.0.layer.0.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.1.layers.0.layer.0.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 3.725290298461914e-08,
+      "parameter": "backbone.encoder.stages.1.layers.0.layer.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.1.layers.0.layer.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 1.1920928955078125e-07,
+      "parameter": "backbone.encoder.stages.1.layers.0.layer.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 4.470348358154297e-08,
+      "parameter": "backbone.encoder.stages.1.layers.1.layer.0.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.1.layers.1.layer.0.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.1.layers.1.layer.0.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 3.725290298461914e-08,
+      "parameter": "backbone.encoder.stages.1.layers.1.layer.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.1.layers.1.layer.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 8.940696716308594e-08,
+      "parameter": "backbone.encoder.stages.1.layers.1.layer.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.2.layers.0.shortcut.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.2.layers.0.shortcut.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.2.layers.0.shortcut.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.2351741790771484e-08,
+      "parameter": "backbone.encoder.stages.2.layers.0.layer.0.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 4.470348358154297e-08,
+      "parameter": "backbone.encoder.stages.2.layers.0.layer.0.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 4.470348358154297e-08,
+      "parameter": "backbone.encoder.stages.2.layers.0.layer.0.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.2.layers.0.layer.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.2.layers.0.layer.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.2.layers.0.layer.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.2.layers.1.layer.0.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 4.470348358154297e-08,
+      "parameter": "backbone.encoder.stages.2.layers.1.layer.0.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.2.layers.1.layer.0.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.2.layers.1.layer.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.2.layers.1.layer.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.2.layers.1.layer.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.3.layers.0.shortcut.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.2351741790771484e-08,
+      "parameter": "backbone.encoder.stages.3.layers.0.shortcut.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.3.layers.0.shortcut.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 1.4901161193847656e-08,
+      "parameter": "backbone.encoder.stages.3.layers.0.layer.0.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.3.layers.0.layer.0.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 3.725290298461914e-08,
+      "parameter": "backbone.encoder.stages.3.layers.0.layer.0.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 1.6763806343078613e-08,
+      "parameter": "backbone.encoder.stages.3.layers.0.layer.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.3.layers.0.layer.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.3.layers.0.layer.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.9802322387695312e-08,
+      "parameter": "backbone.encoder.stages.3.layers.1.layer.0.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.3.layers.1.layer.0.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 5.960464477539063e-08,
+      "parameter": "backbone.encoder.stages.3.layers.1.layer.0.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 1.1920928955078125e-07,
+      "parameter": "backbone.encoder.stages.3.layers.1.layer.1.convolution.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 7.450580596923828e-09,
+      "parameter": "backbone.encoder.stages.3.layers.1.layer.1.normalization.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 2.2351741790771484e-08,
+      "parameter": "backbone.encoder.stages.3.layers.1.layer.1.normalization.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 0.0,
+      "parameter": "head.projection.0.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 0.0,
+      "parameter": "head.projection.0.bias"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 0.0,
+      "parameter": "head.classifier.weight"
+    },
+    {
+      "agrees": true,
+      "maximum_absolute_gradient_difference": 0.0,
+      "parameter": "head.classifier.bias"
+    }
+  ],
+  "gradient_evidence": {
+    "backbone.embedder.embedder.0.convolution.weight": {
+      "elements": 864,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.embedder.embedder.0.normalization.bias": {
+      "elements": 32,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.embedder.embedder.0.normalization.weight": {
+      "elements": 32,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.embedder.embedder.1.convolution.weight": {
+      "elements": 9216,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.embedder.embedder.1.normalization.bias": {
+      "elements": 32,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.embedder.embedder.1.normalization.weight": {
+      "elements": 32,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.embedder.embedder.2.convolution.weight": {
+      "elements": 18432,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.embedder.embedder.2.normalization.bias": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.embedder.embedder.2.normalization.weight": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.0.layer.0.convolution.weight": {
+      "elements": 36864,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.0.layer.0.normalization.bias": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.0.layer.0.normalization.weight": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.0.layer.1.convolution.weight": {
+      "elements": 36864,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.0.layer.1.normalization.bias": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.0.layer.1.normalization.weight": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.0.shortcut.convolution.weight": {
+      "elements": 4096,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.0.shortcut.normalization.bias": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.0.shortcut.normalization.weight": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.1.layer.0.convolution.weight": {
+      "elements": 36864,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.1.layer.0.normalization.bias": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.1.layer.0.normalization.weight": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.1.layer.1.convolution.weight": {
+      "elements": 36864,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.1.layer.1.normalization.bias": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.0.layers.1.layer.1.normalization.weight": {
+      "elements": 64,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.0.layer.0.convolution.weight": {
+      "elements": 73728,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.0.layer.0.normalization.bias": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.0.layer.0.normalization.weight": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.0.layer.1.convolution.weight": {
+      "elements": 147456,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.0.layer.1.normalization.bias": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.0.layer.1.normalization.weight": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.0.shortcut.1.convolution.weight": {
+      "elements": 8192,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.0.shortcut.1.normalization.bias": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.0.shortcut.1.normalization.weight": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.1.layer.0.convolution.weight": {
+      "elements": 147456,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.1.layer.0.normalization.bias": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.1.layer.0.normalization.weight": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.1.layer.1.convolution.weight": {
+      "elements": 147456,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.1.layer.1.normalization.bias": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.1.layers.1.layer.1.normalization.weight": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.0.layer.0.convolution.weight": {
+      "elements": 294912,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.0.layer.0.normalization.bias": {
+      "elements": 256,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.0.layer.0.normalization.weight": {
+      "elements": 256,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.0.layer.1.convolution.weight": {
+      "elements": 589824,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.0.layer.1.normalization.bias": {
+      "elements": 256,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.0.layer.1.normalization.weight": {
+      "elements": 256,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.0.shortcut.1.convolution.weight": {
+      "elements": 32768,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.0.shortcut.1.normalization.bias": {
+      "elements": 256,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.0.shortcut.1.normalization.weight": {
+      "elements": 256,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.1.layer.0.convolution.weight": {
+      "elements": 589824,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.1.layer.0.normalization.bias": {
+      "elements": 256,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.1.layer.0.normalization.weight": {
+      "elements": 256,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.1.layer.1.convolution.weight": {
+      "elements": 589824,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.1.layer.1.normalization.bias": {
+      "elements": 256,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.2.layers.1.layer.1.normalization.weight": {
+      "elements": 256,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.0.layer.0.convolution.weight": {
+      "elements": 1179648,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.0.layer.0.normalization.bias": {
+      "elements": 512,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.0.layer.0.normalization.weight": {
+      "elements": 512,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.0.layer.1.convolution.weight": {
+      "elements": 2359296,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.0.layer.1.normalization.bias": {
+      "elements": 512,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.0.layer.1.normalization.weight": {
+      "elements": 512,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.0.shortcut.1.convolution.weight": {
+      "elements": 131072,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.0.shortcut.1.normalization.bias": {
+      "elements": 512,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.0.shortcut.1.normalization.weight": {
+      "elements": 512,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.1.layer.0.convolution.weight": {
+      "elements": 2359296,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.1.layer.0.normalization.bias": {
+      "elements": 512,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.1.layer.0.normalization.weight": {
+      "elements": 512,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.1.layer.1.convolution.weight": {
+      "elements": 2359296,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.1.layer.1.normalization.bias": {
+      "elements": 512,
+      "finite": true,
+      "nonzero": true
+    },
+    "backbone.encoder.stages.3.layers.1.layer.1.normalization.weight": {
+      "elements": 512,
+      "finite": true,
+      "nonzero": true
+    },
+    "head.classifier.bias": {
+      "elements": 1,
+      "finite": true,
+      "nonzero": true
+    },
+    "head.classifier.weight": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "head.projection.0.bias": {
+      "elements": 128,
+      "finite": true,
+      "nonzero": true
+    },
+    "head.projection.0.weight": {
+      "elements": 114688,
+      "finite": true,
+      "nonzero": true
+    }
+  },
+  "inference_seconds_per_episode": 0.4379257670007064,
+  "optimizer_groups": [
+    {
+      "amsgrad": false,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "capturable": false,
+      "decoupled_weight_decay": true,
+      "differentiable": false,
+      "elements": 114945,
+      "eps": 1e-08,
+      "foreach": null,
+      "fused": null,
+      "lr": 0.001,
+      "maximize": false,
+      "name": "new_CPU_head",
+      "weight_decay": 0.001
+    },
+    {
+      "amsgrad": false,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "capturable": false,
+      "decoupled_weight_decay": true,
+      "differentiable": false,
+      "elements": 11199968,
+      "eps": 1e-08,
+      "foreach": null,
+      "fused": null,
+      "lr": 1e-05,
+      "maximize": false,
+      "name": "all_CNN_conv_and_affine",
+      "weight_decay": 0.001
+    }
+  ],
+  "peak_GPU_bytes": 5652854272,
+  "reference_training_seconds_per_episode": 3.863483929000722,
+  "resume_checkpoint_sha256": "9f3e6e5548236ec64257c61806c462f86820b03a75c5fa182e2841e17800368d",
+  "role": "pilot gradient-training T; no held-out label or score selection",
+  "status": "PASS",
+  "storage_measurement": "Actual serialized selected+recovery payload with separate current/selected tensor storages; history growth additional",
+  "training_seconds_per_episode": 2.6146971010002744,
+  "updated_state_names": [
+    "backbone.embedder.embedder.0.convolution.weight",
+    "backbone.embedder.embedder.0.normalization.weight",
+    "backbone.embedder.embedder.0.normalization.bias",
+    "backbone.embedder.embedder.1.convolution.weight",
+    "backbone.embedder.embedder.1.normalization.weight",
+    "backbone.embedder.embedder.1.normalization.bias",
+    "backbone.embedder.embedder.2.convolution.weight",
+    "backbone.embedder.embedder.2.normalization.weight",
+    "backbone.embedder.embedder.2.normalization.bias",
+    "backbone.encoder.stages.0.layers.0.shortcut.convolution.weight",
+    "backbone.encoder.stages.0.layers.0.shortcut.normalization.weight",
+    "backbone.encoder.stages.0.layers.0.shortcut.normalization.bias",
+    "backbone.encoder.stages.0.layers.0.layer.0.convolution.weight",
+    "backbone.encoder.stages.0.layers.0.layer.0.normalization.weight",
+    "backbone.encoder.stages.0.layers.0.layer.0.normalization.bias",
+    "backbone.encoder.stages.0.layers.0.layer.1.convolution.weight",
+    "backbone.encoder.stages.0.layers.0.layer.1.normalization.weight",
+    "backbone.encoder.stages.0.layers.0.layer.1.normalization.bias",
+    "backbone.encoder.stages.0.layers.1.layer.0.convolution.weight",
+    "backbone.encoder.stages.0.layers.1.layer.0.normalization.weight",
+    "backbone.encoder.stages.0.layers.1.layer.0.normalization.bias",
+    "backbone.encoder.stages.0.layers.1.layer.1.convolution.weight",
+    "backbone.encoder.stages.0.layers.1.layer.1.normalization.weight",
+    "backbone.encoder.stages.0.layers.1.layer.1.normalization.bias",
+    "backbone.encoder.stages.1.layers.0.shortcut.1.convolution.weight",
+    "backbone.encoder.stages.1.layers.0.shortcut.1.normalization.weight",
+    "backbone.encoder.stages.1.layers.0.shortcut.1.normalization.bias",
+    "backbone.encoder.stages.1.layers.0.layer.0.convolution.weight",
+    "backbone.encoder.stages.1.layers.0.layer.0.normalization.weight",
+    "backbone.encoder.stages.1.layers.0.layer.0.normalization.bias",
+    "backbone.encoder.stages.1.layers.0.layer.1.convolution.weight",
+    "backbone.encoder.stages.1.layers.0.layer.1.normalization.weight",
+    "backbone.encoder.stages.1.layers.0.layer.1.normalization.bias",
+    "backbone.encoder.stages.1.layers.1.layer.0.convolution.weight",
+    "backbone.encoder.stages.1.layers.1.layer.0.normalization.weight",
+    "backbone.encoder.stages.1.layers.1.layer.0.normalization.bias",
+    "backbone.encoder.stages.1.layers.1.layer.1.convolution.weight",
+    "backbone.encoder.stages.1.layers.1.layer.1.normalization.weight",
+    "backbone.encoder.stages.1.layers.1.layer.1.normalization.bias",
+    "backbone.encoder.stages.2.layers.0.shortcut.1.convolution.weight",
+    "backbone.encoder.stages.2.layers.0.shortcut.1.normalization.weight",
+    "backbone.encoder.stages.2.layers.0.shortcut.1.normalization.bias",
+    "backbone.encoder.stages.2.layers.0.layer.0.convolution.weight",
+    "backbone.encoder.stages.2.layers.0.layer.0.normalization.weight",
+    "backbone.encoder.stages.2.layers.0.layer.0.normalization.bias",
+    "backbone.encoder.stages.2.layers.0.layer.1.convolution.weight",
+    "backbone.encoder.stages.2.layers.0.layer.1.normalization.weight",
+    "backbone.encoder.stages.2.layers.0.layer.1.normalization.bias",
+    "backbone.encoder.stages.2.layers.1.layer.0.convolution.weight",
+    "backbone.encoder.stages.2.layers.1.layer.0.normalization.weight",
+    "backbone.encoder.stages.2.layers.1.layer.0.normalization.bias",
+    "backbone.encoder.stages.2.layers.1.layer.1.convolution.weight",
+    "backbone.encoder.stages.2.layers.1.layer.1.normalization.weight",
+    "backbone.encoder.stages.2.layers.1.layer.1.normalization.bias",
+    "backbone.encoder.stages.3.layers.0.shortcut.1.convolution.weight",
+    "backbone.encoder.stages.3.layers.0.shortcut.1.normalization.weight",
+    "backbone.encoder.stages.3.layers.0.shortcut.1.normalization.bias",
+    "backbone.encoder.stages.3.layers.0.layer.0.convolution.weight",
+    "backbone.encoder.stages.3.layers.0.layer.0.normalization.weight",
+    "backbone.encoder.stages.3.layers.0.layer.0.normalization.bias",
+    "backbone.encoder.stages.3.layers.0.layer.1.convolution.weight",
+    "backbone.encoder.stages.3.layers.0.layer.1.normalization.weight",
+    "backbone.encoder.stages.3.layers.0.layer.1.normalization.bias",
+    "backbone.encoder.stages.3.layers.1.layer.0.convolution.weight",
+    "backbone.encoder.stages.3.layers.1.layer.0.normalization.weight",
+    "backbone.encoder.stages.3.layers.1.layer.0.normalization.bias",
+    "backbone.encoder.stages.3.layers.1.layer.1.convolution.weight",
+    "backbone.encoder.stages.3.layers.1.layer.1.normalization.weight",
+    "backbone.encoder.stages.3.layers.1.layer.1.normalization.bias",
+    "head.projection.0.weight",
+    "head.projection.0.bias",
+    "head.classifier.weight",
+    "head.classifier.bias"
+  ],
+  "utc": "2026-11-10T23:20:17.359239+00:00"
+}

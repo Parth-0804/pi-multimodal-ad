@@ -1,0 +1,106 @@
+{
+  "immutable_evidence": [
+    {
+      "bytes": 6412,
+      "path": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/protocol.json",
+      "sha256": "71cbb3b01b0adb47d2e055bf79391276f1f2f3a9dd339e5b0f07013932caa9c5"
+    },
+    {
+      "bytes": 2740,
+      "path": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/legacy_config_snapshot.json",
+      "sha256": "69f7bc1b6a82441c67bb84a9b83738daaf37b5869e4c90c6aeb482401eddb9c6"
+    },
+    {
+      "bytes": 28078,
+      "path": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/AUTHORITATIVE_SOURCE_MANIFEST.json",
+      "sha256": "8d438d53c805c891b1e3e67e022fc6fd08a42e3f28dd01f0ca98eb9d40bc71c9"
+    },
+    {
+      "bytes": 24105,
+      "path": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/FROZEN100_REUSE_VERIFICATION.json",
+      "sha256": "c6fdc3987ee5e1208d43e3003c9b973e1eb3e8a4870f95b8dce6bf179e0b4362"
+    },
+    {
+      "bytes": 17613,
+      "path": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/APPROVED_SOURCE_STOP_VERIFICATION.json",
+      "sha256": "1b290e1c3033684ccb9f5f416952bb848299282d88cec81624c660ddcf6ba393"
+    },
+    {
+      "bytes": 15516,
+      "path": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/DONOR_SOURCE_VERIFICATION.json",
+      "sha256": "bc0e287bb7eedfb328539d28274774f03928ea4d3859213087e9bb2945151b2f"
+    },
+    {
+      "bytes": 135788,
+      "path": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/02_dataset_and_splits/DATASET_AND_SPLIT_VERIFICATION.json",
+      "sha256": "a48582e6b658f9b21051102bf36e02898c65ad60172532300e201ef74b1b2eb8"
+    },
+    {
+      "bytes": 12279,
+      "path": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/02_dataset_and_splits/EXCLUSION_AND_SCHEMA_VERIFICATION.json",
+      "sha256": "9ee4b2aa303dda4b981d96a15aaf428b8f1f0875cd472d389df76452c6e6a105"
+    },
+    {
+      "bytes": 559580,
+      "path": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/02_dataset_and_splits/FIT_PARTITIONS.json",
+      "sha256": "7d8617a9ca9735a332025722e3c19e3a59d3c34d85b16953c80cf0bbbeed9ae7"
+    },
+    {
+      "bytes": 67320,
+      "path": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/02_dataset_and_splits/PILOT_ROLES.json",
+      "sha256": "c0326a06632d10753747b02b69ccadb892fbbef890dda569361d5dade23f032a"
+    }
+  ],
+  "large_input_identities": [
+    {
+      "bytes": 753844352,
+      "path": "VIFAILBACK/03_preprocessing/visual_preprocessing/features/20261029T004900Z/V1/features.npy",
+      "payload_sha_verified_by": "data.prepare; complete feature hash, shape, finite values and pooling contract",
+      "role": "original_visual_feature_bank",
+      "sha256": "6a898eb2f4887d3cc21c43d691075d57be8acb021a6b7a2600a0cb19dc236fb4",
+      "verification_reference": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/02_dataset_and_splits/DATASET_AND_SPLIT_VERIFICATION.json"
+    },
+    {
+      "bytes": 753844352,
+      "path": "VIFAILBACK/03_preprocessing/visual_preprocessing/features/20261029T004900Z/V3/features.npy",
+      "payload_sha_verified_by": "data.prepare; complete feature hash, shape, finite values and pooling contract",
+      "role": "donor_visual_feature_bank",
+      "sha256": "a58b4af7f9bf5adc25cd2d3bb1c710e44bced9b67d9d0233b674502c264acc2f",
+      "verification_reference": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/02_dataset_and_splits/DATASET_AND_SPLIT_VERIFICATION.json"
+    },
+    {
+      "bytes": 45347917,
+      "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_BEST_MODEL.pt",
+      "role": "selected_checkpoint",
+      "sha256": "5700e8912cf360c845087923e4b417631a886daf928e1655b1031c9ac27c8ce0",
+      "verification_reference": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/DONOR_SOURCE_VERIFICATION.json"
+    },
+    {
+      "bytes": 80904152,
+      "path": "../datasets/REASSEMBLE/cache/section1_models/ac77a11ff0170a41b771c03264987f8ce2b0d753/model.safetensors",
+      "role": "original_safetensors",
+      "sha256": "fe87a5a30f5daf298d10794c7682a63b6107986f97d6a770ba948d89e4340093",
+      "verification_reference": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/DONOR_SOURCE_VERIFICATION.json"
+    }
+  ],
+  "native_source_detail": "All109 native annotation file SHA identities and converted metadata identities remain nested in DATASET_AND_SPLIT_VERIFICATION.json; exclusion/schema source identities remain in EXCLUSION_AND_SCHEMA_VERIFICATION.json.",
+  "no_historical_outputs_modified": true,
+  "path_convention": "Repository-relative; sibling pinned pretrained cache uses a portable ../datasets path.",
+  "raw_video_limit": "Current metadata matches original complete decode and selected-frame SHA audit. Runtime live decoding independently checks all selected RGB frame hashes; no duplicate video/frame cache is created.",
+  "schema": 1,
+  "scope": "Immutable inputs only; changing controller states, active histories, current reports and training outputs are deliberately outside this manifest.",
+  "source_manifest": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/AUTHORITATIVE_SOURCE_MANIFEST.json",
+  "verified_coverage": {
+    "approved_source_C20_completed_fits": 25,
+    "canonical_tasks": 99,
+    "eligible_camera_stream_metadata_checks": 13146,
+    "eligible_episodes": 4382,
+    "eligible_failures": 3753,
+    "eligible_sensor_episode_files_present": 4382,
+    "eligible_successes": 629,
+    "native_annotation_files": 109,
+    "native_episodes": 5202,
+    "original_fit_roles": 12,
+    "verified_original_V1_100epoch_fits": 36
+  }
+}

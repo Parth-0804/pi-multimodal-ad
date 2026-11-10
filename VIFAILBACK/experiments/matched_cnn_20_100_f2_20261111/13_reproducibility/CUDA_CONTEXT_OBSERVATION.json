@@ -1,0 +1,9 @@
+{
+  "CPU_controller_PID": 29076,
+  "GPU_controller_PID": 29074,
+  "evidence": "nvidia-smi --query-compute-apps=pid,used_memory and pmon; model_runtime.EpisodeModel moves head and scaler to CPU and classify requires CPU input; cached feature fits own no CNN module.",
+  "observation": "The PyTorch cached-head process holds a102MiB idle CUDA context despite all head parameters and feature minibatches remaining on CPU. It is part of this study, not an external competing workload.",
+  "resource_behavior": "The next GPU-fit gate conservatively waits for any other compute-process context. CPU lane finishes independently and releases its context; no existing external/source job was interrupted.",
+  "scientific_scope": "CPU head training is not relabeled GPU CNN training. GPU process cost is recorded only for the dedicated full-CNN controller; device utilization is explicitly a device observation.",
+  "utc": "2026-11-10T23:39:32.147937+00:00"
+}

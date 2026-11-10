@@ -1,0 +1,20 @@
+{
+  "curve_manifest": "12_learning_curves/INDEX.json",
+  "fit_checkpoint_hashes": "best_checkpoint_sha256 and final_checkpoint_sha256 in each COMPLETE.json; reused models retain actual historical paths",
+  "fit_history_and_predictions": "history_sha256,prediction_sha256,outer_prediction_sha256 in each applicable COMPLETE.json",
+  "fit_manifest": "11_metrics_and_statistics/FIT_COVERAGE.json",
+  "fit_receipt_pattern": "{03_frozen20,04_full20,05_frozen100,06_full100,07_reassemble_donor_transfer}/**/COMPLETE.json",
+  "frozen_protocol": "01_protocol_and_source_evidence/protocol.json",
+  "fusion_outputs": "09_f2_fusion/{condition}/seed{seed}/outer{fold}/COMPLETE.json plus FIT_LOCK.json hash chain",
+  "historical_outputs": "read-only source references verified by saved manifests",
+  "implementation_freeze": "13_reproducibility/IMPLEMENTATION_FREEZE.json",
+  "input_manifest": "13_reproducibility/INPUT_MANIFEST.json",
+  "large_model_artifacts": "local ignored outputs; no raw video or feature-cache copies",
+  "metrics": "11_metrics_and_statistics/CURRENT_RESULTS.json",
+  "reports": "14_final_research_reports/01_EXECUTIVE_SUMMARY.md through13_RESEARCHER_HANDOFF.md",
+  "runtime": "13_reproducibility/runtime/",
+  "scope": "Index to live output manifests; individual completed-fit and F2 receipt hashes are authoritative. Live reports refresh as new fits finish.",
+  "task_diagnostics": "11_metrics_and_statistics/PER_TASK_DIAGNOSTICS.json",
+  "utc": "2026-11-10T23:36:18.035004+00:00",
+  "validation": "13_reproducibility/PRELAUNCH_VALIDATION.json"
+}

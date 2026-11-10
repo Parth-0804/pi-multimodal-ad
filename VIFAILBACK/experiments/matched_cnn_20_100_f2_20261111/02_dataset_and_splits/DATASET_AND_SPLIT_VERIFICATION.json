@@ -1,0 +1,3931 @@
+{
+  "approved_source_stop": {
+    "approved25_scope_complete": true,
+    "approved_stop_receipt": {
+      "bytes": 624,
+      "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/02112026_stop_after25fits_01/STOP_AFTER_25_COMPLETE.json",
+      "sha256": "12507732b1fca4b16babd82032ab0e3598422758ab6383d901e037cdc9723f9d"
+    },
+    "process_checks_required_separately": [
+      "phase_controller.py",
+      "phase_training.py",
+      "c20_controller.py",
+      "c20_train.py",
+      "compare100_controller.py",
+      "compare100_train.py",
+      "stop_after25_controller.py"
+    ],
+    "resource_gate_policy": "verify researcher-approved REASSEMBLE25fitstop,allscientificcompletionreceipts,and absence of sourcecontrollers/GPUwork;latesttaskauthorizesnewnamespace independently of old75gate",
+    "scientific_fit_receipts": [
+      {
+        "best_checkpoint_sha256": "4963ef367c889098565c5ceece31a9768a54a301ed4d72838376778f78601b66",
+        "fit_identity": "3978f843c00a1dafa2134887e6216116a5062b10c3fcc4378e32718c3f556d96",
+        "job_index": 0,
+        "predictions_sha256": "23629e494bf1447bb28b80984a8e107fc3ed2a82ff9c013fcb75a58971e0252a",
+        "receipt": {
+          "bytes": 145372,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold01/PHASE1_FIT_COMPLETE.json",
+          "sha256": "b4b85d20cab7ea962840513e4ad7650d3d641e1e460cef818a60c26f1e70761a"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "5564d612cc89e8e40f14aa5a055e37cc60426ff0be6e8146d7ad5be1f3a52abc",
+        "fit_identity": "842c4590310d9432ca6ec2c0e34436e9f734824da3d8857528e75117fb6546db",
+        "job_index": 1,
+        "predictions_sha256": "cc56a13f166d03bcbd75ccef4da9ff030a04ef6589e9d6baa64c17cb32dc368c",
+        "receipt": {
+          "bytes": 145424,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold02/PHASE1_FIT_COMPLETE.json",
+          "sha256": "3984fd0f4adac0e9b174d80bd51dde60b507b8e8831779818b38704462142cbc"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "cb062c34b8210a4a90a659b657b3633e85af5dfdb8587fbe3b755ba4d137a0a5",
+        "fit_identity": "fbe3e9184cfc05c9b9304937d1196d87648edf275815a5c475f6e734f5989c21",
+        "job_index": 2,
+        "predictions_sha256": "eac532d7c90ac74f2298a69288efa16cba2fa9b9e51a55140ead12e5931f1e2e",
+        "receipt": {
+          "bytes": 145365,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold03/PHASE1_FIT_COMPLETE.json",
+          "sha256": "65bdc071f92aabe3b833b8ffdc53d623eb72bef4e7550d2939552e128cab83b8"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "66e5e1a21740222bb021d1e6785207926cc63e9ce9c1df2864b385925fa12991",
+        "fit_identity": "685c65da44272048f8132c405fbee5d9a1cafb0fac4618b5a06205b877162b35",
+        "job_index": 3,
+        "predictions_sha256": "14c2f8d336593d3e354f74b6facefaa41418b435f96e2eadad203b5bc3eb83c0",
+        "receipt": {
+          "bytes": 145412,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_innerfold04/PHASE1_FIT_COMPLETE.json",
+          "sha256": "2a9a11e29bf94d54e77427e9fd317965e0907788deeea89264770cadf7443abb"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "f7aa5e340edeb926b84fc373db13d8033e504f45fcfd79eff2b23f7a12d8267e",
+        "fit_identity": "cabce6105f0647052bb0fcb86a54bc17f9a6faad1c6f4bce258cae66d91ae9ca",
+        "job_index": 4,
+        "predictions_sha256": "76274425efad8064f4b237cd6beeba06adf6562182ee2f6deac591367d3001d1",
+        "receipt": {
+          "bytes": 169556,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer1_outerassessment/PHASE1_FIT_COMPLETE.json",
+          "sha256": "fe2296d574152e93eab76abd518c5d205d7d9da81ff90c1dd312637df008d845"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "8f6b7ee7e8d3b873cc0bc17730a8c7a576b32d5a43546fb2723fc859e549fdbe",
+        "fit_identity": "2725b046ca2e5c2ccec6163c0a48f18eed64fcc2da45c467337a8f2f08994958",
+        "job_index": 5,
+        "predictions_sha256": "5cc6415cb02ca3185b1f634d396c6a4306b39507edc1060b18bcb5505228d2d7",
+        "receipt": {
+          "bytes": 138676,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer2_innerfold01/PHASE1_FIT_COMPLETE.json",
+          "sha256": "444183e7fc25df9349be06bae079d7b8b5842a5619c4752a892b57eb528bc585"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "fd1e1179ec96f0d822dcc746c988a00e38d65dc927fc9901185409da2b10057c",
+        "fit_identity": "dedf826164909de130374798ac4246a63a6a96580c5ac41549621077a3b92a55",
+        "job_index": 6,
+        "predictions_sha256": "bba87636734bc457aaa983beac710a1b92694f751702f3356aeca1ce0aad83c7",
+        "receipt": {
+          "bytes": 138678,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer2_innerfold02/PHASE1_FIT_COMPLETE.json",
+          "sha256": "8111e946b1050b89a4f29ee2e5755142d894864d767f9b4b6fd80e081a77662f"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "15d840dfbd6101cd30c0b57a0d1ca63a5e62033be5e8c1d3486507c64fe687a1",
+        "fit_identity": "e525edd7823d6231359c4458fdbbd14658824523aefb4278eee626185cc1fabd",
+        "job_index": 7,
+        "predictions_sha256": "343829a4af6d0e9b6c81309ca7a3b3a31a77bae3f36be3e6ff610e7d8e842f6f",
+        "receipt": {
+          "bytes": 138684,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer2_innerfold03/PHASE1_FIT_COMPLETE.json",
+          "sha256": "6cae9264a44ad85e43b66f3dda842e260f5f874dca7de72fd9075761188dc63c"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "892c0d58ed74844202532d07e020b218633f1176e3b985a0e54ac94296f68cf6",
+        "fit_identity": "d3fab0e4e8bc99b222ba368791c68a901e0b240c2efe0ed8dac70223a514cba9",
+        "job_index": 8,
+        "predictions_sha256": "87b5e26581ed658c0bb389431511c0e102db34c24e072399f37aed8c525a97bf",
+        "receipt": {
+          "bytes": 138691,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer2_innerfold04/PHASE1_FIT_COMPLETE.json",
+          "sha256": "d7badcc94550fde51fdec0e9c4c6d8da543081b3b940cdd781607b3adc377ea9"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "fc10f75b2312b645acfe0e2125daff22e4adc7106fdf74c4f40dd56d7e267406",
+        "fit_identity": "c1c81f5c890df95a61b880cfff8e7bc57732a0076980c4718e9ebf8fa3a22d98",
+        "job_index": 9,
+        "predictions_sha256": "5e991197eeae9b3dd5ed59e45b8e86f5b66610e2fe3edcf48aaf58a70cee588b",
+        "receipt": {
+          "bytes": 169553,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer2_outerassessment/PHASE1_FIT_COMPLETE.json",
+          "sha256": "cb922b97c3813cb02df302de527882e118c2a196a93a2feaa741bbe9b8b8ca91"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "882d19b25dd9407995fbb070555c280c573b9f01afeeb02ebebb4add2292dfc1",
+        "fit_identity": "a149228716c50eae07f8414ae509d5486d2191bd6823ed65218bcf0c002cfb98",
+        "job_index": 10,
+        "predictions_sha256": "22dda2712fd7918169a8726359921ad69824c1887420a01c51a714dad008bea0",
+        "receipt": {
+          "bytes": 136343,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer3_innerfold01/PHASE1_FIT_COMPLETE.json",
+          "sha256": "c1bfe59b4df70360ec33664510da8a2215badcb3792f574adf31cd0520542cf4"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "3c51979f35fcad3f6c01e4bb40e127662286cea5d03295ee48ec491d9e5046b3",
+        "fit_identity": "3e8c3b5e88ceef0393febd716ed922c26eceb4fccbc73551c6a0522919bbb0f5",
+        "job_index": 11,
+        "predictions_sha256": "e3f7deb9c2417caac868351c20a8695ec9916d3d0a45069113d2e7e6d0cb4f01",
+        "receipt": {
+          "bytes": 136364,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer3_innerfold02/PHASE1_FIT_COMPLETE.json",
+          "sha256": "754579f09a88d9a77fe9ff560fc04eb9f797a4314e3409063e53f4e90e413416"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "52d8042226aafd4d66dfa8647374cbc5054fcde5a29f8bc572cad72e29750aad",
+        "fit_identity": "0d14682db6e795e9ab7e093c8b6e869bca474cb9f531f696b284466ccad5dff5",
+        "job_index": 12,
+        "predictions_sha256": "d597752a23cad7747d6c3c6346e5278fe0891ba1586d89863180020e6df881d1",
+        "receipt": {
+          "bytes": 136354,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer3_innerfold03/PHASE1_FIT_COMPLETE.json",
+          "sha256": "890e44127e6743fd56fad9ab800ba12474bab7e9de765b79f6971f2ab9935498"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "b3dcd1ec846cb28ff24707261266eb0dabacb0328c466de7e9c1a8f9d639f645",
+        "fit_identity": "5a0332ed3a2b19ed30004806129ae23a1fef5fee49f44d87c2e621f5a1c88522",
+        "job_index": 13,
+        "predictions_sha256": "2394a2554eb128e334d97cc6ef5db810ddb975d6f756405e24e74fff40f6d372",
+        "receipt": {
+          "bytes": 136369,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer3_innerfold04/PHASE1_FIT_COMPLETE.json",
+          "sha256": "f161913e13ea5c9b9cfa1c51fe7200230483ed4a27f1db7169145e2ef58cf139"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "1565a24e786a57df2c9af90dcca11ce5a63e68161c6908de01e65d979958258e",
+        "fit_identity": "04885e4abda2e3531bf5c1982ccd1853258a5f416ceb460919b82cc298caf4f4",
+        "job_index": 14,
+        "predictions_sha256": "6b8d60ffaabc015e1acc359b7468d6980185473c1cd19ea4cae3841e5232dc1c",
+        "receipt": {
+          "bytes": 169545,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer3_outerassessment/PHASE1_FIT_COMPLETE.json",
+          "sha256": "3a14b61fbbfd35b1ef3992692f6a7de3abf58fd68907dab5ea60f75e78e87a77"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "530d82ff17835e4a2753a83966e3c3e07d51b3c3dcf71f9afb3b67ec7e59bbc6",
+        "fit_identity": "f0c075c26cfd176d20c43b6f711eba4def49e729b2621cac7706d6aed2798936",
+        "job_index": 15,
+        "predictions_sha256": "32f5bfe4983bda7cfaa494d6a63314a6c2ee8a9fd7967c91fc83482cdb83b45b",
+        "receipt": {
+          "bytes": 140540,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer4_innerfold01/PHASE1_FIT_COMPLETE.json",
+          "sha256": "5c1a4e8c5663e30bfd07a4bf4550f4ae16bfd3423c0c8c2c0c9d1f3b64ca548e"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "0ee8c5be2c77502364862b24c4813d746bd8de83ef45a602641630b6c1486608",
+        "fit_identity": "8527bef7280da2e49c86c2b44b078fb34e29c262afc2ce64a438a3454a93a499",
+        "job_index": 16,
+        "predictions_sha256": "113a141a1c38579227ee1c4f8b74054dcbfe6bdee2ddc0ec1f275696de7e9705",
+        "receipt": {
+          "bytes": 140505,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer4_innerfold02/PHASE1_FIT_COMPLETE.json",
+          "sha256": "88e54107e2ac5562575699329f7c9a0dace9c2b6087da27de2de27d550be7eaf"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "c6963129c348dc79fc601cb8f02b105833b55d3d92e4d5189420057788c1b384",
+        "fit_identity": "0288d5977cedcc095a7e6ea8ab6b55939d4aa62c68378206e5252c5a4c9e4f33",
+        "job_index": 17,
+        "predictions_sha256": "058c825e948e72cb678d6e3ae06847beb39030f784a89c2db04541497554b88d",
+        "receipt": {
+          "bytes": 140516,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer4_innerfold03/PHASE1_FIT_COMPLETE.json",
+          "sha256": "7ded8cfb7f2d74cbfd02d3d11960c813ba486db9bd0641a246c721a0d7ea9d10"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "b93c44f1916adb5ac09d8404f24af08143dd4c371a409b095f346b290965e2e3",
+        "fit_identity": "6d326bfcac27932c62fb1d2f15ee47ff6dfa75f4ed309753b5d7038f50cc33b7",
+        "job_index": 18,
+        "predictions_sha256": "a87594a91e6be4e91a480ce66cc1ea1f1983f28ab5f2ff3897575f23319fabd2",
+        "receipt": {
+          "bytes": 140522,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer4_innerfold04/PHASE1_FIT_COMPLETE.json",
+          "sha256": "1ce6d4773e2072d1136a795d96bf43a0829cebf60f0d2963eb8da367d08f4c7b"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "95610a3b4c42b68ab69f4d7cc291aa540477f50daa44458cc58694d09386f00d",
+        "fit_identity": "dcec9fbdfdf7b58af3d07e46f2b4651a3b9a77127938d8adc058b701550dea0b",
+        "job_index": 19,
+        "predictions_sha256": "7c32ff6c62ea0e2c6998c19443f4000da17ca3d0b9a93ba0f6e5679021a9216a",
+        "receipt": {
+          "bytes": 169568,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer4_outerassessment/PHASE1_FIT_COMPLETE.json",
+          "sha256": "3373be9b0a07951a27500008c00aa55293fab3ae4d00edceffdad3276b82acd1"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "3e4635fffe8ddd4eee8bd5812dfd1536c2a3d625386d93ae95d184b7b477f97a",
+        "fit_identity": "662699905b3c8a344f14ee562119c977e1ade627d555c2dcfe6f33b6abdd50ff",
+        "job_index": 20,
+        "predictions_sha256": "e4e286f6cba86f4a9044f65208e8fe75e1571234856b58b601551fe3666e00b4",
+        "receipt": {
+          "bytes": 141681,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer5_innerfold01/PHASE1_FIT_COMPLETE.json",
+          "sha256": "55cfca99e2ba765c39d822f4223049e8652f5b49417ee239fc1be5ab4fdca656"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "8dbb392de8d43f74c4c6fe71c406abae5d77903f6e1f2d7fad840dde41e5a71d",
+        "fit_identity": "3969fca6660ced3445e2fae0d17eed0416415d0524ea95818fbc93fb3c7c59de",
+        "job_index": 21,
+        "predictions_sha256": "06df23802bcdcfa56c077f5a14a677a7207b693703c8fde4caca0e2663f8018c",
+        "receipt": {
+          "bytes": 141675,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer5_innerfold02/PHASE1_FIT_COMPLETE.json",
+          "sha256": "34d773e2fbbc7f645a53d825048c1561e4f34b4c5837393f9e340397f129abf4"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "5719cbf1fa384cb7b827e2822a4f1cce2103ed595144c94809770aa5fbc39ef6",
+        "fit_identity": "1ecb165ca9a6c650fbda9135fd853f58e84d2ee588ceb3dd20af24dabb30a7a6",
+        "job_index": 22,
+        "predictions_sha256": "486c7d1a48f9a5c5f57029bbff1bd538eb8516dc1f0036d77361b687d4e5c3dc",
+        "receipt": {
+          "bytes": 141693,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer5_innerfold03/PHASE1_FIT_COMPLETE.json",
+          "sha256": "65a5ab3dd1c896fca0c678928dea331e5e90d8a4234e909fac158ea83e9b2ba2"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "f0a98bd43a495bde01cca249b1c4d48a48027490a36a86b5ee780735a760416b",
+        "fit_identity": "0c648f0cc783591de2e26bc233d4c6b32af49abac7aceb50f56098de05ca30e4",
+        "job_index": 23,
+        "predictions_sha256": "da13278affe05c45049cf2a6cf585608624d4ded5eb8fa90f2217fa82dd46252",
+        "receipt": {
+          "bytes": 141656,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer5_innerfold04/PHASE1_FIT_COMPLETE.json",
+          "sha256": "010729d820ceb42968683e9465ccc1191263f8065dacb1953301e519b7d92299"
+        }
+      },
+      {
+        "best_checkpoint_sha256": "d6586285d8344ea511f97dc7018f9776ffc3b961459313ddbd6a9c3441216887",
+        "fit_identity": "4eae69709405f15d37fffe31d13c179b085a4a427a92f5e07f482d6dde08ed40",
+        "job_index": 24,
+        "predictions_sha256": "549f4d7f76242a0de50aa88f620dc48a4ab576a8a46d8a0dc51e589a76a3f28c",
+        "receipt": {
+          "bytes": 169551,
+          "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_execution/26102026_main_run_01/26102026_seed42_C_full_finetuned16_outer5_outerassessment/PHASE1_FIT_COMPLETE.json",
+          "sha256": "daef79d740d07b2677da39ef9a425601cff221b816e26ca33fc685b07c045342"
+        }
+      }
+    ],
+    "source_original75_study_complete": false
+  },
+  "cohort": {
+    "canonical_tasks": 99,
+    "episodes": 4382,
+    "failure_prevalence": 0.8564582382473757,
+    "failures": 3753,
+    "successes": 629
+  },
+  "cohort_source": {
+    "bytes": 24158539,
+    "path": "VIFAILBACK/03_preprocessing/processed_manifests/20261029T004900Z/eligible.json",
+    "sha256": "69ef64b012f683c5c8be7882c7e047675f88ed6a448f53c3aa21f432e9858560"
+  },
+  "donor": {
+    "changed_CNN_tensors": [
+      "embedder.embedder.0.convolution.weight",
+      "embedder.embedder.0.normalization.weight",
+      "embedder.embedder.0.normalization.bias",
+      "embedder.embedder.1.convolution.weight",
+      "embedder.embedder.1.normalization.weight",
+      "embedder.embedder.1.normalization.bias",
+      "embedder.embedder.2.convolution.weight",
+      "embedder.embedder.2.normalization.weight",
+      "embedder.embedder.2.normalization.bias",
+      "encoder.stages.0.layers.0.shortcut.convolution.weight",
+      "encoder.stages.0.layers.0.shortcut.normalization.weight",
+      "encoder.stages.0.layers.0.shortcut.normalization.bias",
+      "encoder.stages.0.layers.0.layer.0.convolution.weight",
+      "encoder.stages.0.layers.0.layer.0.normalization.weight",
+      "encoder.stages.0.layers.0.layer.0.normalization.bias",
+      "encoder.stages.0.layers.0.layer.1.convolution.weight",
+      "encoder.stages.0.layers.0.layer.1.normalization.weight",
+      "encoder.stages.0.layers.0.layer.1.normalization.bias",
+      "encoder.stages.0.layers.1.layer.0.convolution.weight",
+      "encoder.stages.0.layers.1.layer.0.normalization.weight",
+      "encoder.stages.0.layers.1.layer.0.normalization.bias",
+      "encoder.stages.0.layers.1.layer.1.convolution.weight",
+      "encoder.stages.0.layers.1.layer.1.normalization.weight",
+      "encoder.stages.0.layers.1.layer.1.normalization.bias",
+      "encoder.stages.1.layers.0.shortcut.1.convolution.weight",
+      "encoder.stages.1.layers.0.shortcut.1.normalization.weight",
+      "encoder.stages.1.layers.0.shortcut.1.normalization.bias",
+      "encoder.stages.1.layers.0.layer.0.convolution.weight",
+      "encoder.stages.1.layers.0.layer.0.normalization.weight",
+      "encoder.stages.1.layers.0.layer.0.normalization.bias",
+      "encoder.stages.1.layers.0.layer.1.convolution.weight",
+      "encoder.stages.1.layers.0.layer.1.normalization.weight",
+      "encoder.stages.1.layers.0.layer.1.normalization.bias",
+      "encoder.stages.1.layers.1.layer.0.convolution.weight",
+      "encoder.stages.1.layers.1.layer.0.normalization.weight",
+      "encoder.stages.1.layers.1.layer.0.normalization.bias",
+      "encoder.stages.1.layers.1.layer.1.convolution.weight",
+      "encoder.stages.1.layers.1.layer.1.normalization.weight",
+      "encoder.stages.1.layers.1.layer.1.normalization.bias",
+      "encoder.stages.2.layers.0.shortcut.1.convolution.weight",
+      "encoder.stages.2.layers.0.shortcut.1.normalization.weight",
+      "encoder.stages.2.layers.0.shortcut.1.normalization.bias",
+      "encoder.stages.2.layers.0.layer.0.convolution.weight",
+      "encoder.stages.2.layers.0.layer.0.normalization.weight",
+      "encoder.stages.2.layers.0.layer.0.normalization.bias",
+      "encoder.stages.2.layers.0.layer.1.convolution.weight",
+      "encoder.stages.2.layers.0.layer.1.normalization.weight",
+      "encoder.stages.2.layers.0.layer.1.normalization.bias",
+      "encoder.stages.2.layers.1.layer.0.convolution.weight",
+      "encoder.stages.2.layers.1.layer.0.normalization.weight",
+      "encoder.stages.2.layers.1.layer.0.normalization.bias",
+      "encoder.stages.2.layers.1.layer.1.convolution.weight",
+      "encoder.stages.2.layers.1.layer.1.normalization.weight",
+      "encoder.stages.2.layers.1.layer.1.normalization.bias",
+      "encoder.stages.3.layers.0.shortcut.1.convolution.weight",
+      "encoder.stages.3.layers.0.shortcut.1.normalization.weight",
+      "encoder.stages.3.layers.0.shortcut.1.normalization.bias",
+      "encoder.stages.3.layers.0.layer.0.convolution.weight",
+      "encoder.stages.3.layers.0.layer.0.normalization.weight",
+      "encoder.stages.3.layers.0.layer.0.normalization.bias",
+      "encoder.stages.3.layers.0.layer.1.convolution.weight",
+      "encoder.stages.3.layers.0.layer.1.normalization.weight",
+      "encoder.stages.3.layers.0.layer.1.normalization.bias",
+      "encoder.stages.3.layers.1.layer.0.convolution.weight",
+      "encoder.stages.3.layers.1.layer.0.normalization.weight",
+      "encoder.stages.3.layers.1.layer.0.normalization.bias",
+      "encoder.stages.3.layers.1.layer.1.convolution.weight",
+      "encoder.stages.3.layers.1.layer.1.normalization.weight",
+      "encoder.stages.3.layers.1.layer.1.normalization.bias"
+    ],
+    "compatible_CNN_tensor_shapes": {
+      "embedder.embedder.0.convolution.weight": [
+        32,
+        3,
+        3,
+        3
+      ],
+      "embedder.embedder.0.normalization.bias": [
+        32
+      ],
+      "embedder.embedder.0.normalization.running_mean": [
+        32
+      ],
+      "embedder.embedder.0.normalization.running_var": [
+        32
+      ],
+      "embedder.embedder.0.normalization.weight": [
+        32
+      ],
+      "embedder.embedder.1.convolution.weight": [
+        32,
+        32,
+        3,
+        3
+      ],
+      "embedder.embedder.1.normalization.bias": [
+        32
+      ],
+      "embedder.embedder.1.normalization.running_mean": [
+        32
+      ],
+      "embedder.embedder.1.normalization.running_var": [
+        32
+      ],
+      "embedder.embedder.1.normalization.weight": [
+        32
+      ],
+      "embedder.embedder.2.convolution.weight": [
+        64,
+        32,
+        3,
+        3
+      ],
+      "embedder.embedder.2.normalization.bias": [
+        64
+      ],
+      "embedder.embedder.2.normalization.running_mean": [
+        64
+      ],
+      "embedder.embedder.2.normalization.running_var": [
+        64
+      ],
+      "embedder.embedder.2.normalization.weight": [
+        64
+      ],
+      "encoder.stages.0.layers.0.layer.0.convolution.weight": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "encoder.stages.0.layers.0.layer.0.normalization.bias": [
+        64
+      ],
+      "encoder.stages.0.layers.0.layer.0.normalization.running_mean": [
+        64
+      ],
+      "encoder.stages.0.layers.0.layer.0.normalization.running_var": [
+        64
+      ],
+      "encoder.stages.0.layers.0.layer.0.normalization.weight": [
+        64
+      ],
+      "encoder.stages.0.layers.0.layer.1.convolution.weight": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "encoder.stages.0.layers.0.layer.1.normalization.bias": [
+        64
+      ],
+      "encoder.stages.0.layers.0.layer.1.normalization.running_mean": [
+        64
+      ],
+      "encoder.stages.0.layers.0.layer.1.normalization.running_var": [
+        64
+      ],
+      "encoder.stages.0.layers.0.layer.1.normalization.weight": [
+        64
+      ],
+      "encoder.stages.0.layers.0.shortcut.convolution.weight": [
+        64,
+        64,
+        1,
+        1
+      ],
+      "encoder.stages.0.layers.0.shortcut.normalization.bias": [
+        64
+      ],
+      "encoder.stages.0.layers.0.shortcut.normalization.running_mean": [
+        64
+      ],
+      "encoder.stages.0.layers.0.shortcut.normalization.running_var": [
+        64
+      ],
+      "encoder.stages.0.layers.0.shortcut.normalization.weight": [
+        64
+      ],
+      "encoder.stages.0.layers.1.layer.0.convolution.weight": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "encoder.stages.0.layers.1.layer.0.normalization.bias": [
+        64
+      ],
+      "encoder.stages.0.layers.1.layer.0.normalization.running_mean": [
+        64
+      ],
+      "encoder.stages.0.layers.1.layer.0.normalization.running_var": [
+        64
+      ],
+      "encoder.stages.0.layers.1.layer.0.normalization.weight": [
+        64
+      ],
+      "encoder.stages.0.layers.1.layer.1.convolution.weight": [
+        64,
+        64,
+        3,
+        3
+      ],
+      "encoder.stages.0.layers.1.layer.1.normalization.bias": [
+        64
+      ],
+      "encoder.stages.0.layers.1.layer.1.normalization.running_mean": [
+        64
+      ],
+      "encoder.stages.0.layers.1.layer.1.normalization.running_var": [
+        64
+      ],
+      "encoder.stages.0.layers.1.layer.1.normalization.weight": [
+        64
+      ],
+      "encoder.stages.1.layers.0.layer.0.convolution.weight": [
+        128,
+        64,
+        3,
+        3
+      ],
+      "encoder.stages.1.layers.0.layer.0.normalization.bias": [
+        128
+      ],
+      "encoder.stages.1.layers.0.layer.0.normalization.running_mean": [
+        128
+      ],
+      "encoder.stages.1.layers.0.layer.0.normalization.running_var": [
+        128
+      ],
+      "encoder.stages.1.layers.0.layer.0.normalization.weight": [
+        128
+      ],
+      "encoder.stages.1.layers.0.layer.1.convolution.weight": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "encoder.stages.1.layers.0.layer.1.normalization.bias": [
+        128
+      ],
+      "encoder.stages.1.layers.0.layer.1.normalization.running_mean": [
+        128
+      ],
+      "encoder.stages.1.layers.0.layer.1.normalization.running_var": [
+        128
+      ],
+      "encoder.stages.1.layers.0.layer.1.normalization.weight": [
+        128
+      ],
+      "encoder.stages.1.layers.0.shortcut.1.convolution.weight": [
+        128,
+        64,
+        1,
+        1
+      ],
+      "encoder.stages.1.layers.0.shortcut.1.normalization.bias": [
+        128
+      ],
+      "encoder.stages.1.layers.0.shortcut.1.normalization.running_mean": [
+        128
+      ],
+      "encoder.stages.1.layers.0.shortcut.1.normalization.running_var": [
+        128
+      ],
+      "encoder.stages.1.layers.0.shortcut.1.normalization.weight": [
+        128
+      ],
+      "encoder.stages.1.layers.1.layer.0.convolution.weight": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "encoder.stages.1.layers.1.layer.0.normalization.bias": [
+        128
+      ],
+      "encoder.stages.1.layers.1.layer.0.normalization.running_mean": [
+        128
+      ],
+      "encoder.stages.1.layers.1.layer.0.normalization.running_var": [
+        128
+      ],
+      "encoder.stages.1.layers.1.layer.0.normalization.weight": [
+        128
+      ],
+      "encoder.stages.1.layers.1.layer.1.convolution.weight": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "encoder.stages.1.layers.1.layer.1.normalization.bias": [
+        128
+      ],
+      "encoder.stages.1.layers.1.layer.1.normalization.running_mean": [
+        128
+      ],
+      "encoder.stages.1.layers.1.layer.1.normalization.running_var": [
+        128
+      ],
+      "encoder.stages.1.layers.1.layer.1.normalization.weight": [
+        128
+      ],
+      "encoder.stages.2.layers.0.layer.0.convolution.weight": [
+        256,
+        128,
+        3,
+        3
+      ],
+      "encoder.stages.2.layers.0.layer.0.normalization.bias": [
+        256
+      ],
+      "encoder.stages.2.layers.0.layer.0.normalization.running_mean": [
+        256
+      ],
+      "encoder.stages.2.layers.0.layer.0.normalization.running_var": [
+        256
+      ],
+      "encoder.stages.2.layers.0.layer.0.normalization.weight": [
+        256
+      ],
+      "encoder.stages.2.layers.0.layer.1.convolution.weight": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "encoder.stages.2.layers.0.layer.1.normalization.bias": [
+        256
+      ],
+      "encoder.stages.2.layers.0.layer.1.normalization.running_mean": [
+        256
+      ],
+      "encoder.stages.2.layers.0.layer.1.normalization.running_var": [
+        256
+      ],
+      "encoder.stages.2.layers.0.layer.1.normalization.weight": [
+        256
+      ],
+      "encoder.stages.2.layers.0.shortcut.1.convolution.weight": [
+        256,
+        128,
+        1,
+        1
+      ],
+      "encoder.stages.2.layers.0.shortcut.1.normalization.bias": [
+        256
+      ],
+      "encoder.stages.2.layers.0.shortcut.1.normalization.running_mean": [
+        256
+      ],
+      "encoder.stages.2.layers.0.shortcut.1.normalization.running_var": [
+        256
+      ],
+      "encoder.stages.2.layers.0.shortcut.1.normalization.weight": [
+        256
+      ],
+      "encoder.stages.2.layers.1.layer.0.convolution.weight": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "encoder.stages.2.layers.1.layer.0.normalization.bias": [
+        256
+      ],
+      "encoder.stages.2.layers.1.layer.0.normalization.running_mean": [
+        256
+      ],
+      "encoder.stages.2.layers.1.layer.0.normalization.running_var": [
+        256
+      ],
+      "encoder.stages.2.layers.1.layer.0.normalization.weight": [
+        256
+      ],
+      "encoder.stages.2.layers.1.layer.1.convolution.weight": [
+        256,
+        256,
+        3,
+        3
+      ],
+      "encoder.stages.2.layers.1.layer.1.normalization.bias": [
+        256
+      ],
+      "encoder.stages.2.layers.1.layer.1.normalization.running_mean": [
+        256
+      ],
+      "encoder.stages.2.layers.1.layer.1.normalization.running_var": [
+        256
+      ],
+      "encoder.stages.2.layers.1.layer.1.normalization.weight": [
+        256
+      ],
+      "encoder.stages.3.layers.0.layer.0.convolution.weight": [
+        512,
+        256,
+        3,
+        3
+      ],
+      "encoder.stages.3.layers.0.layer.0.normalization.bias": [
+        512
+      ],
+      "encoder.stages.3.layers.0.layer.0.normalization.running_mean": [
+        512
+      ],
+      "encoder.stages.3.layers.0.layer.0.normalization.running_var": [
+        512
+      ],
+      "encoder.stages.3.layers.0.layer.0.normalization.weight": [
+        512
+      ],
+      "encoder.stages.3.layers.0.layer.1.convolution.weight": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "encoder.stages.3.layers.0.layer.1.normalization.bias": [
+        512
+      ],
+      "encoder.stages.3.layers.0.layer.1.normalization.running_mean": [
+        512
+      ],
+      "encoder.stages.3.layers.0.layer.1.normalization.running_var": [
+        512
+      ],
+      "encoder.stages.3.layers.0.layer.1.normalization.weight": [
+        512
+      ],
+      "encoder.stages.3.layers.0.shortcut.1.convolution.weight": [
+        512,
+        256,
+        1,
+        1
+      ],
+      "encoder.stages.3.layers.0.shortcut.1.normalization.bias": [
+        512
+      ],
+      "encoder.stages.3.layers.0.shortcut.1.normalization.running_mean": [
+        512
+      ],
+      "encoder.stages.3.layers.0.shortcut.1.normalization.running_var": [
+        512
+      ],
+      "encoder.stages.3.layers.0.shortcut.1.normalization.weight": [
+        512
+      ],
+      "encoder.stages.3.layers.1.layer.0.convolution.weight": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "encoder.stages.3.layers.1.layer.0.normalization.bias": [
+        512
+      ],
+      "encoder.stages.3.layers.1.layer.0.normalization.running_mean": [
+        512
+      ],
+      "encoder.stages.3.layers.1.layer.0.normalization.running_var": [
+        512
+      ],
+      "encoder.stages.3.layers.1.layer.0.normalization.weight": [
+        512
+      ],
+      "encoder.stages.3.layers.1.layer.1.convolution.weight": [
+        512,
+        512,
+        3,
+        3
+      ],
+      "encoder.stages.3.layers.1.layer.1.normalization.bias": [
+        512
+      ],
+      "encoder.stages.3.layers.1.layer.1.normalization.running_mean": [
+        512
+      ],
+      "encoder.stages.3.layers.1.layer.1.normalization.running_var": [
+        512
+      ],
+      "encoder.stages.3.layers.1.layer.1.normalization.weight": [
+        512
+      ]
+    },
+    "executed_epochs": 100,
+    "job_index": 2,
+    "original_safetensors": {
+      "bytes": 80904152,
+      "path": "../datasets/REASSEMBLE/cache/section1_models/ac77a11ff0170a41b771c03264987f8ce2b0d753/model.safetensors",
+      "sha256": "fe87a5a30f5daf298d10794c7682a63b6107986f97d6a770ba948d89e4340093"
+    },
+    "running_moments_unchanged": true,
+    "seed": 42,
+    "selected_checkpoint": {
+      "bytes": 45347917,
+      "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_BEST_MODEL.pt",
+      "sha256": "5700e8912cf360c845087923e4b417631a886daf928e1655b1031c9ac27c8ce0"
+    },
+    "selected_epoch": 47,
+    "source25epoch_validator": "Unmodified; this100-executed-epoch donor satisfies its duration condition",
+    "source_fit_identity": "488fb76ee75506b0479cf6b431af5a768e56e0d52a54b311a97e858bf92153c9",
+    "source_receipt": {
+      "bytes": 231665,
+      "path": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_FIT_COMPLETE.json",
+      "sha256": "94b4998d17fb482e9e80abbd413a076ee650c68ced665f7a27b1e8462f2b91cc"
+    },
+    "transfer_allowlist": "Only115 backbone tensors; new target head and T-only target moments. No source scaler/calibrator/sensor/F2."
+  },
+  "feature_banks": {
+    "donor": {
+      "copied": false,
+      "dtype": "float32",
+      "path": "VIFAILBACK/03_preprocessing/visual_preprocessing/features/20261029T004900Z/V3/features.npy",
+      "pooled_shape": [
+        4382,
+        896
+      ],
+      "receipt": {
+        "bytes": 4365,
+        "path": "VIFAILBACK/03_preprocessing/visual_preprocessing/features/20261029T004900Z/V3/COMPLETE.json",
+        "sha256": "5247a19b2a652f160ae1d8ccbdbb9369192c4415790db743b7f782ea28c4dc33"
+      },
+      "sha256": "a58b4af7f9bf5adc25cd2d3bb1c710e44bced9b67d9d0233b674502c264acc2f",
+      "shape": [
+        4382,
+        3,
+        16,
+        896
+      ]
+    },
+    "original": {
+      "copied": false,
+      "dtype": "float32",
+      "path": "VIFAILBACK/03_preprocessing/visual_preprocessing/features/20261029T004900Z/V1/features.npy",
+      "pooled_shape": [
+        4382,
+        896
+      ],
+      "receipt": {
+        "bytes": 4354,
+        "path": "VIFAILBACK/03_preprocessing/visual_preprocessing/features/20261029T004900Z/V1/COMPLETE.json",
+        "sha256": "f8c882fab8d0d661652b5ab43ab562840ebad1a141c42f5febe1368f18c4cd6d"
+      },
+      "sha256": "6a898eb2f4887d3cc21c43d691075d57be8acb021a6b7a2600a0cb19dc236fb4",
+      "shape": [
+        4382,
+        3,
+        16,
+        896
+      ]
+    }
+  },
+  "frozen100_reuse": {
+    "RNG_state_present": [
+      "cuda",
+      "numpy",
+      "python",
+      "torch"
+    ],
+    "all_new_tie_rule_selections_agree": true,
+    "fits": [
+      {
+        "best_checkpoint_sha256": "ec3e4d5b7007c856e39cf963f9c35a376d34fa66ab719d25ecc2214e6d68af93",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "080513216a0654e9ebf156232a0e3a465e9d29bd94c85ec99bc2d08791166b9b",
+        "job_id": "outer0_final",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_final/COMPLETE.json",
+          "sha256": "607b13ae37011ff021b8c2880cf47d8693d04d1b206ce1474b385bf61c9a5577"
+        },
+        "seed": 123,
+        "selected_epoch": 29,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "8bdc07900014f04debe46309c211439d727a92119aa0293c59bc26e309985b65",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "b7b9865fcb040c54e354abb125e602ee6a1a9440484f8e6c39bba303716095df",
+        "job_id": "outer0_inner0",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_inner0/COMPLETE.json",
+          "sha256": "80a6bd70e9b2de39a5e0cc89dc8aa1a5136267e4903af5482af6876287e7c43b"
+        },
+        "seed": 123,
+        "selected_epoch": 3,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "688775577a8e2dc034793cb76e9c36e9d373c0670f018c3db8d00509a17ff0bd",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "9e90b6adda7c1723d025b969b8a1a969bc841e82afe661e2a97104a9eaa45eb8",
+        "job_id": "outer0_inner1",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_inner1/COMPLETE.json",
+          "sha256": "97f121bc8114d2d8cc07fd16db49183b031ab9a8cc131656117647c2995e623b"
+        },
+        "seed": 123,
+        "selected_epoch": 1,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "b072d029c66289366aa6483da807314cf2b8987ce882a31e6d1608a650c67525",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "0d20309e0aa606367dd1f0ee89b2853697dbf2f26059ce544680b76946e33d0b",
+        "job_id": "outer0_inner2",
+        "receipt": {
+          "bytes": 5195,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer0_inner2/COMPLETE.json",
+          "sha256": "d3baf156a69db2aed387c6a80fe75a449ea95ab967d7d9704e4884c13e7b399b"
+        },
+        "seed": 123,
+        "selected_epoch": 10,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "a3e0bd6e9787d0e8dc82ec06d9d197abccdeb69f6d362c2c179bdfbf95c2eca4",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "2f72784c210280d297e3251fb22e9d51081f4a6f85bea410cacfd72782c113d8",
+        "job_id": "outer1_final",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_final/COMPLETE.json",
+          "sha256": "6e145e6c1cc3ac21c28300d50da42ba903ca7d4b55645103804dfa0937125de4"
+        },
+        "seed": 123,
+        "selected_epoch": 16,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "5ed7e8d31d161ed73eb022502767605ad07d2d811e9a5d64731ddea8dc4314a2",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "7c0991182ffd5f0b7980b2106ea3cb4380f5f62581453db7d9dc5d0e2cf76c06",
+        "job_id": "outer1_inner0",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_inner0/COMPLETE.json",
+          "sha256": "12899dbaf669e34bab7ec8f52141be5c998846d0ed7ddc227923d6e424ff2a52"
+        },
+        "seed": 123,
+        "selected_epoch": 20,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "8ce23634826a9e156923b865a63cc95760038346d49b2aff0558916ca4b86b34",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "fb7cca5bc66ad2667f9568e22ea1a98cfc0bc53952d987f3aaa653a2be5c9577",
+        "job_id": "outer1_inner1",
+        "receipt": {
+          "bytes": 5196,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_inner1/COMPLETE.json",
+          "sha256": "39698bdaf3a33d00cbb7e5f45d2df851a52ad5adc18d24aa1d6a6374147988c0"
+        },
+        "seed": 123,
+        "selected_epoch": 15,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "2f0a2ab08f694c031700e180fd7d7963bb589c6508e49a2531ac38f4807d7618",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "2e6d4f6e045fe82e2c2054761122627d4c1548d5fcbe4e70567623047702ebb0",
+        "job_id": "outer1_inner2",
+        "receipt": {
+          "bytes": 5195,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer1_inner2/COMPLETE.json",
+          "sha256": "bcc085a69887a3386c7b0a8329debcba2dd765a61ab9a0074622d20125c58e82"
+        },
+        "seed": 123,
+        "selected_epoch": 97,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "fad4b4a98a9b52e655dadbc2715c9894a071418388f1d7fc915ae5818c6234fc",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "d181af09f8ecbef05dfbfbff750b1f1204fd5175de906610270b818cd678af26",
+        "job_id": "outer2_final",
+        "receipt": {
+          "bytes": 5193,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_final/COMPLETE.json",
+          "sha256": "f3ddfcc214485e037a04ad319ffe228329adb4fa1c81b64d456ff46a9df91ccd"
+        },
+        "seed": 123,
+        "selected_epoch": 2,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "572d3d6f08d22482402d654adc2ac88a3228faf2d0e5c7bd5e8dbbba5f8df1b8",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "6874029c3c0b0f242528be57be6a901db785df3b01deb73746591629d6fa4fb8",
+        "job_id": "outer2_inner0",
+        "receipt": {
+          "bytes": 5196,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_inner0/COMPLETE.json",
+          "sha256": "e51c869a7dac1a615f6fd8e8a89a8bb5b935b71f5d8aa3a1dc0a0a24e41f9403"
+        },
+        "seed": 123,
+        "selected_epoch": 60,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "8db69dc2c77839f358193cf8507fa940fc37e2be86ffc426a3475daa07457ba2",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "5e1d654faa0f7a2af3bb8cc57bdf0178224c6471d0c7ae4381b72c0ee331dbbc",
+        "job_id": "outer2_inner1",
+        "receipt": {
+          "bytes": 5195,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_inner1/COMPLETE.json",
+          "sha256": "c0534662d2463b9bf7f30cc10c4054d25b04d867dd50ecc50c11182412926bae"
+        },
+        "seed": 123,
+        "selected_epoch": 17,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "6362c6339e2215ddd853fbd97e2549ab9396e7e6a1f8ef60f2d6f9bd5f9a5047",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "385f5ef35fea9e7895b77ced0edaccf28084b150ce82c2a46d975f3cd84462db",
+        "job_id": "outer2_inner2",
+        "receipt": {
+          "bytes": 5193,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed123/outer2_inner2/COMPLETE.json",
+          "sha256": "f9590c83bee5d03f29df89ff53dc71d8e58862c434c02b07a0823671844af51a"
+        },
+        "seed": 123,
+        "selected_epoch": 1,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "d5d0fa14c90241a3445095f5b5173005799ec9299223d1f6d6ac5c58ed17a8bc",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "fe677d28ffa0cf822f1210bfba8b1d2cc8e880e685a7991154950dc47c67363b",
+        "job_id": "outer0_final",
+        "receipt": {
+          "bytes": 5198,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_final/COMPLETE.json",
+          "sha256": "e45ca733bd190f1c4a4131228e8e0bd040e5f9173198aacbea0c611483bb1594"
+        },
+        "seed": 20261023,
+        "selected_epoch": 44,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "6685b75033ae559991826afd63866dec2969a8e6e2a7fef365a6bd44ab3715fe",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "179649411f80fbcfb3046ce2f5a14ea850d5c9bcba7cf02ff38072b06eb3da92",
+        "job_id": "outer0_inner0",
+        "receipt": {
+          "bytes": 5197,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_inner0/COMPLETE.json",
+          "sha256": "9491635961784052163e8f7c1795b2e273a4c49fff8c6d3380291d38e0603979"
+        },
+        "seed": 20261023,
+        "selected_epoch": 21,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "d47a55324c1c6abc3c5aac3e65cf6e2a120b2e19e5668ca84a0e5f8a1b25d63c",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "9c6d72a18091fb5556ee66f19ed1d36e9a204f6b29a435bcb23e2d8777d96c49",
+        "job_id": "outer0_inner1",
+        "receipt": {
+          "bytes": 5198,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_inner1/COMPLETE.json",
+          "sha256": "6ba790ce9c2554bc02bafc6499c30edfde38de401c5bf493d6229f585600435c"
+        },
+        "seed": 20261023,
+        "selected_epoch": 30,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "f1ac43ca59ecadb072a1f677568c2946c3bf81d725d908a61a8e00caa5d1dc74",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "44b995852e7cdc0f2456c715f60f68d0059553742216849737e95d2815701166",
+        "job_id": "outer0_inner2",
+        "receipt": {
+          "bytes": 5200,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer0_inner2/COMPLETE.json",
+          "sha256": "5b558a4bc768ab1505482731691c3b0a759118e7c474f728b3e0550c2105e2fc"
+        },
+        "seed": 20261023,
+        "selected_epoch": 10,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "09e5250bd634914130635ed288bc2e0d06cffcc176970f10fce947a034394f8a",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "7958f83374b98a607df7cf75f14b58de67d0f9537b37958a2ae7aaf187f8767c",
+        "job_id": "outer1_final",
+        "receipt": {
+          "bytes": 5199,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_final/COMPLETE.json",
+          "sha256": "5c0472433a7383c045dc867e58ce30080e41a8d3ee04aaf303f44bc3f13adbcf"
+        },
+        "seed": 20261023,
+        "selected_epoch": 18,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "a1686959aef3fc318e75c4900443fed5343d9aedbba3b61dd470292c26d267df",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "fcc62a1e268b0259478f6286bf41a719eda514efe04122dafe46328795c46ece",
+        "job_id": "outer1_inner0",
+        "receipt": {
+          "bytes": 5199,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_inner0/COMPLETE.json",
+          "sha256": "9cace1e7b92b6e070aadccbe5149c278a7e93185153ee654cd8c4039c6185bd8"
+        },
+        "seed": 20261023,
+        "selected_epoch": 25,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "9dfce3ed859262fef67a6c79d7ef808d78e81beed2335122cb45079ad95dbb76",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "e2df07301c9c6a0c86b556447ce3ac21822e1071926348c29d49e07615374bc5",
+        "job_id": "outer1_inner1",
+        "receipt": {
+          "bytes": 5199,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_inner1/COMPLETE.json",
+          "sha256": "b377ff85374b886f37923c819985aebffb72df345479a2495e35574aabc9964e"
+        },
+        "seed": 20261023,
+        "selected_epoch": 8,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "060495b76c4e9554b29b4f7ea69617cb46586531a88c322c0082ddb78baed0ac",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "3e60709f473c980d885d27aa32957937e00df6baf8577726efa54eb6fa253205",
+        "job_id": "outer1_inner2",
+        "receipt": {
+          "bytes": 5200,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer1_inner2/COMPLETE.json",
+          "sha256": "56d4a21c5e72bcb8bb68f707251beef9f1413d54c3641eef0abdc295bc2422dd"
+        },
+        "seed": 20261023,
+        "selected_epoch": 66,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "837de41636263d7df66266fcaf576fcb75c4537ef4d81ce69b63fcf61f833925",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "cb3b18617d4579d86afc20ac86be8c951e3f6962c95946379e564380cfd29a93",
+        "job_id": "outer2_final",
+        "receipt": {
+          "bytes": 5198,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_final/COMPLETE.json",
+          "sha256": "3346f7f2b9fba32adb1bc6a60287e37eac2d3cadff662cd52c1eb368d72383a6"
+        },
+        "seed": 20261023,
+        "selected_epoch": 1,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "df782cefd7fe6ad566bca2eee1223004a33f7f97762343d9f8f6b154ebc953d9",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "c3d5e14417e7df87845711c0d727b873aedef2187b8852532b88f93df96afb41",
+        "job_id": "outer2_inner0",
+        "receipt": {
+          "bytes": 5201,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_inner0/COMPLETE.json",
+          "sha256": "2e60451313d305caa91d6aa45c1542dadd29a8a1900a6cc01c645ad73d2295a6"
+        },
+        "seed": 20261023,
+        "selected_epoch": 16,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "8cdbd7d12cb847cb18f1a4f153d2bd9435186edfdc6a457bb6266a27a6959853",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "e9ae03971871269d7fbd7b206e715824be5a88ced7acb1e1e0ecd4476578183d",
+        "job_id": "outer2_inner1",
+        "receipt": {
+          "bytes": 5201,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_inner1/COMPLETE.json",
+          "sha256": "13872aff2bd75c25aa1aca66f30a0863dfd84f7e30d9cd4625ea455dfdde473d"
+        },
+        "seed": 20261023,
+        "selected_epoch": 24,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "de6ad2d52cf515a8d28b8fe012cf671f52cccae600dc31328039a1f33e570d03",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "57093e62e4a910a4a43855e7fe6fee706de6f871e850846daefaa1a532d78d9a",
+        "job_id": "outer2_inner2",
+        "receipt": {
+          "bytes": 5201,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed20261023/outer2_inner2/COMPLETE.json",
+          "sha256": "86484b9e8f9d020926356f0979258ef37507d691f98f02da29732d01c14e973e"
+        },
+        "seed": 20261023,
+        "selected_epoch": 10,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "37a7ef363906a253dcd5637b672dcf6d4f00b5f972ac42da806173f26d7aa5bb",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "631b0b9aa6c2ccc0567bb8f4e0db8a7af19e25a5a86a31c8c59e02cb9480e140",
+        "job_id": "outer0_final",
+        "receipt": {
+          "bytes": 5192,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_final/COMPLETE.json",
+          "sha256": "f13aa1df16344be6d85ec92cba0b4fe833eb44ec1c6ed2edbd6e478b99b716aa"
+        },
+        "seed": 42,
+        "selected_epoch": 41,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "a07f7b8e456b7e3eab6563ed4bceda0a8958094c79d671b1c45352e017d1c74d",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "7ac37a0020f7c5491f6aee4da783c98f2921f2ea68c735ecb5d719f28f4f454f",
+        "job_id": "outer0_inner0",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner0/COMPLETE.json",
+          "sha256": "a5f8aea6b8176a8b3e7d1254240e080ce8f714e13a70d5c0f1e6f03f039aeecf"
+        },
+        "seed": 42,
+        "selected_epoch": 11,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "5ac7044acb118fd1065f47db675f054582e504ac7e12261419e1dba58a6a8a13",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "4f83c34d32884ee87de7e29ae162773c4c88e10f25f1d0822d384d1b7e552afd",
+        "job_id": "outer0_inner1",
+        "receipt": {
+          "bytes": 5193,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner1/COMPLETE.json",
+          "sha256": "a1e5e883864a750d5bbb9080d8ff1d04d27fafa82b861a2973ff5ea06c3184ea"
+        },
+        "seed": 42,
+        "selected_epoch": 1,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "2aab481805c1cb1edb83195967bf8e17bbcecdad893c3c27e204b25623a7d975",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "44534c421d6b0bcac533db72007acb35088cf91e3f97434f63c6edb6b63047cc",
+        "job_id": "outer0_inner2",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner2/COMPLETE.json",
+          "sha256": "7400d15467c7453d0e94d83baf509a082fca5392dfcc72d27a40895dfb801f38"
+        },
+        "seed": 42,
+        "selected_epoch": 6,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "7b20095a6ab98f04ae2670501ecb1b02077a79432330028f493172fe98b5ad5f",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "360df9eafda6c59c7e666df5058afff6b16c351867543a6a3554e02a231b6ecf",
+        "job_id": "outer1_final",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_final/COMPLETE.json",
+          "sha256": "5c8f42998666a17a6adfb811b2806eaa2b45bdb115be146bd1520eba9974d998"
+        },
+        "seed": 42,
+        "selected_epoch": 77,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "ceb3450122feae89b60434a50f3043be5a8a4028115fc32c69585cc745a9e242",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "2b2ea20ccc643095ebcd28392f26007ed36faef55300a9534299a62484b79c0f",
+        "job_id": "outer1_inner0",
+        "receipt": {
+          "bytes": 5195,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_inner0/COMPLETE.json",
+          "sha256": "aa4bc6c9a8845c1ab424dc1b3bdfc2debcdc1cd7f03081002194d03504055e5a"
+        },
+        "seed": 42,
+        "selected_epoch": 52,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "6c45e002031152f9bb0060cb946c810dd7961c0f17922edbf3a0a72cc3775048",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "13c23e302b97414c164ebab9aa21d0efc90ee0b45781dc874cedc0aee57eab40",
+        "job_id": "outer1_inner1",
+        "receipt": {
+          "bytes": 5193,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_inner1/COMPLETE.json",
+          "sha256": "f1495384c582a101985ec2e46f51d72d93315f0eb43ca16e1a1c686220c88522"
+        },
+        "seed": 42,
+        "selected_epoch": 12,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "ac3b1037f9738ed6caa22a4ec26171f29ff09017d4a446ae7b957f1ba24c6198",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "d1214db5cfd7d56d8ebec64815de20cd17f15eae6aa7e2fe34840526026d461f",
+        "job_id": "outer1_inner2",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer1_inner2/COMPLETE.json",
+          "sha256": "05c0cbfa11bc9e4855c5d5f6dba6356ab8749f9a93f5981d33a36d8f09b89203"
+        },
+        "seed": 42,
+        "selected_epoch": 74,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "8d8ae23587fea5620ac35004db366a8932ce5429abdceed27687ff79cce30cc9",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "dd13922b661dddb559bd7e89edd67a69f0dd637cc13fcfb68fd334a29deae4f2",
+        "job_id": "outer2_final",
+        "receipt": {
+          "bytes": 5192,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_final/COMPLETE.json",
+          "sha256": "3ae4fc34c6b21fc8f36342047a4c94e62d20f25adfb369f33ebdf652cf26b500"
+        },
+        "seed": 42,
+        "selected_epoch": 27,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "dfd53faf775422789df910900881d8aef231869c91ac0ce4225a8b0cc7e646c8",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "be7e10f233e9feff7d9b3317f477072ecc9943bc8c9e371e404059834c7e307c",
+        "job_id": "outer2_inner0",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_inner0/COMPLETE.json",
+          "sha256": "6f012b47e0777dc39a099b31fe1440a40cafc3a99da3a76de2ca90ed7264bec4"
+        },
+        "seed": 42,
+        "selected_epoch": 53,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "e7ee353780ed2e4b5fa3f886a5fe2dc7b13264d66cb7a207ba8b501ed188074f",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "698dc2e330c3f32a0656d1271a984bd9594faddca613953d6e493d9be9525ebc",
+        "job_id": "outer2_inner1",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_inner1/COMPLETE.json",
+          "sha256": "68979c2bfe033fc66ab72d32a0725f74e5113f37105c2c88f798f61a0a1ba6e4"
+        },
+        "seed": 42,
+        "selected_epoch": 60,
+        "selected_under_new_tie_rule": true
+      },
+      {
+        "best_checkpoint_sha256": "2b085d8556d758983c4fd5ecced759c1174e10ba46537b3db58ae61954e7074f",
+        "executed_epochs": 100,
+        "final_checkpoint_sha256": "59200abcff79c18a9ad114658c23b8c188965fd14ffe801da4e5104342d055b1",
+        "job_id": "outer2_inner2",
+        "receipt": {
+          "bytes": 5194,
+          "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer2_inner2/COMPLETE.json",
+          "sha256": "2ca91d879b57e375be929dd5ef4d41016dc91bec97789e7981351ecca998fc95"
+        },
+        "seed": 42,
+        "selected_epoch": 1,
+        "selected_under_new_tie_rule": true
+      }
+    ],
+    "optimizer": {
+      "amsgrad": false,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "capturable": false,
+      "decoupled_weight_decay": true,
+      "differentiable": false,
+      "eps": 1e-08,
+      "foreach": null,
+      "fused": null,
+      "initial_lr": 0.001,
+      "lr": 0.0001,
+      "maximize": false,
+      "name": "new_classifier",
+      "weight_decay": 0.001
+    },
+    "pilot_best": {
+      "bytes": 480149,
+      "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner0/BEST_MODEL.pt",
+      "sha256": "a07f7b8e456b7e3eab6563ed4bceda0a8958094c79d671b1c45352e017d1c74d"
+    },
+    "pilot_final": {
+      "bytes": 1430247,
+      "path": "VIFAILBACK/06_training_experiments/visual_frozen/runs/20261029T004900Z/seed42/outer0_inner0/FINAL_EPOCH100.pt",
+      "sha256": "7ac37a0020f7c5491f6aee4da783c98f2921f2ea68c735ecb5d719f28f4f454f"
+    },
+    "pilot_job_id": "outer0_inner0",
+    "pilot_selected_epoch": 11,
+    "scheduler": {
+      "_get_lr_called_within_step": false,
+      "_is_initial": false,
+      "_last_lr": [
+        0.0001
+      ],
+      "_step_count": 101,
+      "base_lrs": [
+        0.001
+      ],
+      "last_epoch": 100,
+      "lr_lambdas": [
+        null
+      ]
+    },
+    "scope": "Reuse requires new trainer CPU head/RNG/batch equivalence preflight; no historical head retraining"
+  },
+  "native_labels": {
+    "annotation_files": 109,
+    "failure": 4545,
+    "native_episodes": 5202,
+    "sources": [
+      {
+        "bytes": 148503,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/cut_sausage/cut_sausage_annotations.json",
+        "sha256": "50bafe271dc9acf74381a7565cc8a4c5a6e40fed6c26b209d2d30fbaf340e187"
+      },
+      {
+        "bytes": 616703,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/drag_basket_place_cube_ep1/drag_basket_place_cube_ep1_annotations.json",
+        "sha256": "27531decb9dab5ce5678af9f8ae7259d0ed7cc4f2152fc77fe50af5f4d3fd85b"
+      },
+      {
+        "bytes": 537063,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grab_socket_unplug_charger_ep1/grab_socket_unplug_charger_ep1_annotations.json",
+        "sha256": "64b96b70707afa5e043a59eed1aa4b795887c80915681d562a199db3cf0224ca"
+      },
+      {
+        "bytes": 54735,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_bottle_place_bowl/grasp_bottle_place_bowl_annotations.json",
+        "sha256": "ee8dfc7b403e52026e715c246b4627b99925d9fb419640e9c06191889f1d6381"
+      },
+      {
+        "bytes": 54159,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_coke_can_put_tray/grasp_coke_can_put_tray_annotations.json",
+        "sha256": "ed204476ada0c300fd411677df7d42c84b4a5af63b56d2e9c434ba7701c2b5a8"
+      },
+      {
+        "bytes": 55551,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_cube_place_shelf/grasp_cube_place_shelf_annotations.json",
+        "sha256": "8081fa6444df673482e911122448affb45a44184c650a00bddff450f01c99930"
+      },
+      {
+        "bytes": 51721,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_duck_put_cup/grasp_duck_put_cup_annotations.json",
+        "sha256": "1c117b066a2dafe14a21d3fea7c47f5c23202cb72db0117ff337d055c95e0fc5"
+      },
+      {
+        "bytes": 71130,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_filter_place_juicer/grasp_filter_place_juicer_annotations.json",
+        "sha256": "e71c969953114c17faf06637a101ed2ad40dc3ed3a4d746491818e010fa23fcf"
+      },
+      {
+        "bytes": 51145,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_knife_place_drawer/grasp_knife_place_drawer_annotations.json",
+        "sha256": "de08cdd41c2049cb1cb93032030fc85cdb03efd604560e7452958a62a6848cc9"
+      },
+      {
+        "bytes": 51420,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_knife_place_plate/grasp_knife_place_plate_annotations.json",
+        "sha256": "91689df1e54eb7e9689e11783792dfc877e727fcb1c0236e07aa7ac4cac5f4a9"
+      },
+      {
+        "bytes": 73018,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_marker_place_in_cup/grasp_marker_place_in_cup_annotations.json",
+        "sha256": "ad2622054734f8d93d862b9f15ffb6d3d52b0616b830011a705d285ac16f509b"
+      },
+      {
+        "bytes": 52577,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_spatula_place_basket/grasp_spatula_place_basket_annotations.json",
+        "sha256": "235f30998d69d62ebaf5eb5efa90c8ca1d223ac0ffc1b6c538dde1558db49a86"
+      },
+      {
+        "bytes": 57051,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_spatula_put_pot/grasp_spatula_put_pot_annotations.json",
+        "sha256": "3b39ce99a8703672545944485ad1284b3d17bc466833289b64206d0acf658ae7"
+      },
+      {
+        "bytes": 55096,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_test_tube_place_bowl/grasp_test_tube_place_bowl_annotations.json",
+        "sha256": "71c0a4699c7eda49d678381923589ba740dabf86219a4577d460c3cec5cce976"
+      },
+      {
+        "bytes": 58510,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/hold_socket_plug/hold_socket_plug_annotations.json",
+        "sha256": "e5a16c50f5e15e8ca1afc3a074af181c976c2f224c622d52c1de9c9c214ecd00"
+      },
+      {
+        "bytes": 637896,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/lift_lid_and_place_cube_ep1/lift_lid_and_place_cube_ep1_annotations.json",
+        "sha256": "2d4f07e4dc1bf092dd9a4d664779a82bb53b5128f47d3fe71b52bacd9707ad99"
+      },
+      {
+        "bytes": 87107,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/lift_lid_and_put_green_duck/lift_lid_and_put_green_duck_annotations.json",
+        "sha256": "9174ca9d4bcb76f59bbfd3aff297bf8cff76a06b13b3a5efed38aa18693a32ed"
+      },
+      {
+        "bytes": 57649,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/lift_lid_place_duck/lift_lid_place_duck_annotations.json",
+        "sha256": "52f41825011cab3bdc4ac1a2b88d657d4abb767749e274390741e56bc61e6417"
+      },
+      {
+        "bytes": 56190,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/lift_lid_place_pot/lift_lid_place_pot_annotations.json",
+        "sha256": "0be34ec76ef131cc9c17a29519a11806307735dbc85a110f814ff1f7f3e44f37"
+      },
+      {
+        "bytes": 62047,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_box_place_cable/open_box_place_cable_annotations.json",
+        "sha256": "35caf05fe06d786fb2d44f7d7e0c6fbb315643104fd182d0d98495a0e9648768"
+      },
+      {
+        "bytes": 60441,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_box_place_marker/open_box_place_marker_annotations.json",
+        "sha256": "6beec2db47179d40396382e0c8c2a309dd27b28c0037657b44fd0f990ed89483"
+      },
+      {
+        "bytes": 62802,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_drawer_put_marker/open_drawer_put_marker_annotations.json",
+        "sha256": "672b092fd3b66678902930ad2e95efdc15daf9bdf170caaa7500a85ac859d634"
+      },
+      {
+        "bytes": 65044,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_drawer_put_stapler/open_drawer_put_stapler_annotations.json",
+        "sha256": "7606cd2bbdd695d33bb9d03396cb1272fbe314a57b580e42414ec16c660bd072"
+      },
+      {
+        "bytes": 80448,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_left_right_door/open_left_right_door_annotations.json",
+        "sha256": "454f696a1e0b1bfe0187b3abf2d47cba0dcbee183c4b64b064915ad1786c5f65"
+      },
+      {
+        "bytes": 59558,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_lid_place_filter/open_lid_place_filter_annotations.json",
+        "sha256": "ee601200aa737ec92311549bf33457c4e60447800d9a95fdc853368ee2b899ac"
+      },
+      {
+        "bytes": 62257,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_lid_put_spoon/open_lid_put_spoon_annotations.json",
+        "sha256": "c057aef2608833687cb624ca5cc2087d03d17a161c22d228f12d083304aa9844"
+      },
+      {
+        "bytes": 602124,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_lid_put_spoon_ep2/open_lid_put_spoon_ep2_annotations.json",
+        "sha256": "c4c3a4371fba66cc8617d80abe2f916b7e8c75f8db97f589582b482ce997e5b7"
+      },
+      {
+        "bytes": 65647,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_microwave_door_put_bowl/open_microwave_door_put_bowl_annotations.json",
+        "sha256": "2cb7f552129de737b4c5c27b707146db95225ef65b68293b73e8252e15cfb5db"
+      },
+      {
+        "bytes": 66782,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_microwave_door_put_green_duck/open_microwave_door_put_green_duck_annotations.json",
+        "sha256": "a294ef820b67dd1776fbb157b07fa608d89a768464eaf523da30c785032b92c1"
+      },
+      {
+        "bytes": 55562,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_ball_put_drawer/pick_ball_put_drawer_annotations.json",
+        "sha256": "992a84174c5eac9a06fbd7515cafeb2eca858773d3ff215d8ae1b1cf2a16b76a"
+      },
+      {
+        "bytes": 162154,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_block_drawer_to_plate/pick_block_drawer_to_plate_annotations.json",
+        "sha256": "6f10f7dfb7386cf3d9308ca900f818537baf42c589389a5defc658153dafe9af"
+      },
+      {
+        "bytes": 62334,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_bowl_cube/pick_bowl_cube_annotations.json",
+        "sha256": "0f879b840dff332d9cc25998b9ad860b751e83e45eb337f81c3ae150876e70c3"
+      },
+      {
+        "bytes": 623839,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_bowl_cube_ep2/pick_bowl_cube_ep2_annotations.json",
+        "sha256": "db84cf4008fd5c5a59eaa0351a9fbb1cc9314ed2f3f6b61408e840c8c6da99af"
+      },
+      {
+        "bytes": 54516,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_bowl_on_top_shelf/pick_bowl_on_top_shelf_annotations.json",
+        "sha256": "c5f72c40a66c5d252fffe51431fb0bb54774b7a35d88b56e4509c86be4285eec"
+      },
+      {
+        "bytes": 478419,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_coke_bottle_place_plate_ep1/pick_coke_bottle_place_plate_ep1_annotations.json",
+        "sha256": "3bc0cac78a33c60ad510d92553d24b4cd2185301c06aa5ffe957296797fbda55"
+      },
+      {
+        "bytes": 50602,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cube_drawer_plate/pick_cube_drawer_plate_annotations.json",
+        "sha256": "820244887d492431ce7c8797889f7d2f1495b1b92441198e6c5cec391dd13823"
+      },
+      {
+        "bytes": 35365,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cube_place_plate/pick_cube_place_plate_annotations.json",
+        "sha256": "cfb0ee3acc9e910e4acfa1c9d10fadd94df9a64f861322f54514d39aa764e733"
+      },
+      {
+        "bytes": 52330,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cube_put_pot/pick_cube_put_pot_annotations.json",
+        "sha256": "3f82aaba791048abae517ccbcfe5587d2a3f97ac68e17ec3a8537d4d34e804b3"
+      },
+      {
+        "bytes": 520890,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cube_transfer_place_basket_ep1/pick_cube_transfer_place_basket_ep1_annotations.json",
+        "sha256": "42d49a466645962b64f0fab5435603deae03fdae55f8f8df1cfecc317e13c511"
+      },
+      {
+        "bytes": 56814,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cup_on_left_table/pick_cup_on_left_table_annotations.json",
+        "sha256": "b313d3f989fe9c6ec3a743cf5ca8d1d016f053a596fd846c2c9ecaebd265424e"
+      },
+      {
+        "bytes": 54298,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cylinder_place_drawer/pick_cylinder_place_drawer_annotations.json",
+        "sha256": "feb0f0be3f80f68eb18bfe2718a335f855310d5712cfee128ba6a16212d4dd49"
+      },
+      {
+        "bytes": 53388,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_eraser_place_right_box/pick_eraser_place_right_box_annotations.json",
+        "sha256": "3b041aeeb9706dac1858616a02eb4682c9ff728e5975b87fae3fd2ab5a2c1ef5"
+      },
+      {
+        "bytes": 56177,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_green_cube_put_basket/pick_green_cube_put_basket_annotations.json",
+        "sha256": "017f5147c7f5fb57461fd184b9760d58b6fe59d4142b7c34193196bf0bf10321"
+      },
+      {
+        "bytes": 690662,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_draw_cross_ep1/pick_marker_draw_cross_ep1_annotations.json",
+        "sha256": "778348e71be217fc5d060aaf1fe7558b953692e335f60f6da656936fae085eef"
+      },
+      {
+        "bytes": 74668,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_draw_cross_ep2/pick_marker_draw_cross_ep2_annotations.json",
+        "sha256": "c2a98b30f0ba6a9e4dcd388d434962f53b58751fbcdc9dab67f6f6ca54f072ab"
+      },
+      {
+        "bytes": 54246,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_draw_line/pick_marker_draw_line_annotations.json",
+        "sha256": "8a76b0f28aecb89cb87ce1fe7008c6103b80c2ad9f383110d4af020d15b1cd9c"
+      },
+      {
+        "bytes": 55657,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_place_bowl/pick_marker_place_bowl_annotations.json",
+        "sha256": "4f57296db38a6d81cd4fa6b657ed15e5b0e2561a6341372991a29061f79bdfb5"
+      },
+      {
+        "bytes": 54429,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_place_cup/pick_marker_place_cup_annotations.json",
+        "sha256": "51e838106fdea1fe2c2c5b752ff7d40267ab16665040564895fd37d07ee842d2"
+      },
+      {
+        "bytes": 60394,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_transfer_place_cup/pick_marker_transfer_place_cup_annotations.json",
+        "sha256": "cd26d5ac62c56c4077aa69b7fe33a4b6dda93638c858b7c58adc3b58689e18e1"
+      },
+      {
+        "bytes": 683018,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_transfer_place_plate_ep1/pick_marker_transfer_place_plate_ep1_annotations.json",
+        "sha256": "99f22563495604a2f4a3913a81178945494400d0fa25c909c0b3ef74c14c3eef"
+      },
+      {
+        "bytes": 182548,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_transfer_place_plate_ep2/pick_marker_transfer_place_plate_ep2_annotations.json",
+        "sha256": "54e63002a48e9e118d754499feccbdc48ce183eef49718b299a0daf2279ce643"
+      },
+      {
+        "bytes": 50873,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_mouse_basket/pick_mouse_basket_annotations.json",
+        "sha256": "997df85a2fad7d816c973b40b27be859ab78bcaada2bd438817dea031f8b29dd"
+      },
+      {
+        "bytes": 52765,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_mouse_place_laptop/pick_mouse_place_laptop_annotations.json",
+        "sha256": "333a225a4e35eb880ed685b3510e131f8a2db83fb3f2e4e573f9aa0f9e8e7cff"
+      },
+      {
+        "bytes": 620910,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_object_place_left_box_ep1/pick_object_place_left_box_ep1_annotations.json",
+        "sha256": "03566de7ad82415b5e70c10c57a41c89e6adb3f19da790de14fa1bdfcdb8de9f"
+      },
+      {
+        "bytes": 162434,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_object_place_left_box_ep2/pick_object_place_left_box_ep2_annotations.json",
+        "sha256": "bd1803d4e7bdb4c3d9228ea2c9059d3fcc117029b09b155b707177785fbe8714"
+      },
+      {
+        "bytes": 1388280,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_orange_block_place_into_microwave/pick_orange_block_place_into_microwave_annotations.json",
+        "sha256": "436c37ccfa2dcfa5ed54059dd0614634bae83e2d3423619ff215ea71cb6d0410"
+      },
+      {
+        "bytes": 54617,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_orange_block_place_pot/pick_orange_block_place_pot_annotations.json",
+        "sha256": "6882977a494075c1148d8928882b1baf431d23b2da3f708539d8cb1b31841d59"
+      },
+      {
+        "bytes": 58176,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_pen_transfer_plate/pick_pen_transfer_plate_annotations.json",
+        "sha256": "ca071d31b4132afc49524e85939f5f4bc931f6ac353d0387feae86b1f2685884"
+      },
+      {
+        "bytes": 51114,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_pepsi_place_bowl/pick_pepsi_place_bowl_annotations.json",
+        "sha256": "095ab940fc7e2c70712c2c34eae531d66ed0c274f74c78c83a3de9f31eace569"
+      },
+      {
+        "bytes": 572176,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_pepsi_transfer_place_plate_ep1/pick_pepsi_transfer_place_plate_ep1_annotations.json",
+        "sha256": "48f01bfa3755d7abfc55e97667b988e9da5d2ab9009460ebfdc46a01cd73fbdd"
+      },
+      {
+        "bytes": 1264054,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_place_chem_ep1/pick_place_chem_ep1_annotations.json",
+        "sha256": "8b5d9dbe3cefb9ea2779bf111aed7d0a71a24e7a2fe950543468684bc02da5f9"
+      },
+      {
+        "bytes": 1143307,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_place_chem_ep2/pick_place_chem_ep2_annotations.json",
+        "sha256": "9ec8e7d634eb7f5ec750bd9c36b1c9a504a9f40396708a5847455c2500704e6c"
+      },
+      {
+        "bytes": 602473,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_plate_from_drawer_put_pink_cube_ep1/pick_plate_from_drawer_put_pink_cube_ep1_annotations.json",
+        "sha256": "2b1c67c01347840ecfc9869ffba7b24ff09016e10ecea614d2985aaf5ed27b1d"
+      },
+      {
+        "bytes": 54260,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_red_marker_place_tray/pick_red_marker_place_tray_annotations.json",
+        "sha256": "8900853865ac4cf49e3f34e2265fccd6142d107781ee9b5099ad8bd28628c567"
+      },
+      {
+        "bytes": 58912,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_remote_controller_transfer_board/pick_remote_controller_transfer_board_annotations.json",
+        "sha256": "6a0a4553e639193b2384a458e30e4116b11f9f22cb7f115f29e4c7c7bfa68259"
+      },
+      {
+        "bytes": 51564,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_spoon_place_rice_cooker/pick_spoon_place_rice_cooker_annotations.json",
+        "sha256": "323cc7224684f4a739979c70a4f3ebfc8470ea4618cfee2b337755e4457d4635"
+      },
+      {
+        "bytes": 53630,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_tape_thread_marker/pick_tape_thread_marker_annotations.json",
+        "sha256": "cce7e5330b5433ed1759ac1a7aed3dc5f8f9eb2d27607a5213fe0314307ce36f"
+      },
+      {
+        "bytes": 57244,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_test_tube_place_left_slot/pick_test_tube_place_left_slot_annotations.json",
+        "sha256": "7cebd4334bb69d683a8edd9ff6838c87747a55f945858a72cdd8051b31510c3d"
+      },
+      {
+        "bytes": 59285,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_test_tube_place_middle_slot/pick_vial_place_middle_slot_annotations.json",
+        "sha256": "011c2aee20a928fc789623bbcd93ad12e9c6a366ffa731c83ffd89b32ba3e824"
+      },
+      {
+        "bytes": 54557,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_vial_place_middle_slot/pick_vial_place_middle_slot_annotations.json",
+        "sha256": "cfe55961164b4bf9f0715b0acb9a15f23bdb45b7470c1a7d8ebe517953425347"
+      },
+      {
+        "bytes": 55829,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_vial_place_right_slot/pick_vial_place_right_slot_annotations.json",
+        "sha256": "f1281679ae672349897cb9b688d7cad93acdbf61fdc2a004fa8ab3967a0bbccd"
+      },
+      {
+        "bytes": 135886,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_block_into_drawer/place_block_into_drawer_annotations.json",
+        "sha256": "d5c863596aafc67aaed2961465efcc3aeb53843942a146782b8b8464557c4ecb"
+      },
+      {
+        "bytes": 59179,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_cube_pot_lid/place_cube_pot_lid_annotations.json",
+        "sha256": "6116f92aaf0fe0bcb52ceb8a4d0dac1dda1502a0fe1447fc3f4e75bebb08810e"
+      },
+      {
+        "bytes": 60682,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_doll_stapler_swap/place_doll_stapler_swap_annotations.json",
+        "sha256": "8a2f2b100ce94a516e9a7c1a743b38f1dc20fc455d7c39bf9f12c0ca15526743"
+      },
+      {
+        "bytes": 65263,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_duck_on_block/place_duck_on_block_annotations.json",
+        "sha256": "8c08c60fb6f79a449685f2be7e10c7859e32d957cea7ae16f27b2bd52e4b7695"
+      },
+      {
+        "bytes": 58598,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_green_duck_from_drawer_to_pot/place_green_duck_from_drawer_to_pot_annotations.json",
+        "sha256": "5e818519cd090cb8ed0ff9c24eaf2e1aca5cfd9363e8bd1298c245e5a9748420"
+      },
+      {
+        "bytes": 55112,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_knife_in_drawer/place_knife_in_drawer_annotations.json",
+        "sha256": "2a9b204999f915bc84af08f21a97974ea612851a070d43f3eb1e7c9c19e8ca51"
+      },
+      {
+        "bytes": 51274,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_pen_in_drawer/place_pen_in_drawer_annotations.json",
+        "sha256": "df9b8d81051b1732fe619ae2f228a6be9b1904b544e8e8ecabca51e4c55ff5a2"
+      },
+      {
+        "bytes": 57437,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_spoon_drawer_push/place_spoon_drawer_push_annotations.json",
+        "sha256": "71298aeb99441be0b037c0fa22b856eb22551889522e3fb4d1e37e60b689b66d"
+      },
+      {
+        "bytes": 68194,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_spoon_into_pot_cover_lid/place_spoon_into_pot_cover_lid_annotations.json",
+        "sha256": "db4164be4ff413552fe50949e2fa2d467c98b3c90ea28a47bc1871e1bbe5e909"
+      },
+      {
+        "bytes": 52144,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_spoon_on_plate/place_spoon_on_plate_annotations.json",
+        "sha256": "05ac552919fdbeb70f97f7a9f272211cac6fdcc1da70dbb351866bb6a1c4ab1b"
+      },
+      {
+        "bytes": 59394,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_cubes_into_box/pour_cubes_into_box_annotations.json",
+        "sha256": "9e16d9ddb4740dff9c6c24864d67887ac2cf02935d0aec56f8f78798e172f5db"
+      },
+      {
+        "bytes": 53119,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_sausage_into_basket/pour_sausage_into_basket_annotations.json",
+        "sha256": "b6128bce7e3a8e8d4d8899ef84e55c1ab9a22c4aa08f18535dab3a89690ac427"
+      },
+      {
+        "bytes": 58257,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_sausage_into_bowl/pour_sausage_into_bowl_annotations.json",
+        "sha256": "24e7a6903aa2a54ed61c06674c99b48384740e7395c2ae2315edeb874b8ef5e8"
+      },
+      {
+        "bytes": 174520,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_sausage_into_pot/pour_sausage_into_pot_annotations.json",
+        "sha256": "fb8f36048dfecdad7a5bf80d2c654d83fdc6d5feac40f49eccd1bc0ef0b22c43"
+      },
+      {
+        "bytes": 637519,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_water_transparent_cup_ep1/pour_water_transparent_cup_ep1_annotations.json",
+        "sha256": "2d81f9a3bbe311a64632b4bd79911f2527a5e5d214cfd44c8e55f31c79647fd7"
+      },
+      {
+        "bytes": 99786,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_water_transparent_cup_ep2/pour_water_transparent_cup_ep2_annotations.json",
+        "sha256": "68b5a1668d6774bb7b8b203ed79a2a2b43c9c7002285c5e0798a0c4accf63014"
+      },
+      {
+        "bytes": 724115,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_bottom_drawer_put_can_ep1/pull_bottom_drawer_put_can_ep1_annotations.json",
+        "sha256": "6e9c6459ccff8db614ff827f47fc578909124e722a17d8fc8c24af4314c8d9c4"
+      },
+      {
+        "bytes": 177281,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_bottom_drawer_put_can_ep2/pull_bottom_drawer_put_can_ep2_annotations.json",
+        "sha256": "e77407672ee5e7c458aa33eeaed566c960beeb3f43b4ca1cdbd7212d681302ec"
+      },
+      {
+        "bytes": 74181,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_bottom_drawer_put_duck_into_pot/pull_bottom_drawer_put_duck_into_pot_annotations.json",
+        "sha256": "fdbb41ac51495ce77857be3ada777daf47fe79aa1392870dea7e6db6bccf0af0"
+      },
+      {
+        "bytes": 47047,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_open_bottom_drawer/pull_open_bottom_drawer_annotations.json",
+        "sha256": "33f85a47f533f671c40d4cf40eb92c68bea3bf320ceb7c45f25dd1eecbe70cc4"
+      },
+      {
+        "bytes": 127330,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_open_drawer/pull_open_drawer_annotations.json",
+        "sha256": "81e6d4063d6450e1b832c13f453ae9fc70568ea6bfdc69196ba713b5d6370ef4"
+      },
+      {
+        "bytes": 70762,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_top_drawer_put_controller/pull_top_drawer_put_controller_annotations.json",
+        "sha256": "d2d68abedfe74b4d9d895b178f46c74297e92fecebfa6f5406c828075abcff45"
+      },
+      {
+        "bytes": 51361,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/push_middle_drawer/push_middle_drawer_annotations.json",
+        "sha256": "97df061362598b6f705950d85e8974a426ad2b5cceb8714eea1ac347c97b99d5"
+      },
+      {
+        "bytes": 57833,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_blackboard_eraser_in_transparent_box/put_blackboard_eraser_in_transparent_box_annotations.json",
+        "sha256": "024a09aecfeb5172cf927459f70632be2ad644cd32b99ebee81e2c573c24b7d5"
+      },
+      {
+        "bytes": 632065,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_doll_pink_plate_stapler_purple_plate_ep1/put_doll_pink_plate_stapler_purple_plate_ep1_annotations.json",
+        "sha256": "e2b53e72fbfdf32648c32319e21d856ee4ef47883da23caf994a580983c0316a"
+      },
+      {
+        "bytes": 547845,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_mouse_basket_from_tray_ep1/put_mouse_basket_from_tray_ep1_annotations.json",
+        "sha256": "e6e5fc9f08cdc54bfea7199056ce6fc09d886f8f91dec411180d3531a99cb110"
+      },
+      {
+        "bytes": 50509,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_mouse_on_pot/put_mouse_on_pot_annotations.json",
+        "sha256": "0438b99820e08e4e1a075418400208f1a9b0a3174d7aa19b560c4e1c38df44da"
+      },
+      {
+        "bytes": 49945,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_pen_in_basket/put_pen_in_basket_annotations.json",
+        "sha256": "66accf87fcf6c133d477353a6075f9137606a150833192fcae76d501ecf634f7"
+      },
+      {
+        "bytes": 50673,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_stapler_blue_plate/put_stapler_blue_plate_annotations.json",
+        "sha256": "07e7b8b6d9a8abdcbba97d3fedfbdd29821ffd86a140b4b835a237068ef67cd9"
+      },
+      {
+        "bytes": 65801,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_stapler_top_drawer_and_close/put_stapler_top_drawer_and_close_annotations.json",
+        "sha256": "730025d1c70e264ddd2ebd8cbe11ffa82ad67d39a3f4f5d28a21f499ffaf3acb"
+      },
+      {
+        "bytes": 63633,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_two_objects_into_plate_and_box/put_two_objects_into_plate_and_box_annotations.json",
+        "sha256": "836f0c0600fc8442a372fdf38c730b29ef994507c13c24a34d6ff589af8c0bc3"
+      },
+      {
+        "bytes": 1110669,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_cup_cola/stack_cup_cola_annotations.json",
+        "sha256": "ea95593d2be2e3b2b4916a1104431675f620b0704b200faa89fb3353a13d57b2"
+      },
+      {
+        "bytes": 50865,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_cup_on_book/stack_cup_on_book_annotations.json",
+        "sha256": "276cd46ec7e0a25e44bfcaa3d077b1f85e836717017263d1050a3b6c14ec19e8"
+      },
+      {
+        "bytes": 59422,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_green_cup_into_purple_cup/stack_green_cup_into_purple_cup_annotations.json",
+        "sha256": "af0c914dda4fb9c614c7f01e2fa326ff590a9ac09120b56926755b6762bffff7"
+      },
+      {
+        "bytes": 50980,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_pepsi_can_cup/stack_pepsi_can_cup_annotations.json",
+        "sha256": "fead9fd1b1291268c9d577a93c4f644c04f74c835918a7e21d833337f61869d9"
+      },
+      {
+        "bytes": 230720,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_three_block/stack_three_block_annotations.json",
+        "sha256": "e6ed298811a5d95d7ded7581897ad23ba2791a6f1ad7412b754128364ae2a1f7"
+      },
+      {
+        "bytes": 721424,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_three_color_cubes_ep1/stack_three_color_cubes_ep1_annotations.json",
+        "sha256": "fc63b97fd32f6ba86dd9ce31f628a5ad17dee45d7d78b3a907c7b10e1b955977"
+      },
+      {
+        "bytes": 183662,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_three_color_cubes_ep2/stack_three_color_cubes_ep2_annotations.json",
+        "sha256": "04e0ae74d19c0d467d90ad05b4c65e36afa07180d777f9b2bdeb796fb048a697"
+      },
+      {
+        "bytes": 15553675,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/vifailback/meta/vifailback_annotations.jsonl",
+        "sha256": "912c3918ab5871b71b1f3e531e244e04526a26c3442679465c871b4a4d37ed48"
+      },
+      {
+        "bytes": 943651,
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/vifailback/meta/episodes.jsonl",
+        "sha256": "3ef9bfa7d90fbb95683599d090fb9b8bd44a675c6e07eaf757f4a1ed9b9bda27"
+      }
+    ],
+    "success": 657
+  },
+  "pilot": {
+    "A": {
+      "class_counts": {
+        "0": 122,
+        "1": 666
+      },
+      "episodes": 788,
+      "ordered_episode_ids_sha256": "8c545ced324978dab41386891248cf567630d85bc1c302b91f756286c1d9f9d3",
+      "task_ids": [
+        0,
+        1,
+        5,
+        7,
+        14,
+        16,
+        18,
+        19,
+        23,
+        25,
+        28,
+        29,
+        35,
+        45,
+        47,
+        60,
+        62,
+        72,
+        73,
+        87,
+        95,
+        97
+      ],
+      "tasks": 22
+    },
+    "C": {
+      "class_counts": {
+        "0": 46,
+        "1": 477
+      },
+      "episodes": 523,
+      "ordered_episode_ids_sha256": "467ba40425bff30dd8c376211381ab6e3b86c914d9ef9de3c61450055e35cdcd",
+      "task_ids": [
+        36,
+        53,
+        65,
+        78,
+        82,
+        91,
+        93,
+        94,
+        96
+      ],
+      "tasks": 9
+    },
+    "OUTER": {
+      "class_counts": {
+        "0": 208,
+        "1": 899
+      },
+      "episodes": 1107,
+      "ordered_episode_ids_sha256": "b6a0f6262a498d6f6f99ae0fdeafd564c189acd7b059645fc1f6e62a501e0f4f",
+      "task_ids": [
+        2,
+        3,
+        9,
+        13,
+        17,
+        22,
+        27,
+        39,
+        40,
+        42,
+        46,
+        48,
+        51,
+        54,
+        56,
+        57,
+        61,
+        63,
+        64,
+        66,
+        68,
+        70,
+        74,
+        77,
+        81,
+        83,
+        84,
+        85,
+        86,
+        88,
+        89,
+        90,
+        92
+      ],
+      "tasks": 33
+    },
+    "T": {
+      "class_counts": {
+        "0": 180,
+        "1": 1250
+      },
+      "episodes": 1430,
+      "ordered_episode_ids_sha256": "96072cad9dc92ff214270400551f8bc1a4f93b24edc6d9e3ac3fa0fd4bcf011f",
+      "task_ids": [
+        4,
+        8,
+        10,
+        11,
+        15,
+        20,
+        21,
+        30,
+        31,
+        33,
+        34,
+        37,
+        38,
+        41,
+        43,
+        44,
+        50,
+        52,
+        58,
+        67,
+        69,
+        75,
+        76,
+        79,
+        98,
+        99
+      ],
+      "tasks": 26
+    },
+    "V": {
+      "class_counts": {
+        "0": 73,
+        "1": 461
+      },
+      "episodes": 534,
+      "ordered_episode_ids_sha256": "455dfc0e5040470689617b3f52924ce6430009cd5a6262c17e51ab123644abf0",
+      "task_ids": [
+        6,
+        12,
+        24,
+        26,
+        32,
+        49,
+        59,
+        71,
+        80
+      ],
+      "tasks": 9
+    }
+  },
+  "roles": {
+    "outer0_final": {
+      "A": {
+        "class_counts": {
+          "0": 208,
+          "1": 899
+        },
+        "episodes": 1107,
+        "ordered_episode_ids_sha256": "b6a0f6262a498d6f6f99ae0fdeafd564c189acd7b059645fc1f6e62a501e0f4f",
+        "task_ids": [
+          2,
+          3,
+          9,
+          13,
+          17,
+          22,
+          27,
+          39,
+          40,
+          42,
+          46,
+          48,
+          51,
+          54,
+          56,
+          57,
+          61,
+          63,
+          64,
+          66,
+          68,
+          70,
+          74,
+          77,
+          81,
+          83,
+          84,
+          85,
+          86,
+          88,
+          89,
+          90,
+          92
+        ],
+        "tasks": 33
+      },
+      "C": {
+        "class_counts": {
+          "0": 97,
+          "1": 828
+        },
+        "episodes": 925,
+        "ordered_episode_ids_sha256": "c3c14644c8e2a505cc4927d7ca3af294a5bf2e1015c235be0d22a15053ea5f4f",
+        "task_ids": [
+          12,
+          15,
+          29,
+          31,
+          36,
+          43,
+          65,
+          67,
+          93,
+          94,
+          96,
+          98,
+          99
+        ],
+        "tasks": 13
+      },
+      "T": {
+        "class_counts": {
+          "0": 199,
+          "1": 1148
+        },
+        "episodes": 1347,
+        "ordered_episode_ids_sha256": "85f036f0704cfd452337b4ec5259d515035e4e5f4867763e67bc309d1ac0c008",
+        "task_ids": [
+          0,
+          5,
+          6,
+          7,
+          8,
+          10,
+          14,
+          16,
+          18,
+          19,
+          20,
+          21,
+          23,
+          25,
+          26,
+          28,
+          30,
+          32,
+          33,
+          34,
+          35,
+          38,
+          44,
+          45,
+          47,
+          49,
+          53,
+          59,
+          60,
+          62,
+          69,
+          71,
+          73,
+          76,
+          78,
+          80,
+          82,
+          91,
+          95,
+          97
+        ],
+        "tasks": 40
+      },
+      "V": {
+        "class_counts": {
+          "0": 125,
+          "1": 878
+        },
+        "episodes": 1003,
+        "ordered_episode_ids_sha256": "0eb373f4611c0787c593e1496c842b41f89c1c885530b033bf7d78d427207169",
+        "task_ids": [
+          1,
+          4,
+          11,
+          24,
+          37,
+          41,
+          50,
+          52,
+          58,
+          72,
+          75,
+          79,
+          87
+        ],
+        "tasks": 13
+      }
+    },
+    "outer0_inner0": {
+      "A": {
+        "class_counts": {
+          "0": 122,
+          "1": 666
+        },
+        "episodes": 788,
+        "ordered_episode_ids_sha256": "8c545ced324978dab41386891248cf567630d85bc1c302b91f756286c1d9f9d3",
+        "task_ids": [
+          0,
+          1,
+          5,
+          7,
+          14,
+          16,
+          18,
+          19,
+          23,
+          25,
+          28,
+          29,
+          35,
+          45,
+          47,
+          60,
+          62,
+          72,
+          73,
+          87,
+          95,
+          97
+        ],
+        "tasks": 22
+      },
+      "C": {
+        "class_counts": {
+          "0": 46,
+          "1": 477
+        },
+        "episodes": 523,
+        "ordered_episode_ids_sha256": "467ba40425bff30dd8c376211381ab6e3b86c914d9ef9de3c61450055e35cdcd",
+        "task_ids": [
+          36,
+          53,
+          65,
+          78,
+          82,
+          91,
+          93,
+          94,
+          96
+        ],
+        "tasks": 9
+      },
+      "T": {
+        "class_counts": {
+          "0": 180,
+          "1": 1250
+        },
+        "episodes": 1430,
+        "ordered_episode_ids_sha256": "96072cad9dc92ff214270400551f8bc1a4f93b24edc6d9e3ac3fa0fd4bcf011f",
+        "task_ids": [
+          4,
+          8,
+          10,
+          11,
+          15,
+          20,
+          21,
+          30,
+          31,
+          33,
+          34,
+          37,
+          38,
+          41,
+          43,
+          44,
+          50,
+          52,
+          58,
+          67,
+          69,
+          75,
+          76,
+          79,
+          98,
+          99
+        ],
+        "tasks": 26
+      },
+      "V": {
+        "class_counts": {
+          "0": 73,
+          "1": 461
+        },
+        "episodes": 534,
+        "ordered_episode_ids_sha256": "455dfc0e5040470689617b3f52924ce6430009cd5a6262c17e51ab123644abf0",
+        "task_ids": [
+          6,
+          12,
+          24,
+          26,
+          32,
+          49,
+          59,
+          71,
+          80
+        ],
+        "tasks": 9
+      }
+    },
+    "outer0_inner1": {
+      "A": {
+        "class_counts": {
+          "0": 177,
+          "1": 1297
+        },
+        "episodes": 1474,
+        "ordered_episode_ids_sha256": "75793b700a414cfdb4e8bc7b4c14dd7167334449a3ee618af08a868341020285",
+        "task_ids": [
+          8,
+          11,
+          12,
+          21,
+          30,
+          31,
+          32,
+          33,
+          41,
+          50,
+          52,
+          69,
+          75,
+          76,
+          78,
+          79,
+          80,
+          82,
+          91,
+          93,
+          98,
+          99
+        ],
+        "tasks": 22
+      },
+      "C": {
+        "class_counts": {
+          "0": 47,
+          "1": 227
+        },
+        "episodes": 274,
+        "ordered_episode_ids_sha256": "3de166ff1dc55cb90cdc1efc9f7440a58df0ae36ffaf26dc6fc3d3ebe0194a58",
+        "task_ids": [
+          15,
+          24,
+          26,
+          35,
+          44,
+          45,
+          62,
+          67,
+          72
+        ],
+        "tasks": 9
+      },
+      "T": {
+        "class_counts": {
+          "0": 126,
+          "1": 782
+        },
+        "episodes": 908,
+        "ordered_episode_ids_sha256": "14ee7983247a9511f11735ce6dbbe3e62a5d734bd71c3e516e1c9cee34ef7611",
+        "task_ids": [
+          0,
+          6,
+          7,
+          10,
+          16,
+          18,
+          19,
+          20,
+          23,
+          25,
+          28,
+          29,
+          34,
+          37,
+          38,
+          43,
+          47,
+          49,
+          58,
+          59,
+          60,
+          65,
+          73,
+          87,
+          95,
+          97
+        ],
+        "tasks": 26
+      },
+      "V": {
+        "class_counts": {
+          "0": 71,
+          "1": 548
+        },
+        "episodes": 619,
+        "ordered_episode_ids_sha256": "aad8512353e5860f13da1b95e8ebf03ea72c1d1b6bebdf753cacd982f33b0303",
+        "task_ids": [
+          1,
+          4,
+          5,
+          14,
+          36,
+          53,
+          71,
+          94,
+          96
+        ],
+        "tasks": 9
+      }
+    },
+    "outer0_inner2": {
+      "A": {
+        "class_counts": {
+          "0": 122,
+          "1": 891
+        },
+        "episodes": 1013,
+        "ordered_episode_ids_sha256": "c8c5337acdd95dcf6f1b803c39a192e019ca5f9f88ea9e50111bc6ca1b9f2c23",
+        "task_ids": [
+          4,
+          6,
+          10,
+          15,
+          20,
+          24,
+          26,
+          34,
+          36,
+          37,
+          38,
+          43,
+          44,
+          49,
+          53,
+          58,
+          59,
+          65,
+          67,
+          71,
+          94,
+          96
+        ],
+        "tasks": 22
+      },
+      "C": {
+        "class_counts": {
+          "0": 94,
+          "1": 486
+        },
+        "episodes": 580,
+        "ordered_episode_ids_sha256": "4226375fefc46ba62d5570a6d363efd35b24300a82a484f2bbbf3354d08e4a66",
+        "task_ids": [
+          8,
+          30,
+          31,
+          47,
+          69,
+          82,
+          87,
+          91,
+          99
+        ],
+        "tasks": 9
+      },
+      "T": {
+        "class_counts": {
+          "0": 143,
+          "1": 833
+        },
+        "episodes": 976,
+        "ordered_episode_ids_sha256": "224900f7d1d3fdcedb43df27d744ab06b365147022941800e9f8be733420ed05",
+        "task_ids": [
+          0,
+          1,
+          5,
+          7,
+          11,
+          12,
+          16,
+          18,
+          19,
+          25,
+          28,
+          29,
+          32,
+          33,
+          45,
+          60,
+          62,
+          72,
+          73,
+          75,
+          76,
+          78,
+          79,
+          93,
+          95,
+          98
+        ],
+        "tasks": 26
+      },
+      "V": {
+        "class_counts": {
+          "0": 62,
+          "1": 644
+        },
+        "episodes": 706,
+        "ordered_episode_ids_sha256": "d2c328d796f8f13c725d1ce26fd21ca09e224fea0774592d93849ad3b15438a8",
+        "task_ids": [
+          14,
+          21,
+          23,
+          35,
+          41,
+          50,
+          52,
+          80,
+          97
+        ],
+        "tasks": 9
+      }
+    },
+    "outer1_final": {
+      "A": {
+        "class_counts": {
+          "0": 241,
+          "1": 1345
+        },
+        "episodes": 1586,
+        "ordered_episode_ids_sha256": "d952085c31fd25722fa2e0d52cf138bc7f98e176c2f7c195e138204b05ab53f3",
+        "task_ids": [
+          4,
+          5,
+          11,
+          14,
+          15,
+          18,
+          20,
+          23,
+          25,
+          26,
+          31,
+          32,
+          34,
+          35,
+          36,
+          37,
+          41,
+          43,
+          44,
+          45,
+          49,
+          52,
+          58,
+          59,
+          60,
+          73,
+          75,
+          78,
+          80,
+          87,
+          91,
+          93,
+          97
+        ],
+        "tasks": 33
+      },
+      "C": {
+        "class_counts": {
+          "0": 87,
+          "1": 558
+        },
+        "episodes": 645,
+        "ordered_episode_ids_sha256": "cb710fbfb06d5f4161e22704cef1fffc570e08369fda91132c8ac505be21c8f5",
+        "task_ids": [
+          30,
+          38,
+          40,
+          56,
+          57,
+          61,
+          62,
+          66,
+          71,
+          77,
+          82,
+          84,
+          94
+        ],
+        "tasks": 13
+      },
+      "T": {
+        "class_counts": {
+          "0": 267,
+          "1": 1660
+        },
+        "episodes": 1927,
+        "ordered_episode_ids_sha256": "9142580b443f1b2ae6936ca04b1c50f55308d99279ef8b2cea3b1317dcccc7fe",
+        "task_ids": [
+          1,
+          2,
+          3,
+          6,
+          7,
+          10,
+          13,
+          16,
+          17,
+          19,
+          21,
+          22,
+          24,
+          27,
+          29,
+          33,
+          42,
+          46,
+          47,
+          48,
+          50,
+          53,
+          54,
+          64,
+          65,
+          69,
+          70,
+          72,
+          76,
+          79,
+          81,
+          83,
+          85,
+          86,
+          88,
+          89,
+          92,
+          96,
+          98,
+          99
+        ],
+        "tasks": 40
+      },
+      "V": {
+        "class_counts": {
+          "0": 34,
+          "1": 190
+        },
+        "episodes": 224,
+        "ordered_episode_ids_sha256": "cda0fc4366d57cbb4dec8ce615e05da5051290fb1c35b795bb37d154c5f0f79e",
+        "task_ids": [
+          0,
+          8,
+          9,
+          12,
+          28,
+          39,
+          51,
+          63,
+          67,
+          68,
+          74,
+          90,
+          95
+        ],
+        "tasks": 13
+      }
+    },
+    "outer1_inner0": {
+      "A": {
+        "class_counts": {
+          "0": 155,
+          "1": 1041
+        },
+        "episodes": 1196,
+        "ordered_episode_ids_sha256": "7eca117dd896534207bd3fccd833cda3348aeb32247de24e174606f5ac362fe1",
+        "task_ids": [
+          1,
+          2,
+          3,
+          7,
+          19,
+          27,
+          46,
+          47,
+          48,
+          53,
+          61,
+          65,
+          66,
+          74,
+          76,
+          81,
+          83,
+          86,
+          88,
+          94,
+          95,
+          98
+        ],
+        "tasks": 22
+      },
+      "C": {
+        "class_counts": {
+          "0": 71,
+          "1": 276
+        },
+        "episodes": 347,
+        "ordered_episode_ids_sha256": "a768ab2b59895386d2cb680def6bdabe3c9c01df60fca0e6dfe3b56122533d78",
+        "task_ids": [
+          12,
+          22,
+          30,
+          51,
+          56,
+          64,
+          82,
+          84,
+          89
+        ],
+        "tasks": 9
+      },
+      "T": {
+        "class_counts": {
+          "0": 138,
+          "1": 967
+        },
+        "episodes": 1105,
+        "ordered_episode_ids_sha256": "bd00f6cf26555c804b4d9e7828eb2c328a1f45484a4311a0c7a5090f6bf14450",
+        "task_ids": [
+          0,
+          6,
+          8,
+          13,
+          16,
+          17,
+          21,
+          28,
+          29,
+          33,
+          38,
+          39,
+          40,
+          42,
+          50,
+          54,
+          57,
+          62,
+          67,
+          69,
+          71,
+          79,
+          85,
+          92,
+          96,
+          99
+        ],
+        "tasks": 26
+      },
+      "V": {
+        "class_counts": {
+          "0": 24,
+          "1": 124
+        },
+        "episodes": 148,
+        "ordered_episode_ids_sha256": "100c2590767b788fc77d83026b0bb020d3643df3621dc1848a5da399dac921f0",
+        "task_ids": [
+          9,
+          10,
+          24,
+          63,
+          68,
+          70,
+          72,
+          77,
+          90
+        ],
+        "tasks": 9
+      }
+    },
+    "outer1_inner1": {
+      "A": {
+        "class_counts": {
+          "0": 125,
+          "1": 629
+        },
+        "episodes": 754,
+        "ordered_episode_ids_sha256": "2528717dd964d85a181689ee70dfd3c9d2a1b94e99e6abc9f5bee66a6f0c656b",
+        "task_ids": [
+          6,
+          8,
+          10,
+          12,
+          13,
+          16,
+          17,
+          21,
+          24,
+          28,
+          56,
+          57,
+          62,
+          63,
+          64,
+          67,
+          69,
+          72,
+          79,
+          85,
+          96,
+          99
+        ],
+        "tasks": 22
+      },
+      "C": {
+        "class_counts": {
+          "0": 47,
+          "1": 237
+        },
+        "episodes": 284,
+        "ordered_episode_ids_sha256": "41fd637b6647af9b11935433c2913e29f7e9c60fedf01c79d7d3c809437e2296",
+        "task_ids": [
+          0,
+          19,
+          27,
+          33,
+          40,
+          47,
+          76,
+          88,
+          89
+        ],
+        "tasks": 9
+      },
+      "T": {
+        "class_counts": {
+          "0": 118,
+          "1": 1076
+        },
+        "episodes": 1194,
+        "ordered_episode_ids_sha256": "879f85ba4bd52af582781cb9208029cd99f595b5aa7f7561c91d79c77c7f9b55",
+        "task_ids": [
+          1,
+          2,
+          3,
+          7,
+          9,
+          22,
+          38,
+          39,
+          42,
+          50,
+          51,
+          53,
+          65,
+          66,
+          68,
+          70,
+          71,
+          74,
+          82,
+          83,
+          84,
+          86,
+          92,
+          94,
+          95,
+          98
+        ],
+        "tasks": 26
+      },
+      "V": {
+        "class_counts": {
+          "0": 98,
+          "1": 466
+        },
+        "episodes": 564,
+        "ordered_episode_ids_sha256": "6157aa0be287fa7e2aa4926a6567b06a977c0357d7f8ccece62973212b366723",
+        "task_ids": [
+          29,
+          30,
+          46,
+          48,
+          54,
+          61,
+          77,
+          81,
+          90
+        ],
+        "tasks": 9
+      }
+    },
+    "outer1_inner2": {
+      "A": {
+        "class_counts": {
+          "0": 108,
+          "1": 738
+        },
+        "episodes": 846,
+        "ordered_episode_ids_sha256": "6b3018f2d9403d69bdf28f9ae2329c8c037aca1bde01df736d01cdf1203a7e47",
+        "task_ids": [
+          0,
+          9,
+          22,
+          29,
+          30,
+          33,
+          38,
+          39,
+          40,
+          42,
+          50,
+          51,
+          54,
+          68,
+          70,
+          71,
+          77,
+          82,
+          84,
+          89,
+          90,
+          92
+        ],
+        "tasks": 22
+      },
+      "C": {
+        "class_counts": {
+          "0": 48,
+          "1": 160
+        },
+        "episodes": 208,
+        "ordered_episode_ids_sha256": "40bb4f9effc646dfaa8f04ac449d6528000c2a15d4dc01cb33d1012da2aefdcf",
+        "task_ids": [
+          3,
+          53,
+          56,
+          62,
+          66,
+          67,
+          76,
+          85,
+          95
+        ],
+        "tasks": 9
+      },
+      "T": {
+        "class_counts": {
+          "0": 185,
+          "1": 1260
+        },
+        "episodes": 1445,
+        "ordered_episode_ids_sha256": "fbf01d08a267b0c565d21c15194deb23a3f078bee4fd46bbd6fe55ab9287e678",
+        "task_ids": [
+          2,
+          6,
+          7,
+          12,
+          13,
+          19,
+          24,
+          27,
+          28,
+          46,
+          47,
+          48,
+          57,
+          61,
+          64,
+          69,
+          72,
+          74,
+          79,
+          83,
+          86,
+          88,
+          94,
+          96,
+          98,
+          99
+        ],
+        "tasks": 26
+      },
+      "V": {
+        "class_counts": {
+          "0": 47,
+          "1": 250
+        },
+        "episodes": 297,
+        "ordered_episode_ids_sha256": "7313ee87680f106b145fefed9315a95ec7890f6f16dd980d69d52b9f8f8e4620",
+        "task_ids": [
+          1,
+          8,
+          10,
+          16,
+          17,
+          21,
+          63,
+          65,
+          81
+        ],
+        "tasks": 9
+      }
+    },
+    "outer2_final": {
+      "A": {
+        "class_counts": {
+          "0": 180,
+          "1": 1509
+        },
+        "episodes": 1689,
+        "ordered_episode_ids_sha256": "779f28c53009282b2719f3c26b25b907322fdf5cbe1f30194424f9cb11906b93",
+        "task_ids": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          10,
+          12,
+          16,
+          19,
+          21,
+          24,
+          28,
+          29,
+          30,
+          33,
+          38,
+          47,
+          50,
+          53,
+          62,
+          65,
+          67,
+          69,
+          71,
+          72,
+          76,
+          79,
+          82,
+          94,
+          95,
+          96,
+          98,
+          99
+        ],
+        "tasks": 33
+      },
+      "C": {
+        "class_counts": {
+          "0": 82,
+          "1": 380
+        },
+        "episodes": 462,
+        "ordered_episode_ids_sha256": "efa9b827726f2347b2f66c4b665396097c941df1080b781162066b5318e32021",
+        "task_ids": [
+          4,
+          14,
+          42,
+          49,
+          56,
+          58,
+          60,
+          75,
+          77,
+          83,
+          89,
+          92,
+          93
+        ],
+        "tasks": 13
+      },
+      "T": {
+        "class_counts": {
+          "0": 311,
+          "1": 1568
+        },
+        "episodes": 1879,
+        "ordered_episode_ids_sha256": "dffdfb5df9a1c79bfa3244fe867fab603fea5800a79ff982973917f9f28f79b3",
+        "task_ids": [
+          2,
+          3,
+          5,
+          9,
+          11,
+          13,
+          15,
+          18,
+          20,
+          22,
+          23,
+          25,
+          26,
+          27,
+          32,
+          35,
+          36,
+          37,
+          39,
+          43,
+          44,
+          46,
+          48,
+          51,
+          54,
+          57,
+          59,
+          61,
+          68,
+          70,
+          73,
+          74,
+          78,
+          80,
+          81,
+          84,
+          86,
+          87,
+          88,
+          97
+        ],
+        "tasks": 40
+      },
+      "V": {
+        "class_counts": {
+          "0": 56,
+          "1": 296
+        },
+        "episodes": 352,
+        "ordered_episode_ids_sha256": "26f454ecf0dcff1525fecc0fe438c1b674d1da27d2a7c3a9a273797aebe8c725",
+        "task_ids": [
+          17,
+          31,
+          34,
+          40,
+          41,
+          45,
+          52,
+          63,
+          64,
+          66,
+          85,
+          90,
+          91
+        ],
+        "tasks": 13
+      }
+    },
+    "outer2_inner0": {
+      "A": {
+        "class_counts": {
+          "0": 203,
+          "1": 1036
+        },
+        "episodes": 1239,
+        "ordered_episode_ids_sha256": "95d8550a235cc373afea055b612aff27fd629c8ba959d2335f7f52ac9b4ca71b",
+        "task_ids": [
+          2,
+          5,
+          11,
+          26,
+          31,
+          32,
+          40,
+          46,
+          49,
+          54,
+          57,
+          59,
+          60,
+          61,
+          73,
+          80,
+          81,
+          84,
+          87,
+          89,
+          91,
+          92
+        ],
+        "tasks": 22
+      },
+      "C": {
+        "class_counts": {
+          "0": 47,
+          "1": 227
+        },
+        "episodes": 274,
+        "ordered_episode_ids_sha256": "933014d5caef71e4ef8852da533a97609bce116426dbbfd0f55161d7109ca445",
+        "task_ids": [
+          13,
+          15,
+          18,
+          20,
+          44,
+          64,
+          75,
+          85,
+          97
+        ],
+        "tasks": 9
+      },
+      "T": {
+        "class_counts": {
+          "0": 159,
+          "1": 699
+        },
+        "episodes": 858,
+        "ordered_episode_ids_sha256": "cb62915bd5429e5693db893db18fb7f082e1f0c2e7ea57a73d8b92fe6fc625e0",
+        "task_ids": [
+          3,
+          4,
+          9,
+          14,
+          17,
+          22,
+          23,
+          25,
+          27,
+          35,
+          36,
+          42,
+          43,
+          48,
+          51,
+          52,
+          56,
+          58,
+          63,
+          66,
+          68,
+          70,
+          74,
+          77,
+          88,
+          93
+        ],
+        "tasks": 26
+      },
+      "V": {
+        "class_counts": {
+          "0": 40,
+          "1": 282
+        },
+        "episodes": 322,
+        "ordered_episode_ids_sha256": "2f14c24a46d1d06b5bf8727b6014ae5324686c6cd2711f61f191760bd9371547",
+        "task_ids": [
+          34,
+          37,
+          39,
+          41,
+          45,
+          78,
+          83,
+          86,
+          90
+        ],
+        "tasks": 9
+      }
+    },
+    "outer2_inner1": {
+      "A": {
+        "class_counts": {
+          "0": 145,
+          "1": 668
+        },
+        "episodes": 813,
+        "ordered_episode_ids_sha256": "b3409fd51e55cf6ebd56d74a49b2a32d658ee72c55acaeef28e085faa8889209",
+        "task_ids": [
+          4,
+          9,
+          13,
+          15,
+          34,
+          36,
+          39,
+          42,
+          43,
+          44,
+          48,
+          51,
+          56,
+          64,
+          66,
+          68,
+          70,
+          78,
+          83,
+          85,
+          86,
+          88
+        ],
+        "tasks": 22
+      },
+      "C": {
+        "class_counts": {
+          "0": 47,
+          "1": 220
+        },
+        "episodes": 267,
+        "ordered_episode_ids_sha256": "6c7bd1b9896c323b0a6972c83c053159d20d403c7654e1a0bfd6449149854267",
+        "task_ids": [
+          11,
+          18,
+          20,
+          40,
+          60,
+          73,
+          87,
+          89,
+          90
+        ],
+        "tasks": 9
+      },
+      "T": {
+        "class_counts": {
+          "0": 210,
+          "1": 1174
+        },
+        "episodes": 1384,
+        "ordered_episode_ids_sha256": "b7ad61d0958129af62bbfcf617186e514740edc1699acfb11e4d2abec6ad987c",
+        "task_ids": [
+          2,
+          3,
+          5,
+          14,
+          17,
+          23,
+          25,
+          26,
+          27,
+          31,
+          32,
+          35,
+          41,
+          46,
+          49,
+          52,
+          57,
+          58,
+          59,
+          61,
+          77,
+          80,
+          81,
+          92,
+          93,
+          97
+        ],
+        "tasks": 26
+      },
+      "V": {
+        "class_counts": {
+          "0": 47,
+          "1": 182
+        },
+        "episodes": 229,
+        "ordered_episode_ids_sha256": "49a0de67e1a0eb8e5f451b4741a7b87a8b25678604c5c2647d6ca7cf1c92d1de",
+        "task_ids": [
+          22,
+          37,
+          45,
+          54,
+          63,
+          74,
+          75,
+          84,
+          91
+        ],
+        "tasks": 9
+      }
+    },
+    "outer2_inner2": {
+      "A": {
+        "class_counts": {
+          "0": 101,
+          "1": 540
+        },
+        "episodes": 641,
+        "ordered_episode_ids_sha256": "d208b43dc64919d762d17c1a4c322856a0c26777e843ed8c88ed457f492a6896",
+        "task_ids": [
+          3,
+          14,
+          17,
+          18,
+          20,
+          22,
+          23,
+          25,
+          27,
+          35,
+          37,
+          41,
+          45,
+          52,
+          58,
+          63,
+          74,
+          75,
+          77,
+          90,
+          93,
+          97
+        ],
+        "tasks": 22
+      },
+      "C": {
+        "class_counts": {
+          "0": 68,
+          "1": 380
+        },
+        "episodes": 448,
+        "ordered_episode_ids_sha256": "03010b5da2eef08e6a93f3b7d8d8e97b4f66b41dd0bd5b6eb0d012ba27d230d2",
+        "task_ids": [
+          2,
+          26,
+          44,
+          49,
+          66,
+          81,
+          83,
+          86,
+          92
+        ],
+        "tasks": 9
+      },
+      "T": {
+        "class_counts": {
+          "0": 178,
+          "1": 963
+        },
+        "episodes": 1141,
+        "ordered_episode_ids_sha256": "734d8b9da6b1c5dd78f1ff5224f679e4ea7f44a3a796ce06b7508175ad45a6c9",
+        "task_ids": [
+          4,
+          5,
+          9,
+          11,
+          13,
+          31,
+          36,
+          39,
+          43,
+          46,
+          48,
+          51,
+          57,
+          59,
+          60,
+          61,
+          68,
+          70,
+          78,
+          80,
+          84,
+          85,
+          87,
+          88,
+          89,
+          91
+        ],
+        "tasks": 26
+      },
+      "V": {
+        "class_counts": {
+          "0": 102,
+          "1": 361
+        },
+        "episodes": 463,
+        "ordered_episode_ids_sha256": "8b4abf1579859fea92e1ce052570faccab5567834b2a02e99a2a91b709e9160d",
+        "task_ids": [
+          15,
+          32,
+          34,
+          40,
+          42,
+          54,
+          56,
+          64,
+          73
+        ],
+        "tasks": 9
+      }
+    }
+  },
+  "sensor": {
+    "channels": [
+      "observation.state.0",
+      "observation.state.1",
+      "observation.state.2",
+      "observation.state.3",
+      "observation.state.4",
+      "observation.state.5",
+      "observation.state.6",
+      "observation.state.7",
+      "observation.state.8",
+      "observation.state.9",
+      "observation.state.10",
+      "observation.state.11",
+      "observation.state.12",
+      "observation.state.13",
+      "observation.velocity.0",
+      "observation.velocity.1",
+      "observation.velocity.2",
+      "observation.velocity.3",
+      "observation.velocity.4",
+      "observation.velocity.5",
+      "observation.velocity.7",
+      "observation.velocity.8",
+      "observation.velocity.9",
+      "observation.velocity.10",
+      "observation.velocity.11",
+      "observation.velocity.12",
+      "observation.effort.6",
+      "observation.effort.13"
+    ],
+    "eligible_join_count": 4382,
+    "feature_names": [
+      "observation.state.0.mean",
+      "observation.state.1.mean",
+      "observation.state.2.mean",
+      "observation.state.3.mean",
+      "observation.state.4.mean",
+      "observation.state.5.mean",
+      "observation.state.6.mean",
+      "observation.state.7.mean",
+      "observation.state.8.mean",
+      "observation.state.9.mean",
+      "observation.state.10.mean",
+      "observation.state.11.mean",
+      "observation.state.12.mean",
+      "observation.state.13.mean",
+      "observation.velocity.0.mean",
+      "observation.velocity.1.mean",
+      "observation.velocity.2.mean",
+      "observation.velocity.3.mean",
+      "observation.velocity.4.mean",
+      "observation.velocity.5.mean",
+      "observation.velocity.7.mean",
+      "observation.velocity.8.mean",
+      "observation.velocity.9.mean",
+      "observation.velocity.10.mean",
+      "observation.velocity.11.mean",
+      "observation.velocity.12.mean",
+      "observation.effort.6.mean",
+      "observation.effort.13.mean",
+      "observation.state.0.std",
+      "observation.state.1.std",
+      "observation.state.2.std",
+      "observation.state.3.std",
+      "observation.state.4.std",
+      "observation.state.5.std",
+      "observation.state.6.std",
+      "observation.state.7.std",
+      "observation.state.8.std",
+      "observation.state.9.std",
+      "observation.state.10.std",
+      "observation.state.11.std",
+      "observation.state.12.std",
+      "observation.state.13.std",
+      "observation.velocity.0.std",
+      "observation.velocity.1.std",
+      "observation.velocity.2.std",
+      "observation.velocity.3.std",
+      "observation.velocity.4.std",
+      "observation.velocity.5.std",
+      "observation.velocity.7.std",
+      "observation.velocity.8.std",
+      "observation.velocity.9.std",
+      "observation.velocity.10.std",
+      "observation.velocity.11.std",
+      "observation.velocity.12.std",
+      "observation.effort.6.std",
+      "observation.effort.13.std",
+      "observation.state.0.median",
+      "observation.state.1.median",
+      "observation.state.2.median",
+      "observation.state.3.median",
+      "observation.state.4.median",
+      "observation.state.5.median",
+      "observation.state.6.median",
+      "observation.state.7.median",
+      "observation.state.8.median",
+      "observation.state.9.median",
+      "observation.state.10.median",
+      "observation.state.11.median",
+      "observation.state.12.median",
+      "observation.state.13.median",
+      "observation.velocity.0.median",
+      "observation.velocity.1.median",
+      "observation.velocity.2.median",
+      "observation.velocity.3.median",
+      "observation.velocity.4.median",
+      "observation.velocity.5.median",
+      "observation.velocity.7.median",
+      "observation.velocity.8.median",
+      "observation.velocity.9.median",
+      "observation.velocity.10.median",
+      "observation.velocity.11.median",
+      "observation.velocity.12.median",
+      "observation.effort.6.median",
+      "observation.effort.13.median",
+      "observation.state.0.min",
+      "observation.state.1.min",
+      "observation.state.2.min",
+      "observation.state.3.min",
+      "observation.state.4.min",
+      "observation.state.5.min",
+      "observation.state.6.min",
+      "observation.state.7.min",
+      "observation.state.8.min",
+      "observation.state.9.min",
+      "observation.state.10.min",
+      "observation.state.11.min",
+      "observation.state.12.min",
+      "observation.state.13.min",
+      "observation.velocity.0.min",
+      "observation.velocity.1.min",
+      "observation.velocity.2.min",
+      "observation.velocity.3.min",
+      "observation.velocity.4.min",
+      "observation.velocity.5.min",
+      "observation.velocity.7.min",
+      "observation.velocity.8.min",
+      "observation.velocity.9.min",
+      "observation.velocity.10.min",
+      "observation.velocity.11.min",
+      "observation.velocity.12.min",
+      "observation.effort.6.min",
+      "observation.effort.13.min",
+      "observation.state.0.max",
+      "observation.state.1.max",
+      "observation.state.2.max",
+      "observation.state.3.max",
+      "observation.state.4.max",
+      "observation.state.5.max",
+      "observation.state.6.max",
+      "observation.state.7.max",
+      "observation.state.8.max",
+      "observation.state.9.max",
+      "observation.state.10.max",
+      "observation.state.11.max",
+      "observation.state.12.max",
+      "observation.state.13.max",
+      "observation.velocity.0.max",
+      "observation.velocity.1.max",
+      "observation.velocity.2.max",
+      "observation.velocity.3.max",
+      "observation.velocity.4.max",
+      "observation.velocity.5.max",
+      "observation.velocity.7.max",
+      "observation.velocity.8.max",
+      "observation.velocity.9.max",
+      "observation.velocity.10.max",
+      "observation.velocity.11.max",
+      "observation.velocity.12.max",
+      "observation.effort.6.max",
+      "observation.effort.13.max",
+      "observation.state.0.q25",
+      "observation.state.1.q25",
+      "observation.state.2.q25",
+      "observation.state.3.q25",
+      "observation.state.4.q25",
+      "observation.state.5.q25",
+      "observation.state.6.q25",
+      "observation.state.7.q25",
+      "observation.state.8.q25",
+      "observation.state.9.q25",
+      "observation.state.10.q25",
+      "observation.state.11.q25",
+      "observation.state.12.q25",
+      "observation.state.13.q25",
+      "observation.velocity.0.q25",
+      "observation.velocity.1.q25",
+      "observation.velocity.2.q25",
+      "observation.velocity.3.q25",
+      "observation.velocity.4.q25",
+      "observation.velocity.5.q25",
+      "observation.velocity.7.q25",
+      "observation.velocity.8.q25",
+      "observation.velocity.9.q25",
+      "observation.velocity.10.q25",
+      "observation.velocity.11.q25",
+      "observation.velocity.12.q25",
+      "observation.effort.6.q25",
+      "observation.effort.13.q25",
+      "observation.state.0.q75",
+      "observation.state.1.q75",
+      "observation.state.2.q75",
+      "observation.state.3.q75",
+      "observation.state.4.q75",
+      "observation.state.5.q75",
+      "observation.state.6.q75",
+      "observation.state.7.q75",
+      "observation.state.8.q75",
+      "observation.state.9.q75",
+      "observation.state.10.q75",
+      "observation.state.11.q75",
+      "observation.state.12.q75",
+      "observation.state.13.q75",
+      "observation.velocity.0.q75",
+      "observation.velocity.1.q75",
+      "observation.velocity.2.q75",
+      "observation.velocity.3.q75",
+      "observation.velocity.4.q75",
+      "observation.velocity.5.q75",
+      "observation.velocity.7.q75",
+      "observation.velocity.8.q75",
+      "observation.velocity.9.q75",
+      "observation.velocity.10.q75",
+      "observation.velocity.11.q75",
+      "observation.velocity.12.q75",
+      "observation.effort.6.q75",
+      "observation.effort.13.q75",
+      "observation.state.0.range",
+      "observation.state.1.range",
+      "observation.state.2.range",
+      "observation.state.3.range",
+      "observation.state.4.range",
+      "observation.state.5.range",
+      "observation.state.6.range",
+      "observation.state.7.range",
+      "observation.state.8.range",
+      "observation.state.9.range",
+      "observation.state.10.range",
+      "observation.state.11.range",
+      "observation.state.12.range",
+      "observation.state.13.range",
+      "observation.velocity.0.range",
+      "observation.velocity.1.range",
+      "observation.velocity.2.range",
+      "observation.velocity.3.range",
+      "observation.velocity.4.range",
+      "observation.velocity.5.range",
+      "observation.velocity.7.range",
+      "observation.velocity.8.range",
+      "observation.velocity.9.range",
+      "observation.velocity.10.range",
+      "observation.velocity.11.range",
+      "observation.velocity.12.range",
+      "observation.effort.6.range",
+      "observation.effort.13.range",
+      "observation.state.0.RMS",
+      "observation.state.1.RMS",
+      "observation.state.2.RMS",
+      "observation.state.3.RMS",
+      "observation.state.4.RMS",
+      "observation.state.5.RMS",
+      "observation.state.6.RMS",
+      "observation.state.7.RMS",
+      "observation.state.8.RMS",
+      "observation.state.9.RMS",
+      "observation.state.10.RMS",
+      "observation.state.11.RMS",
+      "observation.state.12.RMS",
+      "observation.state.13.RMS",
+      "observation.velocity.0.RMS",
+      "observation.velocity.1.RMS",
+      "observation.velocity.2.RMS",
+      "observation.velocity.3.RMS",
+      "observation.velocity.4.RMS",
+      "observation.velocity.5.RMS",
+      "observation.velocity.7.RMS",
+      "observation.velocity.8.RMS",
+      "observation.velocity.9.RMS",
+      "observation.velocity.10.RMS",
+      "observation.velocity.11.RMS",
+      "observation.velocity.12.RMS",
+      "observation.effort.6.RMS",
+      "observation.effort.13.RMS",
+      "observation.state.0.normalized_progress_slope",
+      "observation.state.1.normalized_progress_slope",
+      "observation.state.2.normalized_progress_slope",
+      "observation.state.3.normalized_progress_slope",
+      "observation.state.4.normalized_progress_slope",
+      "observation.state.5.normalized_progress_slope",
+      "observation.state.6.normalized_progress_slope",
+      "observation.state.7.normalized_progress_slope",
+      "observation.state.8.normalized_progress_slope",
+      "observation.state.9.normalized_progress_slope",
+      "observation.state.10.normalized_progress_slope",
+      "observation.state.11.normalized_progress_slope",
+      "observation.state.12.normalized_progress_slope",
+      "observation.state.13.normalized_progress_slope",
+      "observation.velocity.0.normalized_progress_slope",
+      "observation.velocity.1.normalized_progress_slope",
+      "observation.velocity.2.normalized_progress_slope",
+      "observation.velocity.3.normalized_progress_slope",
+      "observation.velocity.4.normalized_progress_slope",
+      "observation.velocity.5.normalized_progress_slope",
+      "observation.velocity.7.normalized_progress_slope",
+      "observation.velocity.8.normalized_progress_slope",
+      "observation.velocity.9.normalized_progress_slope",
+      "observation.velocity.10.normalized_progress_slope",
+      "observation.velocity.11.normalized_progress_slope",
+      "observation.velocity.12.normalized_progress_slope",
+      "observation.effort.6.normalized_progress_slope",
+      "observation.effort.13.normalized_progress_slope"
+    ],
+    "not_force_torque": true,
+    "path": "VIFAILBACK/03_preprocessing/sensor_preprocessing/arrays/20261029T004900Z/statistics.npz",
+    "receipt": {
+      "bytes": 12015,
+      "path": "VIFAILBACK/03_preprocessing/sensor_preprocessing/arrays/20261029T004900Z/COMPLETE.json",
+      "sha256": "d8d4b8b6b4588d0977388b21c3685f00c2d1d1e8c79f749ca2cee92a93703dc1"
+    },
+    "sha256": "b227d3c869bc015d6c3b26d7d48ab77c2512cc0f46611be1c4e448d5581ab5a7",
+    "shape": [
+      4384,
+      280
+    ]
+  },
+  "source_availability": {
+    "camera_streams": 13146,
+    "changed_mtime_payload_hash_rechecks": [],
+    "scope": "Current metadata recheck against original complete decode+selected-frame SHA audit; actual selected frames checked again on every live decode",
+    "sensor_episode_files_present": 4382,
+    "size_mtime_metadata_matches": 13146,
+    "source_bytes_referenced_not_copied": 24735326829
+  },
+  "split_source": {
+    "bytes": 559580,
+    "path": "VIFAILBACK/04_evaluation_splits/train_validation_test/20261029T004900Z/fit_partitions.json",
+    "sha256": "ad003bba25de31072612b6a3346690087ecb9f8c94f9558d2663fe99da150231"
+  }
+}
