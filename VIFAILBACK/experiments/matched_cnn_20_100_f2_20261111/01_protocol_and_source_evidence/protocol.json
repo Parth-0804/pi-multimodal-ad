@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "study_id": "matched_cnn_20_100_f2_20261111",
+  "created_utc": "2026-11-10T23:09:07.673912+00:00",
+  "client_date": "2026-11-11",
+  "authorization": "Attached user instruction explicitly authorizes implementation,training,evaluation,verification,local commits;no push",
+  "legacy_run_id": "20261029T004900Z",
+  "cohort_expected": {
+    "episodes": 4382,
+    "failures": 3753,
+    "successes": 629,
+    "canonical_tasks": 99
+  },
+  "cohort_sha256": "69ef64b012f683c5c8be7882c7e047675f88ed6a448f53c3aa21f432e9858560",
+  "splits_sha256": "ad003bba25de31072612b6a3346690087ecb9f8c94f9558d2663fe99da150231",
+  "seeds": [
+    42,
+    123,
+    20261023
+  ],
+  "outer_folds": [
+    0,
+    1,
+    2
+  ],
+  "inner_folds": [
+    0,
+    1,
+    2
+  ],
+  "pilot": {
+    "outer": 0,
+    "base_job_id": "outer0_inner0",
+    "seed": 42,
+    "choice": "first eligible outer then first eligible inner in frozen label-blind saved split order;no performance-based selection",
+    "T": 1430,
+    "V": 534,
+    "C": 523,
+    "meta": 788,
+    "outer_assessment": 1107,
+    "conditions": [
+      "FROZEN100",
+      "FULL100",
+      "DONOR100"
+    ],
+    "FROZEN100_reuse": "existingV1 seed42 outer0_inner0;selected epoch11;exact effective/selection equivalence must verify"
+  },
+  "twenty_epoch": {
+    "conditions": [
+      "FROZEN20",
+      "FULL20",
+      "DONOR20"
+    ],
+    "jobs_per_seed": 12,
+    "seeds": [
+      42,
+      123,
+      20261023
+    ],
+    "seed_admission": "seed42 primary;123 and20261023 prospectively declared,admitted only by recorded actual resource/throughput/storage checks;never by performance"
+  },
+  "epochs": {
+    "FROZEN20": 20,
+    "FULL20": 20,
+    "DONOR20": 20,
+    "FROZEN100": 100,
+    "FULL100": 100,
+    "DONOR100": 100
+  },
+  "cosine_horizon": {
+    "FROZEN20": 50,
+    "FULL20": 50,
+    "DONOR20": 50,
+    "FROZEN100": 100,
+    "FULL100": 100,
+    "DONOR100": 100
+  },
+  "selection": {
+    "primary": "validation macro_AP=(AP_failure+AP_success)/2",
+    "ties": [
+      "lower validation T-weighted BCE",
+      "earliest epoch"
+    ],
+    "early_stopping": false,
+    "historical_reuse": "allow only verified identical selected checkpoint for retained100-epoch trajectory under this rule"
+  },
+  "optimizer": {
+    "family": "AdamW",
+    "head_lr": 0.001,
+    "backbone_lr": 1e-05,
+    "weight_decay": 0.001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "amsgrad": false,
+    "effective_batch": 8,
+    "live_image_microbatch": 1,
+    "frame_chunk": 4,
+    "clip_grad_norm": 1.0,
+    "precision": "float32",
+    "warmup": 0,
+    "augmentation": "none",
+    "head_device": "cpu for both frozen/full;preserve vectorized8-action head and CPU RNG/AdamW math",
+    "backbone_device": "cuda for full;cached verified FP32 features for frozen/donor",
+    "batch_semantics": "8 pooled episode leaves;one head minibatch execution;exact frame-chunk recomputation propagates each leaf gradient;partial minibatch actual size"
+  },
+  "model": {
+    "checkpoint": "PekingU/rtdetr_r18vd",
+    "revision": "ac77a11ff0170a41b771c03264987f8ce2b0d753",
+    "cameras": [
+      "cam_high",
+      "cam_left_wrist",
+      "cam_right_wrist"
+    ],
+    "frames_per_camera": 16,
+    "total_frames_per_episode": 48,
+    "feature_width": 896,
+    "head": "Linear896,128;ReLU;Dropout0.1;Linear128,1",
+    "trainable_head": 114945,
+    "trainable_full_CNN": 11199968,
+    "pooling": "spatial means128+256+512;equal mean16times and3cameras",
+    "normalization": "promote affine for full;running moments fixed;T-only feature moments;invalid or<=1e-6std becomes1"
+  },
+  "donor": {
+    "checkpoint": "26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_BEST_MODEL.pt",
+    "sha256": "5700e8912cf360c845087923e4b417631a886daf928e1655b1031c9ac27c8ce0",
+    "source_executed_epochs": 100,
+    "selected_epoch": 47,
+    "seed": 42,
+    "transfer": "CNN115tensor keys only;no source head/scaler/calibrator/sensor/F2",
+    "target_finetuning": "NOT DECLARED;frozen donor20/100 heads only"
+  },
+  "sensor": {
+    "primary": "existingS3 balanced C1 L2 logistic;280features;training-only standardizer;separateC unweighted sigmoid calibration",
+    "pilot_meta": "reuse canonical sensor outer0_inner0 predictions on788",
+    "pilot_outer": "reuse canonical sensor outer0_final predictions on1107;source-pilot inner/outer branch-refit semantics explicitly retained",
+    "paired_invariance": "exact same sensor vectors/model IDs in every paired contrast",
+    "secondary": "retain original HGB per outer/seed;no HGB in F2"
+  },
+  "fusion": {
+    "formula": "sigmoid(b+wv*p_visual+ws*p_sensor)",
+    "classifier": "unweighted LogisticRegression C1 solverlbfgs max_iter2000",
+    "postfusion_calibration": false,
+    "twenty_epoch": "complete3inner OOF per outer/seed",
+    "hundred_epoch": "single788meta bank;both visual models exclude bank fromTVC;outer1107excluded fromalltraining",
+    "threshold": 0.5
+  },
+  "uncertainty": {
+    "unit": "canonical_task_id",
+    "draws": 2000,
+    "seed": 20261111,
+    "conditional_on_fixed_models": true,
+    "exclude": [
+      "model refitting",
+      "source donor selection",
+      "unmeasured session/operator effects"
+    ],
+    "paired_same_ids": true
+  },
+  "resources": {
+    "minimum_free_GiB": 20,
+    "exclusive_single_GPU": true,
+    "CPU_threads": 2,
+    "loader_workers": 2,
+    "loader_prefetch": 1,
+    "full_matrix_admission_before_training": true,
+    "epoch_reductions": false,
+    "source_gate": "verify researcher-approved REASSEMBLE25fitstop,allscientificcompletionreceipts,and absence of sourcecontrollers/GPUwork;latesttaskauthorizesnewnamespace independently of old75gate",
+    "legacy_gate_modification": false
+  },
+  "execution_order": [
+    "integrity_and_bounded_exact_gradient_resume_benchmark",
+    "reuseFROZEN100_and_trainDONOR100_onCPU",
+    "FULL100pilot_first_GPU_fit",
+    "FROZEN20_DONOR20_CPU_fits",
+    "FULL20_seed42_all12roles",
+    "FULL20_seed123_then20261023_if_admitted",
+    "F2_and_reports_only_as_complete_banks_exist"
+  ],
+  "historical_outputs": "READ_ONLY",
+  "git": {
+    "local_commits": true,
+    "push": false
+  },
+  "not_in_scope": [
+    "newHPO",
+    "qualitygates",
+    "extra100epochfolds/seeds",
+    "sourceCNNtraining",
+    "sourceF2finalization"
+  ]
+}
