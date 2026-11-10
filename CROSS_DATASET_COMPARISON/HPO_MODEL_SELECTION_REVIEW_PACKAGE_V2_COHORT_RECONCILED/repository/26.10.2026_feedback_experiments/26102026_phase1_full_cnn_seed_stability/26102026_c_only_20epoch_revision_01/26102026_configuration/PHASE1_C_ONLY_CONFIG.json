@@ -1,0 +1,40 @@
+{
+  "protocol": "REASSEMBLE-PHASE1-C-ONLY-E20-v2",
+  "authorised_utc": "2026-10-27T01:33:44.238795+00:00",
+  "authority": "User explicitly requested Model C only and answered20 epochs per fit",
+  "arms": [
+    "C_full_finetuned16"
+  ],
+  "seeds": [
+    42,
+    123,
+    20261023
+  ],
+  "epochs": 20,
+  "minimum_epochs": 20,
+  "maximum_epochs": 20,
+  "early_stopping": "Only unsafe numerics, integrity/resource failures or explicit interruption; otherwise exactly20 epochs",
+  "outer_folds": 5,
+  "inner_fits": 4,
+  "visual_fits": 75,
+  "full_backbone_fits": 75,
+  "frozen_head_fits": 0,
+  "sensor_fits_reused": 25,
+  "F2_C_fits": 15,
+  "historical_B_fits_preserved_excluded": 1,
+  "base_training_configuration_sha256": "3237d1e40c8440dc795189a3436a57abdcc0f4552110b4b0074566f53e83da44",
+  "base_training_identity": "Preserved for compatible checkpoint continuation; this separate revision SHA defines execution budget and schedule",
+  "scheduler_horizon": 50,
+  "scheduler_policy": "Keep the existing cosine50 prefix for every fit, including newly started fits; this preserves exact continuation of the current C model",
+  "checkpoint_selection": "Same training-side V AP, tie lower weighted BCE then earliest; candidates1\u201320",
+  "inputs_model_optimizer_precision": "Unchanged verified live16, all executed CNN parameters trainable, FP32, microbatch1, accumulate8",
+  "fusion": "Retain leakage-safe F2-C with matched existing sensors; no F2-B or reconstructed A_r",
+  "new_paired_B_comparison": "Not performed after user removed B",
+  "phase2_allowed": false,
+  "phase3_allowed": false,
+  "minimum_free_bytes": 10737418240,
+  "planning_overhead_multipliers": [
+    1.2,
+    1.4
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "run_dir": "runs/reassemble/additional_improvements_executed/20260929T162710Z/boundary_aware_visual",
+  "section1_config": "configs/reassemble/section1.json",
+  "sequence_cache": "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/features",
+  "task4_dependency": "runs/reassemble/additional_improvements_executed/20260928T000346Z",
+  "seed": 20260927,
+  "epochs": {
+    "V0": [
+      5,
+      10
+    ],
+    "V1": [
+      5,
+      10
+    ],
+    "V2": [
+      5,
+      10
+    ],
+    "V3": [
+      5,
+      10
+    ],
+    "V4": [
+      5,
+      10
+    ],
+    "V5": [
+      5,
+      10,
+      20
+    ]
+  },
+  "bootstrap_seed": 20310927,
+  "bootstrap_replicates": 2000,
+  "probability_parity_tolerance": 1e-05,
+  "feature_parity_tolerance": 5e-05,
+  "minimum_free_GiB": 20,
+  "large_copy_or_extraction": false,
+  "variants": {
+    "V0": "Historical mean+128 head",
+    "V1": "shared128 projection: means [0:8],[8:16]",
+    "V2": "shared128 projection: means [0:4],[4:12],[12:16]",
+    "V3": "shared128 projection: mean [12:16]",
+    "V4": "shared128 projection: means [0:4],[12:16]",
+    "V5": "896->64 ReLU/dropout0.1; fixed sinusoidal position; one GRU64 layer; mean outputs -> binary linear"
+  },
+  "multiple_seeds": "Historical Section1 one-base-seed policy with original fold offsets; not later 3-seed Task1 policy",
+  "decision": "Five AP contrasts Bonferroni percentile .005/.995 positive; marginal AUROC lower95 > -0.01. Sole qualifying V3 -> C; otherwise eligible -> A; unresolved positive point -> B; no positive point and V5 upper95 AP < 0 -> E; else D. Exactly one static fusion only for A.",
+  "selection": "All models reported. Highest pooled outer AP is descriptive strongest; for conditional fusion choose highest pooled AP among A-eligible variants, fixed name order for ties. Selection on this previously viewed cohort is exploratory and not independent confirmation.",
+  "selective": "abs(p-0.5), training selected inner-OOF calibrated p cutoffs at quantiles0,.1,.2; >= retains ties; actual outer coverage reported",
+  "human_case_inputs": [],
+  "estimated_additional_disk_GiB_upper_budget": 2,
+  "automatic_boot_restart": false
+}

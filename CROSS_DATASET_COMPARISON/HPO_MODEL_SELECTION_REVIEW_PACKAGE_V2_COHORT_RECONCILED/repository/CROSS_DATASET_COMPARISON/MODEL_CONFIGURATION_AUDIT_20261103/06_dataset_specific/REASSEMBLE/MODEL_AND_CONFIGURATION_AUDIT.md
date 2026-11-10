@@ -1,0 +1,45 @@
+# Version2 cohort qualification
+
+The [verified action/split reconciliation](../../../../../COHORT_RECONCILIATION/MATCHED_COMPARISON_SUMMARY.md) governs REASSEMBLE comparisons in this package. The753 actions (26 recordings) are exactly original outer fold0 within4,530 actions (148 recordings). The920-action selected inner assessment is disjoint. C20 outer refit job4 shares the753 held-out actions with CNN100; C20 inner job2 does not. Compare only matching action/label/assessment/observation passports. Training and selection differences remain limitations. A stale prediction_recordings list is documented without altering the original JSON. No training or inference was run.
+
+The original audit text and numerical results follow unchanged; generic pre-reconciliation comparison statements are historical context and are superseded by the revised comparability matrix and passports.
+
+---
+
+# REASSEMBLE model and configuration audit
+
+Audit date: 2026-11-03. Read-only evidence reconstruction; no new training, tuning or feature extraction.
+
+The original primary cohort contains **4,530 actions, 509 native failures and 148 recordings**. Eligibility requires primary actions and complete video/sensors. Recording is the grouping unit. The original protocol uses five outer folds, four inner folds and additional nested branch-selection folds, with base seed20260927 and deterministic fit offsets. Nineteen within-recording/action label-shift controls are negative controls, not independent replications.
+
+The original visual branch is frozen RT-DETR R18vd CNN only:16 uniform frames,896-dimensional mean representation,128-unit ReLU/dropout0.1 head. AdamW uses LR0.001, weight decay0.001, batch128 and gradient clipping1. The inner mean AP selects epoch5 or10. Static sensors supply220 statistics from22 channels; balanced logistic regression selects C0.1,1 or10. PatchTST uses22 channels and512 normalized-progress points with epoch3/6 selection. Each branch has its own training-side selection/calibration. F2 then fits a fixed-C1 probability logistic model using nested OOF predictions. Section2 feature concatenation/gates, temporal/anchored/sensor extensions, boundary variants and legacy final-stage/encoder probes are separately inventoried.
+
+The approved C-only cap is **complete:25/25 fits**, representing **25/75 of the original plan**. All25 ran20 epochs, seed42, covering every outer fold with four inner fits plus one outer refit. Seeds123 and20261023 are deferred. The original cosine50 schedule prefix was retained through epoch20. No active primary training process was found at the audit's initial inspection. C20 F2 finalization has **NOT EXECUTED**; the audit did not fit it.
+
+From the five saved C20 outer prediction banks, the audit recomputed pooled visual AP **0.312127025700** and AUROC **0.756385557356**, using4,530 unique native IDs. This is one-seed, five-outer-fold visual evidence. There is only one retained original long frozen-B receipt before the C-only revision, so a complete matched five-fold B20 comparison is unavailable.
+
+The100-epoch pair is a separate fresh-initialization pilot at seed42, original fit3/job_index2, outer_fold_original0. Both models completed100 epochs; selected epochs are14 frozen and47 full CNN. Their753 assessment actions were already exposed in earlier work. The later static-sensor F2 follow-up is complete but remains a single-fold pilot with a920-row stacking bank, not a full nested100-epoch experiment. See the adjacent detailed reports.
+
+For MSM/Handover transfer, the canonical C20 donor now has a completed receipt and matching selected-state hash, but the validator still requires at least25 executed epochs. No external R transfer training was executed. ViFailback has completed C100 donor feature extraction but no V3 classifier/fusion training, with a separate75-fit scheduling barrier. Feature-bank completion is not model-training completion.
+
+The historical variants are exploratory. Boundary fusion variant choice used exposed outer AP, and later pilots reused the same outer assessment cohort. Correct within-fit separation therefore does not imply an untouched confirmatory research test. No final model is selected.
+
+## Evidence anchors
+
+- [configs/reassemble/section1.json](../../../../configs/reassemble/section1.json) — visual/sensor/logistic_C/selection/calibration.
+- [src/reassemble/section1_models.py](../../../../src/reassemble/section1_models.py) — actual classifier forwards, neural_fit, logistic_fit.
+- [src/reassemble/section1_features.py](../../../../src/reassemble/section1_features.py) — frame pooling and normalized-progress sensor resampling.
+- [runs/reassemble/20260927T154732Z-section1/training_implementation.json](../../../../runs/reassemble/20260927T154732Z-section1/training_implementation.json) — recorded original implementation revision.
+- [26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_configuration/PHASE1_COMPARISON_CONFIG.json](../../../../26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_configuration/PHASE1_COMPARISON_CONFIG.json) — effective shared100 horizon; head/backbone LR.
+- [26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_source/phase_model.py](../../../../26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_source/phase_model.py) — all CNN stages, FrozenBN affine promotion; fixed running moments.
+- [26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_source/compare100_train.py](../../../../26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_source/compare100_train.py) — training100/checkpoint selection/recovery.
+- [26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_FIT_COMPLETE.json](../../../../26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_FIT_COMPLETE.json) — history/best/executed_epochs, T/V/C/assessment sample identities.
+- [26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_FIT_COMPLETE.json](../../../../26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_bestfit_100epoch_frozen_vs_full_cnn/26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_FIT_COMPLETE.json) — history/best/executed_epochs, T/V/C/assessment sample identities.
+- [runs/reassemble/20260927T175336Z-section1b/assessment/results.json](../../../../runs/reassemble/20260927T175336Z-section1b/assessment/results.json) — metrics, paired recording intervals, complementation.
+- [runs/reassemble/20260927T175336Z-section1b/assessment/stacker_coefficients.json](../../../../runs/reassemble/20260927T175336Z-section1b/assessment/stacker_coefficients.json) — five fitted F2 coefficient states.
+- [src/reassemble/section1b.py](../../../../src/reassemble/section1b.py) — fit_stacker; nested calibrated probability inputs.
+- [experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/07_evaluation_results/ALL_MODEL_METRICS.json](../../../../experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/07_evaluation_results/ALL_MODEL_METRICS.json) — M1–M7 common-threshold metrics.
+- [experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/07_evaluation_results/PAIRED_RECORDING_BOOTSTRAP.json](../../../../experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/07_evaluation_results/PAIRED_RECORDING_BOOTSTRAP.json) — conditional paired recording intervals.
+- [experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/07_evaluation_results/HISTORICAL_COMPARABILITY.json](../../../../experiments/reassemble/29102026_cnn100_static_sensor_f2_comparison/07_evaluation_results/HISTORICAL_COMPARABILITY.json) — canonical sensor identities and stacking-bank limitations.
+- [26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/26102026_execution/PHASE1_C_ONLY_STATUS.json](../../../../26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/26102026_execution/PHASE1_C_ONLY_STATUS.json) — current25cap status.
+- [26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/02112026_stop_after25fits_01/STOP_AFTER_25_COMPLETE.json](../../../../26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/02112026_stop_after25fits_01/STOP_AFTER_25_COMPLETE.json) — stop receipt and protected model/prediction hashes.

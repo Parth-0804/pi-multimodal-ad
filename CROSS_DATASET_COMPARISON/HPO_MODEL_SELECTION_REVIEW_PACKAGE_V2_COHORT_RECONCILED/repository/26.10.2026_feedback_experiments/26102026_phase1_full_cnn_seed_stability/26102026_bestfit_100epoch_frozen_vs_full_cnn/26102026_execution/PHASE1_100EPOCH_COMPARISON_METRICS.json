@@ -1,0 +1,54 @@
+{
+  "metrics": {
+    "B_frozen100": {
+      "n": 753,
+      "failures": 77,
+      "prevalence": 0.10225763612217796,
+      "AP": 0.19377557761499092,
+      "AUROC": 0.6646046261430877,
+      "Brier": 0.08957016827648595,
+      "log_loss": 0.3196927182671314
+    },
+    "C_full_finetuned16": {
+      "n": 753,
+      "failures": 77,
+      "prevalence": 0.10225763612217796,
+      "AP": 0.21258450333908707,
+      "AUROC": 0.6753246753246753,
+      "Brier": 0.08925516920785566,
+      "log_loss": 0.3173831431596419
+    }
+  },
+  "raw_logit_metrics": {
+    "B_frozen100": {
+      "AP": 0.19377557761499092,
+      "AUROC": 0.6646046261430877
+    },
+    "C_full_finetuned16": {
+      "AP": 0.21258450333908707,
+      "AUROC": 0.6753246753246753
+    }
+  },
+  "paired": {
+    "AP": {
+      "estimate": 0.01880892572409615,
+      "lower95": -0.03644532724110226,
+      "upper95": 0.09692558487958164,
+      "valid_draws": 2000,
+      "unit": "recording; conditional on selected split and fitted models"
+    },
+    "AUROC": {
+      "estimate": 0.010720049181587643,
+      "lower95": -0.03300808278117944,
+      "upper95": 0.049021113753410485,
+      "valid_draws": 2000,
+      "unit": "recording; conditional on selected split and fitted models"
+    }
+  },
+  "seed": 42,
+  "assessment_actions": 753,
+  "assessment_recordings": 26,
+  "selection": "Best observed training-side validation fit; outer assessment excluded from all candidates",
+  "both_arms_fresh_and100epochs": true,
+  "new_F2_model_fitted": false
+}

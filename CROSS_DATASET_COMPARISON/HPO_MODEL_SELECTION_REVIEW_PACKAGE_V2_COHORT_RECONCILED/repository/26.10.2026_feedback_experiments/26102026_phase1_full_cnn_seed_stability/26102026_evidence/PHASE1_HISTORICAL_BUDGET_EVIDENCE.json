@@ -1,0 +1,63 @@
+{
+  "original_visual": {
+    "AP": 0.23065831504271656,
+    "AUROC": 0.6977948286232056,
+    "selected_epochs": [
+      5,
+      5,
+      10,
+      10,
+      5
+    ],
+    "seconds": 11.122547149658203
+  },
+  "original_sensor": {
+    "AP": 0.42939186936802726,
+    "selected_C": [
+      1.0,
+      0.1,
+      10.0,
+      0.1,
+      0.1
+    ],
+    "seconds": 206.96943831443787
+  },
+  "original_F2": {
+    "metric_key": "minimal_late_fusion",
+    "AP": 0.44729855144048974
+  },
+  "later_four_arms": {
+    "frozen_16_frames": {
+      "completed_fits": 25,
+      "executed_epochs": {
+        "5": 25
+      },
+      "training_seconds": 590.9859360499686,
+      "source": "00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning"
+    },
+    "fine_tuned_16_frames": {
+      "completed_fits": 25,
+      "executed_epochs": {
+        "2": 25
+      },
+      "training_seconds": 32709.736466916947,
+      "source": "00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning"
+    },
+    "frozen_32_frames": {
+      "completed_fits": 25,
+      "executed_epochs": {
+        "5": 25
+      },
+      "training_seconds": 577.0882229730778,
+      "source": "00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning"
+    },
+    "fine_tuned_32_frames": {
+      "completed_fits": 25,
+      "executed_epochs": {
+        "2": 25
+      },
+      "training_seconds": 44842.374012951914,
+      "source": "00_experiments/visual_backbone_one_day/run_01_two_epoch_finetuning"
+    }
+  }
+}

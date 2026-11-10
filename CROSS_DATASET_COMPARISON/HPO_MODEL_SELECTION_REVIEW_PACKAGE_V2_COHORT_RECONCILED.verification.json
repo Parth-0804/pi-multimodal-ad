@@ -1,0 +1,51 @@
+{
+  "archive_path": "CROSS_DATASET_COMPARISON/HPO_MODEL_SELECTION_REVIEW_PACKAGE_V2_COHORT_RECONCILED.zip",
+  "archive_bytes": 206977157,
+  "archive_sha256": "96c1b7b298ef01deaed6ee369b45b0fe504d2ed42cdee8b2352bfa74a3962467",
+  "archive_entries": 13573,
+  "uncompressed_bytes": 1651867567,
+  "ZIP_CRC_passed": true,
+  "independent_extraction_hash_verification": {
+    "hashed_files": 13572,
+    "hashed_bytes": 1648724152,
+    "all_hashes_match": true
+  },
+  "independent_extraction_content_verification": {
+    "content_files_checked": 13571,
+    "internal_markdown_references": 509,
+    "CSV_files": 946,
+    "JSON_files": 11729,
+    "all_internal_file_references_resolve": true,
+    "all_CSV_rows_preserved": true,
+    "numeric_metric_records": 587101,
+    "effective_configuration_records": 7969,
+    "epoch_history_rows": 93278,
+    "C20_complete_configurations": 25,
+    "large_checkpoint_or_raw_dataset_binaries_present": false,
+    "cohort_reconciliation": {
+      "passed": true,
+      "checks": [
+        "canonical4530 unique native actions, labels and148 recordings",
+        "all cohort action hashes, labels, counts and recording lists",
+        "five recording-disjoint outer folds partition all4530; exact753 subset",
+        "all6894 run assessment identities and recorded role counts; train/test recording separation",
+        "selected inner fit3 vs outer identities;100-epoch T/V/C conservation; stale recording metadata flagged",
+        "matching requires exact action/label/assessment/observation identity;753 vs4530 comparisons rejected",
+        "hashed sample-ID aliases map unambiguously to native actions",
+        "all exported clean probabilities retain exact vector hashes, IDs and labels"
+      ],
+      "canonical_actions": 4530,
+      "fit_records": 6894,
+      "evaluations": 6592,
+      "exact_cohort_sets": 432,
+      "clean_prediction_rows_verified": 1498629,
+      "clean_prediction_vectors_verified": 1034,
+      "explicit_comparability_rows_verified": 92,
+      "model_seed_fields_unresolved": 0,
+      "elapsed_seconds": 10.54,
+      "training_or_inference_run": false
+    }
+  },
+  "prior_archive_sha256": "f1a4db4717e6623413318212c801a7c90a5035e3535eb72afdcdff610ad36dfc",
+  "completed_utc": "2026-11-03T22:21:00.336268+00:00"
+}
