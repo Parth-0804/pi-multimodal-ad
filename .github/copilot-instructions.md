@@ -4,7 +4,7 @@
    1. [`AGENTS.md`](../AGENTS.md)
    2. [`docs/planning/PROJECT_STATE.md`](../docs/planning/PROJECT_STATE.md)
    3. the exact authorized task in
-      [`docs/planning/PHM_CODEX_IMPLEMENTATION_BACKLOG.md`](../docs/planning/PHM_CODEX_IMPLEMENTATION_BACKLOG.md)
+      [`docs/planning/PHM_CODEX_IMPLEMENTATION_BACKLOG.md`](../reports/extras/docs/planning/PHM_CODEX_IMPLEMENTATION_BACKLOG.md)
 2. Treat `PROJECT_STATE.md` as the latest project-status handoff. Verify cited
    artifact paths and configuration pins before relying on them.
 3. Inspect existing code, tests, configuration, and Git status before creating

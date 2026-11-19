@@ -1,0 +1,288 @@
+{
+  "version": "1.0",
+  "prepared_date": "2026-11-14",
+  "timezone": "Europe/Berlin",
+  "goal": "Complete evidence-grounded 80-100-page master's thesis",
+  "target_main_text_pages": 90,
+  "page_count_rule": "Provisional: front matter, references and appendices outside main-text budget. Programme rule not confirmed.",
+  "canonical_manuscript_path": null,
+  "canonical_bibliography_path": null,
+  "canonical_zotero_collection": null,
+  "source_inputs": [
+    {
+      "filename": "THESIS_BASELINE_REPORT.md",
+      "library_file_id": "libfile_fde3_f-7c104be469808191afc80d025472c18e_7d1cacbaaf188191a9b1f2ca940e6de3",
+      "version": "3",
+      "role": "Evidence-qualified implementation baseline; not fresh live audit"
+    },
+    {
+      "filename": "Pasted text(5).txt",
+      "library_file_id": "libfile_fde3_f-3aaf0bfeb1ec8191bcf5737f46b8a9b3_7d1cacbaaf188191a9b1f2ca940e6de3",
+      "version": "0",
+      "role": "Existing ten-chapter LaTeX outline and writing briefs"
+    }
+  ],
+  "research_questions": {
+    "main_original": "How can a process-aware multimodal AI architecture be designed and evaluated for robust industrial anomaly detection using robotic welding data as a case study?",
+    "SQ1": "Which lightweight or pretrained Transformer-based representation components are suitable for visual, audio, and sensor time-series data in a multimodal industrial anomaly detection pipeline?",
+    "SQ2": "How do unimodal baselines, simple concatenation fusion, modular late fusion, and process-aware gated cross-modal fusion compare in terms of predictive performance?",
+    "SQ3": "Can a gated cross-modal fusion architecture improve robustness when one or more modalities are missing, degraded, or unreliable?",
+    "SQ4": "How can multimodal architecture performance be evaluated beyond accuracy, including robustness, interpretability, modularity, and practical usability?"
+  },
+  "chapter_blueprint": [
+    {
+      "chapter": 1,
+      "title": "Introduction",
+      "pages": 7,
+      "research_questions": "Main RQ; SQ1-SQ4",
+      "purpose": "Industrial motivation; task-accurate scope; bounded contributions",
+      "evidence": "Original exposé and corrected charter; final title decision pending",
+      "figures_tables": "RQ-to-experiment map; scope evolution diagram",
+      "status": "Draft after gap and discussion stabilise"
+    },
+    {
+      "chapter": 2,
+      "title": "Critical Literature Review",
+      "pages": 18,
+      "research_questions": "SQ1-SQ4",
+      "purpose": "Critical synthesis across the six search themes; bounded gap",
+      "evidence": "Verified original papers; search and screening log",
+      "figures_tables": "Literature comparison matrix; gap evidence table",
+      "status": "Discovery started; full-text extraction pending"
+    },
+    {
+      "chapter": 3,
+      "title": "Technical Foundations and Candidate Models",
+      "pages": 8,
+      "research_questions": "SQ1-SQ3",
+      "purpose": "Explain only concepts needed to understand tested components",
+      "evidence": "Original model papers plus inspected implementation definitions",
+      "figures_tables": "Representation dimensions; fusion taxonomy; equations with sources",
+      "status": "Plan ready; source verification pending"
+    },
+    {
+      "chapter": 4,
+      "title": "Research Design and Shared Methodology",
+      "pages": 10,
+      "research_questions": "Main RQ; SQ4",
+      "purpose": "Common design principles with explicit task/protocol differences",
+      "evidence": "Baseline source register; split/config/result manifests",
+      "figures_tables": "Dataset-task-label table; fitting-role diagram; metric definitions",
+      "status": "Draftable with provenance qualifications"
+    },
+    {
+      "chapter": 5,
+      "title": "PHM Case Study: Target Construction and Condition Prediction",
+      "pages": 9,
+      "research_questions": "SQ1; SQ2 qualified; SQ4",
+      "purpose": "Proxy target construction and separate sensor-condition experiments",
+      "evidence": "Principal LOEO separate from four-arm normalization issue",
+      "figures_tables": "Proxy construction diagram; protocol-specific regression table",
+      "status": "Evidence-qualified draftable"
+    },
+    {
+      "chapter": 6,
+      "title": "REASSEMBLE Case Study: Representation, Fusion, and Robustness",
+      "pages": 15,
+      "research_questions": "SQ1-SQ4",
+      "purpose": "Principal representation/fusion comparison; bounded robustness follow-ups",
+      "evidence": "Original five-fold outputs; follow-ups separated by recipe/cohort",
+      "figures_tables": "Input-to-result diagram; matched baseline/fusion tables; stress plots",
+      "status": "Evidence-qualified draftable"
+    },
+    {
+      "chapter": 7,
+      "title": "MSM Case Study: Dataset Adaptation and Evaluation Feasibility",
+      "pages": 6,
+      "research_questions": "SQ2-SQ4",
+      "purpose": "Include completed native evaluation as well as earlier feasibility history",
+      "evidence": "Completed external records; label/group sensitivity protocols",
+      "figures_tables": "Adaptation table; within-protocol effects; fault-condition plots",
+      "status": "Evidence-qualified draftable; legacy title wording to revisit if needed"
+    },
+    {
+      "chapter": 8,
+      "title": "ViFailback Case Study: Application to a Further Dataset",
+      "pages": 7,
+      "research_questions": "SQ1; SQ2; SQ4; SQ3 only where evidenced",
+      "purpose": "Completed frozen study; newer matched work conditional on refreshed evidence",
+      "evidence": "Completed frozen/sensor/fusion outputs; live November status missing",
+      "figures_tables": "Both-class results; task-group split map; matched follow-up table when complete",
+      "status": "Completed portion draftable; new work provisional"
+    },
+    {
+      "chapter": 9,
+      "title": "Integrated Discussion",
+      "pages": 7,
+      "research_questions": "Main RQ; SQ1-SQ4",
+      "purpose": "Answer RQs with positive/negative evidence and literature comparisons",
+      "evidence": "Accepted claims and verified literature",
+      "figures_tables": "RQ answer matrix; conditional recommendations; limitations matrix",
+      "status": "Write after retained results and literature synthesis"
+    },
+    {
+      "chapter": 10,
+      "title": "Conclusion and Future Work",
+      "pages": 3,
+      "research_questions": "Main RQ; SQ1-SQ4",
+      "purpose": "Direct bounded answers and targeted remaining work",
+      "evidence": "No new empirical claims",
+      "figures_tables": "Concise contribution/limitation summary",
+      "status": "Write last, followed by abstract"
+    }
+  ],
+  "search_themes": [
+    {
+      "theme": "T1",
+      "sq": [
+        "SQ1",
+        "SQ2"
+      ],
+      "query": "How are independently measured visual and sensor time-series modalities used in industrial monitoring and robotic failure detection?",
+      "chapters": [
+        2,
+        4,
+        6,
+        7,
+        8
+      ],
+      "priority": "high"
+    },
+    {
+      "theme": "T2",
+      "sq": [
+        "SQ1"
+      ],
+      "query": "When do pretrained visual or temporal representations outperform simple feature-based baselines under limited industrial labels?",
+      "chapters": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "priority": "high"
+    },
+    {
+      "theme": "T3",
+      "sq": [
+        "SQ2"
+      ],
+      "query": "Under what controlled evaluation conditions do concatenation, late fusion and gating improve on strong unimodal baselines, and when do they fail?",
+      "chapters": [
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "priority": "high"
+    },
+    {
+      "theme": "T4",
+      "sq": [
+        "SQ3"
+      ],
+      "query": "Does quality-conditioned fusion outperform exposure-matched static fusion under missing and degraded modalities while preserving clean performance?",
+      "chapters": [
+        2,
+        4,
+        6,
+        9
+      ],
+      "priority": "high"
+    },
+    {
+      "theme": "T5",
+      "sq": [
+        "SQ4"
+      ],
+      "query": "How do proxy labels, group-disjoint splitting, stacking, calibration, class imbalance and uncertainty affect industrial multimodal evaluation?",
+      "chapters": [
+        2,
+        4,
+        5,
+        9
+      ],
+      "priority": "high"
+    },
+    {
+      "theme": "T6",
+      "sq": [
+        "SQ1",
+        "SQ4"
+      ],
+      "query": "What evidence distinguishes architecture or software reuse, native retraining, learned weight transfer and deployment readiness?",
+      "chapters": [
+        2,
+        7,
+        8,
+        9
+      ],
+      "priority": "medium"
+    }
+  ],
+  "tool_state": {
+    "ChatGPT": "Workflow/blueprint prepared; no thesis prose integrated",
+    "Codex": "Local workflow checks performed; live HFU repository not inspected",
+    "Elicit": "API access denied by current account plan; web prompt provided",
+    "SciSpace": "Two discovery searches completed",
+    "Scite": "Discovery, seed DOI lookup and bounded citation graph completed",
+    "Zotero": "Installed; launch attempted; local API/connector still timed out in this session",
+    "manuscript": "Existing canonical manuscript not located or edited in this turn"
+  },
+  "source_states": [
+    "discovered",
+    "metadata_checked",
+    "full_text_accessed",
+    "claim_verified",
+    "human_reviewed",
+    "cited"
+  ],
+  "rules": [
+    "State progression requires actual evidence; metadata verification does not verify a claim.",
+    "A passage supports only its bounded claim; abstracts cannot supply missing protocol details.",
+    "Track preprint/published versions as related records, not independent evidence.",
+    "All empirical numbers trace to result IDs and precise protocol definitions.",
+    "Keep proposed gap separate from established prior-art review.",
+    "Maintain one canonical manuscript; merge reviewed sections with a change record.",
+    "Record actual AI prompts prospectively; do not recreate unknown past prompts.",
+    "Human review confirms understanding and authorship; AI review is not independent human validation."
+  ],
+  "milestones": [
+    {
+      "id": "M1",
+      "output": "Canonical paths plus current-evidence delta",
+      "done_when": "Canonical manuscript identified and newer runs have dated supported status; uncertain items explicitly marked"
+    },
+    {
+      "id": "M2",
+      "output": "Pilot literature matrix across six themes",
+      "done_when": "Search logs retained, versions deduplicated, relevant full-text fields checked; counterevidence included"
+    },
+    {
+      "id": "M3",
+      "output": "Gap verdict and chapter evidence packets",
+      "done_when": "Closest prior work and unresolved dimension documented; retained experiments answer bounded questions"
+    },
+    {
+      "id": "M4",
+      "output": "Methods and results sections",
+      "done_when": "Each substantive statement traces to implementation/results evidence with limitations"
+    },
+    {
+      "id": "M5",
+      "output": "Literature, discussion, introduction and conclusion",
+      "done_when": "All RQs answered consistently and claims checked against original papers"
+    },
+    {
+      "id": "M6",
+      "output": "Complete first draft with figures, references and AI-use appendix",
+      "done_when": "All chapters present; unresolved matters explicitly logged; compiled/rendered output inspected"
+    },
+    {
+      "id": "M7",
+      "output": "Researcher-reviewed final manuscript",
+      "done_when": "Factual, citation, methodology, language and formatting review complete; required declaration and actual similarity-check status documented"
+    }
+  ]
+}

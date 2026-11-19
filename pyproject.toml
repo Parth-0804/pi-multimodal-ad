@@ -16,3 +16,11 @@ include-package-data = false
 where = ["src"]
 include = ["phm2026*", "intel_welding*", "reassemble*", "pi_multimodal_ad*"]
 namespaces = false
+
+[tool.pytest.ini_options]
+# The moved tests remain reachable through their original compatibility paths.
+# Avoid collecting the same files again during repository-wide discovery.
+norecursedirs = [
+    "*.egg", ".*", "_darcs", "build", "CVS", "dist", "node_modules", "venv",
+    "{arch}", "implementations",
+]

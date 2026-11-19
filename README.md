@@ -1,5 +1,14 @@
 # pi-multimodal-ad
 
+**Restructuring paused:** physical files have moved, but current code-path and
+packaging updates are unfinished. This is a work-in-progress snapshot.
+See the [paused state and resume instructions](reports/extras/restructure_simple_20261119/PAUSED_STATE.md).
+
+For the complete repository in one view, start with
+**[implementations/](implementations/README.md)**: dataset guides follow the
+HANDOVER stage order and link directly to code, protocols, results and reports.
+Cross-dataset work, general tools and extra documents have separate entries.
+
 Master's thesis research repository for the **PHM North America 2026 Data
 Challenge**: estimating gear-tooth / PAU degradation state from two
 independent sensing modalities — post-run photos and high-frequency
@@ -29,12 +38,12 @@ and what would need to change before combining them.
 
 ## Domain navigation
 
-- PHM implementation: [`src/phm2026/README.md`](src/phm2026/README.md); entry points `scripts/phm2026/`.
-- Intel Welding: [`src/intel_welding/README.md`](src/intel_welding/README.md); implemented audits `scripts/intel_welding/`.
+- PHM implementation: [`implementations/PHM2026/src/phm2026/README.md`](implementations/PHM2026/src/phm2026/README.md); entry points `implementations/PHM2026/scripts/`.
+- Intel Welding: [`implementations/INTEL_WELDING/src/intel_welding/README.md`](implementations/INTEL_WELDING/src/intel_welding/README.md); implemented audits `implementations/INTEL_WELDING/scripts/`.
 - REASSEMBLE is a separate assembly-failure research domain: `src/reassemble/`, `scripts/reassemble/`, `configs/reassemble/`, `tests/reassemble/`. Its completed evidence remains under `runs/reassemble/` and `artifacts/reassemble/`.
-- Thesis validation/synthesis: `scripts/thesis/`, `tests/thesis/`, `artifacts/thesis/`.
-- Repository maintenance: `scripts/ops/`, `tests/ops/`.
-- Shared admission policy: [`src/shared/README.md`](src/shared/README.md); no shared implementation was justified.
+- Thesis validation/synthesis: `implementations/general/scripts/thesis/`, `implementations/general/tests/thesis/`, `artifacts/thesis/`.
+- Repository maintenance: `implementations/general/scripts/ops/`, `implementations/general/tests/ops/`.
+- Training-job dependencies remain at `src/reassemble/` and their study-local paths; see the [implementation guide](implementations/README.md).
 
 The PHM background above is preserved study context, not a statement that later REASSEMBLE work is unfinished. Current REASSEMBLE closure is recorded in `artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md`.
 
@@ -45,6 +54,11 @@ Before reusing the September prefix cache or shared visual pixel cache, consult
 Legacy imports (`pi_multimodal_ad.*`) and former PHM script paths are supported through thin forwarding. See [COMPATIBILITY_CONTRACT.md](docs/repository_restructure/COMPATIBILITY_CONTRACT.md) and [COMPATIBILITY_VALIDATION.md](docs/repository_restructure/COMPATIBILITY_VALIDATION.md).
 
 Migration map, checks and preserved historical paths: [`FINAL_STRUCTURE.md`](docs/repository_restructure/FINAL_STRUCTURE.md).
+
+Ancillary reports, planning notes and writing-workflow material are collected in
+[reports/extras/](reports/extras/README.md). Implementation files are grouped under
+`implementations/`. Protocols, scientific results, native data and training-job
+dependencies retain their existing locations.
 
 ## Governance — read this before changing anything structural
 
@@ -76,8 +90,8 @@ This installs the project only, without changing scientific dependencies. Canoni
 source ma_thesis_env/bin/activate
 
 # Run any pipeline stage from repo root, e.g.:
-ma_thesis_env/bin/python -B scripts/phm2026/dataset/profile_dataset.py --dry-run
-ma_thesis_env/bin/python -B scripts/phm2026/training/train_patchtst.py --help
+ma_thesis_env/bin/python -B implementations/PHM2026/scripts/dataset/profile_dataset.py --dry-run
+ma_thesis_env/bin/python -B implementations/PHM2026/scripts/training/train_patchtst.py --help
 ```
 
 Every run writes to a new, timestamped, non-overwriting directory under

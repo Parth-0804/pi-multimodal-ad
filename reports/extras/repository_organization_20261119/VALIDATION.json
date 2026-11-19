@@ -1,0 +1,71 @@
+{
+  "completed_utc": "2026-11-19T07:04:07.047857+00:00",
+  "scope": "Repository organisation; synthetic tests, passive imports, CLI parsing and metadata checks only. No experiment execution, dependency/environment changes, staging, commits or pushes.",
+  "tests_before": {
+    "passed": 329,
+    "warnings": 6,
+    "seconds": 129.55
+  },
+  "tests_after": {
+    "passed": 329,
+    "warnings": 6,
+    "seconds": 128.8,
+    "warnings_note": "Same pre-existing PyTorch nested-tensor warnings."
+  },
+  "old_alias_collection": 329,
+  "package_discovery": {
+    "before": 37,
+    "after": 37,
+    "same_names": true
+  },
+  "python_files_compiled_without_execution": 217,
+  "path_only_edits": {
+    "files": 53,
+    "lines": 54,
+    "original_bytes_retained": true
+  },
+  "implementation_move_directories": 23,
+  "compatibility_links_verified": 23,
+  "navigation_links_verified": 59,
+  "markdown_links_checked": 234,
+  "broken_markdown_links": [],
+  "active_dependency_code_hashes_unchanged": 164,
+  "protected_directory_identities_unchanged": 13,
+  "direct_cli_checks": [
+    {
+      "path": "implementations/PHM2026/scripts/training/train_patchtst.py",
+      "cwd": "/tmp",
+      "returncode": 0,
+      "stdout_sha256": "b32911c600983aebc240e44217f64d62e28cdefb475ede340348c93e78b6bc0a",
+      "stderr": ""
+    },
+    {
+      "path": "implementations/PHM2026/scripts/dataset/profile_dataset.py",
+      "cwd": "/tmp",
+      "returncode": 0,
+      "stdout_sha256": "958413f2a0f0a9d9d82f946859a38a31201a8e125ac814fed82d997f0f89b64b",
+      "stderr": ""
+    }
+  ],
+  "git_diff_check": "PASS",
+  "git_head_unchanged": true,
+  "git_index_unchanged_and_empty": true,
+  "pre_existing_status_entries_outside_phase_preserved": true,
+  "git_status_counts": {
+    " M": 15,
+    " D": 401,
+    "??": 567
+  },
+  "global_git_diff_stat_summary": " 416 files changed, 479 insertions(+), 431698 deletions(-)",
+  "diff_stat_scope_note": "Includes pre-existing dirty/deleted files and the earlier extras phase. Unstaged relocation destinations and symbolic links appear as untracked files; git diff --stat alone does not represent the verified logical moves.",
+  "logical_phase_summary": "23 implementation directories; 222 reviewed source/test/config files, 169 unchanged and 53 with path-only changes; 54 path lines corrected; ten implementation guides, root navigation, two compatibility documents and pytest discovery configuration updated. Extra-document index updated with relocation/check links.",
+  "live_job_observation": {
+    "gpu_controller_pid": 50845,
+    "python_child_pid": 50925,
+    "watch_controller_pid": 51703,
+    "observation": "All three still present after moves; GPU query still lists controller with 5662 MiB. This is a process observation, not scientific validation or a completion claim."
+  },
+  "no_signals_sent": true,
+  "large_data_and_evidence_note": "No native payloads, checkpoints, frozen source snapshots or run outputs moved or scanned. Read-only directory identity checks cover root paths, not payload integrity.",
+  "extras_index_links_checked": 17
+}

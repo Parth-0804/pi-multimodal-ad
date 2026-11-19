@@ -1,0 +1,591 @@
+--- scripts/phm2026/targets/audit_target.py
++++ implementations/PHM2026/scripts/targets/audit_target.py
+@@ -11,7 +11,7 @@
+ 
+ import pandas as pd
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ SOURCE_ROOT = REPOSITORY_ROOT / "src"
+ if str(SOURCE_ROOT) not in sys.path:
+     sys.path.insert(0, str(SOURCE_ROOT))
+--- scripts/phm2026/targets/analyze_tooth_profiles.py
++++ implementations/PHM2026/scripts/targets/analyze_tooth_profiles.py
+@@ -22,7 +22,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+@@ -33,7 +33,7 @@
+ import numpy as np
+ import pandas as pd
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ 
+ SPLIT_BY_EXPERIMENT = {"EXP-B": "train", "EXP-A": "validation", "EXP-F": "test"}
+ VALUE = "per_tooth_damage_candidate_pct"
+--- scripts/phm2026/targets/prepare_blind_inspection.py
++++ implementations/PHM2026/scripts/targets/prepare_blind_inspection.py
+@@ -24,7 +24,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/targets/derive_image_targets.py
++++ implementations/PHM2026/scripts/targets/derive_image_targets.py
+@@ -12,7 +12,7 @@
+ 
+ import pandas as pd
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ SOURCE_ROOT = REPOSITORY_ROOT / "src"
+ if str(SOURCE_ROOT) not in sys.path:
+     sys.path.insert(0, str(SOURCE_ROOT))
+--- scripts/phm2026/targets/build_rtdetr_pseudo_boxes.py
++++ implementations/PHM2026/scripts/targets/build_rtdetr_pseudo_boxes.py
+@@ -12,7 +12,7 @@
+ import pandas as pd
+ import yaml
+ 
+-ROOT = Path(__file__).resolve().parents[3]
++ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ sys.path.insert(0, str(ROOT / "src"))
+ 
+ from phm2026.profiling.images import load_image_sources  # noqa: E402
+--- scripts/phm2026/features/build_model_dataset.py
++++ implementations/PHM2026/scripts/features/build_model_dataset.py
+@@ -10,7 +10,7 @@
+ 
+ import pandas as pd
+ 
+-ROOT = Path(__file__).resolve().parents[3]
++ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ sys.path.insert(0, str(ROOT / "src"))
+ 
+ from phm2026.targets.model_dataset import (  # noqa: E402
+--- scripts/phm2026/features/build_sensor_features.py
++++ implementations/PHM2026/scripts/features/build_sensor_features.py
+@@ -6,7 +6,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/dataset/generate_dataset_evidence.py
++++ implementations/PHM2026/scripts/dataset/generate_dataset_evidence.py
+@@ -10,7 +10,7 @@
+ 
+ import pandas as pd
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ SOURCE_ROOT = REPOSITORY_ROOT / "src"
+ if str(SOURCE_ROOT) not in sys.path:
+     sys.path.insert(0, str(SOURCE_ROOT))
+--- scripts/phm2026/dataset/profile_sensors.py
++++ implementations/PHM2026/scripts/dataset/profile_sensors.py
+@@ -4,7 +4,7 @@
+ from pathlib import Path
+ import sys
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ SOURCE_ROOT = REPOSITORY_ROOT / "src"
+ if str(SOURCE_ROOT) not in sys.path:
+     sys.path.insert(0, str(SOURCE_ROOT))
+--- scripts/phm2026/dataset/profile_images.py
++++ implementations/PHM2026/scripts/dataset/profile_images.py
+@@ -4,7 +4,7 @@
+ from pathlib import Path
+ import sys
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ SOURCE_ROOT = REPOSITORY_ROOT / "src"
+ if str(SOURCE_ROOT) not in sys.path:
+     sys.path.insert(0, str(SOURCE_ROOT))
+--- scripts/phm2026/dataset/audit_alignment.py
++++ implementations/PHM2026/scripts/dataset/audit_alignment.py
+@@ -6,7 +6,7 @@
+ from pathlib import Path
+ import sys
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ SOURCE_ROOT = REPOSITORY_ROOT / "src"
+ if str(SOURCE_ROOT) not in sys.path:
+     sys.path.insert(0, str(SOURCE_ROOT))
+--- scripts/phm2026/dataset/describe_dataset.py
++++ implementations/PHM2026/scripts/dataset/describe_dataset.py
+@@ -6,7 +6,7 @@
+ from pathlib import Path
+ import sys
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ SOURCE_ROOT = REPOSITORY_ROOT / "src"
+ if str(SOURCE_ROOT) not in sys.path:
+     sys.path.insert(0, str(SOURCE_ROOT))
+--- scripts/phm2026/dataset/profile_dataset.py
++++ implementations/PHM2026/scripts/dataset/profile_dataset.py
+@@ -4,7 +4,7 @@
+ from pathlib import Path
+ import sys
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ SOURCE_ROOT = REPOSITORY_ROOT / "src"
+ if str(SOURCE_ROOT) not in sys.path:
+     sys.path.insert(0, str(SOURCE_ROOT))
+--- scripts/phm2026/training/train_late_fusion.py
++++ implementations/PHM2026/scripts/training/train_late_fusion.py
+@@ -15,7 +15,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/training/train_rtdetr_detector.py
++++ implementations/PHM2026/scripts/training/train_rtdetr_detector.py
+@@ -20,7 +20,7 @@
+ from ultralytics import RTDETR
+ import ultralytics
+ 
+-ROOT = Path(__file__).resolve().parents[3]
++ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ sys.path.insert(0, str(ROOT / "src"))
+ 
+ from phm2026.models.rtdetr.detection import (  # noqa: E402
+--- scripts/phm2026/training/run_rtdetr_feasibility.py
++++ implementations/PHM2026/scripts/training/run_rtdetr_feasibility.py
+@@ -10,7 +10,7 @@
+ 
+ import pandas as pd
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ SOURCE_ROOT = REPOSITORY_ROOT / "src"
+ if str(SOURCE_ROOT) not in sys.path:
+     sys.path.insert(0, str(SOURCE_ROOT))
+--- scripts/phm2026/training/train_rtdetr_multitask.py
++++ implementations/PHM2026/scripts/training/train_rtdetr_multitask.py
+@@ -24,7 +24,7 @@
+ from ultralytics import RTDETR
+ import ultralytics
+ 
+-ROOT = Path(__file__).resolve().parents[3]
++ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ sys.path.insert(0, str(ROOT / "src"))
+ 
+ from phm2026.evaluation.regression import regression_metrics  # noqa: E402
+--- scripts/phm2026/training/train_rtdetr_regression.py
++++ implementations/PHM2026/scripts/training/train_rtdetr_regression.py
+@@ -12,7 +12,7 @@
+ import pandas as pd
+ import torch
+ 
+-ROOT = Path(__file__).resolve().parents[3]
++ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ sys.path.insert(0, str(ROOT / "src"))
+ from phm2026.models.rtdetr.feasibility import (
+     RTDETRFeasibilityOptions,
+--- scripts/phm2026/training/train_patchtst.py
++++ implementations/PHM2026/scripts/training/train_patchtst.py
+@@ -6,7 +6,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/anomalydino_validated.py
++++ implementations/PHM2026/scripts/results/anomalydino_validated.py
+@@ -28,7 +28,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/generate_rtdetr_results.py
++++ implementations/PHM2026/scripts/results/generate_rtdetr_results.py
+@@ -10,7 +10,7 @@
+ import pandas as pd
+ from PIL import Image
+ 
+-ROOT = Path(__file__).resolve().parents[3]
++ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ sys.path.insert(0, str(ROOT / "src"))
+ from phm2026.reporting.common import (
+     ACADEMIC_COLORS,
+--- scripts/phm2026/results/loeo_evaluation.py
++++ implementations/PHM2026/scripts/results/loeo_evaluation.py
+@@ -29,7 +29,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/evaluate_naive_baselines.py
++++ implementations/PHM2026/scripts/results/evaluate_naive_baselines.py
+@@ -7,7 +7,7 @@
+ from pathlib import Path
+ import pandas as pd
+ 
+-ROOT = Path(__file__).resolve().parents[3]
++ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ sys.path.insert(0, str(ROOT / "src"))
+ from phm2026.evaluation.regression import (
+     metric_table,
+--- scripts/phm2026/results/closing_tasks_a_b.py
++++ implementations/PHM2026/scripts/results/closing_tasks_a_b.py
+@@ -19,7 +19,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/monotonic_null_test.py
++++ implementations/PHM2026/scripts/results/monotonic_null_test.py
+@@ -25,7 +25,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/rescore_monotonic.py
++++ implementations/PHM2026/scripts/results/rescore_monotonic.py
+@@ -11,7 +11,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/analyze_teacher_identity.py
++++ implementations/PHM2026/scripts/results/analyze_teacher_identity.py
+@@ -32,7 +32,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/analyze_photometrics.py
++++ implementations/PHM2026/scripts/results/analyze_photometrics.py
+@@ -19,7 +19,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/closing_task_c.py
++++ implementations/PHM2026/scripts/results/closing_task_c.py
+@@ -21,7 +21,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/sq2_sq3_fusion.py
++++ implementations/PHM2026/scripts/results/sq2_sq3_fusion.py
+@@ -16,7 +16,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/closing_task_c3_retest.py
++++ implementations/PHM2026/scripts/results/closing_task_c3_retest.py
+@@ -24,7 +24,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/generate_patchtst_results.py
++++ implementations/PHM2026/scripts/results/generate_patchtst_results.py
+@@ -6,7 +6,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/verify_target_constants.py
++++ implementations/PHM2026/scripts/results/verify_target_constants.py
+@@ -18,7 +18,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/diagnose_signal_and_monotonicity.py
++++ implementations/PHM2026/scripts/results/diagnose_signal_and_monotonicity.py
+@@ -24,7 +24,7 @@
+ # Source-tree entry point; no installed package is required.
+ import sys as _sys
+ from pathlib import Path as _Path
+-_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "src"))
++_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"))
+ 
+ 
+ import argparse
+--- scripts/phm2026/results/generate_rtdetr_r4_results.py
++++ implementations/PHM2026/scripts/results/generate_rtdetr_r4_results.py
+@@ -11,7 +11,7 @@
+ import matplotlib.pyplot as plt
+ import pandas as pd
+ 
+-ROOT = Path(__file__).resolve().parents[3]
++ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ sys.path.insert(0, str(ROOT / "src"))
+ 
+ from phm2026.reporting.common import (  # noqa: E402
+--- tests/phm2026/test_run_infrastructure.py
++++ implementations/PHM2026/tests/test_run_infrastructure.py
+@@ -143,7 +143,7 @@
+ 
+ 
+ def test_synthetic_multimodal_fixture_has_required_modalities() -> None:
+-    fixture_root = Path(__file__).resolve().parents[1] / "fixtures/synthetic_multimodal"
++    fixture_root = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "tests/fixtures/synthetic_multimodal"
+     payload = json.loads((fixture_root / "records.json").read_text(encoding="utf-8"))
+     assert len(payload["records"]) == 2
+     assert {record["group"] for record in payload["records"]} == {
+--- tests/phm2026/test_phm2026_adapter.py
++++ implementations/PHM2026/tests/test_phm2026_adapter.py
+@@ -111,7 +111,7 @@
+ 
+ 
+ def test_phm_config_is_relative_scoped_and_target_unverified() -> None:
+-    config_path = Path(__file__).resolve().parents[2] / "configs/datasets/phm2026.yaml"
++    config_path = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "configs/datasets/phm2026.yaml"
+     config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
+     assert config["dataset"]["data_root"] == "gtc-data-experiment"
+     assert config["dataset"]["excluded_repository_roots"] == ["data/Full Dataset"]
+--- tests/phm2026/conftest.py
++++ implementations/PHM2026/tests/conftest.py
+@@ -3,6 +3,6 @@
+ from pathlib import Path
+ import sys
+ 
+-SRC = Path(__file__).resolve().parents[2] / "src"
++SRC = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "src"
+ if str(SRC) not in sys.path:
+     sys.path.insert(0, str(SRC))
+--- tests/phm2026/test_asset_inventory.py
++++ implementations/PHM2026/tests/test_asset_inventory.py
+@@ -73,7 +73,7 @@
+ ) -> None:
+     root = _fake_repository(tmp_path)
+     archive_root = root / "synthetic_raw/high_frequency/EXP A"
+-    fixture = Path(__file__).resolve().parents[1] / "fixtures/synthetic_multimodal"
++    fixture = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "tests/fixtures/synthetic_multimodal"
+     repeated = (fixture / "records.json").read_bytes()
+     _write_zip(
+         archive_root / "Exp-A_HDF5_Run-1.zip",
+--- tests/phm2026/test_phm_download.py
++++ implementations/PHM2026/tests/test_phm_download.py
+@@ -175,7 +175,7 @@
+ 
+ 
+ def test_resolver_official_page_fixture():
+-    fixture=Path(__file__).parents[1]/'fixtures/phm_recovery/official_page.html'
++    fixture=next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())/'tests/fixtures/phm_recovery/official_page.html'
+     assert d.training_link(fixture.read_text())==d.DEFAULT_SHARE
+     with pytest.raises(d.RecoveryError):d.training_link('<a href="https://example.invalid">Nothing</a>')
+     for url in ['http://example.org/sharing/a','https://name:password@example.org/sharing/a','https://example.org/sharing/a?token=x']:
+--- tests/intel_welding/test_intel_foundations.py
++++ implementations/INTEL_WELDING/tests/test_intel_foundations.py
+@@ -4,7 +4,7 @@
+ import pandas as pd
+ import pytest
+ 
+-SPEC = importlib.util.spec_from_file_location('intel_foundations', Path(__file__).resolve().parents[2] / 'scripts/intel_welding/04_foundations.py')
++SPEC = importlib.util.spec_from_file_location('intel_foundations', next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / 'scripts/intel_welding/04_foundations.py')
+ audit = importlib.util.module_from_spec(SPEC)
+ SPEC.loader.exec_module(audit)
+ 
+--- REBOOT/src/write_blocker_reports_v2.py
++++ implementations/REBOOT/src/write_blocker_reports_v2.py
+@@ -7,7 +7,7 @@
+ import shutil
+ import subprocess
+ 
+-PROJECT = Path(__file__).resolve().parents[2]
++PROJECT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ BASE = PROJECT / 'REBOOT'
+ 
+ 
+--- REBOOT/src/package_independent_review_v2.py
++++ implementations/REBOOT/src/package_independent_review_v2.py
+@@ -8,7 +8,7 @@
+ import shutil
+ import zipfile
+ 
+-PROJECT = Path(__file__).resolve().parents[2]
++PROJECT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ BASE = PROJECT / 'REBOOT'
+ 
+ 
+--- REBOOT/src/verify_usbc_identity_v2.py
++++ implementations/REBOOT/src/verify_usbc_identity_v2.py
+@@ -14,7 +14,7 @@
+ 
+ from acquire_pilot import RangeFile
+ 
+-PROJECT = pathlib.Path(__file__).resolve().parents[2]
++PROJECT = next(p for p in pathlib.Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ 
+ 
+ class BoundedIdentityFile(RangeFile):
+--- REBOOT/src/source_audit.py
++++ implementations/REBOOT/src/source_audit.py
+@@ -9,7 +9,7 @@
+ import time
+ import urllib.request
+ 
+-ROOT=Path(__file__).resolve().parents[1]
++ROOT=next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "REBOOT"
+ REPO=ROOT.parent
+ RUN=REPO/json.loads((ROOT/'00_dataset_overview/ACTIVE_RUN.json').read_text())['run']
+ RAW=ROOT/'01_raw_dataset'
+--- REBOOT/src/build_blocker_tables_v2.py
++++ implementations/REBOOT/src/build_blocker_tables_v2.py
+@@ -8,7 +8,7 @@
+ 
+ import pyarrow.parquet as pq
+ 
+-PROJECT = Path(__file__).resolve().parents[2]
++PROJECT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ BASE = PROJECT / 'REBOOT'
+ CAMERAS = ['cam_high', 'cam_low', 'cam_left_wrist', 'cam_right_wrist']
+ 
+--- REBOOT/src/investigate_original_sources_v2.py
++++ implementations/REBOOT/src/investigate_original_sources_v2.py
+@@ -20,7 +20,7 @@
+ import urllib.request
+ from datetime import datetime, timezone
+ 
+-ROOT = pathlib.Path(__file__).resolve().parents[2]
++ROOT = next(p for p in pathlib.Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ LOCK = threading.Lock()
+ 
+ 
+--- REBOOT/tests/test_feasibility_gates.py
++++ implementations/REBOOT/tests/test_feasibility_gates.py
+@@ -46,7 +46,7 @@
+ 
+ 
+ def test_pilot_never_uses_collection_membership_as_binary_target():
+- root=Path(__file__).resolve().parents[1]
++ root=next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file()) / "REBOOT"
+  rows=json.loads((root/'00_dataset_overview/PILOT_SELECTION.json').read_text())
+  assert len(rows)==10 and all(r['binary_target'] is None for r in rows)
+  assert all('UNVERIFIED' in r['label_status'] or 'NO_VERIFIED' in r['label_status'] for r in rows)
+--- scripts/ops/build_thesis_run_index.py
++++ implementations/general/scripts/ops/build_thesis_run_index.py
+@@ -24,7 +24,7 @@
+ 
+ import yaml
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ 
+ 
+ @dataclass(frozen=True, slots=True)
+--- scripts/ops/repin_source_run.py
++++ implementations/general/scripts/ops/repin_source_run.py
+@@ -19,7 +19,7 @@
+ 
+ import yaml
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ 
+ 
+ def sha256_file(path: Path, *, block_bytes: int = 1024 * 1024) -> str:
+--- scripts/thesis/build_final_documentation.py
++++ implementations/general/scripts/thesis/build_final_documentation.py
+@@ -10,7 +10,7 @@
+ import yaml
+ from sklearn.metrics import average_precision_score, roc_auc_score
+ 
+-ROOT = Path(__file__).resolve().parents[2]
++ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ os.chdir(ROOT)
+ CFG = Path('artifacts/thesis/documentation_build_config.json')
+ config = json.loads(CFG.read_text())
+--- scripts/presentation/generate_professor_presentation.py
++++ implementations/general/scripts/presentation/generate_professor_presentation.py
+@@ -25,7 +25,7 @@
+ from pptx import Presentation
+ from pptx.util import Inches
+ 
+-ROOT = Path(__file__).resolve().parents[2]
++ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ sys.path.insert(0, str(ROOT / "src"))
+ 
+ from phm2026.reporting.common import (  # noqa: E402
+--- tests/ops/test_ops_scripts.py
++++ implementations/general/tests/ops/test_ops_scripts.py
+@@ -8,7 +8,7 @@
+ 
+ import yaml
+ 
+-REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
++REPOSITORY_ROOT = next(p for p in Path(__file__).resolve().parents if (p / "AGENTS.md").is_file() and (p / "pyproject.toml").is_file())
+ 
+ CONFIG = """schema_version: "1.0.0"
+ study: example

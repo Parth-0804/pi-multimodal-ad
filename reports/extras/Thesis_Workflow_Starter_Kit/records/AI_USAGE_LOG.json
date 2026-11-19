@@ -1,0 +1,48 @@
+{
+  "fields": {
+    "event_id": "",
+    "date": "",
+    "tool": "",
+    "model_version_if_exposed": null,
+    "purpose": "",
+    "exact_prompt_or_prompt_file": "",
+    "input_versions": [],
+    "output_files_or_sections": [],
+    "verification_performed": "",
+    "human_review_status": "pending",
+    "limitations": ""
+  },
+  "records": [
+    {
+      "event_id": "AI001",
+      "date": "2026-11-14",
+      "tool": "ChatGPT with connected research tools and Codex execution",
+      "model_version_if_exposed": null,
+      "purpose": "Create thesis workflow starter kit and run bounded discovery",
+      "exact_prompt_or_prompt_file": "User request: cool, so now what? how to amp this to [the seven-tool role table] ??Lets make complete use while maintaining the thesis. Exact research query arguments are retained in SEARCH_LOG.json. Generated future prompts are in prompts/ and are not represented as executed.",
+      "input_versions": [
+        {
+          "filename": "THESIS_BASELINE_REPORT.md",
+          "library_file_id": "libfile_fde3_f-7c104be469808191afc80d025472c18e_7d1cacbaaf188191a9b1f2ca940e6de3",
+          "version": "3",
+          "role": "Evidence-qualified implementation baseline; not fresh live audit"
+        },
+        {
+          "filename": "Pasted text(5).txt",
+          "library_file_id": "libfile_fde3_f-3aaf0bfeb1ec8191bcf5737f46b8a9b3_7d1cacbaaf188191a9b1f2ca940e6de3",
+          "version": "0",
+          "role": "Existing ten-chapter LaTeX outline and writing briefs"
+        }
+      ],
+      "output_files_or_sections": [
+        "WORKFLOW_STATE.json",
+        "DISCOVERY_CANDIDATES.json",
+        "SEARCH_LOG.json",
+        "prompts/"
+      ],
+      "verification_performed": "Read prior baseline/outline; checked tool responses; selected primary abstract/version checks; no full-text scientific-claim audit",
+      "human_review_status": "pending",
+      "limitations": "Elicit API blocked; Zotero API timed out; no live HFU or canonical-manuscript edit"
+    }
+  ]
+}

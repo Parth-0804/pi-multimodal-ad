@@ -1,0 +1,102 @@
+[
+  {
+    "id": "S001",
+    "date": "2026-11-14",
+    "provider": "Elicit",
+    "mode": "semantic",
+    "query": "In industrial monitoring and robotic failure detection using visual observations and sensor time series, when do concatenation, late fusion, or quality-aware gated fusion improve on strong unimodal baselines, and when do they fail under missing or noisy modalities?",
+    "filters": {
+      "maxYear": 2026,
+      "maxResults": 10
+    },
+    "status": "blocked_api_access_denied",
+    "results_retrieved": 0,
+    "note": "Also failed account session listing. No Elicit report/session was created."
+  },
+  {
+    "id": "S002",
+    "date": "2026-11-14",
+    "provider": "SciSpace",
+    "mode": "semantic",
+    "query": "What empirical studies compare pretrained visual representations and time-series models with simple sensor-feature baselines for multimodal industrial monitoring or robotic failure classification? year:2018-2026 limit:8",
+    "results_retrieved": 8,
+    "status": "discovery_only"
+  },
+  {
+    "id": "S003",
+    "date": "2026-11-14",
+    "provider": "Scite",
+    "mode": "Boolean",
+    "query": "\"multimodal\" AND (\"unimodal\" OR \"modality imbalance\") AND (\"fusion\" OR \"classification\")",
+    "filters": {
+      "date_to": "2026-11-14",
+      "limit": 8
+    },
+    "results_retrieved": 8,
+    "status": "discovery_only",
+    "note": "Broad results include out-of-domain studies. No full-text screening decisions claimed."
+  },
+  {
+    "id": "S004",
+    "date": "2026-11-14",
+    "provider": "SciSpace",
+    "mode": "semantic",
+    "query": "Which studies evaluate fusion of actual camera images and independently measured sensor time series for robotic manipulation failure detection, including comparisons against unimodal baselines? year:2018-2025 limit:8",
+    "results_retrieved": 8,
+    "status": "discovery_only",
+    "note": "Contains probable duplicate work/version records."
+  },
+  {
+    "id": "S005",
+    "date": "2026-11-14",
+    "provider": "Scite",
+    "mode": "DOI lookup",
+    "query": "10.1109/CVPR42600.2020.01271",
+    "results_retrieved": 1,
+    "status": "metadata_checked",
+    "note": "Pagination conflict with CVF metadata retained."
+  },
+  {
+    "id": "S006",
+    "date": "2026-11-14",
+    "provider": "Scite",
+    "mode": "citation_graph",
+    "query": "10.1109/cvpr42600.2020.01271",
+    "filters": {
+      "direction": "in",
+      "depth": 1,
+      "max_edges": 12,
+      "include_intent": true,
+      "include_snippets": false
+    },
+    "edges_returned": 12,
+    "status": "truncated_discovery_only",
+    "note": "Not an exhaustive citation search; no topology-based absence claims."
+  },
+  {
+    "id": "S007",
+    "date": "2026-11-14",
+    "provider": "Web search 1",
+    "mode": "primary-source verification",
+    "queries": [
+      "\"What Makes Training Multi-Modal Classification Networks Hard?\"",
+      "\"multimodal\" \"industrial\" \"missing modalities\" fusion",
+      "\"Applicability Boundaries of Time-Series Foundation Models\""
+    ],
+    "status": "primary_records_retrieved",
+    "note": "Used original publisher/author results only for content; current complete paper review remains pending."
+  },
+  {
+    "id": "S008",
+    "date": "2026-11-14",
+    "provider": "Web search 2",
+    "mode": "primary-source verification",
+    "queries": [
+      "\"FINO-Net\" \"Deep Multimodal Sensor Fusion\"",
+      "\"Failure Detection Using Proprioceptive, Auditory and Visual Modalities\"",
+      "\"Sensor Fusion and Multimodal Learning for Robotic Grasp Verification Using Neural Networks\""
+    ],
+    "status": "primary_records_retrieved",
+    "note": "Opened arXiv version pages. Direct IEEE pages for 9955646 and 10372079 returned access challenges; CVF direct open returned 403 while search supplied the original abstract."
+  }
+]
