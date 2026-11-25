@@ -1,0 +1,14 @@
+{
+  "utc": "2026-11-11T17:41:21.529630+00:00",
+  "command": [
+    "nvidia-smi",
+    "--query-gpu=memory.total,memory.used,memory.free,memory.reserved,power.draw,power.limit,clocks_event_reasons.sw_power_cap,clocks_event_reasons.sw_thermal_slowdown",
+    "--format=csv,noheader,nounits"
+  ],
+  "output": "16384, 5589, 10341, 455, 30.86, 70.00, Not Active, Not Active",
+  "shared_memory_bytes": {
+    "total": 32012886016,
+    "used": 61440,
+    "free": 32012824576
+  }
+}

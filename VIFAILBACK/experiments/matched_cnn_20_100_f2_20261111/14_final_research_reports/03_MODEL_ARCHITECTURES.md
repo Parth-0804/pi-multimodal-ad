@@ -1,3 +1,5 @@
+> **RESEARCHER-STOPPED SCOPE:** No further CNN training is authorized. The remaining planned fits are NOT RUN — RESEARCHER STOP. Any queued/pending counts below describe the preserved original protocol, not an active execution queue. See ../18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md.
+
 # Models
 
 Pinned RT-DETR ResNet18-vd CNN only, revision `ac77a11ff0170a41b771c03264987f8ce2b0d753`. Each of three cameras contributes 16 fixed timestamps, giving 48 frames per episode. Spatial means concatenate 128+256+512=896 features; equal temporal/camera means give one representation per episode. Head 896→128→ReLU→Dropout(0.1)→1 has 114,945 parameters.

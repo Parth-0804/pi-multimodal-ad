@@ -1,0 +1,20 @@
+--- REPO_MAP.md (before this task)
++++ REPO_MAP.md
+@@ -17,6 +17,7 @@
+ 
+ ## History and reproducibility
+ 
++- [Pending full physical consolidation: exact move plan and approval boundary](implementations/general/docs/repository_history/final_consolidation_20261125/MOVE_PLAN.md) — prepared on 2026-11-25; no moves executed in this phase.
+ - [Current organization phase and checks](implementations/general/docs/repository_history/post_report_cleanup_20261124/STATUS.json)
+ - [Current move/link/deletion record](implementations/general/docs/repository_history/post_report_cleanup_20261124/CHANGES.json)
+ - [Earlier dataset consolidation](implementations/general/docs/repository_history/dataset_layout_cleanup.json)
+
+--- .gitignore (before this task)
++++ .gitignore
+@@ -688,3 +688,6 @@
+ 
+ # Reviewed documentation recovery bundle.
+ !implementations/general/docs/repository_history/document_cleanup_20261120/removed_documents.tar.gz
++
++# Local metadata inventory for the pending, researcher-reviewed structural move.
++/implementations/general/docs/repository_history/final_consolidation_20261125/FILE_METADATA_BEFORE.jsonl

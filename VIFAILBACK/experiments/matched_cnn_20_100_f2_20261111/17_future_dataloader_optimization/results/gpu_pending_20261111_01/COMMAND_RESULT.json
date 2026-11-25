@@ -1,0 +1,100 @@
+{
+  "status": "PENDING",
+  "admission": {
+    "utc": "2026-11-11T22:02:15.853394+00:00",
+    "ready": false,
+    "status": "PENDING",
+    "reasons": [
+      "GPU protected lane is not completely finished (37 fits required)",
+      "GPU controller is alive or its process identity cannot be verified: ALIVE",
+      "GPU already has compute processes; idle samples do not permit admission"
+    ],
+    "protected_lane_status": {
+      "GPU": {
+        "completed_fits": 0,
+        "condition": "FULL100",
+        "create_time": 1794353606.37,
+        "fit_directory": "06_full100/seed42/outer0_inner0",
+        "fit_id": "outer0_inner0",
+        "git_commit": "47e16d3120fb4ae905118b16f40dee4000ec3592",
+        "lane": "gpu",
+        "pid": 29074,
+        "planned_fits": 37,
+        "python": "3.12.3",
+        "seed": 42,
+        "stage": "TRAINING",
+        "utc": "2026-11-10T23:33:34.131583+00:00",
+        "observed_process_state": "ALIVE"
+      },
+      "CPU": {
+        "completed_fits": 74,
+        "create_time": 1794353606.39,
+        "git_commit": "2a51688af2fc4a355607716e9bb9ab3b01e23f91",
+        "lane": "cpu",
+        "pid": 29076,
+        "planned_fits": 74,
+        "python": "3.12.3",
+        "stage": "COMPLETE",
+        "utc": "2026-11-10T23:42:23.265193+00:00",
+        "observed_process_state": "ABSENT"
+      }
+    },
+    "completed_full_fits": 0,
+    "torch_imported_by_guard": false,
+    "resource_bounds": {
+      "per_configuration": [
+        {
+          "num_workers": 4,
+          "prefetch_factor": 2,
+          "RAM_required_bytes": 11584667648,
+          "shared_memory_required_bytes": 3303014400
+        }
+      ],
+      "RAM_required_bytes": 11584667648,
+      "shared_memory_required_bytes": 3303014400,
+      "disk_reserve_bytes": 21474836480,
+      "output_allowance_bytes": 268435456,
+      "GPU_free_required_bytes": 8589934592
+    },
+    "resources": {
+      "disk_free_bytes": 33839923200,
+      "RAM_available_bytes": 54582435840,
+      "effective_RAM_available_bytes": 54582435840,
+      "cgroup": [
+        {
+          "path": "user.slice/user-1001.slice/session-11.scope",
+          "memory_max": "max",
+          "memory_current": 35968024576
+        },
+        {
+          "path": "user.slice/user-1001.slice",
+          "memory_max": "max",
+          "memory_current": 54831538176
+        },
+        {
+          "path": "user.slice",
+          "memory_max": "max",
+          "memory_current": 54831575040
+        }
+      ],
+      "shared_memory_free_bytes": 31776894976,
+      "CPU_affinity": [
+        0,
+        1
+      ],
+      "GPU_devices": [
+        {
+          "index": 0,
+          "total_bytes": 17179869184,
+          "free_bytes": 10843324416
+        }
+      ],
+      "GPU_compute_pids": [
+        29074
+      ]
+    }
+  },
+  "measured_speedup": null,
+  "recommended_configuration": null,
+  "automatic_launch": false
+}

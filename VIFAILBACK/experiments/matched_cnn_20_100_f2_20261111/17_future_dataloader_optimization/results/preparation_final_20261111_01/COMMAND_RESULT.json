@@ -1,0 +1,47 @@
+{
+  "status": "PREPARED",
+  "presets": {
+    "baseline_w2_p1": {
+      "name": "baseline_w2_p1",
+      "num_workers": 2,
+      "prefetch_factor": 1,
+      "pin_memory": true,
+      "persistent_workers": false,
+      "multiprocessing_context": "spawn"
+    },
+    "w4_p1": {
+      "name": "w4_p1",
+      "num_workers": 4,
+      "prefetch_factor": 1,
+      "pin_memory": true,
+      "persistent_workers": false,
+      "multiprocessing_context": "spawn"
+    },
+    "w4_p2": {
+      "name": "w4_p2",
+      "num_workers": 4,
+      "prefetch_factor": 2,
+      "pin_memory": true,
+      "persistent_workers": false,
+      "multiprocessing_context": "spawn"
+    },
+    "w2_p4": {
+      "name": "w2_p4",
+      "num_workers": 2,
+      "prefetch_factor": 4,
+      "pin_memory": true,
+      "persistent_workers": false,
+      "multiprocessing_context": "spawn"
+    }
+  },
+  "max_episode_queue": {
+    "baseline_w2_p1": 2,
+    "w4_p1": 4,
+    "w4_p2": 8,
+    "w2_p4": 8
+  },
+  "protected_source_freeze": "PASS",
+  "GPU_benchmark": "PENDING",
+  "recommended_configuration": null,
+  "measured_speedup": null
+}

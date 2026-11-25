@@ -1,16 +1,22 @@
+> **RESEARCHER-STOPPED SCOPE:** No further CNN training is authorized. The remaining planned fits are NOT RUN — RESEARCHER STOP. Any queued/pending counts below describe the preserved original protocol, not an active execution queue. See ../18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md.
+
 # Seed and fold coverage
 
 |Experiment|Complete|Partial / running|Blocked|Queued|Resource deferred|Awaiting admission|Exact unresolved requirement|
 |---|---|---|---|---|---|---|---|
 |FROZEN20|36|0|0|0|0|0|None for declared fit scope|
-|FULL20|0|0|0|36|0|0|Finish/resume declared fits; admit prospective seeds only by resource gate; F2 needs complete meta-bank and outer predictions.|
+|FULL20|4|0|0|32|0|0|Finish/resume declared fits; admit prospective seeds only by resource gate; F2 needs complete meta-bank and outer predictions.|
 |DONOR20|36|0|0|0|0|0|None for declared fit scope|
 |FROZEN100|1|0|0|0|0|0|None for declared fit scope|
-|FULL100|0|1|0|0|0|0|Finish/resume declared fits; admit prospective seeds only by resource gate; F2 needs complete meta-bank and outer predictions.|
+|FULL100|1|0|0|0|0|0|None for declared fit scope|
 |DONOR100|1|0|0|0|0|0|None for declared fit scope|
 
 |Comparison|Seed|Fold|Paired macro AP difference|95% interval|Interpretation|
 |---|---|---|---|---|---|
+|FULL20 minus FROZEN20 / visual|42|0|0.004946|[-0.027460, 0.040927]|inconclusive; not equivalence|
+|FULL20 minus FROZEN20 / F2|42|0|-0.009260|[-0.026854, 0.005016]|inconclusive; not equivalence|
+|FULL100 minus FROZEN100 / visual|42|0|-0.006662|[-0.027982, 0.027078]|inconclusive; not equivalence|
+|FULL100 minus FROZEN100 / F2|42|0|0.005040|[-0.019473, 0.029255]|inconclusive; not equivalence|
 |DONOR20 minus FROZEN20 / visual|42|0|-0.024263|[-0.083623, 0.026911]|inconclusive; not equivalence|
 |DONOR20 minus FROZEN20 / F2|42|0|0.001263|[-0.002532, 0.003649]|inconclusive; not equivalence|
 |DONOR20 minus FROZEN20 / visual|42|1|-0.010907|[-0.039810, 0.018839]|inconclusive; not equivalence|
@@ -82,6 +88,11 @@
 |FROZEN20 / F2_minus_historical_V1|20261023|2|0.148215|[0.074711, 0.212559]|positive conditional interval|
 |FROZEN20 / F2_minus_sensor_LR|20261023|2|-0.000348|[-0.000810, 0.000195]|inconclusive; not equivalence|
 |FROZEN20 / F2_minus_visual|20261023|2|0.148215|[0.074711, 0.212559]|positive conditional interval|
+|FULL20 / F2_minus_average|42|0|0.004751|[-0.001414, 0.012090]|inconclusive; not equivalence|
+|FULL20 / F2_minus_historical_HGB|42|0|-0.060020|[-0.176470, 0.056659]|inconclusive; not equivalence|
+|FULL20 / F2_minus_historical_V1|42|0|0.222127|[0.148854, 0.308351]|positive conditional interval|
+|FULL20 / F2_minus_sensor_LR|42|0|-0.010138|[-0.024848, 0.002770]|inconclusive; not equivalence|
+|FULL20 / F2_minus_visual|42|0|0.205489|[0.136128, 0.281832]|positive conditional interval|
 |DONOR20 / F2_minus_average|42|0|0.026686|[0.004070, 0.041295]|positive conditional interval|
 |DONOR20 / F2_minus_historical_HGB|42|0|-0.049497|[-0.164293, 0.061279]|inconclusive; not equivalence|
 |DONOR20 / F2_minus_historical_V1|42|0|0.232650|[0.166975, 0.310144]|positive conditional interval|
@@ -132,6 +143,11 @@
 |FROZEN100 / F2_minus_historical_V1|42|0|0.218488|[0.144555, 0.299830]|positive conditional interval|
 |FROZEN100 / F2_minus_sensor_LR|42|0|-0.013777|[-0.028973, -0.000509]|negative conditional interval|
 |FROZEN100 / F2_minus_visual|42|0|0.143225|[0.061848, 0.228811]|positive conditional interval|
+|FULL100 / F2_minus_average|42|0|0.033924|[0.017359, 0.054468]|positive conditional interval|
+|FULL100 / F2_minus_historical_HGB|42|0|-0.058619|[-0.172171, 0.053290]|inconclusive; not equivalence|
+|FULL100 / F2_minus_historical_V1|42|0|0.223528|[0.157159, 0.303052]|positive conditional interval|
+|FULL100 / F2_minus_sensor_LR|42|0|-0.008737|[-0.026227, 0.006631]|inconclusive; not equivalence|
+|FULL100 / F2_minus_visual|42|0|0.154927|[0.091247, 0.221864]|positive conditional interval|
 |DONOR100 / F2_minus_average|42|0|0.008988|[-0.018001, 0.042690]|inconclusive; not equivalence|
 |DONOR100 / F2_minus_historical_HGB|42|0|-0.061278|[-0.178274, 0.051565]|inconclusive; not equivalence|
 |DONOR100 / F2_minus_historical_V1|42|0|0.220869|[0.149578, 0.301429]|positive conditional interval|
@@ -174,9 +190,77 @@
 |DONOR20|9|3|3|[-2.324933, 0.168397]|[2.673136, 4.669225]|[-1.660873, 1.574962]|
 |FROZEN100|1|1|1|[-0.420886, -0.420886]|[3.999794, 3.999794]|[-1.574092, -1.574092]|
 |FROZEN20|9|3|3|[-0.715371, 0.769281]|[2.620981, 4.678606]|[-1.751374, 0.152239]|
+|FULL100|1|1|1|[1.488361, 1.488361]|[3.697490, 3.697490]|[-3.021647, -3.021647]|
+|FULL20|1|1|1|[1.368516, 1.368516]|[2.575597, 2.575597]|[-1.359120, -1.359120]|
 
 |Comparison|Seed|Fold|Task|N|Visual macro AP delta|F2 macro AP delta|
 |---|---|---|---|---|---|---|
+|FULL20 minus FROZEN20|42|0|2|131|0.032809|0.002678|
+|FULL20 minus FROZEN20|42|0|3|15|0.023064|-0.048286|
+|FULL20 minus FROZEN20|42|0|9|16|-0.008242|0.000000|
+|FULL20 minus FROZEN20|42|0|13|16|0.015831|-0.011083|
+|FULL20 minus FROZEN20|42|0|17|16|-0.088596|0.000000|
+|FULL20 minus FROZEN20|42|0|22|16|-0.086467|0.000000|
+|FULL20 minus FROZEN20|42|0|27|16|0.071543|-0.054594|
+|FULL20 minus FROZEN20|42|0|39|16|0.436013|0.000000|
+|FULL20 minus FROZEN20|42|0|40|16|0.002386|0.000000|
+|FULL20 minus FROZEN20|42|0|42|16|0.020310|0.000000|
+|FULL20 minus FROZEN20|42|0|46|190|0.069863|-0.006919|
+|FULL20 minus FROZEN20|42|0|48|16|-0.106296|-0.030314|
+|FULL20 minus FROZEN20|42|0|51|16|-0.042516|-0.027959|
+|FULL20 minus FROZEN20|42|0|54|102|0.251295|-0.001607|
+|FULL20 minus FROZEN20|42|0|56|81|-0.088513|0.009114|
+|FULL20 minus FROZEN20|42|0|57|16|-0.029280|0.000000|
+|FULL20 minus FROZEN20|42|0|61|16|0.045255|-0.008369|
+|FULL20 minus FROZEN20|42|0|63|16|0.193332|0.000000|
+|FULL20 minus FROZEN20|42|0|64|16|0.031721|0.000000|
+|FULL20 minus FROZEN20|42|0|66|16|0.073902|0.000000|
+|FULL20 minus FROZEN20|42|0|68|16|0.000000|0.000000|
+|FULL20 minus FROZEN20|42|0|70|16|-0.052960|0.057937|
+|FULL20 minus FROZEN20|42|0|74|16|0.054790|-0.010040|
+|FULL20 minus FROZEN20|42|0|77|16|-0.010023|-0.061611|
+|FULL20 minus FROZEN20|42|0|81|16|0.048204|-0.030314|
+|FULL20 minus FROZEN20|42|0|83|32|-0.016493|0.000000|
+|FULL20 minus FROZEN20|42|0|84|16|0.114773|0.000000|
+|FULL20 minus FROZEN20|42|0|85|16|-0.051893|-0.029556|
+|FULL20 minus FROZEN20|42|0|86|16|-0.013015|0.000000|
+|FULL20 minus FROZEN20|42|0|88|140|-0.091089|0.019370|
+|FULL20 minus FROZEN20|42|0|89|16|-0.005109|-0.040677|
+|FULL20 minus FROZEN20|42|0|90|16|0.013426|0.030314|
+|FULL20 minus FROZEN20|42|0|92|16|0.000000|0.000000|
+|FULL100 minus FROZEN100|42|0|2|131|0.095722|0.005175|
+|FULL100 minus FROZEN100|42|0|3|15|0.132085|0.000000|
+|FULL100 minus FROZEN100|42|0|9|16|-0.030226|0.000000|
+|FULL100 minus FROZEN100|42|0|13|16|0.184362|0.000000|
+|FULL100 minus FROZEN100|42|0|17|16|0.403740|0.150984|
+|FULL100 minus FROZEN100|42|0|22|16|-0.044680|0.000000|
+|FULL100 minus FROZEN100|42|0|27|16|0.000000|0.173137|
+|FULL100 minus FROZEN100|42|0|39|16|-0.346880|0.027959|
+|FULL100 minus FROZEN100|42|0|40|16|-0.064745|-0.093786|
+|FULL100 minus FROZEN100|42|0|42|16|0.211457|0.000000|
+|FULL100 minus FROZEN100|42|0|46|190|-0.054176|0.005037|
+|FULL100 minus FROZEN100|42|0|48|16|0.294087|0.058272|
+|FULL100 minus FROZEN100|42|0|51|16|0.034356|-0.191184|
+|FULL100 minus FROZEN100|42|0|54|102|-0.109774|0.005777|
+|FULL100 minus FROZEN100|42|0|56|81|0.033996|0.024792|
+|FULL100 minus FROZEN100|42|0|57|16|-0.042194|0.000000|
+|FULL100 minus FROZEN100|42|0|61|16|0.059032|0.028823|
+|FULL100 minus FROZEN100|42|0|63|16|-0.187767|0.069498|
+|FULL100 minus FROZEN100|42|0|64|16|-0.165271|0.000000|
+|FULL100 minus FROZEN100|42|0|66|16|0.153506|0.000000|
+|FULL100 minus FROZEN100|42|0|68|16|-0.381687|0.000000|
+|FULL100 minus FROZEN100|42|0|70|16|0.155806|-0.057937|
+|FULL100 minus FROZEN100|42|0|74|16|-0.030372|0.077825|
+|FULL100 minus FROZEN100|42|0|77|16|-0.050098|0.189876|
+|FULL100 minus FROZEN100|42|0|81|16|0.158543|0.030314|
+|FULL100 minus FROZEN100|42|0|83|32|0.112420|0.000000|
+|FULL100 minus FROZEN100|42|0|84|16|0.023625|0.038991|
+|FULL100 minus FROZEN100|42|0|85|16|-0.063715|-0.032445|
+|FULL100 minus FROZEN100|42|0|86|16|-0.237762|0.000000|
+|FULL100 minus FROZEN100|42|0|88|140|0.001406|-0.030294|
+|FULL100 minus FROZEN100|42|0|89|16|-0.135988|0.030314|
+|FULL100 minus FROZEN100|42|0|90|16|0.055173|-0.060289|
+|FULL100 minus FROZEN100|42|0|92|16|0.335281|0.000000|
 |DONOR20 minus FROZEN20|42|0|2|131|-0.105806|0.000550|
 |DONOR20 minus FROZEN20|42|0|3|15|0.000000|-0.019913|
 |DONOR20 minus FROZEN20|42|0|9|16|-0.033826|0.000000|

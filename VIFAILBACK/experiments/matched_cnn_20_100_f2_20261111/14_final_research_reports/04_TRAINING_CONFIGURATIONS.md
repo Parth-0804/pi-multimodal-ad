@@ -1,3 +1,5 @@
+> **RESEARCHER-STOPPED SCOPE:** No further CNN training is authorized. The remaining planned fits are NOT RUN — RESEARCHER STOP. Any queued/pending counts below describe the preserved original protocol, not an active execution queue. See ../18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md.
+
 # Frozen training protocol
 
 AdamW: head LR 0.001, CNN LR 0.00001, weight decay 0.001, betas (0.9,0.999), epsilon 1e-8. Effective batch eight episodes, live microepisode one, frame chunks four, FP32, gradient norm clipping 1.0. T-only standardization and T negative/positive BCE weight. No augmentation or warmup.
@@ -46,6 +48,10 @@ Immutable protocol: `../01_protocol_and_source_evidence/protocol.json`. Exact pe
 |FROZEN20|20261023|outer2_inner0|20|16|-0.015862|[Figure](../12_learning_curves/FROZEN20/seed20261023/outer2_inner0/learning_curve.png)|
 |FROZEN20|20261023|outer2_inner1|20|5|-0.020655|[Figure](../12_learning_curves/FROZEN20/seed20261023/outer2_inner1/learning_curve.png)|
 |FROZEN20|20261023|outer2_inner2|20|7|-0.057178|[Figure](../12_learning_curves/FROZEN20/seed20261023/outer2_inner2/learning_curve.png)|
+|FULL20|42|outer0_final|20|5|-0.025198|[Figure](../12_learning_curves/FULL20/seed42/outer0_final/learning_curve.png)|
+|FULL20|42|outer0_inner0|20|1|-0.004738|[Figure](../12_learning_curves/FULL20/seed42/outer0_inner0/learning_curve.png)|
+|FULL20|42|outer0_inner1|20|18|-0.076288|[Figure](../12_learning_curves/FULL20/seed42/outer0_inner1/learning_curve.png)|
+|FULL20|42|outer0_inner2|20|12|-0.039407|[Figure](../12_learning_curves/FULL20/seed42/outer0_inner2/learning_curve.png)|
 |DONOR20|42|outer0_final|20|7|-0.048503|[Figure](../12_learning_curves/DONOR20/seed42/outer0_final/learning_curve.png)|
 |DONOR20|42|outer0_inner0|20|11|-0.024548|[Figure](../12_learning_curves/DONOR20/seed42/outer0_inner0/learning_curve.png)|
 |DONOR20|42|outer0_inner1|20|20|0.000000|[Figure](../12_learning_curves/DONOR20/seed42/outer0_inner1/learning_curve.png)|
@@ -83,6 +89,7 @@ Immutable protocol: `../01_protocol_and_source_evidence/protocol.json`. Exact pe
 |DONOR20|20261023|outer2_inner1|20|8|-0.025483|[Figure](../12_learning_curves/DONOR20/seed20261023/outer2_inner1/learning_curve.png)|
 |DONOR20|20261023|outer2_inner2|20|10|-0.057173|[Figure](../12_learning_curves/DONOR20/seed20261023/outer2_inner2/learning_curve.png)|
 |FROZEN100|42|outer0_inner0|100|11|-0.019786|[Figure](../12_learning_curves/FROZEN100/seed42/outer0_inner0/learning_curve.png)|
+|FULL100|42|outer0_inner0|100|24|-0.072757|[Figure](../12_learning_curves/FULL100/seed42/outer0_inner0/learning_curve.png)|
 |DONOR100|42|outer0_inner0|100|40|-0.025634|[Figure](../12_learning_curves/DONOR100/seed42/outer0_inner0/learning_curve.png)|
 
 Figures show loss and validation macro AP with the selected epoch. A negative last-minus-best value documents validation deterioration by the last observed epoch; this alone does not prove outer-test overfitting. Partial curves are not final-epoch results.

@@ -1,3 +1,5 @@
+> **RESEARCHER-STOPPED SCOPE:** No further CNN training is authorized. The remaining planned fits are NOT RUN — RESEARCHER STOP. Any queued/pending counts below describe the preserved original protocol, not an active execution queue. See ../18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md.
+
 # Initial completed-results snapshot
 
 Written 2026-11-10T23:47:26.655652+00:00. This is the completed frozen/donor stage; Full100 is running and all Full20 CNN fits remain queued. The live study reports supersede this dated snapshot when further fits complete.

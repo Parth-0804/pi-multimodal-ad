@@ -1,3 +1,5 @@
+> **RESEARCHER-STOPPED SCOPE:** No further CNN training is authorized. The remaining planned fits are NOT RUN — RESEARCHER STOP. Any queued/pending counts below describe the preserved original protocol, not an active execution queue. See ../18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md.
+
 # Measured computation and resource admission
 
 |Model|Seed|Fit|New training hours|Validation hours|Reused historical train+validation hours|GPU utilization %|Peak GPU GiB|Completed epochs|Optimizer updates|
@@ -38,6 +40,10 @@
 |FROZEN20|20261023|outer2_inner0|0.000840|0.000046|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|2160|
 |FROZEN20|20261023|outer2_inner1|0.001120|0.000043|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|3460|
 |FROZEN20|20261023|outer2_inner2|0.001082|0.000051|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|2860|
+|FULL20|42|outer0_final|29.294143|7.414258|NOT AVAILABLE|73.212650|5.109115|20|3380|
+|FULL20|42|outer0_inner0|31.597281|3.911706|NOT AVAILABLE|72.035991|5.109115|20|3580|
+|FULL20|42|outer0_inner1|19.758376|4.043663|NOT AVAILABLE|73.125103|5.109115|20|2280|
+|FULL20|42|outer0_inner2|21.322395|5.719590|NOT AVAILABLE|72.976992|5.109115|20|2440|
 |DONOR20|42|outer0_final|0.001345|0.000068|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|3380|
 |DONOR20|42|outer0_inner0|0.001398|0.000053|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|3580|
 |DONOR20|42|outer0_inner1|0.000899|0.000055|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|2280|
@@ -75,7 +81,7 @@
 |DONOR20|20261023|outer2_inner1|0.001285|0.000044|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|3460|
 |DONOR20|20261023|outer2_inner2|0.001170|0.000052|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|2860|
 |FROZEN100|42|outer0_inner0|0.000000|0.000000|0.007910|NOT AVAILABLE|0.000000|100|0|
-|FULL100|42|outer0_inner0|NOT AVAILABLE|NOT AVAILABLE|NOT AVAILABLE|NOT AVAILABLE|0.000000|0|0|
+|FULL100|42|outer0_inner0|157.453302|19.475015|NOT AVAILABLE|72.136665|5.109115|100|17900|
 |DONOR100|42|outer0_inner0|0.006492|0.000259|NOT AVAILABLE|NOT AVAILABLE|0.000000|100|17900|
 
 Training, validation, postfit inference, process duration and historical feature extraction are separate. New model training sums include committed completed epochs; active incomplete-epoch time is not yet in those sums. Reused historical fitting is never counted as new training. CPU head fits have no GPU utilization requirement.
@@ -107,11 +113,12 @@ Observed GPU process sessions:
 
 ```json
 {
-  "session_count": 1,
-  "observed_GPU_controller_process_hours": 0.23125010661055537,
+  "session_count": 2,
+  "observed_GPU_controller_process_hours": 303.7617104355631,
   "interpretation": "Observed per-process elapsed time summed once per PID/creation identity; includes decoding, validation and checkpointing. A killed process may leave an observation lower bound. It is not pure GPU kernel time.",
   "paths": [
-    "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/runtime/GPU_SESSION_29074_1794353606.json"
+    "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/runtime/GPU_SESSION_29074_1794353606.json",
+    "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/runtime/GPU_SESSION_50845_1794656559.json"
   ]
 }
 ```
@@ -121,26 +128,26 @@ Current GPU telemetry:
 ```json
 {
   "compute_pids": [
-    29074
+    50845
   ],
-  "current_process_hours": 0.2312112828049999,
+  "current_process_hours": 250.3184912367475,
   "devices": [
     {
       "index": 0,
       "memory_total_MiB": 16384,
       "memory_used_MiB": 5589,
       "name": "Tesla T4",
-      "utilization_percent": 0,
+      "utilization_percent": 100,
       "uuid": "GPU-44f7c9c1-5574-c432-d4e3-7a278b27f958"
     }
   ],
-  "mean_observed_utilization_percent": 69.73493975903614,
+  "mean_observed_utilization_percent": 66.91499814920752,
   "other_compute_pids": [],
-  "peak_device_used_MiB": 5691,
-  "samples": 83,
+  "peak_device_used_MiB": 5669,
+  "samples": 89151,
   "sampling_seconds": 10,
   "scope": "device utilization during this controller process; elapsed includes decoding and validation",
-  "utc": "2026-11-10T23:47:21.765278+00:00"
+  "utc": "2026-11-24T22:01:51.073172+00:00"
 }
 ```
 

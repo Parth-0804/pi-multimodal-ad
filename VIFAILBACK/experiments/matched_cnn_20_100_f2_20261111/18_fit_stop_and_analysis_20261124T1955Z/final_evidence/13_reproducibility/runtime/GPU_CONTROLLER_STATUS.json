@@ -1,0 +1,14 @@
+{
+  "completed_fits": 5,
+  "create_time": 1794656559.67,
+  "error": "RuntimeError('Another study process holds VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/04_full20/seed42/outer1_final/FIT.lock')",
+  "git_commit": "aa4dc0cb80e0d169e9f75c7679c07583aa94622a",
+  "lane": "gpu",
+  "pid": 50845,
+  "planned_fits": 37,
+  "python": "3.12.3",
+  "resume": "Re-run this lane; completed receipts are checked and unfinished fits resume at committed epoch boundary.",
+  "stage": "FAILED",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/common.py\", line 136, in exclusive_lock\n    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)\nBlockingIOError: [Errno 11] Resource temporarily unavailable\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/controller.py\", line 142, in run\n    receipt = fit(condition, seed, job, context=context)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/training.py\", line 270, in fit\n    with exclusive_lock(root/'FIT.lock'):\n  File \"/usr/lib/python3.12/contextlib.py\", line 137, in __enter__\n    return next(self.gen)\n           ^^^^^^^^^^^^^^\n  File \"/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/common.py\", line 138, in exclusive_lock\n    raise RuntimeError(f'Another study process holds {relative(path)}') from exc\nRuntimeError: Another study process holds VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/04_full20/seed42/outer1_final/FIT.lock\n",
+  "utc": "2026-11-24T22:01:59.962017+00:00"
+}

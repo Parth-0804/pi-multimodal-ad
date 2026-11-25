@@ -1,0 +1,50 @@
+{
+  "completion_gate": {
+    "analysis": {
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/scripts/study.py",
+        "evaluate"
+      ],
+      "exit_code": 0,
+      "log": "evaluate.log",
+      "seconds": 13.312432289123535,
+      "status": "COMPLETE"
+    },
+    "authorization": "just finish this fit and stop it, we deal with what trainings we did, do the result analysis and all that stuff for sure, but do not go with more than 3 hours after this fit.",
+    "blocked_next_fit": "04_full20/seed42/outer1_final",
+    "controller_alive": false,
+    "controller_interrupt_required": false,
+    "controller_lock_contention_if_recorded_is_intentional_stop_not_model_failure": true,
+    "deadline_utc": "2026-11-25T01:01:59.327332+00:00",
+    "do_not_resume_training": true,
+    "independent_analysis": {
+      "command": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/ma_thesis_env/bin/python",
+        "-B",
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/analyze_completed.py"
+      ],
+      "exit_code": 0,
+      "log": "analysis.log",
+      "seconds": 27.703913927078247,
+      "status": "COMPLETE"
+    },
+    "next_fit_training_started": false,
+    "placeholder_directory": "Contains only FIT.lock, created for the administrative stop; not a scientific fit attempt.",
+    "seconds_after_fit_completion": 183.63717198371887,
+    "stage": "CLOSED_COMPLETED_SCOPE",
+    "status": "STOPPED_BY_RESEARCHER_AFTER_CURRENT_FIT",
+    "target_complete": true,
+    "target_completed_utc": "2026-11-24T22:01:59.327332+00:00",
+    "target_fit": "04_full20/seed42/outer0_inner2",
+    "three_hour_limit_observed": true,
+    "unexecuted_fits_are_not_negative_model_results": true,
+    "utc": "2026-11-24T22:04:21.896823+00:00",
+    "watcher_alive": false
+  },
+  "postfit_deadline_utc": "2026-11-25T01:01:59.327332+00:00",
+  "researcher_instruction": "cool, then could you proceed with structural changes inspiring like VIFAILBACK but making it in implementations/ SO the overall structure is humanly readable and easily findable for datasets and for other folders think on how to make it clean and findable, making sure AI heavy unwanted files are removed, But do it once the final epoch and the report is over",
+  "scope": "One post-report organization phase; archive old AI notes, remove only ordinary disposable tool caches, preserve raw/frozen scientific evidence",
+  "utc": "2026-11-24T22:05:07.466135+00:00"
+}

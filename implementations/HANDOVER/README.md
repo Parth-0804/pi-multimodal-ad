@@ -1,34 +1,20 @@
 # HANDOVER
 
-Robot handover success/failure classification.
+Robot handover success/failure classification. Recording/task groups do not establish participant independence.
 
-Reference layout for this index. The common-support study lives under `HANDOVER/experiments/common_support_v2/`. Its handoff records the participant-identity limitation and the mandatory OOF gate for learned fusion.
+| Stage | Location |
+|---|---|
+| 01 — Labels and alignment | [Data-contract records](results/02_labels_and_alignment) |
+| 02 — Preprocessing and protocol | [Processed inputs](results/03_processed_model_inputs); [Protocol](results/04_experiment_protocol) |
+| 03 — Models and training | [Adapters](src); [Training records](results/05_trained_models) |
+| 04 — Main eligible study | [Common-support study](experiments/common_support_v2) |
+| 05 — Assessment and robustness | [Evaluation](results/06_evaluation_results); [Robustness](results/07_robustness_experiments) |
+| 06 — Examples and handoff | [Examples](results/08_visual_examples_and_eda); [Research handoff](results/09_final_reports/REVIEW_HANDOFF.md) |
 
-[Source](src) · [Tests](tests) · [Workspace](../../HANDOVER/README.md)
+[Source](src) · [Tests](tests) · [Documentation](docs)
 
-Implementation files are stored here. Original code paths remain relative symlinks
-for compatibility; native inputs and saved study evidence retain their original locations.
+Native inputs stay at repository-root HANDOVER/01_raw_dataset/. Preserve participant-identity limitations and mandatory participant-safe OOF gates. Missing identity is not permission to substitute trial groups or in-sample stacking.
 
-## Follow the implementation
+Each study's frozen protocol, fit manifests and assessment records determine what ran and which comparisons are eligible. A folder or script is not execution evidence. Historical commands retain their original paths; navigation/package checks are not model reproduction.
 
-The reading order follows HANDOVER's stages. Links point to existing canonical
-locations; the numbering here does not rename a dataset's own stages or establish
-that every stage was executed.
-
-| Stage | Where to go | Purpose and evidence boundary |
-|---|---|---|
-| 01 | [Dataset source](01_raw_dataset) | Native source and acquisition records; protected inputs remain in their existing location. |
-| 02 | [Labels and alignment](../../HANDOVER/experiments/common_support_v2/02_labels_and_alignment) | Study-specific input validation and native outcome mapping. |
-| 03 | [Processed inputs](../../HANDOVER/experiments/common_support_v2/03_processed_model_inputs) | Common-support inputs and data contract. |
-| 04 | [Experiment protocol](../../HANDOVER/experiments/common_support_v2/04_experiment_protocol) | Splits, baselines and fitting requirements. |
-| 05 | [Models and training](../../HANDOVER/experiments/common_support_v2/05_trained_models) | Study-local fitted model artifacts, where retained; eligibility remains protocol-specific. |
-| 06 | [Evaluation results](../../HANDOVER/experiments/common_support_v2/06_evaluation_results) | Saved assessment outputs. |
-| 07 | [Robustness](../../HANDOVER/experiments/common_support_v2/07_robustness_experiments) | Missing/degraded-input study outputs. |
-| 08 | [Examples and EDA](../../HANDOVER/experiments/common_support_v2/08_visual_examples_and_eda) | Study-local galleries and examples. |
-| 09 | [Reports and handoff](09_final_reports/REVIEW_HANDOFF.md) | Interpretation, eligibility, limitations and reproduction references. |
-
-## Related work
-
-- [Dataset README](../../HANDOVER/README.md)
-
-[All implementations](../../implementations/README.md) · [Repository map](../../REPO_MAP.md)
+[All datasets](../README.md) · [Repository map](../../REPO_MAP.md)

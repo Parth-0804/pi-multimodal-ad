@@ -1,3 +1,5 @@
+> **RESEARCHER-STOPPED SCOPE:** No further CNN training is authorized. The remaining planned fits are NOT RUN — RESEARCHER STOP. Any queued/pending counts below describe the preserved original protocol, not an active execution queue. See ../18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md.
+
 # Uncertainty and leakage limitations
 
 All predictions concern complete native episodes. Canonical task separation is verified; session/operator independence remains unknown. This is development evidence on previously examined tasks. Intervals resample task clusters conditional on fixed fitted models; they exclude model refitting, seed variability, donor selection and unmeasured session/operator effects. Intervals crossing zero establish neither improvement nor equivalence. Pooled outer scores and mean-fold metrics are distinct; seeds are never pooled as additional examples. HGB remains a separate strong historical sensor baseline; beating LR does not imply beating HGB. No quality gate is introduced.

@@ -1,42 +1,20 @@
 # PHM2026
 
-Gear-condition and image-derived proxy-target studies using photos and vibration measurements.
+Gear-condition research using photos and vibration. Image-derived targets are proxy supervision, not independently validated physical damage labels.
 
-Image-derived targets are provisional supervision, not independently validated physical damage. The canonical selection remains EXP-A Runs 1–5, EXP-B Runs 1–7 and EXP-F Runs 1–8. The protected initial EDA retains its original location.
+| Stage | Location |
+|---|---|
+| 01 — Data and targets | [Data configuration](configs/dataset.yaml); [Target-version ledger](docs/studies/TARGET_VERSION_LEDGER.md) |
+| 02 — Verification and preprocessing | [Data contracts and preprocessing](src/phm2026); [Derived vibration features](results/processed/raw_vibration) |
+| 03 — Protocols and experiments | [Study workspaces](experiments); [Experiment configurations](configs/experiments) |
+| 04 — Models and training | [Model implementations](src/phm2026/models); [Training entry points](scripts/training) |
+| 05 — Results and limitations | [Saved runs](results/runs); [Study reports](docs/studies) |
+| 06 — Recovery and history | [Raw-data recovery](docs/RAW_DATA_RECOVERY.md); [Research history](docs/research_history) |
 
-[Source](src/phm2026) · [Scripts](scripts) · [Dataset configuration](dataset_config.yaml) · [Experiment configurations](../../configs/experiments) · [Tests](tests) · [Walkthrough](walkthrough/README.md)
+[Source](src) · [Scripts](scripts) · [Configurations](configs) · [Tests](tests) · [Documentation](docs)
 
-Implementation files are stored here. Original code paths remain relative symlinks
-for compatibility; native inputs and saved study evidence retain their original locations.
+Canonical selection remains EXP-A Runs 1–5, EXP-B Runs 1–7 and EXP-F Runs 1–8. The protected initial EDA remains at `experiments/exp_a_initial_eda_r1_r3_r5/` in the repository root. Raw-retirement records do not authorize another deletion or restoration.
 
-## Follow the implementation
+Each study's frozen protocol, fit manifests and assessment records determine what ran and which comparisons are eligible. A folder or script is not execution evidence. Historical commands retain their original paths; navigation/package checks are not model reproduction.
 
-The reading order follows HANDOVER's stages. Links point to existing canonical
-locations; the numbering here does not rename a dataset's own stages or establish
-that every stage was executed.
-
-| Stage | Where to go | Purpose and evidence boundary |
-|---|---|---|
-| 01 | [Dataset source](../../docs/phm2026/RAW_DATA_RECOVERY.md) | Raw-source identity, availability and recovery requirements; no restoration is performed by this index. |
-| 02 | [Labels and targets](src/phm2026/targets) | Proxy-target implementation; version history is linked below. |
-| 03 | [Processed inputs](src/phm2026/features) | Feature extraction; preprocessing implementation is linked below. |
-| 04 | [Experiment protocol](dataset_config.yaml) | Canonical selection; use each experiment configuration and run snapshot for its fitting protocol. |
-| 05 | [Models and training](src/phm2026/models) | RT-DETR/PatchTST implementations; training entry points are linked below. |
-| 06 | [Evaluation results](../../docs/thesis/RUN_INDEX.md) | Run index pointing to the separate historical evaluation collections. |
-| 07 | [Robustness and claim scope](../../docs/thesis/FINAL_CLAIM_MATRIX.md) | Use the claim matrix and source protocols to determine which robustness claims are supported. |
-| 08 | [Examples and EDA](../../experiments/exp_a_initial_eda_r1_r3_r5/EXPERIMENT_NOTES.md) | Protected historical lifecycle EDA; preserve its narrower study scope. |
-| 09 | [Reports and reproducibility](../../docs/thesis/FINAL_THESIS_REPRODUCIBILITY.md) | Cross-study thesis evidence and reproduction boundaries; PHM-specific records remain separately identified. |
-
-## Related work
-
-- [Target-version ledger](../../docs/thesis/TARGET_VERSION_LEDGER.md)
-- [Preprocessing](src/phm2026/preprocessing)
-- [Training entry points](scripts/training)
-- [Evaluation entry points](scripts/results)
-- [Fusion implementation](src/phm2026/fusion)
-- [Raw-retirement evidence](artifacts/PHM_RAW_RETIREMENT_REPORT.md)
-- [Supplementary raw-vibration study](../../docs/thesis/RAW_VIB_20260927T095726Z.md)
-- [Paderborn study record](../../docs/thesis/ARCH_VAL_PB_20260926T224859Z.md)
-- [Paderborn utilities](../general/scripts/paderborn)
-
-[All implementations](../../implementations/README.md) · [Repository map](../../REPO_MAP.md)
+[All datasets](../README.md) · [Repository map](../../REPO_MAP.md)

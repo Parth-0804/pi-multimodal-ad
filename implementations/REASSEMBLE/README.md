@@ -1,40 +1,20 @@
 # REASSEMBLE
 
-Retrospective completed-action failure classification, representation comparison and multimodal fusion.
+Retrospective completed-action failure classification using visual and numerical sensor representations. This is not online early warning.
 
-The core study, exploratory extensions and later CNN/fusion comparisons are separate studies. Their protocols and run identities remain separate. Completed-action prediction does not establish online early warning.
+| Stage | Location |
+|---|---|
+| 01 — Labels, alignment and protocols | [Methodology](docs); [Configurations](configs) |
+| 02 — Representations and models | [Implementation](src/reassemble); [Core walkthrough](experiments/core/README.md) |
+| 03 — Core training and fusion | [Unimodal baselines](results/runs/unimodal_baselines_visual_sensor); [Static F2 and sensor controls](results/runs/sensor_controls_f2_nested_stacking) |
+| 04 — Further experiments | [Additional studies](experiments/additional); [CNN seed stability](experiments/cnn_seed_stability) |
+| 05 — Assessment and robustness | [Fusion comparison](results/runs/fusion_method_comparison); [Missing/degraded modalities](results/runs/missing_degraded_modality_robustness) |
+| 06 — Reports and completion | [Core closure](results/artifacts/reports/REASSEMBLE_COMPLETION_STATUS.md); [Extension closure](results/artifacts/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md); [All scientific reports](results/artifacts/reports) |
 
-[Source](src) · [Scripts](scripts) · [Configurations](configs) · [Tests](tests) · [Walkthrough](walkthrough/README.md)
+[Source](src) · [Scripts](scripts) · [Configurations](configs) · [Tests](tests) · [Documentation](docs)
 
-This folder links to the existing workspace. Its implementation paths were retained
-to protect the training job and its shared source dependencies during this reorganisation.
+Core, extensions and later CNN studies retain distinct protocols, cohorts and completion boundaries. The source package now lives here. Root `src/reassemble` is a compatibility link preserving historical imports and source identities. Original phase-one and bootstrap fit references remain at their recorded root paths.
 
-## Follow the implementation
+Each study's frozen protocol, fit manifests and assessment records determine what ran and which comparisons are eligible. A folder or script is not execution evidence. Historical commands retain their original paths; navigation/package checks are not model reproduction.
 
-The reading order follows HANDOVER's stages. Links point to existing canonical
-locations; the numbering here does not rename a dataset's own stages or establish
-that every stage was executed.
-
-| Stage | Where to go | Purpose and evidence boundary |
-|---|---|---|
-| 01 | [Dataset source](src/inventory.py) | Acquisition/inventory implementation; input availability is documented in the audit records. |
-| 02 | [Labels and alignment](src/alignment.py) | Alignment implementation; label/grouping evidence is under artifacts/reassemble/audits/. |
-| 03 | [Processed inputs](src/section1_features.py) | Core representation extraction; separate studies retain their own feature paths. |
-| 04 | [Experiment protocol](../../docs/reassemble) | Study contracts, section protocols and methodology corrections. |
-| 05 | [Models and training](src/section1_models.py) | Unimodal definitions; fusion implementations are linked below. |
-| 06 | [Evaluation results](evidence) | Versioned run artifacts, predictions and assessment outputs. |
-| 07 | [Robustness](../../docs/reassemble/SECTION_3_CORRUPTION_PROTOCOL.md) | Original robustness protocol; reports retain missingness and synthetic-corruption limits. |
-| 08 | [Examples and EDA](../../tutorials/EDA/REASSEMBLE_README.md) | Existing representation/data walkthrough. |
-| 09 | [Reports and handoff](artifacts/reports/FINAL_REASSEMBLE_HANDOFF.md) | Core handoff; extensions have their own closure records. |
-
-## Related work
-
-- [Core fusion](src/section2_models.py)
-- [Extension closure](artifacts/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md)
-- [Later experiments](../../00_experiments)
-- [October feedback experiments](../../26.10.2026_feedback_experiments)
-- [Bootstrap experiment workspace](../../parth_ws_bootstrap/00_experimentation)
-- [CNN100 comparison](walkthrough/29102026_cnn100_static_sensor_f2_comparison)
-- [Cache-retention record](../../docs/maintenance/REASSEMBLE_CACHE_RETENTION.md)
-
-[All implementations](../../implementations/README.md) · [Repository map](../../REPO_MAP.md)
+[All datasets](../README.md) · [Repository map](../../REPO_MAP.md)

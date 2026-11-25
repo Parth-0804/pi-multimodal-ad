@@ -1,3 +1,5 @@
+> **RESEARCHER-STOPPED SCOPE:** No further CNN training is authorized. The remaining planned fits are NOT RUN — RESEARCHER STOP. Any queued/pending counts below describe the preserved original protocol, not an active execution queue. See ../18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md.
+
 # Dataset and split verification
 
 Frozen cohort: 4,382 episodes; 3,753 failures; 629 successes; 99 canonical tasks. Native failure=1. Existing quality exclusions remain intact. Cohort SHA `69ef64b012f683c5c8be7882c7e047675f88ed6a448f53c3aa21f432e9858560`; split SHA `ad003bba25de31072612b6a3346690087ecb9f8c94f9558d2663fe99da150231`.

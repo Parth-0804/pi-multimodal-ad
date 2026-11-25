@@ -14,13 +14,14 @@ include-package-data = false
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["phm2026*", "intel_welding*", "reassemble*", "pi_multimodal_ad*"]
+include = ["phm2026*", "intel_welding*", "reassemble*", "external_eval*"]
 namespaces = false
 
 [tool.pytest.ini_options]
-# The moved tests remain reachable through their original compatibility paths.
-# Avoid collecting the same files again during repository-wide discovery.
+# Dataset-owned tests are explicit; historical run snapshots are not test roots.
+testpaths = ["implementations/PHM2026/tests", "implementations/INTEL_WELDING/tests", "implementations/REASSEMBLE/tests", "implementations/MSM/tests", "implementations/HANDOVER/tests", "implementations/REBOOT/tests", "implementations/cross_dataset/tests", "implementations/general/tests"]
+addopts = "--import-mode=importlib"
 norecursedirs = [
     "*.egg", ".*", "_darcs", "build", "CVS", "dist", "node_modules", "venv",
-    "{arch}", "implementations",
+    "{arch}",
 ]

@@ -1,3 +1,5 @@
+> **RESEARCHER-STOPPED SCOPE:** No further CNN training is authorized. The remaining planned fits are NOT RUN — RESEARCHER STOP. Any queued/pending counts below describe the preserved original protocol, not an active execution queue. See ../18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md.
+
 # REASSEMBLE CNN donor
 
 Source Full100 executed 100 epochs and selected epoch 47, seed 42. Donor SHA `5700e8912cf360c845087923e4b417631a886daf928e1655b1031c9ac27c8ce0`. Only 115 CNN tensor keys transfer; no source classifier, visual/sensor scaler, calibrator or F2 transfers.

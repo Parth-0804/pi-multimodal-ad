@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "date_UTC": "2026-11-11",
+  "unique_passed_tests": 107,
+  "method": "Summary of completed tool executions; suites were run separately as each component was finalized.",
+  "command_template": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 ma_thesis_env/bin/python -B -m pytest -q -p no:cacheprovider VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/17_future_dataloader_optimization/tests/<suite>",
+  "process_limits": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "CPU_affinity": [0, 1],
+    "nice": 10,
+    "BLAS_threads": 1,
+    "enforced_by": "tests/conftest.py before collection; applies to new tests and children only"
+  },
+  "suites": [
+    {"file": "test_loader.py", "passed": 27, "seconds": 14.32, "executor": "root", "coverage": "Bounded presets, original loader defaults, synthetic ordered spawned workers, final partial minibatches and unchanged main RNG"},
+    {"file": "test_contracts.py", "passed": 9, "seconds": 1.53, "executor": "root", "coverage": "Selection, sampler identities, tensor contract and stale/missing receipt rejection"},
+    {"file": "test_guards.py", "passed": 23, "seconds": 2.43, "executor": "future_gpu_benchmark", "coverage": "Protected queues, no CUDA-before-admission, resources/locks, timing comparison and exact scalar/tensor state hashing"},
+    {"file": "test_activation.py", "passed": 48, "seconds": 0.62, "executor": "future_loader_impl", "coverage": "Complete measured/numerical evidence, pinned input evidence, balanced gains, altered cases/sources, nonfinite/duplicate JSON, admission and nonoverwriting export"}
+  ],
+  "additional_targeted_recheck": {"passed": 2, "counted_again_in_unique_total": false, "executor": "future_gpu_benchmark", "reason": "Numerical proof now records observed pinning; no GPU execution"},
+  "expected_warnings": [
+    "pin_memory=True has no effect with CUDA hidden; actual CUDA pinning remains pending.",
+    "Four-worker synthetic/contract tests exceed the intentionally limited two-core test affinity; not a performance measurement."
+  ],
+  "GPU_benchmark_executed": false,
+  "real_data_validation": "../cpu_contract_20261111_01/CPU_CONTRACT_VALIDATION.json"
+}

@@ -1,0 +1,65 @@
+{
+  "start_utc": "2026-11-11T17:34:11.026630+00:00",
+  "duration_seconds": 360,
+  "sampling_seconds": 2,
+  "command": "ma_thesis_env/bin/python -B VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/16_performance_diagnostics/audit_20261111_01/collect.py",
+  "python": "3.12.3",
+  "psutil": "7.2.2",
+  "kernel": "6.8.0-147-generic",
+  "git_commit": "e32ec43aef69cc58adff0ea91e508308041598c5",
+  "git_status": " M VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/REPORT_PROVENANCE.json\n M VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/14_final_research_reports/01_EXECUTIVE_SUMMARY.md\n M VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/14_final_research_reports/04_TRAINING_CONFIGURATIONS.md\n M VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/14_final_research_reports/11_GPU_RUNTIME_AND_STORAGE.md\n M VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/14_final_research_reports/12_SCIENTIFIC_CONCLUSIONS.md\n M VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/14_final_research_reports/13_RESEARCHER_HANDOFF.md\n M VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/VIFAILBACK_MATCHED_CNN_STUDY_STATUS.md\n",
+  "logical_cpus": 16,
+  "physical_cpus": 16,
+  "collector_pid": 1468566,
+  "trainer_identity": {
+    "completed_fits": 0,
+    "condition": "FULL100",
+    "create_time": 1794353606.37,
+    "fit_directory": "06_full100/seed42/outer0_inner0",
+    "fit_id": "outer0_inner0",
+    "git_commit": "47e16d3120fb4ae905118b16f40dee4000ec3592",
+    "lane": "gpu",
+    "pid": 29074,
+    "planned_fits": 37,
+    "python": "3.12.3",
+    "seed": 42,
+    "stage": "TRAINING",
+    "utc": "2026-11-10T23:33:34.131583+00:00"
+  },
+  "cgroups": {
+    "membership": "0::/user.slice/user-1001.slice/session-11.scope",
+    "ancestors": {
+      "/sys/fs/cgroup/user.slice/user-1001.slice/session-11.scope": {
+        "cpu.max": "max 100000",
+        "cpu.stat": "usage_usec 103310664732\nuser_usec 59470224584\nsystem_usec 43840440148\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "max",
+        "memory.high": "max",
+        "memory.current": "35429101568",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0"
+      },
+      "/sys/fs/cgroup/user.slice/user-1001.slice": {
+        "cpu.max": "max 100000",
+        "cpu.stat": "usage_usec 104741932101\nuser_usec 60396460319\nsystem_usec 44345471781\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "max",
+        "memory.high": "max",
+        "memory.current": "54291304448",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0"
+      },
+      "/sys/fs/cgroup/user.slice": {
+        "cpu.max": "max 100000",
+        "cpu.stat": "usage_usec 104741932467\nuser_usec 60396460530\nsystem_usec 44345471936\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "memory.max": "max",
+        "memory.high": "max",
+        "memory.current": "54291341312",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0"
+      },
+      "/sys/fs/cgroup": {
+        "cpu.stat": "usage_usec 106809247722\nuser_usec 60546886389\nsystem_usec 46262361333\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "cpuset.cpus.effective": "0-15",
+        "io.stat": "11:0 rbytes=362496 wbytes=0 rios=92 wios=0 dbytes=0 dios=0\n8:0 rbytes=38411958784 wbytes=27058219008 rios=326746 wios=345614 dbytes=37891842048 dios=35343\n7:7 \n7:6 \n7:5 \n7:4 \n7:3 \n7:2 \n7:1 \n7:0 rbytes=14336 wbytes=0 rios=11 wios=0 dbytes=0 dios=0"
+      }
+    }
+  },
+  "read_only_scope": "OS counters and existing journals only; no CUDA context or model imports",
+  "no_secrets_read": true
+}

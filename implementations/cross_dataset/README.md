@@ -1,31 +1,35 @@
 # Cross-dataset work
 
-The external-evaluation source and tests are stored here. Old source/test paths
-remain compatibility symlinks. Configurations, provenance and scientific reports
-retain their original locations in `CROSS_DATASET_COMPARISON/`.
+External-evaluation implementation, study comparisons and scientific synthesis.
+Dataset-specific protocols and eligibility decisions remain authoritative; these
+files do not define a common leaderboard across different prediction tasks.
 
-This section links the implementation and cross-dataset synthesis. Dataset-specific protocols and eligibility decisions
-remain authoritative; this index does not create a common leaderboard.
+| Part | Location |
+|---|---|
+| Implementation | [src/external_eval](src/external_eval) |
+| Configurations | [configs](configs) |
+| Checks | [tests](tests) |
+| Scientific summary | [results/FINAL_RESEARCH_SUMMARY.md](results/FINAL_RESEARCH_SUMMARY.md) |
+| Performance | [results/PERFORMANCE_COMPARISON.md](results/PERFORMANCE_COMPARISON.md) |
+| Robustness | [results/ROBUSTNESS_COMPARISON.md](results/ROBUSTNESS_COMPARISON.md) |
+| Architectures | [results/ARCHITECTURE_COMPARISON.md](results/ARCHITECTURE_COMPARISON.md) |
+| Eligibility and handoff | [results/REVIEW_HANDOFF.md](results/REVIEW_HANDOFF.md) |
+| Authorization and lineage | [results/provenance](results/provenance) |
+| Review packages and comparison tables | [results](results) |
 
-| Part | Canonical location | Purpose |
-|---|---|---|
-| Implementation | [External-evaluation source](src/external_eval) | Existing evaluation code used for the external studies. |
-| Configuration | [Configurations](configs) | Frozen-core and execution-plan records. |
-| Tests | [Tests](tests) | Existing validation checks for this implementation. |
-| Provenance | [Provenance](provenance) | Source identities, authorisation and execution records. |
-| Scientific summary | [Final research summary](../../CROSS_DATASET_COMPARISON/FINAL_RESEARCH_SUMMARY.md) | Cross-dataset interpretation with protocol boundaries. |
-| Performance | [Performance comparison](../../CROSS_DATASET_COMPARISON/PERFORMANCE_COMPARISON.md) | Saved comparisons; inspect cohorts and metric definitions. |
-| Robustness | [Robustness comparison](../../CROSS_DATASET_COMPARISON/ROBUSTNESS_COMPARISON.md) | Conditions and missing/degraded-input evidence. |
-| Architecture | [Architecture comparison](../../CROSS_DATASET_COMPARISON/ARCHITECTURE_COMPARISON.md) | Reused and dataset-specific model components. |
-| Handoff | [Review handoff](../../CROSS_DATASET_COMPARISON/REVIEW_HANDOFF.md) | Entry point for eligibility and interpretation limits. |
+[MSM](../MSM/README.md) and [HANDOVER](../HANDOVER/README.md) retain their own
+cohorts, split requirements and failed-gate records. Independent dataset-specific
+fitting, transfer of learned weights and zero-shot evaluation are distinct claims.
+Frozen package copies remain historical evidence, not additional datasets.
 
-[MSM](../../implementations/MSM/README.md) and [HANDOVER](../../implementations/HANDOVER/README.md)
-retain their own evidence. Reusing an architecture, transferring a pretrained
-backbone, transferring source-study learned weights and achieving independent
-predictive performance are separate claims.
+The model-configuration audit and protected native-source subtrees under
+`CROSS_DATASET_COMPARISON/` retain their original paths where required by
+training dependencies or data protection. The
+[approved move plan](../general/docs/repository_history/physical_restructure_20261119/BULK_MOVE_PLAN.md)
+records those exceptions.
 
-Frozen review packages and configuration audits remain inside the canonical
-cross-dataset workspace. Their copies and archives are preserved evidence, not
-additional independent datasets or new implementation owners.
+Old source aliases were removed. Source-path and packaging updates remain
+unfinished; use the [move mapping](../general/docs/repository_history/dataset_layout_cleanup.json)
+when following historical commands or source references.
 
-[All implementations](../../implementations/README.md)
+[All implementations](../README.md) · [Repository map](../../REPO_MAP.md)

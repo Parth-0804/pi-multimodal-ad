@@ -1,14 +1,15 @@
 {
   "GPU_sessions": {
     "interpretation": "Observed per-process elapsed time summed once per PID/creation identity; includes decoding, validation and checkpointing. A killed process may leave an observation lower bound. It is not pure GPU kernel time.",
-    "observed_GPU_controller_process_hours": 0.23125010661055537,
+    "observed_GPU_controller_process_hours": 303.7617104355631,
     "paths": [
-      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/runtime/GPU_SESSION_29074_1794353606.json"
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/runtime/GPU_SESSION_29074_1794353606.json",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/runtime/GPU_SESSION_50845_1794656559.json"
     ],
-    "session_count": 1
+    "session_count": 2
   },
-  "completed_fits": 74,
-  "completed_fusion_cohorts": 20,
+  "completed_fits": 79,
+  "completed_fusion_cohorts": 22,
   "controller": {
     "CPU_CONTROLLER_STATUS": {
       "completed_fits": 74,
@@ -23,59 +24,57 @@
       "utc": "2026-11-10T23:42:23.265193+00:00"
     },
     "GPU_CONTROLLER_STATUS": {
-      "completed_fits": 0,
-      "condition": "FULL100",
-      "create_time": 1794353606.37,
-      "fit_directory": "06_full100/seed42/outer0_inner0",
-      "fit_id": "outer0_inner0",
-      "git_commit": "47e16d3120fb4ae905118b16f40dee4000ec3592",
+      "completed_fits": 5,
+      "create_time": 1794656559.67,
+      "error": "RuntimeError('Another study process holds VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/04_full20/seed42/outer1_final/FIT.lock')",
+      "git_commit": "aa4dc0cb80e0d169e9f75c7679c07583aa94622a",
       "lane": "gpu",
-      "pid": 29074,
+      "pid": 50845,
       "planned_fits": 37,
       "python": "3.12.3",
-      "same_process_alive": true,
-      "seed": 42,
-      "stage": "TRAINING",
-      "utc": "2026-11-10T23:33:34.131583+00:00"
+      "resume": "Re-run this lane; completed receipts are checked and unfinished fits resume at committed epoch boundary.",
+      "same_process_alive": false,
+      "stage": "FAILED",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/common.py\", line 136, in exclusive_lock\n    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)\nBlockingIOError: [Errno 11] Resource temporarily unavailable\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/controller.py\", line 142, in run\n    receipt = fit(condition, seed, job, context=context)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/training.py\", line 270, in fit\n    with exclusive_lock(root/'FIT.lock'):\n  File \"/usr/lib/python3.12/contextlib.py\", line 137, in __enter__\n    return next(self.gen)\n           ^^^^^^^^^^^^^^\n  File \"/home/student/Master_Thesis_WS/pi-multimodal-ad/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/common.py\", line 138, in exclusive_lock\n    raise RuntimeError(f'Another study process holds {relative(path)}') from exc\nRuntimeError: Another study process holds VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/04_full20/seed42/outer1_final/FIT.lock\n",
+      "utc": "2026-11-24T22:01:59.962017+00:00"
     },
     "GPU_TELEMETRY": {
       "compute_pids": [
-        29074
+        50845
       ],
-      "current_process_hours": 0.2312112828049999,
+      "current_process_hours": 250.3184912367475,
       "devices": [
         {
           "index": 0,
           "memory_total_MiB": 16384,
           "memory_used_MiB": 5589,
           "name": "Tesla T4",
-          "utilization_percent": 0,
+          "utilization_percent": 100,
           "uuid": "GPU-44f7c9c1-5574-c432-d4e3-7a278b27f958"
         }
       ],
-      "mean_observed_utilization_percent": 69.73493975903614,
+      "mean_observed_utilization_percent": 66.91499814920752,
       "other_compute_pids": [],
-      "peak_device_used_MiB": 5691,
-      "samples": 83,
+      "peak_device_used_MiB": 5669,
+      "samples": 89151,
       "sampling_seconds": 10,
       "scope": "device utilization during this controller process; elapsed includes decoding and validation",
-      "utc": "2026-11-10T23:47:21.765278+00:00"
+      "utc": "2026-11-24T22:01:51.073172+00:00"
     },
     "WATCH_STATUS": {
-      "evaluated_completion_fingerprint": "4eb0ec294842a472839de64c3188d3cbca1e796cb49f6cee783273a22b0becbd",
       "lane_stages": [
         "COMPLETE",
-        "TRAINING"
+        "FAILED"
       ],
-      "stage": "WATCHING",
-      "utc": "2026-11-10T23:46:30.553052+00:00"
+      "stage": "PARTIAL_AWAITING_RESUME",
+      "utc": "2026-11-24T22:04:19.294919+00:00"
     }
   },
-  "generated_utc": "2026-11-10T23:47:30.768167+00:00",
-  "git_HEAD_at_report": "2a51688af2fc4a355607716e9bb9ab3b01e23f91",
+  "generated_utc": "2026-11-24T22:04:34.394749+00:00",
+  "git_HEAD_at_report": "aa4dc0cb80e0d169e9f75c7679c07583aa94622a",
   "historical_outputs_modified": false,
   "partial_fits": 0,
   "protocol_sha256": "71cbb3b01b0adb47d2e055bf79391276f1f2f3a9dd339e5b0f07013932caa9c5",
   "push_performed_by_reporter": false,
-  "running_fits": 1
+  "running_fits": 0
 }

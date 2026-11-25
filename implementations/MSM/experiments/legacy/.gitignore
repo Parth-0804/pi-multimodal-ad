@@ -1,0 +1,19 @@
+/data/
+/runs/*/evidence/*.html
+/runs/*/evidence/*.txt
+/runs/*/logs/
+/runs/*/reproduction/
+/runs/*/staging/
+/runs/*/cache/
+/runs/*/checkpoints/
+/runs/*/profiles/
+/runs/*/figures/visibility_atlas/
+# Generated diagnostics remain local until researcher review of Git inclusion.
+/runs/*/figures/
+/.tools/
+__pycache__/
+.pytest_cache/
+# Small derived audit tables; raw CSV files remain excluded with /data/.
+!/runs/*/MSM_INTERVAL_MANIFEST.csv
+!/runs/*/MSM_PILOT_SAMPLE_MANIFEST.csv
+!/runs/*/manifests/*.csv

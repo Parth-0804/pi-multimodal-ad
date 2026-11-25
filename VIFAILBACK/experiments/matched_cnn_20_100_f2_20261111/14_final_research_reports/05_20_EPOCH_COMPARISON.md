@@ -1,8 +1,10 @@
+> **RESEARCHER-STOPPED SCOPE:** No further CNN training is authorized. The remaining planned fits are NOT RUN — RESEARCHER STOP. Any queued/pending counts below describe the preserved original protocol, not an active execution queue. See ../18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md.
+
 # 20-epoch comparison
 
-Visual: UNTESTED: no complete paired assessment yet.
+Visual: seed 42, fold 0: delta +0.004946, 95% [-0.027460, +0.040927]; inconclusive; not equivalence.
 
-F2: UNTESTED: no complete paired assessment yet.
+F2: seed 42, fold 0: delta -0.009260, 95% [-0.026854, +0.005016]; inconclusive; not equivalence.
 
 |Condition|Seed|Fold|N|Visual macro AP|F2 macro AP|
 |---|---|---|---|---|---|
@@ -15,6 +17,7 @@ F2: UNTESTED: no complete paired assessment yet.
 |FROZEN20|20261023|0|1107|0.483359|0.700780|
 |FROZEN20|20261023|1|1586|0.518358|0.732677|
 |FROZEN20|20261023|2|1689|0.492981|0.641196|
+|FULL20|42|0|1107|0.492370|0.697858|
 |DONOR20|42|0|1107|0.463160|0.708382|
 |DONOR20|42|1|1586|0.518906|0.732786|
 |DONOR20|42|2|1689|0.495646|0.642222|

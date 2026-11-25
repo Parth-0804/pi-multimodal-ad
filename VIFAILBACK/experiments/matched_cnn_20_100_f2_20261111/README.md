@@ -1,5 +1,27 @@
 # Matched ViFailback CNN, donor and F2 study
 
+## Researcher stop amendment — 24 November 2026
+
+The researcher requested finishing only the active `FULL20 / seed42 /
+outer0_inner2` fit, then stopping further CNN training and analysing the
+completed evidence. An external boundary guard holds the next fit's existing
+nonblocking lock; frozen training code and the original protocol remain intact.
+The remaining 32 fits must not start or resume without a new explicit request.
+The exact [authorization](18_fit_stop_and_analysis_20261124T1955Z/CONTROL_REQUEST.json)
+and [guard status](18_fit_stop_and_analysis_20261124T1955Z/GUARD_STATUS.json)
+record this amended execution scope. Post-fit automated work has a hard
+three-hour maximum measured from the current fit's completion receipt.
+
+The [initial saved-result analysis](18_fit_stop_and_analysis_20261124T1955Z/initial_analysis/RESULT_ANALYSIS.md)
+and [training comparison table](18_fit_stop_and_analysis_20261124T1955Z/initial_analysis/TRAINING_COMPARISON.md)
+are pre-completion snapshots. The guard will publish the final analysis under
+`18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/` and record
+completion or any analysis failure in its `FINAL_STATUS.json`. Until those
+records exist, final fit completion and post-fit analysis remain pending.
+Unexecuted fits are not negative model results. The commands and original full
+schedule below remain historical implementation instructions, not permission
+to restart training.
+
 This isolated experiment was created on **11 November 2026 (Europe/Berlin)**, using the actual local date rather than the suggested November 10 directory name. The user explicitly authorized training, evaluation, local commits and scientific reporting. No push is authorized.
 
 A concise [initial completed-results snapshot](14_final_research_reports/00_INITIAL_COMPLETED_RESULTS.md) summarizes the completed frozen/donor stage.

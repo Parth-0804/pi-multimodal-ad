@@ -1,35 +1,21 @@
 # MSM
 
-Metal-milling interval classification using video and machine measurements.
+Metal-milling interval classification from video and machine measurements. Earlier milling work is part of this dataset history, not another independent dataset.
 
-The canonical evaluation workspace is `MSM/`. `MILLING DATASET/` holds preserved earlier work for the same dataset, rather than a separate independent evaluation dataset.
+| Stage | Location |
+|---|---|
+| 01 — Dataset and labels | [Label/alignment records](results/02_labels_and_alignment) |
+| 02 — Preprocessing | [Processed model inputs](results/03_processed_model_inputs) |
+| 03 — Protocol | [Experiment protocol](results/04_experiment_protocol) |
+| 04 — Models and training | [Adapters](src); [Trained-model records](results/05_trained_models) |
+| 05 — Assessment and robustness | [Evaluation](results/06_evaluation_results); [Robustness](results/07_robustness_experiments) |
+| 06 — Examples and handoff | [Examples and EDA](results/08_visual_examples_and_eda); [Research handoff](results/09_final_reports/REVIEW_HANDOFF.md) |
+| 07 — Earlier studies | [Legacy milling studies](experiments/legacy) |
 
-[Source](src) · [Tests](tests) · [Workspace](../../MSM/README.md)
+[Source](src) · [Tests](tests) · [Documentation](docs)
 
-Implementation files are stored here. Original code paths remain relative symlinks
-for compatibility; native inputs and saved study evidence retain their original locations.
+Native inputs remain at repository-root `MSM/01_raw_dataset/` and `MILLING DATASET/data/`. Failed scientific gates and study eligibility remain authoritative. Shared fitting/evaluation implementation is in ../cross_dataset/src/external_eval/.
 
-## Follow the implementation
+Each study's frozen protocol, fit manifests and assessment records determine what ran and which comparisons are eligible. A folder or script is not execution evidence. Historical commands retain their original paths; navigation/package checks are not model reproduction.
 
-The reading order follows HANDOVER's stages. Links point to existing canonical
-locations; the numbering here does not rename a dataset's own stages or establish
-that every stage was executed.
-
-| Stage | Where to go | Purpose and evidence boundary |
-|---|---|---|
-| 01 | [Dataset source](01_raw_dataset) | Source/acquisition navigation; native inputs remain protected. |
-| 02 | [Labels and alignment](02_labels_and_alignment) | Native label, eligibility and alignment validation. |
-| 03 | [Processed inputs](03_processed_model_inputs) | Data contract, feature inputs and split manifests. |
-| 04 | [Experiment protocol](04_experiment_protocol) | Architecture, baselines and split protocol. |
-| 05 | [Models and training](05_trained_models) | Retained fitted models and training artifacts. |
-| 06 | [Evaluation results](06_evaluation_results) | Saved predictions, metrics and figures. |
-| 07 | [Robustness](07_robustness_experiments) | Controlled missing/degraded-modality evidence. |
-| 08 | [Examples and EDA](08_visual_examples_and_eda) | Representative examples and galleries. |
-| 09 | [Reports and handoff](09_final_reports/REVIEW_HANDOFF.md) | Study conclusions, failed gates and reproducibility. |
-
-## Related work
-
-- [Preserved earlier milling work](../../MILLING%20DATASET/README.md)
-- [Shared external-evaluation implementation](../cross_dataset/src/external_eval)
-
-[All implementations](../../implementations/README.md) · [Repository map](../../REPO_MAP.md)
+[All datasets](../README.md) · [Repository map](../../REPO_MAP.md)

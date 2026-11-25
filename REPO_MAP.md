@@ -1,48 +1,29 @@
 # Repository map
 
-Start with **[implementations/](implementations/README.md)** for a human-facing
-view of every dataset, cross-dataset work and general tools. Each dataset guide
-uses HANDOVER's stage order and links code, protocols and retained evidence.
-Unaffected implementation files are stored under `implementations/`; old code
-paths remain compatibility symlinks. Native data, run evidence and training-job
-dependencies retain their original locations.
+The human-facing entry is [implementations/](implementations/README.md). Each dataset guide gives a staged route to its code, protocol, saved results and reports.
 
-PHM experiment walkthrough: [RT-DETR Model 1, from data to saved results](experiments/phm2026/README.md). Follow the numbered 00–03 folders or the single-sample trace.
+| Stage | Location |
+|---|---|
+| [Dataset implementations](implementations/README.md) | PHM2026, PADERBORN, INTEL_WELDING, MSM, HANDOVER, REBOOT, REASSEMBLE and VIFAILBACK |
+| [Cross-dataset work](implementations/cross_dataset/README.md) | Shared external evaluation and comparison evidence |
+| [Research support](implementations/general/README.md) | Thesis, maintenance, presentations, discovery and retained history |
+| [Policies](docs) | Scope, raw-data boundaries, retention and output rules |
 
-REASSEMBLE experiment walkthroughs: [RT-DETR, PatchTST and core fusion in numbered folders](experiments/reassemble/README.md). Start there to follow data → preprocessing → models → predictions → results.
+## Protected and historical locations
 
-Domain first, then capability. Detailed tree, old-to-new imports and validation: [FINAL_STRUCTURE.md](docs/repository_restructure/FINAL_STRUCTURE.md). Working boundaries: [AGENTS.md](AGENTS.md).
+Native raw inputs remain at their original roots, including MSM/01_raw_dataset/, HANDOVER/01_raw_dataset/, REBOOT/01_raw_dataset/, MILLING DATASET/data/ and VIFAILBACK/01_original_dataset/. Root VIFAILBACK/ retains its complete frozen workspace; implementations/VIFAILBACK/ provides relative browsing links. No raw tree or scientific run was relocated by this phase.
 
-| Domain/purpose | Implementation | Scripts | Configs | Tests | Evidence |
-|---|---|---|---|---|---|
-| PHM 2026 | `implementations/PHM2026/src/phm2026/` | `implementations/PHM2026/scripts/{dataset,features,targets,training,results}/` | `implementations/PHM2026/configs/`, `configs/datasets/phm2026.yaml`, `configs/experiments/phm2026_*.yaml` | `implementations/PHM2026/tests/` | existing `runs/phm2026_*`, `artifacts/phm2026/` |
-| Intel Welding | `implementations/INTEL_WELDING/src/intel_welding/` namespace; implemented audit in scripts | `implementations/INTEL_WELDING/scripts/` | `implementations/INTEL_WELDING/configs/` | `implementations/INTEL_WELDING/tests/` | existing Intel artifacts and historical archive |
-| MSM | `implementations/MSM/src/` and shared external-evaluation code | dataset adapters | `MSM/04_experiment_protocol/` | `implementations/MSM/tests/` | `MSM/06_evaluation_results/`, `MSM/09_final_reports/` |
-| HANDOVER | `implementations/HANDOVER/src/` and shared external-evaluation code | dataset adapters | `HANDOVER/04_experiment_protocol/` and study-local protocol | `implementations/HANDOVER/tests/` | `HANDOVER/experiments/common_support_v2/` |
-| REBOOT | `implementations/REBOOT/src/` | feasibility and audit tools | retained feasibility records | `implementations/REBOOT/tests/` | `REBOOT/07_research_decision/`, `REBOOT/runs/` |
-| VIFAILBACK | `VIFAILBACK/src/`, study-local source | `VIFAILBACK/scripts/`, study-local scripts | `VIFAILBACK/configs/` and study-local protocol | `VIFAILBACK/tests/` and study-local tests | `VIFAILBACK/experiments/` and numbered study stages |
-| REASSEMBLE | `src/reassemble/` | `scripts/reassemble/` | `configs/reassemble/` | `tests/reassemble/` | `runs/reassemble/`, `artifacts/reassemble/` |
-| Cross-dataset evaluation | `implementations/cross_dataset/src/external_eval/` | module entry points | `CROSS_DATASET_COMPARISON/configs/` | `implementations/cross_dataset/tests/` | `CROSS_DATASET_COMPARISON/`, dataset-specific workspaces |
-| Thesis validation and synthesis | `implementations/general/scripts/thesis/` | same | audit prompts/config snapshots | `implementations/general/tests/thesis/` | `artifacts/thesis/` |
-| Maintenance | `implementations/general/scripts/ops/` | same | CLI arguments | `implementations/general/tests/ops/` | task-specific manifests/reports |
-| Presentation | PHM reporting plus presentation script | `implementations/general/scripts/presentation/` | experiment config | PHM reporting tests | `presentation_assets/`, tutorials |
-| Supplementary PHM raw vibration | `implementations/general/scripts/rawvib/` | same | script-defined, preserved | existing checks | existing supplementary evidence |
-| Paderborn transfer | `implementations/general/scripts/paderborn/` | same | existing transfer settings | existing checks | existing transfer evidence |
+Root src/ provides compatibility links to canonical dataset packages. The five remaining shared REASSEMBLE primitives were consolidated into implementations/REASSEMBLE/src/reassemble/ without changing their bytes. Original phase-one and bootstrap source/configuration/fit references remain at 26.10.2026_feedback_experiments/ and parth_ws_bootstrap/00_experimentation/. The protected initial PHM EDA stays at experiments/exp_a_initial_eda_r1_r3_r5/. REBOOT/runs/ retains investigation evidence.
 
-Ancillary reports, historical planning notes and workflow material: [reports/extras/](reports/extras/README.md).
+## History and reproducibility
 
-PHM models: `implementations/PHM2026/src/phm2026/models/rtdetr/`, `implementations/PHM2026/src/phm2026/models/patchtst/`; fusion: `implementations/PHM2026/src/phm2026/fusion/`. Dataset adapters remain `datasets/`, typed identities `data_contracts/`, structural inspection `profiling/`. No speculative empty capability directories were added.
+- [Pending full physical consolidation: exact move plan and approval boundary](implementations/general/docs/repository_history/final_consolidation_20261125/MOVE_PLAN.md) — prepared on 2026-11-25; no moves executed in this phase.
+- [Current organization phase and checks](implementations/general/docs/repository_history/post_report_cleanup_20261124/STATUS.json)
+- [Current move/link/deletion record](implementations/general/docs/repository_history/post_report_cleanup_20261124/CHANGES.json)
+- [Earlier dataset consolidation](implementations/general/docs/repository_history/dataset_layout_cleanup.json)
+- [Earlier physical move mapping](implementations/general/docs/repository_history/physical_restructure_20261119/PATH_MAPPING.json)
+- [Archived AI workflow notes](implementations/general/docs/repository_history/ai_workflow_notes/README.md)
 
-Scripts run from repository root and PHM entry points locate `src/` themselves. Direct imports work after the minimal editable install in `pyproject.toml`; legacy `pi_multimodal_ad.*` imports forward to the canonical implementation. `tests/fixtures/` contains tiny synthetic inputs and stays in place.
+Frozen manifests and commands retain historical content and revisions. Relocation is not training reproduction. Package/import and selected synthetic checks do not establish that every historical command is runnable; consult the actual phase results. Old broad compatibility aliases remain removed except the explicitly recorded source import and preserved-history links.
 
-Preserved history: all `runs/`, `artifacts/`, `experiments/`, `archive/`, raw data and Task 4 recovery evidence. Dated `docs/planning/`, historical prompts, tutorial reports and run manifests can retain old source paths; use their original Git revision for historical reproduction. The compatibility namespace and legacy `scripts/{dataset,features,targets,training,results}/` contain forwarding only. The latest [relocation manifest](reports/extras/repository_organization_20261119/RELOCATION_MANIFEST.json) records physical locations and original hashes; the older migration CSV retains the earlier interface mapping.
-
-Cache-retention exception (researcher approval, 2026-10-26): the September frozen-prefix
-arrays and older shared pixel-cache arrays were evicted. Historical
-metadata and research results remain preserved. Check the [current retention and
-recovery record](docs/maintenance/REASSEMBLE_CACHE_RETENTION.md) before replaying
-these studies; an old completion flag does not prove the arrays are still present.
-
-For former paths such as `src/pi_multimodal_ad/`, `scripts/training/`, or `tests/unit/`, see [path_mapping.csv](docs/repository_restructure/path_mapping.csv). Current interface support is defined in [COMPATIBILITY_CONTRACT.md](docs/repository_restructure/COMPATIBILITY_CONTRACT.md); validation in [COMPATIBILITY_VALIDATION.md](docs/repository_restructure/COMPATIBILITY_VALIDATION.md).
-
-Legacy forwarding locations: `src/pi_multimodal_ad/` and `scripts/{dataset,features,targets,training,results}/`. The former domain source/script/test directories are relative symlinks to the moved implementations; the REASSEMBLE dependency paths remain physical directories.
+Scientific scope remains governed by [AGENTS.md](AGENTS.md), [active scope](docs/active_scope.md), [data boundaries](docs/data_boundaries.md) and [output policy](docs/output_policy.md).

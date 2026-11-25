@@ -1,6 +1,8 @@
+> **RESEARCHER-STOPPED SCOPE:** No further CNN training is authorized. The remaining planned fits are NOT RUN — RESEARCHER STOP. Any queued/pending counts below describe the preserved original protocol, not an active execution queue. See ../18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md.
+
 # ViFailback matched CNN study
 
-Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially trained fits; 1 currently running fits (PID and creation time verified); 20 complete F2 assessment cohorts. Unfinished planned work is not a negative scientific result.
+Generated 2026-11-24T22:04:34.381667+00:00. 79 completed fits; 0 partially trained fits; 0 currently running fits (PID and creation time verified); 22 complete F2 assessment cohorts. Unfinished planned work is not a negative scientific result.
 
 ## Table A
 
@@ -42,6 +44,10 @@ Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially train
 |FROZEN20|20/20|False|20261023|outer2_inner0|16|COMPLETE|
 |FROZEN20|20/20|False|20261023|outer2_inner1|5|COMPLETE|
 |FROZEN20|20/20|False|20261023|outer2_inner2|7|COMPLETE|
+|FULL20|20/20|True|42|outer0_final|5|COMPLETE|
+|FULL20|20/20|True|42|outer0_inner0|1|COMPLETE|
+|FULL20|20/20|True|42|outer0_inner1|18|COMPLETE|
+|FULL20|20/20|True|42|outer0_inner2|12|COMPLETE|
 |DONOR20|20/20|False|42|outer0_final|7|COMPLETE|
 |DONOR20|20/20|False|42|outer0_inner0|11|COMPLETE|
 |DONOR20|20/20|False|42|outer0_inner1|20|COMPLETE|
@@ -79,7 +85,7 @@ Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially train
 |DONOR20|20/20|False|20261023|outer2_inner1|8|COMPLETE|
 |DONOR20|20/20|False|20261023|outer2_inner2|10|COMPLETE|
 |FROZEN100|100/100|False|42|outer0_inner0|11|COMPLETE|
-|FULL100|100/0|True|42|outer0_inner0|None|RUNNING|
+|FULL100|100/100|True|42|outer0_inner0|24|COMPLETE|
 |DONOR100|100/100|False|42|outer0_inner0|40|COMPLETE|
 
 ## Table B
@@ -95,6 +101,7 @@ Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially train
 |FROZEN20|20261023|0|1107|0.483359|0.707996|0.700780|0.757878|
 |FROZEN20|20261023|1|1586|0.518358|0.731945|0.732677|0.754868|
 |FROZEN20|20261023|2|1689|0.492981|0.641544|0.641196|0.700366|
+|FULL20|42|0|1107|0.492370|0.707996|0.697858|0.757878|
 |DONOR20|42|0|1107|0.463160|0.707996|0.708382|0.757878|
 |DONOR20|42|1|1586|0.518906|0.731945|0.732786|0.754868|
 |DONOR20|42|2|1689|0.495646|0.641544|0.642222|0.700366|
@@ -105,6 +112,7 @@ Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially train
 |DONOR20|20261023|1|1586|0.520504|0.731945|0.730971|0.754868|
 |DONOR20|20261023|2|1689|0.518989|0.641544|0.641737|0.700366|
 |FROZEN100|42|0|1107|0.550995|0.707996|0.694219|0.757878|
+|FULL100|42|0|1107|0.544332|0.707996|0.699260|0.757878|
 |DONOR100|42|0|1107|0.571448|0.707996|0.696600|0.757878|
 |FROZEN20|42|pooled3|4382|0.507865|0.648974|0.629280|0.700020|
 |FROZEN20|123|pooled3|4382|0.495229|0.648974|0.627039|0.700020|
@@ -117,6 +125,10 @@ Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially train
 
 |Comparison|Seed|Fold|Paired macro AP difference|95% interval|Interpretation|
 |---|---|---|---|---|---|
+|FULL20 minus FROZEN20 / visual|42|0|0.004946|[-0.027460, 0.040927]|inconclusive; not equivalence|
+|FULL20 minus FROZEN20 / F2|42|0|-0.009260|[-0.026854, 0.005016]|inconclusive; not equivalence|
+|FULL100 minus FROZEN100 / visual|42|0|-0.006662|[-0.027982, 0.027078]|inconclusive; not equivalence|
+|FULL100 minus FROZEN100 / F2|42|0|0.005040|[-0.019473, 0.029255]|inconclusive; not equivalence|
 |DONOR20 minus FROZEN20 / visual|42|0|-0.024263|[-0.083623, 0.026911]|inconclusive; not equivalence|
 |DONOR20 minus FROZEN20 / F2|42|0|0.001263|[-0.002532, 0.003649]|inconclusive; not equivalence|
 |DONOR20 minus FROZEN20 / visual|42|1|-0.010907|[-0.039810, 0.018839]|inconclusive; not equivalence|
@@ -188,6 +200,11 @@ Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially train
 |FROZEN20 / F2_minus_historical_V1|20261023|2|0.148215|[0.074711, 0.212559]|positive conditional interval|
 |FROZEN20 / F2_minus_sensor_LR|20261023|2|-0.000348|[-0.000810, 0.000195]|inconclusive; not equivalence|
 |FROZEN20 / F2_minus_visual|20261023|2|0.148215|[0.074711, 0.212559]|positive conditional interval|
+|FULL20 / F2_minus_average|42|0|0.004751|[-0.001414, 0.012090]|inconclusive; not equivalence|
+|FULL20 / F2_minus_historical_HGB|42|0|-0.060020|[-0.176470, 0.056659]|inconclusive; not equivalence|
+|FULL20 / F2_minus_historical_V1|42|0|0.222127|[0.148854, 0.308351]|positive conditional interval|
+|FULL20 / F2_minus_sensor_LR|42|0|-0.010138|[-0.024848, 0.002770]|inconclusive; not equivalence|
+|FULL20 / F2_minus_visual|42|0|0.205489|[0.136128, 0.281832]|positive conditional interval|
 |DONOR20 / F2_minus_average|42|0|0.026686|[0.004070, 0.041295]|positive conditional interval|
 |DONOR20 / F2_minus_historical_HGB|42|0|-0.049497|[-0.164293, 0.061279]|inconclusive; not equivalence|
 |DONOR20 / F2_minus_historical_V1|42|0|0.232650|[0.166975, 0.310144]|positive conditional interval|
@@ -238,6 +255,11 @@ Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially train
 |FROZEN100 / F2_minus_historical_V1|42|0|0.218488|[0.144555, 0.299830]|positive conditional interval|
 |FROZEN100 / F2_minus_sensor_LR|42|0|-0.013777|[-0.028973, -0.000509]|negative conditional interval|
 |FROZEN100 / F2_minus_visual|42|0|0.143225|[0.061848, 0.228811]|positive conditional interval|
+|FULL100 / F2_minus_average|42|0|0.033924|[0.017359, 0.054468]|positive conditional interval|
+|FULL100 / F2_minus_historical_HGB|42|0|-0.058619|[-0.172171, 0.053290]|inconclusive; not equivalence|
+|FULL100 / F2_minus_historical_V1|42|0|0.223528|[0.157159, 0.303052]|positive conditional interval|
+|FULL100 / F2_minus_sensor_LR|42|0|-0.008737|[-0.026227, 0.006631]|inconclusive; not equivalence|
+|FULL100 / F2_minus_visual|42|0|0.154927|[0.091247, 0.221864]|positive conditional interval|
 |DONOR100 / F2_minus_average|42|0|0.008988|[-0.018001, 0.042690]|inconclusive; not equivalence|
 |DONOR100 / F2_minus_historical_HGB|42|0|-0.061278|[-0.178274, 0.051565]|inconclusive; not equivalence|
 |DONOR100 / F2_minus_historical_V1|42|0|0.220869|[0.149578, 0.301429]|positive conditional interval|
@@ -314,6 +336,10 @@ Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially train
 |FROZEN20|20261023|outer2_inner0|0.000840|0.000046|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|2160|
 |FROZEN20|20261023|outer2_inner1|0.001120|0.000043|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|3460|
 |FROZEN20|20261023|outer2_inner2|0.001082|0.000051|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|2860|
+|FULL20|42|outer0_final|29.294143|7.414258|NOT AVAILABLE|73.212650|5.109115|20|3380|
+|FULL20|42|outer0_inner0|31.597281|3.911706|NOT AVAILABLE|72.035991|5.109115|20|3580|
+|FULL20|42|outer0_inner1|19.758376|4.043663|NOT AVAILABLE|73.125103|5.109115|20|2280|
+|FULL20|42|outer0_inner2|21.322395|5.719590|NOT AVAILABLE|72.976992|5.109115|20|2440|
 |DONOR20|42|outer0_final|0.001345|0.000068|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|3380|
 |DONOR20|42|outer0_inner0|0.001398|0.000053|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|3580|
 |DONOR20|42|outer0_inner1|0.000899|0.000055|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|2280|
@@ -351,7 +377,7 @@ Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially train
 |DONOR20|20261023|outer2_inner1|0.001285|0.000044|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|3460|
 |DONOR20|20261023|outer2_inner2|0.001170|0.000052|NOT AVAILABLE|NOT AVAILABLE|0.000000|20|2860|
 |FROZEN100|42|outer0_inner0|0.000000|0.000000|0.007910|NOT AVAILABLE|0.000000|100|0|
-|FULL100|42|outer0_inner0|NOT AVAILABLE|NOT AVAILABLE|NOT AVAILABLE|NOT AVAILABLE|0.000000|0|0|
+|FULL100|42|outer0_inner0|157.453302|19.475015|NOT AVAILABLE|72.136665|5.109115|100|17900|
 |DONOR100|42|outer0_inner0|0.006492|0.000259|NOT AVAILABLE|NOT AVAILABLE|0.000000|100|17900|
 
 ## Table E
@@ -359,10 +385,10 @@ Generated 2026-11-10T23:47:30.757333+00:00. 74 completed fits; 0 partially train
 |Experiment|Complete|Partial / running|Blocked|Queued|Resource deferred|Awaiting admission|Exact unresolved requirement|
 |---|---|---|---|---|---|---|---|
 |FROZEN20|36|0|0|0|0|0|None for declared fit scope|
-|FULL20|0|0|0|36|0|0|Finish/resume declared fits; admit prospective seeds only by resource gate; F2 needs complete meta-bank and outer predictions.|
+|FULL20|4|0|0|32|0|0|Finish/resume declared fits; admit prospective seeds only by resource gate; F2 needs complete meta-bank and outer predictions.|
 |DONOR20|36|0|0|0|0|0|None for declared fit scope|
 |FROZEN100|1|0|0|0|0|0|None for declared fit scope|
-|FULL100|0|1|0|0|0|0|Finish/resume declared fits; admit prospective seeds only by resource gate; F2 needs complete meta-bank and outer predictions.|
+|FULL100|1|0|0|0|0|0|None for declared fit scope|
 |DONOR100|1|0|0|0|0|0|None for declared fit scope|
 
 All predictions concern complete native episodes. Canonical task separation is verified; session/operator independence remains unknown. This is development evidence on previously examined tasks. Intervals resample task clusters conditional on fixed fitted models; they exclude model refitting, seed variability, donor selection and unmeasured session/operator effects. Intervals crossing zero establish neither improvement nor equivalence. Pooled outer scores and mean-fold metrics are distinct; seeds are never pooled as additional examples. HGB remains a separate strong historical sensor baseline; beating LR does not imply beating HGB. No quality gate is introduced.

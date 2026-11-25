@@ -1,0 +1,3437 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "utc": "2026-11-11T22:00:44.484724+00:00",
+  "purpose": "Bounded CPU data-contract validation, not a throughput benchmark",
+  "binding": {
+    "protocol_sha256": "71cbb3b01b0adb47d2e055bf79391276f1f2f3a9dd339e5b0f07013932caa9c5",
+    "cohort_sha256": "69ef64b012f683c5c8be7882c7e047675f88ed6a448f53c3aa21f432e9858560",
+    "splits_sha256": "ad003bba25de31072612b6a3346690087ecb9f8c94f9558d2663fe99da150231",
+    "legacy_config_sha256": "69f7bc1b6a82441c67bb84a9b83738daaf37b5869e4c90c6aeb482401eddb9c6",
+    "original_source_sha256": {
+      "VIFAILBACK/configs/experiment.json": "69f7bc1b6a82441c67bb84a9b83738daaf37b5869e4c90c6aeb482401eddb9c6",
+      "VIFAILBACK/configs/protocol.json": "497c7b53d360baead6a6654e7e72df9d8c36f83fb9bb93cd1294442405abc91b",
+      "VIFAILBACK/src/vifailback/__init__.py": "053051eea6c9be7702cf2236e460eff90736fd507b1e25f12c5a1db5af4fd8c6",
+      "VIFAILBACK/src/vifailback/acquisition.py": "c8f1ff57545e42da0cdc85031e8c8fedfb7eab0ce6e64cfa2aa6617d1d116bab",
+      "VIFAILBACK/src/vifailback/augmentation.py": "264f9d1403a5f8b65f59769b04a37d2887bef47ab3a5ba13eca057d5fda19b20",
+      "VIFAILBACK/src/vifailback/baselines.py": "11765367e2a6b5671f02232d819da354c3a4f35468b269caf7a539d6b261988f",
+      "VIFAILBACK/src/vifailback/cohort.py": "ae80ec3453cff5a71f96f7f9557224e9ae40f8fc22ef21dd86767029fcadb4c1",
+      "VIFAILBACK/src/vifailback/common.py": "fa392adde6675489b5233c1d38e000e154ac034f6a7847bab9bcd0d55f6e7f56",
+      "VIFAILBACK/src/vifailback/corruptions.py": "69f31536b68b302fce162acc8e55a711b7326779b96860a7651cbcca45cce5b2",
+      "VIFAILBACK/src/vifailback/feature_bank.py": "fa58ade508b1f76eb6b5ed4ce4a87d37f44ba361b06381c43a0bb6d7c6bb242c",
+      "VIFAILBACK/src/vifailback/fusion.py": "8fbcd1972c3c492b5105e324dd2d286058e71aaf9d07d497235a95b8ab9568c4",
+      "VIFAILBACK/src/vifailback/gallery.py": "8d8ae2c237a2cfb801d9076a193e164db0422d8249b0f35db26c72484c227902",
+      "VIFAILBACK/src/vifailback/git_handoff.py": "1a6fbe90b95da5de5898bbfe9235f374d6566ab03325352a2056f83fabd58894",
+      "VIFAILBACK/src/vifailback/metrics.py": "e46a16ea720eeb58d34c8456e5c59cd0d1b427669bf819d51dcbd6b058d571a7",
+      "VIFAILBACK/src/vifailback/reference.py": "3fbcac91afea8fa62cddb927a149c92e31a662b3777ba3241b64aa6de34e4d02",
+      "VIFAILBACK/src/vifailback/reporting.py": "dbc2ad5e826fbbdc8f1e05de6a742426c40d488521cf3ce04f5267b58068a619",
+      "VIFAILBACK/src/vifailback/resources.py": "8d8968e56d428ce605f31f036c0ce0b38f54b5144f7395831460830476e42ab0",
+      "VIFAILBACK/src/vifailback/robustness.py": "7e74db8f7c07701625d93acfc8f703f85227ab9d60f24e36e8e0c8bd34947b54",
+      "VIFAILBACK/src/vifailback/sensors.py": "fea034d81eab29997d2af64815ea969e41a27ecf065cc9b9550eaf51e44a7f8d",
+      "VIFAILBACK/src/vifailback/splits.py": "16c1ea6eaa46bc0483f9b338112598ea789e40a5c081ffdbc7d624d9924c5268",
+      "VIFAILBACK/src/vifailback/training.py": "81f7015894a55930394916f8eac375a0293090010c916843508a2548ab950751",
+      "VIFAILBACK/src/vifailback/verification.py": "fe554cdde74c39370933db6bd9afff091b4b6645e9320c9084c13bbf45c7bd7e",
+      "VIFAILBACK/src/vifailback/video.py": "ecaf7c17dec645baffd9ba26a30c191acdf1d85515105d68a9339b9e0f40fd1c",
+      "VIFAILBACK/src/vifailback/visual.py": "1a11e1a6ccd5cc46e217a3bf52362428ad73615c13921256afbc15f772d9156c",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/scripts/study.py": "a710cffa28610c4fca2c7cefed2f8c928c2184b2c370616d0219cc73cdcd28ea",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/__init__.py": "f94a573d8f4b93f0c5842017e0c27eac7c2f597113033c595346276f7fcf5dfa",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/benchmark.py": "0cd3a1effa5e90f3ce91f06e28a1a9d0215205abb2894cb081cebc4f13187a95",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/common.py": "fa644d9e4e0ceea2b44dfe042fcc0f4ae8e6d265f28245fb32f5f8189e04c669",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/controller.py": "513f763dffc8ec218ed60baadad9a4b44d916a9ba07190411f88132087fa2f25",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/data.py": "6f08adcb8826778cf57e1d0e4d32d6597764ea626e574a3a1bc8c02560077b46",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/fusion_evaluation.py": "ba930aef0362790609e555e38a08b145e1765ec9cc3565907d0a3ef9fe74f9de",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/model_runtime.py": "e748e8be105e9c193e3ec422021f6f8b2b27f5dd62a0244226254d4e307f3cca",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/reporting.py": "7a375c1c9eb1cc43510116e1583bb90379fc67f677c4cf237000a7330b97ee86",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/resources.py": "38ca0249e78714ad005aa12e989bec554493223c8b3d753c1f35dd343eb6c16a",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/training.py": "c8f325c309c5475f65ea77e7288d394fc79c845e191f66af2bd0c9033d83fae1"
+    },
+    "isolated_source_sha256": {
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/17_future_dataloader_optimization/future_dataloader/contracts.py": "ff1345779369be483dac7ae2c497a4c7c55192ea450d9f0705499a32f91527f8",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/17_future_dataloader_optimization/future_dataloader/loader.py": "15ce7d658dcfe8b86b5b5e95c0eaadf37ea5a292a3d5af811d3684609acd2bfb",
+      "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/17_future_dataloader_optimization/future_dataloader/settings.py": "ef38b65f56825bada5ad5f451298002be8538109fbffb1076ca0c33009bbbf59"
+    },
+    "configurations": {
+      "baseline_w2_p1": {
+        "name": "baseline_w2_p1",
+        "num_workers": 2,
+        "prefetch_factor": 1,
+        "pin_memory": true,
+        "persistent_workers": false,
+        "multiprocessing_context": "spawn"
+      },
+      "w4_p1": {
+        "name": "w4_p1",
+        "num_workers": 4,
+        "prefetch_factor": 1,
+        "pin_memory": true,
+        "persistent_workers": false,
+        "multiprocessing_context": "spawn"
+      },
+      "w4_p2": {
+        "name": "w4_p2",
+        "num_workers": 4,
+        "prefetch_factor": 2,
+        "pin_memory": true,
+        "persistent_workers": false,
+        "multiprocessing_context": "spawn"
+      },
+      "w2_p4": {
+        "name": "w2_p4",
+        "num_workers": 2,
+        "prefetch_factor": 4,
+        "pin_memory": true,
+        "persistent_workers": false,
+        "multiprocessing_context": "spawn"
+      }
+    }
+  },
+  "binding_sha256": "48ef5250af15f75a7ef59a55e1ff50e46be4264e7bcf57157d56b8384450a4d3",
+  "checked_config_names": [
+    "baseline_w2_p1",
+    "w4_p1",
+    "w4_p2",
+    "w2_p4"
+  ],
+  "selected_episode_ids": [
+    3962,
+    3878,
+    1118,
+    2348
+  ],
+  "selection": "Proper T only; default frame-count quantiles without labels/performance; explicit IDs if separately admitted",
+  "selected_rows": [
+    {
+      "episode_index": 3962,
+      "canonical_task_id": 79,
+      "label": 1,
+      "frame_count": 18,
+      "frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        17
+      ],
+      "frame_times_seconds": [
+        0.0,
+        0.04,
+        0.08,
+        0.12,
+        0.2,
+        0.24,
+        0.28,
+        0.32,
+        0.36,
+        0.4,
+        0.44,
+        0.48,
+        0.56,
+        0.6,
+        0.64,
+        0.68
+      ]
+    },
+    {
+      "episode_index": 3878,
+      "canonical_task_id": 79,
+      "label": 1,
+      "frame_count": 188,
+      "frame_indices": [
+        0,
+        12,
+        25,
+        37,
+        50,
+        62,
+        75,
+        87,
+        100,
+        112,
+        125,
+        137,
+        150,
+        162,
+        175,
+        187
+      ],
+      "frame_times_seconds": [
+        0.0,
+        0.48,
+        1.0,
+        1.48,
+        2.0,
+        2.48,
+        3.0,
+        3.48,
+        4.0,
+        4.48,
+        5.0,
+        5.48,
+        6.0,
+        6.48,
+        7.0,
+        7.48
+      ]
+    },
+    {
+      "episode_index": 1118,
+      "canonical_task_id": 30,
+      "label": 0,
+      "frame_count": 298,
+      "frame_indices": [
+        0,
+        20,
+        40,
+        59,
+        79,
+        99,
+        119,
+        139,
+        158,
+        178,
+        198,
+        218,
+        238,
+        257,
+        277,
+        297
+      ],
+      "frame_times_seconds": [
+        0.0,
+        0.8,
+        1.6,
+        2.36,
+        3.16,
+        3.96,
+        4.76,
+        5.56,
+        6.32,
+        7.12,
+        7.92,
+        8.72,
+        9.52,
+        10.28,
+        11.08,
+        11.88
+      ]
+    },
+    {
+      "episode_index": 2348,
+      "canonical_task_id": 50,
+      "label": 0,
+      "frame_count": 925,
+      "frame_indices": [
+        0,
+        62,
+        123,
+        185,
+        246,
+        308,
+        370,
+        431,
+        493,
+        554,
+        616,
+        678,
+        739,
+        801,
+        862,
+        924
+      ],
+      "frame_times_seconds": [
+        0.0,
+        2.48,
+        4.92,
+        7.4,
+        9.84,
+        12.32,
+        14.8,
+        17.24,
+        19.72,
+        22.16,
+        24.64,
+        27.12,
+        29.56,
+        32.04,
+        34.48,
+        36.96
+      ]
+    }
+  ],
+  "real_decoded_episodes": 20,
+  "real_decoded_camera_streams": 60,
+  "reference": {
+    "delivered_episode_ids": [
+      3962,
+      3878,
+      1118,
+      2348
+    ],
+    "identities": {
+      "3962": {
+        "shape": [
+          3,
+          16,
+          3,
+          640,
+          640
+        ],
+        "dtype": "torch.float32",
+        "bytes": 235929600,
+        "sha256_all_tensor_bytes": "b96c902fd1dba60b2be9521d1433bcfcdfddedfe090d39390fd22ec134e82af2",
+        "ordered_camera_frame_sha256": [
+          [
+            "ca9ae1c154d1db61235691350940f33eec07d82a88862616337bd24c0b6f9882",
+            "6d4cff35b89d4165fe42ffeea751720566991bda74562d0ef0d4c01ccafefb57",
+            "6a7eb07a9c09487b6549c5ff3cad047bb2cb1028bc7ef9af7022031604685e36",
+            "c830f41eb4274f158d1339d8ecde4e00979d399ac55b8478f51f03a6ac16ff5f",
+            "6b446eea34299c6516a213b56e99c6c409b087299703e7524a2bcaa071d66de6",
+            "a7552388d2366a42050e7afd2fb8d78610c8e143b48ea3c36c366b2c456d93f0",
+            "12faaa90ef0fc2129ba7959531a5d8eb7aee02b558a12c8d05258b2837d3c07d",
+            "74d51b68b40487a4bdf6abb577d56c63c7ab1b038fb63d865df3944e3c420643",
+            "90c211779d0681e6b4e1873d62097a6ed66dae5ac30b540f7c62a52ba9855ec0",
+            "d995a08613831406bc297b9f193124221870cb48c9ab7c93c662832e025e9182",
+            "3c656b153a4fd52eedae6ff2642e86676d9f18d10c4106dafe5da4f40f771f3a",
+            "c8842a07d14e8984b6bfbd16b1649f2f2203b0b618f38cd3816db7e45ceabfe1",
+            "0db49a484bc025eecb683e09a075162419d757acfea57087087df5de3c9f8602",
+            "6efb43bc9709d6ec87cceb67874c99cac0b50c7c56ec8b5568aa098c91fc38c9",
+            "cdb5de5d1e33bd4bc00ddd8599c6de4a1f09d552b7fbea0d52f3a2ae19e1b5a8",
+            "86e22007900685428f472331f4fb1fae79c3db212bb42c912992f9af5a072428"
+          ],
+          [
+            "372ed2f2ae4ded4d1d9445b82078dc99b0f1c06e2ab7fd782411e4e949a09521",
+            "0a56c1e7784ab2e7de32c0274f05f5bd7adc8fac4128c5bfeb093032c402ec5d",
+            "f3723ff234b5e283de6ed4a667dad35d7ef2f6079e75c5ce3fed475d3194254c",
+            "c0a2bece8a26fc5a0cc84e9ed17e8332a16e05be65c1ab5bb0a6f1bfbcbaa976",
+            "437318d5dd9106b95f0361b4508063d27364c37faf49a7b5f2529ccc4257472c",
+            "561f2f43f17e7cc05a5259b886c4d72ec0dd310daad00a97f80cbccff40ac60e",
+            "0e1228321f5818ce575a69177bc49033cb6051bcb2dbd41d6a830f88ceebe594",
+            "3626e752298c5c3b93349443d3d2402638a79cc2b1211094790094676d83fc18",
+            "e6484ec8304c5654ccf49c2c5e6f2a9514f49f08face8cf37db781b1cc53d925",
+            "2af7f388fa1379b6da405825c68d8f0ef419ca493a82091c9cc452b8e2db8a36",
+            "8893df8587649762380a127dfcf6f423c487c96c9248675ea9c46fed90c82c37",
+            "5ef47a45b98b547837c76d4f619cb3ebef89916f61170729a83515c275022197",
+            "063858646ac8406e0492d86bfe3ad59f34dee395c5809bac28a90c87d978f652",
+            "dbdd0b9564c752cbe5ca3df9133b6dc2bc462a1a9e8e477468dd2c6ae765e1c8",
+            "78f2d5eb13c266ec4bf2bdc65f83463cbef7595261882a49a59f106725c7277c",
+            "7c372d4db800910c25ed9d486ff918f226084cad1fa7c31b1e98b0a1aa8f1eae"
+          ],
+          [
+            "74d5419f2882bbbfa8316b903c81a689e0cb42b1ddddbde1f372e72e092be133",
+            "3164ccd19f7c01edaadb5473a288892cfd052db53dfbde44a2a3a33a7716241c",
+            "589ccc4afcc7082c2af2d72cdc9f8c69364f6087a9eb2156d8dc29b5c124caad",
+            "ec98f23e3545c96586b8600fdd920f9d1cf29f7d4b8643d1aaa23e529f8a7200",
+            "322665a0049a4a57c8bdb09b3566b9c1f6c18e0726131f16c6fc4967a2676ddc",
+            "590a2ec5cf54113d462503f78df863e7839ed22f00bd05c99cddcf46d239253d",
+            "f1ea7372140a1c8b550662e19615fa24ad353744c7cd1411350055e93f93cda5",
+            "1ed2d3573b0cff94525e3e6d0064cdd2d10c3145a74ecae2db1f89b88585362f",
+            "bb32038c5245ba632843f0a993bf61745e677d974f8d223c9f59fafb70e64330",
+            "17e61f76f60e1bafa89df204a8ff5703a9eaf90d648aaaf4b5a0c8f08e3c5be4",
+            "207c4794bcf2e3c024e483859721194827effdc85eb736f1402f086599267cee",
+            "e31a65d2eacb7da63c9c1daa3effaa692a3712a595421aef672f64e67940e580",
+            "91d14bc0855d3eacccfce57806786945e5e419be5d08f77d7ab9d2916f6dfd81",
+            "72c3d759f7cc85d01d507d4d21e40f753d9c9a3538344413eeca63c24b76a7e7",
+            "529de93af29dc162eadd84f139a42926060633efd1f2cb05f7c300b2428b3b96",
+            "2587bcb2700cca034407356000e4d953e6d5293a261c53cdbbc469eb18264afe"
+          ]
+        ],
+        "all_finite": true,
+        "is_pinned": false,
+        "label": 1
+      },
+      "3878": {
+        "shape": [
+          3,
+          16,
+          3,
+          640,
+          640
+        ],
+        "dtype": "torch.float32",
+        "bytes": 235929600,
+        "sha256_all_tensor_bytes": "649e5d0f380a066a416a5f313e7fe846af8a1fb6c71d51712be91c34446daa0e",
+        "ordered_camera_frame_sha256": [
+          [
+            "02ae0b953d4abb3d63495f085875e2ab320bd5269ccc26391e6961db1e88906b",
+            "7854f6caa503b0ec59b89b3d1a5f8c4dfc2aaa386dcd88d6cb6842848675458d",
+            "a1ccfaf13a5fe1da245cc6f9c9fa219e052ce69a9b44f3205afd4e4823366b53",
+            "28816d084cf635b3bad21aa12b000f8701685d0ac34abd5295f268d8defb0b4e",
+            "85c5b88ce98afd3e398dc3d9870f3ac1229b69d1d36cf80205d38ccf27309ad5",
+            "fadb5c8b6e0266bfb7e78e4d1e0b432f035bf3034d545809db65808fbaad3842",
+            "4734887b81449a44813ec0c364a5dfc9a725898655d2fd7ee6b1474fc0ff7f38",
+            "a927751f31c092d57960dee8b87545ddeaaa4d07802ec0e3dc25e7c095f203d2",
+            "809b129608714cf3138110e7d9fff7ac4d146d81f0378bd327f19d40de3c1576",
+            "cc19809b0309a09fbc74f02fc77d088c00012cdbdf441137f35701006f3ec01a",
+            "109611f71a875f4284d03a79a0bf3e24adc67a984ab58a8eeec22bea0db728ad",
+            "fd2345030949a7dd04d28a29f7beaa3cff524bbd4fa2e3c6a1a2a6970f791989",
+            "8a5d91488bed77cf4a9a4b57f4a5246ae1986f149664d267de5d5b187efb1dca",
+            "5c8a46b1206d8f0f3f9bae17d2416db0a62ffb022d68f1fbeea99481b48600d3",
+            "be4938b5e37ff3fc68376bcc9ae34ccfb5ce1d43b31aae2586b6eb7388760d33",
+            "3d967ecbc1d7baaedb9e15fc3676afc131c0e6dd0f5881784afe39bdfeb67d65"
+          ],
+          [
+            "99953c8fb80ac5b51e8ff5cf02faf444663dff9bf4d601f8fc154f6299f1bdb5",
+            "55cf1e55ba4a68a38f8f7ab046267d7e9ad8092ce26e404cac34ff502e9772ef",
+            "efa5485d2cd3dde89947cb46478ecb19a4850ead1cec0f42ae9e88444f80031f",
+            "0f309666f5cae9d268e7526c23efb1647ad3ce5150bc2103748701e7eb715c68",
+            "1c1d3e95a1476160189f707389352e8eaa8a63c2df202016c99dd6b64f0cb085",
+            "b3e84971c271e52ca5ccc7462b7b9dd9e44e0d9b3f073a56e2badd0b3cb46d79",
+            "f83efdfad34bb30b42df7410953d0efc61bac7b445d8ee2cb868dc7c70997928",
+            "5a6a2e17b51f103d98bb96cfece52cfa9edddc058b86afa4ad33d479c1b48518",
+            "efd0980de41fdb2cc92a100f263872c4ceb550c9dbfa054a2969dd8d03c30f29",
+            "316723c1def9fed3083970773dbbef426fcfb591b3c6b52b083c5ac63d6ffd79",
+            "08dbd358d915b9ae2202a4fc7ecfe8bb6d585b72a0eac34a6f15e9b886986f82",
+            "4fc2c0cf8ebcb57e5846910fd04084f642e2e0db30da8c117d827ab544df95db",
+            "f06c4b941ec8a7f5e59aaad7937a9113066af0dcde37a6b99496184d6daea587",
+            "c5d9d04a1c997ed0f87dca6f9996b681ab8fd9cf64e03a9bb9da5ba93c82cac1",
+            "fe16a02ba0bd6fc12df3313aa7b476b55f68a6f91445cb0b8a6ecec3013c0358",
+            "5db8ff285994e7bbc784e220016e4a6b234ce5817aae95b7483794f8c53041e1"
+          ],
+          [
+            "06553875e6cf3fb99fbe9608a1218a7a6e88989604494da59763e0583b1ec91c",
+            "6e841c0ba907ca8a9ed6caf3caf5201b14c99f63905beb7a32f869addb007ae3",
+            "a5365f98c449b45ee8ba827ebabf9a18b7d732bbc9daf8903279329ce88472dc",
+            "2226764f7354f66465deada3da1a036f60d16c2e84b509a5abdcb656895685e5",
+            "38ea1b88893647820dae4714d3d9c9054cc97d98cb6dc286c5e35b2a76a77a07",
+            "5ee5f6c0a08085532e48f4dc3ab81f13fffb6c551a6c92d6074cc6b5a16773ca",
+            "216e75675e678691c1bfdc4404f704c236851ca79ecf2db09d1dcf4f1eae029b",
+            "ccb7fe476e1966ebc9ca664a4f380a80e2be021902940261d74d4efec488b305",
+            "148510962914a1aedd0a64b3cde755117c0e5f084bfd295bb0f4762e760ee78b",
+            "2669a481f2f58e2ce3f38b74e8c8be232b430c7719eede4088bf08f643c4a5f0",
+            "758c6b9a794dc214b6a231609df251d603fc3b8fe4a6cf97feca4cba1bac9570",
+            "28bcc3a1251ccd194e297f4d9eb84aa4d53ae82becad5914ca26942b35993609",
+            "c8328c34118c81ee725a3720eaed8116ed21a44f89bd54603130d7fdcdf0492a",
+            "e6d17095c4dd627936d0ad8defe330a682ac2464240d0c3067e9fa7afaae9ae8",
+            "c4e68f579b32ff1a4adc95e07d16e54d4dc6b01991e6b02be09699ac49f58b85",
+            "0b60aa475b0391a7e7d0f8c463262cb4f47340dc258d735b663b26bf61b6bff3"
+          ]
+        ],
+        "all_finite": true,
+        "is_pinned": false,
+        "label": 1
+      },
+      "1118": {
+        "shape": [
+          3,
+          16,
+          3,
+          640,
+          640
+        ],
+        "dtype": "torch.float32",
+        "bytes": 235929600,
+        "sha256_all_tensor_bytes": "fad03e715066f86f101674c50c396847a6e0f5720fc4e13d69e6b97530bebe2f",
+        "ordered_camera_frame_sha256": [
+          [
+            "28637c99c1a4133e0e764c5abb49b6e672827e2eb6decc9668b85a4cba3a6859",
+            "f2e44b8823a29db2be88c73795b7e327156385bcff2b307fdb8b5548385a18e5",
+            "2bf03b04c8030949d0a7e61bafc26f74c33d61477064e974d119b344fcbd1abc",
+            "5f57f6f7459ff5e3d4a31fcbfb59dad0bf3cbaa6b30a50e7b018133e221a71a6",
+            "6a410d4ab9954d6b8d5e5f0bb47939a1b0f1d774695640e33ba3826b2c2b23d7",
+            "e112c4693f2233e30433300501125b63e9a5f22fbfd1c704141dab919d82dcee",
+            "b12b4ee140dc7ed208f4364fcbcad52184331cc988c9a8f7d51a0a04243d0e7e",
+            "756ce649a3852b5c6c178e5b6d5ec08b1db67e5c5b19a1fb08efd65dfe7ee591",
+            "84fdcdecde587ff8b1df118760a2df880b98b5bd33df711275f87550ca364d8b",
+            "d5f818873d7de7339ea5e051066e8fd0fea5623680e2a79556f075e0b6f2551c",
+            "fd5783e941612625c062def6a37d2ce215b3483d6acf60ead41d3543a384f6f0",
+            "66e2399c0a5b0fdc5a18588b822f98ccaae8a717a4daacbbced048fe53ea556f",
+            "1cff2e0f569c06c5a401ed9712cd304e450e6d8ca836f76a82ccbd167d47fbe0",
+            "950c29d68ab01b882274a423aa191fd7d6c25589c694f80a77bd6e44eb7ea3eb",
+            "722c43c4475f1dc66c777812d88f04c086d216d028c40c797aca5c6697d3e600",
+            "d128632aec01c23c28be0192f09881be1c7a4d7279a1fb5a522d22baa1a51320"
+          ],
+          [
+            "2c7e1972736aa5a8fbbbfbf06d3baff9cf010f5c0c2bb97864756886019ac4fe",
+            "44591e413bba1ff76d2e3d48e2662b68cc31bd3719de420adf87fc371b3227f4",
+            "88adb9185d6df7fedc01e7b3d6788c7a8c517738e32be5837e08af2559ec6c9f",
+            "47145c16a6dd3c09c7b6cfcaa9818d517bf489e9d9035beef7475490b2ac4f5c",
+            "788418ff7cc4aae2005a4858e3e57ed650018701ad512c7f62491831e6fa5d13",
+            "a7c2fcb524cc853ea0ab848e866013f1c9869281bc901128ec320170d238236e",
+            "4f3057483111f250aeb0311133cc1a136a7fc745ba5c662718c34fe6a4676025",
+            "45c682e05a390d87635c69b6941957af08999d3319a436d057871df91176159f",
+            "20866f4169638051100c5e87505f9c43cde812ef906f31181ae0ec3ce6b25ccb",
+            "709d6df0c31a1767c426b389ecd0b91c2a8a5d718d659d174bff18a0d96353be",
+            "3051b77ce6e0933ccff2d52fb8174511d19dc9852d95f6fefa5c2e1407aba535",
+            "d7bfac94564ba110f1d40ca6244bc1ccda6ee37ff6418853bda63a82a57d965c",
+            "c4e8c667697dea73e359d4878baeb2b23ffb1fc4c45ab9824f00144f21591172",
+            "74146e864d6492abbb0c176178ab4c26982736f5ace0034955b469a8a38d686b",
+            "43189679646b40ae02e753232b1ce4b91a5e57477d2f9c37b7852861ca4fa5fc",
+            "569172c2d6fcd9981792c8539ebc2ecfd45f460b01f3859cb43f1699d67b6cf5"
+          ],
+          [
+            "0acf1be10ece187423228ce7519b41f2a2d640fec1f8226486b5e29464d3c741",
+            "713f7db8ad7f3c32ea5eeb98db657a694aa2e870194827a6698689200dd202b4",
+            "7996bcc9ae9c7e68975e92a4e7e4f0b00810597b695d20053501ec20a634fa6b",
+            "6efe2ee130c901ab993b230082a90a4a858ba3a41e5b90876dc3887b6c3ee9fa",
+            "85531d64ecc99d13f398b786b2b6349d0814e9559c9dd30443b03e78e81114e8",
+            "c7f9c8bcbe6d662cd04bdded9c38500dd6f47c3e98b90b862244d0c7ffc8c078",
+            "a29d6753a4e6219b1d8119a3aafe0d39135a4357ca4d56be936808788486b06a",
+            "d6b852011b8ff23384691b388895ccee6fb5cab5f720e0acfe916305ab80fb6b",
+            "58a85975ab508cede23850e6fa4bdd86734d0db9f293e9ce5405702d473d7444",
+            "0a2aaec2d141a00f7e8302e1fb48027471b34eabdfb068d45aef2df9cea2229e",
+            "4be4a39df7309bca7484dd78f6ead2b912e7e9134f20f560fd8ff6e043cf7625",
+            "4ef64f66037ba805218eeb2b1b49dd59c21d49bcfd8d7bc968571ae68e28d97c",
+            "dfad13ef003b8149e3aae7d9b7ccd62b67e44de07281dbffc2bbb44fe3433b7d",
+            "b68c96b161fb2c01303df2a8e9f486bb984ea5ffdcdea3b0c007a9d046a1ec86",
+            "f8df5e4b561c0dbb71dc19154406a4dd5070833cee552f2aa0a9c052aa9c7ffe",
+            "a4e8476eb644e482f08a5634497032c1bb407de9310693128f74733dc83fa479"
+          ]
+        ],
+        "all_finite": true,
+        "is_pinned": false,
+        "label": 0
+      },
+      "2348": {
+        "shape": [
+          3,
+          16,
+          3,
+          640,
+          640
+        ],
+        "dtype": "torch.float32",
+        "bytes": 235929600,
+        "sha256_all_tensor_bytes": "9f354b10de1cd192abcfe1527cdc5b0cce6e2735f7e693d67708cdf6043a37b2",
+        "ordered_camera_frame_sha256": [
+          [
+            "abd74c26936bc430e5430ba61a8aa37aa3d0b34fc7559f2290649be881e783a8",
+            "88d9f39666572709d6e1cf7cfb8c9a007b6ff1f12506cc4f992af113a93a6065",
+            "69c15cbe0d557ed79953189dfb81f1086b3a877dc0a522d2397566b57d7d0c56",
+            "361e238ea1d64a39229aee8aafcb8103976709326b27a21eaf04ba91e8d1049e",
+            "0afa4f2779b5ac0de94da4b3491bebe2047b8e63299eb4e3507e551cab8237d7",
+            "92db632ea393cfd0c93af1722eea57b229d47d28edaa73bf0c2ab7cb0f5e3882",
+            "6371dbc419c7baebb2032b9325fd80af137ef27e06a1d2a3823b97fc0c0e34d2",
+            "b1e4cd77c3d30202df5fd2e9836d01b7a1fa7ee275db403408bbf3154076ec9d",
+            "a25371a221e104c444b3f2acc310afa4acd94168feb34d5183bd5af0b5521bb4",
+            "2489a8211a1da3b2e46085d985172b17ebbc48c270cd4a85829ff7860f05fee4",
+            "b820947bd3e940fa0c494fe6fc4164e351982f205178f3d88b3df14fa0fefc20",
+            "c9480038a6aa395de87517acc61198537fea490011f7e192a5f23c8b9b8a99a9",
+            "cb014f0c0f1d2ef2da554d55df211cd3527f180b6c2584658b3eb60e941aa0d4",
+            "ee859f55d3461a9b59a1c8ae8da10d03b68aa867ba870c1e4611c2cccd66f4a2",
+            "3790791d486ff3a5a8868299e0189b9a1da90a543ea85e1fccdd350abd06fd26",
+            "d460703f0848f41c7db65480ec40e212572e62abfc2becedb6d503cca59e0179"
+          ],
+          [
+            "fc1a22425a62dfc948cb3e8dde683f28a3ac26f540413195378f236db0d2feca",
+            "f1262bb84a16e12cb9e3ad0eb87286eeba947524ec917382cf1243cf59e59ace",
+            "5b0d0c3ec4d2e40b41dfdc9568d8adc634c07d8bf9f7f5abc7d972c29e02469b",
+            "864f0d09db9cd8f8d47487b26f221086ea28352f1cd00a80621354366b09bfa1",
+            "1ef8473ea46782efdecfa55bc07ef1e040c4e0fae934ae2f8ddb9cb33483d02f",
+            "86e3dfb7470a5a657b130955908496aaf2d4485f11e2d36d69287cf26872c573",
+            "348b772feabd0ddf10b5c11b2dca424493bcf1d3948acddff63497f01e86a636",
+            "5984dec6a15c9ce295786c4e46a1771fc72b6a18c49458c7aadd62338a1676e7",
+            "1f6ba6b6e318db294e9d7966db4f650b2f94122792630f0ac4fe3539c8da2ba1",
+            "670155333918e6e30b5d2e15e3c2827dea2a8ed22ae064f5e20c9bbdc501b00e",
+            "b1e506368feca4dbf0262725e135fbc4523eb26c3f6a6f443c52dd9550862903",
+            "29346a1766b3b733d921a04f449062be5c96343cfe4b0d9c012ae8f95f943a19",
+            "3da3a85950313f15c0e18b011e74d5605472d4f578e564edeed9355865ff0f83",
+            "c7bf8ef2c8b3bc9825861df879bdb882486eccdf8e905027bd24195a414df5fd",
+            "1dc2abbe7f72f791064e95ed8ddad6e19340865126e9dfe31467f90011c4d033",
+            "cd00539b56288d008bcd71a30fd88f57306beeef944e7a6f099609ac31ccfed4"
+          ],
+          [
+            "4e2d0ca0bc309adbd3f30eca705fce7a50450abe48f158ef0273a6b47230deca",
+            "18f3d04826e6158b00104dce26c57bd5ba76a5dee8fd3ac322a20f315911a3fb",
+            "011309ab876f311f128e64875f420f80d6a289c7f825e3ad2bacf37b77f69b56",
+            "fd5046d7337ae09ecc652923650d1dbf75f8aaf5e1140ad4dd615c00b64d9a1e",
+            "5f9b9fad5c3b0c415800a7ad76232708df0bbcdc6ffac25bea55cbfc35fb7d73",
+            "19fb08e27957b17dae4e30f2864cf5edb5f8e6b14237436455d6136be3b376c7",
+            "7eefd401177d80b121e3f95c7ff78da97f1666fa400b3693b5331072fb371468",
+            "b9afcbee3f192dd6b18ea313e79c9669c41b7a426a8c42eab0e790c054535bce",
+            "9daba98a80a1b17f4bf8029135c2398b478293debb7f178ba9d16d8b9f9f4f25",
+            "dd7c004028df550de9cf03c7056839ade81b2fe2d7eb4359b08896e9fd3ad3ce",
+            "51dfb3f6362646e578778078c2e4765867e7da8e011de3df940a9589d14646f4",
+            "395f55bb49ed8bfaaf46b2f7d249dc3338d4f9818cc20a74d59539352bf278ee",
+            "bf03bf015f71f64f8a8dc761e7787adba1fbfc6d4b8a7e0cda2ddaba7d6ec71d",
+            "6439da296d6d75c2b17103fa6aec4ae26b1f7ec0e2b8111befb6ea4173fc3d5c",
+            "456e6db78e37e4e722bf1fcbe8d19b88005e96a9e6215404cfe0fa596d40ac74",
+            "42a79affdfee9f8e458b9b9172aad5b03dce45a8f14084f2bf0c42f88a97edbc"
+          ]
+        ],
+        "all_finite": true,
+        "is_pinned": false,
+        "label": 0
+      }
+    },
+    "main_process_torch_rng_unchanged": true
+  },
+  "configurations": {
+    "baseline_w2_p1": {
+      "full_tensor_and_per_camera_frame_hashes_equal_to_original": true,
+      "delivered_episode_ids": [
+        3962,
+        3878,
+        1118,
+        2348
+      ],
+      "main_process_torch_rng_unchanged": true,
+      "configuration": {
+        "name": "baseline_w2_p1",
+        "num_workers": 2,
+        "prefetch_factor": 1,
+        "pin_memory": true,
+        "persistent_workers": false,
+        "multiprocessing_context": "spawn"
+      }
+    },
+    "w4_p1": {
+      "full_tensor_and_per_camera_frame_hashes_equal_to_original": true,
+      "delivered_episode_ids": [
+        3962,
+        3878,
+        1118,
+        2348
+      ],
+      "main_process_torch_rng_unchanged": true,
+      "configuration": {
+        "name": "w4_p1",
+        "num_workers": 4,
+        "prefetch_factor": 1,
+        "pin_memory": true,
+        "persistent_workers": false,
+        "multiprocessing_context": "spawn"
+      }
+    },
+    "w4_p2": {
+      "full_tensor_and_per_camera_frame_hashes_equal_to_original": true,
+      "delivered_episode_ids": [
+        3962,
+        3878,
+        1118,
+        2348
+      ],
+      "main_process_torch_rng_unchanged": true,
+      "configuration": {
+        "name": "w4_p2",
+        "num_workers": 4,
+        "prefetch_factor": 2,
+        "pin_memory": true,
+        "persistent_workers": false,
+        "multiprocessing_context": "spawn"
+      }
+    },
+    "w2_p4": {
+      "full_tensor_and_per_camera_frame_hashes_equal_to_original": true,
+      "delivered_episode_ids": [
+        3962,
+        3878,
+        1118,
+        2348
+      ],
+      "main_process_torch_rng_unchanged": true,
+      "configuration": {
+        "name": "w2_p4",
+        "num_workers": 2,
+        "prefetch_factor": 4,
+        "pin_memory": true,
+        "persistent_workers": false,
+        "multiprocessing_context": "spawn"
+      }
+    }
+  },
+  "timestamps": [
+    {
+      "episode_index": 3962,
+      "camera": "cam_high",
+      "camera_index": 0,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-003/observation.images.cam_high/episode_003962.mp4",
+      "video_sha256_checked_now": "1918e2589e470666d2dd9a04a71e7aceb82edd3b9935d1a24bcfc0f518d87667",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/003962_cam_high.json",
+      "historical_QC_sha256": "0e7499d306f896331c45c079fe220d7b51c1c0cd6a16052ebcbf15e3dc683fec",
+      "selected_frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        17
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        0.04,
+        0.08,
+        0.12,
+        0.2,
+        0.24,
+        0.28,
+        0.32,
+        0.36,
+        0.4,
+        0.44,
+        0.48,
+        0.56,
+        0.6,
+        0.64,
+        0.68
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        0.04,
+        0.08,
+        0.12,
+        0.2,
+        0.24,
+        0.28,
+        0.32,
+        0.36,
+        0.4,
+        0.44,
+        0.48,
+        0.56,
+        0.6,
+        0.64,
+        0.68
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "fcad77267ef86ab7ddb345c1e632376a56a1ae9bf3312f839d5274c15d78e657",
+        "176d4a0a88115ce0c4b40827aa8c4df296fcb23c491aeaaa0f8fc5de85722e4b",
+        "fe6bc05ab39d676ab04c574c193bbcb4443ac4d58b984f6020a26cc37a37cf81",
+        "8feb9ae22734a45a19a7a798bc7cf754d53bbd36bd999d22e0e4ddecbddbb47d",
+        "a33ab54129cd561a3073f9fa7e0b7f13e86d7376290dcdc4f0d6777c94d070a6",
+        "7f5d430131249eb6498ed3709645fee9cfe492dcd8ee076ea2a3d2f7b06f8218",
+        "78f558fd00531dab6d747ea7d11ff0613ba09a9726d5c50d44b0d2a3a71a0bbe",
+        "c379bb7517bffc1ac2be07ead1f2c0d7399ae80a19233e435e5c7de5fe1aabee",
+        "41bf37bd6b3d9544d92392f978a5a9e7216c97872afe511284bd360a0d20d2ae",
+        "b3253d0ac9e6933035e10e40b1edd9a925305c271442837d63e98d4edcedf02c",
+        "2d6bf3bbc7e10dc9ae785331895e6d62ed13038e2b92be58a77670e67ba5e90b",
+        "531dd3229c1878e745c9be80873355d1d69f369aed3576edfed1547436a2c26c",
+        "4a917aa35880a997e2b4f1f487135f32c08a32784069e7d750e9fd2cd4a6cfbd",
+        "958f0ead6fb8029774a25b9ef51c69a2fc93c2a6ade6f76642844e28106252ec",
+        "ef82af91470caa349b683edab6ef519f0585c14c0e4aefbecfe8eeab06ce443a",
+        "d0133cd5632aabd655ccc6a73959181915f1c4b9548982e92b6cf2b2847d2cb1"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 3962,
+      "camera": "cam_left_wrist",
+      "camera_index": 1,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-003/observation.images.cam_left_wrist/episode_003962.mp4",
+      "video_sha256_checked_now": "2961291ba423014d0648df4983980d53d1698e73aaf31200ed792683bc0fc011",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/003962_cam_left_wrist.json",
+      "historical_QC_sha256": "c6aeebc055c5f6e708ed5beebcc0d6c33f1b30a5fc61ec2bd6b37dd89f2b28ce",
+      "selected_frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        17
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        0.04,
+        0.08,
+        0.12,
+        0.2,
+        0.24,
+        0.28,
+        0.32,
+        0.36,
+        0.4,
+        0.44,
+        0.48,
+        0.56,
+        0.6,
+        0.64,
+        0.68
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        0.04,
+        0.08,
+        0.12,
+        0.2,
+        0.24,
+        0.28,
+        0.32,
+        0.36,
+        0.4,
+        0.44,
+        0.48,
+        0.56,
+        0.6,
+        0.64,
+        0.68
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "f8dee459eb824330cc3c316b4df4beccba84ca7d51442af83238aa0826ecf9f8",
+        "d666941afb0e0706d808454c483d68b2b94dc2251bca0a0f777c0b6bf4671c0d",
+        "e9855595375abf9b2cc2b0bde8ee7a25940164724a6cb519de24966ae125fc19",
+        "e6199eff8915dcb53865450535e2ffd044af22870b0a100220ecafba840861df",
+        "7a157d5b3a710cd7a2b6f941a3a6c059fcd114c7a34c9e46569ceaaccb1d034a",
+        "1ea57362d2fe9aff8d1358e0ea2e2c5bffe31e722076bc073dbb33b9926badbf",
+        "31f0de7af9e94d1e7c83ebef83346d219bf6caf7fddf43e233852f8ea9e1098c",
+        "e4493b99722c729c6d5dcb11cac2e2a8777f13ea9e6b2f4fa8908036a77dc3c1",
+        "891f45542dc845029cdfc7a708cd8d121bfaaa5e5a5a5a40209b0a40c34e52b6",
+        "2002bc02efc91d5a94bcb9dc1357f24bedc9deb3903b3a8981f7e886b1a32c85",
+        "fed0cfcec7db25e35ff2b20cab4ccd2f04b1f6d96364dea0d7b10bc61a69131e",
+        "3670930a10767d006a8ea203fa61c3e1ec93932d57e8d2bd303e2eebff4e7675",
+        "b75a0cf2268e2d2304bfa454908cda9a37361b1349ae2ae31edc39fc40db1d82",
+        "2808198c897ee0bd117f6c5b93e8a7d56a0dcbd66c53e163e3c83b6c84653249",
+        "9537bb07bba93c68afb0e25f5eb8d0910b09e644d0fd429f0c0ff223bb848247",
+        "77731c5fcc7a571d61316d5ff7d887c63c1b112bdd7a58c6640dcd62e3be5998"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 3962,
+      "camera": "cam_right_wrist",
+      "camera_index": 2,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-003/observation.images.cam_right_wrist/episode_003962.mp4",
+      "video_sha256_checked_now": "16d609b845df7bdd9ae45250e246b9455436d59a209e9e9b7881868c2c76e72c",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/003962_cam_right_wrist.json",
+      "historical_QC_sha256": "fcc98faa95d656569f1ee0e33b35de62b66e21335bfef440523278779bf68c2f",
+      "selected_frame_indices": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        17
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        0.04,
+        0.08,
+        0.12,
+        0.2,
+        0.24,
+        0.28,
+        0.32,
+        0.36,
+        0.4,
+        0.44,
+        0.48,
+        0.56,
+        0.6,
+        0.64,
+        0.68
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        0.04,
+        0.08,
+        0.12,
+        0.2,
+        0.24,
+        0.28,
+        0.32,
+        0.36,
+        0.4,
+        0.44,
+        0.48,
+        0.56,
+        0.6,
+        0.64,
+        0.68
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "dac34de9e2cb930f25e424acd2205bcec8dac8c86a144ad134fcbcdd8386a251",
+        "708ae66b71296ef44e805ed8a26ce44230364703f78280ec5e803f632c8da8a9",
+        "49d3203cc04b619b4632e525f4bd8fc8a44dd22b39e27807474ef9426c2564e7",
+        "2294d9ea904d41f6d882c4709f499df1d62be4230eade4aeb1e53704519dc671",
+        "0a6c765c13cbe1500a36c295d71a147e7c30dae2dc5f23e639bf65a143f6fa9a",
+        "034ad3fd0b716e6d825bce0b82a94a031113aaec94d4fc16ca6f4d95fe0882b3",
+        "f523bab6931c7b9b71fd08634f196291af428709ea65ed1a9b61cab084f1843d",
+        "e6dd9748c07d7a237b9aef3cc5dd13ad37d32d9e074287245256431464f074ed",
+        "96bb559b1be418419d4bdd4bbebb173eebd050b2c64fdb9ff70a7e24ecae030c",
+        "27eadd04ba51e781cc0fb899eda2a307308197ffcf4d148545b7d95e78e782d5",
+        "65ccd08a802ef1de80663ab97ef7ee25463dafc954152919819ab727b19309c0",
+        "6ba202ca851885edfb55ac00929bb0c7c69318ee8ad882060ee8b623a857331f",
+        "2de489be796fc89e44360fb9c812d7003c5de68b8c25d4b7e50f08d709b13fdb",
+        "4a9041d6e738532dc5a414b6f1d8919932c48bb71285aee9c34d486621b83ea0",
+        "9471b76d46c3ea50f4c3700cda493a92fa5964510dd94e68a6c5b5a97adb4848",
+        "76befc83de2d97d0af27fdb7129b291997733ee9f1797d8430393edee9a01610"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 3878,
+      "camera": "cam_high",
+      "camera_index": 0,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-003/observation.images.cam_high/episode_003878.mp4",
+      "video_sha256_checked_now": "5532b4b1c272df8f492c483401400a96ff75efa58a523d69ff2373bd3d5ee5a6",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/003878_cam_high.json",
+      "historical_QC_sha256": "4e39c757ce63bfb3559d6db261700634e4106019035dd8d259f645a865329be6",
+      "selected_frame_indices": [
+        0,
+        12,
+        25,
+        37,
+        50,
+        62,
+        75,
+        87,
+        100,
+        112,
+        125,
+        137,
+        150,
+        162,
+        175,
+        187
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        0.48,
+        1.0,
+        1.48,
+        2.0,
+        2.48,
+        3.0,
+        3.48,
+        4.0,
+        4.48,
+        5.0,
+        5.48,
+        6.0,
+        6.48,
+        7.0,
+        7.48
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        0.48,
+        1.0,
+        1.48,
+        2.0,
+        2.48,
+        3.0,
+        3.48,
+        4.0,
+        4.48,
+        5.0,
+        5.48,
+        6.0,
+        6.48,
+        7.0,
+        7.48
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "1267557c6b28e6bc6d7ef7283f96e1f01bc015039f0df2bd7ec29a41bb75d129",
+        "cdfeb67614f199fd85f8637a85c1b28428b16924f639081cc4f317c48e87ff47",
+        "97b5bf73287c73d5b6dbb25465ffa6a08907b3a4d9b45c9140e2c036b8faa87b",
+        "c5daa5f8cc803c15d7d8a7ac5f9b707c32dab8841ca99e73f07a1648d3b827ed",
+        "b362f3ad01e57409c53c016aea49bfd44c2177016e351e1fda590fa3cacf9eef",
+        "491dc51b24f9214792291f6909a19bf5b851b04b4cf9382a5299fbc7c0f11984",
+        "f063d203373acfa5a14909cf5f7d05d0943b11641146d3e072bbeadcdd650947",
+        "8cf01dd5dcd4a20913a993821080504fe4f7ae6f5c4512bacf4d8cc87e379949",
+        "27e4156a3c88bd8abbd7c20cdcada3b15fd38c8a20daebc755475bfe21c7434b",
+        "b921334b8e179ae22afb2c520b4d70fea107ee0f25d06594dd7ecc7bf1156c03",
+        "dbaeb0b4797b847aecca65492e5475c17907cae9235b44f9283c4f9aab151582",
+        "f2f5096ac4c7dd3262ca41fdef12ecf1dceb8d25532dba719e362bd8e32c74c7",
+        "e2e0698b34e4e2ea0ee70781aefb8372d503a35e6b2b38e5fb23468568d7a11f",
+        "e34e3974fc1ce6ca2d26b294f8c16cdb8e967916502dd009e399da372b2ec607",
+        "81cf817f8d5172096f2b0a3493a76908e74e67a5ebaab51059d7d73d06d0a34b",
+        "f4df3637206587309fdd309934776ebbb0f7a1972dce62cd4e28d73580cae332"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 3878,
+      "camera": "cam_left_wrist",
+      "camera_index": 1,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-003/observation.images.cam_left_wrist/episode_003878.mp4",
+      "video_sha256_checked_now": "085fa9c0e81935c317e41a3ccc1e1da62d69a1c83d8f0887ff8fbf2af009f30e",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/003878_cam_left_wrist.json",
+      "historical_QC_sha256": "5255815f0051e7e4ba94aa1fe988f8a4420508ec02bad5b1bc10e202e5c1cd53",
+      "selected_frame_indices": [
+        0,
+        12,
+        25,
+        37,
+        50,
+        62,
+        75,
+        87,
+        100,
+        112,
+        125,
+        137,
+        150,
+        162,
+        175,
+        187
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        0.48,
+        1.0,
+        1.48,
+        2.0,
+        2.48,
+        3.0,
+        3.48,
+        4.0,
+        4.48,
+        5.0,
+        5.48,
+        6.0,
+        6.48,
+        7.0,
+        7.48
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        0.48,
+        1.0,
+        1.48,
+        2.0,
+        2.48,
+        3.0,
+        3.48,
+        4.0,
+        4.48,
+        5.0,
+        5.48,
+        6.0,
+        6.48,
+        7.0,
+        7.48
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "bd52bc022b86c87918f98b0028fe2b4c960a14b93adc1d22934f537007ab659a",
+        "0f35fb705dd0cfb3936d6a3045300749d28f67184a0fb74fb91234a1f8c138a3",
+        "96bf6314e461515b256fdf3d3f247c8e7b98607b420c7129ee3773bb4bd7f483",
+        "0d315f32dd1a1d8e0a1a9b4236f78073b112cc315ac857028c15ccf22017e0cb",
+        "3b6fee8125d0a3c9fa0e40414f2bce38fffe24a83e484235c675a46f98e0f016",
+        "a121c1cb820a10a0aa53643582bdcbd908db00414a835330e712a35fef7327c5",
+        "a046712e0e44b038a049d5df080726f7622913eb0d895d4b770d8bd1204122d7",
+        "387461619b775e84c9f96f5b3e4f5eb6f3a5927bc4e0b006c59eac280ad0618d",
+        "88af87c2249bd0c897f9dc5885da5ea323baf0c5429399a32c85d22be5627964",
+        "cea5ad23c7e332d1f8fd0d68033987398a995eb9e36e824715ecdedf26cc4d25",
+        "a6dfa9859fe64ed62b0856372b027033cd06c0397afb288312bb3f5c38617953",
+        "6a3cd66577d88f7f33c04334f28f5448afb25de3662cf9bc3d8988f9210f7526",
+        "a966ff4bf010108e8fd402d431b557c40fbf1f8141070f56c618da0ae3a54e1f",
+        "7fd0d77c5a2afbec05ffa5b9476a68453911b2e0a3185d7b3ed40198d9bdee25",
+        "70b9d3f6f91d1bd4d10d6b2c67679e8f5d58c6a91853729f6742c2182213659b",
+        "441d9839015d058d1ce987f176d0f8dbb8a289b12bf0df0bc48163086060567d"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 3878,
+      "camera": "cam_right_wrist",
+      "camera_index": 2,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-003/observation.images.cam_right_wrist/episode_003878.mp4",
+      "video_sha256_checked_now": "37474be8040bd54d1d10e263550dad15c2c00c4c24ee09a2ce119c097f68d91e",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/003878_cam_right_wrist.json",
+      "historical_QC_sha256": "060092c299e177f1140dba0421f269cc4d8c26b421d3298ab8bed28fc848798d",
+      "selected_frame_indices": [
+        0,
+        12,
+        25,
+        37,
+        50,
+        62,
+        75,
+        87,
+        100,
+        112,
+        125,
+        137,
+        150,
+        162,
+        175,
+        187
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        0.48,
+        1.0,
+        1.48,
+        2.0,
+        2.48,
+        3.0,
+        3.48,
+        4.0,
+        4.48,
+        5.0,
+        5.48,
+        6.0,
+        6.48,
+        7.0,
+        7.48
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        0.48,
+        1.0,
+        1.48,
+        2.0,
+        2.48,
+        3.0,
+        3.48,
+        4.0,
+        4.48,
+        5.0,
+        5.48,
+        6.0,
+        6.48,
+        7.0,
+        7.48
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "919d4e3347a6caacca687ac091150cb4eaaacd4c42c73841d19e345f7bae0bba",
+        "7e8d6a46fb04dfe50a75445c60b541bf11ceee1dd15ba9bfbf412fb9d57c55b2",
+        "a1d9a9508fe9628492b0d8392629953a45d8c5828e69ef2104c4366f2ffac82c",
+        "78b9d30cc92a8bbc448c01767c89368cfb1311defd0fd239134c76daf1792fce",
+        "164f8638b1743d6d8a040ff57c27aed4b8b62b96a27002e02c9bd7881c354736",
+        "ec8c9a4784b7c3f959649963d05f9a9b527ef6b711cc01bcaca1904348856327",
+        "cec9b4d228bbd4f0c0e5a7d00e3f5506c4b1a3f36906d8b07e9081f1e4a81caa",
+        "21e59eb62d2e1e4977b45551a19acd503c6be7b0e5da5148713767d202c302cd",
+        "3125d62b5ea8cf6b86fc49f248c5eee8069030e17795f3fe7ff190339268518e",
+        "62af69a78f1fe6ec84f4ebab1732393494a8bcdbe8023ed0fa989e297215e2d4",
+        "e5b2dbd6812bead17b9f740ae45ee1c9f9fd4229aadc932603c76dd1221d3878",
+        "23034cf79548d759e8e3cb3c1b3a367d0b74074d5aa48e908632b79c3e1234f7",
+        "a069effc49146d02137fc73e07eb670cf229af3ce6b699d876d0d0d968dda5c5",
+        "edf75b25cdff2ac04df8d07c7530f33d51c6196db85c729e148d94dde9cbb109",
+        "ce1a19104c302b4dd3abeeee8b1f6039d5ceef7b104a4e8c4b3523d9513d9aa0",
+        "4a26a6bfe8ff0590653f693fbb9db1e5dd95f5e9fb3e64084784d30b2661b382"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 1118,
+      "camera": "cam_high",
+      "camera_index": 0,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-001/observation.images.cam_high/episode_001118.mp4",
+      "video_sha256_checked_now": "a71e69334ffbb81a524bb600f536fd895d47745607e24338e851543f159072de",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/001118_cam_high.json",
+      "historical_QC_sha256": "26ce5ba350927db487517623d419f6fe289ba2f65154c325543471e5d593fc7c",
+      "selected_frame_indices": [
+        0,
+        20,
+        40,
+        59,
+        79,
+        99,
+        119,
+        139,
+        158,
+        178,
+        198,
+        218,
+        238,
+        257,
+        277,
+        297
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        0.8,
+        1.6,
+        2.36,
+        3.16,
+        3.96,
+        4.76,
+        5.56,
+        6.32,
+        7.12,
+        7.92,
+        8.72,
+        9.52,
+        10.28,
+        11.08,
+        11.88
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        0.8,
+        1.6,
+        2.36,
+        3.16,
+        3.96,
+        4.76,
+        5.56,
+        6.32,
+        7.12,
+        7.92,
+        8.72,
+        9.52,
+        10.28,
+        11.08,
+        11.88
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "363a444cef2c011e4c49cebd3a24bfca0afaf2b02507e5bf9dd8217183513dd3",
+        "0b8577d7e4bdd289fcf8439f77d56034509f1a309500998e53e4eac45574b9e1",
+        "a9233ebce1b235bf52c805e8266f74e773052b9513db45b1a1324dca86f27114",
+        "a7496dd7ab3188846a39d8ba3432fdc21a8231d241e4745b8199fbbe9bed3bbf",
+        "32e264135505bff1d870aedbcd2e016b0b28f7aad740a675d32bf55ba9b08990",
+        "118b788707b04a4cdbd791936b6f84bb7199769f9046751fca242e74a3027b78",
+        "cbea102c386b8cc3537f35c17bb285ef8aa05168162ddef5a9743470d5a03483",
+        "88bcb303ffa0122ea6963121c772e74748c9e89cdfcafc86c9a5f0ffc9b45bec",
+        "489bc853f966c937f7a54d240daf90c9f8dca77c9ee5a8ba84792d567c671f65",
+        "ef52fdc1513ecf3a9d231bd786a5c98df86513a40cc07d330f38563d9c018ce4",
+        "affda030b1d55adae34404be93c54ea92b5ae4f672dff42da05b362276a75711",
+        "a6388ccab2c3de2742b0ee1b5d51f93606cad5678619f56b8f54213ff614fd6c",
+        "98f63e66fb303f08702617266e0e133f24a05ffdfce0eddcffe7247f52ef232f",
+        "8c04251df35c2e6244d17bc7d79658a7766e4dd03d40819b6caa1f424b162841",
+        "27754e67d570ea975904d55038384974a9b2df58a51a8e3f426f7ae02a69b8cb",
+        "06771416241ace95f18d72c27a61d60d2bf738f334ac597f13644bd01938dd7e"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 1118,
+      "camera": "cam_left_wrist",
+      "camera_index": 1,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-001/observation.images.cam_left_wrist/episode_001118.mp4",
+      "video_sha256_checked_now": "ea1f3e0463cd5af33dcf6e5e761e4967b5ec28996d191881f05c370745e34f85",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/001118_cam_left_wrist.json",
+      "historical_QC_sha256": "88036431657281075667a5226d3a2012d2111c4591da72f303e0e35c57d987c1",
+      "selected_frame_indices": [
+        0,
+        20,
+        40,
+        59,
+        79,
+        99,
+        119,
+        139,
+        158,
+        178,
+        198,
+        218,
+        238,
+        257,
+        277,
+        297
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        0.8,
+        1.6,
+        2.36,
+        3.16,
+        3.96,
+        4.76,
+        5.56,
+        6.32,
+        7.12,
+        7.92,
+        8.72,
+        9.52,
+        10.28,
+        11.08,
+        11.88
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        0.8,
+        1.6,
+        2.36,
+        3.16,
+        3.96,
+        4.76,
+        5.56,
+        6.32,
+        7.12,
+        7.92,
+        8.72,
+        9.52,
+        10.28,
+        11.08,
+        11.88
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "fbb5f9c1d5fc326e90629335a53bc25a7f3d8a1ec202a6d5e81dc1e11fdfdc00",
+        "e911b4acc73e7d43d675aaaf97761cae80a7eec228a96e4a68e8bc49770f2e13",
+        "8a8a63d7f2e392e89f9debd9b4bc7f5a09b2f3cdfc8a4e584e5b534a866982a5",
+        "d47eca3a9a480afa0511e8328e0fbbf58eb97f2c46f49eb30bb7a5f8f21598a3",
+        "ffb29b47f0de58d72cef6fcec533a98b4509331ef51fd019f02e55e4fa6830d3",
+        "fd4acc9048621e81d2f2abea0a2edf289cdefc5ba9b38a82300796196f5fbff8",
+        "5cedc26440e5745fa78af34070cc0ce96ff474df5d23eacad18f36066dccc62f",
+        "f6bd9576c2144fdf20b690626b0de0954ff3c7339ca915a4050f994107b89c55",
+        "3d5563bf99ad6cde00a231f592173808e1158e9c67481944e4cecc22157741a6",
+        "1e4cdef2d8a4579d4ff695a8ffea778ac1b066f0af21b664060f904072bc1bbd",
+        "b25e9c6b6f590b10dc0fcfbe52148a8a6ab3e35ca9cfce98b5a33d811cb866e3",
+        "753784bd414c8a8224054d6686b42f8acd71996abaf188db70963dfc742a835d",
+        "f7ca1dc19d31b7d08539d5336820feee57f9f4ff9f46edaf85f66af56df717b5",
+        "1ea5af926ffbc59ff22b80196e6ad63524eefea03a1647df7a87b3e7149c778d",
+        "b68af19feb3ffd1bc9bfee13f0873355efac9078288322c19766a182e691d2bf",
+        "cf19e6c239ae87d07ffd24a108ca5873ced4015a3112edcd52ade845c69da105"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 1118,
+      "camera": "cam_right_wrist",
+      "camera_index": 2,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-001/observation.images.cam_right_wrist/episode_001118.mp4",
+      "video_sha256_checked_now": "82ffafb020aaa4afa1323366596c37cd138f27c2bc99744e4f2a2b5d7d196cb3",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/001118_cam_right_wrist.json",
+      "historical_QC_sha256": "b788c56df9e69d66dd484ec22d7bb9033f3c88cf1ba11741a686a244f2807386",
+      "selected_frame_indices": [
+        0,
+        20,
+        40,
+        59,
+        79,
+        99,
+        119,
+        139,
+        158,
+        178,
+        198,
+        218,
+        238,
+        257,
+        277,
+        297
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        0.8,
+        1.6,
+        2.36,
+        3.16,
+        3.96,
+        4.76,
+        5.56,
+        6.32,
+        7.12,
+        7.92,
+        8.72,
+        9.52,
+        10.28,
+        11.08,
+        11.88
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        0.8,
+        1.6,
+        2.36,
+        3.16,
+        3.96,
+        4.76,
+        5.56,
+        6.32,
+        7.12,
+        7.92,
+        8.72,
+        9.52,
+        10.28,
+        11.08,
+        11.88
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "2a9906cb317ee87447f57c89c90e8d5e02c0e2fa2c4bc444d12c66224f71b6f6",
+        "5e90a75dbfd55225457dd3039c127abe768306efb0463822944c6beb8dce0ddd",
+        "dd321a11b94ca32485ce86320040cfccd7284672e25a8057dd4e8d96a3057f8f",
+        "eee88d33153c05357a17bcba483ec1db76653554c132f3688066c87924529bfc",
+        "ffd8e634405ee491ca032ade8b536cdfda3aba7071e21c47e70af04d0501aaaa",
+        "a10b2f9c5b6ca0c3129ebe3797c5975d905e8ceff4e06ffac1cbab90b45f094e",
+        "4601ec60f6b19858133e991e5e28f63872a2e273035533c2a9476363f1d8e03c",
+        "d49b507a03b4a94d9132380171f38f1388103d8ec797a846bdc6d3db902b4bc3",
+        "1fe83bee748ad14e121861ae29ec7066734b05edf25f46c953afde060af30980",
+        "ba5b32aa1b679fb264acd5201be7e73b184e3720023bee7f24c8b1037fec4f23",
+        "5ddb68a3e9e29d5ec2304dd26bc71dcde32dbc1c73bd2da445205938b566cc73",
+        "357181cbcc0039c58198c9388d6b770975e2f9ddd117bd88be2313358a5f0088",
+        "36241a560afc469b4351b5babef6c4eda3dec10e29bde499f7f403071d7399f0",
+        "744e912a3337857d7d9be5e61838f7fe933eb8d43ec137c954760919228f4ae4",
+        "487e583c595f09b9d1bcef900efe5017db179466a447acde75037af6549390c3",
+        "5d03f139a15a7c5b604eb828ff838904b88f8c67d08b0b1929137cf09d89c300"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 2348,
+      "camera": "cam_high",
+      "camera_index": 0,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-002/observation.images.cam_high/episode_002348.mp4",
+      "video_sha256_checked_now": "92d672a8ec0f1c973ed179ecc3534d2d9d8b43bc89f2cf5d785059ab35c67e9b",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/002348_cam_high.json",
+      "historical_QC_sha256": "9b640c2ca798cd99c309c3daa084136b39b0ce04c414eb197706c4ab91723c3c",
+      "selected_frame_indices": [
+        0,
+        62,
+        123,
+        185,
+        246,
+        308,
+        370,
+        431,
+        493,
+        554,
+        616,
+        678,
+        739,
+        801,
+        862,
+        924
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        2.48,
+        4.92,
+        7.4,
+        9.84,
+        12.32,
+        14.8,
+        17.24,
+        19.72,
+        22.16,
+        24.64,
+        27.12,
+        29.56,
+        32.04,
+        34.48,
+        36.96
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        2.48,
+        4.92,
+        7.4,
+        9.84,
+        12.32,
+        14.8,
+        17.24,
+        19.72,
+        22.16,
+        24.64,
+        27.12,
+        29.56,
+        32.04,
+        34.48,
+        36.96
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "8697883aca505f44c5b7162d5ae0b402626d8f492637b299e9a803d470c983c1",
+        "9c15ef05f1889d358623a8de80e44870e7db8fc5e64400c13d289e6f11ed8009",
+        "1c16d2e41d9be98d9e2a23ef8c920afb6758612142a2d472c5f3cf95ba589a6b",
+        "88de187ae97b9db558a0eb75174bbc7eff9fc1b5a8ee939d913de5ae1cd4fc9d",
+        "dd8a861249228df15f69b10c53585edcef98699bd925247d5a8f02682eaf090c",
+        "4742790a4c1048a9e16a3c6aa4d46d7fada475b1ce90115a50e5de2082a926be",
+        "1eb48e651d360acd3df6d48d8538136dcd36a1b792e7eb33673084a220e766c0",
+        "f5282ecf2a68fad3b2307e2e1526385cf6b7f59152211e747d536e322f7c5ef9",
+        "caaebdbbe127abda47445c41554d734de276532f87f6cf0c32f159cc7b8d9658",
+        "2d9238aff8aab4653de62158fdd9ced65fa357e74a8e5bdcfaabc1c41ac1c5ce",
+        "6a23a6083b54aba22bd85c7baf03deb235f1518718744f799ddbbe57884a8113",
+        "250cd80a882d4f73e0b4f9aaea3dfbe45b42dd9c0592232bf4417f3782757572",
+        "0279e35bd7d0f41f1bed226f6849d7c2b899a58d8ed7ea0b58fd84b4618398b0",
+        "c38fa945dc4fad47550374698a1c18666c3c556336ae5316183234dd3f42d7ee",
+        "b599cc882a5960b0e5ad1a6e394b097e51e1be1cf7e897df22df9a299d069450",
+        "be24e7c27a4a41232964844160f72b376348affe1deaa368a1f5f95ff0b844ef"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 2348,
+      "camera": "cam_left_wrist",
+      "camera_index": 1,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-002/observation.images.cam_left_wrist/episode_002348.mp4",
+      "video_sha256_checked_now": "6ce21900a037584c3cc077bd6f9939aead92a4476e1f4d817f2815657fd97dc6",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/002348_cam_left_wrist.json",
+      "historical_QC_sha256": "6f3a1c6582b7e2309bf4a724dea78b70390875d45d381f3bd78a6ff3872b5346",
+      "selected_frame_indices": [
+        0,
+        62,
+        123,
+        185,
+        246,
+        308,
+        370,
+        431,
+        493,
+        554,
+        616,
+        678,
+        739,
+        801,
+        862,
+        924
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        2.48,
+        4.92,
+        7.4,
+        9.84,
+        12.32,
+        14.8,
+        17.24,
+        19.72,
+        22.16,
+        24.64,
+        27.12,
+        29.56,
+        32.04,
+        34.48,
+        36.96
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        2.48,
+        4.92,
+        7.4,
+        9.84,
+        12.32,
+        14.8,
+        17.24,
+        19.72,
+        22.16,
+        24.64,
+        27.12,
+        29.56,
+        32.04,
+        34.48,
+        36.96
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "20e99b51c8d9ba6a52ec93a83559f6c927a18a6e66164438373f584f5c32db95",
+        "2558e6b1b55767e806c077d486205ab79effd7e0d31e3e87224843f02535b6eb",
+        "98c82170fb757bcc3b6bb62b290d50be3553e0ee6b1a7e6829083ed37dc76e17",
+        "a27f33001fe479994fd2d6a3a800ebd757c490cae64fb4bdeb972eaf866c44dc",
+        "0d5e03d3aab21fe74f2c91bf62d34026879d2e7735457bc17f9e1e238a65eec2",
+        "e00806be8d647f41e4ab37e7857a4810a6a5e6aebcae30305413ad800af5b5b2",
+        "ee8129846c5f06309e4c453226eb0f267d703905bd1bdf17e18c91717445c453",
+        "8950c8254f83544b13184197e6445525c7ca9d53c063be288a7da6ea314282a9",
+        "48a3815fcdec031d9d1865f7f00ff5a0c51495c6085d4ab2eb4ff4c3a0206fc9",
+        "b6ed34cc9cd06c84dd782136348fbb6cb7f0f9d448f58cf93fdf601e8b128a2f",
+        "d6d289f4662217f7901975d63c58df8ffdfca09f32c102fc15681746228f6842",
+        "627c84fdbab680ac27784dc63307d4ab4126dfe05b6baadfa106cf5b2264c069",
+        "0ba836de676fa67f735ce96515058339e4853f69883ab749fc4e8c645b74052f",
+        "4425d10f28437fc11dcdcb8c0b40e9d34db714f36a03fbd7a72810a6864626a2",
+        "4dcfcd9451c67eb64039378523cfd92796167b489ee63fd1b348ad8ed7111385",
+        "70b506666e67b93ce4abfa139d155b9e57bfb229f3e9520864ecdcfd587d806d"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    },
+    {
+      "episode_index": 2348,
+      "camera": "cam_right_wrist",
+      "camera_index": 2,
+      "video_path": "VIFAILBACK/01_original_dataset/acquired_videos/videos/chunk-002/observation.images.cam_right_wrist/episode_002348.mp4",
+      "video_sha256_checked_now": "c8b3b29acbec7908ec3fdd451a653adcfe5f51c7ca9e0283167ad9519ab2d8a9",
+      "historical_QC_path": "VIFAILBACK/02_dataset_verification/video_audit/runs/20261029T004900Z/per_camera/002348_cam_right_wrist.json",
+      "historical_QC_sha256": "1a215998460a4f834c73d2abbe3338b0f38813137f52d6ab3ace3f90418c2658",
+      "selected_frame_indices": [
+        0,
+        62,
+        123,
+        185,
+        246,
+        308,
+        370,
+        431,
+        493,
+        554,
+        616,
+        678,
+        739,
+        801,
+        862,
+        924
+      ],
+      "actual_selected_PTS_seconds_from_bound_historical_decode": [
+        0.0,
+        2.48,
+        4.92,
+        7.4,
+        9.84,
+        12.32,
+        14.8,
+        17.24,
+        19.72,
+        22.16,
+        24.64,
+        27.12,
+        29.56,
+        32.04,
+        34.48,
+        36.96
+      ],
+      "nominal_selected_times_seconds": [
+        0.0,
+        2.48,
+        4.92,
+        7.4,
+        9.84,
+        12.32,
+        14.8,
+        17.24,
+        19.72,
+        22.16,
+        24.64,
+        27.12,
+        29.56,
+        32.04,
+        34.48,
+        36.96
+      ],
+      "maximum_nominal_vs_actual_difference_seconds": 0.0,
+      "source_RGB_sha256": [
+        "52ce7b96fff6344d0c1d186fee1e6fa82daf7f45b0ea3f29a1da61dbb28fe957",
+        "8e64b4b5a75e67e1339ec4a15ecebb57efa5f2e9bf02f480db3e64ee49b6619d",
+        "d700eb4bf3bcd555ae639751baeddec6e7a3576267e97bf67b3a0fca3c1b9793",
+        "e2bb171b078fb7762826021d001f0e16d5cf44f92f66e472791f81c8410d4bee",
+        "7bdbffeb7f24a46a8d7fc7708475e5c0bd6ec9d417e956af37dbf891fb0833f3",
+        "c47fa196bdb81b055e6469933ba0a24ebe7e64682bd6c6c1167714c240873ef3",
+        "594df4b06a67d19ea547e1483495dca01fa248d79651d78850e2878571da979e",
+        "36e6c0f7725cbcd72570927d46668936a5c82480d76c281b63d8f479676d4bc4",
+        "c4a2d8f7939c65e8750a373bfbfa5a5da7c78774539c3dd76bb8eb8ec0643cdd",
+        "7b8c59b4a5fe6a0b212d01d1aa63a9eb778a82541f9da9e0cb1fc0939e0242c6",
+        "34a86e7393c39c18aa45807d8f12a06f75644f17173c9b870b3cdd5cbf741fc9",
+        "745a788b21d10ab8d7f1cef54df5dd0f003d8ac5633c261f24ca445f36360856",
+        "7c3aef704637a66dddae7fd272b80cb13a1bdc6f0a82c14c392660333498e2f3",
+        "8b76f2fd1277ed5781edc861327a5cf3649667f2b443671c1f146c7a3246f3a0",
+        "aaeef077ab77f45695dffdfc495e526b0d0c5a54513b95ce67a93fbcfb798e14",
+        "e74a28148a2e1f635da7050ec8cca59d7019e1ab9fcea4468a5deb7e7412a996"
+      ],
+      "timestamp_scope": "Historical complete-decode actual PTS, bound to freshly hashed unchanged media; no fresh PTS decode"
+    }
+  ],
+  "full_T_sampler_cases": [
+    {
+      "seed": 42,
+      "epoch_index_zero_based": 0,
+      "epoch_number_one_based": 1,
+      "ordered_T_ids_sha256": "af84ff8279445c88ef7a969b572f92788346f293e096ecf6d8ae899054d45f74",
+      "ordered_T_labels_sha256": "7e8fbde4a5258e81cb54f56343d8884c0d8c6039ec5d3f3e051c1dbddb0840a9",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          3417,
+          1846,
+          555,
+          2521,
+          3419,
+          3603,
+          5045,
+          489
+        ],
+        [
+          3602,
+          5066,
+          5037,
+          3903,
+          1684,
+          426,
+          5097,
+          5063
+        ],
+        [
+          2324,
+          619,
+          1156,
+          3939,
+          2336,
+          1850,
+          2344,
+          5017
+        ],
+        [
+          2401,
+          607,
+          3961,
+          621,
+          3802,
+          2395,
+          609,
+          1136
+        ],
+        [
+          2591,
+          4996,
+          473,
+          1718,
+          470,
+          2538,
+          3955,
+          598
+        ],
+        [
+          549,
+          2338,
+          599,
+          5148,
+          612,
+          594,
+          3829,
+          3811
+        ],
+        [
+          693,
+          2355,
+          551,
+          3607,
+          4977,
+          1208,
+          2512,
+          3957
+        ],
+        [
+          1769,
+          5135,
+          2522,
+          1247,
+          2412,
+          3837,
+          4999,
+          467
+        ]
+      ],
+      "final_partial_batch_ids": [
+        2554,
+        1427,
+        1659,
+        610,
+        2350,
+        3605
+      ]
+    },
+    {
+      "seed": 42,
+      "epoch_index_zero_based": 1,
+      "epoch_number_one_based": 2,
+      "ordered_T_ids_sha256": "4f00322db5b270af2782c901c1f2a2527303414d11223e4d51b4bfb2314e8f69",
+      "ordered_T_labels_sha256": "57e197f07ef759d8347c9bd11de9e496fbe1915768924b5bbe18fe0a0a0ccaf0",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          1165,
+          2350,
+          4966,
+          1804,
+          1417,
+          2476,
+          369,
+          1602
+        ],
+        [
+          5052,
+          1252,
+          1650,
+          687,
+          690,
+          1102,
+          3949,
+          1762
+        ],
+        [
+          1608,
+          2493,
+          5199,
+          1425,
+          2546,
+          1191,
+          1223,
+          1588
+        ],
+        [
+          2487,
+          2357,
+          1754,
+          1103,
+          5016,
+          629,
+          3582,
+          760
+        ],
+        [
+          427,
+          2498,
+          2518,
+          3836,
+          1760,
+          1416,
+          1733,
+          2454
+        ],
+        [
+          2486,
+          1654,
+          3714,
+          468,
+          583,
+          1714,
+          3882,
+          1109
+        ],
+        [
+          641,
+          454,
+          3581,
+          2588,
+          1796,
+          2527,
+          5142,
+          762
+        ],
+        [
+          2330,
+          551,
+          1723,
+          1253,
+          545,
+          3603,
+          2521,
+          5065
+        ]
+      ],
+      "final_partial_batch_ids": [
+        3887,
+        1853,
+        3870,
+        789,
+        3822,
+        1414
+      ]
+    },
+    {
+      "seed": 42,
+      "epoch_index_zero_based": 19,
+      "epoch_number_one_based": 20,
+      "ordered_T_ids_sha256": "145e78f11241e62e0767cd7b21ed163bcb27f941bf10d11400292392be1af8c6",
+      "ordered_T_labels_sha256": "6b63fb4419a3f79f0e800b275ab50e155688baf72eae7cafee17aa343eefeed5",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          2497,
+          365,
+          2512,
+          1235,
+          1647,
+          1242,
+          1726,
+          2374
+        ],
+        [
+          2481,
+          1136,
+          1662,
+          4964,
+          1420,
+          1413,
+          762,
+          1688
+        ],
+        [
+          1244,
+          2326,
+          1602,
+          3615,
+          1221,
+          609,
+          1794,
+          5117
+        ],
+        [
+          688,
+          1844,
+          483,
+          5107,
+          589,
+          566,
+          645,
+          4984
+        ],
+        [
+          1845,
+          5018,
+          359,
+          5183,
+          1167,
+          3838,
+          5149,
+          598
+        ],
+        [
+          604,
+          4960,
+          1867,
+          5017,
+          2388,
+          2355,
+          5031,
+          651
+        ],
+        [
+          5128,
+          469,
+          2499,
+          1126,
+          1776,
+          5194,
+          2442,
+          5044
+        ],
+        [
+          1718,
+          1756,
+          461,
+          548,
+          2349,
+          2422,
+          1729,
+          481
+        ]
+      ],
+      "final_partial_batch_ids": [
+        1264,
+        2345,
+        1800,
+        638,
+        1692,
+        4999
+      ]
+    },
+    {
+      "seed": 42,
+      "epoch_index_zero_based": 99,
+      "epoch_number_one_based": 100,
+      "ordered_T_ids_sha256": "ac58e1ce28f1cd43a466cc4060ec4669e9a0d0110101b6ad551e45ec3ec626c1",
+      "ordered_T_labels_sha256": "13790c21a1153aa571da1f12f122e2d01477a5da1e9e39fd03a5fac26a2d50bb",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          1729,
+          1416,
+          1818,
+          2442,
+          1815,
+          4970,
+          640,
+          551
+        ],
+        [
+          2351,
+          690,
+          5041,
+          478,
+          3955,
+          556,
+          2547,
+          608
+        ],
+        [
+          5065,
+          3867,
+          1698,
+          5183,
+          1414,
+          1792,
+          5005,
+          3843
+        ],
+        [
+          2353,
+          5106,
+          1118,
+          559,
+          620,
+          3778,
+          1838,
+          550
+        ],
+        [
+          588,
+          5060,
+          2496,
+          3946,
+          364,
+          5092,
+          3780,
+          475
+        ],
+        [
+          3410,
+          1812,
+          1788,
+          1433,
+          1656,
+          1196,
+          369,
+          477
+        ],
+        [
+          1168,
+          3948,
+          1844,
+          1595,
+          2486,
+          1780,
+          1159,
+          1584
+        ],
+        [
+          1688,
+          689,
+          1162,
+          5192,
+          4975,
+          1247,
+          1776,
+          1236
+        ]
+      ],
+      "final_partial_batch_ids": [
+        2491,
+        1165,
+        3847,
+        1127,
+        470,
+        355
+      ]
+    },
+    {
+      "seed": 123,
+      "epoch_index_zero_based": 0,
+      "epoch_number_one_based": 1,
+      "ordered_T_ids_sha256": "76db1766dd2bc2a0327ade3ecb6b2a8079d38d7db4cd7962b1e17efe7f62fc6c",
+      "ordered_T_labels_sha256": "0f20178cb37bff1ad2bb0b84bf9b35d0089514c248a0efa2613292751bf2b4f7",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          4972,
+          1107,
+          3916,
+          2351,
+          2361,
+          5186,
+          1815,
+          787
+        ],
+        [
+          2489,
+          547,
+          788,
+          3579,
+          1265,
+          2546,
+          2434,
+          5061
+        ],
+        [
+          4959,
+          2486,
+          1096,
+          1177,
+          1112,
+          3882,
+          3717,
+          1646
+        ],
+        [
+          1838,
+          1120,
+          422,
+          3799,
+          586,
+          3781,
+          686,
+          1850
+        ],
+        [
+          2522,
+          1698,
+          2389,
+          5140,
+          2471,
+          3423,
+          1710,
+          2480
+        ],
+        [
+          3582,
+          2338,
+          3825,
+          5008,
+          625,
+          5045,
+          5044,
+          1168
+        ],
+        [
+          5163,
+          1787,
+          5187,
+          5112,
+          5093,
+          2474,
+          1414,
+          1803
+        ],
+        [
+          1692,
+          2449,
+          5196,
+          2360,
+          472,
+          3812,
+          1246,
+          5047
+        ]
+      ],
+      "final_partial_batch_ids": [
+        3791,
+        1154,
+        1857,
+        5087,
+        3949,
+        1597
+      ]
+    },
+    {
+      "seed": 123,
+      "epoch_index_zero_based": 1,
+      "epoch_number_one_based": 2,
+      "ordered_T_ids_sha256": "7ac9c57aaf61152763efc03c72ea658ed4b18ed1833a452ea5c1e2df4b17c035",
+      "ordered_T_labels_sha256": "7f45e0cfb2604e46fae969e1a5372906dd75e82e3a1243e0a60b29300aaa6085",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          3726,
+          1137,
+          4978,
+          1820,
+          1246,
+          5019,
+          2556,
+          2457
+        ],
+        [
+          1859,
+          476,
+          2325,
+          2482,
+          1108,
+          2441,
+          1417,
+          550
+        ],
+        [
+          1718,
+          5024,
+          562,
+          1153,
+          2597,
+          1249,
+          2541,
+          4977
+        ],
+        [
+          2431,
+          1840,
+          1184,
+          2335,
+          539,
+          1586,
+          1590,
+          565
+        ],
+        [
+          2429,
+          5139,
+          2433,
+          3831,
+          5098,
+          3849,
+          425,
+          2423
+        ],
+        [
+          3921,
+          689,
+          5029,
+          3613,
+          3938,
+          479,
+          1133,
+          1156
+        ],
+        [
+          1666,
+          1719,
+          3941,
+          622,
+          3802,
+          693,
+          621,
+          1683
+        ],
+        [
+          1140,
+          630,
+          3606,
+          1187,
+          2454,
+          5153,
+          2525,
+          1731
+        ]
+      ],
+      "final_partial_batch_ids": [
+        2388,
+        2524,
+        3615,
+        1852,
+        1167,
+        1608
+      ]
+    },
+    {
+      "seed": 123,
+      "epoch_index_zero_based": 19,
+      "epoch_number_one_based": 20,
+      "ordered_T_ids_sha256": "ab5475cc99d114dc4f9aef6fd8ddfd4ca89c2c64bd92224b8d0a60824ea094a4",
+      "ordered_T_labels_sha256": "7893a8746e7ea8255a89d47722b9d947561527e84afffbe1ce0bc2bedf58cc40",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          1721,
+          5089,
+          2364,
+          558,
+          2424,
+          3707,
+          2380,
+          5192
+        ],
+        [
+          1259,
+          1258,
+          488,
+          2415,
+          596,
+          1844,
+          5000,
+          2417
+        ],
+        [
+          2553,
+          5037,
+          3787,
+          5099,
+          592,
+          2339,
+          1187,
+          2379
+        ],
+        [
+          1211,
+          2397,
+          1809,
+          3785,
+          2459,
+          1115,
+          2446,
+          3892
+        ],
+        [
+          5195,
+          3893,
+          1256,
+          1753,
+          604,
+          583,
+          1161,
+          1790
+        ],
+        [
+          2373,
+          5025,
+          5048,
+          687,
+          2476,
+          1189,
+          1862,
+          768
+        ],
+        [
+          1418,
+          664,
+          582,
+          1685,
+          634,
+          3865,
+          3940,
+          2539
+        ],
+        [
+          2438,
+          2407,
+          5035,
+          3875,
+          1150,
+          2421,
+          1240,
+          1430
+        ]
+      ],
+      "final_partial_batch_ids": [
+        2461,
+        3420,
+        569,
+        1126,
+        1198,
+        1245
+      ]
+    },
+    {
+      "seed": 123,
+      "epoch_index_zero_based": 99,
+      "epoch_number_one_based": 100,
+      "ordered_T_ids_sha256": "e83470273abf9a36b71f232a05ebaaeddb6a0bfd31db24a1c63efbd3183ff7fc",
+      "ordered_T_labels_sha256": "136879996aa2f31f7468d32218eea9eb2de982c65ce3ba64699242a85e4768f5",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          5003,
+          1803,
+          649,
+          3802,
+          2426,
+          3611,
+          5201,
+          1759
+        ],
+        [
+          657,
+          4969,
+          5114,
+          3950,
+          3795,
+          573,
+          1698,
+          3856
+        ],
+        [
+          2557,
+          5136,
+          1668,
+          2408,
+          5036,
+          2367,
+          1255,
+          2384
+        ],
+        [
+          544,
+          428,
+          2554,
+          5002,
+          3815,
+          2381,
+          422,
+          1105
+        ],
+        [
+          3410,
+          658,
+          2551,
+          463,
+          1223,
+          469,
+          2326,
+          2450
+        ],
+        [
+          2333,
+          1154,
+          1253,
+          3868,
+          3719,
+          762,
+          666,
+          2387
+        ],
+        [
+          5192,
+          5024,
+          1683,
+          5089,
+          3807,
+          3607,
+          771,
+          3888
+        ],
+        [
+          1660,
+          766,
+          3422,
+          1093,
+          1593,
+          1215,
+          3780,
+          1219
+        ]
+      ],
+      "final_partial_batch_ids": [
+        1708,
+        3827,
+        2362,
+        2496,
+        5040,
+        2503
+      ]
+    },
+    {
+      "seed": 20261023,
+      "epoch_index_zero_based": 0,
+      "epoch_number_one_based": 1,
+      "ordered_T_ids_sha256": "aa02085bc912a2cb490b5a1940fd1a0638dd0f866a4524cbfa49525ab9e1f208",
+      "ordered_T_labels_sha256": "97ad74ddce1ce42eb655ab8a4f400bca6df5a88f76f2247e9fdc30298bf79a17",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          1180,
+          1774,
+          3420,
+          1195,
+          1105,
+          3708,
+          2375,
+          763
+        ],
+        [
+          3922,
+          5110,
+          3713,
+          2534,
+          2587,
+          1757,
+          618,
+          595
+        ],
+        [
+          3802,
+          3607,
+          1257,
+          3925,
+          2528,
+          3841,
+          3833,
+          3576
+        ],
+        [
+          2380,
+          2521,
+          2372,
+          2366,
+          5108,
+          5023,
+          5145,
+          3711
+        ],
+        [
+          2416,
+          4961,
+          1245,
+          1119,
+          5150,
+          2452,
+          1860,
+          2361
+        ],
+        [
+          2337,
+          1200,
+          2345,
+          3926,
+          1410,
+          2526,
+          4997,
+          3815
+        ],
+        [
+          3416,
+          1654,
+          2449,
+          2323,
+          660,
+          574,
+          5070,
+          1419
+        ],
+        [
+          1758,
+          1676,
+          2509,
+          5045,
+          5180,
+          5120,
+          3864,
+          3858
+        ]
+      ],
+      "final_partial_batch_ids": [
+        369,
+        1099,
+        1674,
+        5114,
+        1258,
+        5115
+      ]
+    },
+    {
+      "seed": 20261023,
+      "epoch_index_zero_based": 1,
+      "epoch_number_one_based": 2,
+      "ordered_T_ids_sha256": "4762df838e9ced7a270f71816c5f010837030706ff6cc780bc9839a4f8a4ba99",
+      "ordered_T_labels_sha256": "1154fc44dbb01b75c72f9b79300873db439421b559394e0d4af3bc4a14fc716d",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          5029,
+          1724,
+          487,
+          3906,
+          632,
+          2418,
+          1607,
+          1255
+        ],
+        [
+          1645,
+          3819,
+          5027,
+          5019,
+          1668,
+          2560,
+          5011,
+          1776
+        ],
+        [
+          1807,
+          3611,
+          3925,
+          464,
+          2435,
+          653,
+          1236,
+          1264
+        ],
+        [
+          2455,
+          642,
+          2383,
+          2587,
+          2598,
+          2491,
+          2504,
+          5148
+        ],
+        [
+          1652,
+          2466,
+          663,
+          5061,
+          691,
+          3824,
+          662,
+          477
+        ],
+        [
+          658,
+          3714,
+          1590,
+          3710,
+          5070,
+          5141,
+          3800,
+          568
+        ],
+        [
+          1808,
+          583,
+          2523,
+          1601,
+          1099,
+          3867,
+          1670,
+          1224
+        ],
+        [
+          2400,
+          2542,
+          2387,
+          1754,
+          1425,
+          2366,
+          3945,
+          5009
+        ]
+      ],
+      "final_partial_batch_ids": [
+        619,
+        1649,
+        2591,
+        483,
+        1181,
+        762
+      ]
+    },
+    {
+      "seed": 20261023,
+      "epoch_index_zero_based": 19,
+      "epoch_number_one_based": 20,
+      "ordered_T_ids_sha256": "9d9acce76deec55d577ffbd558f0342546906d61fac8a7b552794e6854df24dc",
+      "ordered_T_labels_sha256": "e734b6866d00bc65f28c30b26c5b581708b76224e6ebca99e27e28931e961679",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          1759,
+          1649,
+          2361,
+          3611,
+          570,
+          1600,
+          2413,
+          1693
+        ],
+        [
+          627,
+          1580,
+          1125,
+          588,
+          1133,
+          1677,
+          1699,
+          634
+        ],
+        [
+          639,
+          3821,
+          576,
+          3879,
+          5065,
+          2359,
+          1214,
+          2362
+        ],
+        [
+          1775,
+          1258,
+          3697,
+          1867,
+          3814,
+          597,
+          4956,
+          1233
+        ],
+        [
+          559,
+          486,
+          543,
+          5149,
+          5054,
+          5160,
+          2483,
+          1200
+        ],
+        [
+          778,
+          602,
+          3788,
+          1205,
+          5174,
+          5130,
+          3716,
+          1689
+        ],
+        [
+          2375,
+          2457,
+          3717,
+          1593,
+          3937,
+          2534,
+          1674,
+          5089
+        ],
+        [
+          1189,
+          3908,
+          562,
+          1251,
+          5137,
+          481,
+          1244,
+          765
+        ]
+      ],
+      "final_partial_batch_ids": [
+        4988,
+        1413,
+        1855,
+        3702,
+        2465,
+        2530
+      ]
+    },
+    {
+      "seed": 20261023,
+      "epoch_index_zero_based": 99,
+      "epoch_number_one_based": 100,
+      "ordered_T_ids_sha256": "b860e745e01f8eae4239a829bef28048d4ef733766e1c4737f0a07f85593d640",
+      "ordered_T_labels_sha256": "ec50696bec95de8aaee6e15e166eaf7d7551fb5b51bd825926ea0b4ff193fc29",
+      "episodes": 1430,
+      "optimizer_minibatches_at_size8": 179,
+      "final_partial_batch_size": 6,
+      "first_eight_episode_batches": [
+        [
+          5029,
+          2362,
+          5024,
+          565,
+          1227,
+          3958,
+          1807,
+          5150
+        ],
+        [
+          2475,
+          615,
+          3708,
+          3885,
+          425,
+          5094,
+          2363,
+          2486
+        ],
+        [
+          1655,
+          1184,
+          360,
+          2338,
+          1850,
+          604,
+          5169,
+          1753
+        ],
+        [
+          3921,
+          1235,
+          594,
+          539,
+          1419,
+          5200,
+          3895,
+          776
+        ],
+        [
+          2504,
+          2388,
+          1258,
+          1809,
+          2396,
+          3569,
+          1243,
+          654
+        ],
+        [
+          2564,
+          3799,
+          3858,
+          1706,
+          581,
+          2317,
+          3797,
+          1418
+        ],
+        [
+          2447,
+          3906,
+          2478,
+          5186,
+          3583,
+          3574,
+          4978,
+          1262
+        ],
+        [
+          763,
+          3698,
+          580,
+          595,
+          1116,
+          1661,
+          1211,
+          2383
+        ]
+      ],
+      "final_partial_batch_ids": [
+        3820,
+        5067,
+        5125,
+        2391,
+        3819,
+        3719
+      ]
+    }
+  ],
+  "native_label_verification": {
+    "native_episodes": 5202,
+    "failure": 4545,
+    "success": 657,
+    "annotation_files": 109,
+    "sources": [
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/cut_sausage/cut_sausage_annotations.json",
+        "bytes": 148503,
+        "sha256": "50bafe271dc9acf74381a7565cc8a4c5a6e40fed6c26b209d2d30fbaf340e187"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/drag_basket_place_cube_ep1/drag_basket_place_cube_ep1_annotations.json",
+        "bytes": 616703,
+        "sha256": "27531decb9dab5ce5678af9f8ae7259d0ed7cc4f2152fc77fe50af5f4d3fd85b"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grab_socket_unplug_charger_ep1/grab_socket_unplug_charger_ep1_annotations.json",
+        "bytes": 537063,
+        "sha256": "64b96b70707afa5e043a59eed1aa4b795887c80915681d562a199db3cf0224ca"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_bottle_place_bowl/grasp_bottle_place_bowl_annotations.json",
+        "bytes": 54735,
+        "sha256": "ee8dfc7b403e52026e715c246b4627b99925d9fb419640e9c06191889f1d6381"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_coke_can_put_tray/grasp_coke_can_put_tray_annotations.json",
+        "bytes": 54159,
+        "sha256": "ed204476ada0c300fd411677df7d42c84b4a5af63b56d2e9c434ba7701c2b5a8"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_cube_place_shelf/grasp_cube_place_shelf_annotations.json",
+        "bytes": 55551,
+        "sha256": "8081fa6444df673482e911122448affb45a44184c650a00bddff450f01c99930"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_duck_put_cup/grasp_duck_put_cup_annotations.json",
+        "bytes": 51721,
+        "sha256": "1c117b066a2dafe14a21d3fea7c47f5c23202cb72db0117ff337d055c95e0fc5"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_filter_place_juicer/grasp_filter_place_juicer_annotations.json",
+        "bytes": 71130,
+        "sha256": "e71c969953114c17faf06637a101ed2ad40dc3ed3a4d746491818e010fa23fcf"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_knife_place_drawer/grasp_knife_place_drawer_annotations.json",
+        "bytes": 51145,
+        "sha256": "de08cdd41c2049cb1cb93032030fc85cdb03efd604560e7452958a62a6848cc9"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_knife_place_plate/grasp_knife_place_plate_annotations.json",
+        "bytes": 51420,
+        "sha256": "91689df1e54eb7e9689e11783792dfc877e727fcb1c0236e07aa7ac4cac5f4a9"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_marker_place_in_cup/grasp_marker_place_in_cup_annotations.json",
+        "bytes": 73018,
+        "sha256": "ad2622054734f8d93d862b9f15ffb6d3d52b0616b830011a705d285ac16f509b"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_spatula_place_basket/grasp_spatula_place_basket_annotations.json",
+        "bytes": 52577,
+        "sha256": "235f30998d69d62ebaf5eb5efa90c8ca1d223ac0ffc1b6c538dde1558db49a86"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_spatula_put_pot/grasp_spatula_put_pot_annotations.json",
+        "bytes": 57051,
+        "sha256": "3b39ce99a8703672545944485ad1284b3d17bc466833289b64206d0acf658ae7"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/grasp_test_tube_place_bowl/grasp_test_tube_place_bowl_annotations.json",
+        "bytes": 55096,
+        "sha256": "71c0a4699c7eda49d678381923589ba740dabf86219a4577d460c3cec5cce976"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/hold_socket_plug/hold_socket_plug_annotations.json",
+        "bytes": 58510,
+        "sha256": "e5a16c50f5e15e8ca1afc3a074af181c976c2f224c622d52c1de9c9c214ecd00"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/lift_lid_and_place_cube_ep1/lift_lid_and_place_cube_ep1_annotations.json",
+        "bytes": 637896,
+        "sha256": "2d4f07e4dc1bf092dd9a4d664779a82bb53b5128f47d3fe71b52bacd9707ad99"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/lift_lid_and_put_green_duck/lift_lid_and_put_green_duck_annotations.json",
+        "bytes": 87107,
+        "sha256": "9174ca9d4bcb76f59bbfd3aff297bf8cff76a06b13b3a5efed38aa18693a32ed"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/lift_lid_place_duck/lift_lid_place_duck_annotations.json",
+        "bytes": 57649,
+        "sha256": "52f41825011cab3bdc4ac1a2b88d657d4abb767749e274390741e56bc61e6417"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/lift_lid_place_pot/lift_lid_place_pot_annotations.json",
+        "bytes": 56190,
+        "sha256": "0be34ec76ef131cc9c17a29519a11806307735dbc85a110f814ff1f7f3e44f37"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_box_place_cable/open_box_place_cable_annotations.json",
+        "bytes": 62047,
+        "sha256": "35caf05fe06d786fb2d44f7d7e0c6fbb315643104fd182d0d98495a0e9648768"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_box_place_marker/open_box_place_marker_annotations.json",
+        "bytes": 60441,
+        "sha256": "6beec2db47179d40396382e0c8c2a309dd27b28c0037657b44fd0f990ed89483"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_drawer_put_marker/open_drawer_put_marker_annotations.json",
+        "bytes": 62802,
+        "sha256": "672b092fd3b66678902930ad2e95efdc15daf9bdf170caaa7500a85ac859d634"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_drawer_put_stapler/open_drawer_put_stapler_annotations.json",
+        "bytes": 65044,
+        "sha256": "7606cd2bbdd695d33bb9d03396cb1272fbe314a57b580e42414ec16c660bd072"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_left_right_door/open_left_right_door_annotations.json",
+        "bytes": 80448,
+        "sha256": "454f696a1e0b1bfe0187b3abf2d47cba0dcbee183c4b64b064915ad1786c5f65"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_lid_place_filter/open_lid_place_filter_annotations.json",
+        "bytes": 59558,
+        "sha256": "ee601200aa737ec92311549bf33457c4e60447800d9a95fdc853368ee2b899ac"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_lid_put_spoon/open_lid_put_spoon_annotations.json",
+        "bytes": 62257,
+        "sha256": "c057aef2608833687cb624ca5cc2087d03d17a161c22d228f12d083304aa9844"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_lid_put_spoon_ep2/open_lid_put_spoon_ep2_annotations.json",
+        "bytes": 602124,
+        "sha256": "c4c3a4371fba66cc8617d80abe2f916b7e8c75f8db97f589582b482ce997e5b7"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_microwave_door_put_bowl/open_microwave_door_put_bowl_annotations.json",
+        "bytes": 65647,
+        "sha256": "2cb7f552129de737b4c5c27b707146db95225ef65b68293b73e8252e15cfb5db"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/open_microwave_door_put_green_duck/open_microwave_door_put_green_duck_annotations.json",
+        "bytes": 66782,
+        "sha256": "a294ef820b67dd1776fbb157b07fa608d89a768464eaf523da30c785032b92c1"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_ball_put_drawer/pick_ball_put_drawer_annotations.json",
+        "bytes": 55562,
+        "sha256": "992a84174c5eac9a06fbd7515cafeb2eca858773d3ff215d8ae1b1cf2a16b76a"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_block_drawer_to_plate/pick_block_drawer_to_plate_annotations.json",
+        "bytes": 162154,
+        "sha256": "6f10f7dfb7386cf3d9308ca900f818537baf42c589389a5defc658153dafe9af"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_bowl_cube/pick_bowl_cube_annotations.json",
+        "bytes": 62334,
+        "sha256": "0f879b840dff332d9cc25998b9ad860b751e83e45eb337f81c3ae150876e70c3"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_bowl_cube_ep2/pick_bowl_cube_ep2_annotations.json",
+        "bytes": 623839,
+        "sha256": "db84cf4008fd5c5a59eaa0351a9fbb1cc9314ed2f3f6b61408e840c8c6da99af"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_bowl_on_top_shelf/pick_bowl_on_top_shelf_annotations.json",
+        "bytes": 54516,
+        "sha256": "c5f72c40a66c5d252fffe51431fb0bb54774b7a35d88b56e4509c86be4285eec"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_coke_bottle_place_plate_ep1/pick_coke_bottle_place_plate_ep1_annotations.json",
+        "bytes": 478419,
+        "sha256": "3bc0cac78a33c60ad510d92553d24b4cd2185301c06aa5ffe957296797fbda55"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cube_drawer_plate/pick_cube_drawer_plate_annotations.json",
+        "bytes": 50602,
+        "sha256": "820244887d492431ce7c8797889f7d2f1495b1b92441198e6c5cec391dd13823"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cube_place_plate/pick_cube_place_plate_annotations.json",
+        "bytes": 35365,
+        "sha256": "cfb0ee3acc9e910e4acfa1c9d10fadd94df9a64f861322f54514d39aa764e733"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cube_put_pot/pick_cube_put_pot_annotations.json",
+        "bytes": 52330,
+        "sha256": "3f82aaba791048abae517ccbcfe5587d2a3f97ac68e17ec3a8537d4d34e804b3"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cube_transfer_place_basket_ep1/pick_cube_transfer_place_basket_ep1_annotations.json",
+        "bytes": 520890,
+        "sha256": "42d49a466645962b64f0fab5435603deae03fdae55f8f8df1cfecc317e13c511"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cup_on_left_table/pick_cup_on_left_table_annotations.json",
+        "bytes": 56814,
+        "sha256": "b313d3f989fe9c6ec3a743cf5ca8d1d016f053a596fd846c2c9ecaebd265424e"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_cylinder_place_drawer/pick_cylinder_place_drawer_annotations.json",
+        "bytes": 54298,
+        "sha256": "feb0f0be3f80f68eb18bfe2718a335f855310d5712cfee128ba6a16212d4dd49"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_eraser_place_right_box/pick_eraser_place_right_box_annotations.json",
+        "bytes": 53388,
+        "sha256": "3b041aeeb9706dac1858616a02eb4682c9ff728e5975b87fae3fd2ab5a2c1ef5"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_green_cube_put_basket/pick_green_cube_put_basket_annotations.json",
+        "bytes": 56177,
+        "sha256": "017f5147c7f5fb57461fd184b9760d58b6fe59d4142b7c34193196bf0bf10321"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_draw_cross_ep1/pick_marker_draw_cross_ep1_annotations.json",
+        "bytes": 690662,
+        "sha256": "778348e71be217fc5d060aaf1fe7558b953692e335f60f6da656936fae085eef"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_draw_cross_ep2/pick_marker_draw_cross_ep2_annotations.json",
+        "bytes": 74668,
+        "sha256": "c2a98b30f0ba6a9e4dcd388d434962f53b58751fbcdc9dab67f6f6ca54f072ab"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_draw_line/pick_marker_draw_line_annotations.json",
+        "bytes": 54246,
+        "sha256": "8a76b0f28aecb89cb87ce1fe7008c6103b80c2ad9f383110d4af020d15b1cd9c"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_place_bowl/pick_marker_place_bowl_annotations.json",
+        "bytes": 55657,
+        "sha256": "4f57296db38a6d81cd4fa6b657ed15e5b0e2561a6341372991a29061f79bdfb5"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_place_cup/pick_marker_place_cup_annotations.json",
+        "bytes": 54429,
+        "sha256": "51e838106fdea1fe2c2c5b752ff7d40267ab16665040564895fd37d07ee842d2"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_transfer_place_cup/pick_marker_transfer_place_cup_annotations.json",
+        "bytes": 60394,
+        "sha256": "cd26d5ac62c56c4077aa69b7fe33a4b6dda93638c858b7c58adc3b58689e18e1"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_transfer_place_plate_ep1/pick_marker_transfer_place_plate_ep1_annotations.json",
+        "bytes": 683018,
+        "sha256": "99f22563495604a2f4a3913a81178945494400d0fa25c909c0b3ef74c14c3eef"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_marker_transfer_place_plate_ep2/pick_marker_transfer_place_plate_ep2_annotations.json",
+        "bytes": 182548,
+        "sha256": "54e63002a48e9e118d754499feccbdc48ce183eef49718b299a0daf2279ce643"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_mouse_basket/pick_mouse_basket_annotations.json",
+        "bytes": 50873,
+        "sha256": "997df85a2fad7d816c973b40b27be859ab78bcaada2bd438817dea031f8b29dd"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_mouse_place_laptop/pick_mouse_place_laptop_annotations.json",
+        "bytes": 52765,
+        "sha256": "333a225a4e35eb880ed685b3510e131f8a2db83fb3f2e4e573f9aa0f9e8e7cff"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_object_place_left_box_ep1/pick_object_place_left_box_ep1_annotations.json",
+        "bytes": 620910,
+        "sha256": "03566de7ad82415b5e70c10c57a41c89e6adb3f19da790de14fa1bdfcdb8de9f"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_object_place_left_box_ep2/pick_object_place_left_box_ep2_annotations.json",
+        "bytes": 162434,
+        "sha256": "bd1803d4e7bdb4c3d9228ea2c9059d3fcc117029b09b155b707177785fbe8714"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_orange_block_place_into_microwave/pick_orange_block_place_into_microwave_annotations.json",
+        "bytes": 1388280,
+        "sha256": "436c37ccfa2dcfa5ed54059dd0614634bae83e2d3423619ff215ea71cb6d0410"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_orange_block_place_pot/pick_orange_block_place_pot_annotations.json",
+        "bytes": 54617,
+        "sha256": "6882977a494075c1148d8928882b1baf431d23b2da3f708539d8cb1b31841d59"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_pen_transfer_plate/pick_pen_transfer_plate_annotations.json",
+        "bytes": 58176,
+        "sha256": "ca071d31b4132afc49524e85939f5f4bc931f6ac353d0387feae86b1f2685884"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_pepsi_place_bowl/pick_pepsi_place_bowl_annotations.json",
+        "bytes": 51114,
+        "sha256": "095ab940fc7e2c70712c2c34eae531d66ed0c274f74c78c83a3de9f31eace569"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_pepsi_transfer_place_plate_ep1/pick_pepsi_transfer_place_plate_ep1_annotations.json",
+        "bytes": 572176,
+        "sha256": "48f01bfa3755d7abfc55e97667b988e9da5d2ab9009460ebfdc46a01cd73fbdd"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_place_chem_ep1/pick_place_chem_ep1_annotations.json",
+        "bytes": 1264054,
+        "sha256": "8b5d9dbe3cefb9ea2779bf111aed7d0a71a24e7a2fe950543468684bc02da5f9"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_place_chem_ep2/pick_place_chem_ep2_annotations.json",
+        "bytes": 1143307,
+        "sha256": "9ec8e7d634eb7f5ec750bd9c36b1c9a504a9f40396708a5847455c2500704e6c"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_plate_from_drawer_put_pink_cube_ep1/pick_plate_from_drawer_put_pink_cube_ep1_annotations.json",
+        "bytes": 602473,
+        "sha256": "2b1c67c01347840ecfc9869ffba7b24ff09016e10ecea614d2985aaf5ed27b1d"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_red_marker_place_tray/pick_red_marker_place_tray_annotations.json",
+        "bytes": 54260,
+        "sha256": "8900853865ac4cf49e3f34e2265fccd6142d107781ee9b5099ad8bd28628c567"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_remote_controller_transfer_board/pick_remote_controller_transfer_board_annotations.json",
+        "bytes": 58912,
+        "sha256": "6a0a4553e639193b2384a458e30e4116b11f9f22cb7f115f29e4c7c7bfa68259"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_spoon_place_rice_cooker/pick_spoon_place_rice_cooker_annotations.json",
+        "bytes": 51564,
+        "sha256": "323cc7224684f4a739979c70a4f3ebfc8470ea4618cfee2b337755e4457d4635"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_tape_thread_marker/pick_tape_thread_marker_annotations.json",
+        "bytes": 53630,
+        "sha256": "cce7e5330b5433ed1759ac1a7aed3dc5f8f9eb2d27607a5213fe0314307ce36f"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_test_tube_place_left_slot/pick_test_tube_place_left_slot_annotations.json",
+        "bytes": 57244,
+        "sha256": "7cebd4334bb69d683a8edd9ff6838c87747a55f945858a72cdd8051b31510c3d"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_test_tube_place_middle_slot/pick_vial_place_middle_slot_annotations.json",
+        "bytes": 59285,
+        "sha256": "011c2aee20a928fc789623bbcd93ad12e9c6a366ffa731c83ffd89b32ba3e824"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_vial_place_middle_slot/pick_vial_place_middle_slot_annotations.json",
+        "bytes": 54557,
+        "sha256": "cfe55961164b4bf9f0715b0acb9a15f23bdb45b7470c1a7d8ebe517953425347"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pick_vial_place_right_slot/pick_vial_place_right_slot_annotations.json",
+        "bytes": 55829,
+        "sha256": "f1281679ae672349897cb9b688d7cad93acdbf61fdc2a004fa8ab3967a0bbccd"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_block_into_drawer/place_block_into_drawer_annotations.json",
+        "bytes": 135886,
+        "sha256": "d5c863596aafc67aaed2961465efcc3aeb53843942a146782b8b8464557c4ecb"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_cube_pot_lid/place_cube_pot_lid_annotations.json",
+        "bytes": 59179,
+        "sha256": "6116f92aaf0fe0bcb52ceb8a4d0dac1dda1502a0fe1447fc3f4e75bebb08810e"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_doll_stapler_swap/place_doll_stapler_swap_annotations.json",
+        "bytes": 60682,
+        "sha256": "8a2f2b100ce94a516e9a7c1a743b38f1dc20fc455d7c39bf9f12c0ca15526743"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_duck_on_block/place_duck_on_block_annotations.json",
+        "bytes": 65263,
+        "sha256": "8c08c60fb6f79a449685f2be7e10c7859e32d957cea7ae16f27b2bd52e4b7695"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_green_duck_from_drawer_to_pot/place_green_duck_from_drawer_to_pot_annotations.json",
+        "bytes": 58598,
+        "sha256": "5e818519cd090cb8ed0ff9c24eaf2e1aca5cfd9363e8bd1298c245e5a9748420"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_knife_in_drawer/place_knife_in_drawer_annotations.json",
+        "bytes": 55112,
+        "sha256": "2a9b204999f915bc84af08f21a97974ea612851a070d43f3eb1e7c9c19e8ca51"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_pen_in_drawer/place_pen_in_drawer_annotations.json",
+        "bytes": 51274,
+        "sha256": "df9b8d81051b1732fe619ae2f228a6be9b1904b544e8e8ecabca51e4c55ff5a2"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_spoon_drawer_push/place_spoon_drawer_push_annotations.json",
+        "bytes": 57437,
+        "sha256": "71298aeb99441be0b037c0fa22b856eb22551889522e3fb4d1e37e60b689b66d"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_spoon_into_pot_cover_lid/place_spoon_into_pot_cover_lid_annotations.json",
+        "bytes": 68194,
+        "sha256": "db4164be4ff413552fe50949e2fa2d467c98b3c90ea28a47bc1871e1bbe5e909"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/place_spoon_on_plate/place_spoon_on_plate_annotations.json",
+        "bytes": 52144,
+        "sha256": "05ac552919fdbeb70f97f7a9f272211cac6fdcc1da70dbb351866bb6a1c4ab1b"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_cubes_into_box/pour_cubes_into_box_annotations.json",
+        "bytes": 59394,
+        "sha256": "9e16d9ddb4740dff9c6c24864d67887ac2cf02935d0aec56f8f78798e172f5db"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_sausage_into_basket/pour_sausage_into_basket_annotations.json",
+        "bytes": 53119,
+        "sha256": "b6128bce7e3a8e8d4d8899ef84e55c1ab9a22c4aa08f18535dab3a89690ac427"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_sausage_into_bowl/pour_sausage_into_bowl_annotations.json",
+        "bytes": 58257,
+        "sha256": "24e7a6903aa2a54ed61c06674c99b48384740e7395c2ae2315edeb874b8ef5e8"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_sausage_into_pot/pour_sausage_into_pot_annotations.json",
+        "bytes": 174520,
+        "sha256": "fb8f36048dfecdad7a5bf80d2c654d83fdc6d5feac40f49eccd1bc0ef0b22c43"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_water_transparent_cup_ep1/pour_water_transparent_cup_ep1_annotations.json",
+        "bytes": 637519,
+        "sha256": "2d81f9a3bbe311a64632b4bd79911f2527a5e5d214cfd44c8e55f31c79647fd7"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pour_water_transparent_cup_ep2/pour_water_transparent_cup_ep2_annotations.json",
+        "bytes": 99786,
+        "sha256": "68b5a1668d6774bb7b8b203ed79a2a2b43c9c7002285c5e0798a0c4accf63014"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_bottom_drawer_put_can_ep1/pull_bottom_drawer_put_can_ep1_annotations.json",
+        "bytes": 724115,
+        "sha256": "6e9c6459ccff8db614ff827f47fc578909124e722a17d8fc8c24af4314c8d9c4"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_bottom_drawer_put_can_ep2/pull_bottom_drawer_put_can_ep2_annotations.json",
+        "bytes": 177281,
+        "sha256": "e77407672ee5e7c458aa33eeaed566c960beeb3f43b4ca1cdbd7212d681302ec"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_bottom_drawer_put_duck_into_pot/pull_bottom_drawer_put_duck_into_pot_annotations.json",
+        "bytes": 74181,
+        "sha256": "fdbb41ac51495ce77857be3ada777daf47fe79aa1392870dea7e6db6bccf0af0"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_open_bottom_drawer/pull_open_bottom_drawer_annotations.json",
+        "bytes": 47047,
+        "sha256": "33f85a47f533f671c40d4cf40eb92c68bea3bf320ceb7c45f25dd1eecbe70cc4"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_open_drawer/pull_open_drawer_annotations.json",
+        "bytes": 127330,
+        "sha256": "81e6d4063d6450e1b832c13f453ae9fc70568ea6bfdc69196ba713b5d6370ef4"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/pull_top_drawer_put_controller/pull_top_drawer_put_controller_annotations.json",
+        "bytes": 70762,
+        "sha256": "d2d68abedfe74b4d9d895b178f46c74297e92fecebfa6f5406c828075abcff45"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/push_middle_drawer/push_middle_drawer_annotations.json",
+        "bytes": 51361,
+        "sha256": "97df061362598b6f705950d85e8974a426ad2b5cceb8714eea1ac347c97b99d5"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_blackboard_eraser_in_transparent_box/put_blackboard_eraser_in_transparent_box_annotations.json",
+        "bytes": 57833,
+        "sha256": "024a09aecfeb5172cf927459f70632be2ad644cd32b99ebee81e2c573c24b7d5"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_doll_pink_plate_stapler_purple_plate_ep1/put_doll_pink_plate_stapler_purple_plate_ep1_annotations.json",
+        "bytes": 632065,
+        "sha256": "e2b53e72fbfdf32648c32319e21d856ee4ef47883da23caf994a580983c0316a"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_mouse_basket_from_tray_ep1/put_mouse_basket_from_tray_ep1_annotations.json",
+        "bytes": 547845,
+        "sha256": "e6e5fc9f08cdc54bfea7199056ce6fc09d886f8f91dec411180d3531a99cb110"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_mouse_on_pot/put_mouse_on_pot_annotations.json",
+        "bytes": 50509,
+        "sha256": "0438b99820e08e4e1a075418400208f1a9b0a3174d7aa19b560c4e1c38df44da"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_pen_in_basket/put_pen_in_basket_annotations.json",
+        "bytes": 49945,
+        "sha256": "66accf87fcf6c133d477353a6075f9137606a150833192fcae76d501ecf634f7"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_stapler_blue_plate/put_stapler_blue_plate_annotations.json",
+        "bytes": 50673,
+        "sha256": "07e7b8b6d9a8abdcbba97d3fedfbdd29821ffd86a140b4b835a237068ef67cd9"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_stapler_top_drawer_and_close/put_stapler_top_drawer_and_close_annotations.json",
+        "bytes": 65801,
+        "sha256": "730025d1c70e264ddd2ebd8cbe11ffa82ad67d39a3f4f5d28a21f499ffaf3acb"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/put_two_objects_into_plate_and_box/put_two_objects_into_plate_and_box_annotations.json",
+        "bytes": 63633,
+        "sha256": "836f0c0600fc8442a372fdf38c730b29ef994507c13c24a34d6ff589af8c0bc3"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_cup_cola/stack_cup_cola_annotations.json",
+        "bytes": 1110669,
+        "sha256": "ea95593d2be2e3b2b4916a1104431675f620b0704b200faa89fb3353a13d57b2"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_cup_on_book/stack_cup_on_book_annotations.json",
+        "bytes": 50865,
+        "sha256": "276cd46ec7e0a25e44bfcaa3d077b1f85e836717017263d1050a3b6c14ec19e8"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_green_cup_into_purple_cup/stack_green_cup_into_purple_cup_annotations.json",
+        "bytes": 59422,
+        "sha256": "af0c914dda4fb9c614c7f01e2fa326ff590a9ac09120b56926755b6762bffff7"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_pepsi_can_cup/stack_pepsi_can_cup_annotations.json",
+        "bytes": 50980,
+        "sha256": "fead9fd1b1291268c9d577a93c4f644c04f74c835918a7e21d833337f61869d9"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_three_block/stack_three_block_annotations.json",
+        "bytes": 230720,
+        "sha256": "e6ed298811a5d95d7ded7581897ad23ba2791a6f1ad7412b754128364ae2a1f7"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_three_color_cubes_ep1/stack_three_color_cubes_ep1_annotations.json",
+        "bytes": 721424,
+        "sha256": "fc63b97fd32f6ba86dd9ce31f628a5ad17dee45d7d78b3a907c7b10e1b955977"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/original/annotated_data/stack_three_color_cubes_ep2/stack_three_color_cubes_ep2_annotations.json",
+        "bytes": 183662,
+        "sha256": "04e0ae74d19c0d467d90ad05b4c65e36afa07180d777f9b2bdeb796fb048a697"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/vifailback/meta/vifailback_annotations.jsonl",
+        "bytes": 15553675,
+        "sha256": "912c3918ab5871b71b1f3e531e244e04526a26c3442679465c871b4a4d37ed48"
+      },
+      {
+        "path": "DATASET_RESEARCH/VIFAILBACK_VERIFICATION/source_evidence/vifailback/meta/episodes.jsonl",
+        "bytes": 943651,
+        "sha256": "3ef9bfa7d90fbb95683599d090fb9b8bd44a675c6e07eaf757f4a1ed9b9bda27"
+      }
+    ]
+  },
+  "nominal_CPU_pin_memory_requested": true,
+  "actual_CUDA_pinning_test": "PENDING_GPU_ADMISSION",
+  "global_torch_rng_unchanged": true,
+  "CUDA_visible_devices": "",
+  "CUDA_initialized": false,
+  "torch_threads": 1,
+  "process_CPU_affinity": [
+    0,
+    1
+  ],
+  "wall_seconds_for_validation_only": 101.05560707600671,
+  "packages": {
+    "torch": "2.13.0",
+    "numpy": "2.4.6",
+    "transformers": "5.14.1",
+    "Pillow": "12.3.0"
+  },
+  "python": "3.12.3",
+  "command": [
+    "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/17_future_dataloader_optimization/future_loader.py",
+    "validate-cpu",
+    "--run-id",
+    "cpu_contract_20261111_01"
+  ],
+  "warnings": [
+    "CPU-hidden CUDA disables actual pinned allocation; GPU pinning and numerical update equivalence remain pending.",
+    "Timestamp identity uses historical complete-decode actual PTS bound to newly hashed unchanged media, not a new PTS decode.",
+    "Hashes cover all transformed bytes and every ordered camera/frame; no pixels or frame caches are written.",
+    "Real decode covers the declared T subset; complete T orders use metadata/samplers without decoding every episode.",
+    "CPU-only validation duration is not a measured GPU speedup or GPU waiting-time result."
+  ]
+}

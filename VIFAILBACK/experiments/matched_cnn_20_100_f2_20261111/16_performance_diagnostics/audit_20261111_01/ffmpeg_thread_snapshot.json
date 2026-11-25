@@ -1,0 +1,23 @@
+{
+  "utc": "2026-11-11T17:37:33.288187+00:00",
+  "monitoring_seconds": 20.27659979800228,
+  "root_training_pid": 29074,
+  "root_create_time_unix": 1794353606.37,
+  "method": "Read only process names, process identity, /proc task comm and wchan, and per-thread CPU counters for existing training descendants. No process command lines, environment, process memory, decoding, or profiling attachment.",
+  "status": "NO_FFMPEG_CHILD_DURING_BOUNDED_WINDOW",
+  "processes": [],
+  "source_flags": {
+    "source": "VIFAILBACK/src/vifailback/video.py:35-37",
+    "input_decoder_threads": 1,
+    "filter_threads": 1,
+    "hardware_acceleration": "none",
+    "decoder_option_scope": "-threads 1 appears before -i and configures input decoding; it does not cap total operating-system threads.",
+    "interpretation": "Filter, encoder, demuxer, muxer, and scheduling infrastructure can create additional operating-system threads. Filter-named pools are observed but their exact internal origin cannot be proved from thread names."
+  },
+  "limitations": [
+    "One instantaneous snapshot; CPU counters are cumulative since thread creation, not interval percentages.",
+    "Sleeping ancillary threads at this instant may run later in a clip.",
+    "Short-lived processes may exit while inspected; captured thread list can be partial.",
+    "Does not modify or decode data; captures only already-running descendants."
+  ]
+}
