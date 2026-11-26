@@ -1,0 +1,225 @@
+{
+  "daq": {
+    "label": "ROW 1 - DAQ summaries (recomputed protocol check)",
+    "n_features": 72,
+    "per_experiment": {
+      "EXP-A": {
+        "observed": 47,
+        "n_tested": 67,
+        "null_median": 22.0,
+        "null_p95": 57.0,
+        "p": 0.11333333333333333,
+        "max_abs_rho": 0.9746794344808963
+      },
+      "EXP-B": {
+        "observed": 34,
+        "n_tested": 67,
+        "null_median": 17.0,
+        "null_p95": 29.0,
+        "p": 0.02,
+        "max_abs_rho": 0.7500000000000002
+      },
+      "EXP-F": {
+        "observed": 7,
+        "n_tested": 72,
+        "null_median": 14.5,
+        "null_p95": 28.05000000000001,
+        "p": 0.8666666666666667,
+        "max_abs_rho": 0.7857142857142858
+      }
+    },
+    "same_sign": 14,
+    "n_common": 67,
+    "sign_chance": 16.75,
+    "strong_all": 4,
+    "survivors": [
+      "axial_rms_last",
+      "axial_rms_mean",
+      "axial_rms_median"
+    ]
+  },
+  "rev_avg": {
+    "label": "ROW 2 - physics, revolution-averaged",
+    "n_features": 50,
+    "per_experiment": {
+      "EXP-A": {
+        "observed": 45,
+        "n_tested": 50,
+        "null_median": 16.0,
+        "null_p95": 47.0,
+        "p": 0.11333333333333333,
+        "max_abs_rho": 0.9746794344808963
+      },
+      "EXP-B": {
+        "observed": 38,
+        "n_tested": 50,
+        "null_median": 12.0,
+        "null_p95": 28.0,
+        "p": 0.0,
+        "max_abs_rho": 0.9642857142857145
+      },
+      "EXP-F": {
+        "observed": 16,
+        "n_tested": 50,
+        "null_median": 11.0,
+        "null_p95": 23.0,
+        "p": 0.22333333333333333,
+        "max_abs_rho": 0.880952380952381
+      }
+    },
+    "same_sign": 16,
+    "n_common": 50,
+    "sign_chance": 12.5,
+    "strong_all": 9,
+    "survivors": [
+      "a1_res_rms",
+      "a2_env_h2"
+    ]
+  },
+  "rev_avg_signs": {
+    "survivors": [
+      "a1_res_rms",
+      "a2_env_h2"
+    ],
+    "correct_sign": [
+      "a2_env_h2"
+    ],
+    "wrong_sign": [
+      "a1_res_rms"
+    ]
+  },
+  "sector": {
+    "label": "ROW 3 - physics, per-tooth-sector order statistics",
+    "n_features": 80,
+    "per_experiment": {
+      "EXP-A": {
+        "observed": 70,
+        "n_tested": 80,
+        "null_median": 19.5,
+        "null_p95": 76.0,
+        "p": 0.20333333333333334,
+        "max_abs_rho": 0.9746794344808963
+      },
+      "EXP-B": {
+        "observed": 52,
+        "n_tested": 80,
+        "null_median": 21.0,
+        "null_p95": 42.0,
+        "p": 0.0,
+        "max_abs_rho": 0.8571428571428573
+      },
+      "EXP-F": {
+        "observed": 26,
+        "n_tested": 80,
+        "null_median": 17.0,
+        "null_p95": 34.05000000000001,
+        "p": 0.22333333333333333,
+        "max_abs_rho": 0.9523809523809524
+      }
+    },
+    "same_sign": 24,
+    "n_common": 80,
+    "sign_chance": 20.0,
+    "strong_all": 11,
+    "survivors": [
+      "a2res_rms_spread",
+      "a2res_p2p_spread",
+      "a2res_efrac_spread"
+    ]
+  },
+  "sector_signs": {
+    "survivors": [
+      "a2res_rms_spread",
+      "a2res_p2p_spread",
+      "a2res_efrac_spread"
+    ],
+    "correct_sign": [],
+    "wrong_sign": [
+      "a2res_rms_spread",
+      "a2res_p2p_spread",
+      "a2res_efrac_spread"
+    ]
+  },
+  "daq_transforms": {
+    "revmean": {
+      "label": "STEP 3 - DAQ Transforms, revolution-averaged",
+      "n_features": 20,
+      "per_experiment": {
+        "EXP-A": {
+          "observed": 16,
+          "n_tested": 18,
+          "null_median": 6.0,
+          "null_p95": 18.0,
+          "p": 0.20333333333333334,
+          "max_abs_rho": 0.9746794344808963
+        },
+        "EXP-B": {
+          "observed": 8,
+          "n_tested": 17,
+          "null_median": 4.0,
+          "null_p95": 10.0,
+          "p": 0.15333333333333332,
+          "max_abs_rho": 0.642857142857143
+        },
+        "EXP-F": {
+          "observed": 9,
+          "n_tested": 19,
+          "null_median": 3.0,
+          "null_p95": 12.0,
+          "p": 0.18,
+          "max_abs_rho": 0.7142857142857144
+        }
+      },
+      "same_sign": 2,
+      "n_common": 17,
+      "sign_chance": 4.25,
+      "strong_all": 5,
+      "survivors": []
+    },
+    "sector": {
+      "label": "STEP 3 - DAQ Transforms, per-tooth-sector",
+      "n_features": 80,
+      "per_experiment": {
+        "EXP-A": {
+          "observed": 65,
+          "n_tested": 80,
+          "null_median": 23.0,
+          "null_p95": 78.0,
+          "p": 0.19666666666666666,
+          "max_abs_rho": 0.9746794344808963
+        },
+        "EXP-B": {
+          "observed": 51,
+          "n_tested": 80,
+          "null_median": 19.0,
+          "null_p95": 44.0,
+          "p": 0.0033333333333333335,
+          "max_abs_rho": 0.9642857142857145
+        },
+        "EXP-F": {
+          "observed": 35,
+          "n_tested": 80,
+          "null_median": 15.0,
+          "null_p95": 37.0,
+          "p": 0.09,
+          "max_abs_rho": 0.9047619047619048
+        }
+      },
+      "same_sign": 25,
+      "n_common": 80,
+      "sign_chance": 20.0,
+      "strong_all": 16,
+      "survivors": [
+        "daqdif_crest_spread",
+        "daqeop_rms_conc",
+        "daqeop_rms_spread",
+        "daqeop_p2p_conc",
+        "daqeop_efrac_top1",
+        "daqeop_efrac_top3",
+        "daqeop_efrac_conc",
+        "daqeop_efrac_spread"
+      ]
+    }
+  },
+  "L1_sector_pass_expf": false
+}

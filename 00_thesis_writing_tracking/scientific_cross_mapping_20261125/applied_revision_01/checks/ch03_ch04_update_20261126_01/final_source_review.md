@@ -1,0 +1,15 @@
+# Independent source-preservation review
+
+Review date: 26 November 2026. Scope: submitted attachment preservation, declared local repairs, and the Appendix F closure correction. No manuscript edits or experiments were performed by this reviewer.
+
+- **VERIFIED:** `submitted/03_foundations.tex` is byte-identical to the supplied Chapter 3 attachment. Replaying the seven recorded Chapter 3 repairs exactly reconstructs the active chapter; each replacement occurs once. There are no additional differences.
+- **VERIFIED:** All three Chapter 3 table environments, all three displayed equation environments, the figure environment, and all labels match the submitted chapter exactly. Citation-command sequences match exactly after mapping the unavailable `Ting1999StackedGeneralization` key to the existing `Ting1999Issues` key. The added symbol definitions explain the unchanged equations; restored E112/E114 references preserve registered evidence identity.
+- **VERIFIED:** Replaying the seven recorded Chapter 4 repairs exactly reconstructs its active source, without additional changes. Six are source/locator repairs and one inserts `\enlargethispage{\baselineskip}` before the final paragraph; the latter changes local page height without changing prose. The workflow-caption clarification is retained from the preceding active chapter rather than introduced as a new experimental claim.
+- **VERIFIED:** Appendix F differs from its preserved baseline only by the two declared replacements: the completed-scope sentence and its E115/E116 evidence references.
+- **VERIFIED within inspected records:** The November 24 `completed_scope_analysis/RESULT_ANALYSIS.md` records 79 completed fits of 111 planned, including four FULL20 fits and one FULL100 pilot; 32 FULL20 fits remain unfinished. `FINAL_STATUS.json` records the completion of FULL20 seed 42 / outer 0 / inner 2, successful completed-scope analysis, and a researcher stop before the next fit. These records support the bounded one-fold FULL20 and single-role FULL100 correction. They do not establish three-seed FULL20 completion, conclusive adaptation benefit, or completed corruption evaluation.
+
+Sources read: `local_repairs.json`, `submitted_text_repairs.patch`, `chapter_update.patch`, both submitted chapters, active Chapters 3–4, the before/active Appendix F, active evidence register, active Chapter 8 / Appendix G closure text, and `VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/{FINAL_STATUS.json,completed_scope_analysis/RESULT_ANALYSIS.md}`.
+
+The separately recorded Chapter 2 note and synthesis-diagram changes in `concurrent_source_changes.json` are outside this task and were not classified as task edits. This review makes no claim that all other working files are unchanged.
+
+No source-preservation discrepancy remains. This review verifies the inspected text and closure scope; it does not rerun model training, numerical analyses, or a complete original-publication citation audit for Chapters 3–4.

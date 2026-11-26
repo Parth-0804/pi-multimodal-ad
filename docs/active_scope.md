@@ -53,7 +53,7 @@ derived analysis, and comparing the affected runs separately.
 
 ## Historical EXP-A study
 
-`experiments/exp_a_initial_eda_r1_r3_r5/` remains a protected historical
+`implementations/PHM2026/experiments/exp_a_initial_eda_r1_r3_r5/` remains a protected historical
 experiment covering EXP-A Runs 1, 3, and 5. Its narrower scope had computational
 and duplicate-warning motivations and retains research value. It must not be
 rewritten or presented as the current all-run implementation.

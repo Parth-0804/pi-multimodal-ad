@@ -1,0 +1,64 @@
+Scientific consistency audit of the author-supplied Chapters 3 and 4
+26 November 2026 — bounded, read-only evidence inspection
+
+Scope
+Compared new concrete examples and technical claims with existing manuscript sources, saved documentation, example metadata and implementation code. No model training, inference, raw-payload reading or literature discovery was performed. This record does not independently reproduce training, certify source completeness or establish university approval.
+
+Verified priority facts and provenance
+
+1. Failed insertion example
+Saved record: implementations/general/results/presentation/reassemble_dataset_assets/20261016T092947Z/sample_label_cards.json, array entry 3, example_id insert_failure, recording_id 2025-01-13-16-45-31, segment_id 21.
+Recorded annotation: start 1736783322.9826488; end 1736783338.2159712; duration 15.233322381973267 seconds; recorded_success false; derived_failure 1. This supports rounding the duration to 15.233 seconds and describing a recorded failure; it does not identify its physical cause.
+implementations/general/results/presentation/reassemble_dataset_assets/20261016T092947Z/frame_selection.csv contains 16 model16 rows for that same recording and segment. The Chapter 6 example caption agrees.
+Saved playback provenance: implementations/REASSEMBLE/results/runs/prediction_playback_f2_default_export/validation_summary.json associates this action with outer fold 4 and states that its recording was excluded from that outer fit. This is saved-record inspection, not new branch prediction verification.
+
+2. Whole-action visual mean and last-quarter comparison
+implementations/REASSEMBLE/src/reassemble/section1_features.py selects 16 frame indices within each action, spatially averages backbone maps, concatenates the pooled scales and temporally averages the frame features.
+implementations/REASSEMBLE/src/reassemble/boundary_visual/models.py defines V3 as BINS[(12,16)] and averages those four frame embeddings. Therefore last-quarter pooling means the last four of the sixteen sampled frames; it does not mean processing every native frame in the final 25 percent of elapsed time.
+implementations/REASSEMBLE/results/artifacts/reports/BOUNDARY_AWARE_VISUAL_POOLING_HANDOFF.md, sections B, D, E, K, N, O and P, documents the whole-segment control, last-quarter variant, same-cohort exploratory selection, separate static F2 follow-up and limits on prospective/causal claims.
+The author text explicitly keeps longer temporal training, last-quarter pooling and anchored adjustment separate, rather than asserting an evaluated combination of all three.
+
+3. Action-specific class counts
+implementations/REASSEMBLE/results/artifacts/reports/BOUNDARY_AWARE_VISUAL_POOLING_HANDOFF.md, section H: insert n=1156, failures=243; place n=1088, failures=22. The active Chapter 6 reports the same retained-cohort counts. These are filtered study counts, not the dataset publication's broader acquisition counts.
+
+4. Sensor channels and statistical representation
+implementations/general/results/presentation/reassemble_dataset_assets/20261016T092947Z/sensor_channel_schema.csv: measured_force has 3 components; measured_torque 3; gripper_positions 2; joint_efforts 7; joint_velocities 7, totaling 22 scalar channels. No physical units were inferred from this schema; its unit_if_present entries are NOT_AVAILABLE.
+implementations/REASSEMBLE/configs/section1.json lists those five source streams and 512 progress positions.
+implementations/REASSEMBLE/src/reassemble/section1_features.py, statistics() and extract(): each channel supplies mean, standard deviation, median, minimum, maximum, lower and upper quartiles, range, RMS and slope over normalized action progress. Statistics are computed after progress resampling. The resulting vector contains 220 values and is statistic-major in storage.
+implementations/REASSEMBLE/experiments/core/03_core_fusion/01_data_preprocessing/README.md independently documents the 512 by 22 sequence, 220 statistics, statistic-major order and two calibrated branch probabilities used by the core stacker.
+
+5. PatchTST configurations and masking boundaries
+implementations/REASSEMBLE/configs/section1.json and implementations/REASSEMBLE/src/reassemble/section1_models.py, SensorHead: context length 512; patch width 32; stride 16; hidden width 32; two layers; four heads; feed-forward width 64; scratch initialization; internal scaling=None; past_observed_mask supplied; patch features averaged and channel representations flattened into a 128-value projection.
+The unpadded arithmetic yields 31 patches; the author text correctly avoids equating this automatically with the executed token count. Passing an observed mask does not alone establish its effect inside every operation.
+implementations/PHM2026/src/phm2026/models/patchtst/model.py, PatchTSTConfig and patchify()/encode(): default width 16 and stride 8; grid length depends on the batch input length; a patch is valid if any position is valid; attention and pooled outputs use the resulting mask. The author retains the unmeasured effect of batch-length dependence. SortedProfileHead uses positive increments; sorted positions do not preserve tooth identity.
+
+6. Constant predictor and PHM target roles
+The active chapters/05_phm.tex describes the principal retained comparison against the training-mean constant and keeps post-run photographs as the source of a condition proxy rather than a camera input to sensor-group fusion. The reported errors concern agreement with that proxy, not independent physical damage measurement.
+implementations/PHM2026/src/phm2026/models/patchtst/regression.py records training-mean and training-median references in its separate initial fixed-split implementation. This does not make all PHM protocols interchangeable. The author's statement about the principal training-mean reference agrees with Chapter 5; its squared-error property and the median's absolute-error property are mathematical statements, not evidence that every comparator ran in every protocol.
+
+7. Six stuck channels and training medians
+implementations/REASSEMBLE/src/reassemble/section3_sensor.py, corrupt_stream(): condition S4 replaces the first six channels, corresponding to force and torque, with channel medians within the action interval.
+recover_models() calculates each median from outer-training progress-resampled sensor arrays only; the assessment recordings are not included in those fitted medians.
+main() then calls resample_progress(), sensor_quality() and statistics() on the changed streams. This supports the author's distinction between an available but altered input and explicit missing-branch fallback.
+implementations/REASSEMBLE/src/reassemble/additional_improvements/corruptions.py uses the same corruption routine and recomputes statistics and measured quality for its separate study.
+
+8. MSM timing example
+The active chapters/07_msm.tex specifies video time = sensor time + accepted offset, with VMX9 +49.73 s and the rejected +16.04 s alias. The author example matches this convention. This audit did not repeat acoustic alignment or read source recordings.
+
+9. Citation/version consistency
+The active references.bib entry P013 identifies Liu et al., Video Swin Transformer, CVPR 2022, pages 3202–3211. The author's Liu et al. (2022) reference matches that publication version.
+Other retained architectural citations and internal evidence IDs were matched to the existing manuscript context; this task did not re-review their full source PDFs or restart literature verification.
+
+Minimal scientific corrections identified
+
+- Chapter 4 figure caption: delete “then” from “PHM then provided” so it does not contradict the body chronology that PHM was already under way during the renewed Intel audit.
+- Chapter 4 scope decision: retain that the supervisor agreement was reported by the researcher; project records do not constitute independent supervisor confirmation.
+- Chapter 3 statistical maximum: describe the highest value in the resampled force channel, rather than promising preservation of the highest native measurement.
+- Chapter 3 boundary pooling: specify the last four of the sixteen sampled frames.
+- Chapter 3 F2 coefficients: qualify constancy as applying within each fitted model; separately fitted folds can have different coefficient maps.
+- Chapter 3 camera selection: remove “therefore” if it presents the absence of failure-location boxes as a documented historical reason for the exact backbone choice. Execution is verified; that exact causal selection history is not.
+- Chapter 3 frame-order example: mathematical averaging is order-invariant, but “exactly” can overstate bitwise floating-point identity. A rounding qualification is precise; no reverse-order experiment was run.
+- Chapter 3 sample efficiency: replace unsupported language about requiring relatively few training records with the supported fact that the statistical route does not fit a sequence encoder.
+
+Limits
+Source inspection establishes implementation. Saved reports and example records support the documented executions within their stated scopes. No new raw-data validity check, training reproduction, uncertainty recalculation or complete citation-PDF audit was performed. The final implementation agent/parent remains responsible for confirming which proposed minimal corrections were applied and for compiling and inspecting the final manuscript.

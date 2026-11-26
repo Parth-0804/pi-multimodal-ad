@@ -1,0 +1,162 @@
+diff --git a/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/manav_explanatory_diagrams_20261126_01/before/working/LaTeX_Project/chapters/02_literature_review.tex b/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/chapters/02_literature_review.tex
+index d634c7000..3b251e255 100644
+--- a/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/manav_explanatory_diagrams_20261126_01/before/working/LaTeX_Project/chapters/02_literature_review.tex
++++ b/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/chapters/02_literature_review.tex
+@@ -260,6 +260,16 @@ Similarly, simply varying the input duration of a CNN--LSTM does not, by itself,
+ can be generated before a defect occurs \parencite{Pandiyan2022Deep}. Active monitoring requires a
+ defined information cut-off, acquisition delay and end-to-end prediction workload.
+ 
++Figure~\ref{fig:prediction-availability} separates the observation horizon from the computation that
++follows it.
++
++\begin{figure}[H]
++\centering
++\caption{Prediction Availability for the Same Action. Completed-action classification observes the action through completion before computing a prediction. The early-warning row is hypothetical: observations after its decision cutoff are unavailable to that prediction. Interval lengths are schematic.}
++\label{fig:prediction-availability}
++\includegraphics[width=\linewidth]{figures/review_explanatory_20261126/prediction_availability.pdf}
++\end{figure}
++
+ \section{Multimodal Data in Industrial Applications}
+ 
+ Complementarity is determined by the additional task-relevant information provided by an observation
+@@ -1306,6 +1316,59 @@ rather than deemed satisfied.
+ 
+ \label{sec:literature-study-gaps}
+ 
++The comparison starts with a valid target and observations paired to the same
++event (R1). For each input, the choice of representation and fitting budget
++defines the single-input reference (R2, SQ1). Fusion is then compared with the
++strongest reference on the same cases, with matched opportunities for
++recalibration (R3, SQ2). In the initial full-text review, four of 37 papers
++examined planned missing-input inference and one examined simulated dropout
++(13.5\% combined, Table~\ref{tab:literature-matrix}). Reliability comparisons
++therefore distinguish absence, corruption, and distribution shift. When testing
++adaptive weighting, the static comparator needs equal training exposure to
++the tested failures (R4, SQ3). Grouped splits, leakage checks, and uncertainty
++estimates bound the claims. For classification, precision--recall analysis
++and calibration address different aspects of performance (R5, SQ4).
++Table~\ref{tab:fusion-study-scope} identifies the comparisons each study
++could support.
++
++\begin{table}[htbp]
++  \centering
++  \caption{Inputs and assessment limits of the five thesis studies}
++  \label{tab:fusion-study-scope}
++  \begingroup
++  \singlespacing\small
++  \setlength{\tabcolsep}{4pt}
++  \renewcommand{\arraystretch}{1.28}
++  \begin{tabularx}{\linewidth}{@{}P{.22\linewidth} P{.23\linewidth} Y@{}}
++    \toprule
++    \textbf{Study} & \textbf{Predictor inputs} & \textbf{Scope and assessment limits}\\
++    \midrule
++    PHM (Ch.~5)
++      & Machine sensors
++      & R1--R3, R5. Post-run photographs define the target proxy.
++        The study does not test camera outages.\\
++    REASSEMBLE (Ch.~6)
++      & Video and machine sensors
++      & R1--R5. Principal study of fusion and of adaptive versus static
++        weighting under matched corruption exposure.\\
++    MSM (Ch.~7)
++      & Video and machine telemetry
++      & R1--R5. The comparison covers cutting intervals observed in the
++        laboratory during acquisition.\\
++    ViFailback (Ch.~8)
++      & Video features and robot state
++      & R1--R3, R5. The planned corruption stress test (R4) was unexecuted.\\
++    HANDOVER (App.~\ref{app:handover})
++      & Video and force--torque measurements
++      & R1--R5 with fixed averaging. The missing participant-to-trial mapping
++        precluded a participant-disjoint fit of the learned stacker.\\
++    \bottomrule
++  \end{tabularx}
++  \endgroup
++  \displaynote{The R codes indicate which requirements a study investigated.
++    Each conclusion applies to that study's target and assessment population.}
++\end{table}
++
+ The five empirical studies look at different facets of the original architectural research question.
+ 
+ Each investigation starts with a particular prediction target, the available physical observations
+@@ -1444,15 +1507,19 @@ An independent, welding-specific evaluation still requires a clearly defined wel
+ appropriate decision time, paired observations, and assessment sessions held out from model
+ development.
+ 
+-Figure~\ref{fig:ch02-synthesis-requirements} summarises the literature evidence, derived requirements,
+-and the scope of their investigation in the five studies.
+-
+-\begin{figure}[p]
+-\input{figures/ch02_synthesis_20261126/review_coverage.tex}
+-\caption[Literature Evidence, Derived Requirements and Study-Specific Assessment Scope]{Literature Evidence, Derived Requirements and Study-Specific Assessment Scope. Missing-input coverage: \AbsenceDropoutPercent\% (\AbsenceDropoutCount\ of \InitialAppraisalCount\ initial full-text papers).}
+-\label{fig:ch02-synthesis-requirements}
+-\centering\includegraphics[width=\linewidth]{figures/ch02_synthesis_20261126/fig_ch02_synthesis.pdf}
+-\displaynote{``Tested missing inputs'' denotes planned missing-input inference or simulated dropout (PA/SD codes in Table~\ref{tab:literature-matrix}); other missing-input regimes are classified separately. Hollow blue circles denote PHM photographs used for post-run proxy supervision; solid markers denote predictor inputs. R1--R5 denote investigation scope. HANDOVER learned stacking was omitted because the participant-to-trial mapping was unavailable; ViFailback corruption stress tests remain unexecuted.}
++Figure~\ref{fig:ch02-synthesis-requirements} connects the welding evidence to the requirements for
++comparing fusion.
++
++\begin{figure}[htbp]
++  \centering
++  \caption{From welding evidence to requirements for testing fusion}
++  \label{fig:ch02-synthesis-requirements}
++  \label{fig:fusion-research-gap}
++  \includegraphics[width=\linewidth]{figures/fusion_research_gap.pdf}
++  \displaynote{DMAW reported 96.1\% accuracy for fusion and 90.2\% for
++    its strongest single input \parencite{P003}. In weld penetration, both
++    single-input models and fusion reached 100\% on the clean test set
++    \parencite{Hua2026Weld}. The reported contrasts are within each study.}
+ \end{figure}
+ 
+ The subsequent technical foundations chapter defines the representation models and fusion mechanisms
+diff --git a/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/manav_explanatory_diagrams_20261126_01/before/working/LaTeX_Project/chapters/03_foundations.tex b/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/chapters/03_foundations.tex
+index e82eac9de..67467d384 100644
+--- a/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/manav_explanatory_diagrams_20261126_01/before/working/LaTeX_Project/chapters/03_foundations.tex
++++ b/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/chapters/03_foundations.tex
+@@ -205,6 +205,15 @@ After temporal encoding, a pooling or aggregation procedure transforms the patch
+ 
+ The core REASSEMBLE implementation resamples each action to 512 progress positions across 22 sensor channels. The scratch-trained PatchTST classifier uses a patch width of 32, a stride of 16, a hidden representation width of 32, two Transformer layers, four attention heads, and a feed-forward width of 64.
+ 
++Figure~\ref{fig:sensor-patch-tokens} shows how two overlapping patches of one channel become separate tokens.
++
++\begin{figure}[H]
++\centering
++\caption{From Overlapping Sensor Patches to Tokens. One schematic REASSEMBLE sensor channel is shown from an action resampled to 512 progress positions across 22 channels. Patches 1--32 and 17--48 share positions 17--32; their starts are 16 positions apart. The trace illustrates the construction rather than an observed recording.}
++\label{fig:sensor-patch-tokens}
++\includegraphics[width=\linewidth]{figures/review_explanatory_20261126/sensor_patch_tokens.pdf}
++\end{figure}
++
+ Under an unpadded regular grid, these sequence and patch dimensions produce 31 patches. The executed token count additionally depends on the model’s padding configuration.
+ 
+ The implementation averages the encoded patch representations and concatenates the channel representations before applying a projection into a 128-dimensional feature space.
+diff --git a/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/manav_explanatory_diagrams_20261126_01/before/working/LaTeX_Project/chapters/04_methodology.tex b/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/chapters/04_methodology.tex
+index 1f9848e7e..c2a66f7d6 100644
+--- a/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/manav_explanatory_diagrams_20261126_01/before/working/LaTeX_Project/chapters/04_methodology.tex
++++ b/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/chapters/04_methodology.tex
+@@ -271,6 +271,15 @@ The outer assessment recordings remain excluded from fitting. The shared predict
+ 
+ This distinction matters: an evaluation may keep outer assessment data separate while using a less strictly nested procedure for internal model selection.
+ 
++Figure~\ref{fig:stacker-recording-flow} shows the reused development bank and the separate outer assessment path.
++
++\begin{figure}[H]
++\centering
++\caption{Recording Flow for One REASSEMBLE Outer Split. Grouped inner folds produce the branch-prediction bank used for calibration and stacker fitting. Reusing this bank for internal stacker validation creates internal dependence: branch fitting can include recordings assigned to later stacker validation. Outer assessment recordings remain excluded from fitting and enter only final scoring.}
++\label{fig:stacker-recording-flow}
++\includegraphics[width=\linewidth]{figures/review_explanatory_20261126/stacker_recording_flow.pdf}
++\end{figure}
++
+ \noindent\textit{Internal implementation evidence.} \EvidenceRef{E004}{Section~15.4}.
+ 
+ \subsection{Assessment Cohort Reconciliation}
+diff --git a/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/manav_explanatory_diagrams_20261126_01/before/working/LaTeX_Project/README.md b/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/README.md
+index 05fc78d5b..0562975ca 100644
+--- a/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/manav_explanatory_diagrams_20261126_01/before/working/LaTeX_Project/README.md
++++ b/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/README.md
+@@ -15,6 +15,6 @@ From this directory, run `latexmk -xelatex -interaction=nonstopmode -halt-on-err
+ 
+ Edit `frontmatter/abstract.tex` and `chapters/`. The full manuscript prints the bibliography; both review copies retain author–date citations without a reference list. Omitted appendix/chapter references use plain full-edition numbers. Manav's generated root retains the full citation context for consistent APA disambiguation; regenerate it from `main.tex` if its preamble or shared citation context changes.
+ 
+-Chapter 2 includes the literature synthesis table and current vector synthesis diagram. Chapter 3 includes three comparison tables and the fusion-interface figure; Chapter 4 includes the research-workflow figure. Unselected diagrams under `figures/draft_chapters_01_02/` remain drafts and are excluded from the delivery source ZIP. The date-free draft Figure 3 is preserved separately.
++Chapter 2 includes the literature synthesis table, the supplied welding-to-requirements diagram and five-study scope table. Three explanatory diagrams are added by section heading: prediction availability (§2.2.4), overlapping sensor patches (§3.3.3) and the stacker recording flow (§4.6.2). Chapter 3 retains its three comparison tables and fusion-interface figure; Chapter 4 retains the research-workflow figure. Editable figures and build details are documented in `figures/review_explanatory_20261126/README.md`. Unselected diagrams under `figures/draft_chapters_01_02/` remain drafts and are excluded from the delivery source ZIP. The date-free draft Figure 3 is preserved separately.
+ 
+ The DRAFT watermark remains controlled by `\thesisdrafttrue` in `main.tex` and in the Manav root. Historical chapter PDFs remain in the unchanged baseline and are excluded from this package. Appendix F and `tables/evidence_register.tex` retain the evidence index; empty publication URL fields remain empty rather than inventing links. The disclosure is in `appendices/I_ai_assistance.tex`.

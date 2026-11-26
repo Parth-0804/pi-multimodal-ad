@@ -1,0 +1,165 @@
+--- a/chapter-preview.tex
++++ b/chapter-preview.tex
+@@ -9,7 +9,6 @@
+ \usepackage{fontspec,etoolbox}
+ \usepackage[margin=1in]{geometry}
+ \usepackage{microtype,setspace}
+-\setstretch{1.22}
+ \usepackage{amsmath,amssymb,booktabs,array,longtable,tabularx,multirow,graphicx,float,pdflscape}
+ \usepackage[english]{babel}
+ \usepackage{csquotes}
+@@ -31,9 +30,7 @@
+ \pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small\nouppercase{\leftmark}}\fancyfoot[C]{\thepage}
+ \renewcommand{\headrulewidth}{0.3pt}
+ \setlength{\emergencystretch}{3em}
+-\setlength{\parskip}{0pt}
+-\newcommand{\apaprose}{\doublespacing\raggedright\setlength{\parindent}{0.5in}}
+-\AtBeginEnvironment{longtable}{\singlespacing}
++\input{thesis-formatting.tex}
+ \setcounter{tocdepth}{2}\setcounter{secnumdepth}{2}
+ \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+ \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+--- a/main.tex
++++ b/main.tex
+@@ -3,7 +3,6 @@
+ \usepackage{fontspec}
+ \usepackage[margin=1in]{geometry}
+ \usepackage{microtype,setspace}
+-\setstretch{1.22}
+ \usepackage{amsmath,amssymb,booktabs,array,longtable,tabularx,multirow,graphicx,float,pdflscape}
+ \usepackage[english]{babel}
+ \usepackage{csquotes}
+@@ -29,9 +28,7 @@
+ \pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small\nouppercase{\leftmark}}\fancyfoot[C]{\thepage}
+ \renewcommand{\headrulewidth}{0.3pt}
+ \setlength{\emergencystretch}{3em}
+-\setlength{\parskip}{0pt}
+-\newcommand{\apaprose}{\doublespacing\raggedright\setlength{\parindent}{0.5in}}
+-\AtBeginEnvironment{longtable}{\singlespacing}
++\input{thesis-formatting.tex}
+ \setcounter{tocdepth}{2}\setcounter{secnumdepth}{2}
+ \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+ \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+@@ -63,9 +60,8 @@
+ \end{titlepage}
+ \pagenumbering{roman}\hypersetup{pageanchor=true}
+ \fi
+-\chapter*{Abstract}\addcontentsline{toc}{chapter}{Abstract}
++\ThesisAbstractHeading\addcontentsline{toc}{chapter}{Abstract}
+ \begingroup\apaprose
+-\vspace*{-\baselineskip}
+ \noindent\input{frontmatter/abstract.tex}
+ 
+ \textit{Keywords:} Multimodal learning, industrial monitoring,
+--- a/manav_review.tex
++++ b/manav_review.tex
+@@ -7,7 +7,6 @@
+ \usepackage{fontspec}
+ \usepackage[margin=1in]{geometry}
+ \usepackage{microtype,setspace}
+-\setstretch{1.22}
+ \usepackage{amsmath,amssymb,booktabs,array,longtable,tabularx,multirow,graphicx,float,pdflscape}
+ \usepackage[english]{babel}
+ \usepackage{csquotes}
+@@ -33,9 +32,7 @@
+ \pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small\nouppercase{\leftmark}}\fancyfoot[C]{\thepage}
+ \renewcommand{\headrulewidth}{0.3pt}
+ \setlength{\emergencystretch}{3em}
+-\setlength{\parskip}{0pt}
+-\newcommand{\apaprose}{\doublespacing\raggedright\setlength{\parindent}{0.5in}}
+-\AtBeginEnvironment{longtable}{\singlespacing}
++\input{thesis-formatting.tex}
+ \setcounter{tocdepth}{2}\setcounter{secnumdepth}{2}
+ \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+ \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+@@ -73,21 +70,9 @@
+ \end{titlepage}
+ \pagenumbering{roman}\hypersetup{pageanchor=true}
+ \fi
+-% Keep this compact, centered heading local to the review's abstract.
+-\begingroup
+-\makeatletter
+-\renewcommand{\@makeschapterhead}[1]{%
+-  \vspace*{-10\p@}%
+-  {\parindent\z@\centering\normalfont
+-   \interlinepenalty\@M
+-   \Huge\bfseries #1\par\nobreak
+-   \vskip20\p@}}
+-\chapter*{Abstract}
+-\makeatother
+-\endgroup
++\ThesisAbstractHeading
+ \addcontentsline{toc}{chapter}{Abstract}
+ \begingroup\apaprose
+-\vspace*{-\baselineskip}
+ \noindent\input{frontmatter/abstract.tex}
+ 
+ \textit{Keywords:} Multimodal learning, industrial monitoring,
+--- /dev/null
++++ b/thesis-formatting.tex
+@@ -0,0 +1,65 @@
++% Shared thesis typography. Author-requested editorial layout, 26 November 2026.
++% University formatting requirements have not been independently verified.
++% Document class, fonts, paper, margins and APA bibliography style stay in the roots.
++\RequirePackage{etoolbox}
++
++\onehalfspacing
++\setlength{\parskip}{0pt}
++\setlength{\parindent}{6mm}
++\newcommand{\apaprose}{%
++  \onehalfspacing\raggedright
++  \setlength{\parindent}{6mm}\setlength{\parskip}{0pt}}
++\AtBeginEnvironment{longtable}{\singlespacing}
++
++% Moderate, positive physical gaps. Keep report.cls fonts, numbering and
++% no-break behavior. Its negative before-skip convention suppresses first-
++% paragraph indentation; it does not place text in a negative vertical gap.
++\makeatletter
++\newcommand{\ThesisSpacingPatchFailed}{%
++  \PackageError{thesis-formatting}{Unexpected report.cls heading definition}%
++    {Check the shared heading-spacing patches against the document class.}}
++\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{\vspace*{24\p@}}{}{\ThesisSpacingPatchFailed}
++\patchcmd{\@makechapterhead}{\vskip 20\p@}{\vskip 12\p@}{}{\ThesisSpacingPatchFailed}
++\patchcmd{\@makechapterhead}{\vskip 40\p@}{\vskip 24\p@}{}{\ThesisSpacingPatchFailed}
++\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{\vspace*{24\p@}}{}{\ThesisSpacingPatchFailed}
++\patchcmd{\@makeschapterhead}{\vskip 40\p@}{\vskip 24\p@}{}{\ThesisSpacingPatchFailed}
++\patchcmd{\section}{-3.5ex \@plus -1ex \@minus -.2ex}%
++  {-2.5ex \@plus -.8ex \@minus -.2ex}{}{\ThesisSpacingPatchFailed}
++\patchcmd{\section}{2.3ex \@plus.2ex}%
++  {1.4ex \@plus.2ex}{}{\ThesisSpacingPatchFailed}
++\patchcmd{\subsection}{-3.25ex\@plus -1ex \@minus -.2ex}%
++  {-2.25ex\@plus -.8ex \@minus -.2ex}{}{\ThesisSpacingPatchFailed}
++\patchcmd{\subsection}{1.5ex \@plus .2ex}%
++  {1ex \@plus .2ex}{}{\ThesisSpacingPatchFailed}
++\patchcmd{\subsubsection}{-3.25ex\@plus -1ex \@minus -.2ex}%
++  {-2ex\@plus -.8ex \@minus -.2ex}{}{\ThesisSpacingPatchFailed}
++\patchcmd{\subsubsection}{1.5ex \@plus .2ex}%
++  {.8ex \@plus .2ex}{}{\ThesisSpacingPatchFailed}
++
++% A centered abstract heading shared by all editions; no negative offsets.
++\newcommand{\ThesisAbstractHeading}{%
++  \begingroup
++  \renewcommand{\@makeschapterhead}[1]{%
++    \vspace*{12\p@}%
++    {\parindent\z@\centering\normalfont\interlinepenalty\@M
++     \Huge\bfseries ##1\par\nobreak\vskip18\p@}}%
++  \chapter*{Abstract}%
++  \endgroup}
++\makeatother
++
++% Float contents and footnotes retain setspace's single-spacing behavior.
++% Keep figure/table definitions and caption typography unchanged.
++\setlength{\textfloatsep}{14pt plus 2pt minus 4pt}
++\setlength{\intextsep}{10pt plus 2pt minus 2pt}
++\setlength{\floatsep}{10pt plus 2pt minus 2pt}
++
++% Avoid isolated first/last paragraph lines without changing authored text.
++\clubpenalty=10000
++\widowpenalty=10000
++\displaywidowpenalty=10000
++
++% Permit a readable large float to share a page with surrounding prose.
++\renewcommand{\topfraction}{.85}
++\renewcommand{\bottomfraction}{.75}
++\renewcommand{\textfraction}{.1}
++\renewcommand{\floatpagefraction}{.7}

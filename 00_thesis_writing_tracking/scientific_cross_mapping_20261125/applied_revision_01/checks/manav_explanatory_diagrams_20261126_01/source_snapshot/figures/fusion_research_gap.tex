@@ -1,0 +1,45 @@
+% !TeX program = xelatex
+% Full-width research-design figure. Compile from the thesis root.
+\documentclass[12pt]{article}
+\usepackage{fontspec}
+\usepackage[paperwidth=159.2mm,paperheight=92mm,margin=0pt]{geometry}
+\IfFileExists{figures/tikz_style.tex}
+  {\input{figures/tikz_style.tex}}{\input{tikz_style.tex}}
+\pagestyle{empty}
+\begin{document}
+\noindent\begin{tikzpicture}[remember picture,overlay]
+  \begin{scope}[shift={(current page.north west)},x=1mm,y=-1mm,
+    every node/.style={thesis label,anchor=west,inner sep=0pt,outer sep=0pt},
+    code/.style={thesis annotation,text=ThesisBaseline}]
+    \node[font=\bfseries\fontsize{15bp}{18bp}\selectfont] at (2,5)
+      {When does adding a second input help?};
+    \node at (2,14) {In DMAW, fusion raised accuracy from 90.2\% to 96.1\%. On the clean};
+    \node at (2,19) {weld-penetration test, fusion and either input alone reached 100\%.};
+
+    \draw[ThesisBaseline!30,line width=.45bp] (2,25) -- (157,25);
+    \node[code] at (2,31) {R1};
+    \node at (20,31) {Define the target and pair observations from the same event.};
+
+    \draw[ThesisBaseline,line width=.8bp] (2,40) -- (50,40);
+    \draw[ThesisFusion,line width=1.4bp] (56,40) -- (104,40);
+    \draw[ThesisBaseline,line width=.8bp] (110,40) -- (157,40);
+    \node[code] at (2,46) {R2 · SQ1};
+    \node[code] at (56,46) {R3 · SQ2};
+    \node[code] at (110,46) {R4 · SQ3};
+    \node[thesis panel label] at (2,53) {Representation};
+    \node[thesis panel label] at (56,53) {Fusion};
+    \node[thesis panel label] at (110,53) {Reliability};
+    \node[align=left,anchor=north west] at (2,58)
+      {Compare single-input\\representations at a\\stated fitting budget.};
+    \node[align=left,anchor=north west] at (56,58)
+      {Test fusion against the\\best single input on\\the same cases.};
+    \node[align=left,anchor=north west] at (110,58)
+      {Give adaptive and static\\fusion equal training\\exposure to corruption.};
+
+    \draw[ThesisBaseline!30,line width=.45bp] (2,77) -- (157,77);
+    \node[code] at (2,83) {R5 · SQ4};
+    \node at (27,83) {Hold out independent groups. Quantify uncertainty and assess};
+    \node at (27,88) {calibration for probability predictions.};
+  \end{scope}
+\end{tikzpicture}\null
+\end{document}

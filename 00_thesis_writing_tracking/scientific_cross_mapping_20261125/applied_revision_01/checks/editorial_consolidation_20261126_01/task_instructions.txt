@@ -1,0 +1,319 @@
+# Thesis Editorial Consolidation and Formatting Optimization
+
+I want to perform a targeted editorial consolidation of the current thesis manuscript to reduce its unnecessary length and improve reading continuity.
+
+The November 20 manuscript contained 57 pages across Chapters 1–4, whereas the November 26 review export contains 125 pages across the same four chapters.
+
+However, I have already invested considerable effort in manually paraphrasing and refining the current manuscript. Preserving my revised wording is therefore a strict requirement.
+
+This is an editorial consolidation and formatting optimization task, NOT a rewriting task.
+
+## 1. Protected content
+
+Keep the textual content of the following entirely unchanged:
+
+- Abstract.
+- Chapter 1 — Introduction.
+- Chapter 2 — Critical Literature Review, including its current structure, research gap, R1–R5 requirements, citations, figures and tables.
+- Chapters 5–10 and all appendices.
+
+Do not revert any chapter to the November 20 version.
+
+Use the latest November 26 LaTeX source as the authoritative manuscript. The November 20 manuscript may only be consulted to understand its original conciseness and identify unnecessary expansion.
+
+Global formatting improvements may affect the pagination of protected chapters, but their source content must remain unchanged.
+
+## 2. Chapter 3 — Remove unnecessary duplication
+
+Review `03_foundations.tex` carefully and identify paragraphs, sentences, tables and explanations that communicate information already established elsewhere.
+
+Pay particular attention to:
+
+- Repeated explanations of pretrained visual representations and their scientific motivation.
+- Repeated descriptions of RT-DETR's backbone, hybrid encoder and detection components.
+- Statistical sensor features explained individually after their purpose and configuration have already been established.
+- Repeated explanations of PatchTST, temporal information retention and representation complementarity.
+- Lengthy textbook-style explanations of standard prediction models.
+- Repeated explanations of calibration, grouped assessment and leakage prevention that are already covered in Chapter 4.
+- Repeated explanations of the differences between static and adaptive fusion.
+- Section 3.5.7, which largely summarizes fusion mechanisms already explained in Sections 3.5.1–3.5.6 and Table 3.3.
+- Repetition between Section 3.6 and the preceding architectural descriptions.
+- Cases where a table or figure and its surrounding prose communicate substantially identical information.
+
+Prefer retaining the strongest and most informative existing passage and removing the redundant passage.
+
+Where a figure, equation or table already communicates a technical comparison effectively, shorten the surrounding prose rather than explaining every element again.
+
+Retain the six principal sections of Chapter 3. Remove or consolidate additional subsections only where they are demonstrably redundant.
+
+Preserve all consequential technical information, including:
+
+- Actual executed RT-DETR component boundaries.
+- Differences between PHM and REASSEMBLE visual extraction.
+- PatchTST configurations and initialization.
+- Statistical sensor feature definitions.
+- Input and output dimensions.
+- Trainable parameter counts.
+- Exact mathematical fusion formulations.
+- Differences between probabilities, logits and calibrated predictions.
+- Static and adaptive fusion mechanisms.
+- Scientific justification of component selection.
+- Historical selection decisions and their retrospective scientific interpretation.
+- Implementation evidence and limitations.
+- Connections to R1–R5.
+
+Do not remove scientific depth merely to reduce the page count.
+
+## 3. Chapter 4 — Consolidate the subsection structure
+
+Review `04_methodology.tex` with particular attention to excessive fragmentation.
+
+The original Chapter 4 used eleven principal sections. The current version contains approximately 41 section and subsection headings, resulting in unnecessary structural complexity and repeated introductory and concluding passages.
+
+Retain the eleven principal sections, but consolidate most newly introduced subsections into continuous, logically connected prose.
+
+### Section 4.1 — Research Design and Relationship to the Research Questions
+
+Integrate Sections 4.1.1 and 4.1.2 into the main section.
+
+Preserve the relationship between the empirical studies, research questions and R1–R5. Avoid repeating the complete literature-to-study mapping already established in Chapter 2.
+
+### Sections 4.2–4.4 — Dataset Selection, Intel Welding and Dataset Admission
+
+Retain these principal sections.
+
+Remove repetition concerning dataset eligibility, target availability, correspondence and assessment independence.
+
+Preserve the actual scientific reasons behind dataset continuation, restriction and discontinuation.
+
+### Section 4.5 — Target Provenance, Prediction Units, and Available Inputs
+
+Integrate the observation-window and contextual-shortcut subsections into the main section.
+
+Preserve the distinction between retrospective assessment and prospective monitoring, target validity and potential predictive shortcuts.
+
+### Section 4.6 — Grouped Assessment, Data Splits, and Leakage Prevention
+
+Consolidate the five existing subsections where this improves readability.
+
+Retain the exact distinction between outer assessment separation, inner grouped fitting, out-of-fold prediction construction, the original shared prediction-bank dependency, PHM's historical preprocessing concern, assessment cohort reconciliation and repeated assessment exposure.
+
+Do not simplify these distinctions into an inaccurate claim of completely leakage-free or strictly nested evaluation.
+
+Retain a small number of subsection headings if they materially improve comprehension of these complex procedures.
+
+### Section 4.7 — Model Fitting, Selection, Calibration, and Threshold Procedures
+
+Integrate the four subsections into a coherent methodological explanation.
+
+Preserve the distinction between fitting, selection, calibration and threshold determination.
+
+Retain the scientifically important distinction between within-fold ranking and pooled prediction scores.
+
+Remove repeated definitions already established in Chapter 3.
+
+### Section 4.8 — Metrics and Uncertainty Estimation
+
+Consolidate the six existing subsections into a compact structure.
+
+Retain mathematical definitions where available rather than repeating their complete meaning through several paragraphs.
+
+Preserve regression metrics, classification and probability metrics, average precision and its relationship to class prevalence, both-class macro average precision, fold and seed aggregation, paired comparisons, and cluster-bootstrap procedures and their limitations.
+
+Standard metric definitions should remain concise. Task-specific relevance and methodological interpretation are more important than extensive textbook explanations.
+
+### Section 4.9 — Robustness Evaluation Design
+
+Consolidate the five subsections into continuous prose or a small number of meaningful subsections.
+
+Preserve the distinction between known modality absence, degraded but available observations, matched corruption exposure, explicit fallback, adaptive weighting and absolute versus relative performance under degradation.
+
+Remove repeated explanations already established in Chapter 3.
+
+### Section 4.10 — Reproducibility and Experiment Provenance
+
+Consolidate the software environment, verification levels and source-versioning subsections.
+
+Retain all consequential provenance information, citations and the November 24 experimental reporting cutoff.
+
+Where detailed information is already documented in Appendix F or Appendix G, use the existing cross-references instead of repeating it.
+
+### Section 4.11 — Computational Constraints and Exploratory Research Boundaries
+
+Integrate the three existing subsections into a concise methodological conclusion.
+
+Retain computational measurement boundaries, exploratory versus confirmatory interpretation, assessment exposure and the transition to the empirical chapters.
+
+Remove the methodological synthesis where it merely repeats the chapter's preceding content.
+
+## 4. Strict preservation of my paraphrased writing
+
+This is the most important constraint.
+
+- Preserve retained sentences and paragraphs verbatim wherever possible.
+- Do not paraphrase the manuscript again.
+- Do not replace my writing with generic academic or AI-generated prose.
+- Do not introduce stylistic rewrites merely because alternative wording is possible.
+- Do not expand existing paragraphs.
+- Prefer deletion, consolidation and relocation of existing text over generating new text.
+- When removing a paragraph or subsection heading, make only the minimum grammatical or transitional adjustment required to maintain continuity.
+- You may modify the first or last sentence of a retained paragraph where necessary to connect it naturally with the surrounding text.
+- Preserve the original scientific meaning of every retained passage.
+
+The resulting chapters should still read like my current paraphrased manuscript, only without unnecessary duplication and fragmentation.
+
+## 5. Scientific and technical preservation
+
+Do not remove or alter:
+
+- Verified numerical values.
+- Mathematical equations and equation labels.
+- Academic citations and bibliography keys.
+- Internal evidence references and source locators.
+- Important implementation configurations.
+- Experimental protocols.
+- Scientific qualifications and methodological limitations.
+- Distinctions between completed, incomplete and inconclusive experiments.
+- Figures or tables containing unique information.
+- Connections to the original research questions and R1–R5.
+
+If duplicate passages contain different citations or evidence references, consolidate those references into the retained passage.
+
+If a passage contains unique scientific information, retain it even if the surrounding text appears repetitive.
+
+Do not introduce new scientific claims, publications or experimental findings.
+
+## 6. Global LaTeX formatting and spacing optimization
+
+In addition to editorial consolidation, optimize the global document spacing to achieve a more compact, professional and readable scientific thesis.
+
+The existing PDFs use Latin Modern Roman, approximately 12 pt body text, A4 paper, approximately 25.4 mm margins and double line spacing.
+
+First inspect the actual LaTeX document class, preamble, formatting packages, custom macros and any university-specific formatting requirements available in the repository.
+
+Implement the following changes centrally in the existing LaTeX formatting configuration.
+
+### Body typography
+
+- Retain Latin Modern Roman.
+- Retain 12 pt body text.
+- Retain A4 paper size.
+- Retain the existing page margins.
+- Preserve the established citation and bibliography formatting.
+
+### Line spacing
+
+- Change the current double line spacing to one-and-a-half line spacing.
+- Use the document class's supported configuration or `\onehalfspacing` from the `setspace` package, as appropriate.
+- Check for conflicting local or global spacing commands that might override the intended setting.
+- Apply the revised body spacing consistently across the thesis.
+- Preserve appropriate separate spacing for equations, captions, tables, bibliography entries and footnotes.
+
+### Paragraph formatting
+
+- Reduce the existing paragraph indentation of approximately 12.7 mm to approximately 6 mm.
+- Avoid introducing additional blank space between ordinary paragraphs.
+- Preserve paragraph separation and readable text flow.
+- Do not merge unrelated paragraphs simply to save space.
+
+### Chapter, section and subsection headings
+
+- Retain the existing heading font hierarchy and numbering.
+- Moderately reduce excessive vertical whitespace before and after headings.
+- Inspect large chapter-opening gaps and reduce unnecessary whitespace where the document class permits it.
+- Maintain sufficient visual separation between sections.
+- Prevent headings from becoming isolated at the bottom of pages.
+- Do not introduce negative spacing hacks or excessively compressed typography.
+
+### Figures and tables
+
+- Preserve the content and scientific meaning of all retained figures and tables.
+- Review figure placement and surrounding vertical whitespace.
+- Avoid unnecessary full-page figures where the same figure can be presented at a smaller, readable size.
+- Avoid large blank spaces caused by inappropriate float placement.
+- Keep captions, axis labels, legends and mathematical annotations legible.
+- Do not redesign or regenerate the scientific figures as part of this task.
+- Preserve protected chapters' figure and table definitions unless I separately approve a local layout change.
+
+### Formatting constraints
+
+Do not reduce the body font size or narrow the margins merely to achieve a lower page count.
+
+If the available university formatting guidelines explicitly require double spacing or a particular paragraph or heading configuration, do not silently violate those requirements. Identify the conflict and retain the required setting.
+
+If no authoritative guidelines are available, document that the proposed formatting changes remain subject to university approval.
+
+All global formatting changes must be centrally implemented, consistent and reversible.
+
+## 7. Length objectives
+
+The current Chapter 3 contains approximately 32 pages, and Chapter 4 contains approximately 39 pages.
+
+Aim for a substantial reduction through the combined effects of:
+
+- Removing duplicate explanations.
+- Consolidating redundant subsections.
+- Eliminating repeated introductory and concluding passages.
+- Using existing equations, tables and figures efficiently.
+- Reducing global line spacing and excessive vertical whitespace.
+
+Do not enforce an arbitrary page limit at the expense of scientific completeness or preservation of my writing.
+
+Chapter 2 must remain textually unchanged, even if further opportunities for compression are identified.
+
+## 8. Execution and verification
+
+Before editing, preserve an unchanged copy of the current manuscript.
+
+Use the existing revision and integrity-checking infrastructure.
+
+Modify only:
+
+- `03_foundations.tex`
+- `04_methodology.tex`
+- The central LaTeX formatting configuration.
+- Strictly necessary cross-reference infrastructure, if required.
+
+Do not silently modify protected chapter content.
+
+Where possible, separate the editorial consolidation and formatting changes into two traceable revisions so that their individual effects can be measured and independently reverted.
+
+Compile the following three states:
+
+A. Current November 26 baseline.
+
+B. Editorial consolidation of Chapters 3 and 4 using the original formatting.
+
+C. Editorial consolidation with the optimized global formatting.
+
+For each state, record the chapter-wise page counts, word counts and heading counts.
+
+This will distinguish the reduction achieved through content consolidation from the reduction achieved through formatting.
+
+After consolidation and formatting:
+
+- Verify that all consequential scientific information remains present.
+- Verify citation keys, equation labels, figure labels and internal evidence references.
+- Check references to removed or renumbered subsections.
+- Confirm that protected chapter sources remain unchanged using file hashes.
+- Compile the full and review editions.
+- Check for unresolved citations, broken references and formatting problems.
+- Inspect rendered PDF pages for readability, excessive whitespace, poor figure placement and awkward page breaks.
+
+Provide a concise final report identifying:
+
+- Which subsections were merged.
+- Which duplicate explanations were removed.
+- Which unique scientific details were preserved.
+- Which formatting settings were changed.
+- How many pages were saved through editorial consolidation alone.
+- How many additional pages were saved through formatting optimization.
+- Final chapter-wise and complete manuscript page counts.
+
+Provide a traceable revision diff so I can verify that my paraphrased wording has not been unnecessarily modified.
+
+Do not execute new experiments, restart literature discovery, or undertake another broad scientific rewriting exercise.
+
+The objective is editorial compression with scientific fidelity, professional typography and maximum preservation of the existing authored text.
+
+Proceed with the consolidation, formatting optimization and compilation rather than producing another general recommendation report.

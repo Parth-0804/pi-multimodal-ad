@@ -1,0 +1,59 @@
+% Compile from the thesis root with XeLaTeX. This is a conceptual schematic:
+% horizontal distances are not measured action or computation durations.
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\input{figures/tikz_style.tex}
+\usetikzlibrary{patterns}
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm]
+  \path[use as bounding box] (0,0) rectangle (159.20,82);
+  \clip (0,0) rectangle (159.20,82);
+
+  % Both rows share the same action start and completion coordinates.
+  \node[thesis panel label,anchor=west] at (4,76)
+    {Completed-action classification};
+  \node[thesis annotation,anchor=west] at (8,69) {Action start};
+  \node[thesis annotation] at (100,69) {Action completion};
+  \draw[draw=ThesisBaseline,densely dashed,line width=.8bp]
+    (8,54) -- (8,67) (100,54) -- (100,67);
+  \draw[draw=ThesisBaseline,fill=ThesisBaseline!10,line width=.8bp]
+    (8,56) rectangle (100,64);
+  \node[thesis label] at (54,60) {Observation through completion};
+  \draw[draw=ThesisBaseline,fill=white,line width=.8bp]
+    (100,56) rectangle (127,64);
+  \node[thesis label] at (113.5,60) {Computation};
+  \draw[arrow] (127,60) -- (137,60);
+  \fill[ThesisInk] (138,60) circle (.75mm);
+  \node[thesis label] at (138,52) {Prediction};
+  \node[thesis annotation,anchor=west] at (8,47)
+    {Even short computation starts only after the full observation window.};
+
+  \draw[draw=ThesisBaseline!35,line width=.8bp] (4,42) -- (155.2,42);
+  \node[thesis panel label,anchor=west] at (4,36)
+    {Hypothetical early warning};
+  \node[thesis annotation,anchor=west] at (8,29) {Action start};
+  \node[thesis annotation] at (61,29) {Decision cutoff};
+  \node[thesis annotation] at (100,29) {Action completion};
+  \draw[draw=ThesisBaseline,densely dashed,line width=.8bp]
+    (8,18) -- (8,27.5) (100,18) -- (100,27.5);
+  \draw[draw=ThesisBaseline,fill=ThesisBaseline!10,line width=.8bp]
+    (8,18) rectangle (61,25.5);
+  \node[thesis label] at (34.5,21.75) {Observed prefix};
+  \path[fill=ThesisHighlight!10] (61,18) rectangle (100,25.5);
+  \path[pattern=north east lines,pattern color=ThesisBaseline!45]
+    (61,18) rectangle (100,25.5);
+  \draw[draw=ThesisBaseline,line width=.8bp]
+    (61,18) rectangle (100,25.5);
+  \node[thesis annotation,fill=white,inner sep=.8mm] at (80.5,21.75)
+    {Unavailable at cutoff};
+  \draw[draw=ThesisHighlight,line width=1.2bp] (61,15) -- (61,27.5);
+  \draw[draw=ThesisBaseline,fill=white,line width=.8bp]
+    (61,6) rectangle (88,13.5);
+  \node[thesis label] at (74.5,9.75) {Computation};
+  \draw[arrow] (61,18) -- (61,13.5);
+  \draw[arrow] (88,9.75) -- (95,9.75);
+  \fill[ThesisInk] (96,9.75) circle (.75mm);
+  \node[thesis label,anchor=west] at (100,9.75) {Earlier prediction};
+\end{tikzpicture}
+\end{document}

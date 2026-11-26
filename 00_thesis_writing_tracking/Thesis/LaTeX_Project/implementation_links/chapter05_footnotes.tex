@@ -1,0 +1,22 @@
+% Prepared snippets only: this file is NOT input by any manuscript entry point.
+% Insert individually during the authorized Chapter 5 writing review.
+% Starred notes opt in locally; leave ordinary chapter-wide evidence notes off.
+% E127/E129/E130 await publication and are intentionally not included as dead links.
+
+% Proposed boundary: photographic proxy construction (Chapter 5, Sections 5.5 and 5.6.2).
+\ev*{Implementation: photographic condition-proxy construction}{\EvidenceRef[Source code]{E035}{\texttt{measure\_damage\_candidate}; lines 114--194}, \EvidenceRef[Configuration]{E125}{v3 target run}}
+
+% Proposed boundary: visual scalar regression and its implementation defect.
+\ev*{Implementation: visual scalar regression}{\EvidenceRef[Source code]{E033}{\texttt{extract\_features}; lines 73--160}, \EvidenceRef[Recorded implementation limitation]{E024}{timing feature}}
+
+% Proposed boundary: temporal sensor representation.
+\ev*{Implementation: temporal sensor regression}{\EvidenceRef[Patch encoder]{E031}{\texttt{PatchTSTRegressor}; lines 176--267}, \EvidenceRef[Training and reference models]{E032}{\texttt{train\_patchtst}; \texttt{ridge\_predictions}}}
+
+% Proposed boundary: embedding-level fusion of numerical sensor groups.
+\ev*{Implementation: sensor-group feature fusion}{\EvidenceRef[Fusion architecture]{E124}{\texttt{LateFusionRegressor}; lines 58--119}, \EvidenceRef[Principal LOEO configuration]{E126}{separate from fixed-split selection}}
+
+% Proposed boundary: principal leave-one-experiment-out comparison.
+\ev*{Implementation and evidence: principal PHM assessment}{\EvidenceRef[Evaluation]{E028}{fold-specific normalization; lines 227--258}, \EvidenceRef[Configuration]{E126}{principal LOEO run}, \EvidenceRef[Recorded results]{E128}{paired bootstrap and aggregate errors}}
+
+% Proposed boundary: supplementary context-conditioned and alternative fusion.
+\ev*{Implementation: supplementary fusion comparison}{\EvidenceRef[Architectures]{E030}{\texttt{DecisionLevelFusion}; \texttt{ProcessAwareGatedFusion}}, \EvidenceRef[Evaluation limitation]{E029}{normalization before fold rotation; lines 179--225}}

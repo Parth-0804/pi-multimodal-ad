@@ -24,4 +24,10 @@ Old source aliases were removed. Source-path and packaging updates remain
 unfinished; use the [move mapping](../general/docs/repository_history/dataset_layout_cleanup.json)
 when reading historical paths.
 
+## Thesis and evidence
+
+Original application and Appendix G research chronology; existing evidence E018–E019 and E120. The later [foundation review](docs/RESULTS_REVIEW.md) is a NO-GO before new model training because of target, grouping, holdout and support limitations. It does not establish absence of unimodal signal or failure of a trained fusion architecture. The [legacy study](experiments/legacy/README.md) remains a separate historical investigation.
+
+The [research contract](docs/research_contract.md), [foundation configuration](configs/foundations.json), [audit scripts](scripts/) and retained result manifests supply the dataset/input identities, preprocessing probes and decision procedure. See the [thesis-to-code map](../../docs/THESIS_CODE_MAP.md) for current browsing paths and the limits of historical source correspondence.
+
 [All implementations](../README.md) · [Repository map](../../REPO_MAP.md)

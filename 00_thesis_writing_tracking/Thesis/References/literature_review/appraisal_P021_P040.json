@@ -1,0 +1,1303 @@
+{
+  "review_date": "2026-11-18",
+  "status": "complete focused full-text appraisal; no experimental reproduction",
+  "scope": "P021–P040:19 unique works; P039 is an exact duplicate of P038 and is not a twentieth study.",
+  "governing_context": {
+    "sources_read": [
+      "source_context/revision_pack/00_READ_FIRST.md",
+      "source_context/revision_pack/01_ORIGINAL_EXPOSE.pdf, all9pages, especiallypp2–7",
+      "source_context/revision_pack/01_EXPOSE_ALIGNMENT_DECISION.md",
+      "source_context/revision_pack/01_RESEARCH_CHARTER.md, current wording",
+      "source_context/revision_pack/02_THESIS_WRITING_MAP_v3.md, narrative/scope and main evidence sections",
+      "source_context/revision_pack/02_THESIS_BASELINE_REPORT.md, intent,implementation,comparisons and answer boundaries"
+    ],
+    "interpretation": "Architecture/representation/fusion design remains central. Preserve originalSQ1–SQ4; positive adaptive superiority is not required. Physical camera+machine telemetry, visual-acoustic, RGB–geometry and transformed-signal views remain separate. AcceptedPHM/REASSEMBLEtransition is not reopened. No new training/inference performed."
+  },
+  "coding_boundary": "NOT_ESTABLISHED means not demonstrated in inspected methods/results, not proof of universal omission. Input-subset retraining/ablation, complete inference absence, synthetic present-but-corrupt inputs and statistical distribution shift are different regimes. Confidence judgments are informal methodological appraisals.",
+  "primary_update_checks": [
+    {
+      "date": "2026-11-18",
+      "kind": "direct primary landing-page opens; no new discovery query",
+      "urls": [
+        "https://arxiv.org/abs/2511.01320",
+        "https://arxiv.org/abs/2607.11170",
+        "https://arxiv.org/abs/2603.22372"
+      ],
+      "finding": "Pages read: OmniFuser onlyv1; TC-MAFv1 with authorcommentacceptedACMMM2026; constrainedfusionv3 with KDDMILETS2026comment. No visible correction/withdrawal notice on these pages; this is not an exhaustive notice audit."
+    },
+    {
+      "date": "2026-11-18",
+      "kind": "direct DOI opens",
+      "urls": [
+        "https://doi.org/10.1080/10589759.2025.2572395",
+        "https://doi.org/10.1109/TIM.2021.3132051",
+        "https://doi.org/10.3390/app16115483",
+        "https://doi.org/10.1109/IECON51785.2023.10312522",
+        "https://doi.org/10.71465/csb170"
+      ],
+      "finding": "TIM DOI resolves to IEEE9657483 page; others inaccessible to browsing tool. Supplied publisher PDFs are the substantive evidence. No correction absence claim inferred."
+    }
+  ],
+  "papers": [
+    {
+      "file_id": "P021",
+      "role": "direct industrial",
+      "SQ_links": [
+        "SQ1",
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1,3–12; methods and evaluation, Tables IV–V and Fig.13; p11 tables visually checked",
+      "target_unit": "Milling-tool wear-state sequence and future cutting-force sequence over forecasting horizons; MATWI and author-named Mudestreda.",
+      "physical_modalities": "Tool inspection camera images plus cutting-force measurements. Images taken after a cutting pass are repeated across that pass's sensor readings (p8); these are physical camera and machine measurements, not two transforms of one signal.",
+      "fusion": "Intermediate shared/private decomposition, proxy cross-attention, hybrid feature gates, low-rank fusion and recursive residual refinement (pp4–7). The gate blends shared/private features, not calibrated per-modality failure probabilities.",
+      "unimodal_controls": {
+        "strength": "Partial: time-series-only models and multimodal alternatives; no equally budgeted same-encoder image-only/sensor-only pair is established.",
+        "locator": "p8 baseline description; p11 Tables IV–V. CDA/MBT/LMF/TFN replace C2F while other components are said to remain fixed."
+      },
+      "split_and_independence": "p8 describes 720 MATWI sequences/six tools and per-pass replication. A tool-disjoint or chronological train/validation/test partition, validation size and seed uncertainty are not specified in the inspected evaluation. Within-pass replication is not by itself protection from cross-split dependence.",
+      "robustness": {
+        "missing": "Authors claim modality dropout and inference masking in p10 discussion, without a numerical missing-modality table or severity protocol. Count as CLAIMED_WITHOUT_QUANTIFIED_TEST, not verified missingness performance.",
+        "noisy": "Dataset disturbance descriptions and anti-contamination rationale; no isolated input-noise sweep is quantified.",
+        "shifted": "Two datasets and varying forecasting horizons; target access/splits are not defined sufficiently to establish held-out cross-tool/domain transfer. Temporal drift rhetoric is not a controlled clock-shift test."
+      },
+      "results": [
+        {
+          "claim": "MATWI horizon12: OmniFuser MSE/MAE .050/.050, versus TimeKAN .051/.043 and FEDformer .049/.357; benchmark advantage is metric-dependent.",
+          "locator": "PDF p11 Table IV, visually checked"
+        },
+        {
+          "claim": "Mudestreda horizon12: OmniFuser classification accuracy .886, TimePFN .897 and TimesFM .934. This contradicts an unqualified claim of winning every reported setting, but is not an isolated causal test of adding images.",
+          "locator": "PDF p11 Table V, visually checked"
+        },
+        {
+          "claim": "Ablation average MSE full .5749, replacing C2F with concatenation .7255.",
+          "locator": "PDF p12 Fig.13"
+        }
+      ],
+      "uncertainty_and_limits": "No intervals or repeated-fit dispersion for main comparisons. Post-pass imaging and future-target alignment need a precise observation-time contract before online prognostic use. Service encapsulation/power/field-deployment claims exceed the supplied measured comparison.",
+      "authors_claim": "Consistent predictive superiority, noise-contamination control and strong partial-absence robustness.",
+      "reviewer_interpretation": "A close prior for physical camera+force adaptive fusion and process-period context. It defeats a broad absence/first-use claim, while its incomplete split and robustness reporting limits strong reliability conclusions.",
+      "access": "Supplied 13-page arXiv v1. No training, code execution or dataset reinspection. Repository landing page checked 2026-11-18 and lists only v1.",
+      "decision": "retain with qualifications",
+      "reason": "Directly relevant to original architecture/SQ2 and camera+machine-sensor scope; treat absence/noise claims as unquantified.",
+      "identity": {
+        "title": "OmniFuser: Adaptive Multimodal Fusion for Service-Oriented Predictive Maintenance",
+        "authors": [
+          "Ziqi Wang",
+          "Hailiang Zhao",
+          "Yuhao Yang",
+          "Daojiang Hu",
+          "Cheng Bao",
+          "Mingyi Liu",
+          "Kai Di",
+          "Schahram Dustdar",
+          "Zhongjie Wang",
+          "Shuiguang Deng"
+        ],
+        "year": 2025,
+        "publication_title": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "2511.01320",
+        "arxiv_version": "v1",
+        "canonical_arxiv_doi": "10.48550/arXiv.2511.01320",
+        "date": "2025-11-03",
+        "volume": null,
+        "issue": null,
+        "pages": null,
+        "article_number": null,
+        "doi_provenance": "no publisher DOI observed in front matter"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2511.01320v1.pdf",
+      "pdf_sha256": "88d49fcf7cb42472036edf2f9e956b1f3e532da6febef1683eec7873481b4967",
+      "read_version": "2511.01320 v1",
+      "citation_key": "P021",
+      "text_sha256": "65532311adddc9e5dac7c38d3c771d8cdcabb3b7bdc1209456accb84f6ca57b7"
+    },
+    {
+      "file_id": "P022",
+      "role": "TRANSFERABLE (non-industrial)",
+      "SQ_links": [
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1–9, especially §§3–4 and Tables1–5",
+      "target_unit": "Sample-level image/text sentiment, audio/video emotion/action classification and tri-modal sentiment prediction on five public non-industrial benchmarks.",
+      "physical_modalities": "Image/text; audio/video; text/audio/video. No industrial telemetry.",
+      "fusion": "Uncertainty-dependent feature weighting adjusted for modality dependency measured by differences between full and ablated logits. Noise estimator is supervised using injected Gaussian intensities; clean representation pretraining precedes noise-aware training (pp3–5).",
+      "unimodal_controls": {
+        "strength": "Limited for best-unimodal comparison: main tables compare fusion methods, not a matched independently trained best-unimodal suite.",
+        "locator": "pp6–8 Tables1–5; ablated logits also train L_uni in Eq14 but are not independent unimodal baseline evidence."
+      },
+      "split_and_independence": "Uses established benchmark settings/features. Detailed identities/group-level independence and repeated-seed uncertainty are not supplied in the inspected settings. Total epochs are said matched across methods (p6).",
+      "robustness": {
+        "missing": "Ablation is used to calculate dependency. No quantified unexpected missing-modality inference test in the inspected experiments.",
+        "noisy": "TESTED: 50% corrupted samples/modalities, salt and Gaussian noise at reported epsilon5/10; wording differs between table caption and body. Gaussian-trained estimator tested on salt noise.",
+        "shifted": "Cross-noise-type intervention only; five separately evaluated benchmarks do not establish industrial domain transfer."
+      },
+      "results": [
+        {
+          "claim": "CREMA-D clean accuracy70.02; Gaussian epsilon10 accuracy62.96 versus late fusion47.00 and LDDU56.14.",
+          "locator": "PDF p7 Table3"
+        },
+        {
+          "claim": "For 50% Gaussian epsilon5 corruption on CREMA-D, full67.53 versus64.60 without noise-aware estimator and64.10 without dependency calculator.",
+          "locator": "PDF p7 Table4"
+        }
+      ],
+      "uncertainty_and_limits": "No main-result confidence intervals. Noise-intensity estimation is not calibrated predictive probability. Authors acknowledge tail/sample difficulty can be mistaken for modality noise and over-suppressed (p9). Additional shared-module forward passes have computation cost even without added parameters.",
+      "authors_claim": "Conventional dynamic fusion can underperform static fusion because uncertainty and learned dependence are biased; UDML corrects both.",
+      "reviewer_interpretation": "Useful counterargument to assuming uncertainty weights automatically measure quality. Retain the intervention/ablation logic, not universal or industrial superiority.",
+      "access": "Supplied arXiv2603.19681v1; full methods/results appraised, no reproduction.",
+      "decision": "background/transferable methods",
+      "reason": "Directly relevant reliability mechanism and negative dynamic-fusion rationale, with non-industrial task boundary.",
+      "identity": {
+        "title": "Unbiased Dynamic Multimodal Fusion",
+        "authors": [
+          "Shicai Wei",
+          "Kaijie Zhang",
+          "Luyi Chen",
+          "Tao He",
+          "Guiduo Duan"
+        ],
+        "year": 2026,
+        "publication_title": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "2603.19681",
+        "arxiv_version": "v1",
+        "canonical_arxiv_doi": "10.48550/arXiv.2603.19681",
+        "date": "2026-03-20",
+        "volume": null,
+        "issue": null,
+        "pages": null,
+        "article_number": null,
+        "doi_provenance": "no publisher DOI observed in front matter"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2603.19681v1.pdf",
+      "pdf_sha256": "1e277ed69fac61b7729152a0b026532b7fe7765cc302eac6bd0dc152ac52581a",
+      "read_version": "2603.19681 v1",
+      "citation_key": "P022",
+      "text_sha256": "8cc65ce4ee40cc881cb2f8ef7990220fb740fbca44c21d9743973a850f9c32e9"
+    },
+    {
+      "file_id": "P023",
+      "role": "TRANSFERABLE (non-industrial)",
+      "SQ_links": [
+        "SQ1",
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1–8; Appendix experimental protocol on p12 and toy-data protocol p13; Table4 visually checked. Remaining appendix grids not independently reanalysed.",
+      "target_unit": "Forecast horizon of numerical time series paired with textual context; nine Time-MMD domains,14 TS backbones,4 text encoders,4 horizons.",
+      "physical_modalities": "Numerical time series and textual context, not physical industrial video+telemetry.",
+      "fusion": "Early/intermediate/last additive and concatenation alternatives versus gating, FiLM, orthogonal correction and CFA low-rank residual text adapter. Text encoders frozen (pp3–4).",
+      "unimodal_controls": {
+        "strength": "Strong within-task structural reference: same time-series backbone with text removed; each configuration explores10 learning-rate multipliers. Added parameters/optimization differ across methods.",
+        "locator": "pp3–4 Tables2–4; p12 Appendix D"
+      },
+      "split_and_independence": "Chronological7:1:2 train/validation/test (p12). Main text reports best of10 LR configurations; p12 supplies training recipe. Many settings share datasets/backbones and are not independent studies. No industrial grouped-failure estimand.",
+      "robustness": {
+        "missing": "Not a modality-dropout study in inspected experiments; w/o-text is a baseline configuration.",
+        "noisy": "Irrelevant/contradictory textual content tested; cross-domain replacement text in Fig5 and synthetic three-type toy dataset (pp6–7,p13). This is semantic corruption, not sensor SNR.",
+        "shifted": "Temporal holdout and mismatched-text intervention; no industrial cross-machine evaluation."
+      },
+      "results": [
+        {
+          "claim": "PatchTST Traffic, averaged over four horizons: unimodal MSE .199, last concatenation .744, CFA .201. Thus even CFA need not beat unimodal in every setting.",
+          "locator": "PDF p4 Table4, visually checked"
+        },
+        {
+          "claim": "DLinear Energy: unimodal .263, first concatenation .670 and CFA .243 MSE.",
+          "locator": "PDF p4 Table4, visually checked"
+        },
+        {
+          "claim": "Overall normalized MSE .349 without fusion, .484/.364/.621 for first/middle/last concatenation and .256 for CFA. These are author-normalized aggregated summaries, not a raw cross-dataset physical effect.",
+          "locator": "PDF p5 Fig.3(d)"
+        }
+      ],
+      "uncertainty_and_limits": "Best-setting selection and repeated settings require caution; averages and win rates do not prove universal gains. Proposed interpretation of filtering irrelevant text remains empirical. Authors explicitly leave vision/tabular extension for future work (p8).",
+      "authors_claim": "Naive fusion often underperforms unimodal models; constrained integration is more stable.",
+      "reviewer_interpretation": "A substantial negative-finding source for fair unimodal controls and restricted correction. Transfer of CFA to physical video/sensor data is a design idea, not verified by this paper.",
+      "access": "Supplied75-page arXiv2603.22372v3,2026-07-15. Primary arXiv landing page checked2026-11-18; it retains shorter title without 'Forecasting', same identifier/authors, and reports KDD MILETS2026 workshop. Same work as RIY3IAEV.",
+      "decision": "retain as explicitly transferable negative evidence",
+      "reason": "Prevents assuming more modalities or constrained fusion always win; do not count75-page appendix as separate experiments/studies.",
+      "identity": {
+        "title": "Rethinking Multimodal Fusion for Time Series Forecasting: Text Modalities Need Constrained Fusion",
+        "authors": [
+          "Seunghan Lee",
+          "Jun Seo",
+          "Jaehoon Lee",
+          "Sungdong Yoo",
+          "Minjae Kim",
+          "Tae Yoon Lim",
+          "Dongwan Kang",
+          "Hwanil Choi",
+          "SoonYoung Lee",
+          "Wonbin Ahn"
+        ],
+        "year": 2026,
+        "publication_title": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "2603.22372",
+        "arxiv_version": "v3",
+        "canonical_arxiv_doi": "10.48550/arXiv.2603.22372",
+        "date": "2026-07-15",
+        "volume": null,
+        "issue": null,
+        "pages": null,
+        "article_number": null,
+        "doi_provenance": "no publisher DOI observed in front matter"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2603.22372v3.pdf",
+      "pdf_sha256": "31b0dee1f0d55bbe8994b3cdfb5c2af85af05ffab6d68038528a6f56bda78cfb",
+      "read_version": "2603.22372 v3",
+      "citation_key": "P023",
+      "text_sha256": "f62248d75d18afa7bc7414fc162cf7e44d15496cac5fa1c787046c99c4675067"
+    },
+    {
+      "file_id": "P024",
+      "role": "direct industrial inspection",
+      "SQ_links": [
+        "SQ1",
+        "SQ2",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.3–12 methods/experiments/limitations; TableI p7 visually checked; TableIII p9 read",
+      "target_unit": "Object image/scan and pixel-level surface anomaly localization on MVTec3D-AD and synthetic Eyecandies.",
+      "physical_modalities": "RGB and geometric acquisition. Depth, derived point clouds and normals are representations of the same geometric source, not three independent physical sensors or machine time series.",
+      "fusion": "RGB/depth channel concatenation plus geometry-conditioned feature attention using point coordinates/normals, subspace restriction/reconstruction and multi-level geometric injection into PCUnet (pp4–7).",
+      "unimodal_controls": {
+        "strength": "Useful own RGB/3D/combined configurations plus literature baseline values; same resource/capacity equality not established.",
+        "locator": "p7 TableI; p8 explicitly says comparator data from original publications"
+      },
+      "split_and_independence": "Known-category normal-data benchmark; point expert pretrained on20 randomly selected samples/category from all categories, category-specific best-performing parameters selected during training (p8). Selection criterion/bank independence not fully described. Synthetic anomaly-generation/mask reconstruction is part of training, distinct from physical labelled anomaly training.",
+      "robustness": {
+        "missing": "No quantified missing-modality test in inspected results; RGB-only/3D-only configurations are not unexpected dropout evidence.",
+        "noisy": "Noise-removal motivation and feature generation do not establish a sensor corruption sweep.",
+        "shifted": "Eyecandies separate-dataset benchmark with target normal-data fitting, not demonstrated zero-shot cross-machine transfer."
+      },
+      "results": [
+        {
+          "claim": "Own MVTec3D TableI means I-AUROC/AUPRO: RGB92.3/95.1%,3D95.2/92.0%,RGB+3D98.9/97.7%.",
+          "locator": "PDF p7 TableI, visually checked"
+        },
+        {
+          "claim": "Eyecandies mean I-AUROC91.2%, versus reported3DSR90.9%; class-specific losses also occur.",
+          "locator": "PDF p9 TableIII"
+        }
+      ],
+      "uncertainty_and_limits": "No independent multi-run uncertainty for headline comparisons. Some comparator values are borrowed; segmentation comparison has missing source values. The authors themselves state that hardware/realtime requirements remain unmet and propose compression (p12).",
+      "authors_claim": "Geometry prior improves multimodal detection and segmentation; describes three modality views in synthesis.",
+      "reviewer_interpretation": "Evidence for geometry-based feature fusion, not physical video+machine-sensor fusion. Do not infer failure robustness from geometric attention or representation count.",
+      "access": "Supplied arXiv2603.22757v1; benchmark tables and methods read, no code or model execution.",
+      "decision": "retain in RGB–geometry stratum",
+      "reason": "Relevant fusion/representation comparator with acquisition-count and protocol qualifications.",
+      "identity": {
+        "title": "Multimodal Industrial Anomaly Detection via Geometric Prior",
+        "authors": [
+          "Min Li",
+          "Jinghui He",
+          "Gang Li",
+          "Jiachen Li",
+          "Jin Wan",
+          "Delong Han"
+        ],
+        "year": 2026,
+        "publication_title": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "2603.22757",
+        "arxiv_version": "v1",
+        "canonical_arxiv_doi": "10.48550/arXiv.2603.22757",
+        "date": "2026-03-24",
+        "volume": null,
+        "issue": null,
+        "pages": null,
+        "article_number": null,
+        "doi_provenance": "no publisher DOI observed in front matter"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2603.22757v1.pdf",
+      "pdf_sha256": "c2e1189a4c78f053dc35200629d4372916c1dedf920ec4a87becf37e91117701",
+      "read_version": "2603.22757 v1",
+      "citation_key": "P024",
+      "text_sha256": "ce7dab7816f8b38255863c23c8f8578fed6252161323571ceae743ffe98781f4"
+    },
+    {
+      "file_id": "P025",
+      "role": "direct industrial inspection",
+      "SQ_links": [
+        "SQ1",
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.3–9 methods/training/benchmark/results; TableII p7 visually checked",
+      "target_unit": "Object/sample detection, anomaly mask and generated four-field defect report on constructed12K instruction data and2K evaluation benchmark.",
+      "physical_modalities": "RGB, heterogeneous sensor-derived2D images (infrared or pseudo3D) and point clouds. Eyecandies point clouds are reconstructed from depth (p6 footnote). No raw machine-sensor time-series branch is established.",
+      "fusion": "2D attention/slot representation, bidirectional2D–3D cross-attention, LLaMA3.2 report decoder with rank8 LoRA, text→slots→pixels grounding and supervised/RL fine-tuning (pp3–6).",
+      "unimodal_controls": {
+        "strength": "Partial: own RGB-only/input-combination rows plus other detectors/MLLMs; differing supervision and output capabilities complicate method comparisons.",
+        "locator": "p7 TableII; p8 protocol. Whether subset-input rows use a common checkpoint versus separately trained configurations is not explicit."
+      },
+      "split_and_independence": "Authors report category-disjoint and instance-disjoint shared Real-IAD D3 sources;12K training includes labelled reports and masks.2K benchmark has1000Real-IAD D3 and1000MulSen AD. Cross-dataset test trains Real-IAD D3 only and evaluates MulSen subset (pp6,8–9). Independent manifests not inspected.",
+      "robustness": {
+        "missing": "INPUT_SUBSET_ABLATION reported as missingness: RGB-only78.5% accuracy/83.3F1 versus full82.4/87.8. Training/exposure and exact masking/routing policy not clear enough to call unexpected outage robustness.",
+        "noisy": "No controlled sensor-noise or image-corruption severity study in inspected experiments.",
+        "shifted": "Reported category-disjoint and strict Real-IAD→MulSen benchmark transfer; not cross-machine telemetry drift."
+      },
+      "results": [
+        {
+          "claim": "Full RGB+S+PC:82.4 accuracy,87.8F1,97.6P-AUROC,77.6Dice; RGB-only:78.5,83.3,93.7,73.2 respectively (percent).",
+          "locator": "PDF p7 TableII, visually checked"
+        },
+        {
+          "claim": "Strict cross-dataset table: full86.2F1/75.5Dice/99.0schema-valid/92.2NLI.",
+          "locator": "PDF p9 TableIV"
+        },
+        {
+          "claim": "Removing slots reduces Dice77.6→52.3 and P-AUROC97.6→78.3.",
+          "locator": "PDF p9 TableV"
+        }
+      ],
+      "uncertainty_and_limits": "Report confidence field/schema compliance is not measured predictive calibration. NLI and coarse-to-final-mask overlap measure self-consistency, not independent physical correctness. No repeated-seed intervals; custom benchmark/source annotations require provenance. 'Zero-shot' is relative to held-out categories/datasets, not no anomaly-supervised training.",
+      "authors_claim": "Auditable physically grounded reporting and graceful degradation under absent modalities.",
+      "reviewer_interpretation": "Useful for SQ4's explanation/output evaluation boundary; multiple image types must not be coded as video+machine telemetry. Generated explanations are not demonstrated causal defect explanations.",
+      "access": "Supplied arXiv2604.17949v1; no benchmark downloads or code execution.",
+      "decision": "retain qualified inspection/context source",
+      "reason": "Addresses fusion, modality subsets and structured outputs while differing materially from lightweight failure-monitoring prototype.",
+      "identity": {
+        "title": "ZSG-IAD: A Multimodal Framework for Zero-Shot Grounded Industrial Anomaly Detection",
+        "authors": [
+          "Qiuhui Chen",
+          "Jiaxiang Song",
+          "Shuai Tan",
+          "Weimin Zhong"
+        ],
+        "year": 2026,
+        "publication_title": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "2604.17949",
+        "arxiv_version": "v1",
+        "canonical_arxiv_doi": "10.48550/arXiv.2604.17949",
+        "date": "2026-04-20",
+        "volume": null,
+        "issue": null,
+        "pages": null,
+        "article_number": null,
+        "doi_provenance": "no publisher DOI observed in front matter"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2604.17949v1.pdf",
+      "pdf_sha256": "d3aa146c2cfc5f93e78dbecb2db1cd01d165183bfb83ac464c63cd37d07fe906",
+      "read_version": "2604.17949 v1",
+      "citation_key": "P025",
+      "text_sha256": "69593f035d4651316e9381f1f7ee577cc63ce4d1cc2a2a5b2ede635797e6fd86"
+    },
+    {
+      "file_id": "P026",
+      "role": "direct industrial inspection",
+      "SQ_links": [
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1–8,10–13; Eq2–4, Tables1–6,15–16; Table3 p7 visually checked",
+      "target_unit": "Known-category image-level anomaly scoring and pixel localization on MVTec3D-AD/Eyecandies.",
+      "physical_modalities": "RGB and geometry; multimodal base, RGB reconstruction and cross-modal consistency are evidence branches, not three independent physical modalities. No machine telemetry.",
+      "fusion": "Base-anchored convex pixel-map mixture: training-dispersion scalar scales RGB auxiliary contribution, local disagreement releases bounded correction, small CMC contribution; top0.5% map readout (pp3–5).",
+      "unimodal_controls": {
+        "strength": "Useful same-evidence fusion alternatives and source ablations; RGB/3D own configurations, but model resources differ. The base-only source remains multimodal.",
+        "locator": "pp6–8 Tables1,3,5; p12 Table15"
+      },
+      "split_and_independence": "Normal-only known-category benchmark training. Default category-specific normal-score statistics, pooled variant tested; no class-specific fusion hyperparameters. Eyecandies uses same rule with dataset calibration/normal training access, not frozen zero-shot deployment.",
+      "robustness": {
+        "missing": "TESTED_COMPLETE_ABSENCE: missing3D inference row in Table3; exact missing-branch implementation/routing is not fully detailed. This is one complete-absence setting, not arbitrary dropout rates.",
+        "noisy": "No explicit acquisition-noise severity experiment in inspected results. Disagreement and calibration are reliability cues rather than demonstrated physical-noise estimators.",
+        "shifted": "Eyecandies benchmark with shared formula and target training statistics; backbone/auxiliary substitutions test architectural portability, not operating-condition drift."
+      },
+      "results": [
+        {
+          "claim": "Full I-AUROC.9788/P-AUPRO.9901; missing3D.9330/.9586.",
+          "locator": "PDF p7 Table3, visually checked"
+        },
+        {
+          "claim": "Same-evidence static pixel mean.9488 and learned logistic gate.9571 I-AUROC; removing TDC.9709.",
+          "locator": "PDF p7 Table3, visually checked"
+        },
+        {
+          "claim": "Standalone RGB reconstruction.924 versus multimodal base.955 and full.979 I-AUROC.",
+          "locator": "PDF p12 Table15"
+        }
+      ],
+      "uncertainty_and_limits": "No repeated-fit intervals; ten-category correlations are exploratory, not reliability certification. 'Confidence' is a training-dispersion proxy, not probability calibration. Headline0.1percentage-point lead over3DSR must not be called statistically established.",
+      "authors_claim": "Bounded fusion contributes more than calibration; useful under missing3D and alternate components.",
+      "reviewer_interpretation": "Important counterexample to absence of reliability-aware/missing-modality industrial fusion; separate RGB–geometry scope from physical camera+telemetry.",
+      "access": "Supplied arXiv2607.11170v1. Primary arXiv page checked2026-11-18 lists v1 and author comment 'accepted by ACM MM2026'. PDF still has Conference'17 placeholder running header; do not treat that as venue/date.",
+      "decision": "retain with high topical relevance, provisional publication metadata",
+      "reason": "Actual controlled evidence sources, gates and complete-absence row narrow proposed gaps.",
+      "identity": {
+        "title": "TC-MAF: Train-Calibrated Bounded Multi-Evidence Fusion for Multimodal Industrial Anomaly Detection",
+        "authors": [
+          "Ming Deng",
+          "Sijin Sun",
+          "Xiaochuan Hu",
+          "Xing Wu"
+        ],
+        "year": 2026,
+        "publication_title": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "2607.11170",
+        "arxiv_version": "v1",
+        "canonical_arxiv_doi": "10.48550/arXiv.2607.11170",
+        "date": "2026-07-13",
+        "volume": null,
+        "issue": null,
+        "pages": null,
+        "article_number": null,
+        "doi_provenance": "no publisher DOI observed in front matter"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2607.11170v1.pdf",
+      "pdf_sha256": "f3785c9192b92ce1b76d808f1c9cdf9076ce0816c73bb611d549451c11ebcb42",
+      "read_version": "2607.11170 v1",
+      "citation_key": "P026",
+      "text_sha256": "1e7ed6991e9b83c2b89e1d741e17ed61528ca8d4fb89e597b129b7d15434fa3d"
+    },
+    {
+      "file_id": "P027",
+      "role": "direct industrial claim, limited auditability",
+      "SQ_links": [
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1–9 methods/results/limitations; reference list inspected for provenance context",
+      "target_unit": "Four-class induction-motor/pump fault classification; author-reported10,000 balanced samples on custom rig.",
+      "physical_modalities": "Microphone audio, accelerometer vibration and phaseA current transducer; mel/CWT images are transforms, not camera inputs.",
+      "fusion": "ResNet18 audio/vibration encoders and1D current CNN, pairwise bidirectional cross-attention plus original features. Random training modality dropout p=.2, zero replacement (pp4–6).",
+      "unimodal_controls": {
+        "strength": "Reported unimodal and softmax late-voting controls; early fusion discussed but not in main performance Table2. Augmentation/capacity matching unspecified.",
+        "locator": "pp7–8 Tables2–3"
+      },
+      "split_and_independence": "No train/validation/test sizes or run/session split, window segmentation contract, seeds or uncertainty supplied in inspected methods/results. Custom data/code availability is not established sufficiently for independent checking.",
+      "robustness": {
+        "missing": "TESTED_COMPLETE_ABSENCE as author report: single modality zeroed, three leave-one-stream-out settings. Exposure-matched static comparison not established.",
+        "noisy": "Authors explicitly reserve random noise/drift rather than silence for future work (p9). No numerical noisy-modality sweep.",
+        "shifted": "No cross-machine/operating-condition holdout established."
+      },
+      "results": [
+        {
+          "claim": "Reported clean accuracy97.8 versus vibration-only92.1 and late voting93.4%.",
+          "locator": "PDF p7 Table2"
+        },
+        {
+          "claim": "No vibration:89.2% versus concatenation65.4; no audio96.5 and no current96.1%.",
+          "locator": "PDF p8 Table3"
+        }
+      ],
+      "uncertainty_and_limits": "Numbers are author-reported, not independently reproducible from supplied protocol. p8 announces a confusion matrix, while p9 labels the figure conceptual t-SNE. Dropout benefit is asserted without a matching no-dropout same-architecture ablation. Do not turn this reporting weakness into an allegation about authenticity.",
+      "authors_claim": "Cross-attention and modality dropout provide operational stability and permit extended maintenance intervals.",
+      "reviewer_interpretation": "The supplied paper supports describing a proposed architecture and its reported results, but not a strong empirical reliability claim or maintenance/safety outcome. Empirical auditability is substantially weaker than P028/P029/P026.",
+      "access": "Supplied publisher-style11-page article, DOI10.71465/csb170; DOI landing page inaccessible in browsing check2026-11-18. No independent dataset/code inspection.",
+      "decision": "background only; exclude from strong quantitative synthesis",
+      "reason": "Missing split, uncertainty and reproducibility details prevent using its percentages as decisive evidence for SQ3.",
+      "identity": {
+        "title": "Robust Multimodal Fusion for Audio–Vibration–Current Signals Using Cross-Attention with Missing-Modality Handling",
+        "authors": [
+          "Xiaoyan Zheng"
+        ],
+        "year": 2025,
+        "publication_title": "Computer Science Bulletin",
+        "doi": "10.71465/csb170",
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2025-12-28",
+        "volume": "8",
+        "issue": "01",
+        "pages": "385-395",
+        "article_number": null,
+        "doi_provenance": "existing DOI plus independent Crossref metadata"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\385-395.pdf",
+      "pdf_sha256": "2b83fc3e96511eeaa661549537f6b610c6ff6b6d08aba2c12924243eb33bc6d3",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P027",
+      "text_sha256": "435063c3ee5283b2553b9212c702fff7f2830ac515d29392a7c3776b0ae02faa"
+    },
+    {
+      "file_id": "P028",
+      "role": "dataset and direct robotics application",
+      "SQ_links": [
+        "SQ1",
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.2–7; TablesII–VI, Fig3; TableIII/IV/V p7 visually checked",
+      "target_unit": "Five-class outcome of completed robot↔human handover trial, plus auxiliary per-frame action segmentation.",
+      "physical_modalities": "Robot-mounted RGB video (optical flow derived from it), force/torque and gripper state. Full joint states are available in dataset but baseline predictors focus onF/T and gripper. Kinova wristF/T is derived from joint torques; HSR has wrist transducer (p4 footnote).",
+      "fusion": "I3D prediction-level late fusion versus intermediate sensor-feature fusion into RGB/flow streams; MSTCN concatenated features, process-action progress resampling and auxiliary action tasks (pp5–6).",
+      "unimodal_controls": {
+        "strength": "Relatively strong within-study input ablations and fusion variants, five trained repetitions; architecture/loss differences still need separation.",
+        "locator": "p7 TableIII"
+      },
+      "split_and_independence": "589 trials,17participants,22object classes,two robots; official participant-disjoint337/101/151 train/validation/test, validation for HPO/early stopping (p4). Completed-trial classification; do not transfer these counts to implementation's filtered587 cohort.",
+      "robustness": {
+        "missing": "Input-subset models evaluate modality contributions, not unexpected test-time missingness handling.",
+        "noisy": "No controlled camera/sensor corruption study in inspected experiments.",
+        "shifted": "TESTED cross-robot train-one/test-other, with target robot excluded from fitting in that arm. Different acquisition semantics/appearance persist; no universal field-shift claim."
+      },
+      "results": [
+        {
+          "claim": "Video-only I3D64.8±3.3%; video+F/T I3D-D69.1±1.5; all video+F/T+gripper67.9±3.3. Added gripper is not uniformly beneficial.",
+          "locator": "PDF p7 TableIII, visually checked"
+        },
+        {
+          "claim": "MSTCN-A all modalities plus human-action task71.4±1.8% versus corresponding video-only63.8±4.8.",
+          "locator": "PDF p7 TableIII rows14/20, visually checked"
+        },
+        {
+          "claim": "TrainToyota/testKinova MSTCN-A56.3±3.2%, versus trainToyota/testToyota70.1±2.2.",
+          "locator": "PDF p7 TableV, visually checked"
+        }
+      ],
+      "uncertainty_and_limits": "Displayed dispersion is standard deviation of five trainings, not independent participant-sampling CI. Failures instructed/staged; single action annotator; authors explicitly say all baselines classify only after complete trial, not immediate causal alarms (p7). Human action predictions' interpretability is future research.",
+      "authors_claim": "Video is essential; F/T adds benefit; multimodal action segmentation supports failure analysis.",
+      "reviewer_interpretation": "A very close prior for comparative physical video+machine-sensor pipelines and process context. Supports adapted offline task framing and the distinction between sensor failure and monitored task failure.",
+      "access": "Supplied arXiv2402.18319v2/publisher-associated ICRA2024 article; dataset/code links printed, no execution.",
+      "decision": "retain as central comparator and dataset source",
+      "reason": "Direct multimodal robot failure comparison with meaningful official group split and negative input-addition result.",
+      "identity": {
+        "title": "A Multimodal Handover Failure Detection Dataset and Baselines",
+        "authors": [
+          "Santosh Thoduka",
+          "Nico Hochgeschwender",
+          "Juergen Gall",
+          "Paul G. Plöger"
+        ],
+        "year": 2024,
+        "publication_title": "2024 IEEE International Conference on Robotics and Automation (ICRA)",
+        "doi": "10.1109/ICRA57147.2024.10610143",
+        "arxiv_id": "2402.18319",
+        "arxiv_version": "v2",
+        "canonical_arxiv_doi": "10.48550/arXiv.2402.18319",
+        "date": "2024",
+        "volume": null,
+        "issue": null,
+        "pages": null,
+        "article_number": null,
+        "doi_provenance": "printed in supplied PDF"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\A Multimodal Handover Failure Detection Dataset and Baselines.pdf",
+      "pdf_sha256": "933505b1b0040d287a41b85d4b260ab302de12135661449503d86c228c0eddb7",
+      "read_version": "2402.18319 v2",
+      "citation_key": "P028",
+      "text_sha256": "67735f674c187885b51271becb2c01c416f1926367e9302d8a055caf8629d97c"
+    },
+    {
+      "file_id": "P029",
+      "role": "direct industrial",
+      "SQ_links": [
+        "SQ1",
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1–11 methods and all three cases; TableVII/VIII p7 visually checked",
+      "target_unit": "Eight-class bearing condition × balanced/unbalanced rotor diagnosis on GUNTPT500 at1000rpm.",
+      "physical_modalities": "Physical infrared thermal camera frames and8kHz accelerometer vibration; IRT is a camera modality, not a vibration-image transform.",
+      "fusion": "Independently trained2D IRT CNN/1D vibration CNN softmax outputs combined with weighted Dempster–Shafer evidence fusion. Main weights α1=α2=.5; sensor-fault weight-grid analysis is descriptive (pp3–4,6,9–10).",
+      "unimodal_controls": {
+        "strength": "Useful constituent1D/2D CNN comparisons plus traditional features/SVM/ANN and SAE; shared assessment but architecture/data scale differs.",
+        "locator": "pp5–7 TableVII"
+      },
+      "split_and_independence": "1920 paired samples:240/condition,4096vibration points and91×91IRTROI. Ten equal subsets/tenfold CV; physical run/bearing-instance/time independence not established. Some HPO also uses tenfold CV; nesting not fully described (pp5–6).",
+      "robustness": {
+        "missing": "No complete camera/sensor absence test. Stuck samples remain present; do not recode stuck sensor as arbitrary modality dropout.",
+        "noisy": "TESTED Gaussian noise at−2/0/4dB on one input with other fault-free (TableVIII); synthetic vibration bias and128-point stuck windows with increasing affected test-sample proportions (pp7–10).",
+        "shifted": "One operating speed/rig. Transfer/active learning for out-of-training conditions is future work (p11), not a tested domain-shift result."
+      },
+      "results": [
+        {
+          "claim": "Clean TableVII diagnostic results: vibrationCNN96.32%,IRTCNN99.06%,fusion100%. Paper defines F-score and also calls results accuracy; preserve reported diagnostic-rate wording.",
+          "locator": "PDF p7 TableVII, visually checked"
+        },
+        {
+          "claim": "At−2dB noisyIRT95.26%(2.63) versus noisyIRT+faultfreevibration97.6%(1.2); noisyvibration36.86%(6.26) versus noisyvibration+faultfreeIRT94.2%(2.62). Parenthetical dispersion definition should be checked before relabelling CI.",
+          "locator": "PDF p7 TableVIII and fault-free footnote, visually checked"
+        },
+        {
+          "claim": "Under increasing stuck-sample fractions, fusion is described as remaining above95%.",
+          "locator": "PDF p9 §IV-E2/Fig13"
+        }
+      ],
+      "uncertainty_and_limits": "No calibrated probabilities/reliability guarantees follow from D-S masses. Equal fixed weights are not an online quality estimator. α-grid evaluated against faulty testing data does not establish independent learned deployment selection. Noise/stuck/bias tests are synthetic, not natural failure distributions.",
+      "authors_claim": "Reliable thermal+vibration diagnosis under noisy/biased/stuck measurements.",
+      "reviewer_interpretation": "Strongly relevant older physical camera+machine-sensor late-fusion robustness prior. It eliminates broad novelty claims around such combinations while leaving complete-absence and domain-shift coverage limited.",
+      "access": "Supplied12-page IEEE TIM71(2022)3500412; DOI contains2021 online-registration year. No reproduction.",
+      "decision": "retain as central direct comparator",
+      "reason": "Concrete unimodal/late-fusion and controlled sensor-fault comparisons; methodological independence must remain bounded.",
+      "identity": {
+        "title": "A Multisensor Information Fusion Method for High-Reliability Fault Diagnosis of Rotating Machinery",
+        "authors": [
+          "Zhiqiang Huo",
+          "Miguel Martínez-García",
+          "Yu Zhang",
+          "Lei Shu"
+        ],
+        "year": 2022,
+        "publication_title": "IEEE Transactions on Instrumentation and Measurement",
+        "doi": "10.1109/TIM.2021.3132051",
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2022",
+        "volume": "71",
+        "issue": null,
+        "pages": "1-12",
+        "article_number": "3500412",
+        "doi_provenance": "printed in supplied PDF"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\A Multisensor Information Fusion Method for High-Reliability Fault Diagnosis of Rotating Machinery.pdf",
+      "pdf_sha256": "7941df3e00e22c19fb4db11cbb9ecf9cfc4ec468ba07fa02140c21cd81225b30",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P029",
+      "text_sha256": "88ed085611c154f657750cc722605c68ba4fbd6def9b2ed93afb70bfc3309f7b"
+    },
+    {
+      "file_id": "P030",
+      "role": "foundation; transferable forecasting",
+      "SQ_links": [
+        "SQ1",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1–9,13: architecture, representation experiments, Tables5/7 and AppendixA.1.",
+      "target_unit": "Future numerical time-series horizon on eight forecasting datasets; no industrial failure classification.",
+      "physical_modalities": "One numerical source with multiple channels; channels pass independently through shared weights.",
+      "fusion": "Patching, channel-independent Transformer, flatten/linear head, instance normalization; separate masked-patch pretraining.",
+      "unimodal_controls": "DLinear and Transformer forecasting baselines, some rerun over six lookback lengths; not a multimodal comparison (p6,p13).",
+      "split_and_independence": "Established forecasting benchmark protocols; some comparator values borrowed. Electricity-to-other-dataset transfer includes target linear probing/fine-tuning (p8).",
+      "robustness": {
+        "missing": "40% patch masking is pretraining, not missing-sensor inference evidence (p6).",
+        "noisy": "No industrial acquisition-corruption test established.",
+        "shifted": "Cross-dataset forecasting transfer with target fitting; not zero-shot machinery transfer."
+      },
+      "results": [
+        {
+          "claim": "Weather horizon96 supervised MSE: patch+channel independence .152; channel independence alone .164; patch alone .168; original Transformer .177.",
+          "locator": "PDF p9 Table7"
+        },
+        {
+          "claim": "Electricity-pretrained Weather horizon96: fine-tuning .145 MSE, linear probing .163, supervised reference .152.",
+          "locator": "PDF p8 Table5"
+        }
+      ],
+      "uncertainty_and_limits": "Forecasting success does not validate anomaly supervision or classification budgets. The thesis's customPHM and HF REASSEMBLE implementations cannot be assumed identical to this source.",
+      "authors_claim": "Patching and channel independence improve forecasting and transferable representations.",
+      "reviewer_interpretation": "Candidate justification for SQ1, not industrial multimodal superiority.",
+      "access": "arXiv2211.14730v2/ICLR2023 supplied PDF; no model execution.",
+      "decision": "background/foundation",
+      "reason": "Original representation candidate; exclude from empirical multimodal-fusion counts.",
+      "identity": {
+        "title": "A Time Series is Worth 64 Words: Long-term Forecasting with Transformers",
+        "authors": [
+          "Yuqi Nie",
+          "Nam H. Nguyen",
+          "Phanwadee Sinthong",
+          "Jayant Kalagnanam"
+        ],
+        "year": 2023,
+        "publication_title": "International Conference on Learning Representations (ICLR)",
+        "doi": null,
+        "arxiv_id": "2211.14730",
+        "arxiv_version": "v2",
+        "canonical_arxiv_doi": "10.48550/arXiv.2211.14730",
+        "date": "2023",
+        "volume": null,
+        "issue": null,
+        "pages": null,
+        "article_number": null,
+        "doi_provenance": "no publisher DOI observed in front matter"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\A Time Series is Worth 64 Words Long-term Forecasting with Transformers.pdf",
+      "pdf_sha256": "ffd4021d25b4959883242f256b0fe4ec42f477f66db78c61bfacf7baa7848b0e",
+      "read_version": "2211.14730 v2",
+      "citation_key": "P030",
+      "text_sha256": "f2acb1f491a25b982b7f5f62a9cf065a609dd894b610b92d2b2224bdd5e13647"
+    },
+    {
+      "file_id": "P031",
+      "role": "direct industrial vision-language inspection",
+      "SQ_links": [
+        "SQ1",
+        "SQ2",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.4–12; TableI/II p8 visually checked.",
+      "target_unit": "Pixel-level surface anomaly localization in historical-normal/current-anomalous rail images; F1-max,AP,AUROC are pixel metrics (p7).",
+      "physical_modalities": "Camera image pairs and constructed textual position/state prompts; no independent machine telemetry.",
+      "fusion": "FrozenCLIP encoders, prompt-aligned features, dual-state difference attention and anomaly highlighting (pp4–6).",
+      "unimodal_controls": "Prompt/module ablations and change-detection comparators; not physical camera-only versus sensor-only fusion.",
+      "split_and_independence": "1528 Subway pairs randomly split997/285/246.229 high-speed-rail pairs assess cross-domain transfer. All current images are anomalous; train/session/car independence not established (pp6–7).",
+      "robustness": {
+        "missing": "Missing components are target defects, not missing modalities; no outage test.",
+        "noisy": "Natural nonanomalous scene changes; no quantified sensor-noise severity intervention.",
+        "shifted": "Subway-trained model tested on high-speed rail (p10 TableIII)."
+      },
+      "results": [
+        {
+          "claim": "SD average pixel AUROC/F1/AP/AUPRO99.7/76.6/80.4/98.2%; Tiny-CD AP80.7 exceeds proposed80.4.",
+          "locator": "PDF p8 TableI, visually checked"
+        },
+        {
+          "claim": "7.14FPS at batch1. Two-GPU parallelism is discussed separately from that measurement.",
+          "locator": "PDF p8 TableI and text"
+        }
+      ],
+      "uncertainty_and_limits": "No main-result intervals. Corresponding historical images and task-specific prompts are additional input assumptions. Pixel F1-max is not an independently selected operational alarm threshold.",
+      "authors_claim": "Contextual vision-language features and dual-state attention improve localization and cross-domain transfer.",
+      "reviewer_interpretation": "Useful industrial inspection background and metric-specific counterexample; exclude from camera+telemetry/missing-modality counts.",
+      "access": "IEEE TIM74(2025)3509113 supplied publisher PDF; no code/data execution.",
+      "decision": "retain as inspection background",
+      "reason": "Real rail-domain comparison with materially different task and inputs.",
+      "identity": {
+        "title": "A Dual-State-Based Surface Anomaly Detection Model for Rail Transit Trains Using Vision-Language Model",
+        "authors": [
+          "Kaiyan Lei",
+          "Zhiquan Qi"
+        ],
+        "year": 2025,
+        "publication_title": "IEEE Transactions on Instrumentation and Measurement",
+        "doi": "10.1109/TIM.2025.3534228",
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2025-02-04",
+        "volume": "74",
+        "issue": null,
+        "pages": "1-13",
+        "article_number": "3509113",
+        "doi_provenance": "printed in supplied PDF"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\A_Dual-State-Based_Surface_Anomaly_Detection_Model_for_Rail_Transit_Trains_Using_Vision-Language_Model.pdf",
+      "pdf_sha256": "3dcbe2462ee3cf28919be47e3898e5d39f0f6dac328069707e3747027ff4fc34",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P031",
+      "text_sha256": "efcdfe8eb079ac526a2e7496eac25e98f24190e2bdd84f31be9101e2e3e4944c"
+    },
+    {
+      "file_id": "P032",
+      "role": "direct industrial welding",
+      "SQ_links": [
+        "SQ1",
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.2–23; Tables1–2 p18 and Table3 p22 visually checked.",
+      "target_unit": "Three-state weld penetration recognition on paired molten-pool images and acoustic segments.",
+      "physical_modalities": "PhysicalCCD camera and microphone. VMD/GASF acoustic images are a signal representation, not another camera.",
+      "fusion": "ImprovedResNet50 branches, edge/deformable convolution, parallel channel/spatial attention and bidirectional cross-attention (pp5–11).",
+      "unimodal_controls": "Own audio-only and image-only variants plus standard backbones. Exact variant construction is incompletely specified. Early/late comparisons are mainly feature visualization, not a quantitative matched contest.",
+      "split_and_independence": "p12:30weld tests×20samples=600paired sets. p15:600samples/state/modality,3600modality samples and560/20/20 train/validation/test per state. These counts conflict;60test samples reported in tables. Weld-run-disjointness not established. States use different plate thicknesses.",
+      "robustness": {
+        "missing": "Separate unimodal configurations do not establish unexpected modality-dropout handling.",
+        "noisy": "Artificial interference tested, but type/intensity/modality and train/test exposure are underspecified.",
+        "shifted": "Different weld sizes/materials and extreme conditions are future work (p23)."
+      },
+      "results": [
+        {
+          "claim": "Own audio-only100%, image-only100%, and fused clean100%: no demonstrated incremental clean fusion gain.",
+          "locator": "PDF p18 Tables1–2 and p22 Table3; visually checked"
+        },
+        {
+          "claim": "Full100% clean/93.33% interference; without parallel attention83.33/71.67, without edge/deformable module88.33/73.33, without dual-cross attention85.00/75.00.",
+          "locator": "PDF p22 Table3, visually checked"
+        }
+      ],
+      "uncertainty_and_limits": "Small nominal60test set, no intervals/repeated-run variability, conflicting denominator and unreported weld-group split. Learning curves/tSNE are not out-of-group generalization proof.",
+      "authors_claim": "Multimodal attention improves recognition and anti-interference robustness.",
+      "reviewer_interpretation": "Closest welding precedent; retain own-unimodal equality and reporting limits rather than quoting only93.33%.",
+      "access": "Final issue PDF41(10),6698–6721(2026), online2025-10-10. DOI access check failed; no model execution.",
+      "decision": "retain as central welding comparator",
+      "reason": "Direct visual-acoustic attention and stress evaluation narrow any absence claim.",
+      "identity": {
+        "title": "An anti-interference attention fusion network-based weld penetration state recognition with multimodal data",
+        "authors": [
+          "Liang Hua",
+          "Tong Xu",
+          "Pan Hu",
+          "Yuchao Jin",
+          "Houshi Ding",
+          "Shize Ma",
+          "Fan Lyu"
+        ],
+        "year": 2026,
+        "publication_title": "Nondestructive Testing and Evaluation",
+        "doi": "10.1080/10589759.2025.2572395",
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2026",
+        "volume": "41",
+        "issue": "10",
+        "pages": "6698-6721",
+        "article_number": null,
+        "doi_provenance": "printed in supplied PDF"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\An anti-interference attention fusion network-based weld penetration state recognition with multimodal data.pdf",
+      "pdf_sha256": "f112f5730b91a80aa4b8f853eefb00e0c4fa6ba08ff9cc3a4a8ce45f9e0d7f2a",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P032",
+      "text_sha256": "940c01bf498f534134006e55f85e1abbbf7cb3c19364c4cb8bee1022be9a95cf"
+    },
+    {
+      "file_id": "P033",
+      "role": "direct industrial RGB–geometry inspection",
+      "SQ_links": [
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.4–17; Table4 p10 visually checked; Tables5–8 read.",
+      "target_unit": "Known-category image anomaly score and pixel map.",
+      "physical_modalities": "RGB and geometry; RGB/point/fusion memory branches are not three physical modalities.",
+      "fusion": "M3DM/UFF retained; map disagreement modulates anomaly responses; TopK/statistical scores blended using reliability/conflict cues (pp5–7).",
+      "unimodal_controls": "Controlled add-on versus same local released-code baseline plus ablations; no independently optimized best-unimodal suite.",
+      "split_and_independence": "Normal memory fitting and public tests. Preliminary progression selects scoring parameters, then fixed across datasets. Exact independent selection/statistics bank not fully specified. Target normal memory is built for new datasets.",
+      "robustness": {
+        "missing": "No complete-modality absence test established.",
+        "noisy": "Reliability scoring tested on benchmark anomalies; no controlled sensor-noise/camera-degradation sweep.",
+        "shifted": "Separate-dataset recipe evaluation with target normal access; image-level transfer is negative on Eyecandies."
+      },
+      "results": [
+        {
+          "claim": "MVTec local baseline image/pixel/AU-PRO .779/.975/.915; add-on .800/.980/.926. Original publishedM3DM reference .945/.992/.964 remains higher.",
+          "locator": "PDF p10 Table4, visually checked"
+        },
+        {
+          "claim": "Eyecandies imageAUROC .810→.794, pixelAUROC .963→.971, AU-PRO .849→.870.",
+          "locator": "PDF p11 Table5"
+        },
+        {
+          "claim": "Three-category Real-IAD D3 .963/.979/.921→.980/.988/.941.",
+          "locator": "PDF p11 Table6"
+        },
+        {
+          "claim": "Disagreement-only imageAUROC .774 is below .779 baseline; partial statistical calibration .799 exceeds full statistical calibration .793.",
+          "locator": "PDF p14 Tables7–8"
+        }
+      ],
+      "uncertainty_and_limits": "No multi-seed intervals. The local baseline discrepancy remains unresolved. Reliability cues are score consistency, not validated physical sensor quality or calibrated failure probability. Selection is exploratory.",
+      "authors_claim": "Local MVTec improvement; localization transfers more consistently than global image scoring.",
+      "reviewer_interpretation": "Important mixed/negative evidence and endpoint distinction; wordrobustness alone does not imply input-failure testing.",
+      "access": "Supplied Applied Sciences16(2026)5483; DOI fetch unavailable; no code execution.",
+      "decision": "retain with explicit negative findings",
+      "reason": "Reliability mechanism and clearly bounded local/external comparison.",
+      "identity": {
+        "title": "Cross-Modal Disagreement-Guided Reliability-Aware Scoring for RGB-3D Industrial Anomaly Detection",
+        "authors": [
+          "Jing Xu",
+          "Pengfei Xiu",
+          "Kun Shi",
+          "Lei Xu",
+          "Hongliang Wang"
+        ],
+        "year": 2026,
+        "publication_title": "Applied Sciences",
+        "doi": "10.3390/app16115483",
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2026-06-01",
+        "volume": "16",
+        "issue": "11",
+        "pages": null,
+        "article_number": "5483",
+        "doi_provenance": "printed in supplied PDF"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\applsci-16-05483.pdf",
+      "pdf_sha256": "e7db23537b9a8b6269f59ce765d8028f60aa3e9228905c7cedf38d3393b40e1d",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P033",
+      "text_sha256": "ad14af59ea13240af9b5e9f22aafd8a7ef4c860c877c6a1fcf35ed75e49f78dd"
+    },
+    {
+      "file_id": "P034",
+      "role": "foundation; transferable video representation",
+      "SQ_links": [
+        "SQ1",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1–2,4–9. Malformed repeated extraction onp3 not used for numbers.",
+      "target_unit": "Action/video class onKinetics,Something-SomethingV2 andHowTo100M.",
+      "physical_modalities": "RGBvideo only; spatial/temporal attention are not separate physical modalities.",
+      "fusion": "TimeSformer patch tokens and divided temporal/spatial self-attention; no machine-sensor fusion.",
+      "unimodal_controls": "Video-only attention variants andI3D/SlowFast comparisons with differing pretraining/budgets (pp5–6).",
+      "split_and_independence": "Conventional public action benchmark splits andImageNet initialization; no industrial acquisition grouping.",
+      "robustness": {
+        "missing": "No sensor/camera absence test.",
+        "noisy": "No industrial acquisition corruption study.",
+        "shifted": "Different action benchmarks are not demonstrated machinery transfer."
+      },
+      "results": [
+        {
+          "claim": "ImageNet1K TimeSformer75.8%K400,416V100GPUhours,.59inferenceTFLOPs,121.4Mparameters; ImageNet21K version78.0%.",
+          "locator": "PDF p6 Table2"
+        },
+        {
+          "claim": "WithoutImageNet initialization, longer-schedule accuracy64.8%.",
+          "locator": "PDF p6 §4.2"
+        }
+      ],
+      "uncertainty_and_limits": "Workload-dependent efficiency; not necessarily lightweight for this thesis. Video-time attention must not be retrospectively attributed to coreCNNframe averaging.",
+      "authors_claim": "Divided attention enables effective and computationally manageable video modeling.",
+      "reviewer_interpretation": "OriginalSQ1 candidate background, not evidence this thesis ran the model.",
+      "access": "SuppliedICML2021/PMLR139paper; no execution.",
+      "decision": "background/foundation",
+      "reason": "Representation source; exclude from empirical industrial fusion denominators.",
+      "identity": {
+        "title": "Is Space-Time Attention All You Need for Video Understanding?",
+        "authors": [
+          "Gedas Bertasius",
+          "Heng Wang",
+          "Lorenzo Torresani"
+        ],
+        "year": 2021,
+        "publication_title": "Proceedings of the 38th International Conference on Machine Learning",
+        "doi": null,
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2021",
+        "volume": "139",
+        "issue": null,
+        "pages": null,
+        "article_number": null,
+        "doi_provenance": "no publisher DOI observed in front matter"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\bertasius21a.pdf",
+      "pdf_sha256": "6b5463b6c1ada31461c62f45c84321a9ce25b3ef7b72bdd8daabc05703446ed9",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P034",
+      "text_sha256": "76215e897e1e2adccbbf9a08881a0fd3b1738d1bdcf26f175fc4b87c4d4b5f59"
+    },
+    {
+      "file_id": "P035",
+      "role": "direct industrial unimodal inspection",
+      "SQ_links": [
+        "SQ1",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.4–11; TablesIV–VII p10 visually checked.",
+      "target_unit": "Image defect score and weakly supervised localization onfabric,KolektorSDD/SDD2 andselectedMVTecADcategories.",
+      "physical_modalities": "One camera image. Multiscale features,bilinear streams and anomaly-aware maps are not independent sensed modalities.",
+      "fusion": "Within-image feature/prior concatenation andbilinear pooling, lightweightCNN attention and scheduled multiple supervision.",
+      "unimodal_controls": "ImageNetResNet50,SegDec-Net,DRA,DevNet and module ablations (pp9–10).",
+      "split_and_independence": "Image-level anomaly labels; MVTecAD explicitly reintegrated to include anomalies for training (p8), changing standard normal-only supervision. Physical item/session independence not established.",
+      "robustness": {
+        "missing": "No modality absence experiment.",
+        "noisy": "Low-contrast/deceptive defects are not parameterized acquisition-corruption tests.",
+        "shifted": "Separate dataset evaluations, not a specified frozen cross-machine transfer."
+      },
+      "results": [
+        {
+          "claim": "MeanAP97.11% versusDRA95.75%. Proposed loses toDRAonBottle98.80vs100,Leather97.96vs98.99,Grid93.76vs97.10,Wood97.62vs98.01.",
+          "locator": "PDF p10 TableIV, visually checked"
+        },
+        {
+          "claim": "2.33Mparameters/5.65ms per image, versusResNet50 25.56M/13.15ms.",
+          "locator": "PDF p10 TableV, visually checked"
+        },
+        {
+          "claim": "NwfDD AP99.87inTableIV but98.87infull-model rows ofTablesVI/VII.",
+          "locator": "PDF p10 TablesIV,VI,VII; visually checked"
+        }
+      ],
+      "uncertainty_and_limits": "NoCI/seed dispersion. Supervision/cohort changes prevent normal-only benchmark equivalence. Timing is not plant/end-to-end multimodal latency.",
+      "authors_claim": "Anomaly-aware priors and attention improve average lightweight defect inspection.",
+      "reviewer_interpretation": "Useful unimodal baseline/cost background; internalfeaturefusion must not inflate physical multimodal counts.",
+      "access": "SuppliedTII20(4),6652–6663(2024); DOI contains2023; no execution.",
+      "decision": "background/unimodal comparator",
+      "reason": "Concrete industrial visual alternatives and negative category examples.",
+      "identity": {
+        "title": "Combined Anomaly Aware Weakly Supervised Lightweight Model for Surface Defect Inspection",
+        "authors": [
+          "Zhe Zhang",
+          "Zhenqiao Shang",
+          "Xin Wang",
+          "Jie Ma"
+        ],
+        "year": 2024,
+        "publication_title": "IEEE Transactions on Industrial Informatics",
+        "doi": "10.1109/TII.2023.3348835",
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2024-04",
+        "volume": "20",
+        "issue": "4",
+        "pages": "6652-6663",
+        "article_number": null,
+        "doi_provenance": "printed in supplied PDF"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\Combined_Anomaly_Aware_Weakly_Supervised_Lightweight_Model_for_Surface_Defect_Inspection.pdf",
+      "pdf_sha256": "a6a3e7f50953afb183494443b550e29e3c9e6e4d2a393423bb78af764b4f168c",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P035",
+      "text_sha256": "5bc276d8cbf94d9094c0e1ff50e81e972d022da1930721babdd1ea11623b884e"
+    },
+    {
+      "file_id": "P036",
+      "role": "foundation; transferable interpretability",
+      "SQ_links": [
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1–9: main binaryLSTMexperiments,Tables1–4 anddiscussion.",
+      "target_unit": "Text classification and attention-distribution diagnostics; sentiment/news/clinical text.",
+      "physical_modalities": "Text only; non-industrial methodological transfer.",
+      "fusion": "No industrial fusion; trained/uniform attention, seed variation, MLPguidance and parameterized adversarial attention models.",
+      "unimodal_controls": "Uniform weights, random initializations andMLPdiagnostics test explanation claims (pp4–7).",
+      "split_and_independence": "Prior datasets/splits reused; all analysis ontestset. Proxy explanation tasks, no human explanation validation.",
+      "robustness": {
+        "missing": "Not applicable.",
+        "noisy": "Attention manipulation is not an industrial input-noise experiment.",
+        "shifted": "Not a domain-transfer study."
+      },
+      "results": [
+        {
+          "claim": "IMDb positiveF1 .902 for reproduced attention versus .879 uniform attention.",
+          "locator": "PDF p4 Table2"
+        },
+        {
+          "claim": "IMDb MLP guided by baseLSTMattention .905F1, uniform .863, adversarial weights .700.",
+          "locator": "PDF p6 Table3"
+        }
+      ],
+      "uncertainty_and_limits": "Not proof of faithful causal explanation. Authors contest per-instance detached adversaries but also find parameterized alternatives and task-dependent manipulability. LSTM text findings do not directly validate industrial gateplots.",
+      "authors_claim": "Attention can provide useful partial transparency under appropriate task-specific evaluation.",
+      "reviewer_interpretation": "Use with opposingAttentionisnotExplanation source; descriptive allocation can be useful without causal faithfulness.",
+      "access": "SuppliedEMNLP-IJCNLP2019D19-1002 mainpaper; no supplemental reproduction.",
+      "decision": "background/foundation",
+      "reason": "BalancedSQ4 explanation boundary.",
+      "identity": {
+        "title": "Attention is not not Explanation",
+        "authors": [
+          "Sarah Wiegreffe",
+          "Yuval Pinter"
+        ],
+        "year": 2019,
+        "publication_title": "Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing",
+        "doi": "10.18653/v1/D19-1002",
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2019",
+        "volume": null,
+        "issue": null,
+        "pages": "11-20",
+        "article_number": null,
+        "doi_provenance": "existing library identifier; identity corroborated by title/authors/publication details"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\D19-1002.pdf",
+      "pdf_sha256": "874e427b9a56ce57360ca360b1dbd07f35ca9d2aad49a39ac5dfb7828e54ffaf",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P036",
+      "text_sha256": "dc12946608f9499391a5a6fe5a7881c127210c8dbba1dc72a528e14e42430c83"
+    },
+    {
+      "file_id": "P037",
+      "role": "industrial-context simulation",
+      "SQ_links": [
+        "SQ1",
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "Complete7-page mainpaper; TableII p5 visually checked.",
+      "target_unit": "SimulatedUR5joint/pose coordinate regression, not fault classification.",
+      "physical_modalities": "Gazebo camera and simulatedrobot telemetry; four views available, one camera used. No physical acquisition validation.",
+      "fusion": "Separate autoencoder features concatenated for regression. Fuzzy regularization trains postfusion activations conditional on known synthetic corruption; regularizer absent at inference (pp3–6).",
+      "unimodal_controls": "SameMMFwith/withoutregularizer over12depth/width configurations and10runs; no independent unimodal suite.",
+      "split_and_independence": "2000simulated samples;20-step telemetry windows,stride1; random75/25sample split (pp4–5). Overlapping neighboring windows may share data across splits; no held-out trajectory groups established. Tables average minimumtestloss/maximumaccuracy across training per run.",
+      "robustness": {
+        "missing": "Whole input replaced by noise/zeros/ones, pluspartial erase: simulated failure, not absent-channel routing.",
+        "noisy": "Gaussian,erasing,blur,brightness/failure augmentations; main results do not isolate operator/severity effects.",
+        "shifted": "No physical or held-out robot domain study; real-world validation is future work."
+      },
+      "results": [
+        {
+          "claim": "Five layers/200units: meanminimumtestMSE1.326×10^-3 withoutregularizer versus .977×10^-3 withregularizer.",
+          "locator": "PDF p5 TableII, visually checked"
+        },
+        {
+          "claim": "Meanmaximumtestaccuracy87.924%versus91.162%, where accuracy means≤5%absolute regression error.",
+          "locator": "PDF pp5–6 Eq10/TableIII"
+        }
+      ],
+      "uncertainty_and_limits": "Optimized best test values can be optimistic; no independent trajectory or physical test. Known augmentation condition guides training; observable field quality estimation not established. Boxplots are not deployment CIs.",
+      "authors_claim": "Fuzzy regularization stabilizes multimodal fusion under corruption/failure and exposes affected modality in activations.",
+      "reviewer_interpretation": "Importantcamera+telemetryprecedent, explicitly simulated; not physical fault diagnosis or certified outage robustness.",
+      "access": "SuppliedIECON2023seven-page paper; noROS/Gazebo/modelexecution.",
+      "decision": "retain explicitly as simulation prior",
+      "reason": "Mechanism/protocol contrast narrows broad reliability-awarefusion absence claims.",
+      "identity": {
+        "title": "Deep Multimodal Fusion with Corrupted Spatio-Temporal Data Using Fuzzy Regularization",
+        "authors": [
+          "Diyar Altinses",
+          "Andreas Schwung"
+        ],
+        "year": 2023,
+        "publication_title": "IECON 2023 – 49th Annual Conference of the IEEE Industrial Electronics Society",
+        "doi": "10.1109/IECON51785.2023.10312522",
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2023",
+        "volume": null,
+        "issue": null,
+        "pages": "1-7",
+        "article_number": null,
+        "doi_provenance": "printed in supplied PDF"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\Deep_Multimodal_Fusion_with_Corrupted_Spatio-Temporal_Data_Using_Fuzzy_Regularization.pdf",
+      "pdf_sha256": "6ab1abe7888a06a467428f807bef39fb69a713f2a0cccf9e03ff59eb72ea838a",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P037",
+      "text_sha256": "38ab50a7e7754f769afeab91effc15e801d2c7a703e25b2bd24530b2515e5b9c"
+    },
+    {
+      "file_id": "P038",
+      "role": "direct industrial RGB–geometry inspection",
+      "SQ_links": [
+        "SQ1",
+        "SQ2",
+        "SQ3",
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1,3–10; Table8/9 p10 visually checked.",
+      "target_unit": "Object anomaly scoring/pixel localization onMVTec3D-AD; limited-normal-shot settings.",
+      "physical_modalities": "RGBand3Dgeometry, no machine process time series.",
+      "fusion": "FrozenDINO/Point-MAE features, bidirectional mapping, contrastive consistency, DCFUresponse mixture andPRLH. Eq8 α=σ(ω) is a learnedscalar with no explicit sample-quality input.",
+      "unimodal_controls": "Intermediate intra-/cross-modal response comparisons and module progression; not separately trained equal-budget unimodal endpoints (pp9–10).",
+      "split_and_independence": "2656normaltrain/294validation/1197test(p5). Few-shot5/10/50normaltrainingexamples/category with unchanged test set. No selection-repeat uncertainty.50epochs, frozenencoders.",
+      "robustness": {
+        "missing": "No explicit modality-dropout/absence test.",
+        "noisy": "Noise/reflection motivate method; no quantified input-corruption intervention. Invalid-point filtering is preprocessing.",
+        "shifted": "Few-shot variation is not cross-machine/domain transfer."
+      },
+      "results": [
+        {
+          "claim": "BaselineI-AUROC/P-AUROC/AUPRO@30%/AUPRO@1% .905/.954/.908/.385; full .971/.993/.986/.493.",
+          "locator": "PDF p10 Table9, visually checked"
+        },
+        {
+          "claim": "Intermediate φ2D I-AUROC .843,φ3D .857,product .899; cross-response product .957.",
+          "locator": "PDF p10 Table8, visually checked"
+        },
+        {
+          "claim": "p9 prose quotes cross-product AUPRO@1% .469; Table8 p10 shows .466. Preserve table value and discrepancy.",
+          "locator": "PDF pp9–10"
+        }
+      ],
+      "uncertainty_and_limits": "NoCI/multi-seed dispersion. A globally trained scalar can adapt during learning but is not demonstrated sample-conditioned quality gating. Some prose/table references and intermediate/efficiency readouts differ.",
+      "authors_claim": "Dynamic complementary fusion improves geometric/appearance anomaly representations.",
+      "reviewer_interpretation": "Usefulgeometryfusionprior; dynamic wording alone does not establish online reliability adaptation.",
+      "access": "IEEEAccess14(2026),149224–149235; P039SHA-identical, count once; no execution.",
+      "decision": "retain qualified RGB–geometry source",
+      "reason": "Clearbenchmark/ablation evidence, limited adaptive robustness interpretation.",
+      "identity": {
+        "title": "Geometry-Guided Cross-Modal Consistency Fusion for Unsupervised Industrial Surface Anomaly Detection",
+        "authors": [
+          "Yuan An",
+          "Guojing Man",
+          "Qiuli Zheng",
+          "Liyan Liu"
+        ],
+        "year": 2026,
+        "publication_title": "IEEE Access",
+        "doi": "10.1109/ACCESS.2026.3735547",
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2026-09-21",
+        "volume": "14",
+        "issue": null,
+        "pages": "149224-149235",
+        "article_number": null,
+        "doi_provenance": "printed in supplied PDF"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\Geometry-Guided_Cross-Modal_Consistency_Fusion_for_Unsupervised_Industrial_Surface_Anomaly_Detection (1).pdf",
+      "pdf_sha256": "599a4954452a2bb683d7a6f69fb1eb520355ec2cb6309bd531ebf27db88887f4",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P038",
+      "text_sha256": "bcb43e54bf1452614fb323af36c052cb2ffd3fb21ccb3b4dcaaeecd31ff38480"
+    },
+    {
+      "file_id": "P040",
+      "role": "foundation; evaluation theory",
+      "SQ_links": [
+        "SQ4"
+      ],
+      "pages_appraised": "PDF pp.1–3,7–10,15–17; definitions,covariance,Theorem6 andconclusion; no formal proof verification.",
+      "target_unit": "Variance ofK-foldCV expected prediction-error estimator.",
+      "physical_modalities": "Not applicable.",
+      "fusion": "Not applicable.",
+      "unimodal_controls": "Not applicable; theoretical analysis.",
+      "split_and_independence": "I.i.d.examples and order-insensitive learning algorithm; nonoverlapping test blocks but overlapping training sets produce correlated errors.",
+      "robustness": {
+        "missing": "Not applicable.",
+        "noisy": "Not applicable.",
+        "shifted": "No domain-shift guarantee."
+      },
+      "results": [
+        {
+          "claim": "Theorem6: no universally unbiased estimator ofCV variance from these errors; Eq14 imposes inconsistent coefficient constraints.",
+          "locator": "PDF p10,printed1098"
+        },
+        {
+          "claim": "Totalvariance σ²/n+(m−1)ω/n+(n−m)γ/n. Singleholdout estimates finite-test variation but not training-set variation.",
+          "locator": "PDF p8 Eq7 andp15 §8.1"
+        }
+      ],
+      "uncertainty_and_limits": "Not a claim thatCVmeans are always biased or uncertainty estimation impossible. The result targets universal variance unbiasedness under specific assumptions; conditional fixed-prediction bootstrap has a different estimand. Clusteredrobotdata add further dependence.",
+      "authors_claim": "Ignoring correlatedCVerrors can substantially underestimate variance.",
+      "reviewer_interpretation": "Do not countfolds/seeds as independent datasets; distinguish prediction-sampling from training uncertainty.",
+      "access": "JMLR5(2004),1089–1105 suppliedpaper; no computation/formalverification.",
+      "decision": "background/foundation",
+      "reason": "SQ4 methodological qualification; not empirical industrial fusion evidence.",
+      "identity": {
+        "title": "No Unbiased Estimator of the Variance of K-Fold Cross-Validation",
+        "authors": [
+          "Yoshua Bengio",
+          "Yves Grandvalet"
+        ],
+        "year": 2004,
+        "publication_title": "Journal of Machine Learning Research",
+        "doi": null,
+        "arxiv_id": null,
+        "arxiv_version": null,
+        "canonical_arxiv_doi": null,
+        "date": "2004-09",
+        "volume": "5",
+        "issue": null,
+        "pages": "1089-1105",
+        "article_number": null,
+        "doi_provenance": "no publisher DOI observed in front matter"
+      },
+      "pdf_source": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\grandvalet04a.pdf",
+      "pdf_sha256": "9d9342f8bb5e69b14b3de257b5f813a5686ce6037c68a2a9723be0b3a0f34166",
+      "read_version": "publisher/proceedings PDF ",
+      "citation_key": "P040",
+      "text_sha256": "28b61c6c252b5693bc2c368a7d62b32d3b5eb56f480501d7eb19b8832b73c2c7"
+    }
+  ],
+  "duplication": [
+    {
+      "file_id": "P039",
+      "duplicate_of": "P038",
+      "reason": "identical inventorySHA256599a4954452a2bb683d7a6f69fb1eb520355ec2cb6309bd531ebf27db88887f4"
+    }
+  ]
+}

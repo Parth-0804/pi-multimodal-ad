@@ -1,0 +1,35 @@
+% Four-page review packet; no input from the manuscript chapters.
+\documentclass[12pt,a4paper]{article}
+\def\DraftUseBibliography{1}
+\input{figures/draft_chapters_01_02/review_preamble.tex}
+\begin{document}
+\begin{minipage}{\linewidth}
+\captionof{figure}{\FrameworkCaption}
+\label{fig:draft-research-framework}
+\includegraphics[width=\linewidth]{figures/draft_chapters_01_02/fig01_research_framework.pdf}
+\displaynote{\FrameworkNote}
+\end{minipage}
+\clearpage
+\begin{minipage}{\linewidth}
+\captionof{figure}{\GapCaption}
+\label{fig:draft-literature-gap}
+\includegraphics[width=\linewidth]{figures/draft_chapters_01_02/fig02_literature_gap_map.pdf}
+\displaynote{\GapNote}
+\par\smallskip\begingroup\raggedright\fontsize{9bp}{11bp}\selectfont
+\textit{Representative sources by row.} \GapSources\par\endgroup
+\end{minipage}
+\clearpage
+\begin{minipage}{\linewidth}
+\captionof{figure}{\FlowCaption}
+\label{fig:draft-appraisal-flow}
+\includegraphics[width=\linewidth]{figures/draft_chapters_01_02/fig03_literature_appraisal_flow.pdf}
+\displaynote{\FlowNote}
+\end{minipage}
+\clearpage
+\begin{minipage}{\linewidth}
+\captionof{table}{\TraceCaption}
+\label{tab:draft-requirements-traceability}
+\input{figures/draft_chapters_01_02/tab01_requirements_traceability.tex}
+\displaynote{\TraceNote}
+\end{minipage}
+\end{document}

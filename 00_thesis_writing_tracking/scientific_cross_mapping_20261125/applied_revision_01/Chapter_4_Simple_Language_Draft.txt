@@ -1,0 +1,227 @@
+Chapter 4 — Research Design and Shared Methodology
+
+Chapter 3 introduces the model components used in this thesis. Their usefulness depends on how they are built, trained, and tested. This chapter explains how the datasets and prediction targets were chosen, how observations were paired, and how the models were trained and assessed. It also explains how uncertainty and reliability were examined.
+
+4.1 Research Design and Relationship to the Research Questions
+
+This thesis asks whether combining different types of data improves prediction in industrial monitoring. The work includes a literature review, dataset checks, model development, comparisons, and follow-up experiments. Most studies are exploratory: the research questions guided the work, but available data, early findings, time, and practical methods also shaped the next steps.
+
+The main comparisons are made within each study. Models are compared using the same prediction target and the same assessment observations. Each representation or fusion method is tested against suitable reference models. A representation is the form in which an input is passed to a prediction model, such as a set of features or a sequence.
+
+The studies on other datasets examine whether the methods are useful for different tasks. The datasets differ in their targets, inputs, class balance, and assessment procedures. Their scores therefore cannot be combined into one ranking of the methods.
+
+PHM develops a continuous measure from gear photographs and tests whether sensor data can predict it. This measure is a proxy: an indirect indicator of gear condition. The study compares sensor representations and ways of combining sensor groups. REASSEMBLE is the main study of visual and machine-sensor fusion. Its labelled, completed actions allow comparisons between representations, single-input models, static fusion, and context-based fusion.
+
+MSM applies related methods to abnormal cutting in milling. ViFailback studies complete manipulation episodes, with whole tasks held out for assessment. It also tests whether a visual representation trained on REASSEMBLE is useful for prediction on ViFailback. HANDOVER compares video, force–torque data, and fixed averaging on labelled human–robot interaction trials. It uses the official assessment split and also examines sensor noise, visual blur, known input loss, and decisions for each outcome class.
+
+Figure 4.1 connects the original welding objective and the dataset checks to the five implemented studies.
+
+Figure 4.1. Workflow for Data Qualification and Model Evaluation
+
+Note. The five studies predict different outcomes. Each finding applies to the comparison within its own study. The Intel holdout had been examined during an earlier context audit. The foundation review did not perform a new trained-model test on it.
+
+R1 asks whether the outcome is clearly defined, where the target comes from, and which observations are available when a prediction is made. Sections 4.2–4.5 address these questions through dataset selection, target construction, matching observations, and defining the observation window.
+
+R2 asks whether the chosen representations suit the task. Sections 4.4, 4.7, and 4.11 explain how inputs are transformed, whether encoders are pretrained or trained from scratch, and how observations are summarised, how models use labels, and how computing resources differ.
+
+R3 asks whether fusion improves prediction over individual inputs. Sections 4.6–4.8 explain how models are compared on the same observations, including single-input models and simple fusion methods. Where the experiments allow, they also consider differences in model size, calibration, and extra prediction steps.
+
+R4 asks how models behave when inputs are missing, degraded, or collected under different conditions. These are separate tests. Section 4.9 describes the completed tests and the static or surviving-input models used for comparison.
+
+R5 asks how strong the evidence is and where its limits lie. Sections 4.6–4.11 cover related samples, earlier use of assessment data, metrics, calibration, uncertainty, computing costs, reproducibility, and the information available during assessment.
+
+These requirements help interpret the completed studies. They do not mean that every experiment followed the same plan from the beginning.
+
+4.2 Dataset Selection Criteria and Research Chronology
+
+Dataset checks considered whether the observations and documentation were accessible, the target was clear, and original labels or independent reference measurements were available. They also checked whether inputs matched the prediction units, acquisition groups could be identified, the outcome classes were represented, and the required processing and assessment were practical.
+
+The original robotic welding proposal came before the PHM and REASSEMBLE studies. PHM was already underway when a renewed Intel Welding audit found further limits on independent assessment. REASSEMBLE then became the main setting for comparing visual and sensor representations and fusion methods.
+
+Later experiments examined issues found in the main studies. They tested stronger sensor reference models, longer training for temporal models, different ways of combining visual features, adapting encoders to the target data, context-based fusion, and methods on external datasets. The October research-alignment record retained the original four research questions after considering a narrower study of quality-based gating.
+
+Appendix G records other dataset investigations, including PADERBORN and REBOOT. It distinguishes completed comparisons from useful methodological findings and unresolved feasibility questions. A dataset check is not treated as a completed model evaluation.
+
+The experiments were not planned as one continuous sequence. Several follow-ups were designed after earlier results had been examined and remain exploratory.
+
+4.3 Intel Welding Feasibility Assessment and Scope Evolution
+
+The Intel Welding investigation checked dataset structure, readable observations, timing and session information, duplicates, and the supplied data splits. The foundation scripts check sample structure and whether the proposed assessment is suitable. Their recorded configuration disables the final test because the proposed test data had already been examined during earlier context-related development. The renewed audit also found acquisition sessions that crossed the supplied splits. The proposed test set could therefore no longer serve as an untouched, independent test of a fixed hypothesis.
+
+Earlier examination does not mean that every observation was used for training. It does, however, limit claims of independent confirmation. The retained subset does not establish the full original label mapping or a completed multimodal welding classifier using the dataset's original labels. The earlier baseline records show what was feasible and how assessment was designed. They do not show that the proposed Transformer-based fusion architecture failed to predict welding quality.
+
+Project records describe the move towards PHM and REASSEMBLE as an agreement with the supervisor reported by the researcher. Results on other industrial or robotic tasks do not establish successful welding validation. That would require new welding observations, a suitable weld-quality reference, and assessment data reserved for that purpose.
+
+Internal implementation and decision evidence. E019 (inspect_sample, audit_split, main), E018, E003 (Section 3.1).
+
+4.4 Dataset Admission and Preparation Checks
+
+The sample manifest records the prediction units and their data. It lists each prediction unit, target source, physical or operational group, input path, observation boundaries, available inputs, and any reason for exclusion.
+
+Visual checks examine whether images or videos can be decoded, enough frames are available, image dimensions suit the feature extractor, and the relevant process appears within the observation window. A readable image may still show nothing useful about the target. Image quality and visibility of the target must be checked separately.
+
+Sensor checks examine channel order, units, timestamps, missing values, repeated measurements, interpolation, and aggregation. Resampling puts measurements onto a new set of positions. This matters when sensors record at different rates or when a sequence is expressed as progress through an action. Such changes must be recorded because they affect which properties of the original measurements the model can use.
+
+Pairing checks whether inputs belong to the same event or interval. Having both a video file and a sensor file does not by itself establish that they describe the same prediction unit.
+
+Excluding observations can change the class balance and make an assessment easier or harder. Removing corrupted observations or failures with too few examples can also change what a comparison means. Where records allow, the thesis retains counts before and after exclusion and the reasons for removal. Quarantined observations keep their original labels. In MSM, correcting timing aliases and checking whether groups meet the assessment requirements affect which observations are included. In ViFailback, duplicate or invalid robot measurements and unreadable videos affect the usable set.
+
+These checks establish whether data can be used technically. They do not independently confirm that labels are correct, physical damage has been measured accurately, or the relevant outcome is visible in the camera view. A failed check may rule out one comparison while leaving others possible. For example, missing participant information can prevent grouped fitting of a learned fusion model while still allowing assessment of a fixed model on the official split. Without an independent physical condition reference, a study may still predict a proxy, but its conclusions must remain about that proxy.
+
+These checks put R1 into practice and establish the data conditions for the other requirements.
+
+4.5 Target Provenance, Prediction Units, and Available Inputs
+
+Each task must state what is predicted, where its reference value comes from, and which observations are available at prediction time. Strong prediction scores do not prove that the target correctly represents what the study is meant to measure. In PHM, the area identified in gear images is a provisional condition proxy. Predicting this value from sensor data measures agreement with the constructed target. It does not independently validate estimates of physical wear, tooth damage, or remaining useful life.
+
+PHM mainly makes one prediction per gear experiment run, using a continuous target derived from photographs. REASSEMBLE predicts recorded success or failure for completed assembly actions. MSM predicts abnormal cutting within milling intervals. ViFailback predicts recorded success or failure for complete manipulation episodes. HANDOVER predicts the binary outcomes of human–robot interaction trials. MSM retains its declared mapping of the original milling labels. Sensitivity analyses examine alternative mappings because changing the meaning of a label also changes the prediction task.
+
+Frames sampled across a complete action can reveal its final state. Sensor statistics from a whole milling interval likewise include information collected throughout that interval. These inputs support assessment after the event. They do not, by themselves, show that a model can warn of failure before the event ends. Early warning would need a specified decision time, preprocessing that uses only information available by that time, a measure of warning lead time, and suitable target labels for that prediction horizon.
+
+Fast computation does not necessarily mean an early prediction. A model may run quickly once all its inputs are ready, but collecting the required observation window takes time. The total delay includes observation, processing, and prediction.
+
+Context can also help prediction without describing the physical measurements themselves. Such information includes process identity, observation duration, and time index. For example, PHM's visual regression representation includes feature-extraction time as well as image features. An action-based fusion method may also use differences in failure rates between action categories. Better prediction would not automatically show that it detected lower sensor quality. Models using only context and controls that apply the same adjustment to every observation can examine these explanations where those comparisons are available.
+
+4.6 Grouped Assessment, Data Splits, and Leakage Prevention
+
+Industrial and robotic datasets often contain related observations. Several samples may come from the same physical experiment, recording, task, machine, participant, or data-collection session. A random split of individual samples can therefore put closely related observations in both the development and assessment data. Grouped assessment keeps the chosen groups separate. It does not prove independence at a broader level than those groups.
+
+The main PHM sensor protocol holds out complete gear experiments. REASSEMBLE groups actions by recording. MSM examines groups based on experiments and acquisition dates, while ViFailback separates manipulation tasks. HANDOVER uses the published official trial partitions. Its dataset publication describes an assessment with separate participants. However, the available mapping between participants and trials is not sufficient to reconstruct that grouping independently or create inner training folds with separate participants. In MSM, one acquisition date may include several tools or operators, and the same equipment may appear on different dates. Keeping dates separate therefore does not establish that a model will work on an entirely new machine, factory, or installation.
+
+4.6.1 Training-Side Preprocessing and Model Selection
+
+Each outer split separates the data used to develop the model from the data used to assess it. All operations that learn from the data belong to model development. These include feature scaling and normalisation, learning how to fill missing values, selecting features, learning representations from labels, choosing model settings, calibrating probabilities, selecting decision thresholds, and fitting learned fusion models.
+
+Cross-validation can give an overly favourable estimate if the same evaluation results are used both to select a model and to report its performance (Varma & Simon, 2006). Leakage must therefore be checked across the whole modelling procedure, rather than only the final training step (Kapoor & Narayanan, 2023). Features from a fixed, generic pretrained encoder can be calculated and stored before fitting the model for the target task, provided the encoder does not use target-specific labels. Any normalisation learned from the data, supervised adaptation, or feature selection must still use only the permitted development data.
+
+The main PHM sensor protocol fits its normaliser separately within each training fold. A separate four-arm diagnostic runner, however, fits its normaliser before starting the loop that changes which gear experiment is held out. In that diagnostic, the held-out experiments therefore influence the preprocessing transformation. The main PHM experiment and the four-arm diagnostic must remain separate when their methods and results are reported. Obtaining a fully fold-isolated estimate for the diagnostic would require repeating it with a corrected preprocessing procedure. That repeat is not part of the completed evidence.
+
+4.6.2 Out-of-Fold Predictions and Learned Fusion
+
+Prediction-level stacking trains a second model using predictions from the first-stage branch models. If those predictions come from observations already used to fit the branches, they can give the stacker an unrealistically favourable picture of branch performance. Stacked generalisation therefore supports using cross-validated first-stage predictions to construct the second-stage training data (Ting & Witten, 1999).
+
+For each outer split, the outer training data are divided into grouped inner subsets for fitting and prediction. Each branch predicts observations from recordings that were excluded from its own fitting. These are called out-of-fold predictions. Together, they form a prediction bank used for training-side calibration, model selection, and fusion fitting, following the relevant protocol. The selected branch models and prediction-level combination then predict the designated outer assessment recordings.
+
+The stacker's internal validation reuses this bank within each outer split. Each prediction comes from a branch that excluded the recording being predicted. However, a branch used to produce a stacker training prediction may have been fitted on recordings later assigned to stacker validation. This creates dependence within model development. The outer assessment recordings remain excluded from fitting. Reusing the bank therefore limits claims of strict independence during internal stacker validation. It does not, by itself, show that outer assessment data leaked into fitting.
+
+Figure 4.2 shows the reused development bank and the separate outer assessment path.
+
+Figure 4.2. Recording Flow for One REASSEMBLE Outer Split. Grouped inner folds produce the branch-prediction bank used for calibration and stacker fitting. Reusing this bank for internal stacker validation creates internal dependence: branch fitting can include recordings assigned to later stacker validation. Outer assessment recordings remain excluded from fitting and enter only final scoring.
+
+Internal implementation evidence. E004 (Section 15.4).
+
+4.6.3 Assessment Cohorts and Repeated Exposure
+
+A fair comparison also requires the models to be assessed on the same observations. The original REASSEMBLE assessment contains 4,530 completed actions from 148 recordings, including 509 failures. Its five outer assessment partitions together cover this population.
+
+A later comparison uses 753 actions from one of these already examined outer partitions. It supports a further, limited comparison, but it is not a new independent external holdout. An earlier summary stated that this subset contained 28 recordings. Checking the saved sample and recording identifiers shows that it contains 26 recordings. These identifiers, rather than the earlier summary, define the assessment population.
+
+Internal cohort evidence. E052.
+
+Grouped assessment prevents specified forms of information overlap within an individual model fit. It does not remove the effects of repeatedly examining the same assessment data during exploratory research. If researchers choose later configurations because of earlier assessment results, those results influence development even when the assessment observations are excluded from each later model's training. The REASSEMBLE follow-ups therefore provide useful controlled comparisons within a population that had already been examined.
+
+4.7 Model Fitting, Selection, Calibration, and Threshold Procedures
+
+Each comparison records which components are trained, how they are initialised, how the data are prepared, which configurations are considered, and the training budget. It also records the stopping or selection rules. Some larger experiments completed only part of their planned configurations. Their conclusions are limited to comparisons with completed fitting and assessment. Four operations remain separate: fitting model parameters, selecting a model, calibrating probabilities, and selecting a decision threshold.
+
+Model fitting estimates the model's parameters from the permitted training observations. Model selection chooses the representation, settings, or fitting procedure to assess. Giving models the same number of training epochs, or passes through the training data, does not necessarily give them the same opportunity to learn. Batch size, the number of observations, early stopping, initialisation, and the components being trained can all differ. A frozen pretrained representation and a temporal encoder trained from scratch also start with different prior information and use computational resources differently.
+
+Calibration adjusts how prediction scores are interpreted as probabilities. It uses predictions and outcomes from the development data. Calibration fitted on validation data can improve probability quality under suitable conditions, but this must be checked rather than assumed (Guo et al., 2017). The main REASSEMBLE branch calibrators fit sigmoid logistic functions to selected inner out-of-fold prediction scores.
+
+F2 uses a fitted logistic function with a freely fitted intercept, or offset, and a separate coefficient for each branch. The recorded core implementation has no further calibration stage after stacking. The original context-conditioned gates instead combine branch logits, which are log-odds, using normalised weights. They apply a sigmoid to the weighted result. They have no free final intercept and no additional calibrator after the gate.
+
+A strictly increasing transformation keeps observations in the same order: a larger input still gives a larger output. Within a fixed assessment population, it therefore preserves ranking metrics such as average precision and AUROC, subject to numerical precision and how tied scores are handled. A logistic transformation of a sensor probability with a positive sensor coefficient preserves ordering within its fold. However, separately fitted transformations can differ between folds. When predictions from different folds are pooled, their relative order across folds can change. Pooled average precision can therefore change even when the order within every fold stays the same.
+
+A fusion comparison can involve two effects: information from another branch and an extra fitted transformation of the existing score. Ranking within folds, ranking across pooled predictions, and probability calibration are different effects. A matched sensor-only second-stage model would help separate the effect of the fitted transformation. Where this separately fitted control is unavailable, calculations using the retained model can provide more limited evidence about individual terms. They cannot fully explain how much of the improvement comes from each effect. REASSEMBLE has no independently refitted sensor-only second-stage control, which limits attribution of its full pooled fusion improvement. Chapter 6 presents the corresponding saved-prediction investigation.
+
+A score at or above the selected threshold is classified as positive; a score below it is classified as negative. The original implementation tests thresholds from 0.01 to 0.99 using permitted training-side predictions and a specified objective, such as balanced accuracy. This threshold belongs to the experimental protocol. It is not necessarily the best threshold for an industrial alarm. Missed failures, false alarms, interruptions, and unnecessary maintenance may have different costs. Choosing a threshold for operation would require information about those costs and the intended monitoring task.
+
+4.8 Metrics and Uncertainty Estimation
+
+Regression error, the ability to distinguish classes, probability quality, and decisions made at a threshold measure different aspects of a model. Their meaning also depends on the target, class distribution, assessment population, and how results are combined.
+
+4.8.1 Regression, Classification, and Probability Metrics
+
+Mean absolute error is the average absolute difference between a prediction and its observed target. Root mean squared error is the square root of the average squared prediction error. Both use the same units as the target. The coefficient of determination compares prediction error with the variation in the observed targets. It can be negative when prediction error is large relative to that reference, and it can be unstable when the target varies little within an assessment group. Tooth-level and run-level regression results are reported separately because they concern different prediction units and patterns of dependence.
+
+Accuracy is the proportion of observations classified correctly. Precision is the proportion of positive predictions that are actually positive. Recall is the proportion of actual positives identified by the model. Specificity is the proportion of actual negatives identified correctly. Balanced accuracy gives equal weight to recall, also called sensitivity, and specificity. F1 combines precision and recall using their harmonic mean.
+
+Ranking measures assess how well a model orders positive and negative observations across possible thresholds. AUROC, the area under the receiver operating characteristic curve, measures discrimination between the two classes. Average precision summarises precision and recall and is useful when class frequencies are unequal. Precision–recall analysis can show aspects of performance that are less clear from ROC analysis when one class is uncommon (Saito & Rehmsmeier, 2015).
+
+The metrics available in each study depend on its target, prediction outputs, and completed evaluation protocol. Including a metric in this shared framework does not mean that it was calculated for every experiment.
+
+The main classification ranking metric is average precision, calculated with average_precision_score. It weights precision values by the corresponding increases in recall. This differs from calculating the area under a precision–recall curve using trapezoidal numerical integration.
+
+Average precision depends on the prevalence of the positive class, meaning its share of the assessment population. If a binary predictor gives every observation the same score, its average precision equals that share. A high failure average precision may therefore show little ability to distinguish outcomes when most observations are failures. This matters especially for ViFailback, where failures make up more than 85% of the main eligible population. Reporting failure average precision alone can hide how well the model identifies successes.
+
+When both outcomes matter, average precision can be calculated separately for success and failure. Both-class macro average precision is the arithmetic mean of those two values. For a binary predictor that gives every observation the same score, this macro reference equals 0.5 when both classes are present. REASSEMBLE mainly reports failure average precision. MSM reports abnormal-cutting average precision. ViFailback also reports both-class macro average precision. These are different measures. Their numerical values cannot be compared directly across datasets as measures of architectural performance.
+
+The Brier score is the average squared difference between predicted probabilities and observed binary outcomes. Proper scoring rules provide a basis for assessing probability forecasts, rather than only rankings or decisions made at a threshold (Gneiting & Raftery, 2007).
+
+Expected calibration error compares predicted confidence with observed outcome frequencies within groups of probability values, called bins. Its meaning depends on how many bins are used, how they are formed, how confidence is defined, and how many observations fall in each bin. A model can rank observations well while producing poorly calibrated probabilities. A model with lower probability error may also fail to rank them better. Calibration can change when input conditions change. Evidence from clean data must therefore remain separate from probability quality under degradation or distribution shift (Ovadia et al., 2019).
+
+4.8.2 Aggregation and Uncertainty
+
+For mean-fold average precision, average precision is calculated in each assessment fold and the results are averaged. Pooled average precision combines the held-out predictions first and calculates average precision for the combined population. Average precision is nonlinear, so these methods generally give different results.
+
+The original REASSEMBLE main comparison reports pooled failure average precision across held-out recording partitions. MSM calculates abnormal-cutting average precision from pooled predictions for each seed and then averages the seed-specific results. Variation between seeds and variation between folds must remain separate. Different random initialisations or fitting seeds create another source of experimental variation. They do not create additional independently collected assessment observations.
+
+When two models predict the same observations, their average precision can be compared by subtracting the reference model's value from the investigated model's value. This is a paired comparison because both use the same observations and outcomes. Where the retained experimental records support it, uncertainty is estimated using a cluster bootstrap. This procedure repeatedly samples whole dependence groups with replacement, so a group can be selected more than once. It does not sample individual observations as if they were independent. The paired metric difference is recalculated for each resampled population.
+
+The core REASSEMBLE reports use 2,000 recording-level bootstrap replicates. A PHM report uses 10,000 run-cluster replicates over 20 runs from three gear experiments. The PHM procedure needs care because runs from the same gear experiment may still be related. Resampling runs does not automatically capture all dependence within the same physical experiment. More bootstrap replicates reduce numerical variation in the estimated resampling distribution. They do not increase the number of independent physical experiments. Similarly, MSM's date-cluster intervals rely on only five acquisition dates. Those intervals remain conditional on these groups and the recorded fitted models.
+
+The training sets for different cross-validation folds overlap, so fold results should not be treated as independent experimental repetitions when estimating uncertainty. Bengio and Grandvalet (2004) show the limits of obtaining a universally unbiased variance estimate for k-fold cross-validation. This supports caution when training populations overlap. The retained bootstrap intervals describe uncertainty for the chosen resampling groups and the predictions from already fitted models. They do not automatically include uncertainty from retraining, further model selection, repeated assessment exposure, or future industrial installations. An interval containing zero does not show that two methods are equivalent. A positive point estimate alone also does not show a practically meaningful improvement that can be reproduced.
+
+4.9 Robustness Evaluation Design
+
+Clean-input assessment measures performance when the inputs are intact. Tests of known modality absence examine what happens when an input is declared unavailable. Sensor corruption tests change numerical measurements, while visual degradation tests reduce image quality. Temporal misalignment changes how observations from different sources correspond in time. Distribution shift means that the assessment data or operating conditions differ from the reference conditions. When all inputs are absent, the system needs a defined response. The studies test selected conditions from this framework. They do not fully examine temporal misalignment, naturally occurring sensor failures, or wider changes during deployment.
+
+4.9.1 Controlled Interventions, Absence, and Degradation
+
+A robustness experiment must state exactly how an input is changed. This includes the affected modality, the processing stage, the severity of the change, and the observations used for assessment. For random corruption, it must also record how many versions are generated and how the random changes are controlled. Changing image pixels before feature extraction is different from changing a stored visual feature vector. Changing original sensor channels is also different from changing summary statistics or prediction logits, which are scores before conversion to probabilities. Any quality descriptors must match the changed input. Otherwise, the gate may receive quality information that does not describe the input actually used by the predictor.
+
+When one input is absent, the original two-input REASSEMBLE gate gives the remaining modality a weight of one. Its robustness evaluator returns that branch’s predicted probability and uses its decision threshold. When both inputs are absent, the original implementation rejects the observation instead of making a prediction. If several fusion methods return the same remaining branch prediction, that branch determines their performance under this absence condition. This does not show that one learned gate recognises missing inputs better or assigns weights more effectively. Training-time modality dropout deliberately removes selected inputs during fitting. It can expose a model to missing-input patterns, but its benefit must be tested separately.
+
+A degraded input is still available but may contain less useful or misleading information. Unlike a known missing input, it may give the system no explicit signal that it should be trusted less. The comparison therefore tests adaptive fusion against suitable static fusion methods and single-input models under the same degradation. If one modality stays intact, its predictor provides an important reference. It shows whether adding the corrupted input improves or worsens the decision.
+
+Quality-aware fusion research supports investigating these changing contributions. It examines how weights that change with the input relate to the reliability of each single-input model and predictive performance under stated assumptions (Q. Zhang et al., 2023). The experiments must still test whether the available quality descriptors help identify the reliability of the particular industrial or robotic prediction branches.
+
+4.9.2 Matched Exposure and Robustness Interpretation
+
+Training with corrupted or incomplete inputs may change a model’s behaviour compared with training only on intact inputs. If only the adaptive model receives this extra training exposure, any improvement cannot be attributed entirely to adaptation. Comparing static and adaptive models with similar corruption exposure provides a better test of the adaptive mechanism. This controls one important difference between the experiments. Differences in model capacity, optimisation, feature representations, and calibration may still remain. The later REASSEMBLE anchored-adjustment and quality-interaction studies retain these distinctions when assessing clean and degraded inputs. Their matched-exposure comparisons ask a narrower question than the original comparisons between differently configured static and adaptive models.
+
+Robustness assessment considers both performance on degraded inputs and the change relative to each model’s clean-input performance. A model may lose less of its clean performance but still perform worse than another model on degraded inputs. An adaptive model may also reduce the weight of a corrupted modality yet still perform worse than the intact single-modality predictor. The results must therefore be compared with the available single-input reference models and suitably matched static fusion methods. Probability quality and decisions made at a chosen threshold provide further evidence where they were assessed. The findings apply to the tested corruption methods, severities, observation windows, and fitting procedures. They do not establish general reliability under unmeasured clock offsets, gradual calibration drift, several natural sensing faults at once, or previously unseen industrial installations.
+
+4.10 Reproducibility and Experiment Provenance
+
+The supporting records include source code, configurations, preprocessing definitions, dataset manifests, fitting procedures, assessment populations, saved predictions, and evaluation outputs. Available code, a record that an experiment ran, and independently reproduced results provide different levels of evidence. These differences matter because model selection, software dependencies, preprocessing, and unrecorded configuration changes can affect machine-learning results (Pineau et al., 2021).
+
+The main REASSEMBLE visual branch loads the pretrained RT-DETR-R18vd checkpoint through Hugging Face Transformers and selects its ResNet18-vd convolutional backbone. The same library provides the PatchTST sensor encoder, which starts without pretrained weights for this prediction task (Wolf et al., 2020). PyTorch supports the neural-network implementation and training, with AdamW used for the relevant neural prediction components (Paszke et al., 2019). Scikit-learn provides grouped stratified splits, logistic regression references, and evaluation functions (Pedregosa et al., 2011). The PHM visual regression implementation uses the Ultralytics RT-DETR-L prediction path. It extracts intermediate feature maps for the later regression representation (Ultralytics, 2023).
+
+Internal implementation evidence. E064, E065, E067, E046, E033, E004 (P01).
+
+Checking source code shows which implementation and recorded calculations can be examined. Checking configurations identifies model settings, preprocessing choices, and fitting conditions. Execution records provide evidence that a particular experimental stage was completed. Saved-prediction verification recalculates performance measures from retained model outputs. Repeated inference runs the original fitted model on its inputs again. Training reproduction fits the model again using the recorded procedure. Independent empirical replication tests the findings using genuinely independent experimental evidence.
+
+For historical experiments, the available configurations and execution records describe the recorded prediction procedure. Missing production scripts, incomplete configurations, or unavailable research files limit what can be checked independently.
+
+The original manuscript source manifest identifies repository commit e32ec43aef69cc58adff0ea91e508308041598c5. The accompanying provenance records include hashes that identify selected source files and supporting reports. Some of this material was not committed in that repository version.
+
+The revised experimental reporting cutoff is 24 November 2026. The reported ViFailback work includes the completed frozen and donor representation comparisons, the bounded one-fold FULL20 target-backbone comparison, and the FULL100 pilot. The remaining target-CNN fitting configurations and corruption evaluation are unfinished. This reporting extension adds to the earlier record of frozen and donor comparisons without changing its original assessment protocols.
+
+Selected saved-prediction checks were conducted on 25 November 2026 to examine numerical consistency. These checks use outputs from the retained fitted models. For REASSEMBLE F2, they examine prediction identities, branch-score parity within the available records, fold assignments, fitted coefficients, and ranking metrics. Branch-score parity means checking agreement between corresponding branch scores. For ViFailback, the checks examine the available saved assessment predictions, metric consistency, and completion records for the extended reporting period. These checks do not repeat the original neural training or provide independent empirical replication.
+
+The literature extraction records separately link external scientific claims to their sources and the relevant passages. Appendix F provides the reproducibility documentation. The evidence register and Appendix G document the source provenance and research chronology.
+
+Internal provenance evidence. E111, E109, E115, E116, E113.
+
+4.11 Computational Constraints and Exploratory Research Boundaries
+
+The work was limited by computing resources, available datasets, the number of independent samples, and the time needed for repeated fitting and assessment. These limits influenced the use of stored representations, small prediction heads, limited hyperparameter grids, and bounded architectural follow-up experiments. Frozen visual feature extraction reduces repeated encoder computation when prediction heads are fitted across grouped splits. Compact statistical features describe sensor data with a small number of values. Limited hyperparameter grids restrict the model settings tested during development. These choices define the procedures that were assessed and their computational scope. They do not show that the selected architectures use computing resources optimally or that other configurations would perform worse.
+
+A model trained with a limited budget cannot be judged inherently unsuitable just because it performs worse than a conventional reference. Longer training, different representations, other preprocessing, or more supervision may change the result. Their effects need to be tested through the relevant comparisons. Unfinished configurations must also remain separate from completed experiments with negative results. An unfinished configuration provides no estimate of the performance it might have achieved.
+
+Feature extraction, processing stored representations, fitting prediction heads, and end-to-end inference involve different amounts and types of computation. Their measured cost can also depend on hardware, batch size, data loading, preprocessing, synchronisation, and whether representations have already been extracted. The recorded timings provide evidence about the measured components. They do not establish the performance of a complete system in an industrial installation.
+
+Repeatedly examining assessment data, choosing follow-up experiments after seeing results, and refining protocols later limit how far the findings can be treated as confirmatory. Individual fits may exclude their designated outer assessment observations. This does not remove the influence of earlier assessment results on the wider research process. A future confirmatory study would need to specify the target, observation horizon, how the assessment population is formed, model-selection procedure, main comparisons, corruption methods, evaluation metrics, and decision criteria before examining independent assessment data.
+
+The following chapters apply this framework to the individual industrial and robotic monitoring tasks. Each case study explains its scientific motivation, describes the investigation, reports the supported findings, and states the limits on their interpretation.

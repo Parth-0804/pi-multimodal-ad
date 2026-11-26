@@ -1,0 +1,48 @@
+% DRAFT analytical synthesis: prior evidence -> thesis-specific comparison -> requirement.
+\documentclass[tikz,border=0pt]{standalone}
+\input{figures/draft_chapters_01_02/draft_preamble.tex}
+\begin{document}
+\begin{tikzpicture}[x=1bp,y=1bp]
+\path[use as bounding box] (0,0) rectangle (451.28,467);
+\node[thesis panel label,align=center,text width=133bp] at (67,449) {Findings in the\\reviewed literature};
+\node[thesis panel label,align=center,text width=157bp] at (225,449) {Unresolved comparison\\for the thesis task};
+\node[thesis panel label,align=center,text width=125bp] at (386.14,449) {Analytical\\requirement};
+% Each source index refers to the corresponding literature group in draft_captions.tex.
+\node[draft literature,thesis annotation,text width=119bp,minimum height=64bp] (e1) at (67,389)
+ {Native labels and physical\\references; derived targets;\\registered observations.\quad[1]};
+\node[draft question,thesis annotation,text width=143bp,minimum height=64bp] (q1) at (225,389)
+ {Are the target, timing and\\modality correspondence\\valid for this task?};
+\node[draft requirement,thesis annotation,text width=115bp,minimum height=64bp] (r1) at (386.14,389)
+ {\textbf{R1}\\Target validity and\\modality correspondence};
+\node[draft literature,thesis annotation,text width=119bp,minimum height=64bp] (e2) at (67,314)
+ {Engineered features, CNNs\\and patch encoders work\\under specific conditions.\quad[2]};
+\node[draft question,thesis annotation,text width=143bp,minimum height=64bp] (q2) at (225,314)
+ {Which information is useful\\alone or in combination,\\under explicit fitting\\conditions?};
+\node[draft requirement,thesis annotation,text width=115bp,minimum height=64bp] (r2) at (386.14,314)
+ {\textbf{R2}\\Representation suitability\\and fitting conditions};
+\node[draft literature,thesis annotation,text width=119bp,minimum height=64bp] (e3) at (67,239)
+ {Fusion can improve, match\\or reduce predictive\\performance.\quad[3]};
+\node[draft question,thesis annotation,text width=143bp,minimum height=64bp] (q3) at (225,239)
+ {Does fusion improve on\\credible single-input models\\and simple fusion controls?};
+\node[draft requirement,thesis annotation,text width=115bp,minimum height=64bp] (r3) at (386.14,239)
+ {\textbf{R3}\\Incremental fusion value\\under comparable\\conditions};
+\node[draft literature,thesis annotation,text width=119bp,minimum height=64bp] (e4) at (67,164)
+ {Dropout, fallback, corruption\\and quality weighting\\address distinct regimes.\quad[4]};
+\node[draft question,thesis annotation,text width=143bp,minimum height=64bp] (q4) at (225,164)
+ {Does adaptive weighting beat\\static fusion with matched\\corruption exposure and\\informative quality cues?};
+\node[draft requirement,thesis annotation,text width=115bp,minimum height=64bp] (r4) at (386.14,164)
+ {\textbf{R4}\\Reliability-aware\\comparison of fusion\\mechanisms};
+\node[draft literature,thesis annotation,text width=119bp,minimum height=64bp] (e5) at (67,89)
+ {Grouping, selection,\\calibration and target access\\affect interpretation.\quad[5]};
+\node[draft question,thesis annotation,text width=143bp,minimum height=64bp] (q5) at (225,89)
+ {What can be attributed to\\the comparison, and what\\persists across tasks\\and protocols?};
+\node[draft requirement,thesis annotation,text width=115bp,minimum height=64bp] (r5) at (386.14,89)
+ {\textbf{R5}\\Methodological validity\\and bounded external\\interpretation};
+\foreach \i in {1,...,5} {
+ \draw[arrow] (e\i.east) -- (q\i.west);
+ \draw[arrow] (q\i.east) -- (r\i.west);
+}
+\node[draft box,text width=430bp,minimum height=40bp,fill=ThesisBaseline!5!white] at (225.64,22)
+ {\textbf{Shared gap synthesized from the unresolved comparisons}\\{\fontsize{9bp}{11bp}\selectfont Conditional fusion effectiveness under comparable, task-specific experimental conditions}};
+\end{tikzpicture}
+\end{document}

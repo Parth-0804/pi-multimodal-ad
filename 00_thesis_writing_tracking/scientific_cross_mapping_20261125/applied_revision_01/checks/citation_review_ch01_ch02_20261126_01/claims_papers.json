@@ -1,0 +1,1990 @@
+{
+  "scope": "Read-only fresh primary-source passage audit for25assigned Pkeys in Chapters1–2. No manuscript/bibliography/Zotero edits. This does not validate experiments or reproduce training.",
+  "date": "2026-11-26",
+  "source_type": "Existing local thesis PDF corpus; no live Zotero record inspection performed by this subagent. Root must connect record/export provenance.",
+  "counts": {
+    "works": 25,
+    "citation_occurrences_per_key": 78,
+    "proposed_locator_refinements": 7
+  },
+  "works": [
+    {
+      "key": "P003",
+      "registered_title": "{DMAW}: A dynamic multimodal measurement fusion network with attention for reliable welding process monitoring under harsh industrial environments",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/1000189165.pdf",
+      "pdf_sha256": "03dcd61ce44d64beea0c80fd1012ea404cd0a2b8b4e1f7de87a6c10489277139",
+      "viewer_pages_inspected": [
+        6,
+        7,
+        9
+      ],
+      "pagination_and_version": "DMAW local accepted-manuscript copy; no printed page numbers visible on inspected pages.",
+      "method": [
+        "pdftotext -layout direct source reading",
+        "raster table inspection using pdftoppm/view_image"
+      ],
+      "finding": "Fresh text inspection of §III.A–B (PDF6) verifies 37 frames/s, groups of 20 frames, four welding states and timestamp alignment. Raster inspection of Table III (PDF7) verifies fusion/image/audio accuracy 96.1/90.2/84.4%; text below verifies reported 26.2 ms inference. Raster Table V (PDF9) verifies dynamic fusion96.1%, Feature Sum90.5%, Feature Gate92.6%. No train/test split or welding-run disjoint assignment was found in full extracted text; thesis appropriately says grouping unresolved, not proven leakage.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P004",
+      "registered_title": "Bias in error estimation when using cross-validation for model selection",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/1471-2105-7-91.pdf",
+      "pdf_sha256": "573198025179f340870428087dd3a980a5c2cbdab890ace3d155e0cf8fcd6e1b",
+      "viewer_pages_inspected": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "pagination_and_version": "BMC Bioinformatics2006,7:91; local PDF has Page n of8 and expressly says page number not for citation purposes.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Abstract and methods demonstrate optimistic bias when CV is reused for selection and error estimation; selection must occur within each training fold and nested CV estimates assessment error. Supports separation of model development and assessment, with no need to claim a particular split protocol was used in this thesis.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P005",
+      "registered_title": "{ModDrop}: Adaptive multi-modal gesture recognition",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/1501.00102v2.pdf",
+      "pdf_sha256": "6dc50a534ddbccdbcf7f03dd4cf77f53ce5537003d23e8c646970db71d79bde4",
+      "viewer_pages_inspected": [
+        1,
+        5,
+        7,
+        8,
+        9
+      ],
+      "pagination_and_version": "arXiv1501.00102v2; body pages numbered to match viewer indices where visible.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Abstract and ModDrop training section describe dropping modality channels during training and meaningful prediction from available inputs at test time. Gesture-recognition evidence supports a transferable missing-input mechanism; not industrial validation.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P006",
+      "registered_title": "Gated multimodal units for information fusion",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/1702.01992v1.pdf",
+      "pdf_sha256": "86a32379bc86f4ffb63e121473fc65c9b9878dd420b372bae8e4946a6708bc17",
+      "viewer_pages_inspected": [
+        4,
+        5,
+        10,
+        11
+      ],
+      "pagination_and_version": "arXiv1702.01992v1; Workshop track ICLR2017; printed11=PDF11.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "§3.1 introduces gated multimodal units; §5.2 and Table2(PDF/printed11) report MM-IMDb macro F-score .541 for GMU and .521 for concatenation. Current Section3 postnote supports architecture but result is in §5.2, Table2; use Section3.1, Table2 or simply Table2 for precision.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P008",
+      "registered_title": "Can you trust your model's uncertainty? Evaluating predictive uncertainty under dataset shift",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/1906.02530v2.pdf",
+      "pdf_sha256": "1610d04d7f69d10751f0e9ff1db9fbd8b3fdf5306798879016192eb2dbf17a6f",
+      "viewer_pages_inspected": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "pagination_and_version": "arXiv1906.02530v2; NeurIPS2019; visible body numbers match viewer indices.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Abstract explicitly says traditional post-hoc calibration falls short under dataset shift. §1–2 distinguish in-distribution calibration from changed inputs and describe held-out temperature scaling. Results around Figure2 compare Brier score under shift. Supports cautions about shifted confidence, not any universal failure of adaptation.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P009",
+      "registered_title": "Improving reproducibility in machine learning research (a report from the {NeurIPS 2019 Reproducibility Program})",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/20-303.pdf",
+      "pdf_sha256": "09e3ba1d1c3dc7111bc3dc112f40c5d0f3d9dbc4b8198ef8bdc48eb852f4da29",
+      "viewer_pages_inspected": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "pagination_and_version": "JMLR22(2021),1–20; printed numbers match viewer indices.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Introduction distinguishes availability of code/data from actually obtaining similar results and names underspecified models, code, metrics and statistical reporting as threats. Code policy, reproducibility challenge and checklist provide methodological basis for graded reproducibility assurance.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P011",
+      "registered_title": "{AST}: Audio spectrogram transformer",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/2104.01778v3.pdf",
+      "pdf_sha256": "c237e981755e9ba5047e7290ffcb7d38d8292e166730ae3cd180b7833f184303",
+      "viewer_pages_inspected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pagination_and_version": "arXiv2104.01778v3; AST source copy.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Abstract/method describe convolution-free Audio Spectrogram Transformer, ImageNet-to-audio transfer and general audio benchmark results(.485mAP AudioSet,95.6%ESC-50,98.1%SpeechCommandsV2). Chapter uses no exact values; pretrained acoustic candidacy is supported and industrial suitability correctly remains conditional.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P013",
+      "registered_title": "{Video Swin Transformer}",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/2106.13230v1.pdf",
+      "pdf_sha256": "9680fb44c5acbcfd63e84bad7c15470cdf3e1ea558c0bd57729171e282ccdd59",
+      "viewer_pages_inspected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "pagination_and_version": "arXiv2106.13230v1; Video Swin preprint.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Architecture and shifted-window descriptions explicitly extend local attention to spatiotemporal video windows and relations. Supports spatial and temporal modeling claim; does not make frame averaging a learned temporal model.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P016",
+      "registered_title": "Are multimodal transformers robust to missing modality?",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/2204.05454v1.pdf",
+      "pdf_sha256": "baf3728f95d339ff25e25d7e81b36170049cbaf60a21ac4e5a91551df925e620",
+      "viewer_pages_inspected": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "pagination_and_version": "arXiv2204.05454v1; missing-modality Transformer paper.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Introduction/§3 show severe missing-modality degradation and even multimodal underperformance against a unimodal comparator; §4 develops multi-task modal-complete/modal-incomplete training and a searched fusion strategy. Supports transferable mechanism plus counterexamples.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P017",
+      "registered_title": "Leakage and the reproducibility crisis in machine-learning-based science",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/2207.07048v1.pdf",
+      "pdf_sha256": "c433bceda841ca09fe2fd7ddf857fc0818fdf98553e62e54a37cc394c6f70c42",
+      "viewer_pages_inspected": [
+        1,
+        5,
+        7
+      ],
+      "pagination_and_version": "Local attachment is arXiv2207.07048v1(14July2022), separate from cited2023Patternsfinal. Final2023article independently checked through NCBI BioC full text; no finalPDF pagination asserted.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "The final2023article independently supports preprocessing/feature-selection and assessment separation. Its L1.2,L1.3 and L3.2 distinguish preprocessing leakage, feature-selection leakage and dependence. Keep existing P017 final-article key. Local2022preprint attachment remains identified as an earlier version.",
+      "status": "VERIFIED_FINAL_SOURCE",
+      "final_source_check": {
+        "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10499856/",
+        "fulltext_retrieval_url": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC10499856/unicode",
+        "fulltext_format": "NCBI BioC XML of final open-access article",
+        "retrieval_date": "2026-11-26",
+        "fulltext_sha256": "3fd8182ca646349a6f4b28b14909970d8bd0d7f3c3bf74d4dc16709257d32f30",
+        "metadata_verified": {
+          "title": "Leakage and the reproducibility crisis in machine-learning-based science",
+          "authors": [
+            "Sayash Kapoor",
+            "Arvind Narayanan"
+          ],
+          "year": 2023,
+          "venue": "Patterns",
+          "volume": "4",
+          "issue": "9",
+          "article_number": "100804",
+          "doi": "10.1016/j.patter.2023.100804",
+          "license": "CC BY"
+        },
+        "sections_verified": [
+          "Results: A taxonomy of data leakage; L1 clean separation",
+          "L1.2 Pre-processing on training and test set",
+          "L1.3 Feature selection on training and test set",
+          "L3.2 Nonindependence between training and test samples",
+          "Results: model info sheet, L1 clean train-test separation"
+        ],
+        "finding": "Final article explicitly requires separation through preprocessing, modeling and evaluation; identifies whole-dataset preprocessing and feature selection as leakage; and says train/test splitting should account for dependence when scientific claims concern new units. These final-version passages support the existing Chapter1–2 general claims. No numeric result or page-specific quotation in those claims requires final PDF pagination.",
+        "access_note": "PMC HTML returned a browser challenge; NCBI BioC full-text endpoint retrieved successfully using urllib. This is final source content rather than the local2022attachment."
+      }
+    },
+    {
+      "key": "P021",
+      "registered_title": "{OmniFuser}: Adaptive multimodal fusion for service-oriented predictive maintenance",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/2511.01320v1.pdf",
+      "pdf_sha256": "88d49fcf7cb42472036edf2f9e956b1f3e532da6febef1683eec7873481b4967",
+      "viewer_pages_inspected": [
+        8,
+        10,
+        11
+      ],
+      "pagination_and_version": "arXiv2511.01320v1; top-of-page printed numbers match viewer indices.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "§VI.A on printed/PDF8 says each post-pass image is replicated across within-pass sensor readings; this constructs aligned observations and is not an experiment removing synchronization. PDF10 describes modality dropout and inference masking; all quantitative result tables and text were searched and no quantified modality-outage table was found. TablesIV/V on printed/PDF11 respectively report prediction horizons and wear classification.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P022",
+      "registered_title": "Unbiased dynamic multimodal fusion",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/2603.19681v1.pdf",
+      "pdf_sha256": "1e277ed69fac61b7729152a0b026532b7fe7765cc302eac6bd0dc152ac52581a",
+      "viewer_pages_inspected": [
+        4,
+        5,
+        9
+      ],
+      "pagination_and_version": "arXiv2603.19681v1; printed footer numbers match viewer indices.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "§3.2.1 equation8(PDF/printed4) trains a noise estimator from Gaussian perturbation intensity; §3.2.3(PDF5) introduces noise-aware training after clean representation fitting. Limitation section(PDF9) explicitly distinguishes tail-class/sample difficulty uncertainty from corruption. Supports both exposure qualification and uncertainty ambiguity.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P023",
+      "registered_title": "Rethinking multimodal fusion for time series forecasting: Text modalities need constrained fusion",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/2603.22372v3.pdf",
+      "pdf_sha256": "31b0dee1f0d55bbe8994b3cdfb5c2af85af05ffab6d68038528a6f56bda78cfb",
+      "viewer_pages_inspected": [
+        2,
+        3,
+        4
+      ],
+      "pagination_and_version": "arXiv2603.22372v3; KDD26MILETS workshop copy; printed4=PDF4.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Table4 on printed/PDF4 has DLinear/Energy row .263 unimodal without text,.670 Concat-First,.243 CFA. Header confirms values are MSE averaged across four forecasting horizons. §2–3 describe constrained information fusion; no inference to industrial validation is made by chapter.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P024",
+      "registered_title": "Multimodal industrial anomaly detection via geometric prior",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/2603.22757v1.pdf",
+      "pdf_sha256": "c2e1189a4c78f053dc35200629d4372916c1dedf920ec4a87becf37e91117701",
+      "viewer_pages_inspected": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "pagination_and_version": "arXiv2603.22757v1; printed top page numbers match viewer indices.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Method first concatenates raw RGB/depth for geometry-aware representation and uses a dedicated point-cloud expert to provide geometric priors. Claim about representations not requiring three physical acquisition sources is an architectural inference consistent with derived geometric representations, not a count established about all acquisition rigs.",
+      "status": "VERIFIED_WITH_INFERENCE"
+    },
+    {
+      "key": "P025",
+      "registered_title": "{ZSG-IAD}: A multimodal framework for zero-shot grounded industrial anomaly detection",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/2604.17949v1.pdf",
+      "pdf_sha256": "d3aa146c2cfc5f93e78dbecb2db1cd01d165183bfb83ac464c63cd37d07fe906",
+      "viewer_pages_inspected": [
+        6,
+        8,
+        9
+      ],
+      "pagination_and_version": "arXiv2604.17949v1; printed top numbers match viewer indices.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "§III.D on printed/PDF6 explicitly uses report-supervised fine-tuning plus Dice/BCE anomaly-mask supervision. §IV.A(PDF8) reports disjoint training/test object categories and no instance overlap; PDF9 TableIV reports a separate cross-dataset setting. Metrics §IV.B(PDF8) define SchemaValidRate,Align-IoU and NLI entailment. PDF9 describes input-subset robustness, but a single shared checkpoint/exposure protocol for every subset is not fully specified in inspected methods. Thesis preserves that limitation.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P026",
+      "registered_title": "{TC-MAF}: Train-calibrated bounded multi-evidence fusion for multimodal industrial anomaly detection",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/2607.11170v1.pdf",
+      "pdf_sha256": "f3785c9192b92ce1b76d808f1c9cdf9076ce0816c73bb611d549451c11ebcb42",
+      "viewer_pages_inspected": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12
+      ],
+      "pagination_and_version": "arXiv2607.11170v1; manuscript has stale Conference17July2017 template header, not actual publication year. No ordinary printed page numbers on inspected pages; use PDFindices or named equations/tables.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "PDF3–5 equations2–4 use normal training-score dispersion for category scaling and local disagreement for bounded auxiliary correction around multimodal anchor. Table3(PDF7) holds same evidence sources for alternative aggregation, with intact .9788I-AUROC/.9901P-AUPRO and missing3D .9330/.9586. This missing-input row is separate from a controlled adaptive-vs-static missing-input comparison. PDF8 Table6 and cross-dataset text specify same fusion formula but known-category calibration on Eyecandies, consistent with recipe reuse rather than unchanged-model generalization. Memory fitting is explained in §3 and AppendixA(PDF10).",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P031",
+      "registered_title": "A dual-state-based surface anomaly detection model for rail transit trains using vision-language model",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/A_Dual-State-Based_Surface_Anomaly_Detection_Model_for_Rail_Transit_Trains_Using_Vision-Language_Model.pdf",
+      "pdf_sha256": "3dcbe2462ee3cf28919be47e3898e5d39f0f6dac328069707e3747027ff4fc34",
+      "viewer_pages_inspected": [
+        4,
+        7,
+        10
+      ],
+      "pagination_and_version": "IEEE TIM74(2025),article3509113; header repeats article number rather than unique page number. Use explicit PDFindices or table/section names.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "§III(PDF4) constructs position/state prompts and compares historical/current rail images. PDF7 evaluation metrics explicitly include pixel AUROC,AP,AUPRO and F1 at optimal threshold; HRD is a cross-domain test set of229history/current pairs. PDF10 TableIII and text evaluate Subway-trained models on HRD. These support the chapter; optimal-threshold F1 is not a validation-selected operational alarm threshold.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P033",
+      "registered_title": "Cross-modal disagreement-guided reliability-aware scoring for {RGB-3D} industrial anomaly detection",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/applsci-16-05483.pdf",
+      "pdf_sha256": "e7db23537b9a8b6269f59ce765d8028f60aa3e9228905c7cedf38d3393b40e1d",
+      "viewer_pages_inspected": [
+        5,
+        7,
+        8,
+        10,
+        11
+      ],
+      "pagination_and_version": "Appl.Sci.2026,16,5483; printed10of19/11of19=viewer10/11.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Table4(PDF/printed10) distinguishes original M3DM .945I-AUROC from local released-code .779 and add-on .800; Table5(PDF/printed11) gives Eyecandies .810→.794 image AUROC while pixel .963→.971 and AUPRO .849→.870 improve. §3.3/3.7(PDF5/7) fit normal memory; §4.4(PDF10–11) uses same preprocessing/memory construction and evaluation interface on Eyecandies; hyperparameters fixed before evaluations(PDF8). Explanations for original-vs-local discrepancy are not isolated experimentally; thesis correctly treats them as checks rather than established causes.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P034",
+      "registered_title": "Is space-time attention all you need for video understanding?",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/bertasius21a.pdf",
+      "pdf_sha256": "6b5463b6c1ada31461c62f45c84321a9ce25b3ef7b72bdd8daabc05703446ed9",
+      "viewer_pages_inspected": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "pagination_and_version": "PMLR139/ICML2021 local source; inspected body has no ordinary printed article page numbers.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Architecture describes divided spatial and temporal self-attention. §4.1–4.3 and Table2(PDF5–7) specify ImageNet initialization, V100 video training costs and memory changes with token counts. Thus compute depends on initialization and workload rather than being an architecture-only constant.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P035",
+      "registered_title": "Combined anomaly aware weakly supervised lightweight model for surface defect inspection",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/Combined_Anomaly_Aware_Weakly_Supervised_Lightweight_Model_for_Surface_Defect_Inspection.pdf",
+      "pdf_sha256": "a6a3e7f50953afb183494443b550e29e3c9e6e4d2a393423bb78af764b4f168c",
+      "viewer_pages_inspected": [
+        1,
+        8,
+        10
+      ],
+      "pagination_and_version": "IEEE TII20(4),April2024; printed6652=viewer1,6659=viewer8,6661=viewer10.",
+      "method": [
+        "pdftotext -layout direct source reading",
+        "raster table inspection using pdftoppm/view_image"
+      ],
+      "finding": "Abstract/§III uses image-level labels for anomaly/defect localization. Dataset section(PDF8/printed6659) repartitions MVTec data to admit anomalous training examples, changing normal-only supervision. Raster inspection of TableV(PDF10/printed6661) verifies2.33Mparameters and5.65ms/image. TablesIV/VI/VII on same page show NwfDD99.87main result vs98.87ablation, so report of inconsistent table values is supported. Model uses image inputs, not an independent numerical sensor branch.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P036",
+      "registered_title": "Attention is not not explanation",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/D19-1002.pdf",
+      "pdf_sha256": "874e427b9a56ce57360ca360b1dbd07f35ca9d2aad49a39ac5dfb7828e54ffaf",
+      "viewer_pages_inspected": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "pagination_and_version": "EMNLP-IJCNLP2019,pp11–20; viewer1=printed11,viewer4=printed14.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Abstract and §§2–4 review the prior counterexample argument, challenge its assumptions, and test useful information in learned attention under specified models. Supports task-specific evaluation of explanation rather than automatic faithfulness or a universal rejection of attention.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P038",
+      "registered_title": "Geometry-guided cross-modal consistency fusion for unsupervised industrial surface anomaly detection",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/Geometry-Guided_Cross-Modal_Consistency_Fusion_for_Unsupervised_Industrial_Surface_Anomaly_Detection (1).pdf",
+      "pdf_sha256": "599a4954452a2bb683d7a6f69fb1eb520355ec2cb6309bd531ebf27db88887f4",
+      "viewer_pages_inspected": [
+        3,
+        4,
+        5
+      ],
+      "pagination_and_version": "IEEEAccess14(2026); printed149224=viewer1,149226=viewer3.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "§III.C equation8(PDF3/printed149226) uses alpha=sigmoid(omega), where omega is one learned fusion parameter, with no explicit sample-quality input in the stated formula. §III.F/algorithm(PDF4–5) reinforces that parameterization. Thesis description as a learned scalar is supported.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P045",
+      "registered_title": "A tool wear prediction network fusing visual-acoustic cross-attention and interval guidance",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/machines-14-00826-v2.pdf",
+      "pdf_sha256": "e9d216fd590870bd5ce36ee6ca0f9782b9f9fcd10bd5100e85ed1ec9861dee47",
+      "viewer_pages_inspected": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "pagination_and_version": "Machines2026,14,826,v2; printed page n of31 matches viewer n.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P051",
+      "registered_title": "Real-time federated fault detection for substations with incomplete multimodal data",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/Real‐Time Federated Fault Detection for Substations With Incomplete Multimodal Data - Zhao - 2026 - The Journal of Engineering - Wiley Online Library.pdf",
+      "pdf_sha256": "29bae92844c16331f385fff4c3a852f3efeb3b68dd5fcf08c2aef7c3a0b121c1",
+      "viewer_pages_inspected": [
+        1,
+        29,
+        30
+      ],
+      "pagination_and_version": "Wiley HTML article printed to40-page PDF; footer n/40 is browser print numbering, not article pagination.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "PDF29 says fraction of clients missing one modality varied up to80%; missingness Figure8 is actually on PDF30. This is incomplete federated-client data plus imputation/distillation/aggregation, not simply removing a sensor at fixed-model deployment. Current PDFp29,Figure8 postnote spans adjacent pages; prefer Figure8 alone or PDFpp29–30,Figure8.",
+      "status": "VERIFIED"
+    },
+    {
+      "key": "P055",
+      "registered_title": "Strictly proper scoring rules, prediction, and estimation",
+      "source_pdf": "00_thesis_writing_tracking/Thesis/References/PDFs/Strictly Proper Scoring Rules  Prediction  and Estimation.pdf",
+      "pdf_sha256": "e535b6f39f9179f7190a896117c27cf29585e7b5be2ba071232b704fd90a2d4e",
+      "viewer_pages_inspected": [
+        2,
+        3,
+        6
+      ],
+      "pagination_and_version": "JASA102(477),2007,359–378; first viewer page is publisher cover; viewer2=printed359,viewer6=printed363.",
+      "method": [
+        "pdftotext -layout direct source reading"
+      ],
+      "finding": "Definition of proper/strictly proper scores and categorical examples support forecast-quality evaluation. §3 printed363(PDF6) gives Brier and logarithmic scoring rules; negative log-likelihood is the loss-sign convention of logarithmic score. Publisher cover says published online2012 but cited journal article year is2007.",
+      "status": "VERIFIED"
+    }
+  ],
+  "claims": [
+    {
+      "key": "P003",
+      "chapter": "01_introduction",
+      "line_before": 36,
+      "section": "Context and Motivation",
+      "original_command": "\\citep{P003,Hua2026Weld}",
+      "original_postnote": "",
+      "passage": "Robotic welding was the starting point for this research. A camera\ncan observe the weld pool, while acoustic and machine sensor\nmeasurements give information about other parts of the welding\nprocess. Previous studies have explored combining visual and\nacoustic data for weld assessment \\citep{P003,Hua2026Weld}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        7,
+        9
+      ],
+      "finding": "Fresh text inspection of §III.A–B (PDF6) verifies 37 frames/s, groups of 20 frames, four welding states and timestamp alignment. Raster inspection of Table III (PDF7) verifies fusion/image/audio accuracy 96.1/90.2/84.4%; text below verifies reported 26.2 ms inference. Raster Table V (PDF9) verifies dynamic fusion96.1%, Feature Sum90.5%, Feature Gate92.6%. No train/test split or welding-run disjoint assignment was found in full extracted text; thesis appropriately says grouping unresolved, not proven leakage."
+    },
+    {
+      "key": "P003",
+      "chapter": "02_literature_review",
+      "line_before": 32,
+      "section": "Multimodal Learning in Industrial and Robotic Monitoring",
+      "original_command": "\\citep{P003,Hua2026Weld}",
+      "original_postnote": "",
+      "passage": "Robotic welding is the principal driver of this thesis. Work on welding using visual and acoustic\ndata has shown that multimodal integration can improve prediction performance, but also that, in\nsome cases, adding a further modality provides no benefit at all \\citep{P003,Hua2026Weld}. The Intel\nWelding audit documented prior examination of the proposed assessment population, so an independent\nassessment of weld quality was not possible on that population (see Chapter~\\ref{ch:introduction}).\nThe review therefore addresses a more general architectural question across a range of industrial\nand robotic monitoring tasks: how physical measurements, visual data, and sensor data can be\ncombined to assess system condition and task outcome.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        7,
+        9
+      ],
+      "finding": "Fresh text inspection of §III.A–B (PDF6) verifies 37 frames/s, groups of 20 frames, four welding states and timestamp alignment. Raster inspection of Table III (PDF7) verifies fusion/image/audio accuracy 96.1/90.2/84.4%; text below verifies reported 26.2 ms inference. Raster Table V (PDF9) verifies dynamic fusion96.1%, Feature Sum90.5%, Feature Gate92.6%. No train/test split or welding-run disjoint assignment was found in full extracted text; thesis appropriately says grouping unresolved, not proven leakage."
+    },
+    {
+      "key": "P003",
+      "chapter": "02_literature_review",
+      "line_before": 259,
+      "section": "Retrospective Assessment and Online Monitoring",
+      "original_command": "\\citep[PDF pp.~6--7]{P003}",
+      "original_postnote": "PDF pp.~6--7",
+      "passage": "Computational delay must also be distinguished from observation time. DMAW uses 20 frames at 37~fps\nand reports a much shorter forward-pass latency. As a result, approximately half a second of\nobservation is distinct from computational delay \\citep[PDF pp.~6--7]{P003}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        7,
+        9
+      ],
+      "finding": "Fresh text inspection of §III.A–B (PDF6) verifies 37 frames/s, groups of 20 frames, four welding states and timestamp alignment. Raster inspection of Table III (PDF7) verifies fusion/image/audio accuracy 96.1/90.2/84.4%; text below verifies reported 26.2 ms inference. Raster Table V (PDF9) verifies dynamic fusion96.1%, Feature Sum90.5%, Feature Gate92.6%. No train/test split or welding-run disjoint assignment was found in full extracted text; thesis appropriately says grouping unresolved, not proven leakage."
+    },
+    {
+      "key": "P003",
+      "chapter": "02_literature_review",
+      "line_before": 494,
+      "section": "Audio Representations",
+      "original_command": "\\citep{Hua2026Weld,P003}",
+      "original_postnote": "",
+      "passage": "The Welding Penetration Network uses VMD and GASF; DMAW uses Transformer representations adapted to\nthe welding observations \\citep{Hua2026Weld,P003}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        7,
+        9
+      ],
+      "finding": "Fresh text inspection of §III.A–B (PDF6) verifies 37 frames/s, groups of 20 frames, four welding states and timestamp alignment. Raster inspection of Table III (PDF7) verifies fusion/image/audio accuracy 96.1/90.2/84.4%; text below verifies reported 26.2 ms inference. Raster Table V (PDF9) verifies dynamic fusion96.1%, Feature Sum90.5%, Feature Gate92.6%. No train/test split or welding-run disjoint assignment was found in full extracted text; thesis appropriately says grouping unresolved, not proven leakage."
+    },
+    {
+      "key": "P003",
+      "chapter": "02_literature_review",
+      "line_before": 560,
+      "section": "Unimodal References and Incremental Modality Value",
+      "original_command": "\\citep[PDF p.~7,\nTable~III]{P003}",
+      "original_postnote": "PDF p.~7,\nTable~III",
+      "passage": "The original welding motivation is why this reference is so important. DMAW fuses the image and\naudio Transformer representations to classify the four welding states. The reported accuracy is\n96.1\\% with fusion, 90.2\\% for the image model and 84.4\\% for the audio model \\citep[PDF p.~7,\nTable~III]{P003}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        7,
+        9
+      ],
+      "finding": "Fresh text inspection of §III.A–B (PDF6) verifies 37 frames/s, groups of 20 frames, four welding states and timestamp alignment. Raster inspection of Table III (PDF7) verifies fusion/image/audio accuracy 96.1/90.2/84.4%; text below verifies reported 26.2 ms inference. Raster Table V (PDF9) verifies dynamic fusion96.1%, Feature Sum90.5%, Feature Gate92.6%. No train/test split or welding-run disjoint assignment was found in full extracted text; thesis appropriately says grouping unresolved, not proven leakage."
+    },
+    {
+      "key": "P003",
+      "chapter": "02_literature_review",
+      "line_before": 674,
+      "section": "Gated and Context-Conditioned Fusion",
+      "original_command": "\\citep[PDF p.~9,\nTable~V]{P003}",
+      "original_postnote": "PDF p.~9,\nTable~V",
+      "passage": "Adaptive integration has also been looked at in an industrial context. DMAW achieved 96.1\\%\naccuracy, compared with 90.5\\% for summation and 92.6\\% for its gate comparator \\citep[PDF p.~9,\nTable~V]{P003}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        7,
+        9
+      ],
+      "finding": "Fresh text inspection of §III.A–B (PDF6) verifies 37 frames/s, groups of 20 frames, four welding states and timestamp alignment. Raster inspection of Table III (PDF7) verifies fusion/image/audio accuracy 96.1/90.2/84.4%; text below verifies reported 26.2 ms inference. Raster Table V (PDF9) verifies dynamic fusion96.1%, Feature Sum90.5%, Feature Gate92.6%. No train/test split or welding-run disjoint assignment was found in full extracted text; thesis appropriately says grouping unresolved, not proven leakage."
+    },
+    {
+      "key": "P003",
+      "chapter": "02_literature_review",
+      "line_before": 924,
+      "section": "Grouped Evaluation and Leakage Prevention",
+      "original_command": "\\citep{P003,Hua2026Weld}",
+      "original_postnote": "",
+      "passage": "Weld run grouping is still unresolved in the closest welding studies \\citep{P003,Hua2026Weld}. These\nexamples do show a potential dependence between the observations but do not establish any particular\nlevel of leakage.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        7,
+        9
+      ],
+      "finding": "Fresh text inspection of §III.A–B (PDF6) verifies 37 frames/s, groups of 20 frames, four welding states and timestamp alignment. Raster inspection of Table III (PDF7) verifies fusion/image/audio accuracy 96.1/90.2/84.4%; text below verifies reported 26.2 ms inference. Raster Table V (PDF9) verifies dynamic fusion96.1%, Feature Sum90.5%, Feature Gate92.6%. No train/test split or welding-run disjoint assignment was found in full extracted text; thesis appropriately says grouping unresolved, not proven leakage."
+    },
+    {
+      "key": "P003",
+      "chapter": "02_literature_review",
+      "line_before": 1080,
+      "section": "Findings Supported Across the Reviewed Studies",
+      "original_command": "\\citep{P003,Huo2022Multisensor,Thoduka2024Handover,P045}",
+      "original_postnote": "",
+      "passage": "There are tangible observations that can be used to improve the performance of a task-specific\nmonitoring pipeline. DMAW, thermal-vibration diagnosis, HANDOVER and tool wear prediction are all\ngood examples under their respective assessment protocols\n\\citep{P003,Huo2022Multisensor,Thoduka2024Handover,P045}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        7,
+        9
+      ],
+      "finding": "Fresh text inspection of §III.A–B (PDF6) verifies 37 frames/s, groups of 20 frames, four welding states and timestamp alignment. Raster inspection of Table III (PDF7) verifies fusion/image/audio accuracy 96.1/90.2/84.4%; text below verifies reported 26.2 ms inference. Raster Table V (PDF9) verifies dynamic fusion96.1%, Feature Sum90.5%, Feature Gate92.6%. No train/test split or welding-run disjoint assignment was found in full extracted text; thesis appropriately says grouping unresolved, not proven leakage."
+    },
+    {
+      "key": "P004",
+      "chapter": "01_introduction",
+      "line_before": 80,
+      "section": "Problem Statement and Research Gap",
+      "original_command": "\\citep{P017,P004,Guo2017Calibration,P008}",
+      "original_postnote": "",
+      "passage": "The fairness of these comparisons also depends on factors like\nthe prediction target, how the data is aligned over time, training\nmethods, calibration, and whether the test data is independent\n\\citep{P017,P004,Guo2017Calibration,P008}. Differences in any of\nthese areas can make it hard to know if performance gains are\ngeneralizable.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "finding": "Abstract and methods demonstrate optimistic bias when CV is reused for selection and error estimation; selection must occur within each training fold and nested CV estimates assessment error. Supports separation of model development and assessment, with no need to claim a particular split protocol was used in this thesis."
+    },
+    {
+      "key": "P004",
+      "chapter": "02_literature_review",
+      "line_before": 933,
+      "section": "Grouped Evaluation and Leakage Prevention",
+      "original_command": "\\citep{P004,P017}",
+      "original_postnote": "",
+      "passage": "Normalisation, feature selection and model parameter optimisation all require an appropriate split\nbetween model development and model assessment \\citep{P004,P017}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "finding": "Abstract and methods demonstrate optimistic bias when CV is reused for selection and error estimation; selection must occur within each training fold and nested CV estimates assessment error. Supports separation of model development and assessment, with no need to claim a particular split protocol was used in this thesis."
+    },
+    {
+      "key": "P004",
+      "chapter": "02_literature_review",
+      "line_before": 1292,
+      "section": "Derived Research Design Requirements",
+      "original_command": "\\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}",
+      "original_postnote": "",
+      "passage": "This is a direct consequence of the literature on assessment independence, calibration, selection\nuncertainty, reproducibility and target domain access\n\\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "finding": "Abstract and methods demonstrate optimistic bias when CV is reused for selection and error estimation; selection must occur within each training fold and nested CV estimates assessment error. Supports separation of model development and assessment, with no need to claim a particular split protocol was used in this thesis."
+    },
+    {
+      "key": "P005",
+      "chapter": "02_literature_review",
+      "line_before": 745,
+      "section": "Missing Modalities",
+      "original_command": "\\citep{Li2025PGMTKD,Sui2026Incomplete,P005,P016}",
+      "original_postnote": "",
+      "passage": "PGMTKD's pressure-only student and incomplete RGB-geometry methods do provide evidence for reduced\ninput inference. ModDrop and the missing-modality Transformers add further transferable mechanisms\nand counterexamples \\citep{Li2025PGMTKD,Sui2026Incomplete,P005,P016}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        5,
+        7,
+        8,
+        9
+      ],
+      "finding": "Abstract and ModDrop training section describe dropping modality channels during training and meaningful prediction from available inputs at test time. Gesture-recognition evidence supports a transferable missing-input mechanism; not industrial validation."
+    },
+    {
+      "key": "P006",
+      "chapter": "02_literature_review",
+      "line_before": 666,
+      "section": "Gated and Context-Conditioned Fusion",
+      "original_command": "\\citep[Section~3,\nTable~2]{P006}",
+      "original_postnote": "Section~3,\nTable~2",
+      "passage": "Gated Multimodal Units do provide evidence of transferable conditional representation integration.\nThe architecture fuses visual and textual information and achieves a macro F-score of .541, compared\nwith .521 for the concatenation baseline in the movie-genre classification task \\citep[Section~3,\nTable~2]{P006}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        4,
+        5,
+        10,
+        11
+      ],
+      "finding": "§3.1 introduces gated multimodal units; §5.2 and Table2(PDF/printed11) report MM-IMDb macro F-score .541 for GMU and .521 for concatenation. Current Section3 postnote supports architecture but result is in §5.2, Table2; use Section3.1, Table2 or simply Table2 for precision.",
+      "recommended_postnote": "Section~3.1, Table~2"
+    },
+    {
+      "key": "P006",
+      "chapter": "02_literature_review",
+      "line_before": 1100,
+      "section": "Findings Supported Across the Reviewed Studies",
+      "original_command": "\\citep{Ting1999Issues,P006,Zhang2023QMF}",
+      "original_postnote": "",
+      "passage": "Static and learned fusion mechanisms both offer different avenues for exploiting complementary\ninformation. Stacked generalisation motivates learning combinations of the outputs of individual\npredictors. In contrast, gated representation learning and quality-aware fusion justify\ncontext-dependent allocation \\citep{Ting1999Issues,P006,Zhang2023QMF}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        4,
+        5,
+        10,
+        11
+      ],
+      "finding": "§3.1 introduces gated multimodal units; §5.2 and Table2(PDF/printed11) report MM-IMDb macro F-score .541 for GMU and .521 for concatenation. Current Section3 postnote supports architecture but result is in §5.2, Table2; use Section3.1, Table2 or simply Table2 for precision."
+    },
+    {
+      "key": "P008",
+      "chapter": "01_introduction",
+      "line_before": 75,
+      "section": "Problem Statement and Research Gap",
+      "original_command": "\\citep{Zhang2023QMF,P008}",
+      "original_postnote": "",
+      "passage": "Another challenge concerns the reliability of each data type.\nWhen an input is missing, fallback mechanisms may be employed.\nIf an input is present but degraded, evidence is required to\ndemonstrate altered reliability. While adaptive fusion can adjust\nthe contribution of each input, modifying these weights alone\ndoes not ensure improved robustness \\citep{Zhang2023QMF,P008}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "finding": "Abstract explicitly says traditional post-hoc calibration falls short under dataset shift. §1–2 distinguish in-distribution calibration from changed inputs and describe held-out temperature scaling. Results around Figure2 compare Brier score under shift. Supports cautions about shifted confidence, not any universal failure of adaptation."
+    },
+    {
+      "key": "P008",
+      "chapter": "01_introduction",
+      "line_before": 80,
+      "section": "Problem Statement and Research Gap",
+      "original_command": "\\citep{P017,P004,Guo2017Calibration,P008}",
+      "original_postnote": "",
+      "passage": "The fairness of these comparisons also depends on factors like\nthe prediction target, how the data is aligned over time, training\nmethods, calibration, and whether the test data is independent\n\\citep{P017,P004,Guo2017Calibration,P008}. Differences in any of\nthese areas can make it hard to know if performance gains are\ngeneralizable.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "finding": "Abstract explicitly says traditional post-hoc calibration falls short under dataset shift. §1–2 distinguish in-distribution calibration from changed inputs and describe held-out temperature scaling. Results around Figure2 compare Brier score under shift. Supports cautions about shifted confidence, not any universal failure of adaptation."
+    },
+    {
+      "key": "P008",
+      "chapter": "02_literature_review",
+      "line_before": 867,
+      "section": "Quality-Aware and Uncertainty-Aware Fusion",
+      "original_command": "\\citep{Zhang2023QMF,P008}",
+      "original_postnote": "",
+      "passage": "QMF's theoretical justification does not validate the use of arbitrary quality proxies, and clean\ncalibration can actually degrade after a distribution shift \\citep{Zhang2023QMF,P008}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "finding": "Abstract explicitly says traditional post-hoc calibration falls short under dataset shift. §1–2 distinguish in-distribution calibration from changed inputs and describe held-out temperature scaling. Results around Figure2 compare Brier score under shift. Supports cautions about shifted confidence, not any universal failure of adaptation."
+    },
+    {
+      "key": "P008",
+      "chapter": "02_literature_review",
+      "line_before": 966,
+      "section": "Discrimination, Calibration, and Decision Thresholds",
+      "original_command": "\\citep{Guo2017Calibration,P008}",
+      "original_postnote": "",
+      "passage": "Validation-fitted calibration can improve in-distribution probability quality, while dataset shift\ncan damage confidence estimates \\citep{Guo2017Calibration,P008}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "finding": "Abstract explicitly says traditional post-hoc calibration falls short under dataset shift. §1–2 distinguish in-distribution calibration from changed inputs and describe held-out temperature scaling. Results around Figure2 compare Brier score under shift. Supports cautions about shifted confidence, not any universal failure of adaptation."
+    },
+    {
+      "key": "P008",
+      "chapter": "02_literature_review",
+      "line_before": 1292,
+      "section": "Derived Research Design Requirements",
+      "original_command": "\\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}",
+      "original_postnote": "",
+      "passage": "This is a direct consequence of the literature on assessment independence, calibration, selection\nuncertainty, reproducibility and target domain access\n\\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "finding": "Abstract explicitly says traditional post-hoc calibration falls short under dataset shift. §1–2 distinguish in-distribution calibration from changed inputs and describe held-out temperature scaling. Results around Figure2 compare Brier score under shift. Supports cautions about shifted confidence, not any universal failure of adaptation."
+    },
+    {
+      "key": "P009",
+      "chapter": "02_literature_review",
+      "line_before": 1038,
+      "section": "Modularity, Reproducibility, and Computational Cost",
+      "original_command": "\\citep{P009}",
+      "original_postnote": "",
+      "passage": "An identified version, accessible source code, executable processing and independently reproduced\nresults all provide various levels of reproducibility assurance \\citep{P009}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "finding": "Introduction distinguishes availability of code/data from actually obtaining similar results and names underspecified models, code, metrics and statistical reporting as threats. Code policy, reproducibility challenge and checklist provide methodological basis for graded reproducibility assurance."
+    },
+    {
+      "key": "P009",
+      "chapter": "02_literature_review",
+      "line_before": 1292,
+      "section": "Derived Research Design Requirements",
+      "original_command": "\\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}",
+      "original_postnote": "",
+      "passage": "This is a direct consequence of the literature on assessment independence, calibration, selection\nuncertainty, reproducibility and target domain access\n\\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "finding": "Introduction distinguishes availability of code/data from actually obtaining similar results and names underspecified models, code, metrics and statistical reporting as threats. Code policy, reproducibility challenge and checklist provide methodological basis for graded reproducibility assurance."
+    },
+    {
+      "key": "P011",
+      "chapter": "02_literature_review",
+      "line_before": 500,
+      "section": "Audio Representations",
+      "original_command": "\\citep{P011}",
+      "original_postnote": "",
+      "passage": "The Audio Spectrogram Transformer is a pretrained candidate for acoustic representation learning\n\\citep{P011}. The results on the general audio benchmark are sufficiently promising to warrant\nindustrial investigation. However, the appropriateness of such representations will depend heavily\non the particular acoustic environment and the specific prediction task.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "finding": "Abstract/method describe convolution-free Audio Spectrogram Transformer, ImageNet-to-audio transfer and general audio benchmark results(.485mAP AudioSet,95.6%ESC-50,98.1%SpeechCommandsV2). Chapter uses no exact values; pretrained acoustic candidacy is supported and industrial suitability correctly remains conditional."
+    },
+    {
+      "key": "P013",
+      "chapter": "02_literature_review",
+      "line_before": 475,
+      "section": "Temporal and Time-Series Representations",
+      "original_command": "\\citep{P034,P013}",
+      "original_postnote": "",
+      "passage": "Video representation learning looks at another temporal structure. TimeSformer and Video Swin model\nthe spatial and temporal relations between video frames \\citep{P034,P013}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "finding": "Architecture and shifted-window descriptions explicitly extend local attention to spatiotemporal video windows and relations. Supports spatial and temporal modeling claim; does not make frame averaging a learned temporal model."
+    },
+    {
+      "key": "P016",
+      "chapter": "02_literature_review",
+      "line_before": 113,
+      "section": "Inclusion and Exclusion Criteria",
+      "original_command": "\\citep{Wang2020What,P016,P023,Bengio2004CVVariance}",
+      "original_postnote": "",
+      "passage": "Transferable work is explicitly identified. Work on multimodal optimisation failure modes,\nmissing-input mechanisms, uncertainty weighting, and evaluation theory can all be valuable in\ndesigning industrial architectures, even if they do not amount to industrial validation\n\\citep{Wang2020What,P016,P023,Bengio2004CVVariance}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "finding": "Introduction/§3 show severe missing-modality degradation and even multimodal underperformance against a unimodal comparator; §4 develops multi-task modal-complete/modal-incomplete training and a searched fusion strategy. Supports transferable mechanism plus counterexamples."
+    },
+    {
+      "key": "P016",
+      "chapter": "02_literature_review",
+      "line_before": 745,
+      "section": "Missing Modalities",
+      "original_command": "\\citep{Li2025PGMTKD,Sui2026Incomplete,P005,P016}",
+      "original_postnote": "",
+      "passage": "PGMTKD's pressure-only student and incomplete RGB-geometry methods do provide evidence for reduced\ninput inference. ModDrop and the missing-modality Transformers add further transferable mechanisms\nand counterexamples \\citep{Li2025PGMTKD,Sui2026Incomplete,P005,P016}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "finding": "Introduction/§3 show severe missing-modality degradation and even multimodal underperformance against a unimodal comparator; §4 develops multi-task modal-complete/modal-incomplete training and a searched fusion strategy. Supports transferable mechanism plus counterexamples."
+    },
+    {
+      "key": "P017",
+      "chapter": "01_introduction",
+      "line_before": 80,
+      "section": "Problem Statement and Research Gap",
+      "original_command": "\\citep{P017,P004,Guo2017Calibration,P008}",
+      "original_postnote": "",
+      "passage": "The fairness of these comparisons also depends on factors like\nthe prediction target, how the data is aligned over time, training\nmethods, calibration, and whether the test data is independent\n\\citep{P017,P004,Guo2017Calibration,P008}. Differences in any of\nthese areas can make it hard to know if performance gains are\ngeneralizable.",
+      "support_status": "VERIFIED_FINAL_SOURCE",
+      "source_verified_pages": [
+        1,
+        5,
+        7
+      ],
+      "finding": "Final article explicitly requires separation through preprocessing, modeling and evaluation; identifies whole-dataset preprocessing and feature selection as leakage; and says train/test splitting should account for dependence when scientific claims concern new units. These final-version passages support the existing Chapter1–2 general claims. No numeric result or page-specific quotation in those claims requires final PDF pagination.",
+      "final_source_check": {
+        "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10499856/",
+        "fulltext_retrieval_url": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC10499856/unicode",
+        "fulltext_format": "NCBI BioC XML of final open-access article",
+        "retrieval_date": "2026-11-26",
+        "fulltext_sha256": "3fd8182ca646349a6f4b28b14909970d8bd0d7f3c3bf74d4dc16709257d32f30",
+        "metadata_verified": {
+          "title": "Leakage and the reproducibility crisis in machine-learning-based science",
+          "authors": [
+            "Sayash Kapoor",
+            "Arvind Narayanan"
+          ],
+          "year": 2023,
+          "venue": "Patterns",
+          "volume": "4",
+          "issue": "9",
+          "article_number": "100804",
+          "doi": "10.1016/j.patter.2023.100804",
+          "license": "CC BY"
+        },
+        "sections_verified": [
+          "Results: A taxonomy of data leakage; L1 clean separation",
+          "L1.2 Pre-processing on training and test set",
+          "L1.3 Feature selection on training and test set",
+          "L3.2 Nonindependence between training and test samples",
+          "Results: model info sheet, L1 clean train-test separation"
+        ],
+        "finding": "Final article explicitly requires separation through preprocessing, modeling and evaluation; identifies whole-dataset preprocessing and feature selection as leakage; and says train/test splitting should account for dependence when scientific claims concern new units. These final-version passages support the existing Chapter1–2 general claims. No numeric result or page-specific quotation in those claims requires final PDF pagination.",
+        "access_note": "PMC HTML returned a browser challenge; NCBI BioC full-text endpoint retrieved successfully using urllib. This is final source content rather than the local2022attachment."
+      }
+    },
+    {
+      "key": "P017",
+      "chapter": "02_literature_review",
+      "line_before": 933,
+      "section": "Grouped Evaluation and Leakage Prevention",
+      "original_command": "\\citep{P004,P017}",
+      "original_postnote": "",
+      "passage": "Normalisation, feature selection and model parameter optimisation all require an appropriate split\nbetween model development and model assessment \\citep{P004,P017}.",
+      "support_status": "VERIFIED_FINAL_SOURCE",
+      "source_verified_pages": [
+        1,
+        5,
+        7
+      ],
+      "finding": "Final article explicitly requires separation through preprocessing, modeling and evaluation; identifies whole-dataset preprocessing and feature selection as leakage; and says train/test splitting should account for dependence when scientific claims concern new units. These final-version passages support the existing Chapter1–2 general claims. No numeric result or page-specific quotation in those claims requires final PDF pagination.",
+      "final_source_check": {
+        "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10499856/",
+        "fulltext_retrieval_url": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC10499856/unicode",
+        "fulltext_format": "NCBI BioC XML of final open-access article",
+        "retrieval_date": "2026-11-26",
+        "fulltext_sha256": "3fd8182ca646349a6f4b28b14909970d8bd0d7f3c3bf74d4dc16709257d32f30",
+        "metadata_verified": {
+          "title": "Leakage and the reproducibility crisis in machine-learning-based science",
+          "authors": [
+            "Sayash Kapoor",
+            "Arvind Narayanan"
+          ],
+          "year": 2023,
+          "venue": "Patterns",
+          "volume": "4",
+          "issue": "9",
+          "article_number": "100804",
+          "doi": "10.1016/j.patter.2023.100804",
+          "license": "CC BY"
+        },
+        "sections_verified": [
+          "Results: A taxonomy of data leakage; L1 clean separation",
+          "L1.2 Pre-processing on training and test set",
+          "L1.3 Feature selection on training and test set",
+          "L3.2 Nonindependence between training and test samples",
+          "Results: model info sheet, L1 clean train-test separation"
+        ],
+        "finding": "Final article explicitly requires separation through preprocessing, modeling and evaluation; identifies whole-dataset preprocessing and feature selection as leakage; and says train/test splitting should account for dependence when scientific claims concern new units. These final-version passages support the existing Chapter1–2 general claims. No numeric result or page-specific quotation in those claims requires final PDF pagination.",
+        "access_note": "PMC HTML returned a browser challenge; NCBI BioC full-text endpoint retrieved successfully using urllib. This is final source content rather than the local2022attachment."
+      }
+    },
+    {
+      "key": "P017",
+      "chapter": "02_literature_review",
+      "line_before": 1292,
+      "section": "Derived Research Design Requirements",
+      "original_command": "\\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}",
+      "original_postnote": "",
+      "passage": "This is a direct consequence of the literature on assessment independence, calibration, selection\nuncertainty, reproducibility and target domain access\n\\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}.",
+      "support_status": "VERIFIED_FINAL_SOURCE",
+      "source_verified_pages": [
+        1,
+        5,
+        7
+      ],
+      "finding": "Final article explicitly requires separation through preprocessing, modeling and evaluation; identifies whole-dataset preprocessing and feature selection as leakage; and says train/test splitting should account for dependence when scientific claims concern new units. These final-version passages support the existing Chapter1–2 general claims. No numeric result or page-specific quotation in those claims requires final PDF pagination.",
+      "final_source_check": {
+        "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10499856/",
+        "fulltext_retrieval_url": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC10499856/unicode",
+        "fulltext_format": "NCBI BioC XML of final open-access article",
+        "retrieval_date": "2026-11-26",
+        "fulltext_sha256": "3fd8182ca646349a6f4b28b14909970d8bd0d7f3c3bf74d4dc16709257d32f30",
+        "metadata_verified": {
+          "title": "Leakage and the reproducibility crisis in machine-learning-based science",
+          "authors": [
+            "Sayash Kapoor",
+            "Arvind Narayanan"
+          ],
+          "year": 2023,
+          "venue": "Patterns",
+          "volume": "4",
+          "issue": "9",
+          "article_number": "100804",
+          "doi": "10.1016/j.patter.2023.100804",
+          "license": "CC BY"
+        },
+        "sections_verified": [
+          "Results: A taxonomy of data leakage; L1 clean separation",
+          "L1.2 Pre-processing on training and test set",
+          "L1.3 Feature selection on training and test set",
+          "L3.2 Nonindependence between training and test samples",
+          "Results: model info sheet, L1 clean train-test separation"
+        ],
+        "finding": "Final article explicitly requires separation through preprocessing, modeling and evaluation; identifies whole-dataset preprocessing and feature selection as leakage; and says train/test splitting should account for dependence when scientific claims concern new units. These final-version passages support the existing Chapter1–2 general claims. No numeric result or page-specific quotation in those claims requires final PDF pagination.",
+        "access_note": "PMC HTML returned a browser challenge; NCBI BioC full-text endpoint retrieved successfully using urllib. This is final source content rather than the local2022attachment."
+      }
+    },
+    {
+      "key": "P021",
+      "chapter": "02_literature_review",
+      "line_before": 811,
+      "section": "Temporal Misalignment and Distribution Shift",
+      "original_command": "\\citep{Petrich2021Multimodal,Chen2023Multisensor,P021}",
+      "original_postnote": "",
+      "passage": "Registration studies have established the importance of alignment in multimodal monitoring.\nOmniFuser's repeated within-pass images provide a way to construct paired observations rather than\ndirectly test a synchronisation failure \\citep{Petrich2021Multimodal,Chen2023Multisensor,P021}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        8,
+        10,
+        11
+      ],
+      "finding": "§VI.A on printed/PDF8 says each post-pass image is replicated across within-pass sensor readings; this constructs aligned observations and is not an experiment removing synchronization. PDF10 describes modality dropout and inference masking; all quantitative result tables and text were searched and no quantified modality-outage table was found. TablesIV/V on printed/PDF11 respectively report prediction horizons and wear classification."
+    },
+    {
+      "key": "P021",
+      "chapter": "02_literature_review",
+      "line_before": 891,
+      "section": "Modality Dropout, Augmentation, and Fallback Mechanisms",
+      "original_command": "\\citep[PDF p.~10]{P021}",
+      "original_postnote": "PDF p.~10",
+      "passage": "OmniFuser describes dropout and masking without any quantified outage table \\citep[PDF p.~10]{P021}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        8,
+        10,
+        11
+      ],
+      "finding": "§VI.A on printed/PDF8 says each post-pass image is replicated across within-pass sensor readings; this constructs aligned observations and is not an experiment removing synchronization. PDF10 describes modality dropout and inference masking; all quantitative result tables and text were searched and no quantified modality-outage table was found. TablesIV/V on printed/PDF11 respectively report prediction horizons and wear classification."
+    },
+    {
+      "key": "P021",
+      "chapter": "02_literature_review",
+      "line_before": 1370,
+      "section": "Implications for the Empirical Investigations",
+      "original_command": "\\citep[PDF p.~11, Tables~IV--V]{P021}",
+      "original_postnote": "PDF p.~11, Tables~IV--V",
+      "passage": "OmniFuser predicts milling tool wear states and cutting force \\citep[PDF p.~11, Tables~IV--V]{P021}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        8,
+        10,
+        11
+      ],
+      "finding": "§VI.A on printed/PDF8 says each post-pass image is replicated across within-pass sensor readings; this constructs aligned observations and is not an experiment removing synchronization. PDF10 describes modality dropout and inference masking; all quantitative result tables and text were searched and no quantified modality-outage table was found. TablesIV/V on printed/PDF11 respectively report prediction horizons and wear classification."
+    },
+    {
+      "key": "P022",
+      "chapter": "02_literature_review",
+      "line_before": 841,
+      "section": "Quality-Aware and Uncertainty-Aware Fusion",
+      "original_command": "\\citep[PDF pp.~4--5, 9]{P022}",
+      "original_postnote": "PDF pp.~4--5, 9",
+      "passage": "The transferable UDML experiments train on controlled Gaussian corruption intensities and recognise\nthat sample difficulty can be confused with modality corruption \\citep[PDF pp.~4--5, 9]{P022}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        4,
+        5,
+        9
+      ],
+      "finding": "§3.2.1 equation8(PDF/printed4) trains a noise estimator from Gaussian perturbation intensity; §3.2.3(PDF5) introduces noise-aware training after clean representation fitting. Limitation section(PDF9) explicitly distinguishes tail-class/sample difficulty uncertainty from corruption. Supports both exposure qualification and uncertainty ambiguity."
+    },
+    {
+      "key": "P022",
+      "chapter": "02_literature_review",
+      "line_before": 1134,
+      "section": "Unresolved Questions and Research Gap",
+      "original_command": "\\citep{Zhang2023QMF,P022}",
+      "original_postnote": "",
+      "passage": "Reliability introduces a related source of uncertainty. Adaptive weighting is justified when the\navailable context can identify changes in unimodal prediction reliability \\citep{Zhang2023QMF,P022}.\nThe value of conditioning information, its relationship to branch errors, and its comparison with\nexposure-matched static alternatives must be investigated on a task-specific basis.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        4,
+        5,
+        9
+      ],
+      "finding": "§3.2.1 equation8(PDF/printed4) trains a noise estimator from Gaussian perturbation intensity; §3.2.3(PDF5) introduces noise-aware training after clean representation fitting. Limitation section(PDF9) explicitly distinguishes tail-class/sample difficulty uncertainty from corruption. Supports both exposure qualification and uncertainty ambiguity."
+    },
+    {
+      "key": "P023",
+      "chapter": "02_literature_review",
+      "line_before": 113,
+      "section": "Inclusion and Exclusion Criteria",
+      "original_command": "\\citep{Wang2020What,P016,P023,Bengio2004CVVariance}",
+      "original_postnote": "",
+      "passage": "Transferable work is explicitly identified. Work on multimodal optimisation failure modes,\nmissing-input mechanisms, uncertainty weighting, and evaluation theory can all be valuable in\ndesigning industrial architectures, even if they do not amount to industrial validation\n\\citep{Wang2020What,P016,P023,Bengio2004CVVariance}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        2,
+        3,
+        4
+      ],
+      "finding": "Table4 on printed/PDF4 has DLinear/Energy row .263 unimodal without text,.670 Concat-First,.243 CFA. Header confirms values are MSE averaged across four forecasting horizons. §2–3 describe constrained information fusion; no inference to industrial validation is made by chapter."
+    },
+    {
+      "key": "P023",
+      "chapter": "02_literature_review",
+      "line_before": 609,
+      "section": "Feature Concatenation",
+      "original_command": "\\citep[PDF p.~4, Table~4]{P023}",
+      "original_postnote": "PDF p.~4, Table~4",
+      "passage": "CFA provides transferable evidence from forecasting. For DLinear on the Energy dataset, the first\nconcatenation gives an MSE of .670, compared with .263 without text and .243 with constrained fusion\n\\citep[PDF p.~4, Table~4]{P023}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        2,
+        3,
+        4
+      ],
+      "finding": "Table4 on printed/PDF4 has DLinear/Energy row .263 unimodal without text,.670 Concat-First,.243 CFA. Header confirms values are MSE averaged across four forecasting horizons. §2–3 describe constrained information fusion; no inference to industrial validation is made by chapter."
+    },
+    {
+      "key": "P024",
+      "chapter": "02_literature_review",
+      "line_before": 284,
+      "section": "Visual and Video Observations",
+      "original_command": "\\citep[PDF pp.~4--7]{P024}",
+      "original_postnote": "PDF pp.~4--7",
+      "passage": "GPAD combines RGB-depth features with point cloud priors \\citep[PDF pp.~4--7]{P024}. This is an\nexample of integration across representations that do not necessarily require three separate\nphysical acquisition sources.",
+      "support_status": "VERIFIED_WITH_INFERENCE",
+      "source_verified_pages": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "finding": "Method first concatenates raw RGB/depth for geometry-aware representation and uses a dedicated point-cloud expert to provide geometric priors. Claim about representations not requiring three physical acquisition sources is an architectural inference consistent with derived geometric representations, not a count established about all acquisition rigs."
+    },
+    {
+      "key": "P025",
+      "chapter": "02_literature_review",
+      "line_before": 192,
+      "section": "Anomaly Detection, Defect Classification, and Failure Classification",
+      "original_command": "\\citep[PDF pp.~6, 8--9]{P025}",
+      "original_postnote": "PDF pp.~6, 8--9",
+      "passage": "ZSG-IAD trains on reports and masks before evaluating on held-out categories or datasets. The\nzero-shot terminology refers to that assessment boundary rather than to the complete absence of\nanomaly supervised training \\citep[PDF pp.~6, 8--9]{P025}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        8,
+        9
+      ],
+      "finding": "§III.D on printed/PDF6 explicitly uses report-supervised fine-tuning plus Dice/BCE anomaly-mask supervision. §IV.A(PDF8) reports disjoint training/test object categories and no instance overlap; PDF9 TableIV reports a separate cross-dataset setting. Metrics §IV.B(PDF8) define SchemaValidRate,Align-IoU and NLI entailment. PDF9 describes input-subset robustness, but a single shared checkpoint/exposure protocol for every subset is not fully specified in inspected methods. Thesis preserves that limitation."
+    },
+    {
+      "key": "P025",
+      "chapter": "02_literature_review",
+      "line_before": 762,
+      "section": "Missing Modalities",
+      "original_command": "\\citep{P025}",
+      "original_postnote": "",
+      "passage": "ZSG-IAD reports input subset comparisons without fully defining the shared checkpoint and training\nexposure \\citep{P025}. Missing training images in the hot rolling regime constitute another\navailability regime \\citep{Ma2025A}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        8,
+        9
+      ],
+      "finding": "§III.D on printed/PDF6 explicitly uses report-supervised fine-tuning plus Dice/BCE anomaly-mask supervision. §IV.A(PDF8) reports disjoint training/test object categories and no instance overlap; PDF9 TableIV reports a separate cross-dataset setting. Metrics §IV.B(PDF8) define SchemaValidRate,Align-IoU and NLI entailment. PDF9 describes input-subset robustness, but a single shared checkpoint/exposure protocol for every subset is not fully specified in inspected methods. Thesis preserves that limitation."
+    },
+    {
+      "key": "P025",
+      "chapter": "02_literature_review",
+      "line_before": 1013,
+      "section": "Interpretability and Its Limits",
+      "original_command": "\\citep{P025}",
+      "original_postnote": "",
+      "passage": "ZSG-IAD measures schema validity, language consistency and coarse-to-final-mask overlap\n\\citep{P025}. These provide evidence of various forms of self-consistency.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        6,
+        8,
+        9
+      ],
+      "finding": "§III.D on printed/PDF6 explicitly uses report-supervised fine-tuning plus Dice/BCE anomaly-mask supervision. §IV.A(PDF8) reports disjoint training/test object categories and no instance overlap; PDF9 TableIV reports a separate cross-dataset setting. Metrics §IV.B(PDF8) define SchemaValidRate,Align-IoU and NLI entailment. PDF9 describes input-subset robustness, but a single shared checkpoint/exposure protocol for every subset is not fully specified in inspected methods. Thesis preserves that limitation."
+    },
+    {
+      "key": "P026",
+      "chapter": "02_literature_review",
+      "line_before": 118,
+      "section": "Inclusion and Exclusion Criteria",
+      "original_command": "\\citep{Altinses2023Fuzzy,P026,Thoduka2024Handover,P035}",
+      "original_postnote": "",
+      "passage": "A publication may be included in the register as background or as a methodological contribution.\nSimulated robot regression, RGB-geometry inspection, physical camera-telemetry monitoring and\nsingle-camera feature-level fusion are different experimental settings\n\\citep{Altinses2023Fuzzy,P026,Thoduka2024Handover,P035}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12
+      ],
+      "finding": "PDF3–5 equations2–4 use normal training-score dispersion for category scaling and local disagreement for bounded auxiliary correction around multimodal anchor. Table3(PDF7) holds same evidence sources for alternative aggregation, with intact .9788I-AUROC/.9901P-AUPRO and missing3D .9330/.9586. This missing-input row is separate from a controlled adaptive-vs-static missing-input comparison. PDF8 Table6 and cross-dataset text specify same fusion formula but known-category calibration on Eyecandies, consistent with recipe reuse rather than unchanged-model generalization. Memory fitting is explained in §3 and AppendixA(PDF10)."
+    },
+    {
+      "key": "P026",
+      "chapter": "02_literature_review",
+      "line_before": 678,
+      "section": "Gated and Context-Conditioned Fusion",
+      "original_command": "\\citep[PDF pp.~3--5]{P026}",
+      "original_postnote": "PDF pp.~3--5",
+      "passage": "TC-MAF provides another approach whereby the auxiliary RGB evidence is bounded around a multimodal\nanchor using normal training dispersion and local disagreement \\citep[PDF pp.~3--5]{P026}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12
+      ],
+      "finding": "PDF3–5 equations2–4 use normal training-score dispersion for category scaling and local disagreement for bounded auxiliary correction around multimodal anchor. Table3(PDF7) holds same evidence sources for alternative aggregation, with intact .9788I-AUROC/.9901P-AUPRO and missing3D .9330/.9586. This missing-input row is separate from a controlled adaptive-vs-static missing-input comparison. PDF8 Table6 and cross-dataset text specify same fusion formula but known-category calibration on Eyecandies, consistent with recipe reuse rather than unchanged-model generalization. Memory fitting is explained in §3 and AppendixA(PDF10)."
+    },
+    {
+      "key": "P026",
+      "chapter": "02_literature_review",
+      "line_before": 716,
+      "section": "Comparability and Fairness of Fusion Evaluations",
+      "original_command": "\\citep[PDF p.~7, Table~3]{P026}",
+      "original_postnote": "PDF p.~7, Table~3",
+      "passage": "Comparisons using the same evidence sources can support a narrower attribution. TC-MAF retains the\nsame evidence sources, comparing bounded fusion against static averaging, weighted scores, rank\nfusion, and a learned gate \\citep[PDF p.~7, Table~3]{P026}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12
+      ],
+      "finding": "PDF3–5 equations2–4 use normal training-score dispersion for category scaling and local disagreement for bounded auxiliary correction around multimodal anchor. Table3(PDF7) holds same evidence sources for alternative aggregation, with intact .9788I-AUROC/.9901P-AUPRO and missing3D .9330/.9586. This missing-input row is separate from a controlled adaptive-vs-static missing-input comparison. PDF8 Table6 and cross-dataset text specify same fusion formula but known-category calibration on Eyecandies, consistent with recipe reuse rather than unchanged-model generalization. Memory fitting is explained in §3 and AppendixA(PDF10)."
+    },
+    {
+      "key": "P026",
+      "chapter": "02_literature_review",
+      "line_before": 751,
+      "section": "Missing Modalities",
+      "original_command": "\\citep[PDF p.~7, Table~3]{P026}",
+      "original_postnote": "PDF p.~7, Table~3",
+      "passage": "TC-MAF explicitly evaluates unavailable 3D input. I-AUROC drops from .9788 to .9330 and P-AUPRO from\n.9901 to .9586 \\citep[PDF p.~7, Table~3]{P026}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12
+      ],
+      "finding": "PDF3–5 equations2–4 use normal training-score dispersion for category scaling and local disagreement for bounded auxiliary correction around multimodal anchor. Table3(PDF7) holds same evidence sources for alternative aggregation, with intact .9788I-AUROC/.9901P-AUPRO and missing3D .9330/.9586. This missing-input row is separate from a controlled adaptive-vs-static missing-input comparison. PDF8 Table6 and cross-dataset text specify same fusion formula but known-category calibration on Eyecandies, consistent with recipe reuse rather than unchanged-model generalization. Memory fitting is explained in §3 and AppendixA(PDF10)."
+    },
+    {
+      "key": "P026",
+      "chapter": "02_literature_review",
+      "line_before": 824,
+      "section": "Temporal Misalignment and Distribution Shift",
+      "original_command": "\\citep{P026,P033}",
+      "original_postnote": "",
+      "passage": "Rebuilding normal memories on Eyecandies using fixed fusion hyperparameters is evidence of recipe\ntransfer, rather than deploying an unaltered model to an untouched target installation\n\\citep{P026,P033}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12
+      ],
+      "finding": "PDF3–5 equations2–4 use normal training-score dispersion for category scaling and local disagreement for bounded auxiliary correction around multimodal anchor. Table3(PDF7) holds same evidence sources for alternative aggregation, with intact .9788I-AUROC/.9901P-AUPRO and missing3D .9330/.9586. This missing-input row is separate from a controlled adaptive-vs-static missing-input comparison. PDF8 Table6 and cross-dataset text specify same fusion formula but known-category calibration on Eyecandies, consistent with recipe reuse rather than unchanged-model generalization. Memory fitting is explained in §3 and AppendixA(PDF10)."
+    },
+    {
+      "key": "P026",
+      "chapter": "02_literature_review",
+      "line_before": 860,
+      "section": "Quality-Aware and Uncertainty-Aware Fusion",
+      "original_command": "\\citep{P026}",
+      "original_postnote": "",
+      "passage": "TC-MAF uses normal-training dispersion and local disagreement to control the contribution of\nauxiliary evidence \\citep{P026}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12
+      ],
+      "finding": "PDF3–5 equations2–4 use normal training-score dispersion for category scaling and local disagreement for bounded auxiliary correction around multimodal anchor. Table3(PDF7) holds same evidence sources for alternative aggregation, with intact .9788I-AUROC/.9901P-AUPRO and missing3D .9330/.9586. This missing-input row is separate from a controlled adaptive-vs-static missing-input comparison. PDF8 Table6 and cross-dataset text specify same fusion formula but known-category calibration on Eyecandies, consistent with recipe reuse rather than unchanged-model generalization. Memory fitting is explained in §3 and AppendixA(PDF10)."
+    },
+    {
+      "key": "P026",
+      "chapter": "02_literature_review",
+      "line_before": 1083,
+      "section": "Findings Supported Across the Reviewed Studies",
+      "original_command": "\\citep{P026}",
+      "original_postnote": "",
+      "passage": "Controlled evidence integration can also improve RGB--geometry inspection under intact-input\nconditions. TC-MAF separately reports performance when the 3D input is unavailable \\citep{P026}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12
+      ],
+      "finding": "PDF3–5 equations2–4 use normal training-score dispersion for category scaling and local disagreement for bounded auxiliary correction around multimodal anchor. Table3(PDF7) holds same evidence sources for alternative aggregation, with intact .9788I-AUROC/.9901P-AUPRO and missing3D .9330/.9586. This missing-input row is separate from a controlled adaptive-vs-static missing-input comparison. PDF8 Table6 and cross-dataset text specify same fusion formula but known-category calibration on Eyecandies, consistent with recipe reuse rather than unchanged-model generalization. Memory fitting is explained in §3 and AppendixA(PDF10)."
+    },
+    {
+      "key": "P026",
+      "chapter": "02_literature_review",
+      "line_before": 1271,
+      "section": "Derived Research Design Requirements",
+      "original_command": "\\citep{Huo2022Multisensor,Altinses2023Fuzzy,P026,Zhang2023QMF}",
+      "original_postnote": "",
+      "passage": "This is a direct consequence of the missing input studies, the controlled industrial degradation\nstudies, and the theoretical underpinning of quality-aware weighting\n\\citep{Huo2022Multisensor,Altinses2023Fuzzy,P026,Zhang2023QMF}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12
+      ],
+      "finding": "PDF3–5 equations2–4 use normal training-score dispersion for category scaling and local disagreement for bounded auxiliary correction around multimodal anchor. Table3(PDF7) holds same evidence sources for alternative aggregation, with intact .9788I-AUROC/.9901P-AUPRO and missing3D .9330/.9586. This missing-input row is separate from a controlled adaptive-vs-static missing-input comparison. PDF8 Table6 and cross-dataset text specify same fusion formula but known-category calibration on Eyecandies, consistent with recipe reuse rather than unchanged-model generalization. Memory fitting is explained in §3 and AppendixA(PDF10)."
+    },
+    {
+      "key": "P031",
+      "chapter": "02_literature_review",
+      "line_before": 447,
+      "section": "Pretrained Visual Representations",
+      "original_command": "\\citep{P031}",
+      "original_postnote": "",
+      "passage": "Vision-language inspection introduces semantic information as another potential source of\nrepresentation value. DSE-AD combines historical and current rail images with normal and abnormal\nposition prompts and assesses pixel localisation on a further rail domain \\citep{P031}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        4,
+        7,
+        10
+      ],
+      "finding": "§III(PDF4) constructs position/state prompts and compares historical/current rail images. PDF7 evaluation metrics explicitly include pixel AUROC,AP,AUPRO and F1 at optimal threshold; HRD is a cross-domain test set of229history/current pairs. PDF10 TableIII and text evaluate Subway-trained models on HRD. These support the chapter; optimal-threshold F1 is not a validation-selected operational alarm threshold."
+    },
+    {
+      "key": "P031",
+      "chapter": "02_literature_review",
+      "line_before": 816,
+      "section": "Temporal Misalignment and Distribution Shift",
+      "original_command": "\\citep[PDF p.~10, Table~III]{P031}",
+      "original_postnote": "PDF p.~10, Table~III",
+      "passage": "The literature also contains examples of evaluation under changed acquisition conditions. HANDOVER\ntrains on one robot and evaluates on a different robot, and there's a rail localisation study that\nevaluates a Subway-trained model on high-speed rail \\citep[PDF p.~7, Table~V]{Thoduka2024Handover};\n\\citep[PDF p.~10, Table~III]{P031}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        4,
+        7,
+        10
+      ],
+      "finding": "§III(PDF4) constructs position/state prompts and compares historical/current rail images. PDF7 evaluation metrics explicitly include pixel AUROC,AP,AUPRO and F1 at optimal threshold; HRD is a cross-domain test set of229history/current pairs. PDF10 TableIII and text evaluate Subway-trained models on HRD. These support the chapter; optimal-threshold F1 is not a validation-selected operational alarm threshold."
+    },
+    {
+      "key": "P031",
+      "chapter": "02_literature_review",
+      "line_before": 957,
+      "section": "Discrimination, Calibration, and Decision Thresholds",
+      "original_command": "\\citep[PDF\np.~7]{P031}",
+      "original_postnote": "PDF\np.~7",
+      "passage": "The rail vision-language study reports pixel-level metrics and optimal threshold F1 \\citep[PDF\np.~7]{P031}. These metrics address a completely different evaluation problem than image-level alarm\naccuracy at a threshold chosen from the training or validation set.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        4,
+        7,
+        10
+      ],
+      "finding": "§III(PDF4) constructs position/state prompts and compares historical/current rail images. PDF7 evaluation metrics explicitly include pixel AUROC,AP,AUPRO and F1 at optimal threshold; HRD is a cross-domain test set of229history/current pairs. PDF10 TableIII and text evaluate Subway-trained models on HRD. These support the chapter; optimal-threshold F1 is not a validation-selected operational alarm threshold."
+    },
+    {
+      "key": "P033",
+      "chapter": "02_literature_review",
+      "line_before": 719,
+      "section": "Comparability and Fairness of Fusion Evaluations",
+      "original_command": "\\citep[PDF p.~10, Table~4]{P033}",
+      "original_postnote": "PDF p.~10, Table~4",
+      "passage": "On the flip side, the disagreement-aware study uses a locally released code baseline that performs\nworse than the published M3DM result \\citep[PDF p.~10, Table~4]{P033}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        5,
+        7,
+        8,
+        10,
+        11
+      ],
+      "finding": "Table4(PDF/printed10) distinguishes original M3DM .945I-AUROC from local released-code .779 and add-on .800; Table5(PDF/printed11) gives Eyecandies .810→.794 image AUROC while pixel .963→.971 and AUPRO .849→.870 improve. §3.3/3.7(PDF5/7) fit normal memory; §4.4(PDF10–11) uses same preprocessing/memory construction and evaluation interface on Eyecandies; hyperparameters fixed before evaluations(PDF8). Explanations for original-vs-local discrepancy are not isolated experimentally; thesis correctly treats them as checks rather than established causes."
+    },
+    {
+      "key": "P033",
+      "chapter": "02_literature_review",
+      "line_before": 824,
+      "section": "Temporal Misalignment and Distribution Shift",
+      "original_command": "\\citep{P026,P033}",
+      "original_postnote": "",
+      "passage": "Rebuilding normal memories on Eyecandies using fixed fusion hyperparameters is evidence of recipe\ntransfer, rather than deploying an unaltered model to an untouched target installation\n\\citep{P026,P033}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        5,
+        7,
+        8,
+        10,
+        11
+      ],
+      "finding": "Table4(PDF/printed10) distinguishes original M3DM .945I-AUROC from local released-code .779 and add-on .800; Table5(PDF/printed11) gives Eyecandies .810→.794 image AUROC while pixel .963→.971 and AUPRO .849→.870 improve. §3.3/3.7(PDF5/7) fit normal memory; §4.4(PDF10–11) uses same preprocessing/memory construction and evaluation interface on Eyecandies; hyperparameters fixed before evaluations(PDF8). Explanations for original-vs-local discrepancy are not isolated experimentally; thesis correctly treats them as checks rather than established causes."
+    },
+    {
+      "key": "P033",
+      "chapter": "02_literature_review",
+      "line_before": 856,
+      "section": "Quality-Aware and Uncertainty-Aware Fusion",
+      "original_command": "\\citep[PDF\npp.~10--11, Tables~4--5]{P033}",
+      "original_postnote": "PDF\npp.~10--11, Tables~4--5",
+      "passage": "The effect of the adaptation mechanisms also differs across prediction endpoints. The disagreement\nadd-on increases the local MVTec image AUROC from .779 to .800 and, at the same time, reduces the\nEyecandies image AUROC from .810 to .794, even though the pixel metrics have improved \\citep[PDF\npp.~10--11, Tables~4--5]{P033}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        5,
+        7,
+        8,
+        10,
+        11
+      ],
+      "finding": "Table4(PDF/printed10) distinguishes original M3DM .945I-AUROC from local released-code .779 and add-on .800; Table5(PDF/printed11) gives Eyecandies .810→.794 image AUROC while pixel .963→.971 and AUPRO .849→.870 improve. §3.3/3.7(PDF5/7) fit normal memory; §4.4(PDF10–11) uses same preprocessing/memory construction and evaluation interface on Eyecandies; hyperparameters fixed before evaluations(PDF8). Explanations for original-vs-local discrepancy are not isolated experimentally; thesis correctly treats them as checks rather than established causes."
+    },
+    {
+      "key": "P033",
+      "chapter": "02_literature_review",
+      "line_before": 1041,
+      "section": "Modularity, Reproducibility, and Computational Cost",
+      "original_command": "\\citep{P033}",
+      "original_postnote": "",
+      "passage": "The difference between local and published M3DM results remains unresolved. It motivates checks of\ndependencies, valid point filtering, checkpoints, and scoring conventions \\citep{P033}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        5,
+        7,
+        8,
+        10,
+        11
+      ],
+      "finding": "Table4(PDF/printed10) distinguishes original M3DM .945I-AUROC from local released-code .779 and add-on .800; Table5(PDF/printed11) gives Eyecandies .810→.794 image AUROC while pixel .963→.971 and AUPRO .849→.870 improve. §3.3/3.7(PDF5/7) fit normal memory; §4.4(PDF10–11) uses same preprocessing/memory construction and evaluation interface on Eyecandies; hyperparameters fixed before evaluations(PDF8). Explanations for original-vs-local discrepancy are not isolated experimentally; thesis correctly treats them as checks rather than established causes."
+    },
+    {
+      "key": "P033",
+      "chapter": "02_literature_review",
+      "line_before": 1118,
+      "section": "Unresolved Questions and Research Gap",
+      "original_command": "\\citep{Hua2026Weld,Thoduka2024Handover,P045,P033}",
+      "original_postnote": "",
+      "passage": "The same clean-test accuracy is observed for the unimodal and fused welding models. HANDOVER\nperformance drops when the gripper state is added. Some alternative multimodal tool-wear models\nperform worse than the visual reference, although the proposed model improves on it. The Eyecandies\nimage scores also go down. All of this calls into question the notion of an unqualified fusion\nbenefit \\citep{Hua2026Weld,Thoduka2024Handover,P045,P033}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        5,
+        7,
+        8,
+        10,
+        11
+      ],
+      "finding": "Table4(PDF/printed10) distinguishes original M3DM .945I-AUROC from local released-code .779 and add-on .800; Table5(PDF/printed11) gives Eyecandies .810→.794 image AUROC while pixel .963→.971 and AUPRO .849→.870 improve. §3.3/3.7(PDF5/7) fit normal memory; §4.4(PDF10–11) uses same preprocessing/memory construction and evaluation interface on Eyecandies; hyperparameters fixed before evaluations(PDF8). Explanations for original-vs-local discrepancy are not isolated experimentally; thesis correctly treats them as checks rather than established causes."
+    },
+    {
+      "key": "P034",
+      "chapter": "02_literature_review",
+      "line_before": 475,
+      "section": "Temporal and Time-Series Representations",
+      "original_command": "\\citep{P034,P013}",
+      "original_postnote": "",
+      "passage": "Video representation learning looks at another temporal structure. TimeSformer and Video Swin model\nthe spatial and temporal relations between video frames \\citep{P034,P013}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "finding": "Architecture describes divided spatial and temporal self-attention. §4.1–4.3 and Table2(PDF5–7) specify ImageNet initialization, V100 video training costs and memory changes with token counts. Thus compute depends on initialization and workload rather than being an architecture-only constant."
+    },
+    {
+      "key": "P034",
+      "chapter": "02_literature_review",
+      "line_before": 1051,
+      "section": "Modularity, Reproducibility, and Computational Cost",
+      "original_command": "\\citep{P034}",
+      "original_postnote": "",
+      "passage": "TimeSformer's compute requirements depend on the ImageNet pretraining and the workload it is\nevaluated on \\citep{P034}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "finding": "Architecture describes divided spatial and temporal self-attention. §4.1–4.3 and Table2(PDF5–7) specify ImageNet initialization, V100 video training costs and memory changes with token counts. Thus compute depends on initialization and workload rather than being an architecture-only constant."
+    },
+    {
+      "key": "P035",
+      "chapter": "02_literature_review",
+      "line_before": 118,
+      "section": "Inclusion and Exclusion Criteria",
+      "original_command": "\\citep{Altinses2023Fuzzy,P026,Thoduka2024Handover,P035}",
+      "original_postnote": "",
+      "passage": "A publication may be included in the register as background or as a methodological contribution.\nSimulated robot regression, RGB-geometry inspection, physical camera-telemetry monitoring and\nsingle-camera feature-level fusion are different experimental settings\n\\citep{Altinses2023Fuzzy,P026,Thoduka2024Handover,P035}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        8,
+        10
+      ],
+      "finding": "Abstract/§III uses image-level labels for anomaly/defect localization. Dataset section(PDF8/printed6659) repartitions MVTec data to admit anomalous training examples, changing normal-only supervision. Raster inspection of TableV(PDF10/printed6661) verifies2.33Mparameters and5.65ms/image. TablesIV/VI/VII on same page show NwfDD99.87main result vs98.87ablation, so report of inconsistent table values is supported. Model uses image inputs, not an independent numerical sensor branch."
+    },
+    {
+      "key": "P035",
+      "chapter": "02_literature_review",
+      "line_before": 159,
+      "section": "Limitations of the Review",
+      "original_command": "\\citep[PDF p.~10 Tables~IV, VI,\nVII]{P035}",
+      "original_postnote": "PDF p.~10 Tables~IV, VI,\nVII",
+      "passage": "The main MVTec 3D-AD table gives 249 normal and 948 anomalous test samples (total 1197)\n\\citep[Table~1]{Bergmann2022The}. The welding penetration paper reports inconsistent acquisition and\ntraining numbers, and the light inspection paper reports different NwfDD values in its main table\nand its ablation table \\citep[PDF pp.~12, 15]{Hua2026Weld}; \\citep[PDF p.~10 Tables~IV, VI,\nVII]{P035}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        8,
+        10
+      ],
+      "finding": "Abstract/§III uses image-level labels for anomaly/defect localization. Dataset section(PDF8/printed6659) repartitions MVTec data to admit anomalous training examples, changing normal-only supervision. Raster inspection of TableV(PDF10/printed6661) verifies2.33Mparameters and5.65ms/image. TablesIV/VI/VII on same page show NwfDD99.87main result vs98.87ablation, so report of inconsistent table values is supported. Model uses image inputs, not an independent numerical sensor branch.",
+      "recommended_postnote": "p.~6661, Tables~IV, VI--VII"
+    },
+    {
+      "key": "P035",
+      "chapter": "02_literature_review",
+      "line_before": 188,
+      "section": "Anomaly Detection, Defect Classification, and Failure Classification",
+      "original_command": "\\citep[PDF p.~8]{P035}",
+      "original_postnote": "PDF p.~8",
+      "passage": "Supervision is thus an important aspect of the evaluation. The weakly supervised inspection study\nbrings the MVTec data back in, as training requires image-level anomalous labels, which of course\nchanges the normal-only setting \\citep[PDF p.~8]{P035}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        8,
+        10
+      ],
+      "finding": "Abstract/§III uses image-level labels for anomaly/defect localization. Dataset section(PDF8/printed6659) repartitions MVTec data to admit anomalous training examples, changing normal-only supervision. Raster inspection of TableV(PDF10/printed6661) verifies2.33Mparameters and5.65ms/image. TablesIV/VI/VII on same page show NwfDD99.87main result vs98.87ablation, so report of inconsistent table values is supported. Model uses image inputs, not an independent numerical sensor branch.",
+      "recommended_postnote": "p.~6659"
+    },
+    {
+      "key": "P035",
+      "chapter": "02_literature_review",
+      "line_before": 410,
+      "section": "Engineered Features and Conventional Machine Learning",
+      "original_command": "\\citep[PDF p.~10, Table~V]{P035}",
+      "original_postnote": "PDF p.~10, Table~V",
+      "passage": "Industrial vision also offers lightweight alternatives. The weakly supervised inspection network\nuses a single camera, internal anomaly-aware features, and a compact CNN. Reported computational\ncost is 2.33 million parameters and 5.65~ms per image \\citep[PDF p.~10, Table~V]{P035}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        8,
+        10
+      ],
+      "finding": "Abstract/§III uses image-level labels for anomaly/defect localization. Dataset section(PDF8/printed6659) repartitions MVTec data to admit anomalous training examples, changing normal-only supervision. Raster inspection of TableV(PDF10/printed6661) verifies2.33Mparameters and5.65ms/image. TablesIV/VI/VII on same page show NwfDD99.87main result vs98.87ablation, so report of inconsistent table values is supported. Model uses image inputs, not an independent numerical sensor branch.",
+      "recommended_postnote": "p.~6661, Table~V"
+    },
+    {
+      "key": "P035",
+      "chapter": "02_literature_review",
+      "line_before": 1048,
+      "section": "Modularity, Reproducibility, and Computational Cost",
+      "original_command": "\\citep[PDF p.~10, Table~V]{P035}",
+      "original_postnote": "PDF p.~10, Table~V",
+      "passage": "The reported 5.65~ms for the lightweight image network doesn't include the independent sensor branch\nor acquisition delay \\citep[PDF p.~10, Table~V]{P035}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        8,
+        10
+      ],
+      "finding": "Abstract/§III uses image-level labels for anomaly/defect localization. Dataset section(PDF8/printed6659) repartitions MVTec data to admit anomalous training examples, changing normal-only supervision. Raster inspection of TableV(PDF10/printed6661) verifies2.33Mparameters and5.65ms/image. TablesIV/VI/VII on same page show NwfDD99.87main result vs98.87ablation, so report of inconsistent table values is supported. Model uses image inputs, not an independent numerical sensor branch.",
+      "recommended_postnote": "p.~6661, Table~V"
+    },
+    {
+      "key": "P036",
+      "chapter": "02_literature_review",
+      "line_before": 1010,
+      "section": "Interpretability and Its Limits",
+      "original_command": "\\citep{P036}",
+      "original_postnote": "",
+      "passage": "The attention debate has both counterexamples to faithful explanation and evidence that the learned\nattention weights do, in fact, contain useful information. This leads to the conclusion that\ninterpretability should be evaluated on a task-specific basis rather than drawing general\nconclusions from the terminology of the architecture itself \\citep{P036}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "finding": "Abstract and §§2–4 review the prior counterexample argument, challenge its assumptions, and test useful information in learned attention under specified models. Supports task-specific evaluation of explanation rather than automatic faithfulness or a universal rejection of attention."
+    },
+    {
+      "key": "P038",
+      "chapter": "02_literature_review",
+      "line_before": 684,
+      "section": "Gated and Context-Conditioned Fusion",
+      "original_command": "\\citep[PDF p.~3, Eq.~8]{P038}",
+      "original_postnote": "PDF p.~3, Eq.~8",
+      "passage": "An important evaluation dimension is what governs the allocation. GCCF-AD is described as dynamic\nfusion, but the formulation they report is a learned scalar with no explicit sample-quality input\n\\citep[PDF p.~3, Eq.~8]{P038}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        3,
+        4,
+        5
+      ],
+      "finding": "§III.C equation8(PDF3/printed149226) uses alpha=sigmoid(omega), where omega is one learned fusion parameter, with no explicit sample-quality input in the stated formula. §III.F/algorithm(PDF4–5) reinforces that parameterization. Thesis description as a learned scalar is supported.",
+      "recommended_postnote": "p.~149226, Eq.~8"
+    },
+    {
+      "key": "P045",
+      "chapter": "02_literature_review",
+      "line_before": 252,
+      "section": "Retrospective Assessment and Online Monitoring",
+      "original_command": "\\citep{P045,Petrich2021Multimodal}",
+      "original_postnote": "",
+      "passage": "HANDOVER is very clear that its baselines classify outcomes post-trial, with causal online\nprediction still being work in progress \\citep[PDF p.~7 Section~VI]{Thoduka2024Handover}. A\npost-pass photo, a layer summary and the completed action all provide different information horizons\nfrom prospective monitoring \\citep{P045,Petrich2021Multimodal}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure."
+    },
+    {
+      "key": "P045",
+      "chapter": "02_literature_review",
+      "line_before": 293,
+      "section": "Visual and Video Observations",
+      "original_command": "\\citep{Huo2022Multisensor,Hua2026Weld,P045,Thoduka2024Handover}",
+      "original_postnote": "",
+      "passage": "Physical camera-plus-measurement precedents include thermal imaging with vibration, welding images\nwith sound, tool images with acoustic emission, and robot video with force/torque and gripper state\n\\citep{Huo2022Multisensor,Hua2026Weld,P045,Thoduka2024Handover}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure."
+    },
+    {
+      "key": "P045",
+      "chapter": "02_literature_review",
+      "line_before": 297,
+      "section": "Visual and Video Observations",
+      "original_command": "\\citep[PDF pp.~19--22]{P045}",
+      "original_postnote": "PDF pp.~19--22",
+      "passage": "Their prediction units range from static inspection through to process windows and full trials. In\nthe tool wear study, the camera is used post-cutting pass, with the preceding acoustic emission\ncapturing the active cutting \\citep[PDF pp.~19--22]{P045}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure."
+    },
+    {
+      "key": "P045",
+      "chapter": "02_literature_review",
+      "line_before": 581,
+      "section": "Unimodal References and Incremental Modality Value",
+      "original_command": "\\citep[PDF p.~24, Table~1]{P045}",
+      "original_postnote": "PDF p.~24, Table~1",
+      "passage": "The tool wear study reports an MAE of 6.6183 for their proposed model, 8.3002 for the visual\nResNet50 and 60.5118 for the acoustic reference. All the other multimodal architectures evaluated\nhave errors in excess of 45 \\citep[PDF p.~24, Table~1]{P045}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure."
+    },
+    {
+      "key": "P045",
+      "chapter": "02_literature_review",
+      "line_before": 688,
+      "section": "Gated and Context-Conditioned Fusion",
+      "original_command": "\\citep{Li2025PGMTKD,P045}",
+      "original_postnote": "",
+      "passage": "PGMTKD uses training losses to assign teacher contributions, and task loss balancing focuses on\noptimisation rather than any direct measure of input quality at deployment\n\\citep{Li2025PGMTKD,P045}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure."
+    },
+    {
+      "key": "P045",
+      "chapter": "02_literature_review",
+      "line_before": 709,
+      "section": "Comparability and Fairness of Fusion Evaluations",
+      "original_command": "\\citep{P045,P051}",
+      "original_postnote": "",
+      "passage": "The tool wear study alters the architectural components as part of the fusion, and the incomplete\nfederated imagery study alters the client data access as well as the combining mechanism\n\\citep{P045,P051}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure."
+    },
+    {
+      "key": "P045",
+      "chapter": "02_literature_review",
+      "line_before": 1080,
+      "section": "Findings Supported Across the Reviewed Studies",
+      "original_command": "\\citep{P003,Huo2022Multisensor,Thoduka2024Handover,P045}",
+      "original_postnote": "",
+      "passage": "There are tangible observations that can be used to improve the performance of a task-specific\nmonitoring pipeline. DMAW, thermal-vibration diagnosis, HANDOVER and tool wear prediction are all\ngood examples under their respective assessment protocols\n\\citep{P003,Huo2022Multisensor,Thoduka2024Handover,P045}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure."
+    },
+    {
+      "key": "P045",
+      "chapter": "02_literature_review",
+      "line_before": 1118,
+      "section": "Unresolved Questions and Research Gap",
+      "original_command": "\\citep{Hua2026Weld,Thoduka2024Handover,P045,P033}",
+      "original_postnote": "",
+      "passage": "The same clean-test accuracy is observed for the unimodal and fused welding models. HANDOVER\nperformance drops when the gripper state is added. Some alternative multimodal tool-wear models\nperform worse than the visual reference, although the proposed model improves on it. The Eyecandies\nimage scores also go down. All of this calls into question the notion of an unqualified fusion\nbenefit \\citep{Hua2026Weld,Thoduka2024Handover,P045,P033}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure."
+    },
+    {
+      "key": "P045",
+      "chapter": "02_literature_review",
+      "line_before": 1327,
+      "section": "Implications for the Empirical Investigations",
+      "original_command": "\\citep[PDF pp.~19--24]{P045}",
+      "original_postnote": "PDF pp.~19--24",
+      "passage": "In tool wear prediction, an image taken after a cutting pass and the acoustic emission recorded\nduring cutting have also been used together to estimate wear \\citep[PDF pp.~19--24]{P045}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure."
+    },
+    {
+      "key": "P045",
+      "chapter": "02_literature_review",
+      "line_before": 1372,
+      "section": "Implications for the Empirical Investigations",
+      "original_command": "\\citep[PDF\np.~24, Table~1]{P045}",
+      "original_postnote": "PDF\np.~24, Table~1",
+      "passage": "A visual-acoustic study also looks at tool wear estimation following a cutting pass \\citep[PDF\np.~24, Table~1]{P045}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26
+      ],
+      "finding": "§3.1 printed/PDF19–20 describes post-pass images paired with immediately preceding active-cutting sensor sequences, prioritizing AE with fallback to another numeric channel. PDF21/23 describes matched local retraining of CABLSTM,Stage-LSTM,Swin-Fusion,ResNet50 but separately labels MATWIBaseline19 as an external cited reference. Table1(PDF24) verifies proposed MAE6.6183,visual8.3002,acoustic60.5118,Stage-LSTM48.4795,Swin-Fusion45.0145. Text PDF23 expressly identifies acoustic and multimodal comparators. Loss balancing balances global regression,interval classification,structured regression during optimization; it is not a deployment-quality measure."
+    },
+    {
+      "key": "P051",
+      "chapter": "02_literature_review",
+      "line_before": 709,
+      "section": "Comparability and Fairness of Fusion Evaluations",
+      "original_command": "\\citep{P045,P051}",
+      "original_postnote": "",
+      "passage": "The tool wear study alters the architectural components as part of the fusion, and the incomplete\nfederated imagery study alters the client data access as well as the combining mechanism\n\\citep{P045,P051}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        29,
+        30
+      ],
+      "finding": "PDF29 says fraction of clients missing one modality varied up to80%; missingness Figure8 is actually on PDF30. This is incomplete federated-client data plus imputation/distillation/aggregation, not simply removing a sensor at fixed-model deployment. Current PDFp29,Figure8 postnote spans adjacent pages; prefer Figure8 alone or PDFpp29–30,Figure8."
+    },
+    {
+      "key": "P051",
+      "chapter": "02_literature_review",
+      "line_before": 755,
+      "section": "Missing Modalities",
+      "original_command": "\\citep[PDF\np.~29, Figure~8]{P051}",
+      "original_postnote": "PDF\np.~29, Figure~8",
+      "passage": "Federated substation monitoring varies the proportion of incomplete clients to 80\\% \\citep[PDF\np.~29, Figure~8]{P051}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        29,
+        30
+      ],
+      "finding": "PDF29 says fraction of clients missing one modality varied up to80%; missingness Figure8 is actually on PDF30. This is incomplete federated-client data plus imputation/distillation/aggregation, not simply removing a sensor at fixed-model deployment. Current PDFp29,Figure8 postnote spans adjacent pages; prefer Figure8 alone or PDFpp29–30,Figure8.",
+      "recommended_postnote": "Figure~8"
+    },
+    {
+      "key": "P051",
+      "chapter": "02_literature_review",
+      "line_before": 1104,
+      "section": "Findings Supported Across the Reviewed Studies",
+      "original_command": "\\citep{Li2025PGMTKD,Altinses2023Fuzzy,P051}",
+      "original_postnote": "",
+      "passage": "A further well-established distinction concerns input reliability. Planned single-input deployment,\ncomplete inference-time absence, controlled corruption, and target domain adaptation all address\ndifferent issues \\citep{Li2025PGMTKD,Altinses2023Fuzzy,P051}.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        1,
+        29,
+        30
+      ],
+      "finding": "PDF29 says fraction of clients missing one modality varied up to80%; missingness Figure8 is actually on PDF30. This is incomplete federated-client data plus imputation/distillation/aggregation, not simply removing a sensor at fixed-model deployment. Current PDFp29,Figure8 postnote spans adjacent pages; prefer Figure8 alone or PDFpp29–30,Figure8."
+    },
+    {
+      "key": "P055",
+      "chapter": "02_literature_review",
+      "line_before": 969,
+      "section": "Discrimination, Calibration, and Decision Thresholds",
+      "original_command": "\\citep{P055}",
+      "original_postnote": "",
+      "passage": "Proper scoring rules (negative log-likelihood, Brier score, etc.) provide a basis for assessing\nprobability forecasts \\citep{P055}. Their interpretation differs from that of discrimination or\nthresholded classification.",
+      "support_status": "VERIFIED",
+      "source_verified_pages": [
+        2,
+        3,
+        6
+      ],
+      "finding": "Definition of proper/strictly proper scores and categorical examples support forecast-quality evaluation. §3 printed363(PDF6) gives Brier and logarithmic scoring rules; negative log-likelihood is the loss-sign convention of logarithmic score. Publisher cover says published online2012 but cited journal article year is2007."
+    }
+  ],
+  "open_items": [],
+  "resolved_version_items": [
+    {
+      "key": "P017",
+      "issue": "Local attachment differs from cited final version",
+      "resolution": "Retain shared P017 final2023article identity; final full text now independently checked. Keep attachment version note; do not imply local attachment is finalPDF.",
+      "source": {
+        "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10499856/",
+        "fulltext_retrieval_url": "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC10499856/unicode",
+        "fulltext_format": "NCBI BioC XML of final open-access article",
+        "retrieval_date": "2026-11-26",
+        "fulltext_sha256": "3fd8182ca646349a6f4b28b14909970d8bd0d7f3c3bf74d4dc16709257d32f30",
+        "metadata_verified": {
+          "title": "Leakage and the reproducibility crisis in machine-learning-based science",
+          "authors": [
+            "Sayash Kapoor",
+            "Arvind Narayanan"
+          ],
+          "year": 2023,
+          "venue": "Patterns",
+          "volume": "4",
+          "issue": "9",
+          "article_number": "100804",
+          "doi": "10.1016/j.patter.2023.100804",
+          "license": "CC BY"
+        },
+        "sections_verified": [
+          "Results: A taxonomy of data leakage; L1 clean separation",
+          "L1.2 Pre-processing on training and test set",
+          "L1.3 Feature selection on training and test set",
+          "L3.2 Nonindependence between training and test samples",
+          "Results: model info sheet, L1 clean train-test separation"
+        ],
+        "finding": "Final article explicitly requires separation through preprocessing, modeling and evaluation; identifies whole-dataset preprocessing and feature selection as leakage; and says train/test splitting should account for dependence when scientific claims concern new units. These final-version passages support the existing Chapter1–2 general claims. No numeric result or page-specific quotation in those claims requires final PDF pagination.",
+        "access_note": "PMC HTML returned a browser challenge; NCBI BioC full-text endpoint retrieved successfully using urllib. This is final source content rather than the local2022attachment."
+      }
+    }
+  ]
+}

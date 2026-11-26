@@ -87,3 +87,17 @@ def test_missing_or_changed_video_blocks_pixel_recovery(tmp_path):
     result = assess(tmp_path, "pixels")
     assert not result["ok"]
     assert result["checks"][0]["missing_videos"] == 1
+
+
+def test_old_manifest_names_resolve_after_location_only_move(tmp_path):
+    root = prefix_fixture(tmp_path)
+    (root / "00000.npz").write_bytes(b"abc")
+    old = "runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/frozen_prefix/00000.npz"
+    save(root / "manifest.json", {"files": [{"path": old, "bytes": 3}]})
+    before = (root / "manifest.json").read_bytes()
+    assert assess(tmp_path, "prefix")["ok"]
+    assert (root / "manifest.json").read_bytes() == before
+    (root / "00000.npz").unlink()
+    (root / "00000.npz").symlink_to(tmp_path / "outside.npz")
+    (tmp_path / "outside.npz").write_bytes(b"abc")
+    assert not assess(tmp_path, "prefix")["ok"]

@@ -1,0 +1,17 @@
+# Current diagram delivery verification — 26 November 2026
+
+[Validation record](checks/manav_explanatory_diagrams_20261126_01/validation.json) covers the current PDFs and 70-file source ZIP. The previous delivery files are preserved in [before/](checks/manav_explanatory_diagrams_20261126_01/before/).
+
+All three editions were rebuilt successfully with the existing authorized XeLaTeX/TeX Live 2023, Biber 2.19 and latexmk 4.83 toolchain. Manav's Abstract–Chapter 4 PDF is 127 pages, the Chapters 1–10 review is 205, and the full thesis is 275. There are no unresolved citations/references, Biber warnings/errors, duplicate-label warnings, overfull boxes or missing characters. Both review editions have no LaTeX warnings. The full edition retains its pre-existing appendix caption/hypcap warning. All PDF fonts are embedded.
+
+The three explanatory figures and supplied redesign are vector PDFs with no raster objects. All use the existing shared thesis style and a 159.20 mm canvas width. Standalone previews and final manuscript pages were rendered at 150 dpi and opened. The requested pages are 19, 69 and 104; the redesigned synthesis and scope table are on pages 55 and 51. Labels, arrows, hatching, patch overlap, stride, bank-reuse note and assessment separation are readable without clipping or overlap. These checks do not constitute a page-by-page visual audit of the thesis.
+
+The 108-key APA citation context agrees across all three Biber files. All 127 Manav text pages match the start of the complete review edition, and the final Chapter 4 paragraph is intact. Omitted material retains plain full-edition reference numbers. The original synthesis label and the supplied alias identify the same Figure 2.2.
+
+The supplied redesign source is unchanged from the ZIP. Its rebuilt PDF has the same extracted text as the supplied PDF. Its welding values agree with the existing Chapter 2 and previous source-PDF checks: P003 Table III, and Hua Tables 1–3. No new literature discovery or experimental execution was performed. Early warning remains hypothetical and the sensor trace synthetic.
+
+A separate source-delta review reconstructed the before Chapters 2–4 after removing only the authorized figure additions, references, supplied paragraph/table and synthesis replacement. All other content matches byte-for-byte. The established integrity checker flags those intentional figure, numeric and reference additions as review required; this is not a zero-change integrity pass. [Integration review](checks/manav_explanatory_diagrams_20261126_01/integration_review.md) records the reconciliation.
+
+The source ZIP passes integrity checks and matches all 70 fixed source/assets files byte-for-byte. The cumulative binary patch passes `git apply --check` and reconstructs those files exactly from a temporary baseline. All 56 original and preserved baseline files remain unchanged. Local build directories and historical chapter PDFs are excluded from the source package and publication staging.
+
+Earlier scientific and citation limits remain in the [prior verification](checks/manav_explanatory_diagrams_20261126_01/before/VERIFICATION.md) and [Chapter 1–2 citation record](checks/citation_review_ch01_ch02_20261126_01/CHANGELOG.md), including export-based Zotero provenance and the two pending Chapter 2 wording decisions. Those passages were not silently revised during this figure task. No training, inference, fitting, dependency installation or raw-data processing occurred.

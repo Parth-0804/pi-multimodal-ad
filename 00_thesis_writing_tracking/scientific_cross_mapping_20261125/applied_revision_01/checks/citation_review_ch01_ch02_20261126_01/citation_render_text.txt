@@ -1,0 +1,1912 @@
+Chapter 1
+
+Introduction
+
+
+1.1     Context and Motivation
+
+Industrial monitoring means tracking the state and behavior of a physical process by
+analyzing data collected during or after it runs. Industrial and robotic systems produce
+many types of data, such as visual observations, acoustic signals, force measurements,
+vibration, and other sensor signals (Huo et al., 2022; Thoduka et al., 2024b). Each data
+type shows a different aspect of the process and may respond differently to changes in
+operation.
+       Multimodal learning enables the integration of these diverse data types,
+particularly when each source provides complementary or unique information. However,
+adding data sources does not inherently improve predictions (W. Wang et al., 2020).
+The benefit depends on the information each modality retains, the relevance of the data
+to the prediction task, and the methods used for data integration.
+       Robotic welding was the starting point for this research. A camera can observe
+the weld pool, while acoustic and machine sensor measurements give information about
+other parts of the welding process. Previous studies have explored combining visual and
+acoustic data for weld assessment (Fan et al., 2026; Hua et al., 2026).
+       The primary architectural challenge extends beyond welding. Industrial
+monitoring systems require data representations that capture task-relevant information,
+
+
+
+                                            1
+Chapter 1. Introduction
+
+
+fusion methods that effectively utilize complementary data from multiple sources, and
+evaluation protocols that assess whether predictions remain reliable when some data are
+missing or of low quality. Therefore, this research investigates multimodal fusion
+architectures across a range of industrial and robotic monitoring tasks.
+
+
+
+1.2     Problem Statement and Research Gap
+
+The added value of additional modalities cannot be determined solely by the predictive
+performance of the combined model; it is essential to compare the architecture’s
+performance against credible unimodal predictors on identical prediction targets and
+assessment observations.
+       Prior work has shown that multimodal integration can improve prediction, but it
+also identifies circumstances in which a jointly trained multimodal model will perform
+worse than its unimodal counterparts (W. Wang et al., 2020). In one weld penetration
+study, the image-only, audio-only, and fused models all achieved 100% accuracy on the
+reported clean test set (Hua et al., 2026, Tables 1–3). There was therefore no
+demonstrable benefit to the availability of an additional modality in terms of clean data
+accuracy.
+       Another challenge concerns the reliability of each data type. When an input is
+missing, fallback mechanisms may be employed. If an input is present but degraded,
+evidence is required to demonstrate altered reliability. While adaptive fusion can adjust
+the contribution of each input, modifying these weights alone does not ensure improved
+robustness (Ovadia et al., 2019; Q. Zhang et al., 2023).
+       The fairness of these comparisons also depends on factors like the prediction
+target, how the data is aligned over time, training methods, calibration, and whether
+the test data is independent (Guo et al., 2017; Kapoor & Narayanan, 2023; Ovadia
+et al., 2019; Varma & Simon, 2006). Differences in any of these areas can make it hard
+to know if performance gains are generalizable.
+       This thesis addresses this gap by investigating the added predictive value and
+
+
+
+                                            2
+Chapter 1. Introduction
+
+
+robustness of multimodal fusion under fair, task-specific experimental conditions. It
+investigates how the selection of data representation, complementary information, and
+fusion method interact, and whether observed benefits in one context are transferable to
+other industrial and robotic monitoring tasks.
+       Chapter 2 reviews existing research to lay out the scientific background and
+highlight the unresolved comparisons that define this research gap.
+
+
+
+1.3     Research Questions and Objectives
+
+The main goal of this thesis is to study how to design and evaluate process-aware
+multimodal AI systems for reliable industrial monitoring and anomaly detection. It
+examines how using specific data representations and different fusion methods affects
+prediction, robustness, and practical usefulness.
+       The first version of the exposé set out this main research question:
+
+
+      How can a process-aware multimodal AI architecture be designed and
+      evaluated for robust industrial anomaly detection using robotic welding data
+      as a case study?
+
+
+       Four subquestions address the main architectural and methodological aspects of
+this study.
+
+
+   SQ1. Which lightweight or pretrained Transformer-based representation components
+         are suitable for visual, audio, and sensor time-series data in a multimodal
+         industrial anomaly detection pipeline?
+
+   SQ2. How do unimodal baselines, simple concatenation fusion, modular late fusion,
+         and process-aware gated cross-modal fusion compare in terms of predictive
+         performance?
+
+   SQ3. Can a gated cross-modal fusion architecture improve robustness when one or
+         more modalities are missing, degraded, or unreliable?
+
+
+                                            3
+Chapter 1. Introduction
+
+
+   SQ4. How can multimodal architecture performance be evaluated beyond accuracy,
+         including robustness, interpretability, modularity, and practical usability?
+
+       These considerations result in four research objectives: evaluating the suitability
+of specific data representations, investigating various fusion strategies, testing
+robustness to input degradation, and assessing the appropriateness of selected
+evaluation methods for multimodal monitoring systems. Broader architectural questions
+persist, despite changes in the original application scope.
+
+
+
+1.4     Methodology Overview and Contributions
+
+This research integrates a critical literature review with empirical investigations of
+multimodal representation and fusion architectures. The review encompassed 94 full
+texts, screened and assessed in two stages, with emphasis on architectural approaches,
+unimodal baselines, fusion methods, evaluation protocols, and strategies for handling
+unreliable inputs.
+       Dataset selection also considered modality correspondence, annotation
+suitability, assessment independence, and computational viability. The empirical
+component compared modality-specific representations and prediction models, then
+evaluated alternative fusion strategies and a series of controlled follow-up experiments.
+       The implemented architectures use pre-trained convolutional visual
+representations, statistical sensor features, and patch-based temporal encoders.
+Information is combined using feature concatenation, probability averaging, logistic
+stacking, and context-conditioned weighting.
+       Evaluation covers predictive performance, calibration, grouped assessment,
+uncertainty, and how the system behaves when inputs are missing or degraded,
+depending on the dataset and protocol. Tests on external datasets check if the chosen
+fusion methods and data representations work for different prediction tasks.
+       The principal contributions of this thesis are:
+
+   • Comparative evaluation of multimodal representations: This includes
+
+                                             4
+Chapter 1. Introduction
+
+
+      empirical tests of pretrained visual features, statistical sensor representations, and
+      patch-based temporal encoders. The study compares training budgets, feature
+      combinations, and the compatibility of different representations. It assesses each
+      representation’s performance individually and in combination.
+
+  • Comparative evaluation of fusion architectures: Feature-level,
+      prediction-level, and process-aware fusion architectures are implemented and
+      evaluated against unimodal reference models. These comparisons establish the
+      conditional predictive gain from information fusion and distinguish this gain from
+      the effects of additional fitting and calibration to the extent permitted by the
+      experimental controls.
+
+  • Assessment of multimodal robustness: The experiments test how fusion
+      behaves when some data is missing or degraded, comparing fallback methods to
+      adaptive input weighting. The study checks if the benefits seen with clean data
+      remain when inputs are degraded.
+
+  • Cross-dataset evaluation and methodological assessment: The research
+      explores re-using fusion methods and transferring supervised representations
+      across different industrial and robotic monitoring tasks. The evaluation highlights
+      the importance of target validity, data alignment, class-specific performance,
+      grouped assessment, and uncertainty when comparing architectures across
+      datasets.
+
+
+       Implementation records, literature comparison tables, and experimental artifacts
+all provide clear support for these contributions.
+
+
+
+1.5     Scope and Delimitations
+
+The original research plan focused on robotic welding as the main application for
+process-aware multimodal architectures. PHM gear monitoring work was already in
+progress when a renewed audit of the Intel Welding dataset found that some data
+
+                                             5
+Chapter 1. Introduction
+
+
+sessions crossed the provided partitions and that some proposed test recordings had
+already been examined during development. This meant an independent confirmatory
+evaluation was not possible on that assessment population.
+       The empirical work then shifted to related industrial and robotic monitoring
+tasks, while keeping the original architectural research questions the same.
+       PHM2026 focused on building condition targets and sensor-based prediction.
+REASSEMBLE was the main experimental setting for comparing visual and sensor
+data, fusion methods, and how systems handle degraded inputs. MSM, ViFailback, and
+HANDOVER added studies on milling, robotic manipulation, and human–robot
+interaction. More details on dataset feasibility and protocols are in Appendix G.
+       The predictive experiments focus on visual and machine sensor data. Audio
+remains relevant to the original research goals and literature review, but acoustic
+prediction was not completed. In REASSEMBLE, the correspondence between action
+annotations and acoustic data remained unresolved, and spoken outcomes could have
+revealed the prediction labels, introducing a risk of label leakage. An acoustic
+prediction branch was therefore not included.
+       In this thesis, process-aware fusion means adjusting how predictions are
+combined based on the process context and available quality information. Although the
+registered title mentions physics-informed, the architectures do not use explicit
+differential equations or conservation law constraints.
+       The empirical work focuses on estimating conditions and classifying outcomes
+within set observation periods. Classifying completed actions and manipulation
+episodes does not, by itself, provide prospective anomaly detection or early warning.
+       Robustness evaluation is limited to experiments where inputs were removed or
+degraded in a controlled way. Studies with external datasets focus on re-using
+architectures, fitting to specific datasets, and selected transfer methods, rather than
+testing if an unchanged model works in a new domain.
+       Therefore, the conclusions only apply to the architectures, prediction targets,
+and evaluation conditions studied. Independent welding validation, predictive audio
+
+
+                                             6
+Chapter 1. Introduction
+
+
+integration, prospective monitoring, and further operational validation are beyond the
+completed empirical scope of this work.
+
+
+
+1.6        Structure of the Thesis
+
+Chapter 2 is the literature review, setting out the scientific basis, existing architectural
+approaches, and remaining research questions in the area of multimodal industrial
+monitoring.
+       Chapter 3 covers the technical underpinnings of the investigated representation
+models, the prediction components, and the fusion mechanisms.
+       Chapter 4 covers the research methodology, dataset qualification criteria,
+experimental design, and evaluation procedures.
+       Chapter 5 looks at condition-target construction and prediction using PHM2026.
+Chapter 6 is the main REASSEMBLE chapter, covering representation comparisons,
+multimodal fusion, robustness experiments, and controlled architectural follow-up
+investigations.
+       Chapters 7 and 8 examine the application of the investigated approaches to
+MSM milling and ViFailback robotic manipulation. Appendix H provides the
+supplementary HANDOVER evaluation.
+       Chapter 9 brings the empirical findings together with the relevant literature,
+answers the research sub-questions, and looks at the scientific implications across the
+datasets considered.
+       Chapter 10 covers the supported contributions, the remaining research questions
+and the priorities for future work.
+       The other appendices contain the literature appraisal, dataset documentation,
+implementation details, experimental analysis, research timeline, and reproducibility
+records.
+
+
+
+
+                                             7
+Chapter 2
+
+Critical Literature Review
+
+
+Multimodal Learning in Industrial and Robotic
+
+Monitoring
+
+Industrial monitoring covers tasks such as fault detection, checking a system’s physical
+condition, assessing manufacturing quality, and confirming that a robot has completed
+its task. The traditional approach uses single sensor readings and engineered features to
+characterise the system’s behaviour. Learned representations take this further by
+utilising data from images, sound and sensor sequences. Multimodal learning examines
+how information from different modalities can be combined to support a common
+prediction task (Baltrušaitis et al., 2019; Huo et al., 2022; Thoduka et al., 2024b).
+       The literature touches on several related areas of research: traditional feature
+engineering, the use of pre-trained representations, modelling over time, feature
+combination, prediction fusion, and adaptive methods (where the method can adapt to
+the context). They differ in the information they require, their computational cost, the
+level of supervision they need, and their sensitivity to input quality.
+       Industrial and robotic monitoring provides a platform on which to compare these
+approaches as the process can be monitored via a number of different modalities
+(cameras, acoustic sensors, machine sensors, etc.). Cameras will obviously provide a
+view of the visible process, whereas the acoustic and machine sensors provide
+
+
+                                             8
+Chapter 2. Critical Literature Review
+
+
+information which is not visible. The benefit of combining data depends heavily on
+what each modality retains, the specific prediction you’re trying to make, and the
+system’s test conditions (Goodarzi et al., 2023; Hua et al., 2026; W. Wang et al., 2020).
+Simply increasing the amount of data does not necessarily lead to better predictions.
+       Robotic welding is the principal driver of this thesis. Work on welding using
+visual and acoustic data has shown that multimodal integration can improve prediction
+performance, but also that, in some cases, adding a further modality provides no benefit
+at all (Fan et al., 2026; Hua et al., 2026). The Intel Welding audit documented prior
+examination of the proposed assessment population, so an independent assessment of
+weld quality was not possible on that population (see Chapter 1). The review therefore
+addresses a more general architectural question across a range of industrial and robotic
+monitoring tasks: how physical measurements, visual data, and sensor data can be
+combined to assess system condition and task outcome.
+       This chapter is organised around four research sub-questions: (SQ1) the
+appropriateness of the representations, (SQ2) the incremental value of data integration,
+(SQ3) reliability in the face of missing or degraded inputs and (SQ4) the need for
+evaluation criteria that go beyond prediction accuracy. The aim is to present the
+scientific evidence, identify the gaps in the comparisons and describe the experimental
+design requirements. The architecture is detailed in Chapter 3 and the experimental
+methodology in Chapter 4.
+
+
+
+2.1     Review Scope and Search Methodology
+
+The review examines industrial fusion claims through the methodologies, comparison
+tables, and experimental results of the papers. It focuses on the link between the
+proposed architecture, the available physical observations, the prediction target, and the
+assessment protocol.
+       A research gap is defined as a comparison that the existing body of scientific
+evidence does not address for a given target, input set and assessment population. The
+
+
+
+                                            9
+Chapter 2. Critical Literature Review
+
+
+ability to identify such a gap will, of course, depend on the search strategy and the
+amount of published literature available.
+
+
+2.1.1     Research Themes and Search Questions
+
+The representation theme concerns what is being observed, what transformations are
+being applied, and whether the representation retains the information relevant to the
+task at hand. The fusion theme is about whether adding further inputs improves
+performance on a standard prediction task compared with a set of plausible single-input
+references.
+        The robustness theme looks at which absence, corruption, and
+distribution-change regimes were assessed. The evaluation theme looks at assessment
+independence, thresholds, uncertainty, resource measurement and reproducibility.
+        These themes intentionally include negative and inconclusive findings.
+Comparisons where an additional modality yields minimal or no benefit can provide
+valuable insights into representation suitability, redundancy, and the limitations of the
+evaluated fusion procedure.
+        The review clearly distinguishes between two objectives that are often confused.
+Training with multiple modalities to deploy a single-input model is a privileged training
+scenario. Combining multiple available inputs at deployment is a multimodal inference
+problem. Cross-modal distillation and reconstruction link the two objectives but the
+acquisition assumptions are very different.
+        The taxonomy of Baltrušaitis et al. (2019) is the organising terminology. The
+industrial claims are then assessed against the original studies rather than being entirely
+inferred from that survey.
+
+
+2.1.2     Sources, Search Terms, and Search Period
+
+The literature review was carried out as part of the project. The initial search was
+focused on the period 2016 to 2026 with a selection of earlier methodological papers
+also included. Of the 120 papers identified, 39 met the inclusion criteria and 37 were
+
+                                              10
+Chapter 2. Critical Literature Review
+
+
+fully appraised.
+         A subsequent expansion identified 57 distinct full-text files after duplicate
+removal and version verification. The comparison register comprises 94 unique work
+records, representing a curated selection rather than an estimate of the entire research
+field.
+         Searches were conducted pairing industrial monitoring and manufacturing terms
+with fusion, stage, attention, missing inputs, noise and domain shift. Dataset searches
+included MVTec AD, MVTec 3D-AD, Eyecandies, bearing datasets and machine sound
+benchmarks.
+         Publisher and repository searches facilitated publication retrieval. Crossref
+supplied metadata for identity verification (Crossref, 2020), while OpenAlex supported
+citation tracing (Priem et al., 2022). Zotero was employed to link bibliographic records
+with PDFs and appraisal notes (Corporation for Digital Scholarship, 2026).
+         Appendix A differentiates the initial screening population from the subsequent
+full-text appraisal. The seminal stacked generalisation paper by Ting and Witten (1999)
+was included to support the discussion of prediction-level fusion methodology,
+representing a separate addition to the historical full-text appraisal count.
+
+
+2.1.3      Inclusion and Exclusion Criteria
+
+Direct industrial work focuses on faults, physical condition, manufacturing quality,
+inspection, and the outcome of a robotic task. Dataset papers and legitimate unimodal
+methods are also relevant, as fusion depends on a well-defined prediction target and a
+suitable reference.
+         Transferable work is explicitly identified. Work on multimodal optimisation
+failure modes, missing-input mechanisms, uncertainty weighting, and evaluation theory
+can all be valuable in designing industrial architectures, even if they do not amount to
+industrial validation (Bengio & Grandvalet, 2004; S. Lee et al., 2026; M. Ma et al., 2022;
+W. Wang et al., 2020).
+         A publication may be included in the register as background or as a
+
+
+                                              11
+Chapter 2. Critical Literature Review
+
+
+methodological contribution. Simulated robot regression, RGB-geometry inspection,
+physical camera-telemetry monitoring and single-camera feature-level fusion are
+different experimental settings (Altinses & Schwung, 2023; Deng et al., 2026; Thoduka
+et al., 2024b; Z. Zhang et al., 2024).
+        Inaccessible evidence is not taken to be irrelevant, and missing reporting does
+not establish that a particular operation was not performed. The language used by the
+individual authors is interpreted in the context of the actual acquisition and evaluation
+procedure to determine whether the study yields multimodal observations,
+inference-time robustness evidence, or an equivalent unimodal reference.
+
+
+2.1.4     Evidence Extraction and Critical Appraisal
+
+Each appraisal records the source identity and version inspected, the prediction target
+and unit, the physical inputs, the transformations, the fusion method, the comparison
+models, the partitioning, the training access, and the reliability interventions.
+        Experimental results are linked to pages, tables and figures. Where possible,
+decisive PDF tables have been checked, as text extraction may obscure input columns,
+numerical values, or footnotes.
+        The appraisal records both controlled and varying factors. A common
+assessment cohort supports comparisons between fitted pipelines. To isolate fusion’s
+contribution, however, differences in encoders, supervision, augmentation, and model
+capacity must also be considered.
+        Input subset models, complete inference-time absence, corrupted present data
+and target domain adaptation are all recorded separately.
+        The comparison matrix in Appendix A contains the work-level evidence. The
+compact classification codes are interpreted alongside the relevant protocol descriptions
+and source locators.
+
+
+
+
+                                            12
+Chapter 2. Critical Literature Review
+
+
+2.1.5     Limitations of the Review
+
+The papers reviewed are by no means exhaustive and are not statistically independent.
+Several inspection studies use the same MVTec 3D-AD or Eyecandies dataset, so
+improvements on those benchmarks are not necessarily indicative of improvements on
+independent industrial installations. The preprints are also version-specific, and some
+publication details are still provisional.
+        When relatively few studies examine a particular condition, the body of evidence
+is such that any conclusions about that condition are necessarily weak.
+        The main MVTec 3D-AD table gives 249 normal and 948 anomalous test
+samples (total 1197) (Bergmann et al., 2022, Table 1). The welding penetration paper
+reports inconsistent acquisition and training numbers, and the light inspection paper
+reports different NwfDD values in its main table and its ablation table (Hua et al., 2026,
+pp. 6708, 6711); (Z. Zhang et al., 2024, p. 6661, Tables IV, VI–VII).
+        These inconsistencies reduce the precision of the comparisons. The studies
+remain useful when their methods and reported findings are interpreted within clearly
+stated limits.
+
+
+
+2.2      Industrial Monitoring Tasks and Supervision
+
+Different monitoring tasks rely on different assumptions about training data, available
+observations, and acceptable levels of prediction error. These assumptions must be
+understood prior to comparing representation learning and fusion architectures.
+        The definition of the prediction target is absolutely crucial, as performance on
+one industrial task cannot be considered valid evidence of performance on another.
+
+
+2.2.1     Anomaly Detection, Defect Classification, and Failure
+
+          Classification
+
+Normal-only anomaly detection learns a reference for nominal observations. Supervised
+defect classification, by contrast, uses labelled fault or quality classes. MVTec AD and
+
+                                             13
+Chapter 2. Critical Literature Review
+
+
+MVTec 3D-AD are examples of the normal-only approach, whereas welding penetration
+recognition is an example of supervised classification (Bergmann et al., 2019, 2022; Hua
+et al., 2026).
+        HANDOVER defines five completed-interaction outcome classes: success, no
+approach, no grasp, no release and object drop (Thoduka et al., 2024b). A task failure
+in the operational domain doesn’t necessarily mean that some physical damage has
+occurred or that we can identify the root cause of that damage.
+        Supervision is thus an important aspect of the evaluation. The weakly
+supervised inspection study brings the MVTec data back in, as training requires
+image-level anomalous labels, which of course changes the normal-only setting
+(Z. Zhang et al., 2024, p. 6659).
+        ZSG-IAD trains on reports and masks before evaluating on held-out categories
+or datasets. The zero-shot terminology refers to that assessment boundary rather than
+to the complete absence of anomaly supervised training (Q. Chen et al., 2026, PDF
+pp. 6, 8–9).
+        These differences establish the need to compare architectures against their
+respective target definitions and under their respective supervision conditions.
+
+
+2.2.2     Condition Estimation and Regression
+
+Continuous prediction calls for attention to measurement units, reference observations,
+and the horizon at which the target is defined. Remaining useful life is a very different
+prediction problem from instantaneous defect probability.
+        Al-Dulaimi et al. (2019) look at a hybrid CNN-LSTM on simulated C-MAPSS
+trajectories using RMSE and an asymmetric prognostic score. Both branches of their
+model process the same set of selected telemetry channels. The study therefore provides
+evidence of complementary representations of the sensor data rather than any physical
+camera/sensor complementarity.
+        The synthetic robot benchmarks of Altinses and Schwung (2025) examine
+cross-modal prediction, reconstruction, and downstream regression. They show the
+
+
+                                            14
+Chapter 2. Critical Literature Review
+
+
+importance of relationships between representations, though errors on different
+reconstructed outputs do not necessarily tell you which modality is more useful for a
+given common prediction task.
+        This issue is particularly relevant to proxy supervision. A model may accurately
+predict a derived condition index, yet the relationship between that index and actual
+physical deterioration may remain uncertain. A defensible regression comparison must
+therefore define the target construction, measurement scale, fitted pre-processing, and
+common assessment observations before interpreting numerical improvement as
+indicative of enhanced condition monitoring.
+
+
+2.2.3     Dataset-Provided Labels, Derived Targets, and Proxy
+
+          Supervision
+
+Reference labels have very different evidential roles. Post-build CT provides flaw
+localisation for the voxel-level monitoring study by Petrich et al. (2021). Microscopy
+and density assessments are used to define quality classes in J. Li et al. (2022).
+Operando X-ray imaging is used to define process-state labels in Pandiyan et al. (2022).
+        These studies show how an independent instrument can establish or validate a
+prediction target without necessarily being available at the time of model inference. It
+is vital to distinguish between supervision and predictive inputs when describing the
+information available to a monitoring architecture.
+        For derived labels, predictive performance must be distinguished from
+independent physical validation. If the target is computed from the same measurements
+supplied to the model, then a low prediction error may reflect the model recovering that
+calculation rather than identifying an independent physical state.
+        At the regional level, a single quality label may be assigned to many adjacent
+observations. Their spatial or temporal dependence affects the choice of an appropriate
+assessment unit.
+        The empirical work in this thesis therefore distinguishes between native dataset
+annotations, independent reference measurements, and analytical proxies. Each target
+
+                                            15
+Chapter 2. Critical Literature Review
+
+
+type yields different conclusions regarding physical state and operational outcome.
+
+
+2.2.4     Retrospective Assessment and Online Monitoring
+
+The observation horizon is what determines when the model’s forecast becomes available.
+A predictor assessed after the full observation period has elapsed is effectively given a
+retrospective assessment unless its inputs are restricted to an earlier decision time.
+        HANDOVER is very clear that its baselines classify outcomes post-trial, with
+causal online prediction still being work in progress (Thoduka et al., 2024b, PDF p. 7
+Section VI). A post-pass photo, a layer summary and the completed action all provide
+different information horizons from prospective monitoring (Petrich et al., 2021;
+X. Zhang et al., 2026).
+        Retrospective classification is still useful for assessing representations and fusion
+techniques, though its use in an operational context differs from that of an early
+warning system.
+        Computational delay must also be distinguished from observation time. DMAW
+uses 20 frames at 37 fps and reports a much shorter forward-pass latency. As a result,
+approximately half a second of observation is distinct from computational delay (Fan
+et al., 2026, PDF pp. 6–7).
+        Similarly, simply varying the input duration of a CNN–LSTM does not, by itself,
+mean that a warning can be generated before a defect occurs (Pandiyan et al., 2022).
+Active monitoring requires a defined information cut-off, acquisition delay and
+end-to-end prediction workload.
+
+
+
+2.3      Multimodal Data in Industrial Applications
+
+Complementarity is determined by the additional task-relevant information provided by
+an observation or representation, rather than by differences in tensor shape or the
+number of acquisition sources.
+        Different representations of the same physical quantity can contain
+
+
+                                             16
+Chapter 2. Critical Literature Review
+
+
+complementary information. Likewise, physically distinct sensors can provide redundant
+or only very weakly relevant information for a given prediction target.
+        The review therefore distinguishes between physical acquisition channels and
+derived representations and considers ordinary pairing separately from cases requiring
+stronger correspondence, such as cross-modal reconstruction or monitoring of a localised
+process.
+
+
+2.3.1      Visual and Video Observations
+
+RGB images, thermal images, process videos and geometric observations all have
+different acquisition assumptions. Depth, depth-derived point clouds, and estimated
+surface normals can all be multiple views of the same geometric source.
+        GPAD combines RGB-depth features with point cloud priors (M. Li et al., 2026,
+PDF pp. 4–7). This is an example of integration across representations that do not
+necessarily require three separate physical acquisition sources.
+        RGB-geometry benchmarks describe appearance and shape rather than
+controller dynamics or motor current (Bergmann et al., 2022; Bonfiglioli et al., 2023).
+        Physical camera-plus-measurement precedents include thermal imaging with
+vibration, welding images with sound, tool images with acoustic emission, and robot
+video with force/torque and gripper state (Hua et al., 2026; Huo et al., 2022; Thoduka
+et al., 2024b; X. Zhang et al., 2026).
+        Their prediction units range from static inspection through to process windows
+and full trials. In the tool wear study, the camera is used post-cutting pass, with the
+preceding acoustic emission capturing the active cutting (X. Zhang et al., 2026, PDF
+pp. 19–22).
+        The representation of visual observations also influences the information
+available. Both pooled frame features and video Transformers process multiple images,
+but they differ in how they treat temporal relationships.
+        These distinctions between them lead us to explicitly consider visual acquisition,
+observation windows, and aggregation within multimodal monitoring architectures.
+
+
+                                            17
+Chapter 2. Critical Literature Review
+
+
+2.3.2     Sensor Time Series and Process Measurements
+
+Machine measurements can vary enormously in their physical origin and in their
+semantic meaning. An accelerometer measures vibration, a pressure sensor measures
+fluid behaviour, and controller logs can contain commands, estimates, or tracking errors
+rather than a direct measure of a physical quantity.
+        The harmonic-drive study combines high-frequency vibration with servo
+information, whereas PGMTKD transfers pressure-vibration teacher knowledge to a
+pressure-only student (C. Li et al., 2025; Yang et al., 2024).
+        Both papers address incomplete information, but their sensor availability and
+deployment reasons differ.
+        Representations can also inflate the apparent number of modalities without
+including any new measurements. Kullu and Cinar (2022) combine current and
+vibration using both raw and STFT representations. Wan et al. (2024) derive statistical
+’vibration’ features from two acoustic sensors without acquiring an accelerometer
+channel at all. C. Wang et al. (2025) combine source domain features with the decisions
+from the vibration data.
+        These studies are useful as architectural comparators, as they examine different
+information representations. Their results should, of course, be treated as distinct from
+comparisons that incorporate additional physical acquisition sources.
+        An acquisition inventory and a description of the retained representations are
+required prior to attributing any predictive gain to modality diversity.
+
+
+2.3.3     Audio Observations
+
+Audio can pick up machine/process events that are only very weakly visible. The
+relationship to fault state depends heavily on background conditions, mic location, and
+sync.
+        MIMII deliberately incorporates factory background recordings at a range of
+signal-to-noise ratios. Its fan baseline AUC drops from .94 at +6 dB to .70 at −6 dB
+(Purohit et al., 2019, Table 3).
+
+                                            18
+Chapter 2. Critical Literature Review
+
+
+        ToyADMOS provides miniature machine recordings and an explicit noise-mixing
+protocol, making it a useful reference for acoustic monitoring (Koizumi et al., 2019).
+        In process monitoring, airborne acoustic signals can be paired with either a melt
+pool camera or a photodiode. Signal-to-image encoding in the study by J. Li et al.
+(2022) is an acoustic-optical-signal experiment, and Xie et al. (2025) use actual camera
+images.
+        DCASE2020 Task2 provides audio-only baselines under an evaluation protocol
+that differs from that of later domain shift challenges (Koizumi et al., 2020).
+        Together, these studies motivate acoustic representations as candidates for
+industrial multimodal monitoring. Their utility will depend on the availability of
+appropriate recordings, well-defined targets, and correspondence with other
+observations. The thesis retains this scientific motivation even in the absence of a fully
+realised predictive audio comparison in the empirical work.
+
+
+2.3.4     Synchronisation, Correspondence, and Modality
+
+          Availability
+
+Fusion requires observations that refer to a compatible event, region or time interval.
+Predicting one modality from another or combining aligned spatial discrepancy maps
+requires stronger correspondence.
+        RGB-point cloud feature mapping uses registered benchmark geometry. Process
+monitoring may instead require time synchronisation and projection onto a common
+spatial grid (Costanzino et al., 2024; Petrich et al., 2021).
+        The digital twin study maps sensor features to robot TCP positions, showing
+how position can establish correspondence even if it is not, in any normal sense, a
+predictive feature (L. Chen et al., 2023).
+        Modality availability has several levels. A file can exist without having a usable
+paired observation for a given prediction unit. A file can have a successfully paired
+observation which is still degraded.
+        The acoustic-photodiode study explicitly lacks modality registration, which
+
+                                             19
+Chapter 2. Critical Literature Review
+
+
+limits claims about correspondence between its two encoded streams (J. Li et al., 2022).
+        For camera and machine sensor monitoring, we can have an explicit pairing rule
+that picks up unmatched events even if both underlying files are present. Modality
+completeness should therefore be assessed on a prediction-unit basis rather than
+inferred from the presence or absence of the files.
+
+
+
+2.4      Representation Learning for Industrial
+
+         Monitoring — SQ1
+
+SQ1 concerns the relationship between representations and the requirements of an
+industrial prediction task.
+        The literature reviewed supports both engineered and learned representations.
+Which is more appropriate will depend on the level of supervision, the level of
+preprocessing, the level of independent sample support, the information required, and
+the resources available for model fitting.
+        This section sets out the scientific justification for considering these alternatives.
+The details of their architecture and implementation are given in Chapter 3.
+
+
+2.4.1     Engineered Features and Conventional Machine Learning
+
+Engineered summaries impose a constraint on the information that a predictor can use.
+Measures of location, spread, amplitude, and trend can describe an operating state
+without requiring a high-capacity sequence model to be estimated from a small number
+of independent observations.
+        The literature is replete with evidence of compact representations. Hand-crafted
+local geometry is competitive in 3D inspection, and a hydraulic CNN paper reports
+1.7% error for its best single sensor versus 20.5% error for all seventeen sensors
+(Goodarzi et al., 2023; Horwitz & Hoshen, 2023).
+        These results highlight the necessity for robust conventional references and
+careful selection of predictive information. The appropriateness of the specific
+
+                                              20
+Chapter 2. Critical Literature Review
+
+
+220-feature REASSEMBLE representation is established through task-specific
+comparisons in Chapter 6, rather than assumed based on prior work.
+        Industrial vision also offers lightweight alternatives. The weakly supervised
+inspection network uses a single camera, internal anomaly-aware features, and a
+compact CNN. Reported computational cost is 2.33 million parameters and 5.65 ms per
+image (Z. Zhang et al., 2024, p. 6661, Table V).
+        The study provides some relevant evidence on representation eﬀiciency, but the
+anomalous training labels and modified MVTec supervision differ significantly from
+normal-only inspection.
+        Conventional and learned representations should be compared using the same
+prediction target, assessment observations, and appropriately fitted preprocessing,
+rather than ranked solely by model family.
+
+
+2.4.2     Pretrained Visual Representations
+
+Pretrained visual representations provide a strong scientific explanation for transferring
+knowledge learned from large image collections to industrial applications with far less
+supervision. The features they learn may well contain the local appearance, texture,
+and object configuration relevant to the downstream prediction task.
+        PatchCore successfully employs pre-trained, locally aggregated intermediate
+CNN features together with a memory of nominal patches for industrial inspection
+(Roth et al., 2022, Section 3).
+        This provides evidence for investigating transferred spatial representations,
+though its nominal-only patch retrieval differs significantly from supervised action
+classification.
+        RT-DETR provides another architectural precedent in the form of its multi-scale
+visual backbone (Y. Zhao et al., 2024, Sections 4.1–4.2). Features at several spatial
+scales would be viable candidates for the prediction target.
+        Its published detection accuracy and computational performance pertain to the
+complete detection architecture rather than the downstream classification performance
+
+
+                                             21
+Chapter 2. Critical Literature Review
+
+
+of the extracted CNN features. Chapter 3 therefore distinguishes between the
+components of the first-generation detector and those used in the thesis implementation.
+        Asymmetric student-teacher and cross-modal mapping methods also provide
+further evidence for task-specific use of the learned visual representations (Costanzino
+et al., 2024; Rudolph et al., 2023).
+        Vision-language inspection introduces semantic information as another potential
+source of representation value. DSE-AD combines historical and current rail images
+with normal and abnormal position prompts and assesses pixel localisation on a further
+rail domain (Lei & Qi, 2025).
+        Its pair-reference and prompt assumptions differ significantly from those of
+isolated image classification.
+        Together, these studies point to pretrained visual features as plausible
+candidates, while also highlighting the need to assess their actual information content,
+trainable parameters, and observation horizon in the downstream monitoring task.
+
+
+2.4.3     Temporal and Time-Series Representations
+
+Temporal representation learning provides an opportunity to retain sequence
+information that would otherwise be lost in engineered summaries.
+        PatchTST addresses this through patch-based time-series representations and
+shared modelling across channels (Nie et al., 2023, Sections 3.1–3.2).
+        On the Weather dataset at a forecasting horizon of 96, the patch-plus-channel
+independent model obtains an MSE of .152, compared with .164 without patching (Nie
+et al., 2023, Table 7).
+        This provides positive evidence for patch-based representation learning in the
+forecasting setting under consideration. However, the relevance to industrial
+classification warrants separate investigation, as the prediction target, normalisation,
+supervision, and aggregation differ.
+        The exact formulation of PatchTST and its adaptation to the thesis experiments
+are given in Chapter 3.
+
+
+                                            22
+Chapter 2. Critical Literature Review
+
+
+         Video representation learning looks at another temporal structure. TimeSformer
+and Video Swin model the spatial and temporal relations between video frames
+(Bertasius et al., 2021; Liu et al., 2022).
+         These approaches provide an alternative to simply averaging independently
+encoded frames. The industrial CNN-LSTM remaining useful life study also shows the
+importance of observation length within its simulated prediction task (Al-Dulaimi et al.,
+2019).
+         The literature therefore motivates comparisons that explicitly account for
+sequence length, observation windows, temporal ordering, normalisation, pre-training,
+and fitting budget.
+         A Temporal Transformer and a compact statistical representation could well be
+preserving different aspects of the same sensor stream. Looking at their individual and
+combined performance helps assess whether the additional representation contains
+useful information for the task at hand.
+
+
+2.4.4      Audio Representations
+
+Acoustic representations include MFCCs, log-mel spectra, wavelet maps, GASF
+transforms and learned features.
+         The Welding Penetration Network uses VMD and GASF; DMAW uses
+Transformer representations adapted to the welding observations (Fan et al., 2026; Hua
+et al., 2026).
+         These are alternative forms of acoustic representation. An image-shaped acoustic
+representation is still one derived from sound rather than being an independently
+acquired camera stream.
+         The Audio Spectrogram Transformer is a pretrained candidate for acoustic
+representation learning (Y. Gong et al., 2021). The results on the general audio
+benchmark are suﬀiciently promising to warrant industrial investigation. However, the
+appropriateness of such representations will depend heavily on the particular acoustic
+environment and the specific prediction task.
+
+
+                                              23
+Chapter 2. Critical Literature Review
+
+
+         MIMII and ToyADMOS both go some way to establishing the importance of
+background composition and noise environment (Koizumi et al., 2019; Purohit et al.,
+2019).
+         Together, these studies lead one to consider recording quality, normalisation, and
+consistent observation intervals when looking at audio representations. The
+REASSEMBLE correspondence checks precluded the corresponding predictive
+comparison in this thesis (Chapter 6).
+
+
+2.4.5      Frozen Representations, Fine-Tuning, and
+
+           Computational Restrictions
+
+Freezing an encoder, fitting a small prediction head and then adapting the entire
+network all consume different amounts of statistical and computing resources.
+         Benchmark methods based on pretrained features show that you can get useful
+representations without going through the entire original representation-learning
+process on the industrial dataset (Costanzino et al., 2024; Roth et al., 2022).
+         The computational cost of pretraining is still part of the representation’s
+provenance even if it’s external to the downstream experiment.
+         Frozen feature extraction can therefore enable comparisons under a constrained
+fitting budget. Fine-tuning provides a very different opportunity in that it allows you to
+adapt the representations to the particular target observations. Which of the two is
+ultimately more effective can only be determined by empirical comparison, rather than
+by assuming one approach is in principle better than the other.
+         Distillation also makes a further distinction between training and deployment.
+The PGMTKD multimodal teachers are used to enrich a pressure-only student. The
+gated acoustic-vibration study reports a distilled LightGBM student, though the nature
+of the teacher features and the timing of the inputs remain ambiguous (Huang & Tong,
+2026; C. Li et al., 2025).
+         Resource comparisons should therefore account for feature extraction,
+preprocessing, trainable components, and any teachers required during inference, rather
+
+                                             24
+Chapter 2. Critical Literature Review
+
+
+than just the final prediction model.
+        For SQ1, these results are suﬀicient to justify making explicit comparisons of the
+representation and fitting procedures under plausible computing budgets.
+
+
+
+2.5      Multimodal Fusion Strategies — SQ2
+
+Fusion strategies can be broken down according to where the information is fused. Early
+integration fuses raw observations or raw features. Intermediate integration fuses the
+learned representations. Prediction-level fusion fuses the outputs (e.g., class probability
+estimates, anomaly scores). Hybrid architectures use more than one level of integration.
+        These provide an operational taxonomy for comparing the studies reviewed.
+Adaptive reweighting refers to whether the combination varies according to the
+observation or its context and can therefore operate at different fusion levels.
+        Terminology from the source papers is kept where appropriate, and comparisons
+are based on the actual location and mechanism of information exchange.
+
+
+2.5.1     Unimodal References and Incremental Modality Value
+
+The strongest credible single-input predictor serves as the benchmark for investigating
+SQ2.
+        The original welding motivation is why this reference is so important. DMAW
+fuses the image and audio Transformer representations to classify the four welding
+states. The reported accuracy is 96.1% with fusion, 90.2% for the image model and
+84.4% for the audio model (Fan et al., 2026, PDF p. 7, Table III).
+        This supports a predictive benefit from the assessed multimodal pipeline. The
+grouping of the assessment windows by welding run is still not resolved in the
+evaluation.
+        In contrast, the weld penetration study reports 100% clean test accuracy for its
+image-only, audio-only, and fused models (Hua et al., 2026, Tables 1–3).
+        The additional modality therefore provides no measurable gain in accuracy
+
+
+                                            25
+Chapter 2. Critical Literature Review
+
+
+under that comparison.
+        A similar distinction is made in the case of robotic monitoring. The
+HANDOVER study reports 69.1% accuracy for video plus force/torque and 67.9% when
+gripper state is added to the I3D-D family (Thoduka et al., 2024b, PDF p. 7, Table III).
+        These are five-class outcome accuracies averaged over five training runs, rather
+than binary failure average precision. The comparison does, however, show that adding
+an observation can reduce predictive performance.
+        The tool wear study reports an MAE of 6.6183 for their proposed model, 8.3002
+for the visual ResNet50 and 60.5118 for the acoustic reference. All the other
+multimodal architectures evaluated have errors in excess of 45 (X. Zhang et al., 2026,
+PDF p. 24, Table 1).
+        The strong visual reference makes the improvement scientifically informative,
+though the architectural differences mean you cannot attribute all of it to fusion.
+        Transferable results on the diﬀiculties of multimodal optimisation and on
+industrial all-channel losses underline the need to establish incremental gains against a
+strong admissible reference (Goodarzi et al., 2023; W. Wang et al., 2020).
+        Collectively, these studies support investigating the value of conditional fusion,
+rather than assuming that including additional modalities will necessarily improve
+prediction.
+
+
+2.5.2       Feature Concatenation
+
+Feature concatenation combines the representations with no explicit mechanism for
+adaptive allocation and is therefore a key reference point for any more sophisticated
+form of integration.
+        Effectiveness depends on feature scale, dimensionality, regularisation, and the
+quality of the constituent representations.
+        M3DM’s direct concatenation ablation is worse than its point cloud reference,
+while the full hybrid system outperforms both individual inputs (Y. Wang et al., 2023,
+Table 4).
+
+
+                                              26
+Chapter 2. Critical Literature Review
+
+
+        MADFlow also provides a further protocol-specific comparison between
+alignment and concatenation (Y. Li et al., 2025).
+        CFA provides transferable evidence from forecasting. For DLinear on the Energy
+dataset, the first concatenation gives an MSE of .670, compared with .263 without text
+and .243 with constrained fusion (S. Lee et al., 2026, PDF p. 4, Table 4).
+        The constrained fusion method also performs worse in a number of the evaluated
+scenarios, which again suggests that the benefits of an integration mechanism are highly
+task-dependent.
+        Manufacturing fusion can similarly improve one architecture at the expense of
+the other under the same broad prediction task (J. Li et al., 2022, Table 3).
+        These results establish concatenation as a valid comparator. It should be
+appropriately normalised and fitted, rather than implemented as an artificially weak
+baseline against which more complex methods are compared.
+
+
+2.5.3     Prediction-Level and Late Fusion
+
+Prediction-level fusion involves fusing the outputs of modality-specific predictors via
+techniques such as averaging, stacking, or evidence aggregation. This is a classification
+of where the fusion occurs; the individual predictors could be trained independently or
+as part of a wider training regime.
+        Thermal-vibration diagnosis provides direct evidence of physical camera-sensor
+prediction-level fusion. They use separate CNN softmax outputs with weighted
+Dempster-Shafer aggregation and report a clean 100% diagnostic rate, compared with
+99.06% for IRT and 96.32% for vibration (Huo et al., 2022, Table VII).
+        The weights were fixed, and the sample-level cross-validation did not establish
+independence between physical runs.
+        HANDOVER compares late outputs with intermediate sensor integration in the
+RGB and optical flow branches (Thoduka et al., 2024b, PDF pp. 5–7).
+        Cross-modal feature mapping and CPIR combine discrepancy maps, which need
+not be probabilities (Costanzino et al., 2024; Shangguan et al., 2025).
+
+
+                                            27
+Chapter 2. Critical Literature Review
+
+
+        Some papers also use the term ’late fusion’ to describe representation-level
+integration prior to classification (W. Wang et al., 2020). That underlines the
+importance of knowing what information you are actually fusing.
+        Stacked generalisation provides a scientific basis for learning a second-stage
+combination from cross-validated predictions. Probability outputs contain predictive
+information beyond the hard class labels so that a second-stage learner can estimate the
+joint utility of the outputs (Ting & Witten, 1999, Sections 2–3).
+        The referenced study looks at a linear least-squares combiner; this thesis looks at
+logistic stacking. F2 is low-dimensional because it combines two scalar branch
+probabilities. Its suitability still requires task-specific evaluation.
+        The construction of grouped prediction banks, calibration, and the common
+outer assessment remain key to evaluating the learned combination. The exact form of
+the F2 and the fitting procedure are given in Chapters 3 and 4 respectively.
+
+
+2.5.4     Gated and Context-Conditioned Fusion
+
+Adaptive fusion is scientifically justified when the utility of the individual inputs varies
+from observation to observation.
+        Gated Multimodal Units do provide evidence of transferable conditional
+representation integration. The architecture fuses visual and textual information and
+achieves a macro F-score of .541, compared with .521 for the concatenation baseline in
+the movie-genre classification task (Arevalo et al., 2017, Section 3.1, Table 2).
+        This finding points to the need to look at conditional allocation, though the
+mechanism at the application and representation level is quite different from the
+probability- and logit-based gates that have been the subject of this thesis.
+        Adaptive integration has also been looked at in an industrial context. DMAW
+achieved 96.1% accuracy, compared with 90.5% for summation and 92.6% for its gate
+comparator (Fan et al., 2026, PDF p. 9, Table V).
+        TC-MAF provides another approach whereby the auxiliary RGB evidence is
+bounded around a multimodal anchor using normal training dispersion and local
+
+
+                                              28
+Chapter 2. Critical Literature Review
+
+
+disagreement (Deng et al., 2026, PDF pp. 3–5).
+        These architectures illustrate various approaches to controlling information
+contribution.
+        An important evaluation dimension is what governs the allocation. GCCF-AD is
+described as dynamic fusion, but the formulation they report is a learned scalar with no
+explicit sample-quality input (An et al., 2026, p. 149226, Eq. 8).
+        PGMTKD uses training losses to assign teacher contributions, and task loss
+balancing focuses on optimisation rather than any direct measure of input quality at
+deployment (C. Li et al., 2025; X. Zhang et al., 2026).
+        GAF-Net uses progressive feature feedback, and trustworthy fusion employs
+evidence-based aggregation (Huang & Tong, 2026; Ying et al., 2025).
+        The scientific distinction is what contributions can vary, what information
+determines that variation, and whether that variation improves predictive performance
+relative to a fixed combination.
+        Process-conditioned weighting provides an additional way to incorporate
+pertinent context, without requiring explicit physical law-constrained modelling.
+
+
+2.5.5     Comparability and Fairness of Fusion Evaluations
+
+A shared dataset name does not in itself constitute a matched experimental comparison.
+        Cohort construction, supervision, observation windows, pretraining, feature
+dimensionality, augmentation, and selection exposure could all contribute to differences
+between architectures.
+        The tool wear study alters the architectural components as part of the fusion,
+and the incomplete federated imagery study alters the client data access as well as the
+combining mechanism (X. Zhang et al., 2026; X. Zhao et al., 2026).
+        These are comparative assessments of fitted pipelines. Their interpretation
+differs from an experiment intended to isolate attention, modality contribution, or
+quality conditioning.
+        Comparisons using the same evidence sources can support a narrower
+
+
+                                            29
+Chapter 2. Critical Literature Review
+
+
+attribution. TC-MAF retains the same evidence sources, comparing bounded fusion
+against static averaging, weighted scores, rank fusion, and a learned gate (Deng et al.,
+2026, PDF p. 7, Table 3).
+        On the flip side, the disagreement-aware study uses a locally released code
+baseline that performs worse than the published M3DM result (J. Xu et al., 2026, PDF
+p. 10, Table 4).
+        Distilled predictors can also access training information that is not available to
+standard unimodal models (C. Li et al., 2025).
+        These settings remain scientifically valuable, provided that the information and
+fitting conditions are clearly specified. Pipeline performance, incremental modality
+value, and the isolated effect of a fusion operator represent distinct evaluation questions.
+
+
+
+2.6      Reliability and Robustness — SQ3
+
+The reliability of a multimodal architecture depends on both the prediction setting and
+the type of intervention acting on its inputs.
+        Missing channels, corrupted measurements, asynchronous observations and
+changes in operating conditions all represent different reliability issues. The evidence
+reviewed is therefore grouped by the particular condition under consideration rather
+than assigned to a single general robustness category.
+
+
+2.6.1     Missing Modalities
+
+Planned single-input deployment differs from an unannounced loss of an input in a
+model that normally expects complete observations.
+        PGMTKD’s pressure-only student and incomplete RGB-geometry methods do
+provide evidence for reduced input inference. ModDrop and the missing-modality
+Transformers add further transferable mechanisms and counterexamples (C. Li et al.,
+2025; M. Ma et al., 2022; Neverova et al., 2015; Sui et al., 2026).
+        The effectiveness of these mechanisms will, of course, depend on the training
+
+
+                                             30
+Chapter 2. Critical Literature Review
+
+
+conditions and the specific missing-input patterns they have been assessed on.
+        TC-MAF explicitly evaluates unavailable 3D input. I-AUROC drops from .9788
+to .9330 and P-AUPRO from .9901 to .9586 (Deng et al., 2026, PDF p. 7, Table 3).
+        This provides a quantified example of performance under a given missing
+modality condition.
+        Federated substation monitoring varies the proportion of incomplete clients to
+80% (X. Zhao et al., 2026, Figure 8).
+        Its training and client-availability setting differs from an arbitrary inference-time
+camera failure.
+        ZSG-IAD reports input subset comparisons without fully defining the shared
+checkpoint and training exposure (Q. Chen et al., 2026). Missing training images in the
+hot rolling regime constitute another availability regime (L. Ma et al., 2025).
+        These studies collectively indicate the need to explicitly specify available
+modalities during both training and inference (i.e., availability masks), the policy for
+replacement or fallback, and the system’s response when all required inputs are absent.
+
+
+2.6.2     Noise and Partial Degradation
+
+Physical monitoring studies do provide evidence of a number of controlled degradation
+mechanisms. Thermal-vibration diagnosis examines Gaussian noise and vibration
+bias/stuck faults, while welding penetration recognition examines artificial interference.
+Acoustic-thermal and acoustic-vibration studies look at other noise settings (Hua et al.,
+2026; Huang & Tong, 2026; Huo et al., 2022; Ying et al., 2025).
+        These interventions vary in the observations affected, the degree of corruption
+and the extent to which the model is exposed to degradation.
+        At −2 dB, noisy IR thermography gives 95.26%, which jumps to 97.6% when
+combined with fault-free vibration. Noisy vibration alone gives 36.86%, jumping to
+94.2% when combined with fault-free IR thermography (Huo et al., 2022, Table VIII).
+        The comparison shows the value of a fault-free companion modality when
+another observation is synthetically corrupted.
+
+
+                                             31
+Chapter 2. Critical Literature Review
+
+
+        The welding penetration study reports a fused accuracy of 93.33% under its
+interference condition (Hua et al., 2026, Table 3).
+        The corresponding corrupted unimodal comparisons are required in order to
+assess the incremental benefit of fusion in the interference condition. The reported
+intervention also leaves some uncertainty about the corruption operator, magnitude,
+and exposure matching.
+        Synthetic signal-to-noise interventions provide some controlled experimental
+evidence, but the conclusions are specific to the observations affected and the severities
+tested. Natural simultaneous degradation and ordinary defective objects are quite
+different phenomena.
+        These distinctions lead directly to a comparison of predictions from degraded
+input against those from static fusion and single-input predictors under the same
+reliability condition.
+
+
+2.6.3     Temporal Misalignment and Distribution Shift
+
+Temporal misalignment and distribution shift both affect multimodal prediction, albeit
+in different ways.
+        A clock offset can break correspondence between observations, whereas a
+distribution shift can change the conditions under which the learned representation or
+predictor is evaluated.
+        Registration studies have established the importance of alignment in multimodal
+monitoring. OmniFuser’s repeated within-pass images provide a way to construct paired
+observations rather than directly test a synchronisation failure (L. Chen et al., 2023;
+Petrich et al., 2021; Z. Wang et al., 2025).
+        The literature also contains examples of evaluation under changed acquisition
+conditions. HANDOVER trains on one robot and evaluates on a different robot, and
+there’s a rail localisation study that evaluates a Subway-trained model on high-speed
+rail (Thoduka et al., 2024b, PDF p. 7, Table V); (Lei & Qi, 2025, PDF p. 10, Table III).
+        Target-adaptive methods, target-validated condition studies and independent
+
+
+                                               32
+Chapter 2. Critical Literature Review
+
+
+build experiments are all different forms of access to the assessment domain (Bevans
+et al., 2023; Chu et al., 2024; Huang & Tong, 2026; C. Wang et al., 2025).
+        Rebuilding normal memories on Eyecandies using fixed fusion hyperparameters
+is evidence of recipe transfer, rather than deploying an unaltered model to an
+untouched target installation (Deng et al., 2026; J. Xu et al., 2026).
+        These distinctions between them are important for interpreting the external
+dataset work in this thesis. Architecture reuse, representation transfer, temporal offset
+tolerance, and unchanged model generalisation each require distinct evaluation
+protocols.
+
+
+2.6.4     Quality-Aware and Uncertainty-Aware Fusion
+
+Quality-aware fusion is driven by the idea that the predictive utility of an input may
+vary with its quality. Signal quality, model confidence, calibrated probability and
+evidence consistency are all different beasts, though.
+        QMF furnishes a theoretical basis for studying sample-dependent weighting via
+generalisation upper bounds under stated relationships between uncertainty and loss,
+assuming a common training and test distribution (Q. Zhang et al., 2023,
+Sections 3.1–3.2).
+        The transferable UDML experiments train on controlled Gaussian corruption
+intensities and recognise that sample diﬀiculty can be confused with modality
+corruption (Wei et al., 2026, PDF pp. 4–5, 9).
+        These results lead us to ask whether the quality information we have available
+helps us identify when a particular observation is no longer useful.
+        QMF reports an NYU scene classification accuracy of 70.09% on clean inputs,
+compared to 70.30% for concatenation. At corruption intensity ten, it reports 55.60%
+compared to 51.99% for late fusion (Q. Zhang et al., 2023, PDF p. 8, Table 1).
+        These non-industrial RGB-depth comparisons do show a regime-specific
+advantage under corruption. The clean and corrupted comparisons quoted use different
+reference methods, so they should not be read as a clean-versus-corrupted trade-off
+
+
+                                            33
+Chapter 2. Critical Literature Review
+
+
+against the same reference method.
+        The effect of the adaptation mechanisms also differs across prediction endpoints.
+The disagreement add-on increases the local MVTec image AUROC from .779 to .800
+and, at the same time, reduces the Eyecandies image AUROC from .810 to .794, even
+though the pixel metrics have improved (J. Xu et al., 2026, PDF pp. 10–11, Tables 4–5).
+        TC-MAF uses normal-training dispersion and local disagreement to control the
+contribution of auxiliary evidence (Deng et al., 2026).
+        Collectively, these findings establish a scientific basis for reducing reliance on a
+stream when the observable context is expected to indicate errors. They also underscore
+the need to assess the relationship between available quality indicators and actual
+predictive reliability.
+        QMF’s theoretical justification does not validate the use of arbitrary quality
+proxies, and clean calibration can actually degrade after a distribution shift (Ovadia
+et al., 2019; Q. Zhang et al., 2023).
+        For the empirical investigation, the relevant comparison is whether
+quality-conditioned weighting improves performance over a static model with the same
+level of corruption exposure, while still maintaining an acceptable level of clean
+performance.
+
+
+2.6.5     Modality Dropout, Augmentation, and Fallback
+
+          Mechanisms
+
+Different robustness mechanisms deal with different aspects of input availability.
+        Training-time modality dropout exposes the model to certain absence patterns.
+Imputation produces substitute observations, and deterministic fallbacks route the
+prediction to an available unimodal component.
+        These approaches can generate similar outputs under certain conditions without
+relying on the same learned recovery mechanism.
+        Fuzzy regularisation works by introducing failures via partial corruption and by
+replacing the entire input with a constant or noise. The evaluation is of Gazebo pose
+
+                                              34
+Chapter 2. Critical Literature Review
+
+
+regression using random sample splits of overlapping windows (Altinses & Schwung,
+2023, PDF pp. 3–5).
+        The investigation provides evidence for controlled input regularisation, with
+independent physical deployment outage performance remaining unaddressed.
+        OmniFuser describes dropout and masking without any quantified outage table
+(Z. Wang et al., 2025, PDF p. 10).
+        Generated replacement observations can also have a negative impact on
+performance. Replacing the clean depth with CycleGAN output worsens the synthetic
+robot benchmark’s MSE (from 2.1745 × 10−3 to 13.472 × 10−3 ) (Altinses & Schwung,
+2025, Table 7).
+        These results motivate individual evaluation of learned recovery, training
+exposure, and explicit fallback policies. Static controls, with equivalent degradation
+exposure and predictions from the surviving input, provide a useful baseline for
+assessing adaptive robustness.
+
+
+
+2.7       Evaluation Beyond Accuracy — SQ4
+
+The practical value of a monitoring architecture will depend entirely on how its
+predictions are evaluated, chosen, and interpreted.
+        Accuracy in prediction can be affected by class distribution, assessment grouping
+and decision thresholds. A single aggregate score therefore only provides one facet of
+the evidence needed to assess the performance of a multimodal industrial monitoring
+system.
+        SQ4 looks at assessment independence, discrimination, calibration, uncertainty,
+interpretability, computational viability and reproducibility.
+
+
+2.7.1     Grouped Evaluation and Leakage Prevention
+
+The independent assessment unit may be a weld, a tool, a participant, a recording, a
+machine or a build.
+
+
+                                            35
+Chapter 2. Critical Literature Review
+
+
+        Randomly partitioned observations can end up with shared acquisition
+contextual information or raw samples. The fuzzy-regularisation study forms 20-step
+windows with a stride of one and then randomly divides the resulting examples
+(Altinses & Schwung, 2023, PDF pp. 4–5).
+        Its assessment therefore doesn’t establish performance on unseen trajectories.
+        Weld run grouping is still unresolved in the closest welding studies (Fan et al.,
+2026; Hua et al., 2026). These examples do show a potential dependence between the
+observations but do not establish any particular level of leakage.
+        The HANDOVER authors report an explicit participant-disjoint oﬀicial split.
+An adapted learned fusion implementation would still require participant information in
+order to build the corresponding inner partitions (Thoduka et al., 2024b).
+        Normalisation, feature selection and model parameter optimisation all require an
+appropriate split between model development and model assessment (Kapoor &
+Narayanan, 2023; Varma & Simon, 2006).
+        Out-of-fold stacking provides a mechanism for constructing second-stage
+prediction inputs without any in-sample predictions. Its validity is of course also
+dependent on the way in which the underlying fitting, selection and calibration folds are
+constructed.
+        Repeatedly selecting follow-up experiments after looking at the assessment
+results introduces further selection bias, even if the individual model fits would have
+ruled out their outer test labels.
+        These results motivate the development of assessment protocols that account for
+the physical origin and dependence of observations throughout the modelling process.
+
+
+2.7.2     Discrimination, Calibration, and Decision Thresholds
+
+Ranking, probability quality and thresholded decisions are three different aspects of a
+predictor.
+        AUROC measures discrimination across thresholds rather than performance at a
+single operational false alarm rate or the quality of the predicted probabilities.
+
+
+                                            36
+Chapter 2. Critical Literature Review
+
+
+        MVTec AD shows that useful ranking can exist alongside fairly poor thresholded
+localisation. The strict FPR metrics highlight a different aspect of detection
+performance (Bergmann et al., 2019; Cheng et al., 2025; Costanzino et al., 2024).
+        The rail vision-language study reports pixel-level metrics and optimal threshold
+F1 (Lei & Qi, 2025, PDF p. 7). These metrics address a completely different evaluation
+problem than image-level alarm accuracy at a threshold chosen from the training or
+validation set.
+        In manufacturing, Petrich et al. (2021) report an accuracy of .9921 and a
+precision of .2487 on an imbalanced layer, which is a clear example of the impact of
+class distribution and threshold selection.
+        Validation-fitted calibration can improve in-distribution probability quality, while
+dataset shift can damage confidence estimates (Guo et al., 2017; Ovadia et al., 2019).
+        Proper scoring rules (negative log-likelihood, Brier score, etc.) provide a basis for
+assessing probability forecasts (Gneiting & Raftery, 2007). Their interpretation differs
+from that of discrimination or thresholded classification.
+        A generated confidence field or evidence mass cannot replace probability
+evaluation. Metrics should align with the prediction target and class distribution, and
+operational thresholds should be selected using admissible training or validation
+observations.
+
+
+2.7.3     Uncertainty and Statistical Comparisons
+
+Seed variation, acquisition group sampling and model selection uncertainty are all
+different sources of variation.
+        HANDOVER’s reported standard deviations are for five training runs on a fixed
+test set, whereas a group bootstrap of saved predictions samples assessment units
+conditional on the fitted models (Thoduka et al., 2024b).
+        These approaches capture different facets of uncertainty and do not necessarily
+encompass all the variation expected from retraining or deployment in a different
+domain.
+
+
+                                              37
+Chapter 2. Critical Literature Review
+
+
+        Cross-validation folds share training observations. Under the assumptions stated,
+the classic variance result shows that no universally unbiased estimator of
+cross-validation variance exists; ignoring covariance can substantially underestimate
+uncertainty (Bengio & Grandvalet, 2004, pp. 1096–1098, 1102–1104). Conditional
+uncertainty intervals can still be useful when the estimand and dependence assumptions
+are stated explicitly.
+        Small fusion effects, ambiguous repetition counts and conflicting descriptions of
+significance all warrant the same level of caution (Gu et al., 2024; J. Xu et al., 2025).
+        Paired performance differences on common assessment observations provide a
+much more direct comparison than unrelated score intervals. An interval which contains
+zero doesn’t demonstrate equivalence, and a positive point estimate doesn’t establish
+practical importance without an appropriate criterion.
+
+
+2.7.4     Interpretability and Its Limits
+
+Prediction scores, coeﬀicients, gate traces and spatial maps can all tell you something
+regarding how the model is behaving.
+        The attention debate has both counterexamples to faithful explanation and
+evidence that the learned attention weights do, in fact, contain useful information. This
+leads to the conclusion that interpretability should be evaluated on a task-specific basis
+rather than drawing general conclusions from the terminology of the architecture itself
+(Wiegreffe & Pinter, 2019).
+        ZSG-IAD measures schema validity, language consistency and
+coarse-to-final-mask overlap (Q. Chen et al., 2026). These provide evidence of various
+forms of self-consistency.
+        Their interpretation differs from both independent physical defect causation and
+calibrated confidence.
+        HANDOVER leaves the use of human action prediction as a means of
+explanation as a future area of research (Thoduka et al., 2024b).
+        Within this thesis, observable quality responses and inspectable fusion
+
+
+                                            38
+Chapter 2. Critical Literature Review
+
+
+coeﬀicients provide descriptive transparency. However, expert understanding, causal
+attribution, and operator usability require additional assessments.
+        Process context should be distinguished from the explicit physical equation
+constraints (e.g. PGMTKD’s pressure model (C. Li et al., 2025)).
+
+
+2.7.5     Modularity, Reproducibility, and Computational Cost
+
+Modular architectures enable you to swap in and out individual representations and
+prediction components and compare them. Their value for scientific investigation comes
+from the fact that you can identify which component is different between conditions.
+        Modularity does not establish predictive robustness or an advantage over a
+matched end-to-end architecture.
+        An identified version, accessible source code, executable processing and
+independently reproduced results all provide various levels of reproducibility assurance
+(Pineau et al., 2021).
+        The difference between local and published M3DM results remains unresolved. It
+motivates checks of dependencies, valid point filtering, checkpoints, and scoring
+conventions (J. Xu et al., 2026).
+        Computational comparisons of course also require a common measurement
+boundary. The CPIR paper reports lower FPS than CFM, which is a clear performance
+vs speed trade-off (Shangguan et al., 2025).
+        The reported 5.65 ms for the lightweight image network doesn’t include the
+independent sensor branch or acquisition delay (Z. Zhang et al., 2024, p. 6661, Table V).
+        TimeSformer’s compute requirements depend on the ImageNet pretraining and
+the workload it is evaluated on (Bertasius et al., 2021).
+        Hardware, batch size, caching, synchronisation and the processing stages
+included all determine which computational measurements can be compared.
+        These results indicate the necessity for explicit resource accounting and
+reproducibility documentation. Prospective deployment and operator usability remain
+open questions for validating a successful offline forward pass.
+
+
+                                            39
+Chapter 2. Critical Literature Review
+
+
+2.8       Critical Synthesis and Research Gap
+
+The reviewed literature shows that multimodal observations and learned representations
+can benefit industrial and robotic monitoring. Their value, however, depends on the
+prediction task, the information each representation contains, and the conditions under
+which the integration method is evaluated.
+         The previous sections have identified four related scientific questions: which
+representations are appropriate for a given target, whether combining their predictions
+is valuable, whether that value is maintained as observation quality degrades, and how
+the experimental assessments should be conducted.
+         This section synthesises existing findings and outstanding scientific questions to
+establish design requirements for the empirical work.
+
+
+2.8.1      Findings Supported Across the Reviewed Studies
+
+There are tangible observations that can be used to improve the performance of a
+task-specific monitoring pipeline. DMAW, thermal-vibration diagnosis, HANDOVER
+and tool wear prediction are all good examples under their respective assessment
+protocols (Fan et al., 2026; Huo et al., 2022; Thoduka et al., 2024b; X. Zhang et al.,
+2026).
+         Controlled evidence integration can also improve RGB–geometry inspection
+under intact-input conditions. TC-MAF separately reports performance when the 3D
+input is unavailable (Deng et al., 2026).
+         The literature therefore establishes that useful industrial multimodal fusion
+mechanisms and approaches to dealing with incomplete observations do in fact exist.
+         Representation learning offers a number of scientifically sound options for
+extracting information relevant to the task. Pretrained convolutional features,
+patch-based temporal representations, and hand-crafted features are all candidates with
+some supporting evidence under certain learning and evaluation regimes (Horwitz &
+Hoshen, 2023; Nie et al., 2023; Roth et al., 2022).
+
+
+
+                                             40
+Chapter 2. Critical Literature Review
+
+
+        Their suitability for another industrial prediction target will, of course, depend
+on several factors, including the observations, the supervision, the aggregation, and the
+compute resources involved.
+        Static and learned fusion mechanisms both offer different avenues for exploiting
+complementary information. Stacked generalisation motivates learning combinations of
+the outputs of individual predictors. In contrast, gated representation learning and
+quality-aware fusion justify context-dependent allocation (Arevalo et al., 2017; Ting &
+Witten, 1999; Q. Zhang et al., 2023).
+        A further well-established distinction concerns input reliability. Planned
+single-input deployment, complete inference-time absence, controlled corruption, and
+target domain adaptation all address different issues (Altinses & Schwung, 2023; C. Li
+et al., 2025; X. Zhao et al., 2026).
+        The consistent finding across the reviewed studies is a conditional benefit under
+specific tasks and evaluation regimes, rather than universal superiority of any single
+representation or fusion architecture.
+
+
+2.8.2       Unresolved Questions and Research Gap
+
+The evidence reviewed also contains significant negative and, indeed, conflicting
+findings.
+        The same clean-test accuracy is observed for the unimodal and fused welding
+models. HANDOVER performance drops when the gripper state is added. Some
+alternative multimodal tool-wear models perform worse than the visual reference,
+although the proposed model improves on it. The Eyecandies image scores also go
+down. All of this calls into question the notion of an unqualified fusion benefit (Hua
+et al., 2026; Thoduka et al., 2024b; J. Xu et al., 2026; X. Zhang et al., 2026).
+        Category-specific geometry losses, poor hydraulic channel combinations, and the
+diﬀiculties of multimodal optimisation all reinforce this conclusion (Bonfiglioli et al.,
+2023; Goodarzi et al., 2023; Horwitz & Hoshen, 2023; W. Wang et al., 2020).
+        Several mechanisms could account for these results: redundancy, inappropriate
+
+
+                                             41
+Chapter 2. Critical Literature Review
+
+
+representations, optimisation diﬀiculties, noise, supervision and limited independent
+sample support. The studies do not point to a single underlying explanation.
+       An important unresolved issue is the distinction between a representation’s
+standalone strength and its complementary predictive value. A representation that is
+weak in isolation may still provide information useful for another predictor. Conversely,
+a strong additional representation does not guarantee that a fusion mechanism can
+effectively utilise that information.
+       Reliability introduces a related source of uncertainty. Adaptive weighting is
+justified when the available context can identify changes in unimodal prediction
+reliability (Wei et al., 2026; Q. Zhang et al., 2023). The value of conditioning
+information, its relationship to branch errors, and its comparison with
+exposure-matched static alternatives must be investigated on a task-specific basis.
+       External evaluation adds another boundary. Re-using a procedure with a new
+dataset-specific fitting, re-using the learned representation weights and then evaluating
+an unaltered predictor in a different domain are all different experimental questions.
+You cannot just take the results of one and treat them as equivalent evidence of
+generalisation.
+       The following table summarises these unresolved relationships across the
+principal evaluation axes of the review. It complements the detailed work-level
+comparison matrix in Appendix A.
+
+Table 2.1
+Synthesis of Established Literature Findings and Unresolved Research Questions
+
+Evaluation axis     Established evidence                Unresolved question
+Representation      Engineered features, pretrained     Which representation and
+suitability         CNN representations, and            aggregation procedures retain useful
+                    patch-based temporal learning       information for the investigated
+                    can be effective under their        industrial target under feasible
+                    respective protocols.               fitting budgets?
+Complementary       Additional representations or       When does an additional
+information         physical observations can improve   representation or modality
+                    prediction, but some                contribute predictive value beyond
+                    combinations reduce performance.    the strongest credible reference?
+
+
+
+
+                                            42
+Chapter 2. Critical Literature Review
+
+
+Table 2.1
+Synthesis of Established Literature Findings and Unresolved Research Questions
+(continued)
+
+Evaluation axis     Established evidence               Unresolved question
+Fusion              Feature-level, prediction-level,   Does a learned or more complex
+effectiveness       and adaptive fusion mechanisms     combination improve on unimodal
+                    have demonstrated task-specific    predictors and simple static fusion
+                    benefits.                          under comparable experimental
+                                                       conditions?
+Input reliability   Fallback, augmentation, and        Does adaptive weighting improve on
+                    quality-aware fusion provide       appropriately matched static
+                    mechanisms for handling            alternatives when inputs are absent
+                    particular forms of unreliable     or degraded?
+                    input.
+Cross-dataset       Fusion procedures and pretrained   Do the observed predictive benefits
+applicability       representations can be reused or   persist after dataset-specific fitting
+                    adapted to different tasks.        or representation transfer under
+                                                       different targets and assessment
+                                                       protocols?
+Evaluation          Target construction, grouped       To what extent can observed
+validity            assessment, calibration, class     improvements be attributed to
+                    distribution, and uncertainty      representation or fusion choices
+                    affect the interpretation of       rather than differences in fitting and
+                    predictive performance.            assessment conditions?
+
+
+
+Research gap
+
+Existing work shows that multimodal representations and fusion techniques can improve
+performance in industrial and robotic monitoring under certain experimental conditions.
+The body of work also shows that additional observations and more complex fusion
+techniques do not necessarily outperform a very good unimodal or static baseline. The
+degree to which the results can be generalised across applications is limited by
+differences in the prediction target, the quality of the representation, the nature of the
+supervision, the training regime and the reliability of the inputs (Goodarzi et al., 2023;
+Hua et al., 2026; Thoduka et al., 2024b; W. Wang et al., 2020; Q. Zhang et al., 2023).
+       This thesis addresses the conditional effectiveness of multimodal fusion under
+comparable, task-specific experimental conditions. It examines how representation
+suitability, complementary predictive information, fusion complexity, and input
+reliability interact. It also asks whether benefits observed in one study transfer to other
+
+
+                                             43
+Chapter 2. Critical Literature Review
+
+
+industrial and robotic monitoring tasks. Rather than assuming that one architecture is
+universally best, the thesis identifies which approaches provide benefits under the
+conditions tested and assesses how far those findings can be generalised.
+        This is defined by the specific unresolved comparisons in the reviewed evidence.
+It by no means suggests that multimodal fusion, adaptive weighting, or robust
+industrial monitoring have not been examined previously.
+
+
+2.8.3     Derived Research Design Requirements
+
+The previous evidence and the remaining questions address five requirements for the
+research design regarding multimodal monitoring architectures.
+        These requirements take the findings from the literature and turn them into
+evaluation criteria relevant to the issues of representation, fusion, robustness, and
+methodology raised in the original research proposal.
+        They provide an analytical framework for assessing the empirical work, rather
+than claiming that every historical experiment was originally designed in accordance
+with those exact specifications.
+
+
+R1. Target validity and modality correspondence
+
+The prediction target must have a clear physical or operational interpretation. Its origin,
+observation horizon, and relationship to the available inputs must be explicitly defined.
+        Native outcome annotations, independent reference measurements, and
+analytically derived proxies must be distinguished. For multimodal observations, the
+matching procedure must determine whether they correspond to a compatible event or
+observation interval.
+        This directly follows from the supervision and correspondence distinctions
+discussed in Sections 2.2 and 2.3 (including the industrial studies that use independent
+reference instruments or registered observations (L. Chen et al., 2023; Pandiyan et al.,
+2022; Petrich et al., 2021)).
+
+
+
+
+                                            44
+Chapter 2. Critical Literature Review
+
+
+R2. Representation suitability under explicit fitting conditions
+
+Modality-specific representations should be evaluated using clearly defined observation
+windows, aggregation schemes, preprocessing, supervision, pretraining, and fitting
+budgets.
+       Conventional references and learned representations should be compared on the
+same prediction targets and assessment observations. Where possible, assess
+complementary usefulness separately from standalone performance.
+       This is a direct consequence of evidence for engineered features, transferred
+visual representations, and patch-based temporal learning under a variety of
+experimental conditions (Horwitz & Hoshen, 2023; Nie et al., 2023; Roth et al., 2022).
+       It directly supports the representation investigation in SQ1.
+
+
+R3. Incremental fusion value under comparable experimental conditions
+
+Fusion architectures should be benchmarked against credible unimodal references and
+simple integration approaches on the same assessment observations.
+       The impact of any additional information should be disentangled, where possible,
+from changes in model capacity, fitted probability transformations, calibration, and
+training.
+       For prediction-level stacking, we need grouped out-of-fold prediction
+construction and appropriate separation of fitting and assessment. Incremental
+within-fold ordering must be distinguished from pooled score alignment.
+       A matched single-input second-stage control can further reduce ambiguity about
+the need for any additional fitting. Where such a control is not available, the resulting
+attribution boundary must remain explicit.
+       This is a direct consequence of the positive and negative fusion comparisons and
+the methodological underpinnings of stacked generalisation (Hua et al., 2026; Thoduka
+et al., 2024b; Ting & Witten, 1999; W. Wang et al., 2020).
+       It directly supports SQ2.
+
+
+
+
+                                            45
+Chapter 2. Critical Literature Review
+
+
+R4. Reliability-aware comparison of fusion mechanisms
+
+Known modality absence, degraded (but available) inputs, temporal misalignment and
+distribution shift should all be considered as separate reliability conditions.
+       The impacted observations, corruption procedures, severity, training exposure,
+availability information and fallback policies all need to be documented.
+       When evaluating adaptive weighting, it should be compared against appropriate
+static alternatives and available unimodal references. A comparable level of exposure to
+corruption is necessary to determine whether improvements result from adaptation or
+from differences in training conditions.
+       Clean performance should be used as a benchmark when assessing improvements
+in robustness.
+       This is a direct consequence of the missing input studies, the controlled industrial
+degradation studies, and the theoretical underpinning of quality-aware weighting
+(Altinses & Schwung, 2023; Deng et al., 2026; Huo et al., 2022; Q. Zhang et al., 2023).
+       It directly supports SQ3.
+
+
+R5. Methodological validity and bounded cross-dataset interpretation
+
+Evaluation should account for dependence between observations, the prediction target,
+class distribution, discrimination, calibration, uncertainty, computational requirements,
+and reproducibility.
+       Where group identifiers are available, assessment and model development
+procedures should align with the relevant physical or operational grouping.
+       External evaluations must be able to distinguish between dataset-specific
+refitting, supervised representation transfer, and unchanged model generalisation.
+Differences between datasets should be interpreted in terms of their targets, observation
+windows, available information, and assessment protocols, rather than through a
+common ranking of performance scores that are inherently incompatible.
+       This is a direct consequence of the literature on assessment independence,
+calibration, selection uncertainty, reproducibility and target domain access (Bengio &
+
+
+                                             46
+Chapter 2. Critical Literature Review
+
+
+Grandvalet, 2004; Guo et al., 2017; Kapoor & Narayanan, 2023; Ovadia et al., 2019;
+Pineau et al., 2021; Varma & Simon, 2006).
+        It is primarily an SQ4 product and forms the basis on which the SQ1–SQ3
+evaluations are carried out.
+        The requirements stipulate a direct link between the literature review and the
+following technical and methodological chapters.
+        Chapter 3 covers the representation and fusion elements pertinent to R2–R4.
+Chapter 4 details the dataset admission, fitting, assessment and evaluation procedures
+necessary to investigate R1–R5.
+        Not every dataset available to us will support all the requirements to the same
+degree. In particular, independent physical reference measurements, full modality
+correspondence, assessment group identifiers, matched architectural controls and
+reliability experiments may all be missing.
+        Where a requirement cannot be fully met, the corresponding empirical
+conclusion must be qualified rather than deemed satisfied.
+
+
+2.8.4       Implications for the Empirical Investigations
+
+The five empirical studies look at different facets of the original architectural research
+question.
+        Each investigation starts with a particular prediction target, the available
+physical observations and the assessment conditions. The following mappings link the
+nearest published evidence to the unresolved comparison that can be investigated in
+each dataset.
+
+
+PHM gear monitoring (SQ1, SQ2, and SQ4; R1, R2, R3, and R5)
+
+Post-build CT can provide an independent reference for locating manufacturing defects
+(Petrich et al., 2021).
+        In tool wear prediction, an image taken after a cutting pass and the acoustic
+emission recorded during cutting have also been used together to estimate wear
+
+
+                                              47
+Chapter 2. Critical Literature Review
+
+
+(X. Zhang et al., 2026, PDF pp. 19–24).
+       PHM presents a very different measurement problem. Their gear photographs
+were taken periodically, whereas the challenge specifies sensor-only operation at
+deployment (Prognostics and Health Management Society, 2026).
+       The unresolved comparison is whether the available sensor groups can predict a
+continuous condition proxy derived from the post-run photographs in the held-out gear
+experiments.
+       Chapter 5 examines target construction, sensor representations, and the fusion of
+their embeddings against a training mean reference.
+       The error in percentage points measures the prediction of the photographic
+proxy. You would need independent physical measurement to establish how well the
+proxy tracks actual tooth damage.
+       The study therefore contributes to representation comparison and target validity
+assessment, whilst inference-time loss of a camera is outside the scope of the study’s
+primary prediction experiment.
+
+
+REASSEMBLE robotic assembly (SQ1–SQ4; R1–R5)
+
+The REASSEMBLE dataset publication sets the benchmark for action segmentation
+and visual condition checks (Sliwowski et al., 2025, PDF pp. 10–13).
+       Published handover experiments also establish a precedent for the multimodal
+classification of completed robotic trials (Thoduka et al., 2024b, Table III).
+       For failed assembly actions, the study asks two questions: Does a fitted
+video-and-sensor model rank failures better than a strong statistical sensor predictor?
+Does process-dependent weighting outperform simple prediction-level integration?
+       Chapter 6 holds out complete recordings and compares the visual, statistical
+sensor, and time series representations (SQ1). Feature concatenation, probability
+averaging, logistic stacking and gating are then evaluated on the common eligible
+actions (SQ2).
+       Known absence and controlled corruption examine various reasons for reduced
+
+
+                                            48
+Chapter 2. Critical Literature Review
+
+
+input reliability (SQ3). Paired recording-level uncertainty, probability errors, and
+threshold-dependent decisions help explain the performance differences we see (SQ4).
+       The study is the principal experimental setting in which the requirements
+derived from the literature are investigated. The observation window runs through to
+action completion, and the interpretation depends on the actual fitting and assessment
+procedures.
+
+
+MSM milling (SQ1–SQ4; R1–R5)
+
+OmniFuser predicts milling tool wear states and cutting force (Z. Wang et al., 2025,
+PDF p. 11, Tables IV–V).
+       A visual-acoustic study also looks at tool wear estimation following a cutting
+pass (X. Zhang et al., 2026, PDF p. 24, Table 1).
+       The MSM dataset identifies abnormal cutting intervals which require
+intervention. Its descriptor can differentiate these from stable cutting with a defective
+tool and records camera coverage in the lab (Kim et al., 2026).
+       The open comparison is whether video adds predictive information over machine
+telemetry for that interval-level target, using the cut observations available to both
+streams.
+       Chapter 7 examines the representations and static fusion against their respective
+unimodal predictors (SQ1 and SQ2), then evaluates performance under missing or
+degraded inputs (SQ3).
+       Grouped assessment and the potential conflict between ranking and probability
+scores are addressed in SQ4. The covered laboratory acquisition dates define the
+assessment boundary; they do not isolate the effect of changes in operating conditions.
+       The study examines whether the fusion procedure is still useful when applied to
+a different industrial prediction target.
+
+
+
+
+                                            49
+Chapter 2. Critical Literature Review
+
+
+ViFailback manipulation (SQ1, SQ2, and SQ4; R1, R2, R3, and R5)
+
+Zeng et al. (2026, Tables 2–4) use visual symbols to diagnose failures, assess responses
+to questions and guide corrective action.
+       For the binary outcome of a complete manipulation episode on a held-out task,
+we make two further comparisons: does a generic visual representation add any
+predictive value over robot state measurements, and does transferring a visual encoder
+from REASSEMBLE alter that relationship?
+       Chapter 8 compares the generic frozen features with those of the transferred
+encoder and reports on the completed part of the target-CNN adaptation (SQ1).
+       Probability fusion is assessed against its constituent sensor predictor (SQ2).
+Success and failure rankings are reported separately, along with their macro-average,
+which makes the minority outcome apparent in the class-imbalanced assessment (SQ4).
+       The defined corruption procedures were not executed as a stress evaluation. The
+corresponding robustness question (SQ3), and therefore R4, remains open for this task.
+       The study focuses on architecture reuse and supervised representation transfer
+rather than deploying an unaltered REASSEMBLE predictor.
+
+
+HANDOVER human–robot interaction (SQ1–SQ4; R1–R5)
+
+The published HANDOVER benchmark looks at unimodal and fused models across the
+five outcome classes. In its I3D comparison, the video + force/torque combination
+outperforms the video + force/torque + gripper state combination in terms of mean
+accuracy (Thoduka et al., 2024b, PDF p. 7, Table III).
+       The supplementary thesis study looks at a more focused comparison: does
+averaging the video and wrench predictions over a common observation window improve
+binary handover failure ranking compared to the more powerful single-input predictor?
+       Appendix H looks at the two representations and fixed averaging (SQ1 and SQ2).
+Sensor noise, visual blur and fallback to one input all allow for a bounded reliability
+assessment (SQ3). The decisions for the success and failure classes go into SQ4.
+       The dataset authors report a participant-disjoint split for the oﬀicial test
+
+
+                                            50
+Chapter 2. Critical Literature Review
+
+
+comparison. The participant-to-trial mapping, however, is not available in the thesis
+workspace, so we cannot independently verify that separation or construct the
+corresponding participant-disjoint training predictions that the planned learned stacker
+requires.
+       The learned fusion comparison remains unresolved. The results produced are for
+the evaluated unimodal predictors and fixed averaging under their respective assessment
+conditions.
+       Together, these investigations address different aspects of the architecture and
+evaluation questions originally motivated by robotic welding.
+       PHM examines the relationship between target construction and condition
+prediction. REASSEMBLE provides the principal representation, fusion, and robustness
+comparisons. MSM, ViFailback, and HANDOVER investigate the applicability and
+boundaries of related procedures across different industrial and robotic outcomes.
+       Their scientific contribution depends on the validity of the within-study
+comparisons and the extent to which the literature-derived requirements can be
+addressed under each experimental setting.
+       An independent, welding-specific evaluation still requires a clearly defined
+weld-quality target, an appropriate decision time, paired observations, and assessment
+sessions held out from model development.
+       The subsequent technical foundations chapter defines the representation models
+and fusion mechanisms used to investigate these questions. The methodology chapter
+establishes the experimental implementation and evaluation requirements, while
+Chapter 9 integrates the resulting empirical findings with the scientific evidence
+established in this review.
+
+
+
+
+                                            51

@@ -1,0 +1,12 @@
+# Chapter 2 source update — 26 November 2026
+
+Applied the latest author-supplied attachment (`2e46a937-602a-4889-ad44-4664171d268a`) to the working `chapters/02_literature_review.tex`. The previous source is preserved byte-for-byte in [02_literature_review.before.tex](02_literature_review.before.tex); [chapter2_update.patch](chapter2_update.patch) reconstructs the updated file exactly. The supplied prose is preserved except for the [55 local corrections](local_corrections.json), including the scientific repairs approved in the preceding review. No broad stylistic rewrite was performed.
+
+- Restored Section 2.5.3, corrected grammar/spelling/terminology and converted citation placeholders to working LaTeX citations.
+- Retained all eight sections, 37 subsections, the six-row synthesis table and R1–R5. Existing labels remain; the synthesis table has one new label.
+- All 235 citation-key occurrences remain in their original order, across 79 existing keys. All 50 decimal-value occurrences outside headings/citations match the attachment after unit-format normalization. This check preserves values; it does not independently validate every publication.
+- Full and review editions compiled successfully: 223 and 156 pages. No unresolved citations/references, missing characters, overfull boxes or Biber warnings/errors. The full edition retains the same harmless `hypcap=true` caption warning present in the baseline. The table fits on one page; the final rendered table is byte-identical to the opened preview.
+- The established integrity checker returns 1 (review required), as expected for an author-supplied chapter replacement. Its protected-token flags cover revised prose/citation forms, native table markup, equivalent mathematical/number formatting and the approved scientific repairs; they are not an unchanged-source pass.
+- Only Chapter 2 changed within the working project. All 56 baseline files and all figures remain unchanged. No new literature discovery, model fitting, training, inference or experimental metric recomputation was performed.
+
+See [content checks](content_checks.json), [preservation checks](preservation_checks.json), [build checks](build_checks.json) and [pipeline report](pipeline_integrity.txt). Compilation outputs are validation copies under `full_build/` and `review_build/`; the existing delivery PDFs/ZIP were not refreshed. The combined Abstract + Chapters 1–4 review packet remains pending the author's Chapter 3 and 4 files.

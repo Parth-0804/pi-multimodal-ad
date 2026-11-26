@@ -1,0 +1,39 @@
+% ============================================================
+% ABSTRACT
+% File: frontmatter/abstract.tex
+% ============================================================
+
+Industrial monitoring increasingly relies on data from cameras,
+acoustic signals, and machine sensors. Although multimodal learning
+can leverage the strengths of each data type, adding sources does
+not necessarily improve prediction accuracy or reliability,
+particularly when data quality or relevance varies.
+
+This thesis investigates the design and evaluation of process-aware
+multimodal fusion architectures. It presents a critical review of
+\ReviewWorkCount{} full-text works and five empirical studies
+encompassing industrial gear monitoring, robotic assembly, milling,
+manipulation, and human--robot handover. The research employs
+pretrained visual representations, handcrafted sensor features,
+and patch-based temporal encoders. It evaluates feature-level,
+prediction-level, and adaptive fusion, and also examines grouped
+assessment and controlled input degradation where applicable.
+
+In the REASSEMBLE dataset, analysis of 4,530 completed actions from
+148 recordings demonstrated that logistic stacking increased failure
+average precision from 0.429 for its sensor component to 0.447.
+However, the difference from equal averaging (0.446) was small,
+and the advantage of stacking remained statistically unresolved.
+Subsequent experiments indicated that training budget, feature
+aggregation, and complementarity between representations can
+influence predictive performance. External evaluations revealed
+that the benefits of fusion were not consistently observed, and
+adaptive reweighting did not reliably enhance robustness.
+
+The results indicate that the value of multimodal fusion depends
+on the prediction task, the available information, and the evaluation
+protocol, rather than solely on architectural complexity. Issues such
+as independent welding validation, predictive audio fusion, early
+warning, and generalization of unchanged models to new domains
+remain unresolved. Consequently, the conclusions are limited to the
+tasks and conditions examined in this study.

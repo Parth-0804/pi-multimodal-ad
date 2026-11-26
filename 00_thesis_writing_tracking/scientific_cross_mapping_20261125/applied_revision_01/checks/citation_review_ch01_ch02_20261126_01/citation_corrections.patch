@@ -1,0 +1,1069 @@
+--- before/chapters/01_introduction.tex
++++ working/chapters/01_introduction.tex
+@@ -18,14 +18,14 @@
+ runs. Industrial and robotic systems produce many types of data,
+ such as visual observations, acoustic signals, force measurements,
+ vibration, and other sensor signals
+-\citep{Huo2022Multisensor,Thoduka2024Handover}.
++\parencite{Huo2022Multisensor,Thoduka2024Handover}.
+ Each data type shows a different aspect of the process and may
+ respond differently to changes in operation.
+ 
+ Multimodal learning enables the integration of these diverse data
+ types, particularly when each source provides complementary or
+ unique information. However, adding data sources does not inherently
+-improve predictions \citep{Wang2020What}. The benefit depends on
++improve predictions \parencite{Wang2020What}. The benefit depends on
+ the information each modality retains, the relevance of the data
+ to the prediction task, and the methods used for data integration.
+ 
+@@ -33,7 +33,7 @@
+ can observe the weld pool, while acoustic and machine sensor
+ measurements give information about other parts of the welding
+ process. Previous studies have explored combining visual and
+-acoustic data for weld assessment \citep{P003,Hua2026Weld}.
++acoustic data for weld assessment \parencite{P003,Hua2026Weld}.
+ 
+ The primary architectural challenge extends beyond welding.
+ Industrial monitoring systems require data representations that
+@@ -60,10 +60,10 @@
+ Prior work has shown that multimodal integration can improve
+ prediction, but it also identifies circumstances in which a jointly
+ trained multimodal model will perform worse than its unimodal
+-counterparts \citep{Wang2020What}. In one weld penetration study,
++counterparts \parencite{Wang2020What}. In one weld penetration study,
+ the image-only, audio-only, and fused models all achieved 100\%
+ accuracy on the reported clean test set
+-\citep[Tables~1--3]{Hua2026Weld}. There was therefore no demonstrable
++\parencite[Tables~1--3]{Hua2026Weld}. There was therefore no demonstrable
+ benefit to the availability of an additional modality in terms
+ of clean data accuracy.
+ 
+@@ -72,12 +72,12 @@
+ If an input is present but degraded, evidence is required to
+ demonstrate altered reliability. While adaptive fusion can adjust
+ the contribution of each input, modifying these weights alone
+-does not ensure improved robustness \citep{Zhang2023QMF,P008}.
++does not ensure improved robustness \parencite{Zhang2023QMF,P008}.
+ 
+ The fairness of these comparisons also depends on factors like
+ the prediction target, how the data is aligned over time, training
+ methods, calibration, and whether the test data is independent
+-\citep{P017,P004,Guo2017Calibration,P008}. Differences in any of
++\parencite{P017,P004,Guo2017Calibration,P008}. Differences in any of
+ these areas can make it hard to know if performance gains are
+ generalizable.
+ 
+--- before/chapters/02_literature_review.tex
++++ working/chapters/02_literature_review.tex
+@@ -11,7 +11,7 @@
+ approach uses single sensor readings and engineered features to characterise the system's behaviour.
+ Learned representations take this further by utilising data from images, sound and sensor sequences.
+ Multimodal learning examines how information from different modalities can be combined to support a
+-common prediction task \citep{Baltrusaitis2019Multimodal,Huo2022Multisensor,Thoduka2024Handover}.
++common prediction task \parencite{Baltrusaitis2019Multimodal,Huo2022Multisensor,Thoduka2024Handover}.
+ 
+ The literature touches on several related areas of research: traditional feature engineering, the
+ use of pre-trained representations, modelling over time, feature combination, prediction fusion, and
+@@ -24,12 +24,12 @@
+ sensors, etc.). Cameras will obviously provide a view of the visible process, whereas the acoustic
+ and machine sensors provide information which is not visible. The benefit of combining data depends
+ heavily on what each modality retains, the specific prediction you're trying to make, and the
+-system's test conditions \citep{Wang2020What,Hua2026Weld,Goodarzi2023Deep}. Simply increasing the
++system's test conditions \parencite{Wang2020What,Hua2026Weld,Goodarzi2023Deep}. Simply increasing the
+ amount of data does not necessarily lead to better predictions.
+ 
+ Robotic welding is the principal driver of this thesis. Work on welding using visual and acoustic
+ data has shown that multimodal integration can improve prediction performance, but also that, in
+-some cases, adding a further modality provides no benefit at all \citep{P003,Hua2026Weld}. The Intel
++some cases, adding a further modality provides no benefit at all \parencite{P003,Hua2026Weld}. The Intel
+ Welding audit documented prior examination of the proposed assessment population, so an independent
+ assessment of weld quality was not possible on that population (see Chapter~\ref{ch:introduction}).
+ The review therefore addresses a more general architectural question across a range of industrial
+@@ -73,8 +73,7 @@
+ multiple available inputs at deployment is a multimodal inference problem. Cross-modal distillation
+ and reconstruction link the two objectives but the acquisition assumptions are very different.
+ 
+-The Baltrušaitis et al. (2019) taxonomy is the organising terminology
+-\citep{Baltrusaitis2019Multimodal}. The industrial claims are then assessed against the original
++The taxonomy of \textcite{Baltrusaitis2019Multimodal} is the organising terminology. The industrial claims are then assessed against the original
+ studies rather than being entirely inferred from that survey.
+ 
+ \subsection{Sources, Search Terms, and Search Period}
+@@ -92,13 +91,13 @@
+ Eyecandies, bearing datasets and machine sound benchmarks.
+ 
+ Publisher and repository searches facilitated publication retrieval. Crossref supplied metadata for
+-identity verification \citep{Crossref2020REST}, while OpenAlex supported citation tracing
+-\citep{Priem2022OpenAlex}. Zotero was employed to link bibliographic records with PDFs and appraisal
+-notes \citep{Zotero2026}.
++identity verification \parencite{Crossref2020REST}, while OpenAlex supported citation tracing
++\parencite{Priem2022OpenAlex}. Zotero was employed to link bibliographic records with PDFs and appraisal
++notes \parencite{Zotero2026}.
+ 
+ Appendix~\ref{app:literature} differentiates the initial screening population from the subsequent
+-full-text appraisal. The seminal stacked generalisation paper by Ting and Witten (1999) was included
+-to support the discussion of prediction-level fusion methodology \citep{Ting1999Issues},
++full-text appraisal. The seminal stacked generalisation paper by \textcite{Ting1999Issues} was included
++to support the discussion of prediction-level fusion methodology,
+ representing a separate addition to the historical full-text appraisal count.
+ 
+ \subsection{Inclusion and Exclusion Criteria}
+@@ -110,12 +109,12 @@
+ Transferable work is explicitly identified. Work on multimodal optimisation failure modes,
+ missing-input mechanisms, uncertainty weighting, and evaluation theory can all be valuable in
+ designing industrial architectures, even if they do not amount to industrial validation
+-\citep{Wang2020What,P016,P023,Bengio2004CVVariance}.
++\parencite{Wang2020What,P016,P023,Bengio2004CVVariance}.
+ 
+ A publication may be included in the register as background or as a methodological contribution.
+ Simulated robot regression, RGB-geometry inspection, physical camera-telemetry monitoring and
+ single-camera feature-level fusion are different experimental settings
+-\citep{Altinses2023Fuzzy,P026,Thoduka2024Handover,P035}.
++\parencite{Altinses2023Fuzzy,P026,Thoduka2024Handover,P035}.
+ 
+ Inaccessible evidence is not taken to be irrelevant, and missing reporting does not establish that a
+ particular operation was not performed. The language used by the individual authors is interpreted
+@@ -154,10 +153,9 @@
+ conclusions about that condition are necessarily weak.
+ 
+ The main MVTec 3D-AD table gives 249 normal and 948 anomalous test samples (total 1197)
+-\citep[Table~1]{Bergmann2022The}. The welding penetration paper reports inconsistent acquisition and
++\parencite[Table~1]{Bergmann2022The}. The welding penetration paper reports inconsistent acquisition and
+ training numbers, and the light inspection paper reports different NwfDD values in its main table
+-and its ablation table \citep[PDF pp.~12, 15]{Hua2026Weld}; \citep[PDF p.~10 Tables~IV, VI,
+-VII]{P035}.
++and its ablation table \parencite[pp.~6708, 6711]{Hua2026Weld}; \parencite[p.~6661, Tables~IV, VI--VII]{P035}.
+ 
+ These inconsistencies reduce the precision of the comparisons. The studies remain useful when their
+ methods and reported findings are interpreted within clearly stated limits.
+@@ -176,20 +174,20 @@
+ Normal-only anomaly detection learns a reference for nominal observations. Supervised defect
+ classification, by contrast, uses labelled fault or quality classes. MVTec AD and MVTec 3D-AD are
+ examples of the normal-only approach, whereas welding penetration recognition is an example of
+-supervised classification \citep{Bergmann2019MVTec,Bergmann2022The,Hua2026Weld}.
++supervised classification \parencite{Bergmann2019MVTec,Bergmann2022The,Hua2026Weld}.
+ 
+ HANDOVER defines five completed-interaction outcome classes: success, no approach, no grasp, no
+-release and object drop \citep{Thoduka2024Handover}. A task failure in the operational domain
++release and object drop \parencite{Thoduka2024Handover}. A task failure in the operational domain
+ doesn't necessarily mean that some physical damage has occurred or that we can identify the root
+ cause of that damage.
+ 
+ Supervision is thus an important aspect of the evaluation. The weakly supervised inspection study
+ brings the MVTec data back in, as training requires image-level anomalous labels, which of course
+-changes the normal-only setting \citep[PDF p.~8]{P035}.
++changes the normal-only setting \parencite[6659]{P035}.
+ 
+ ZSG-IAD trains on reports and masks before evaluating on held-out categories or datasets. The
+ zero-shot terminology refers to that assessment boundary rather than to the complete absence of
+-anomaly supervised training \citep[PDF pp.~6, 8--9]{P025}.
++anomaly supervised training \parencite[PDF pp.~6, 8--9]{P025}.
+ 
+ These differences establish the need to compare architectures against their respective target
+ definitions and under their respective supervision conditions.
+@@ -200,13 +198,13 @@
+ horizon at which the target is defined. Remaining useful life is a very different prediction problem
+ from instantaneous defect probability.
+ 
+-Al-Dulaimi et al. look at a hybrid CNN-LSTM on simulated C-MAPSS trajectories using RMSE and an
+-asymmetric prognostic score \citep{AlDulaimi2019A}. Both branches of their model process the same
++\textcite{AlDulaimi2019A} look at a hybrid CNN-LSTM on simulated C-MAPSS trajectories using RMSE and an
++asymmetric prognostic score. Both branches of their model process the same
+ set of selected telemetry channels. The study therefore provides evidence of complementary
+ representations of the sensor data rather than any physical camera/sensor complementarity.
+ 
+-The synthetic robot benchmarks of Altinses and Schwung examine cross-modal prediction,
+-reconstruction, and downstream regression \citep{Altinses2025Performance}. They show the importance
++The synthetic robot benchmarks of \textcite{Altinses2025Performance} examine cross-modal prediction,
++reconstruction, and downstream regression. They show the importance
+ of relationships between representations, though errors on different reconstructed outputs do not
+ necessarily tell you which modality is more useful for a given common prediction task.
+ 
+@@ -219,9 +217,9 @@
+ \subsection{Dataset-Provided Labels, Derived Targets, and Proxy Supervision}
+ 
+ Reference labels have very different evidential roles. Post-build CT provides flaw localisation for
+-the voxel-level monitoring study by Petrich et al. \citep{Petrich2021Multimodal}. Microscopy and
+-density assessments are used to define quality classes in Li et al. \citep{Li2022A}. Operando X-ray
+-imaging is used to define process-state labels in Pandiyan et al. \citep{Pandiyan2022Deep}.
++the voxel-level monitoring study by \textcite{Petrich2021Multimodal}. Microscopy and
++density assessments are used to define quality classes in \textcite{Li2022A}. Operando X-ray
++imaging is used to define process-state labels in \textcite{Pandiyan2022Deep}.
+ 
+ These studies show how an independent instrument can establish or validate a prediction target
+ without necessarily being available at the time of model inference. It is vital to distinguish
+@@ -247,19 +245,19 @@
+ assessment unless its inputs are restricted to an earlier decision time.
+ 
+ HANDOVER is very clear that its baselines classify outcomes post-trial, with causal online
+-prediction still being work in progress \citep[PDF p.~7 Section~VI]{Thoduka2024Handover}. A
++prediction still being work in progress \parencite[PDF p.~7 Section~VI]{Thoduka2024Handover}. A
+ post-pass photo, a layer summary and the completed action all provide different information horizons
+-from prospective monitoring \citep{P045,Petrich2021Multimodal}.
++from prospective monitoring \parencite{P045,Petrich2021Multimodal}.
+ 
+ Retrospective classification is still useful for assessing representations and fusion techniques,
+ though its use in an operational context differs from that of an early warning system.
+ 
+ Computational delay must also be distinguished from observation time. DMAW uses 20 frames at 37~fps
+ and reports a much shorter forward-pass latency. As a result, approximately half a second of
+-observation is distinct from computational delay \citep[PDF pp.~6--7]{P003}.
++observation is distinct from computational delay \parencite[PDF pp.~6--7]{P003}.
+ 
+ Similarly, simply varying the input duration of a CNN--LSTM does not, by itself, mean that a warning
+-can be generated before a defect occurs \citep{Pandiyan2022Deep}. Active monitoring requires a
++can be generated before a defect occurs \parencite{Pandiyan2022Deep}. Active monitoring requires a
+ defined information cut-off, acquisition delay and end-to-end prediction workload.
+ 
+ \section{Multimodal Data in Industrial Applications}
+@@ -281,20 +279,20 @@
+ assumptions. Depth, depth-derived point clouds, and estimated surface normals can all be multiple
+ views of the same geometric source.
+ 
+-GPAD combines RGB-depth features with point cloud priors \citep[PDF pp.~4--7]{P024}. This is an
++GPAD combines RGB-depth features with point cloud priors \parencite[PDF pp.~4--7]{P024}. This is an
+ example of integration across representations that do not necessarily require three separate
+ physical acquisition sources.
+ 
+ RGB-geometry benchmarks describe appearance and shape rather than controller dynamics or motor
+-current \citep{Bergmann2022The,Bonfiglioli2023The}.
++current \parencite{Bergmann2022The,Bonfiglioli2023The}.
+ 
+ Physical camera-plus-measurement precedents include thermal imaging with vibration, welding images
+ with sound, tool images with acoustic emission, and robot video with force/torque and gripper state
+-\citep{Huo2022Multisensor,Hua2026Weld,P045,Thoduka2024Handover}.
++\parencite{Huo2022Multisensor,Hua2026Weld,P045,Thoduka2024Handover}.
+ 
+ Their prediction units range from static inspection through to process windows and full trials. In
+ the tool wear study, the camera is used post-cutting pass, with the preceding acoustic emission
+-capturing the active cutting \citep[PDF pp.~19--22]{P045}.
++capturing the active cutting \parencite[PDF pp.~19--22]{P045}.
+ 
+ The representation of visual observations also influences the information available. Both pooled
+ frame features and video Transformers process multiple images, but they differ in how they treat
+@@ -312,16 +310,16 @@
+ 
+ The harmonic-drive study combines high-frequency vibration with servo information, whereas PGMTKD
+ transfers pressure-vibration teacher knowledge to a pressure-only student
+-\citep{Yang2024Fault,Li2025PGMTKD}.
++\parencite{Yang2024Fault,Li2025PGMTKD}.
+ 
+ Both papers address incomplete information, but their sensor availability and deployment reasons
+ differ.
+ 
+ Representations can also inflate the apparent number of modalities without including any new
+-measurements. Kullu et al. combine current and vibration using both raw and STFT representations
+-\citep{Kullu2022A}. Wan et al. derive statistical 'vibration' features from two acoustic sensors
+-without acquiring an accelerometer channel at all \citep{Wan2024Pipeline}. Wang et al. combine
+-source domain features with the decisions from the vibration data \citep{Wang2025A}.
++measurements. \textcite{Kullu2022A} combine current and vibration using both raw and STFT representations.
++\textcite{Wan2024Pipeline} derive statistical 'vibration' features from two acoustic sensors
++without acquiring an accelerometer channel at all. \textcite{Wang2025A} combine
++source domain features with the decisions from the vibration data.
+ 
+ These studies are useful as architectural comparators, as they examine different information
+ representations. Their results should, of course, be treated as distinct from comparisons that
+@@ -336,17 +334,17 @@
+ fault state depends heavily on background conditions, mic location, and sync.
+ 
+ MIMII deliberately incorporates factory background recordings at a range of signal-to-noise ratios.
+-Its fan baseline AUC drops from .94 at $+6$~dB to .70 at $-6$~dB \citep[Table~3]{Purohit2019MIMII}.
++Its fan baseline AUC drops from .94 at $+6$~dB to .70 at $-6$~dB \parencite[Table~3]{Purohit2019MIMII}.
+ 
+ ToyADMOS provides miniature machine recordings and an explicit noise-mixing protocol, making it a
+-useful reference for acoustic monitoring \citep{Koizumi2019ToyADMOS}.
++useful reference for acoustic monitoring \parencite{Koizumi2019ToyADMOS}.
+ 
+ In process monitoring, airborne acoustic signals can be paired with either a melt pool camera or a
+-photodiode. Signal-to-image encoding in the Li et al. study is an acoustic-optical-signal experiment
+-\citep{Li2022A}, and Xie et al. use actual camera images \citep{Xie2025Audiovisual}.
++photodiode. Signal-to-image encoding in the study by \textcite{Li2022A} is an acoustic-optical-signal experiment,
++and \textcite{Xie2025Audiovisual} use actual camera images.
+ 
+ DCASE2020 Task2 provides audio-only baselines under an evaluation protocol that differs from that of
+-later domain shift challenges \citep{Koizumi2020Description}.
++later domain shift challenges \parencite{Koizumi2020Description}.
+ 
+ Together, these studies motivate acoustic representations as candidates for industrial multimodal
+ monitoring. Their utility will depend on the availability of appropriate recordings, well-defined
+@@ -361,18 +359,18 @@
+ 
+ RGB-point cloud feature mapping uses registered benchmark geometry. Process monitoring may instead
+ require time synchronisation and projection onto a common spatial grid
+-\citep{Costanzino2024Multimodal,Petrich2021Multimodal}.
++\parencite{Costanzino2024Multimodal,Petrich2021Multimodal}.
+ 
+ The digital twin study maps sensor features to robot TCP positions, showing how position can
+ establish correspondence even if it is not, in any normal sense, a predictive feature
+-\citep{Chen2023Multisensor}.
++\parencite{Chen2023Multisensor}.
+ 
+ Modality availability has several levels. A file can exist without having a usable paired
+ observation for a given prediction unit. A file can have a successfully paired observation which is
+ still degraded.
+ 
+ The acoustic-photodiode study explicitly lacks modality registration, which limits claims about
+-correspondence between its two encoded streams \citep{Li2022A}.
++correspondence between its two encoded streams \parencite{Li2022A}.
+ 
+ For camera and machine sensor monitoring, we can have an explicit pairing rule that picks up
+ unmatched events even if both underlying files are present. Modality completeness should therefore
+@@ -399,7 +397,7 @@
+ 
+ The literature is replete with evidence of compact representations. Hand-crafted local geometry is
+ competitive in 3D inspection, and a hydraulic CNN paper reports 1.7\% error for its best single
+-sensor versus 20.5\% error for all seventeen sensors \citep{Horwitz2023Back,Goodarzi2023Deep}.
++sensor versus 20.5\% error for all seventeen sensors \parencite{Horwitz2023Back,Goodarzi2023Deep}.
+ 
+ These results highlight the necessity for robust conventional references and careful selection of
+ predictive information. The appropriateness of the specific 220-feature REASSEMBLE representation is
+@@ -407,7 +405,7 @@
+ 
+ Industrial vision also offers lightweight alternatives. The weakly supervised inspection network
+ uses a single camera, internal anomaly-aware features, and a compact CNN. Reported computational
+-cost is 2.33 million parameters and 5.65~ms per image \citep[PDF p.~10, Table~V]{P035}.
++cost is 2.33 million parameters and 5.65~ms per image \parencite[p.~6661, Table~V]{P035}.
+ 
+ The study provides some relevant evidence on representation efficiency, but the anomalous training
+ labels and modified MVTec supervision differ significantly from normal-only inspection.
+@@ -424,13 +422,13 @@
+ relevant to the downstream prediction task.
+ 
+ PatchCore successfully employs pre-trained, locally aggregated intermediate CNN features together
+-with a memory of nominal patches for industrial inspection \citep[Section~3]{Roth2022Towards}.
++with a memory of nominal patches for industrial inspection \parencite[Section~3]{Roth2022Towards}.
+ 
+ This provides evidence for investigating transferred spatial representations, though its
+ nominal-only patch retrieval differs significantly from supervised action classification.
+ 
+ RT-DETR provides another architectural precedent in the form of its multi-scale visual backbone
+-\citep[Sections~4.1--4.2]{Zhao2024RTDETR}. Features at several spatial scales would be viable
++\parencite[Sections~4.1--4.2]{Zhao2024RTDETR}. Features at several spatial scales would be viable
+ candidates for the prediction target.
+ 
+ Its published detection accuracy and computational performance pertain to the complete detection
+@@ -440,11 +438,11 @@
+ 
+ Asymmetric student-teacher and cross-modal mapping methods also provide further evidence for
+ task-specific use of the learned visual representations
+-\citep{Rudolph2023Asymmetric,Costanzino2024Multimodal}.
++\parencite{Rudolph2023Asymmetric,Costanzino2024Multimodal}.
+ 
+ Vision-language inspection introduces semantic information as another potential source of
+ representation value. DSE-AD combines historical and current rail images with normal and abnormal
+-position prompts and assesses pixel localisation on a further rail domain \citep{P031}.
++position prompts and assesses pixel localisation on a further rail domain \parencite{P031}.
+ 
+ Its pair-reference and prompt assumptions differ significantly from those of isolated image
+ classification.
+@@ -459,10 +457,10 @@
+ otherwise be lost in engineered summaries.
+ 
+ PatchTST addresses this through patch-based time-series representations and shared modelling across
+-channels \citep[Sections~3.1--3.2]{Nie2023PatchTST}.
++channels \parencite[Sections~3.1--3.2]{Nie2023PatchTST}.
+ 
+ On the Weather dataset at a forecasting horizon of 96, the patch-plus-channel independent model
+-obtains an MSE of .152, compared with .164 without patching \citep[Table~7]{Nie2023PatchTST}.
++obtains an MSE of .152, compared with .164 without patching \parencite[Table~7]{Nie2023PatchTST}.
+ 
+ This provides positive evidence for patch-based representation learning in the forecasting setting
+ under consideration. However, the relevance to industrial classification warrants separate
+@@ -472,11 +470,11 @@
+ Chapter~\ref{ch:foundations}.
+ 
+ Video representation learning looks at another temporal structure. TimeSformer and Video Swin model
+-the spatial and temporal relations between video frames \citep{P034,P013}.
++the spatial and temporal relations between video frames \parencite{P034,P013}.
+ 
+ These approaches provide an alternative to simply averaging independently encoded frames. The
+ industrial CNN-LSTM remaining useful life study also shows the importance of observation length
+-within its simulated prediction task \citep{AlDulaimi2019A}.
++within its simulated prediction task \parencite{AlDulaimi2019A}.
+ 
+ The literature therefore motivates comparisons that explicitly account for sequence length,
+ observation windows, temporal ordering, normalisation, pre-training, and fitting budget.
+@@ -491,18 +489,18 @@
+ features.
+ 
+ The Welding Penetration Network uses VMD and GASF; DMAW uses Transformer representations adapted to
+-the welding observations \citep{Hua2026Weld,P003}.
++the welding observations \parencite{Hua2026Weld,P003}.
+ 
+ These are alternative forms of acoustic representation. An image-shaped acoustic representation is
+ still one derived from sound rather than being an independently acquired camera stream.
+ 
+ The Audio Spectrogram Transformer is a pretrained candidate for acoustic representation learning
+-\citep{P011}. The results on the general audio benchmark are sufficiently promising to warrant
++\parencite{P011}. The results on the general audio benchmark are sufficiently promising to warrant
+ industrial investigation. However, the appropriateness of such representations will depend heavily
+ on the particular acoustic environment and the specific prediction task.
+ 
+ MIMII and ToyADMOS both go some way to establishing the importance of background composition and
+-noise environment \citep{Purohit2019MIMII,Koizumi2019ToyADMOS}.
++noise environment \parencite{Purohit2019MIMII,Koizumi2019ToyADMOS}.
+ 
+ Together, these studies lead one to consider recording quality, normalisation, and consistent
+ observation intervals when looking at audio representations. The REASSEMBLE correspondence checks
+@@ -515,7 +513,7 @@
+ 
+ Benchmark methods based on pretrained features show that you can get useful representations without
+ going through the entire original representation-learning process on the industrial dataset
+-\citep{Roth2022Towards,Costanzino2024Multimodal}.
++\parencite{Roth2022Towards,Costanzino2024Multimodal}.
+ 
+ The computational cost of pretraining is still part of the representation's provenance even if it's
+ external to the downstream experiment.
+@@ -529,7 +527,7 @@
+ Distillation also makes a further distinction between training and deployment. The PGMTKD multimodal
+ teachers are used to enrich a pressure-only student. The gated acoustic-vibration study reports a
+ distilled LightGBM student, though the nature of the teacher features and the timing of the inputs
+-remain ambiguous \citep{Li2025PGMTKD,Huang2026Rolling}.
++remain ambiguous \parencite{Li2025PGMTKD,Huang2026Rolling}.
+ 
+ Resource comparisons should therefore account for feature extraction, preprocessing, trainable
+ components, and any teachers required during inference, rather than just the final prediction model.
+@@ -557,20 +555,20 @@
+ 
+ The original welding motivation is why this reference is so important. DMAW fuses the image and
+ audio Transformer representations to classify the four welding states. The reported accuracy is
+-96.1\% with fusion, 90.2\% for the image model and 84.4\% for the audio model \citep[PDF p.~7,
++96.1\% with fusion, 90.2\% for the image model and 84.4\% for the audio model \parencite[PDF p.~7,
+ Table~III]{P003}.
+ 
+ This supports a predictive benefit from the assessed multimodal pipeline. The grouping of the
+ assessment windows by welding run is still not resolved in the evaluation.
+ 
+ In contrast, the weld penetration study reports 100\% clean test accuracy for its image-only,
+-audio-only, and fused models \citep[PDF pp.~18, 22, Tables~1--3]{Hua2026Weld}.
++audio-only, and fused models \parencite[Tables~1--3]{Hua2026Weld}.
+ 
+ The additional modality therefore provides no measurable gain in accuracy under that comparison.
+ 
+ A similar distinction is made in the case of robotic monitoring. The HANDOVER study reports 69.1\%
+ accuracy for video plus force/torque and 67.9\% when gripper state is added to the I3D-D family
+-\citep[PDF p.~7, Table~III]{Thoduka2024Handover}.
++\parencite[PDF p.~7, Table~III]{Thoduka2024Handover}.
+ 
+ These are five-class outcome accuracies averaged over five training runs, rather than binary failure
+ average precision. The comparison does, however, show that adding an observation can reduce
+@@ -578,14 +576,14 @@
+ 
+ The tool wear study reports an MAE of 6.6183 for their proposed model, 8.3002 for the visual
+ ResNet50 and 60.5118 for the acoustic reference. All the other multimodal architectures evaluated
+-have errors in excess of 45 \citep[PDF p.~24, Table~1]{P045}.
++have errors in excess of 45 \parencite[PDF p.~24, Table~1]{P045}.
+ 
+ The strong visual reference makes the improvement scientifically informative, though the
+ architectural differences mean you cannot attribute all of it to fusion.
+ 
+ Transferable results on the difficulties of multimodal optimisation and on industrial all-channel
+ losses underline the need to establish incremental gains against a strong admissible reference
+-\citep{Wang2020What,Goodarzi2023Deep}.
++\parencite{Wang2020What,Goodarzi2023Deep}.
+ 
+ Collectively, these studies support investigating the value of conditional fusion, rather than
+ assuming that including additional modalities will necessarily improve prediction.
+@@ -599,20 +597,20 @@
+ constituent representations.
+ 
+ M3DM's direct concatenation ablation is worse than its point cloud reference, while the full hybrid
+-system outperforms both individual inputs \citep[Table~4]{Wang2023Multimodal}.
++system outperforms both individual inputs \parencite[Table~4]{Wang2023Multimodal}.
+ 
+ MADFlow also provides a further protocol-specific comparison between alignment and concatenation
+-\citep{Li2025MADFlow}.
++\parencite{Li2025MADFlow}.
+ 
+ CFA provides transferable evidence from forecasting. For DLinear on the Energy dataset, the first
+ concatenation gives an MSE of .670, compared with .263 without text and .243 with constrained fusion
+-\citep[PDF p.~4, Table~4]{P023}.
++\parencite[PDF p.~4, Table~4]{P023}.
+ 
+ The constrained fusion method also performs worse in a number of the evaluated scenarios, which
+ again suggests that the benefits of an integration mechanism are highly task-dependent.
+ 
+ Manufacturing fusion can similarly improve one architecture at the expense of the other under the
+-same broad prediction task \citep[Table~3]{Li2022A}.
++same broad prediction task \parencite[Table~3]{Li2022A}.
+ 
+ These results establish concatenation as a valid comparator. It should be appropriately normalised
+ and fitted, rather than implemented as an artificially weak baseline against which more complex
+@@ -627,26 +625,25 @@
+ 
+ Thermal-vibration diagnosis provides direct evidence of physical camera-sensor prediction-level
+ fusion. They use separate CNN softmax outputs with weighted Dempster-Shafer aggregation and report a
+-clean 100\% diagnostic rate, compared with 99.06\% for IRT and 96.32\% for vibration \citep[PDF
+-p.~7, Table~VII]{Huo2022Multisensor}.
++clean 100\% diagnostic rate, compared with 99.06\% for IRT and 96.32\% for vibration \parencite[Table~VII]{Huo2022Multisensor}.
+ 
+ The weights were fixed, and the sample-level cross-validation did not establish independence between
+ physical runs.
+ 
+ HANDOVER compares late outputs with intermediate sensor integration in the RGB and optical flow
+-branches \citep[PDF pp.~5--7]{Thoduka2024Handover}.
++branches \parencite[PDF pp.~5--7]{Thoduka2024Handover}.
+ 
+ Cross-modal feature mapping and CPIR combine discrepancy maps, which need not be probabilities
+-\citep{Costanzino2024Multimodal,Shangguan2025CPIR}.
++\parencite{Costanzino2024Multimodal,Shangguan2025CPIR}.
+ 
+ Some papers also use the term 'late fusion' to describe representation-level integration prior to
+-classification \citep{Wang2020What,Xie2025Audiovisual}. That underlines the importance of knowing
++classification \parencite{Wang2020What}. That underlines the importance of knowing
+ what information you are actually fusing.
+ 
+ Stacked generalisation provides a scientific basis for learning a second-stage combination from
+ cross-validated predictions. Probability outputs contain predictive information beyond the hard
+ class labels so that a second-stage learner can estimate the joint utility of the outputs
+-\citep[Sections~2--3]{Ting1999Issues}.
++\parencite[Sections~2--3]{Ting1999Issues}.
+ 
+ The referenced study looks at a linear least-squares combiner; this thesis looks at logistic
+ stacking. F2 is low-dimensional because it combines two scalar branch probabilities. Its suitability
+@@ -663,32 +660,31 @@
+ 
+ Gated Multimodal Units do provide evidence of transferable conditional representation integration.
+ The architecture fuses visual and textual information and achieves a macro F-score of .541, compared
+-with .521 for the concatenation baseline in the movie-genre classification task \citep[Section~3,
+-Table~2]{P006}.
++with .521 for the concatenation baseline in the movie-genre classification task \parencite[Section~3.1, Table~2]{P006}.
+ 
+ This finding points to the need to look at conditional allocation, though the mechanism at the
+ application and representation level is quite different from the probability- and logit-based gates
+ that have been the subject of this thesis.
+ 
+ Adaptive integration has also been looked at in an industrial context. DMAW achieved 96.1\%
+-accuracy, compared with 90.5\% for summation and 92.6\% for its gate comparator \citep[PDF p.~9,
++accuracy, compared with 90.5\% for summation and 92.6\% for its gate comparator \parencite[PDF p.~9,
+ Table~V]{P003}.
+ 
+ TC-MAF provides another approach whereby the auxiliary RGB evidence is bounded around a multimodal
+-anchor using normal training dispersion and local disagreement \citep[PDF pp.~3--5]{P026}.
++anchor using normal training dispersion and local disagreement \parencite[PDF pp.~3--5]{P026}.
+ 
+ These architectures illustrate various approaches to controlling information contribution.
+ 
+ An important evaluation dimension is what governs the allocation. GCCF-AD is described as dynamic
+ fusion, but the formulation they report is a learned scalar with no explicit sample-quality input
+-\citep[PDF p.~3, Eq.~8]{P038}.
++\parencite[p.~149226, Eq.~8]{P038}.
+ 
+ PGMTKD uses training losses to assign teacher contributions, and task loss balancing focuses on
+ optimisation rather than any direct measure of input quality at deployment
+-\citep{Li2025PGMTKD,P045}.
++\parencite{Li2025PGMTKD,P045}.
+ 
+ GAF-Net uses progressive feature feedback, and trustworthy fusion employs evidence-based aggregation
+-\citep{Huang2026Rolling,Ying2025Trustworthy}.
++\parencite{Huang2026Rolling,Ying2025Trustworthy}.
+ 
+ The scientific distinction is what contributions can vary, what information determines that
+ variation, and whether that variation improves predictive performance relative to a fixed
+@@ -706,20 +702,20 @@
+ 
+ The tool wear study alters the architectural components as part of the fusion, and the incomplete
+ federated imagery study alters the client data access as well as the combining mechanism
+-\citep{P045,P051}.
++\parencite{P045,P051}.
+ 
+ These are comparative assessments of fitted pipelines. Their interpretation differs from an
+ experiment intended to isolate attention, modality contribution, or quality conditioning.
+ 
+ Comparisons using the same evidence sources can support a narrower attribution. TC-MAF retains the
+ same evidence sources, comparing bounded fusion against static averaging, weighted scores, rank
+-fusion, and a learned gate \citep[PDF p.~7, Table~3]{P026}.
++fusion, and a learned gate \parencite[PDF p.~7, Table~3]{P026}.
+ 
+ On the flip side, the disagreement-aware study uses a locally released code baseline that performs
+-worse than the published M3DM result \citep[PDF p.~10, Table~4]{P033}.
++worse than the published M3DM result \parencite[PDF p.~10, Table~4]{P033}.
+ 
+ Distilled predictors can also access training information that is not available to standard unimodal
+-models \citep{Li2025PGMTKD}.
++models \parencite{Li2025PGMTKD}.
+ 
+ These settings remain scientifically valuable, provided that the information and fitting conditions
+ are clearly specified. Pipeline performance, incremental modality value, and the isolated effect of
+@@ -742,25 +738,24 @@
+ 
+ PGMTKD's pressure-only student and incomplete RGB-geometry methods do provide evidence for reduced
+ input inference. ModDrop and the missing-modality Transformers add further transferable mechanisms
+-and counterexamples \citep{Li2025PGMTKD,Sui2026Incomplete,P005,P016}.
++and counterexamples \parencite{Li2025PGMTKD,Sui2026Incomplete,P005,P016}.
+ 
+ The effectiveness of these mechanisms will, of course, depend on the training conditions and the
+ specific missing-input patterns they have been assessed on.
+ 
+ TC-MAF explicitly evaluates unavailable 3D input. I-AUROC drops from .9788 to .9330 and P-AUPRO from
+-.9901 to .9586 \citep[PDF p.~7, Table~3]{P026}.
++.9901 to .9586 \parencite[PDF p.~7, Table~3]{P026}.
+ 
+ This provides a quantified example of performance under a given missing modality condition.
+ 
+-Federated substation monitoring varies the proportion of incomplete clients to 80\% \citep[PDF
+-p.~29, Figure~8]{P051}.
++Federated substation monitoring varies the proportion of incomplete clients to 80\% \parencite[Figure~8]{P051}.
+ 
+ Its training and client-availability setting differs from an arbitrary inference-time camera
+ failure.
+ 
+ ZSG-IAD reports input subset comparisons without fully defining the shared checkpoint and training
+-exposure \citep{P025}. Missing training images in the hot rolling regime constitute another
+-availability regime \citep{Ma2025A}.
++exposure \parencite{P025}. Missing training images in the hot rolling regime constitute another
++availability regime \parencite{Ma2025A}.
+ 
+ These studies collectively indicate the need to explicitly specify available modalities during both
+ training and inference (i.e., availability masks), the policy for replacement or fallback, and the
+@@ -772,20 +767,20 @@
+ Thermal-vibration diagnosis examines Gaussian noise and vibration bias/stuck faults, while welding
+ penetration recognition examines artificial interference. Acoustic-thermal and acoustic-vibration
+ studies look at other noise settings
+-\citep{Huo2022Multisensor,Hua2026Weld,Ying2025Trustworthy,Huang2026Rolling}.
++\parencite{Huo2022Multisensor,Hua2026Weld,Ying2025Trustworthy,Huang2026Rolling}.
+ 
+ These interventions vary in the observations affected, the degree of corruption and the extent to
+ which the model is exposed to degradation.
+ 
+ At $-2$~dB, noisy IR thermography gives 95.26\%, which jumps to 97.6\% when combined with fault-free
+ vibration. Noisy vibration alone gives 36.86\%, jumping to 94.2\% when combined with fault-free IR
+-thermography \citep[PDF p.~7, Table~VIII]{Huo2022Multisensor}.
++thermography \parencite[Table~VIII]{Huo2022Multisensor}.
+ 
+ The comparison shows the value of a fault-free companion modality when another observation is
+ synthetically corrupted.
+ 
+ The welding penetration study reports a fused accuracy of 93.33\% under its interference condition
+-\citep[PDF pp.~18, 22, Tables~1--3]{Hua2026Weld}.
++\parencite[Table~3]{Hua2026Weld}.
+ 
+ The corresponding corrupted unimodal comparisons are required in order to assess the incremental
+ benefit of fusion in the interference condition. The reported intervention also leaves some
+@@ -808,20 +803,20 @@
+ 
+ Registration studies have established the importance of alignment in multimodal monitoring.
+ OmniFuser's repeated within-pass images provide a way to construct paired observations rather than
+-directly test a synchronisation failure \citep{Petrich2021Multimodal,Chen2023Multisensor,P021}.
++directly test a synchronisation failure \parencite{Petrich2021Multimodal,Chen2023Multisensor,P021}.
+ 
+ The literature also contains examples of evaluation under changed acquisition conditions. HANDOVER
+ trains on one robot and evaluates on a different robot, and there's a rail localisation study that
+-evaluates a Subway-trained model on high-speed rail \citep[PDF p.~7, Table~V]{Thoduka2024Handover};
+-\citep[PDF p.~10, Table~III]{P031}.
++evaluates a Subway-trained model on high-speed rail \parencite[PDF p.~7, Table~V]{Thoduka2024Handover};
++\parencite[PDF p.~10, Table~III]{P031}.
+ 
+ Target-adaptive methods, target-validated condition studies and independent build experiments are
+ all different forms of access to the assessment domain
+-\citep{Wang2025A,Chu2024A,Huang2026Rolling,Bevans2023Heterogeneous}.
++\parencite{Wang2025A,Chu2024A,Huang2026Rolling,Bevans2023Heterogeneous}.
+ 
+ Rebuilding normal memories on Eyecandies using fixed fusion hyperparameters is evidence of recipe
+ transfer, rather than deploying an unaltered model to an untouched target installation
+-\citep{P026,P033}.
++\parencite{P026,P033}.
+ 
+ These distinctions between them are important for interpreting the external dataset work in this
+ thesis. Architecture reuse, representation transfer, temporal offset tolerance, and unchanged model
+@@ -835,17 +830,17 @@
+ 
+ QMF furnishes a theoretical basis for studying sample-dependent weighting via generalisation upper
+ bounds under stated relationships between uncertainty and loss, assuming a common training and test
+-distribution \citep[PDF pp.~4--5]{Zhang2023QMF}.
++distribution \parencite[Sections~3.1--3.2]{Zhang2023QMF}.
+ 
+ The transferable UDML experiments train on controlled Gaussian corruption intensities and recognise
+-that sample difficulty can be confused with modality corruption \citep[PDF pp.~4--5, 9]{P022}.
++that sample difficulty can be confused with modality corruption \parencite[PDF pp.~4--5, 9]{P022}.
+ 
+ These results lead us to ask whether the quality information we have available helps us identify
+ when a particular observation is no longer useful.
+ 
+ QMF reports an NYU scene classification accuracy of 70.09\% on clean inputs, compared to 70.30\% for
+ concatenation. At corruption intensity ten, it reports 55.60\% compared to 51.99\% for late fusion
+-\citep[PDF p.~8, Table~1]{Zhang2023QMF}.
++\parencite[PDF p.~8, Table~1]{Zhang2023QMF}.
+ 
+ These non-industrial RGB-depth comparisons do show a regime-specific advantage under corruption. The
+ clean and corrupted comparisons quoted use different reference methods, so they should not be read
+@@ -853,18 +848,18 @@
+ 
+ The effect of the adaptation mechanisms also differs across prediction endpoints. The disagreement
+ add-on increases the local MVTec image AUROC from .779 to .800 and, at the same time, reduces the
+-Eyecandies image AUROC from .810 to .794, even though the pixel metrics have improved \citep[PDF
++Eyecandies image AUROC from .810 to .794, even though the pixel metrics have improved \parencite[PDF
+ pp.~10--11, Tables~4--5]{P033}.
+ 
+ TC-MAF uses normal-training dispersion and local disagreement to control the contribution of
+-auxiliary evidence \citep{P026}.
++auxiliary evidence \parencite{P026}.
+ 
+ Collectively, these findings establish a scientific basis for reducing reliance on a stream when the
+ observable context is expected to indicate errors. They also underscore the need to assess the
+ relationship between available quality indicators and actual predictive reliability.
+ 
+ QMF's theoretical justification does not validate the use of arbitrary quality proxies, and clean
+-calibration can actually degrade after a distribution shift \citep{Zhang2023QMF,P008}.
++calibration can actually degrade after a distribution shift \parencite{Zhang2023QMF,P008}.
+ 
+ For the empirical investigation, the relevant comparison is whether quality-conditioned weighting
+ improves performance over a static model with the same level of corruption exposure, while still
+@@ -883,16 +878,16 @@
+ 
+ Fuzzy regularisation works by introducing failures via partial corruption and by replacing the
+ entire input with a constant or noise. The evaluation is of Gazebo pose regression using random
+-sample splits of overlapping windows \citep[PDF pp.~3--5]{Altinses2023Fuzzy}.
++sample splits of overlapping windows \parencite[PDF pp.~3--5]{Altinses2023Fuzzy}.
+ 
+ The investigation provides evidence for controlled input regularisation, with independent physical
+ deployment outage performance remaining unaddressed.
+ 
+-OmniFuser describes dropout and masking without any quantified outage table \citep[PDF p.~10]{P021}.
++OmniFuser describes dropout and masking without any quantified outage table \parencite[PDF p.~10]{P021}.
+ 
+ Generated replacement observations can also have a negative impact on performance. Replacing the
+ clean depth with CycleGAN output worsens the synthetic robot benchmark's MSE (from $2.1745 \times
+-10^{-3}$ to $13.472 \times 10^{-3}$) \citep[Table~7]{Altinses2025Performance}.
++10^{-3}$ to $13.472 \times 10^{-3}$) \parencite[Table~7]{Altinses2025Performance}.
+ 
+ These results motivate individual evaluation of learned recovery, training exposure, and explicit
+ fallback policies. Static controls, with equivalent degradation exposure and predictions from the
+@@ -917,20 +912,20 @@
+ 
+ Randomly partitioned observations can end up with shared acquisition contextual information or raw
+ samples. The fuzzy-regularisation study forms 20-step windows with a stride of one and then randomly
+-divides the resulting examples \citep[PDF pp.~4--5]{Altinses2023Fuzzy}.
++divides the resulting examples \parencite[PDF pp.~4--5]{Altinses2023Fuzzy}.
+ 
+ Its assessment therefore doesn't establish performance on unseen trajectories.
+ 
+-Weld run grouping is still unresolved in the closest welding studies \citep{P003,Hua2026Weld}. These
++Weld run grouping is still unresolved in the closest welding studies \parencite{P003,Hua2026Weld}. These
+ examples do show a potential dependence between the observations but do not establish any particular
+ level of leakage.
+ 
+ The HANDOVER authors report an explicit participant-disjoint official split. An adapted learned
+ fusion implementation would still require participant information in order to build the
+-corresponding inner partitions \citep{Thoduka2024Handover}.
++corresponding inner partitions \parencite{Thoduka2024Handover}.
+ 
+ Normalisation, feature selection and model parameter optimisation all require an appropriate split
+-between model development and model assessment \citep{P004,P017}.
++between model development and model assessment \parencite{P004,P017}.
+ 
+ Out-of-fold stacking provides a mechanism for constructing second-stage prediction inputs without
+ any in-sample predictions. Its validity is of course also dependent on the way in which the
+@@ -952,21 +947,21 @@
+ 
+ MVTec AD shows that useful ranking can exist alongside fairly poor thresholded localisation. The
+ strict FPR metrics highlight a different aspect of detection performance
+-\citep{Bergmann2019MVTec,Costanzino2024Multimodal,Cheng2025Multimodal}.
+-
+-The rail vision-language study reports pixel-level metrics and optimal threshold F1 \citep[PDF
++\parencite{Bergmann2019MVTec,Costanzino2024Multimodal,Cheng2025Multimodal}.
++
++The rail vision-language study reports pixel-level metrics and optimal threshold F1 \parencite[PDF
+ p.~7]{P031}. These metrics address a completely different evaluation problem than image-level alarm
+ accuracy at a threshold chosen from the training or validation set.
+ 
+-In manufacturing, Petrich et al. report an accuracy of .9921 and a precision of .2487 on an
++In manufacturing, \textcite{Petrich2021Multimodal} report an accuracy of .9921 and a precision of .2487 on an
+ imbalanced layer, which is a clear example of the impact of class distribution and threshold
+-selection \citep{Petrich2021Multimodal}.
++selection.
+ 
+ Validation-fitted calibration can improve in-distribution probability quality, while dataset shift
+-can damage confidence estimates \citep{Guo2017Calibration,P008}.
++can damage confidence estimates \parencite{Guo2017Calibration,P008}.
+ 
+ Proper scoring rules (negative log-likelihood, Brier score, etc.) provide a basis for assessing
+-probability forecasts \citep{P055}. Their interpretation differs from that of discrimination or
++probability forecasts \parencite{P055}. Their interpretation differs from that of discrimination or
+ thresholded classification.
+ 
+ A generated confidence field or evidence mass cannot replace probability evaluation. Metrics should
+@@ -980,19 +975,18 @@
+ 
+ HANDOVER's reported standard deviations are for five training runs on a fixed test set, whereas a
+ group bootstrap of saved predictions samples assessment units conditional on the fitted models
+-\citep{Thoduka2024Handover}.
++\parencite{Thoduka2024Handover}.
+ 
+ These approaches capture different facets of uncertainty and do not necessarily encompass all the
+ variation expected from retraining or deployment in a different domain.
+ 
+ Cross-validation folds share training observations. Under the assumptions stated, the classic
+ variance result shows that no universally unbiased estimator of cross-validation variance exists;
+-ignoring covariance can substantially underestimate uncertainty \citep[PDF
+-pp.~8--10]{Bengio2004CVVariance}. Conditional uncertainty intervals can still be useful when the
++ignoring covariance can substantially underestimate uncertainty \parencite[pp.~1096--1098, 1102--1104]{Bengio2004CVVariance}. Conditional uncertainty intervals can still be useful when the
+ estimand and dependence assumptions are stated explicitly.
+ 
+ Small fusion effects, ambiguous repetition counts and conflicting descriptions of significance all
+-warrant the same level of caution \citep{Gu2024Improved,Xu2025ModalityResilient}.
++warrant the same level of caution \parencite{Gu2024Improved,Xu2025ModalityResilient}.
+ 
+ Paired performance differences on common assessment observations provide a much more direct
+ comparison than unrelated score intervals. An interval which contains zero doesn't demonstrate
+@@ -1007,23 +1001,23 @@
+ The attention debate has both counterexamples to faithful explanation and evidence that the learned
+ attention weights do, in fact, contain useful information. This leads to the conclusion that
+ interpretability should be evaluated on a task-specific basis rather than drawing general
+-conclusions from the terminology of the architecture itself \citep{P036}.
++conclusions from the terminology of the architecture itself \parencite{P036}.
+ 
+ ZSG-IAD measures schema validity, language consistency and coarse-to-final-mask overlap
+-\citep{P025}. These provide evidence of various forms of self-consistency.
++\parencite{P025}. These provide evidence of various forms of self-consistency.
+ 
+ Their interpretation differs from both independent physical defect causation and calibrated
+ confidence.
+ 
+ HANDOVER leaves the use of human action prediction as a means of explanation as a future area of
+-research \citep{Thoduka2024Handover}.
++research \parencite{Thoduka2024Handover}.
+ 
+ Within this thesis, observable quality responses and inspectable fusion coefficients provide
+ descriptive transparency. However, expert understanding, causal attribution, and operator usability
+ require additional assessments.
+ 
+ Process context should be distinguished from the explicit physical equation constraints (e.g.
+-PGMTKD's pressure model \citep{Li2025PGMTKD}).
++PGMTKD's pressure model \parencite{Li2025PGMTKD}).
+ 
+ \subsection{Modularity, Reproducibility, and Computational Cost}
+ 
+@@ -1035,20 +1029,20 @@
+ architecture.
+ 
+ An identified version, accessible source code, executable processing and independently reproduced
+-results all provide various levels of reproducibility assurance \citep{P009}.
++results all provide various levels of reproducibility assurance \parencite{P009}.
+ 
+ The difference between local and published M3DM results remains unresolved. It motivates checks of
+-dependencies, valid point filtering, checkpoints, and scoring conventions \citep{P033}.
++dependencies, valid point filtering, checkpoints, and scoring conventions \parencite{P033}.
+ 
+ Computational comparisons of course also require a common measurement boundary. The CPIR paper
+ reports lower FPS than CFM, which is a clear performance vs speed trade-off
+-\citep{Shangguan2025CPIR}.
++\parencite{Shangguan2025CPIR}.
+ 
+ The reported 5.65~ms for the lightweight image network doesn't include the independent sensor branch
+-or acquisition delay \citep[PDF p.~10, Table~V]{P035}.
++or acquisition delay \parencite[p.~6661, Table~V]{P035}.
+ 
+ TimeSformer's compute requirements depend on the ImageNet pretraining and the workload it is
+-evaluated on \citep{P034}.
++evaluated on \parencite{P034}.
+ 
+ Hardware, batch size, caching, synchronisation and the processing stages included all determine
+ which computational measurements can be compared.
+@@ -1077,10 +1071,10 @@
+ There are tangible observations that can be used to improve the performance of a task-specific
+ monitoring pipeline. DMAW, thermal-vibration diagnosis, HANDOVER and tool wear prediction are all
+ good examples under their respective assessment protocols
+-\citep{P003,Huo2022Multisensor,Thoduka2024Handover,P045}.
++\parencite{P003,Huo2022Multisensor,Thoduka2024Handover,P045}.
+ 
+ Controlled evidence integration can also improve RGB--geometry inspection under intact-input
+-conditions. TC-MAF separately reports performance when the 3D input is unavailable \citep{P026}.
++conditions. TC-MAF separately reports performance when the 3D input is unavailable \parencite{P026}.
+ 
+ The literature therefore establishes that useful industrial multimodal fusion mechanisms and
+ approaches to dealing with incomplete observations do in fact exist.
+@@ -1088,7 +1082,7 @@
+ Representation learning offers a number of scientifically sound options for extracting information
+ relevant to the task. Pretrained convolutional features, patch-based temporal representations, and
+ hand-crafted features are all candidates with some supporting evidence under certain learning and
+-evaluation regimes \citep{Roth2022Towards,Nie2023PatchTST,Horwitz2023Back}.
++evaluation regimes \parencite{Roth2022Towards,Nie2023PatchTST,Horwitz2023Back}.
+ 
+ Their suitability for another industrial prediction target will, of course, depend on several
+ factors, including the observations, the supervision, the aggregation, and the compute resources
+@@ -1097,11 +1091,11 @@
+ Static and learned fusion mechanisms both offer different avenues for exploiting complementary
+ information. Stacked generalisation motivates learning combinations of the outputs of individual
+ predictors. In contrast, gated representation learning and quality-aware fusion justify
+-context-dependent allocation \citep{Ting1999Issues,P006,Zhang2023QMF}.
++context-dependent allocation \parencite{Ting1999Issues,P006,Zhang2023QMF}.
+ 
+ A further well-established distinction concerns input reliability. Planned single-input deployment,
+ complete inference-time absence, controlled corruption, and target domain adaptation all address
+-different issues \citep{Li2025PGMTKD,Altinses2023Fuzzy,P051}.
++different issues \parencite{Li2025PGMTKD,Altinses2023Fuzzy,P051}.
+ 
+ The consistent finding across the reviewed studies is a conditional benefit under specific tasks and
+ evaluation regimes, rather than universal superiority of any single representation or fusion
+@@ -1115,11 +1109,11 @@
+ performance drops when the gripper state is added. Some alternative multimodal tool-wear models
+ perform worse than the visual reference, although the proposed model improves on it. The Eyecandies
+ image scores also go down. All of this calls into question the notion of an unqualified fusion
+-benefit \citep{Hua2026Weld,Thoduka2024Handover,P045,P033}.
++benefit \parencite{Hua2026Weld,Thoduka2024Handover,P045,P033}.
+ 
+ Category-specific geometry losses, poor hydraulic channel combinations, and the difficulties of
+ multimodal optimisation all reinforce this conclusion
+-\citep{Horwitz2023Back,Bonfiglioli2023The,Goodarzi2023Deep,Wang2020What}.
++\parencite{Horwitz2023Back,Bonfiglioli2023The,Goodarzi2023Deep,Wang2020What}.
+ 
+ Several mechanisms could account for these results: redundancy, inappropriate representations,
+ optimisation difficulties, noise, supervision and limited independent sample support. The studies do
+@@ -1131,7 +1125,7 @@
+ guarantee that a fusion mechanism can effectively utilise that information.
+ 
+ Reliability introduces a related source of uncertainty. Adaptive weighting is justified when the
+-available context can identify changes in unimodal prediction reliability \citep{Zhang2023QMF,P022}.
++available context can identify changes in unimodal prediction reliability \parencite{Zhang2023QMF,P022}.
+ The value of conditioning information, its relationship to branch errors, and its comparison with
+ exposure-matched static alternatives must be investigated on a task-specific basis.
+ 
+@@ -1177,7 +1171,7 @@
+ good unimodal or static baseline. The degree to which the results can be generalised across
+ applications is limited by differences in the prediction target, the quality of the representation,
+ the nature of the supervision, the training regime and the reliability of the inputs
+-\citep{Wang2020What,Hua2026Weld,Goodarzi2023Deep,Thoduka2024Handover,Zhang2023QMF}.
++\parencite{Wang2020What,Hua2026Weld,Goodarzi2023Deep,Thoduka2024Handover,Zhang2023QMF}.
+ 
+ This thesis addresses the conditional effectiveness of multimodal fusion under comparable,
+ task-specific experimental conditions. It examines how representation suitability, complementary
+@@ -1213,7 +1207,7 @@
+ 
+ This directly follows from the supervision and correspondence distinctions discussed in Sections 2.2
+ and 2.3 (including the industrial studies that use independent reference instruments or registered
+-observations \citep{Petrich2021Multimodal,Pandiyan2022Deep,Chen2023Multisensor}).
++observations \parencite{Petrich2021Multimodal,Pandiyan2022Deep,Chen2023Multisensor}).
+ 
+ \subsubsection*{R2. Representation suitability under explicit fitting conditions}
+ 
+@@ -1226,7 +1220,7 @@
+ 
+ This is a direct consequence of evidence for engineered features, transferred visual
+ representations, and patch-based temporal learning under a variety of experimental conditions
+-\citep{Horwitz2023Back,Roth2022Towards,Nie2023PatchTST}.
++\parencite{Horwitz2023Back,Roth2022Towards,Nie2023PatchTST}.
+ 
+ It directly supports the representation investigation in SQ1.
+ 
+@@ -1248,7 +1242,7 @@
+ 
+ This is a direct consequence of the positive and negative fusion comparisons and the methodological
+ underpinnings of stacked generalisation
+-\citep{Hua2026Weld,Thoduka2024Handover,Wang2020What,Ting1999Issues}.
++\parencite{Hua2026Weld,Thoduka2024Handover,Wang2020What,Ting1999Issues}.
+ 
+ It directly supports SQ2.
+ 
+@@ -1268,7 +1262,7 @@
+ 
+ This is a direct consequence of the missing input studies, the controlled industrial degradation
+ studies, and the theoretical underpinning of quality-aware weighting
+-\citep{Huo2022Multisensor,Altinses2023Fuzzy,P026,Zhang2023QMF}.
++\parencite{Huo2022Multisensor,Altinses2023Fuzzy,P026,Zhang2023QMF}.
+ 
+ It directly supports SQ3.
+ 
+@@ -1289,7 +1283,7 @@
+ 
+ This is a direct consequence of the literature on assessment independence, calibration, selection
+ uncertainty, reproducibility and target domain access
+-\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}.
++\parencite{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}.
+ 
+ It is primarily an SQ4 product and forms the basis on which the SQ1--SQ3 evaluations are carried
+ out.
+@@ -1321,13 +1315,13 @@
+ \subsubsection*{PHM gear monitoring (SQ1, SQ2, and SQ4; R1, R2, R3, and R5)}
+ 
+ Post-build CT can provide an independent reference for locating manufacturing defects
+-\citep{Petrich2021Multimodal}.
++\parencite{Petrich2021Multimodal}.
+ 
+ In tool wear prediction, an image taken after a cutting pass and the acoustic emission recorded
+-during cutting have also been used together to estimate wear \citep[PDF pp.~19--24]{P045}.
++during cutting have also been used together to estimate wear \parencite[PDF pp.~19--24]{P045}.
+ 
+ PHM presents a very different measurement problem. Their gear photographs were taken periodically,
+-whereas the challenge specifies sensor-only operation at deployment \citep{PHM2026Challenge}.
++whereas the challenge specifies sensor-only operation at deployment \parencite{PHM2026Challenge}.
+ 
+ The unresolved comparison is whether the available sensor groups can predict a continuous condition
+ proxy derived from the post-run photographs in the held-out gear experiments.
+@@ -1344,10 +1338,10 @@
+ \subsubsection*{REASSEMBLE robotic assembly (SQ1--SQ4; R1--R5)}
+ 
+ The REASSEMBLE dataset publication sets the benchmark for action segmentation and visual condition
+-checks \citep[PDF pp.~10--13]{Sliwowski2025REASSEMBLE}.
++checks \parencite[PDF pp.~10--13]{Sliwowski2025REASSEMBLE}.
+ 
+ Published handover experiments also establish a precedent for the multimodal classification of
+-completed robotic trials \citep[Table~III]{Thoduka2024Handover}.
++completed robotic trials \parencite[Table~III]{Thoduka2024Handover}.
+ 
+ For failed assembly actions, the study asks two questions: Does a fitted video-and-sensor model rank
+ failures better than a strong statistical sensor predictor? Does process-dependent weighting
+@@ -1367,14 +1361,14 @@
+ 
+ \subsubsection*{MSM milling (SQ1--SQ4; R1--R5)}
+ 
+-OmniFuser predicts milling tool wear states and cutting force \citep[PDF p.~11, Tables~IV--V]{P021}.
+-
+-A visual-acoustic study also looks at tool wear estimation following a cutting pass \citep[PDF
++OmniFuser predicts milling tool wear states and cutting force \parencite[PDF p.~11, Tables~IV--V]{P021}.
++
++A visual-acoustic study also looks at tool wear estimation following a cutting pass \parencite[PDF
+ p.~24, Table~1]{P045}.
+ 
+ The MSM dataset identifies abnormal cutting intervals which require intervention. Its descriptor can
+ differentiate these from stable cutting with a defective tool and records camera coverage in the lab
+-\citep{Kim2026MSM}.
++\parencite{Kim2026MSM}.
+ 
+ The open comparison is whether video adds predictive information over machine telemetry for that
+ interval-level target, using the cut observations available to both streams.
+@@ -1392,8 +1386,8 @@
+ 
+ \subsubsection*{ViFailback manipulation (SQ1, SQ2, and SQ4; R1, R2, R3, and R5)}
+ 
+-Zeng et al. use visual symbols to diagnose failures, assess responses to questions and guide
+-corrective action \citep[PDF pp.~7--8, Tables~2--4]{Zeng2026ViFailback}.
++\textcite[Tables~2--4]{Zeng2026ViFailback} use visual symbols to diagnose failures, assess responses to questions and guide
++corrective action.
+ 
+ For the binary outcome of a complete manipulation episode on a held-out task, we make two further
+ comparisons: does a generic visual representation add any predictive value over robot state
+@@ -1416,7 +1410,7 @@
+ 
+ The published HANDOVER benchmark looks at unimodal and fused models across the five outcome classes.
+ In its I3D comparison, the video + force/torque combination outperforms the video + force/torque +
+-gripper state combination in terms of mean accuracy \citep[PDF p.~7,
++gripper state combination in terms of mean accuracy \parencite[PDF p.~7,
+ Table~III]{Thoduka2024Handover}.
+ 
+ The supplementary thesis study looks at a more focused comparison: does averaging the video and
+--- before/references.bib
++++ working/references.bib
+@@ -757,9 +757,10 @@
+ @inproceedings{P013,
+   title = {{Video Swin Transformer}},
+   author = {Liu, Ze and Ning, Jia and Cao, Yue and Wei, Yixuan and Zhang, Zheng and Lin, Stephen and Hu, Han},
+-  year = {2021},
++  year = {2022},
+   booktitle = {Proceedings of the {IEEE/CVF Conference on Computer Vision and Pattern Recognition}},
+-  url = {https://arxiv.org/abs/2106.13230v1},
++  pages = {3202--3211},
++  url = {https://openaccess.thecvf.com/content/CVPR2022/html/Liu_Video_Swin_Transformer_CVPR_2022_paper.html},
+   publisher = {IEEE}
+ }
+ 
+--- before/references_additions.bib
++++ working/references_additions.bib
+@@ -7,5 +7,6 @@
+   volume = {10},
+   pages = {271--289},
+   year = {1999},
++  doi = {10.1613/jair.594},
+   url = {https://arxiv.org/abs/1105.5466}
+ }

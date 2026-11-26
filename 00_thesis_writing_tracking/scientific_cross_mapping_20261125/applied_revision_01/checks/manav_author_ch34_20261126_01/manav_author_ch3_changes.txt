@@ -1,0 +1,55 @@
+Author Chapter3 implementation summary
+
+Input: /home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/manav_author_ch34_20261126_01/author_chapter_3.md
+Author input SHA-256: c025c2520fe20b3c74df91509684517be6d8978706eaeb5226e2879b318e07eb
+
+Six author main sections and three author subsection headings implemented. The existing chapter label and all eight equation/figure/table labels are retained. All three author tables use small, single-spaced tabularx with readable wrapping; their meanings match the existing three stable table labels. Two existing figures are included unchanged in Sections3.3 and3.5 with the author titles and descriptions. Brief dynamic figure references were added immediately before them. Equations3.1–3.3 use equation environments with existing labels eq:f2, eq:gate and eq:anchored; manual tags removed.
+
+Author wording preserved except the following root-approved scientific precision changes:
+- Original: They captured useful properties of the robot’s movement and required relatively few training records to fit a predictor.
+  Revised: They captured useful properties of the robot’s movement, and their compact size made them a practical reference with the available training data.
+- Original: Combining sensor statistics with PatchTST features would test whether
+  Revised: Combining sensor statistics with PatchTST features tests whether
+- Original: pooled features from the last quarter of the action
+  Revised: pooled features from the last four of the sixteen sampled frames
+- Original: the maximum retained the highest measured force
+  Revised: the maximum retained the highest value in the resampled force channel
+- Original: Last-quarter pooling changed which frames contributed
+  Revised: Pooling the last four sampled frames changed which frames contributed
+- Original: The same fitted coefficients apply to every action.
+  Revised: Within each fitted model, the same coefficients apply to every action.
+- Original: The main experiment therefore used the ResNet18-vd backbone
+  Revised: The main experiment used the ResNet18-vd backbone
+
+Mechanical LaTeX conversion: Markdown heading numbers become automatic section counters; bold, italics and code preserved semantically; literal citations use existing APA parencite commands; TimeSformer Table1 locator retained; evidence IDs converted to existing EvidenceRef macros with Section12.4 locator preserved; AppendixC/F and Chapter4 use existing dynamic labels. Chapter6 remains its existing chapter number because that chapter has no stable chapter label in the current source.
+
+Citation mapping:
+- (Y. Zhao et al., 2024) -> \parencite{Zhao2024RTDETR}
+- (Roth et al., 2022) -> \parencite{Roth2022Towards}
+- (Dosovitskiy et al., 2021) -> \parencite{P010}
+- (Liu et al., 2022) -> \parencite{P013}
+- (Bertasius et al., 2021, Table 1) -> \parencite[Table~1]{P034}
+- (Horwitz & Hoshen, 2023) -> \parencite{Horwitz2023Back}
+- (Nie et al., 2023) -> \parencite{Nie2023PatchTST}
+- (Yue et al., 2022) -> \parencite{P012}
+- (Goswami et al., 2024) -> \parencite{P018}
+- (Ting & Witten, 1999) -> \parencite{Ting1999Issues}
+- (Varma & Simon, 2006) -> \parencite{P004}
+- (Kapoor & Narayanan, 2023) -> \parencite{P017}
+- (Arevalo et al., 2017) -> \parencite{P006}
+- (Nagrani et al., 2021) -> \parencite{Nagrani2021MBT}
+- (Q. Zhang et al., 2023) -> \parencite{Zhang2023QMF}
+- (Ovadia et al., 2019) -> \parencite{P008}
+- (Neverova et al., 2015; Choi & Lee, 2019; M. Ma et al., 2022) -> \parencite{P005,P007,P016}
+- (Y. Gong et al., 2021) -> \parencite{P011}
+
+Primary saved-record/code audit reported by the parent task confirms insertion duration, action-type counts, channel composition, the corruption procedure and last-four-frame comparison. This implementation subtask inspected the author text, existing bibliography and source wiring; it does not relabel the separate audit as its own independent verification. No new literature or experimental results invented. No figures/assets modified. No final document build performed by this subtask.
+
+Final implemented Chapter3 SHA-256: 89a3ebb8bcb60aa126cf2a6d5aa57c16d92e82dabd0a0bbb9f5a4638b33e7a22
+All9 stable labels and9 EvidenceRef calls/locators match the preserved before source. Figure paths exist (sensor PDF and retained fusion PNG); equation/table/figure environments balance; CRLF convention preserved. CRLF-aware git diff --check passes. No assets were altered.
+
+Final layout continuity: named Table~\ref{tab:ch3-representations} explicitly in the “last two rows” sentence because the float follows it on the next page. This is a cross-reference clarification only.
+
+Figure 3.1 note retains the earlier explicit caption requirement: schematic one-channel example from an action resampled to 512 positions across 22 channels. Patch coverage, overlap, stride and token explanation remain; wording is compact.
+
+Delivery source SHA-256 after parent integration: 5acaca6d0d0852b2182d9ed126f4d11827613de4b300790efb2c268ba92802db

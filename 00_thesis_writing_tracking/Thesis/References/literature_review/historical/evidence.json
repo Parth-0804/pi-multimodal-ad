@@ -1,0 +1,1375 @@
+{
+  "6": {
+    "modalities": "Vibration only: Paderborn bearing data and laboratory radial vibration signals. Multiple sources denote operating/machine domains, not independent physical modalities (§2.2/3.1).",
+    "fusion": "Hybrid within-signal feature and decision fusion: channel/spatial-interaction features and health-state-related aggregation of source classifiers using distribution distance and confidence (DFATN). Retain as unimodal/domain-transfer fusion comparator.",
+    "protocol": "Paderborn and Lab: four condition-transfer tasks each and eight cross-machine tasks; 1024-point samples. §3.2 states 70% source training/10% validation, 80% target adversarial training and remaining data test; same paragraph calls target data independent of training/validation. Accuracy±SD, Optuna tuning and six adaptation baselines; repeat count NOT STATED.",
+    "finding": "Mean accuracy: Paderborn condition transfer96.52% (Table6 p11), Lab98.76% (Table7 p13), cross-machine83.36% (Table8 p13). C4: proposed75.68±2.55% trails MSATN75.91±3.68%. At -5 dB, P2/L2 accuracy91.46%/93.48% (§3.4 p12).",
+    "limitations": "Unlabeled target adaptation is used; not untouched-target domain generalization. Target-access/disjointness wording is inconsistent (§3.2). Not camera+sensor or heterogeneous-modality evidence; conclusion explicitly proposes multimodal extension as future work. Repetition count not established.",
+    "baselines": "Yes—vibration-only domain-adaptation methods DAN/DAAN/MSDAN/IRDAN/MSATN/MADMAN; feature/decision ablations. No multimodal-versus-unimodal experiment.",
+    "robustness": "Shift: condition and cross-machine adaptation. Noise: five Gaussian SNR settings on P2/L2/C2, including -5 dB. Missing modalities: not tested.",
+    "quotes": [
+      [
+        "radial vibration signals",
+        "§3.1, PDF p9"
+      ],
+      [
+        "decision fusion",
+        "§2.2, PDF p4"
+      ],
+      [
+        "70%",
+        "§3.2, PDF p9"
+      ],
+      [
+        "96.52%",
+        "§3.3.1, PDF p10"
+      ]
+    ],
+    "read_version": "User-supplied publisher-version PDF, Information Fusion 115 (2025) 102739, 16 PDF pages",
+    "claim_locations": {
+      "single_physical_modality": "§2.2 p3 (vibration source/target); §3.1 p9; conclusion p14",
+      "fusion": "§2.2 p4; §2.3.1 pp5–6; §2.5 pp8–9",
+      "source_target_access": "§3.2 p9",
+      "conditions_machines": "Tables2/3 p10",
+      "Paderborn": "Table6 p11",
+      "Lab_and_crossmachine": "Tables7/8 p13",
+      "noise": "§3.4 pp12–13; Fig11 p13",
+      "ablation": "§3.6 pp13–14/Fig12 p14",
+      "future_multimodal": "Conclusion p14"
+    },
+    "metadata_notes": "Seven-author header, title, DOI10.1016/j.inffus.2024.102739, Information Fusion115/article102739 agree with metadata. DOI contains2024 but issue is2025; preserve issue year. PDF often omits spaces in extraction; quotations use exact short strings with page locators.",
+    "label": "F",
+    "key": "paper_6",
+    "source_url": "fulltext/paper_6.pdf",
+    "supplied_pdf": true,
+    "verified_date": "2026-11-17",
+    "access": "User-supplied full PDF read; methods/results, baselines, failure regimes and four page-checked quotations verified on17November2026. User-supplied publisher-version PDF, Information Fusion 115 (2025) 102739, 16 PDF pages",
+    "previous_access": "Metadata only; full-text evaluation not verified. Rechecked 2026-11-17: NTU handle 10356/206539 exposes metadata but no accessible file; OpenAlex locations and Scite checked.",
+    "citation_key": "Wang2025A"
+  },
+  "7": {
+    "modalities": "Physical microphone acoustics plus infrared-thermography camera/video; acoustics encoded as Holo-Hilbert square-spectrum images and thermal video sampled as images.",
+    "fusion": "Hybrid intermediate/evidence fusion: local/global feature branches, FcaNet-enhanced concatenated pseudo-view, consistency loss, Dirichlet evidential uncertainty and sample-dependent Dempster–Shafer aggregation (§3).",
+    "protocol": "Gearbox six states (3000 rpm/70% load) and rotor ten states (2400 rpm/20% load); each state 200 samples, randomly 160 train/40 test; ten repeats. Accuracy mean±SD; acoustic-only, IRT-only and five multimodal comparators. Rotor comparison adds -1 dB Gaussian noise (§4.1–4.2).",
+    "finding": "Gearbox mean accuracy 99.54±0.54%, versus acoustic-only 88.63±1.43% and IRT-only 90.54±1.37% (Table2 p12). Fusion ablation: concatenation 92.76±1.53%, proposed 99.54±0.54% (Table8 p17). At -3 dB simultaneous Gaussian corruption, proposed 91.96±1.38% (Table9 p19).",
+    "limitations": "Random within-condition sample splits; no held-out acquisition-run or cross-rig transfer established. Fig22 visualizes clean/corrupted uncertainty densities, not calibrated uncertainty: no calibration-error/Brier or selective-risk evaluation located. Incomplete-modality optimization is future work (p20).",
+    "baselines": "Yes—same-framework TMFEFN-acoustics and TMFEFN-IRT; also concatenation, equal, fixed-final and Co-belief fusion ablations (Tables2/4/8).",
+    "robustness": "Noise: single/both-modality Gaussian perturbation, -3 to +3 dB sweep, impulse noise and periodic interference; corruption treated as OOD for uncertainty plots. Missing: not tested. Shift: no cross-machine train→test experiment established; separate rigs are separate validations.",
+    "quotes": [
+      [
+        "microphone and IRT camera",
+        "§3.1, PDF p3"
+      ],
+      [
+        "D-S evidence theory",
+        "§3.1, PDF p3"
+      ],
+      [
+        "160",
+        "§4.1.1, PDF p10"
+      ],
+      [
+        "99.54 ± 0.54",
+        "Table 2, PDF p12"
+      ]
+    ],
+    "read_version": "User-supplied publisher-version PDF, Information Fusion 124 (2025) 103377, 21 PDF pages",
+    "claim_locations": {
+      "modality_acquisition": "§3.1 p3; §4.1.1 pp9–10; §4.2.1 p11",
+      "fusion": "§3.3–3.5 pp5–9; Eq20 concatenation p8, Eq25 evidential uncertainty p8, D-S rule p9",
+      "split_and_repeats": "§4.1.1–4.1.2 p10; §4.2.1 p11; §4.2.2 p12",
+      "clean_unimodal_comparison": "Table2 p12",
+      "rotor_comparison": "Table4 p15 (98.08±1.00%, acoustics78.80±1.66%, IRT81.85±1.64%) under noise specified §4.2.2 p12",
+      "noise": "§4.3.2 pp16–17/Table7 p17; §4.3.4 pp17–19/Table9 p19",
+      "uncertainty": "§4.3.4 p19 and Fig22 p20",
+      "authors_limitations": "Conclusion continuation p20"
+    },
+    "metadata_notes": "Full title, six authors, DOI10.1016/j.inffus.2025.103377 and journal/article identity agree with included metadata. Do not conflate Table2 repeat means with illustrative confusion-matrix accuracies in §4.3.3. The sentence on p19 that uncertainty rises as SNR increases is not independently validated here. No corrections/retraction clearance newly obtained from this supplied PDF.",
+    "label": "F",
+    "key": "paper_7",
+    "source_url": "fulltext/paper_7.pdf",
+    "supplied_pdf": true,
+    "verified_date": "2026-11-17",
+    "access": "User-supplied full PDF read; methods/results, baselines, failure regimes and four page-checked quotations verified on17November2026. User-supplied publisher-version PDF, Information Fusion 124 (2025) 103377, 21 PDF pages",
+    "previous_access": "Publisher abstract and introduction/section previews; purchase/access prompt visible. Rechecked 2026-11-17: Publisher purchase/access prompt; Scite denied full-text access; no author manuscript located.",
+    "citation_key": "Ying2025Trustworthy"
+  },
+  "16": {
+    "modalities": "Physical vibration waveform + microphone sound/MFCC.",
+    "fusion": "Intermediate gated-attention progressive-feedback CNN fusion; teacher-to-LightGBM distillation.",
+    "protocol": "Self-built three-load/four-class bearing data and UOEMD-VAFCVS condition transfers; all source data for training, 20% target validation/80% target test (§3.1.1). Accuracy/macro-F1, five repeats mean±SD; matched-branch concatenation, vibration-only and sound-only comparators (Table 6).",
+    "finding": "A→B: GAF-Net 97.89±0.21% versus concatenation 91.78±0.47%, vibration 89.23±0.56%, sound 80.45±0.89% (Table 7). At 0 dB, GAF-Net 87.23% versus concatenation 69.45% (Table 13). Table 8 gives 97.14±0.24% for 15→30 Hz, contradicting abstract 96.72%.",
+    "limitations": "Target validation is available; not untouched-target generalization. Table 6 lists teacher deep features as student input despite handcrafted-only deployment language; teacher-free timing/input accounting is unclear. Attention gates do not establish calibrated reliability.",
+    "baselines": "Yes—vibration-only and sound-only, plus same-branch feature concatenation.",
+    "robustness": "Noise: test Gaussian noise at 0/5/10 dB and 10/20% training-label corruption (§3.4). Shift: load/speed condition transfer. Missing: no controlled whole-modality test located.",
+    "label": "F",
+    "key": "paper_16",
+    "quotes": [
+      [
+        "Vibration + Sound",
+        "Table 6, PDF p20"
+      ],
+      [
+        "Gated attention progressive feedback",
+        "Table 6, PDF p20"
+      ],
+      [
+        "20% of the samples",
+        "§3.1.1, PDF p18"
+      ],
+      [
+        "87.23",
+        "Table 13, PDF p26"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: Publisher PDF; methods/results and four short quotations checked.",
+    "citation_key": "Huang2026Rolling",
+    "source_url": "https://mdpi-res.com/d_attachment/electronics/electronics-15-01631/article_deploy/electronics-15-01631.pdf",
+    "verified_date": "2026-11-17",
+    "read_version": "Publisher PDF"
+  },
+  "17": {
+    "modalities": "Microphone sound and accelerometer vibration",
+    "fusion": "Feature-level low-rank multimodal fusion; SE-ResNet50 on MTF images",
+    "protocol": "QPZZ-II rig; normal, inner, outer and composite faults. Section 3.2 states validation:test=3:7; training partition is unclear. Table 3 compares vibration-only/fused inputs across five networks.",
+    "finding": "Table 3 SE-ResNet50 composite-fault accuracy: vibration 99.31%, fused 99.50%.",
+    "limitations": "Section 3.2 split wording is ambiguous; Section 5 identifies same-speed collection and unresolved industrial acoustic noise. Table and prose gains are not fully consistent.",
+    "baselines": "yes—vibration-only; acoustic-only: NOT STATED.",
+    "robustness": "No explicit missing/noisy/shift stress test identified; denoising is preprocessing, not a noise robustness experiment.",
+    "label": "F",
+    "key": null,
+    "quotes": [
+      [
+        "sound and vibration signals",
+        "§3.2"
+      ],
+      [
+        "low-rank multimodal fusion",
+        "§3.2"
+      ],
+      [
+        "in a 3:7 ratio",
+        "§3.2"
+      ],
+      [
+        "99.50%",
+        "Table 3; SE-ResNet50 acoustic–vibration composite-fault accuracy"
+      ]
+    ],
+    "access": "Publisher full HTML, methods and Table 3 inspected.",
+    "citation_key": "Gu2024Improved"
+  },
+  "19": {
+    "modalities": "Acoustic and vibration spectra",
+    "fusion": "Intermediate dual-branch cross-attention; transformer encoders; conditional domain adversarial alignment",
+    "protocol": "Multi-source heterogeneous bearing dataset; domain-generalization experiments; splits, numeric metrics and baseline identities: NOT STATED.",
+    "finding": "Abstract reports superior accuracy against existing methods; numeric magnitude: NOT STATED.",
+    "limitations": "NOT STATED",
+    "baselines": "NOT STATED",
+    "robustness": "Yes—unseen-domain generalization reported in abstract; missing/noisy: NOT STATED.",
+    "label": "A",
+    "key": null,
+    "quotes": [],
+    "access": "Crossref-deposited abstract; publisher landing page resolved. Rechecked 2026-11-17: IOP PDF URL returns an HTML verification page; Scite supplied abstract only.",
+    "citation_key": "Zhang2026A",
+    "last_access_check": "2026-11-17",
+    "access_attempt_note": "IOP PDF URL returns an HTML verification page; Scite supplied abstract only."
+  },
+  "21": {
+    "modalities": "Physical vibration acceleration plus servo-system signals (including current, speed, position/error/torque channels); no camera input (§II-A1, III-A).",
+    "fusion": "Intermediate multimodal collaborative meta-network (MCMN): modality encoders, reconstruction from modal priors, uncertainty-based feature regularization, meta-learning/Monte Carlo optimization and classifier. Missing vibration can be reconstructed from available servo features (§II-A/B).",
+    "protocol": "Custom industrial-robot harmonic-drive data with four health states. Servo samples split 7:3; vibration training counts 228/360/450/369 by state and 45 test samples/state (§III-B, p5). A→A, B→B, A&B→A and A&B→A&B compare servo-only, vibration-only, privileged training and full-input fusion. Test vibration availability is varied at 100/33/67/0% of servo sample count; training vibration availability at 25/50/75/100% is also studied (§IV-C3/D). Accuracy, comparative generative/classifier models and module ablations; independent repeated-run uncertainty not established.",
+    "finding": "§IV-C2 p6 reports vibration-only accuracy 97.22%, full vibration+servo fusion 96.67%, and missing-vibration inference 89.44% versus servo-only 74.52%. Thus the reported complete-input fusion score is below the best reported unimodal score, while privileged multimodal training helps the retained servo input. Comparator architectures differ, and source reporting issues limit the interpretation.",
+    "limitations": "Servo identity is inconsistent: §IV-C2 calls the 74.52% stream ATO, while §IV-C4 gives ATO 53.95% and TCCV 74.52%. Fig5 per-class values do not straightforwardly reconcile with prose overall accuracies; no alternative overall score calculated. Fault labels are tied to particular speed/load setups (§III-B), limiting condition-invariant conclusions. No held-out machine/run split, calibrated-uncertainty metric or physical deployment timing established.",
+    "baselines": "Yes—servo-only and vibration-only, full-input fusion, CNN/ResNet18, AE/AAE/GAN/DCGAN, and reconstruction/regularization ablations (§IV). Retained-input versus privileged-input costs differ; not a matched-capacity universal fusion ranking.",
+    "robustness": "Missing: explicit train/test modality-availability ratios, including complete absence of vibration at test. Noise: denoising preprocessing, not a quantified added-noise stress experiment. Shift: multiple operating setups, but no clear held-out-condition/cross-machine transfer protocol. Uncertainty is used for regularization; calibration is not established.",
+    "quotes": [
+      [
+        "vibration signals and servo signals",
+        "§IV-C1, PDF p6 / printed p10371"
+      ],
+      [
+        "feature reconstruction network",
+        "§II-A2, PDF p2 / printed p10367"
+      ],
+      [
+        "7:3",
+        "§III-B, PDF p5 / printed p10370"
+      ],
+      [
+        "97.22%",
+        "§IV-C2, PDF p6 / printed p10371"
+      ]
+    ],
+    "read_version": "User-supplied IEEE version of record, 9 PDF pages, printed pp10366–10374; DOI10.1109/TII.2024.3396339",
+    "claim_locations": {
+      "modalities_and_model": "§II-A pp2–3; §II-B/III-A p4",
+      "split_and_dataset": "§III-B pp4–5, Table II p5",
+      "unimodal_negative_result": "§IV-C2, Fig5 and Table IV p6; numbers taken from prose, not derived from figure",
+      "missing_protocol": "§IV-C3 p6, Table V p7; §IV-D p7, Table VII p7; Table VIII p8",
+      "source_inconsistency": "§IV-C2 p6 versus §IV-C4 p7; Fig5 raster p6 visually inspected"
+    },
+    "metadata_notes": "Header confirms Guo Yang; Hui Tao; Kai Wu; Ruxu Du; Yong Zhong. IEEE Transactions on Industrial Informatics20(8), August2024, pp10366–10374. DOI header matches exported DOI. No camera modality is implied by the human-senses analogy in §II-B.",
+    "label": "F",
+    "key": "paper_21",
+    "source_url": "fulltext/paper_21.pdf",
+    "supplied_pdf": true,
+    "verified_date": "2026-11-17",
+    "access": "User-supplied full PDF read; methods/results, baselines, failure regimes and four page-checked quotations verified on17November2026. User-supplied IEEE version of record, 9 PDF pages, printed pp10366–10374; DOI10.1109/TII.2024.3396339",
+    "previous_access": "Crossref metadata and bibliographic record only; secondary abstracts were not used as primary evidence. Rechecked 2026-11-17: IEEE full text inaccessible; no accessible repository location in OpenAlex; Scite denied access.",
+    "citation_key": "Yang2024Fault"
+  },
+  "22": {
+    "modalities": "Hot-rolling-process image data plus time-series sensor data, with three sources selected by random-forest importance. Camera type, image acquisition/provenance and video protocol are not specified in the inspected text; do not assume physical camera+telemetry is fully documented.",
+    "fusion": "Intermediate attention-weighted source fusion and CNN feature concatenation; auxiliary-information GAN imputes training images, conditioning on time-series features, available image features and known fault-class labels. mRMR relevance/redundancy terms constrain learned features (§3).",
+    "protocol": "Two hot-rolling datasets: normal+two faults (case1), normal+three faults (case2). Each class has800 time-series training samples; retained image training counts480/400/320 implement40/50/60% image missingness. Test data have200 paired image/time-series samples per class (§4.1 p8). Accuracy/precision/recall/F1, SSIM and Wasserstein distance; source-only and fusion/generator comparators. No separate validation partition or repetition uncertainty established.",
+    "finding": "Table9 p10 reports case1 accuracy0.9783 versus time-series-only AW-1DCNN0.9167, image-only AW-2DCNN0.7000 and concatenation AW-MHDF0.9183. Table16 p15 gives case2 accuracy0.9825 versus0.9137/0.5800/0.9287 respectively. Generated-image quality is separately compared across40/50/60% missing training images; classification tables are not broken down by all three missing rates.",
+    "limitations": "Known fault labels guide image generation; authors acknowledge unavailable labels as a practical limit (§5 p17). Classification Tables9/16 each report one result per method rather than separate results by missing rate. Learning-rate/weight-decay choices are justified using testing results (§4.2.1 pp8–9); independent validation is not established. Physical-camera provenance, held-out-run split and repeated-run uncertainty are unreported in inspected text.",
+    "baselines": "Yes—AW-1DCNN time-series-only and AW-2DCNN image-only, plus AW-MHDF feature concatenation, AIFN/DFINet and generator ablations (§4.2/4.3). Image-only comparator has missing training samples, whereas time-series training is complete.",
+    "robustness": "Missing:40/50/60% of training image samples removed; complete paired test samples. Noise/lighting changes are motivating examples, not quantified corruption experiments. Shift: two related fault-class case studies, not a held-out domain/machine transfer test. Attention weights do not establish calibrated reliability.",
+    "quotes": [
+      [
+        "image data and time series data",
+        "§3.3, PDF p6"
+      ],
+      [
+        "attention fusion module",
+        "§3.2, PDF p4"
+      ],
+      [
+        "40%, 50%, and 60%",
+        "§4.1, PDF p8"
+      ],
+      [
+        "0.9783",
+        "Table9, PDF p10"
+      ]
+    ],
+    "read_version": "User-supplied Elsevier version of record, 19 PDF pages; Measurement256(2025)118278, DOI10.1016/j.measurement.2025.118278",
+    "claim_locations": {
+      "architecture": "§3.1–3.3 pp3–6, Eqs7/11/16, Figs1–3",
+      "training_vs_test_missingness": "§4.1 p8",
+      "case1_comparators": "§4.2.2 pp9–11, Table9 p10",
+      "case2_comparators": "§4.3 pp11–16, Table16 p15",
+      "test_tuning": "§4.2.1 pp8–9 and §4.3.1 p12",
+      "known_label_limitation": "§5 p17"
+    },
+    "metadata_notes": "Header confirms Liang Ma; Qikai Yang; Orestes Llanes-Santiago; Kaixiang Peng. Measurement256(2025)118278; available online9July2025. DOI matches exported DOI. No camera specification found; image/time-series terminology alone does not establish a documented video+machine-sensor acquisition setup.",
+    "label": "F",
+    "key": "paper_22",
+    "source_url": "fulltext/paper_22.pdf",
+    "supplied_pdf": true,
+    "verified_date": "2026-11-17",
+    "access": "User-supplied full PDF read; methods/results, baselines, failure regimes and four page-checked quotations verified on17November2026. User-supplied Elsevier version of record, 19 PDF pages; Measurement256(2025)118278, DOI10.1016/j.measurement.2025.118278",
+    "previous_access": "Metadata only; full-text evaluation not verified. Rechecked 2026-11-17: Publisher/repository search and OpenAlex did not yield an accessible full text; Scite denied access.",
+    "citation_key": "Ma2025A"
+  },
+  "23": {
+    "modalities": "Gear-pump pressure pulsation plus three-axis vibration during teacher training; deployed student receives only pressure. ResNet/GPT components process sensor signals, not camera imagery (§2.1/3.2).",
+    "fusion": "Physics-guided multi-teacher knowledge distillation: physical-pressure teacher, temporal cross-attention/GPT teacher and spatial ResNet teacher transfer to a1D-CNN pressure-only student. Teacher weights depend on training-label cross-entropy (§2.6); this is adaptive training-time knowledge weighting, not calibrated online modality reliability.",
+    "protocol": "Laboratory external-gear-pump rig, eight states, three speeds600/1050/1500rpm; pressure+three-axis vibration sampled20.48kHz. Fixed5120-point samples;6:2:2 training/validation/test, reported576/192/192 samples (§3.1–3.2 pp9–10). Accuracy compared with pressure-only student S, DAFT/MMTM/MedFuse and teacher-removal ablations (Table3 p11). Whether counts are per speed and independent run separation are not clarified.",
+    "finding": "Table3 p11: distilled pressure-only ALL accuracy0.979/1.000/0.948 at S1/S2/S3 versus undistilled pressure-only S0.750/0.682/0.833; all three teacher-removal variants score below ALL. These support privileged multimodal training for a fixed pressure-only inference configuration, not resilience to arbitrary runtime sensor dropout.",
+    "limitations": "No real-flight validation; authors defer testing on aircraft fuel-supply systems (p12). Three speed-specific results are not a documented held-out-speed transfer matrix. No confidence intervals/repeated-run variability or controlled noise/drift stress test located. Input-window/run independence is unclear. Resource savings/real-time inference are asserted but no numerical latency/parameter/FLOP comparison established in inspected results. Physics model is pressure-specific.",
+    "baselines": "Yes—same pressure-only student without teachers; teacher removals; DAFT/MMTM/MedFuse fusion comparators. Matched vibration-only and full-input best-unimodal score comparisons are not established.",
+    "robustness": "Missing: planned absence of vibration at inference (multimodal teachers to pressure-only student), not stochastic dropout rates. Noise/drift: preprocessing by Fourier resampling and mean-offset correction, without a quantified added-corruption experiment. Shift: three operating speeds evaluated; held-out-speed/cross-machine transfer not established.",
+    "quotes": [
+      [
+        "pressure and vibration signals",
+        "§2.1, PDF p3"
+      ],
+      [
+        "multi-teacher knowledge distillation",
+        "§2.1, PDF p3"
+      ],
+      [
+        "6:2:2",
+        "§3.2, PDF p10"
+      ],
+      [
+        "0.979",
+        "Table3, PDF p11"
+      ]
+    ],
+    "read_version": "User-supplied Elsevier version of record, 14 PDF pages; Mechanical Systems and Signal Processing239(2025)113296, DOI10.1016/j.ymssp.2025.113296",
+    "claim_locations": {
+      "teacher_student_modalities": "§2.1 p3, §2.3 pp6–7, §2.5 p7",
+      "adaptive_teacher_weighting": "§2.6 pp7–8, Eqs12–18",
+      "joint_training": "§2.7 p8, Eq19",
+      "rig_and_split": "§3.1–3.2 pp9–10, Tables1–2 pp8/10",
+      "comparative_results": "Table3 p11",
+      "scope_limits": "§4 Conclusions p12"
+    },
+    "metadata_notes": "Header confirms Chuan Li; Jinyang Wang; Xiaolong Li; Xiaochuan Li; Juan Xu; David Mba. Jinyang (not repository preview's Jingyang) is confirmed. MSSP239(2025)113296; available online17September2025. Supplied VOR resolves prior accepted-manuscript embargo access gap; no restricted repository file was bypassed.",
+    "label": "F",
+    "key": "paper_23",
+    "source_url": "fulltext/paper_23.pdf",
+    "supplied_pdf": true,
+    "verified_date": "2026-11-17",
+    "access": "User-supplied full PDF read; methods/results, baselines, failure regimes and four page-checked quotations verified on17November2026. User-supplied Elsevier version of record, 14 PDF pages; Mechanical Systems and Signal Processing239(2025)113296, DOI10.1016/j.ymssp.2025.113296",
+    "previous_access": "Metadata only; full-text evaluation not verified. Rechecked 2026-11-17: BCU repository 16643 lists accepted manuscript embargo until 17 September 2027; file also fails certificate validation. Embargo respected.",
+    "citation_key": "Li2025PGMTKD"
+  },
+  "36": {
+    "modalities": "Time-series sensors and textual event logs",
+    "fusion": "Early and late fusion; PatchTST sensor encoder plus BERT log encoder",
+    "protocol": "Real-world wind turbines; splits/metrics/baseline identities: NOT STATED.",
+    "finding": "Abstract reports early fusion improvement of 2.6%–16.9% versus traditional methods; absolute versus relative meaning not established.",
+    "limitations": "Abstract-only evidence; equal tuning and encoder control unverified.",
+    "baselines": "NOT STATED",
+    "robustness": "NOT STATED",
+    "label": "A",
+    "key": null,
+    "quotes": [],
+    "access": "Crossref structured abstract; DOI request failed TLS certificate validation. Rechecked 2026-11-17: Auckland handle 2292/69920 identified; repository route yielded no readable file; Scite supplied abstract only.",
+    "citation_key": "Liu2024Advancing",
+    "last_access_check": "2026-11-17",
+    "access_attempt_note": "Auckland handle 2292/69920 identified; repository route yielded no readable file; Scite supplied abstract only."
+  },
+  "50": {
+    "modalities": "Simulated C-MAPSS multivariate engine telemetry: 14 selected sensor channels. CNN and LSTM consume the same measurements as spatial/temporal feature views; no physical camera/video input.",
+    "fusion": "Intermediate representation concatenation of parallel CNN and LSTM paths into a fully connected RUL regressor. Hybrid/multimodal terminology here describes multiple models/views of sensor telemetry (§3).",
+    "protocol": "C-MAPSS FD001–FD004 engine-trajectory train/test sets; train100/260/100/249 and test100/259/100/248 (Table1). Windows30 or15, stride1; RMSE and PHM08 asymmetric score, RUL cap125. Literature comparisons, plus100 Gaussian-noise Monte Carlo runs near30 dB.",
+    "finding": "Window30 RMSE13.017/15.24/12.22/18.156 for FD001–4 (Table2 p9). Negative comparator: Table4 FD001 DCNN12.61 beats HDNN13.017 RMSE; FD003 DCNN284.1 beats HDNN287.72 score. Window15 worsens all reported scores/RMSEs (Tables2/3).",
+    "limitations": "Literature-reported baselines are not a matched retraining/encoder-capacity experiment; no proof of physical multimodal benefit. Validation/early-stopping split and normalization-fit partition not specified. Table1 gives FD002259 test engines whereas prose/Fig11 caption says256 (p8).",
+    "baselines": "Sensor-only CNN/LSTM and other prognostic methods in literature comparison; no controlled camera-only/sensor-only or standalone-branch retraining ablation established.",
+    "robustness": "Noise:100 Monte Carlo runs with additive Gaussian noise around30 dB (Table6 p10); prose notes degradation below10 dB. Missing sensors/modalities: not tested. Multiple simulated operating conditions within datasets, not explicit held-out-domain transfer.",
+    "quotes": [
+      [
+        "14 selected features",
+        "§3 / Fig6, PDF p5"
+      ],
+      [
+        "concatenated with",
+        "§3.0.3, PDF p6"
+      ],
+      [
+        "100 MC runs",
+        "§4.5.4, PDF p10"
+      ],
+      [
+        "12.61",
+        "Table 4, PDF p10"
+      ]
+    ],
+    "read_version": "User-supplied publisher-version PDF, Computers in Industry108 (2019) 186–196, 11 PDF pages (printed pp186–196)",
+    "claim_locations": {
+      "same_sensor_views": "§1.2 p3; §3 p5; §3.0.3 p6",
+      "data_splits_and_channels": "§4.1/Table1 and §4.2 p6",
+      "metrics_and_RUL_cap": "§4.3–4.4 pp6–7",
+      "window_comparison": "Tables2/3 p9",
+      "negative_comparisons": "Tables4/5 and §4.5.3 p10",
+      "noise": "§4.5.4/Table6 p10",
+      "count_discrepancy": "Table1 p6 versus §4.5.1/Fig11 caption p8"
+    },
+    "metadata_notes": "Four-author header Ali Al-Dulaimi/Soheil Zabihi/Amir Asif/Arash Mohammadi, title, DOI10.1016/j.compind.2019.02.004 and journal/pages agree with included metadata. 'Multimodal' title does not establish independent visual plus machine-sensor acquisition.",
+    "label": "F",
+    "key": "paper_50",
+    "source_url": "fulltext/paper_50.pdf",
+    "supplied_pdf": true,
+    "verified_date": "2026-11-17",
+    "access": "User-supplied full PDF read; methods/results, baselines, failure regimes and four page-checked quotations verified on17November2026. User-supplied publisher-version PDF, Computers in Industry108 (2019) 186–196, 11 PDF pages (printed pp186–196)",
+    "previous_access": "Publisher metadata/introduction preview; full article not retrieved. Rechecked 2026-11-17: No accessible journal full text located; Scite denied access. Related ICASSP paper is a different work, not substituted.",
+    "citation_key": "AlDulaimi2019A"
+  },
+  "71": {
+    "modalities": "RGB images + point clouds; industrial inspection, not machine telemetry.",
+    "fusion": "Intermediate cross-modal difference-compensation fusion (CDCF), frequency-space enhancement and normalizing flow.",
+    "protocol": "MVTec 3D-AD normal-only training and standard test; Eyecandies. I-AUROC/P-AUROC; module and fusion ablations (§4, Tables 1–7).",
+    "finding": "Table 6: direct concatenation I-AUROC 70.3%, CDCF 97.6%. Table 3: MVTec I/P-AUROC 97.6/98.6%, Eyecandies 92.8/96.9%; lower localization than several comparators. Not an across-metric winner.",
+    "limitations": "Read author manuscript marked preprint submitted to Elsevier. No controlled sensor-dropout trial established; compensating geometric information missing from RGB is not a failed-sensor experiment. Matched strong unimodal ablation not established.",
+    "baselines": "NOT STATED—fusion/module ablations established; matched RGB-only/3D-only comparison not located.",
+    "robustness": "Missing/noisy/shifted inputs: no explicit controlled failure experiment established; qualitative robustness language is insufficient.",
+    "label": "F",
+    "key": "paper_71",
+    "quotes": [
+      [
+        "point-cloud and image",
+        "Highlights, PDF p1"
+      ],
+      [
+        "Cross-modal",
+        "Highlights, PDF p1"
+      ],
+      [
+        "only normal",
+        "§4.1, PDF p8"
+      ],
+      [
+        "70.3",
+        "Table 6, PDF p11"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: Author-hosted manuscript, 16 PDF pages; printed pages differ by one; methods/results and four short quotations checked.",
+    "citation_key": "Li2025MADFlow",
+    "source_url": "https://personalpages.surrey.ac.uk/w.wang/papers/Li%20et%20al_Neurocomputing_2025.PDF",
+    "verified_date": "2026-11-17",
+    "read_version": "Author-hosted manuscript, 16 PDF pages; printed pages differ by one"
+  },
+  "76": {
+    "modalities": "Two non-contact acoustic sensors; vibration-style statistical features are derived from acoustic signals. No accelerometer input (§4.1).",
+    "fusion": "Early feature fusion: handcrafted/CNN features, RF/RFS selection, fully connected 1D-CNN fusion.",
+    "protocol": "Custom pipeline/pump, normal versus abnormal valve sound, 5/10/15 PSI and pooled condition; 6:2:2 train/test/feature-selection split (§3.2). Accuracy; single-sensor and alternative-classifier comparators.",
+    "finding": "Table 4: 94.25/95.50/93.25/90.08% across three pressures and pooled data; mean 93.27%. Fig10 reports improved accuracy over individual acoustic sensors.",
+    "limitations": "Title can mislead: acoustic multi-sensor study, not independently measured acoustic+vibration. Pooled pressures are not held-out pressure transfer. Conclusion 93.22% differs from Table4 93.27%. No controlled added-noise test established.",
+    "baselines": "Yes—individual acoustic sensors (Fig10); these are same physical modality.",
+    "robustness": "Missing: no. Noise: ambient interference discussed, no quantified perturbation established. Shift: pooled operating pressures, not held-out-domain evaluation.",
+    "label": "F",
+    "key": "paper_76",
+    "quotes": [
+      [
+        "two acoustic sensors",
+        "§3.2, PDF p11"
+      ],
+      [
+        "feature level",
+        "§2.4, PDF p9"
+      ],
+      [
+        "6:2:2 ratio",
+        "§3.2, PDF p11"
+      ],
+      [
+        "93.27%",
+        "Table 4, PDF p13"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: Publisher PDF; methods/results and four short quotations checked.",
+    "citation_key": "Wan2024Pipeline",
+    "source_url": "https://mdpi-res.com/d_attachment/machines/machines-12-00921/article_deploy/machines-12-00921.pdf",
+    "verified_date": "2026-11-17",
+    "read_version": "Publisher PDF"
+  },
+  "80": {
+    "modalities": "TRANSFERABLE (non-industrial): language, vision and acoustic modalities across applications.",
+    "fusion": "Survey taxonomy: representation, translation, alignment, fusion, co-learning; early/late/hybrid and model-based fusion (§6).",
+    "protocol": "Literature survey, not a controlled industrial benchmark; no common train/test split or pooled effect estimate.",
+    "finding": "§6.1 separates feature integration, decision integration and combined predictors; §6 describes potential operation with missing modalities. These are taxonomy/discussion, not industrial stress-test results.",
+    "limitations": "Examples span non-industrial tasks; read arXiv manuscript rather than journal VOR. Survey descriptions cannot establish a particular industrial model’s robustness.",
+    "baselines": "Discusses unimodal predictors; no unified empirical comparison.",
+    "robustness": "Missing/noise discussed across literature, not a new industrial experiment; shift protocol not applicable.",
+    "label": "F",
+    "key": "paper_80",
+    "quotes": [
+      [
+        "audio-visual speech recognition",
+        "§6, PDF p12"
+      ],
+      [
+        "early, late and hybrid fusion",
+        "§6, PDF p12"
+      ],
+      [
+        "classiﬁcation or regression",
+        "§6.1, PDF p12"
+      ],
+      [
+        "late fusion ignores",
+        "§6.1, PDF p13"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: arXiv 1705.09406 manuscript; journal metadata retained; methods/results and four short quotations checked.",
+    "citation_key": "Baltrusaitis2019Multimodal",
+    "source_url": "https://arxiv.org/pdf/1705.09406",
+    "verified_date": "2026-11-17",
+    "read_version": "arXiv 1705.09406 manuscript; journal metadata retained"
+  },
+  "90": {
+    "modalities": "RGB and 3D point clouds",
+    "fusion": "Cross-modal distillation and late decision fusion of memory-bank scores",
+    "protocol": "Read arXiv:2405.13571v3 (2024), not the final 2026 issue. MVTec 3D-AD; Eyecandies ablation; I-AUROC/AUPRO/P-AUROC; single- and dual-memory-bank comparators; validation selects epochs.",
+    "finding": "Preprint Table 3: PC inference F2F I-AUROC 0.938 versus PC-only 0.860. RGB inference 0.856 versus RGB-only 0.851, but AUPRO 0.940 versus 0.942: metric-dependent negative result.",
+    "limitations": "Preprint-to-final experimental equivalence not verified; asymmetric modality predictability limits transfer.",
+    "baselines": "yes—RGB-only and PC-only; complete multimodal comparator.",
+    "robustness": "Yes—one modality absent at inference; random dropout, noisy/shifted tests: NOT STATED.",
+    "label": "F",
+    "key": "cmdiad",
+    "quotes": [
+      [
+        "3D point clouds and RGB images",
+        "Abstract"
+      ],
+      [
+        "decision layer fusion",
+        "Decision Layer Fusion"
+      ],
+      [
+        "MVTec 3D-AD",
+        "Experimental Setup"
+      ],
+      [
+        "either minimal or even declines",
+        "Introduction"
+      ]
+    ],
+    "access": "Full arXiv v3 PDF/HTML read; final institutional PDF failed TLS.",
+    "citation_key": "Sui2026Incomplete"
+  },
+  "91": {
+    "modalities": "Paired RGB images and 3D point clouds (PT); structured-light inspection, not independent machine telemetry.",
+    "fusion": "Hybrid intermediate/score fusion: uni-modal reconstruction and cross-modal mapping (URCM), discrepancy-guided adaptive embedding fusion (DGF), followed by multiplicative anomaly-map fusion (Eq.7).",
+    "protocol": "MVTec 3D-AD, normal-data training; §IV-A reports 2656 train/294 validation/1197 test samples. DINO and Point-MAE features; URCM/DGF trained250/30 epochs. I-AUROC, P-AUPRO at FPR .3/.01; matched RGB/PT components plus expert unimodal baselines (TableV). Custom PCB data:20 paired normal training,10 normal/50 defective tests (§IV-G).",
+    "finding": "Visually verified TableV: full UCF I-AUROC/P-AUPRO .963/.975 versus UCF RGB-only .859/.934 and PT-only .854/.909; strongest PT expert CPMF .952/.929. TableII strict-FPR P-AUPRO .471 versus CFM .455. These are benchmark-specific, not universal multimodal superiority.",
+    "limitations": "Dataset-count erratum (17 November 2026): MVTec 3D-AD primary dataset paper #105, Table1 (PDF p4), reports249 normal+948 anomalous=1197 test samples. This paper's1197 agrees; the prior review's1137-based criticism was incorrect. Some later studies report1137, which is retained only as their author-reported count. §IV-B prose improvement magnitudes (.1/.04/.16) conflict with table differences (.009/.004/.016); retain table values. §IV-H explicitly reports difficulty locating missing parts: object-defect absence is not sensor dropout. No uncertainty calibration, seed variability or external-machine protocol established.",
+    "baselines": "Yes—TableV UCF RGB-only/PT-only components, PatchCore/CDO RGB experts and FPFH/CPMF point-cloud experts. Different expert encoders prevent attributing every gap solely to fusion.",
+    "robustness": "Missing modalities: no test established; both inputs at inference, single-input components are separately trained. Added modality noise/held-out domain shift: no controlled experiment established. Background/anomaly-map suppression and PCB application do not establish those failure regimes.",
+    "quotes": [
+      [
+        "RGB and PT",
+        "§III-B, PDF p4 / printed p5003"
+      ],
+      [
+        "Discrepancy-Guided Fusion",
+        "§III-C, PDF p4 / printed p5003"
+      ],
+      [
+        "294 validation samples",
+        "§IV-A1, PDF p6 / printed p5005"
+      ],
+      [
+        "0.471",
+        "§IV-B2 / TableII, PDF p6 / printed p5005"
+      ]
+    ],
+    "read_version": "User-supplied IEEE published version, 11 PDF pages; printed pp5000–5010",
+    "claim_locations": [
+      "§III-B–D, PDFpp4–5: mechanisms and both-input inference",
+      "TablesI–II, PDFp6: visually inspected rendered page",
+      "TableV, PDFp8: visually inspected unimodal/full-input comparison",
+      "§IV-G–H, PDFp9: PCB protocol and missing-object limitation"
+    ],
+    "metadata_notes": "Header title/DOI and authors Hao Cheng, Jiaxiang Luo, Xianyong Zhang agree with included record. DOI10.1109/TII.2025.3552723; IEEE TII21(6),2025. No header correction needed.",
+    "label": "F",
+    "key": "paper_91",
+    "source_url": "fulltext/paper_91.pdf",
+    "supplied_pdf": true,
+    "verified_date": "2026-11-17",
+    "access": "User-supplied full PDF read; methods/results, baselines, failure regimes and four page-checked quotations verified on17November2026. User-supplied IEEE published version, 11 PDF pages; printed pp5000–5010",
+    "previous_access": "Crossref metadata; IEEE redirect returned empty robot-check response. Rechecked 2026-11-17: IEEE route unavailable; no accessible OpenAlex manuscript location; Scite denied access.",
+    "citation_key": "Cheng2025Multimodal",
+    "erratum": {
+      "date": "2026-11-17",
+      "source": "#105 Table1 PDFp4",
+      "correct_test_total": 1197,
+      "normal": 249,
+      "anomalous": 948,
+      "correction": "Withdraw prior criticism of #91 test count. Preserve other prose/table cautions."
+    }
+  },
+  "92": {
+    "modalities": "RGB images + aligned 3D point clouds.",
+    "fusion": "Cross-modal knowledge distillation, intermediate MTFI fusion, dynamic edge-preserving voxelization, and decision fusion with two one-class SVMs.",
+    "protocol": "MVTec 3D-AD; image AUROC and pixel AUPRO; §4.1.3 p17 retains both modalities for 40% of samples and describes 30% single-modality dropout for the rest. Allocation wording is ambiguous; not converted into an assumed probability distribution.",
+    "finding": "Table 2 reports Ours_single mean AUROC .895 versus Ours_F2F .938; Table 3 AUPRO .924 versus .947. RGB-only inference is reported to gain little from MTFI (p21). These are author-reported comparisons, subject to table-label issues.",
+    "limitations": "Tables 2–5 modality captions conflict with their listed RGB/3D baselines. Table 7 p-values .056/.051/.505/.071 exceed .05 despite prose claiming significance for those comparisons. Do not endorse that significance claim or infer an unambiguous RGB-versus-3D ranking.",
+    "baselines": "Yes—single-modality variants and single-input baseline tables, but modality headings are inconsistent.",
+    "robustness": "Missing: explicit simulated dropout, §4.1.3 and single-input evaluations. Added noise/domain shift: no quantified stress protocol established in inspected experiments.",
+    "label": "F",
+    "key": "paper_92",
+    "quotes": [
+      [
+        "point cloud data",
+        "§4.1.3, PDF p17"
+      ],
+      [
+        "decision layer",
+        "§4.1.3, PDF p17"
+      ],
+      [
+        "30% dropout rate",
+        "§4.1.3, PDF p17"
+      ],
+      [
+        "0.938",
+        "Table 2, PDF p18"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: Publisher PDF; methods/results and four short quotations checked.",
+    "citation_key": "Xu2025ModalityResilient",
+    "source_url": "https://mdpi-res.com/d_attachment/sensors/sensors-25-06529/article_deploy/sensors-25-06529.pdf",
+    "verified_date": "2026-11-17",
+    "read_version": "Publisher PDF"
+  },
+  "93": {
+    "modalities": "Aligned RGB images and 3D point clouds; MVTec 3D-AD and synthetic Eyecandies. No vibration/current/acoustic telemetry input.",
+    "fusion": "Intermediate shared latent feature mapping (LB3M) with cross-modal prediction and intra-modal reconstruction; late multiplicative aggregation of four anomaly score maps (ASAM).",
+    "protocol": "Normal-only benchmark training: MVTec2656 train/1137 test; Eyecandies stated1000train/100validation/400test per category (§4.1). DINO/PointMAE, shared feature settings; Adam150epochs. Image/pixel AUROC and AUPRO at FPR30%/1%;5/10/50-shot random training subsets averaged over five trials (§4.5).",
+    "finding": "Table1: MVTec mean I-AUROC/AUPRO@30%=.974/.978 versus CFM .954/.971. Eyecandies Table2:.886/.894 versus CFM .881/.887, but M3DM's pixel-AUROC .977 exceeds CPIR .974. Table4: multiplicative aggregation .974 I-AUROC versus max .906. Table3 speed6.93FPS versus CFM12.29FPS.",
+    "limitations": "No matched physical RGB-only/3D-only inference test established: reconstruction-only/task ablations still use both modalities. Few-shot sampling is not missing-modality robustness. Eyecandies description says400test with200anomalous yet also ten types and five40-sample anomaly groups; exact allocation wording is inconsistent. No uncertainty interval for full-data main scores; category/metric exceptions and speed cost retained.",
+    "baselines": "Multimodal comparators and prediction/reconstruction/parameter-budget ablations (Tables1–7). A common-target physical single-input baseline comparison is not established by the task ablations.",
+    "robustness": "Missing/noisy/shifted modalities: no controlled failure trial established. Robustness claims concern few-shot normal training and anomaly-map false-positive suppression; natural sparse geometry is not simulated camera failure.",
+    "quotes": [
+      [
+        "3D point cloud and a 2D image",
+        "§3.1, PDF p4"
+      ],
+      [
+        "multiplicative logic AND",
+        "§3.5, PDF p6"
+      ],
+      [
+        "averaged over five trials",
+        "§4.5, PDF p10"
+      ],
+      [
+        "6.93",
+        "Table3, PDF p8"
+      ]
+    ],
+    "read_version": "User-supplied Elsevier published version, Advanced Engineering Informatics65(2025)103240, 12 PDF pages",
+    "claim_locations": [
+      "§3.1–3.5, PDFpp4–6: fusion and both-input use",
+      "§4.1/Table1/Table2, PDFpp6–7: datasets/results",
+      "Table3, PDFp8: speed",
+      "Tables4–7, PDFp9 and §4.5p10: aggregation/task ablations/few-shot"
+    ],
+    "metadata_notes": "PDF title/DOI and seven authors agree with included record. Co-first authors Wen Shangguan and Hongqiang Wu; DOI10.1016/j.aei.2025.103240. No correction required.",
+    "label": "F",
+    "key": "paper_93",
+    "source_url": "fulltext/paper_93.pdf",
+    "supplied_pdf": true,
+    "verified_date": "2026-11-17",
+    "access": "User-supplied full PDF read; methods/results, baselines, failure regimes and four page-checked quotations verified on17November2026. User-supplied Elsevier published version, Advanced Engineering Informatics65(2025)103240, 12 PDF pages",
+    "previous_access": "Metadata only; full-text evaluation not verified. Rechecked 2026-11-17: SSRN 5048855 abstract accessible; manuscript delivery URL returned 403; Scite denied access.",
+    "citation_key": "Shangguan2025CPIR"
+  },
+  "95": {
+    "modalities": "Synthetic robot RGB/depth/point-cloud images, joint/kinematic variables, and simulated motor power/TCP speed; MuJoCo and ABB RobotStudio.",
+    "fusion": "Intermediate multi-encoder regression and autoencoders; cross-modal prediction; CycleGAN modality translation/substitution.",
+    "protocol": "MuJoCo 3000 samples, 75/25 split; ABB single 5124/5191 and dual 1335/918 train/test samples (§4). Ten trials; MSE/L1, reconstruction and downstream regression (§5).",
+    "finding": "Table7 test MSE (×10^-3): clean-input multimodal baseline 2.1745±.8084, generated-depth substitution 13.472±2.4016, fine-tuned substitution 2.7228±1.6322. Generated replacement remains worse than clean inputs.",
+    "limitations": "Synthetic environments, not demonstrated real-machine deployment. This negative result is generated versus clean multimodal input, not proof multimodal < best unimodal. Reconstruction errors for different outputs are not a fair common-target ranking.",
+    "baselines": "Cross-modal single-input prediction is evaluated; matched common-target visual-only/sensor-only downstream baselines not established.",
+    "robustness": "Missing: generated-depth substitution is a planned surrogate, not random camera failure. Domain translation demonstrated within simulation; real cross-machine shift and controlled noise not established.",
+    "label": "F",
+    "key": "paper_95",
+    "quotes": [
+      [
+        "Motor power",
+        "§4.3, PDF p6"
+      ],
+      [
+        "concatenated",
+        "§5.3, PDF p8"
+      ],
+      [
+        "Testing",
+        "Table 7, PDF p14"
+      ],
+      [
+        "13.472",
+        "Table 7, PDF p14"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: Institutional repository publisher-version PDF; methods/results and four short quotations checked.",
+    "citation_key": "Altinses2025Performance",
+    "source_url": "https://publikationen.fhb.fh-swf.de/servlets/MCRFileNodeServlet/fhswf_derivate_00002814/Performance%20benchmarking%20of%20multimodal%20data-driven%20approaches%20in%20industrial%20settings.pdf",
+    "verified_date": "2026-11-17",
+    "read_version": "Institutional repository publisher-version PDF"
+  },
+  "100": {
+    "modalities": "RGB images and 3D point clouds",
+    "fusion": "Hybrid: contrastive feature fusion plus one-class SVM decision fusion over three memory banks",
+    "protocol": "MVTec 3D-AD; normal-only training; I-AUROC/P-AUROC/AUPRO; same-feature ablation Table 4. §4.1 prints 1,137 test samples, conflicting with dataset paper total 1,197.",
+    "finding": "Table 4: multimodal I-AUROC 0.945 versus PC-only 0.874 and RGB-only 0.850. Direct concatenation single bank 0.857 is below PC-only.",
+    "limitations": "Different pretraining and memory configurations confound comparisons across papers; missing geometry discussed without whole-modality dropout trial.",
+    "baselines": "yes—RGB-only and PC-only with component ablations.",
+    "robustness": "Missing/noisy/shifted stress tests: NOT STATED; sparse geometry discussion is not whole-modality failure.",
+    "label": "F",
+    "key": "m3dm",
+    "quotes": [
+      [
+        "3D point clouds and RGB images",
+        "Abstract"
+      ],
+      [
+        "decision layer fusion",
+        "Abstract"
+      ],
+      [
+        "2656 training samples",
+        "§4.1"
+      ],
+      [
+        "0.945 mean I-AUROC score",
+        "Table 1 caption"
+      ]
+    ],
+    "access": "Full CVF accepted PDF retrieved and relevant tables read.",
+    "citation_key": "Wang2023Multimodal"
+  },
+  "101": {
+    "modalities": "RGB and organized 3D point clouds",
+    "fusion": "Feature concatenation: ImageNet RGB features plus FPFH geometric features",
+    "protocol": "MVTec 3D-AD; nominal-only training; nearest-neighbor memory; I-ROC/P-ROC/PRO; unimodal and RGB+3D comparisons.",
+    "finding": "BTF reports 99.3% P-ROC; §4.6 explicitly reports fusion below color-only for cable gland and foam.",
+    "limitations": "Preprocessing strongly affects results; class-level negative fusion and imperfect image-level accuracy acknowledged.",
+    "baselines": "yes—color-only, depth/3D-only, hand-crafted and learned geometry.",
+    "robustness": "No whole-modality missing/noise/shift stress test identified; missing points handled in preprocessing.",
+    "label": "F",
+    "key": "btf",
+    "quotes": [
+      [
+        "color and 3D information",
+        "§4.5"
+      ],
+      [
+        "We concatenate these",
+        "§4.5"
+      ],
+      [
+        "all normal",
+        "§3"
+      ],
+      [
+        "fused features underperformed",
+        "§4.6"
+      ]
+    ],
+    "access": "Full CVF PDF retrieved; Tables 1–3 and limitations inspected.",
+    "citation_key": "Horwitz2023Back"
+  },
+  "102": {
+    "modalities": "RGB images and point clouds",
+    "fusion": "Intermediate bidirectional cross-modal feature mapping; late pixel-wise product of discrepancy maps",
+    "protocol": "MVTec 3D-AD (2656/294/1197), Eyecandies (10k/1k/4k); I/P-AUROC, AUPRO@30% and @1%; 5/10/50-shot; aggregation ablations.",
+    "finding": "Table 6 product: I-AUROC 0.954, AUPRO@1% 0.455; sum: 0.939 and 0.430.",
+    "limitations": "§6 requires both modalities at train/test; map-specific scores still consume both modalities and are not unimodal baselines.",
+    "baselines": "yes—intramodal reconstruction ablations Table 7; map-only scores are NOT unimodal inputs.",
+    "robustness": "No whole-modality missing/noisy/shifted stress test identified; few-shot is data scarcity.",
+    "label": "F",
+    "key": "cfm",
+    "quotes": [
+      [
+        "RGB images",
+        "§4"
+      ],
+      [
+        "pixel-wise product",
+        "§3.3"
+      ],
+      [
+        "2656 train samples",
+        "§4"
+      ],
+      [
+        "0.954",
+        "Table 6; product aggregation I-AUROC"
+      ]
+    ],
+    "access": "Full CVF PDF and Tables 6–7 read.",
+    "citation_key": "Costanzino2024Multimodal"
+  },
+  "103": {
+    "modalities": "RGB features and depth maps",
+    "fusion": "Intermediate channel concatenation into asymmetric flow-teacher/CNN-student networks",
+    "protocol": "MVTec AD and MVTec 3D-AD official benchmark partitions; image/pixel AUROC; mean±SD over five runs; Table 3 modality comparisons.",
+    "finding": "MVTec 3D-AD Table 3 mean image AUROC: RGB 88.0±0.6%, 3D 83.3±0.8%, RGB+3D 93.7±0.2%.",
+    "limitations": "Depth-derived foreground masking and missing-depth filling are part of the pipeline; modality labels describe model inputs and require a preprocessing-availability check. Complete-modality dropout robustness not established.",
+    "baselines": "yes—RGB-only, 3D-only and RGB+3D.",
+    "robustness": "No explicit whole-modality missing/noisy/shift trial identified.",
+    "label": "F",
+    "key": "ast",
+    "quotes": [
+      [
+        "RGB data",
+        "§3"
+      ],
+      [
+        "we concatenate depth maps",
+        "§3"
+      ],
+      [
+        "over 5 runs",
+        "Table 3 caption"
+      ],
+      [
+        "93.7",
+        "Table 3 mean RGB+3D AUROC (%)"
+      ]
+    ],
+    "access": "Full CVF PDF; architecture and Table 3 read.",
+    "citation_key": "Rudolph2023Asymmetric"
+  },
+  "104": {
+    "modalities": "Synthetic RGB, depth and surface-normal maps",
+    "fusion": "Early channel concatenation into a convolutional autoencoder",
+    "protocol": "Eyecandies 10 categories; defect-free train/validation, mixed test; RGB/RGBD/RGBDN reconstruction; image/pixel AUROC; Tables 2–3.",
+    "finding": "§5 reports adding depth can reduce performance; adding normals improves almost every category.",
+    "limitations": "Synthetic data; logical anomalies excluded; direct mapping to real lighting/noise robustness unproven. Conference 2022; Springer volume 2023.",
+    "baselines": "yes—RGB-only autoencoder; RGB feature-based baselines in Table 1.",
+    "robustness": "Multiple lighting renders supplied, not a verified sensor-dropout/noise/shift experiment.",
+    "label": "F",
+    "key": "eyecandies",
+    "quotes": [
+      [
+        "depth and normal maps",
+        "Abstract"
+      ],
+      [
+        "concatenated them along the channel dimension",
+        "§5"
+      ],
+      [
+        "image and pixel AUROC scores",
+        "§5"
+      ],
+      [
+        "even a drop in performance",
+        "§5"
+      ]
+    ],
+    "access": "Full CVF author PDF; §5 and Tables 2–3 read.",
+    "citation_key": "Bonfiglioli2023The"
+  },
+  "105": {
+    "modalities": "Registered RGB and 3D scans",
+    "fusion": "Early RGB-channel/voxel augmentation in baseline models",
+    "protocol": "10 categories; 2656 training, 294 validation, 249 normal+948 anomalous test. 3D-only versus 3D+RGB; AU-PRO integration limit 0.3 and image ROC.",
+    "finding": "§4.2: adding RGB improves localization except Variation Models.",
+    "limitations": "Static inspection setting; coarse voxel baselines; natural invalid points are not injected modality dropout.",
+    "baselines": "yes—3D/depth-only; RGB-only: NOT STATED in inspected benchmark.",
+    "robustness": "No dedicated missing/noisy/shift stress test identified.",
+    "label": "F",
+    "key": "mvtec3d",
+    "quotes": [
+      [
+        "color information",
+        "§4"
+      ],
+      [
+        "RGB channels are appended",
+        "§4.1"
+      ],
+      [
+        "2656",
+        "Table 1 total training scans"
+      ],
+      [
+        "except for the Variation Models",
+        "§4.2"
+      ]
+    ],
+    "access": "Full SCITEPRESS PDF; Table 1 and baseline setup/results read.",
+    "citation_key": "Bergmann2022The"
+  },
+  "106": {
+    "modalities": "TRANSFERABLE (non-industrial)—RGB video, optical flow and audio",
+    "fusion": "Late feature concatenation, intermediate/gated alternatives; adaptive gradient blending",
+    "protocol": "Kinetics 240k train/20k validation used for testing; mini-Sports/mini-AudioSet and other tasks. Table 1 matches stream architectures; top-1 accuracy.",
+    "finding": "Kinetics Table 1: naive audio+RGB 71.4% versus RGB-only 72.6%; three modalities 70.0%.",
+    "limitations": "Non-industrial video classification; its late fusion is feature concatenation before a classifier, not independent decision voting.",
+    "baselines": "yes—RGB-only, audio-only, optical-flow-only.",
+    "robustness": "Whole-modality missing/noisy/industrial shift tests: NOT STATED.",
+    "label": "F",
+    "key": "wang2020",
+    "quotes": [
+      [
+        "RGB, optical flow and audio",
+        "§3.1"
+      ],
+      [
+        "late fusion by concatenation",
+        "Table 1 caption"
+      ],
+      [
+        "validation split (20k)",
+        "§3.1"
+      ],
+      [
+        "best uni-modal model often outperforms",
+        "§1"
+      ]
+    ],
+    "access": "Full CVF accepted PDF; Table 1 and §3 inspected.",
+    "citation_key": "Wang2020What"
+  },
+  "107": {
+    "modalities": "Coaxial melt-pool camera and microphone audio",
+    "fusion": "Data-level, feature-level and author-defined decision-level fusion; cross-modal semantic alignment/mapping alternatives",
+    "protocol": "L-DED 4345 paired samples; 8:1:1 split (3476/434/435); Bayesian hyperparameter search; accuracy, AUROC, balanced accuracy. Camera-only/audio-only and three fusion schemes.",
+    "finding": "§5.1: camera-only optimal accuracy 0.974; best fusion 0.982; audio→visual semantic alignment 0.986 with camera-only inference.",
+    "limitations": "Read author preprint; final-version equivalence not established. Specimen/build-independent split not established. Author decision fusion concatenates representations immediately before prediction.",
+    "baselines": "yes—visual-only and audio-only.",
+    "robustness": "Yes—planned modality removal at inference and synthetic Gaussian visual/audio noise (§5.4.1); cross-machine shift: NOT STATED.",
+    "label": "F",
+    "key": "xie",
+    "quotes": [
+      [
+        "visual and audio input data",
+        "§3.2"
+      ],
+      [
+        "data-level, feature-level, and decision-level fusion",
+        "§4.2"
+      ],
+      [
+        "at a ratio of 8:1:1",
+        "§3.1"
+      ],
+      [
+        "an accuracy of 98.6%",
+        "Abstract"
+      ]
+    ],
+    "access": "Full arXiv PDF; §3–5 read; metadata linked to published Additive Manufacturing article.",
+    "citation_key": "Xie2025Audiovisual"
+  },
+  "108": {
+    "modalities": "Hydraulic pressure, flow, temperature, electrical power and vibration sensors",
+    "fusion": "Early raw-input fusion versus per-sensor CNN feature concatenation (called late sensor fusion by authors)",
+    "protocol": "ZeMA hydraulic testbed; random 70/10/20 split; accumulator classification; 50 tuning iterations; single-sensor and sensor-pair ablations, repeated tuning.",
+    "finding": "§III: all-sensor CNN error 20.5% versus best single-sensor PS1 1.7%; conventional 17-sensor baseline 1%. Adding uniform-noise channel to PS1 gives 30.3% error.",
+    "limitations": "Preprint; random-cycle split and tuning-resource constraints; per-sensor feature concatenation differs from independent decision fusion.",
+    "baselines": "yes—individual sensor CNNs and conventional multi-sensor baseline.",
+    "robustness": "Yes—irrelevant uniform-noise input; missing/shifted modalities: NOT STATED.",
+    "label": "F",
+    "key": "goodarzi",
+    "quotes": [
+      [
+        "pressure (PS1 - PS6)",
+        "§II-A"
+      ],
+      [
+        "feature maps",
+        "§II-B"
+      ],
+      [
+        "random split",
+        "§II-B"
+      ],
+      [
+        "error rate of 20.5%",
+        "§III"
+      ]
+    ],
+    "access": "Full arXiv v1 PDF/HTML read; no published conference DOI confirmed.",
+    "citation_key": "Goodarzi2023Deep"
+  },
+  "109": {
+    "modalities": "RGB inspection images",
+    "fusion": "Unimodal baseline; patch-feature memory bank and coreset subsampling",
+    "protocol": "MVTec AD 15 categories; nominal-only train and mixed test; image/pixel AUROC and PRO; comparisons to strong visual baselines and few-shot trials.",
+    "finding": "Abstract reports image AUROC up to 99.6% on MVTec AD.",
+    "limitations": "This paper is a visual-only baseline, not a test of visual+sensor fusion; read arXiv author version.",
+    "baselines": "yes—visual-only method itself.",
+    "robustness": "Missing/noisy/shifted multimodal tests: NOT STATED.",
+    "label": "F",
+    "key": "patchcore",
+    "quotes": [
+      [
+        "example images",
+        "Abstract"
+      ],
+      [
+        "memory bank",
+        "Abstract"
+      ],
+      [
+        "MVTec AD contains 15 sub-datasets",
+        "§4.1"
+      ],
+      [
+        "up to 99.6%",
+        "Abstract"
+      ]
+    ],
+    "access": "Full arXiv PDF; methods and experimental protocol read.",
+    "citation_key": "Roth2022Towards"
+  },
+  "110": {
+    "modalities": "Industrial RGB images only; no aligned machine-sensor modality.",
+    "fusion": "No multimodal fusion; visual anomaly-detection benchmark/unimodal reference.",
+    "protocol": "MVTec AD: 15 categories, 3629 normal train/validation and 1725 test images (§3). Six visual approaches; classification/segmentation ROC-AUC and per-region overlap (§4).",
+    "finding": "§4.4: no method consistently succeeds across categories; high ROC-AUC can coexist with poor thresholded region overlap.",
+    "limitations": "Useful visual-only benchmark, not evidence of aligned multimodal benefit or sensor-failure resilience.",
+    "baselines": "Yes—visual-only autoencoders, AnoGAN, CNN feature dictionary, texture inspection and variation model.",
+    "robustness": "No controlled missing/noisy/shifted multimodal trial; defects are target anomalies, not modality corruptions.",
+    "label": "F",
+    "key": "paper_110",
+    "quotes": [
+      [
+        "industrial RGB sensor",
+        "§3, PDF p5"
+      ],
+      [
+        "CNN Feature Dictionary",
+        "Table 3, PDF p7"
+      ],
+      [
+        "3629 images",
+        "§3, PDF p4"
+      ],
+      [
+        "failure cases",
+        "Fig3, PDF p7"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: Official CVPR 2019 proceedings PDF; methods/results and four short quotations checked.",
+    "citation_key": "Bergmann2019MVTec",
+    "source_url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/Bergmann_MVTec_AD_--_A_Comprehensive_Real-World_Dataset_for_Unsupervised_Anomaly_CVPR_2019_paper.pdf",
+    "verified_date": "2026-11-17",
+    "read_version": "Official CVPR 2019 proceedings PDF"
+  },
+  "111": {
+    "modalities": "Eight-channel machine audio; valves, pumps, fans and slide rails; real-factory background noise.",
+    "fusion": "Acoustic-only autoencoder baseline; multiple microphones are not heterogeneous physical modalities.",
+    "protocol": "Per-machine/model-ID normal-only training; all abnormal segments and equally many randomly selected normal segments test; log-mel AE, 50 epochs, AUC mean of three runs; SNR +6/0/-6 dB (§4).",
+    "finding": "Table3 fan mean AUC .94/.84/.70 at +6/0/-6 dB; valve .67/.61/.53. Explicit acoustic-noise degradation supports a unimodal robustness comparator.",
+    "limitations": "No camera+sensor comparison or missing-modality test. Separate per-ID models do not establish unseen-machine generalization.",
+    "baselines": "Yes—acoustic-only AE.",
+    "robustness": "Noise: yes, measured factory-background mixing at three SNR levels. Missing/held-out-domain shift: not established.",
+    "label": "F",
+    "key": "paper_111",
+    "quotes": [
+      [
+        "Eight channels",
+        "§3, PDF p2"
+      ],
+      [
+        "autoencoder",
+        "§4, PDF p3"
+      ],
+      [
+        "three training runs",
+        "§4, PDF p3"
+      ],
+      [
+        "0.94 0.84 0.70",
+        "Table 3, PDF p4"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: Official DCASE 2019 proceedings PDF; primary author header reconfirmed Kenji Ichige; methods/results and four short quotations checked.",
+    "citation_key": "Purohit2019MIMII",
+    "source_url": "https://dcase.community/documents/workshop2019/proceedings/DCASE2019Workshop_Purohit_21.pdf",
+    "verified_date": "2026-11-17",
+    "read_version": "Official DCASE 2019 proceedings PDF; primary author header reconfirmed Kenji Ichige"
+  },
+  "112": {
+    "modalities": "Four-channel miniature-machine audio plus recorded factory environmental noise; toy car, conveyor and train.",
+    "fusion": "Audio AE baseline; train channels mixed to one observation, not a visual/sensor fusion study.",
+    "protocol": "Case1: 1000 randomly selected normal IND samples train; remaining normal/anomalous samples test; noise mixing and 16kHz audio; log-mel AE (§4).",
+    "finding": "§4 baseline AUROC .874/.981/.843 for car/conveyor/train; controlled noise mixing is described, not a multimodal advantage.",
+    "limitations": "Miniature-machine proxy; read accepted arXiv manuscript, not VOR. No physical camera inputs or sensor-dropout experiment.",
+    "baselines": "Yes—audio-only AE.",
+    "robustness": "Noise: explicit environmental-noise mixing with fixed scaling. Missing/cross-machine shift: not established.",
+    "label": "F",
+    "key": "paper_112",
+    "quotes": [
+      [
+        "four microphones",
+        "§2, PDF p2"
+      ],
+      [
+        "single channel observation",
+        "§4, PDF p4"
+      ],
+      [
+        "1,000 samples",
+        "§4, PDF p4"
+      ],
+      [
+        "0.874, 0.981, and 0.843",
+        "§4, PDF p4"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: arXiv accepted WASPAA 2019 manuscript; methods/results and four short quotations checked.",
+    "citation_key": "Koizumi2019ToyADMOS",
+    "source_url": "https://arxiv.org/pdf/1908.03299",
+    "verified_date": "2026-11-17",
+    "read_version": "arXiv accepted WASPAA 2019 manuscript"
+  },
+  "113": {
+    "modalities": "Mono noisy operating sounds from six machine types; ToyADMOS/MIMII-derived task data.",
+    "fusion": "Audio-only AE baseline and discussion of challenge classifiers/ID conditioning; no paired camera branch.",
+    "protocol": "DCASE2020 Task2: around1000 normal train samples per machine-ID, 100–200 each normal/anomalous development tests; AUC and pAUC up to FPR .1; ten baseline trials (§2–3).",
+    "finding": "Table1 fan ID0 baseline AUC 54.41±.47%, slide-rail ID0 96.19±.43%; task difficulty varies substantially. §4.3 notes similar operating sounds across IDs can cause training failure.",
+    "limitations": "2020 task is not the later source/target domain-shift challenge. Published workshop text read while exported DOI identifies arXiv record; version equivalence unverified.",
+    "baselines": "Yes—audio-only AE; machine-ID training/classification approaches discussed.",
+    "robustness": "Noise present in supplied recordings. Missing input and source→target shift experiments: not established by this 2020 paper.",
+    "label": "F",
+    "key": "paper_113",
+    "quotes": [
+      [
+        "noisy recordings",
+        "§2, PDF p2"
+      ],
+      [
+        "baseline system",
+        "§3, PDF p3"
+      ],
+      [
+        "10 independent trials",
+        "Table 1 caption, PDF p2"
+      ],
+      [
+        "training failure",
+        "§4.3, PDF p4"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: Official DCASE2020 workshop PDF linked to the exported arXiv record; methods/results and four short quotations checked.",
+    "citation_key": "Koizumi2020Description",
+    "source_url": "https://dcase.community/documents/workshop2020/proceedings/DCASE2020Workshop_Koizumi_3.pdf",
+    "verified_date": "2026-11-17",
+    "read_version": "Official DCASE2020 workshop PDF linked to the exported arXiv record"
+  },
+  "114": {
+    "modalities": "Acoustic and vibration signals",
+    "fusion": "Feature-level self-attention fusion in parallel vision-transformer branches; adversarial/Wasserstein domain alignment",
+    "protocol": "Custom 6205 bearing rig; five states; cross-speed and cross-load transfer with labeled source/unlabeled target. Accuracy versus TCA, FTNN, WD-DTL; exact split sizes: NOT STATED.",
+    "finding": "§4.2 reports average cross-speed accuracy above 98%; §4.3 also notes degradation for large domain differences.",
+    "limitations": "Source prose is internally inconsistent about some task comparisons; no strong unimodal ablation verified. A vision transformer on signal images is not a physical camera modality.",
+    "baselines": "NOT STATED",
+    "robustness": "Yes—operating-condition shift; missing/noisy stress tests: NOT STATED.",
+    "label": "F",
+    "key": null,
+    "quotes": [
+      [
+        "acoustic and vibration signals",
+        "§4.1"
+      ],
+      [
+        "self-attention mechanism",
+        "§5"
+      ],
+      [
+        "six groups of transfer tasks",
+        "§4.2"
+      ],
+      [
+        "over 98%",
+        "§4.2"
+      ]
+    ],
+    "access": "Publisher full HTML; methods and cross-speed/load results read.",
+    "citation_key": "Chu2024A"
+  },
+  "115": {
+    "modalities": "Vibration and motor current; raw series and STFT representations",
+    "fusion": "Heterogeneous feature-level fusion across sensors and derived signal domains",
+    "protocol": "Paderborn condition 1 only; ESOGU custom bearing rig. PU 70/15/15 and ESOGU 10000/1000/1000; unchanged partitions across input trials; accuracy mean±SD over five trials.",
+    "finding": "Four-input mean accuracy 97.10% PU and 100% ESOGU; sensor/domain ablations reported.",
+    "limitations": "Within-condition sample partitions do not establish cross-machine or cross-condition generalization. STFT images are derived representations, not camera observations.",
+    "baselines": "yes—current-only and vibration-only combinations.",
+    "robustness": "No missing/noisy/shift stress test identified; PU uses only one operating condition.",
+    "label": "F",
+    "key": null,
+    "quotes": [
+      [
+        "vibration and current sensors",
+        "Abstract"
+      ],
+      [
+        "feature-level sensor fusion",
+        "§1"
+      ],
+      [
+        "kept unchanged",
+        "§5.3"
+      ],
+      [
+        "an average of 97.10%",
+        "§6"
+      ]
+    ],
+    "access": "Publisher full HTML; §5.2–6 and input-combination protocol read.",
+    "citation_key": "Kullu2022A"
+  },
+  "116": {
+    "modalities": "Coaxial melt-pool camera + microphone + off-axis SWIR thermal camera; robot TCP position aligns features to part location.",
+    "fusion": "Early spatiotemporal feature fusion, ROS synchronization and supervised classifiers; NN selected from seven models.",
+    "protocol": "Stratified 8:2 random train/test, five runs mean/SD; grid-search 10-fold CV (§3.6/4.1). Accuracy, ROC-AUC and false-alarm rate; acoustic-only, vision-only, thermal-only models.",
+    "finding": "NN fusion accuracy 95.6% (Fig15/§4.1; abstract rounds to 96%); authors report fusion exceeds individual sensing approaches.",
+    "limitations": "Random location/time-point split does not establish held-out-build generalization; adjacent observations may be dependent. Dataset count differs: 292,200 in training description versus 29,200 in §4.1. Manuscript-to-VOR equivalence not verified.",
+    "baselines": "Yes—vision-only, acoustic-only and thermal-only.",
+    "robustness": "Missing/noisy/shifted: no explicit controlled failure/shift protocol established; production surroundings alone do not establish robustness.",
+    "label": "F",
+    "key": null,
+    "quotes": [
+      [
+        "vision, acoustic and thermal",
+        "§3.3, manuscript p18"
+      ],
+      [
+        "Spatiotemporal data fusion",
+        "§3.4, manuscript p19"
+      ],
+      [
+        "stratified random split",
+        "§4.1, manuscript p26"
+      ],
+      [
+        "highest overall accuracy (95.6%)",
+        "§4.1, manuscript p26"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: Complete author-uploaded 37-page manuscript read in ResearchGate HTML; PDF download unavailable; methods/results and four short quotations checked.",
+    "citation_key": "Chen2023Multisensor",
+    "source_url": "https://www.researchgate.net/publication/371110062_Multisensor_fusion-based_digital_twin_for_localized_quality_prediction_in_robotic_laser-directed_energy_deposition",
+    "verified_date": "2026-11-17",
+    "read_version": "Complete author-uploaded 37-page manuscript read in ResearchGate HTML; PDF download unavailable"
+  },
+  "117": {
+    "modalities": "Physical airborne acoustic emission (microphone) + photodiode light-intensity signals, both sampled at 10 kHz. CNN images are signal-to-image encodings, not camera/video input; optical microscopy and density measurements provide quality labels (§2–3).",
+    "fusion": "Intermediate/feature-level concatenation of two CNN branches after parallel convolution/pooling, followed by further convolution/pooling and fully connected classification (§3.3, Fig8, PDF pp8–9).",
+    "protocol": "Custom 316L SLM data: 15 process settings, 45 cubes/255 captured layers; three quality classes based on porosity and relative density. Overlapping track-step signal windows converted to 64×64 images; per-class random 80/20 train/test split (60,424/15,107 images), plus random ten-fold CV. Same optimizer/training hyperparameters used for compared methods. Accuracy and per-image classification time; acoustic-only and photodiode-only variants and eight alternative architectures (§4, PDF pp9–12).",
+    "finding": "Table3 (PDF p12): proposed CNN fusion accuracy 99.08%, versus acoustic-only 95.82% and photodiode-only 96.06%. Ten-fold means: fusion 98.35%, acoustic 96.02%, photodiode 95.64% (PDF p11). Direct negative examples in Table3: LeNet-5 fusion 90.71% < photodiode 91.04%; RNN fusion 88.24% < photodiode 92.43%; LSTM fusion 90.35% < acoustic 92.13%. These show architecture-dependent fusion benefits within this experiment.",
+    "limitations": "Random splits are at encoded-window/image level after overlapping windows are formed; shared signal content and same-part observations can cross folds, so independent build/part generalization is not established (audit inference). Modal data are explicitly not registered (§3.2). Labels summarize part-quality categories, not localized pore ground truth. No confidence intervals or seed-repeat uncertainty established. Different architectures complicate comparisons beyond matched single-input variants. Future new-process testing is proposed, not completed.",
+    "baselines": "Yes—CNN-AE acoustic-only and CNN-PH photodiode-only; Table3 gives single-sensor and fusion columns for all nine listed architectures, including negative fusion results.",
+    "robustness": "Missing: no whole-modality failure experiment established. Noise: 4 kHz high-pass filtering of ambient acoustic noise is preprocessing, not a quantified SNR/noise-stress evaluation. Shift: multiple process settings are pooled; held-out new-process-condition/build transfer is left for future work (§5).",
+    "quotes": [
+      [
+        "microphone and a photodiode",
+        "§5, PDF p12 / journal p924"
+      ],
+      [
+        "concatenated",
+        "§3.3, PDF p9 / journal p921"
+      ],
+      [
+        "randomly selected for training",
+        "§4.1, PDF p9 / journal p921"
+      ],
+      [
+        "90.71",
+        "Table 3, PDF p12 / journal p924; LeNet-5 fusion accuracy (%)"
+      ]
+    ],
+    "read_version": "User-supplied publisher version, Journal of Manufacturing Processes 84 (2022), pp913–926, 14 PDF pages.",
+    "claim_locations": {
+      "physical_modalities_sampling": "§2.1, PDF p3 / journal p915; §3.1 p6 / p918",
+      "overlapping_windows_and_no_registration": "§3.2, PDF p8 / journal p920",
+      "fusion_stage": "§3.3 / Fig8, PDF pp8–9 / journal pp920–921",
+      "split_and_counts": "§4.1, PDF p9 / journal p921",
+      "matched_baselines_and_input_sizes": "§4.2 / Fig9, PDF pp9–10 / journal pp921–922",
+      "ten_fold_results": "§4.2 / Fig12, PDF p11 / journal p923",
+      "negative_fusion_results": "Table3, PDF p12 / journal p924",
+      "new_condition_testing_future": "§5, PDF p12 / journal p924"
+    },
+    "metadata_notes": "Header confirms exact title, Jingchang Li; Xiaoge Zhang; Qi Zhou; Felix T.S. Chan; Zhen Hu; Journal of Manufacturing Processes 84 (2022), 913–926. DOI 10.1016/j.jmapro.2022.10.050 appears in publisher text. Available-online date is 3 November 2022. No author identity correction needed.",
+    "label": "F",
+    "key": "paper_117",
+    "source_url": "fulltext/paper_117.pdf",
+    "supplied_pdf": true,
+    "verified_date": "2026-11-17",
+    "access": "User-supplied full PDF read; methods/results, baselines, failure regimes and four page-checked quotations verified on17November2026. User-supplied publisher version, Journal of Manufacturing Processes 84 (2022), pp913–926, 14 PDF pages.",
+    "previous_access": "Publisher introduction/section previews and authors’ institutional abstract. Rechecked 2026-11-17: PolyU/publisher records expose abstract/metadata; no accessible full text; Scite denied access.",
+    "citation_key": "Li2022A"
+  },
+  "118": {
+    "modalities": "Physical layerwise EO camera imagery (six pre/post-scan/flash views) + microphone acoustics + two photodiode multispectral-emission channels (520/532 nm) + machine laser scan-vector/log-derived variables. Fifteen input channels include multiple views and derived metrics, not fifteen independent physical sensor types. Post-build CT supplies labels, not an inference input (§2.1–2.3).",
+    "fusion": "Intermediate hidden-layer concatenation: modality-specific 605→24 sigmoid encoders, then a shared fully connected binary output; synchronized temporal signals rasterized onto the camera/build grid before feature extraction (§2.2–2.4, Figs7–10).",
+    "protocol": "One Ti6Al4V cylinder on a ProX320; 32,352 flaw voxels and 136,222 nominal voxels from OEM-parameter regions. Four-fold random voxel CV, 75/25 train/test, with overlapping 300 μm local 3D neighborhoods. Metrics: accuracy, precision, recall, F1, FPR/FNR and ROC-AUC. Retrained truncated networks evaluate individual modalities and subsets (§2.3–3.2).",
+    "finding": "All-channel voxel test accuracy .9854, precision .9371, recall .9904, F1 .9630 (Table2, PDF p10). Sensitivity results: fused EO imagery AUC >.97; individual scan metrics .52–.61 but fused scan metrics >.9; acoustic/MS around .75 with no significant gain from combining them (§3.2, p11). On one naturally imbalanced layer at threshold .5, accuracy .9921 accompanies precision .2487 (Table3)—high accuracy alone obscures false positives.",
+    "limitations": "Only one part/build; random neighboring-voxel splits and overlapping feature neighborhoods permit spatial dependence across folds (audit inference), so cross-build generalization is not established. Training/evaluation subset uses approximately4:1 nominal/flaw sampling; naturally imbalanced deployment differs. Microphone rate is inconsistent: 192 kHz on PDF p3 versus250 kHz on p4. Authors explicitly defer multi-part/build and noise/lighting transfer validation to future work. AUC discussion uses rounded/graph values, not claimed exact measurements.",
+    "baselines": "Yes—individual camera views, emission channels and scan-vector metrics, plus retrained subsets/all-modalities; modality contribution rather than an equal-parameter early-versus-late architecture benchmark (§3.2, Figs16–17).",
+    "robustness": "Missing: planned channel subsets retrained for sensitivity; no unexpected inference-time dropout test. Noise/shift: altered lighting/background noise and new parts/builds are identified for future work (§5), not controlled robustness experiments in the reported validation.",
+    "quotes": [
+      [
+        "Layerwise electro-optical (EO) imagery",
+        "§2.1, PDF p2"
+      ],
+      [
+        "concatenating",
+        "§2.4, PDF p6"
+      ],
+      [
+        "four-fold cross validation",
+        "§2.5, PDF p8"
+      ],
+      [
+        "no significant increase",
+        "§3.2, PDF p11; fusing acoustic and multispectral emissions"
+      ]
+    ],
+    "read_version": "User-supplied publisher version, Additive Manufacturing 48 (2021), article102364, 13 PDF pages.",
+    "claim_locations": {
+      "physical_camera_and_sensors": "§2.1, PDF pp2–4",
+      "CT_labels_not_inference": "§2.2–2.3, PDF pp4–5",
+      "registration_and_ToF": "§2.2, PDF pp4–5",
+      "local_neighborhood_features": "§2.3, PDF p5",
+      "fusion_stage": "§2.4 / Fig10, PDF pp6–7",
+      "random_voxel_CV_single_part": "§2.5–3, PDF p8",
+      "balanced_sample_metrics": "Tables1–2, PDF pp9–10",
+      "single_layer_class_imbalance": "Table3, PDF p11",
+      "single_modality_and_subset_AUC": "§3.2 / Figs16–17, PDF p11",
+      "future_generalization_noise": "§4–5, PDF p12"
+    },
+    "metadata_notes": "Header confirms Jan Petrich; Zack Snow; David Corbin; Edward W. Reutzel, Additive Manufacturing48 (2021),102364; DOI10.1016/j.addma.2021.102364. Available-online date19October2021; retain header name Zack rather than expand to Zackary from secondary metadata.",
+    "label": "F",
+    "key": "paper_118",
+    "source_url": "fulltext/paper_118.pdf",
+    "supplied_pdf": true,
+    "verified_date": "2026-11-17",
+    "access": "User-supplied full PDF read; methods/results, baselines, failure regimes and four page-checked quotations verified on17November2026. User-supplied publisher version, Additive Manufacturing 48 (2021), article102364, 13 PDF pages.",
+    "previous_access": "Author institution bibliographic page and abstract. Rechecked 2026-11-17: Publisher author-version route returned 403; Penn State record exposes metadata/abstract; Scite denied access.",
+    "citation_key": "Petrich2021Multimodal"
+  },
+  "119": {
+    "modalities": "Acoustic emission + three optical photodiode channels (back-reflection, visible, infrared). Operando X-ray images guide labels, not a camera branch supplied to the classifier.",
+    "fusion": "Early synchronized multichannel signal tensor into hybrid CNN-LSTM; hybrid refers to neural architecture, not proven early+late fusion.",
+    "protocol": "316L mini-LPBF, three processing regimes; non-overlapping .83/1.65/2.5/3.30 ms windows; stochastic 70/30 split and unseen-duration tests (§3.3–4). Per-class confusion matrices and saliency.",
+    "finding": "Table5 includes per-class values 97.7–100%; Table6 unseen-duration values include 95.9%. Saliency identifies informative channels but does not measure a unimodal performance gap.",
+    "limitations": "Abstract/results prose and confusion-table numbers differ; preserve table-specific claims. Window-duration generalization is not cross-machine transfer. No independent unimodal performance comparator established; X-ray guidance must not be counted as an inference modality.",
+    "baselines": "NOT STATED—channel saliency, not a strong acoustic-only/optical-only performance comparison.",
+    "robustness": "Shift: unseen input-window durations only. Missing/added noise/cross-machine shift: not established.",
+    "label": "F",
+    "key": "paper_119",
+    "quotes": [
+      [
+        "photodiode",
+        "§3.2, PDF p6"
+      ],
+      [
+        "concatenated",
+        "§3.3, PDF p8"
+      ],
+      [
+        "70% for training and 30%",
+        "§3.3, PDF p8"
+      ],
+      [
+        "95.9",
+        "Table 6, PDF p12"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: DORA institutional repository publisher-version PDF, CC BY; methods/results and four short quotations checked.",
+    "citation_key": "Pandiyan2022Deep",
+    "source_url": "https://www.dora.lib4ri.ch/psi/dload/psi:43693/PDF/view",
+    "verified_date": "2026-11-17",
+    "read_version": "DORA institutional repository publisher-version PDF, CC BY"
+  },
+  "120": {
+    "modalities": "Three thermo-optical imaging sources: spatter camera, NIR tomography camera, recoater camera. No independent vibration/current/acoustic input.",
+    "fusion": "Early fusion of graph spectral-radius features and mean melt-pool intensity into KNN/SVM/ANN/logistic regression; EWMA for geometry errors.",
+    "protocol": "66 parts across three builds. Balanced porosity samples, random 80/20 split, 10-fold CV/Bayesian tuning, ten trials; independent third build with rotated layout/changed power schedule (§3.5/4.4). F-score/FPR/FNR.",
+    "finding": "Table4 SVM pore-severity F-score 93.5±1.68%; §4.4 third-build porosity false-positive rate <1.5%. Cross-geometry warpage model transfer shown (Fig21).",
+    "limitations": "Validation build lacks substantial porosity; authors explicitly require further testing to estimate false negatives and F-score. Sample counts disagree between §3.5 and Table4; avoid deriving denominators. No matched all-versus-single-camera score table established.",
+    "baselines": "Feature sufficiency/plots discussed, but controlled matched single-camera performance comparison not established.",
+    "robustness": "Shift: changed build layout/process schedule and cone-to-overhang transfer. Missing/added sensor noise: no controlled trials established.",
+    "label": "F",
+    "key": "paper_120",
+    "quotes": [
+      [
+        "spatter cameras",
+        "§3.2, PDF p10"
+      ],
+      [
+        "Data Fusion",
+        "§3.1, PDF p10"
+      ],
+      [
+        "80% of the data",
+        "§3.5.2, PDF p14"
+      ],
+      [
+        "93.5%",
+        "Table 4, PDF p19"
+      ]
+    ],
+    "access": "Full text read on 2026-11-17: Virginia Tech repository publisher PDF; methods/results and four short quotations checked.",
+    "citation_key": "Bevans2023Heterogeneous",
+    "source_url": "https://vtechworks.lib.vt.edu/server/api/core/bitstreams/6d936cca-ac4c-4e72-92a3-0cd7f7b06721/content",
+    "verified_date": "2026-11-17",
+    "read_version": "Virginia Tech repository publisher PDF"
+  }
+}

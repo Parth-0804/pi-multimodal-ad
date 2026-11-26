@@ -1,0 +1,14 @@
+% Shared draft-only preamble; compile from the thesis root.
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\input{figures/tikz_style.tex}
+\usetikzlibrary{calc,positioning,fit,arrows.meta}
+\tikzset{
+ draft box/.style={thesis box,draw=ThesisBaseline,fill=white,outer sep=0pt},
+ draft small/.style={thesis annotation,align=center},
+ draft rule/.style={draw=ThesisInk,line width=.8bp},
+ draft literature/.style={draft box,draw=ThesisVision,fill=ThesisVision!5!white},
+ draft question/.style={draft box,draw=ThesisHighlight,fill=ThesisHighlight!7!white},
+ draft requirement/.style={draft box,draw=ThesisSensor,fill=ThesisSensor!5!white}
+}
+% Full width 451.28 PDF pt = 159.2016 mm, within 0.01 bp of thesis width.

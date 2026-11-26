@@ -23,7 +23,7 @@ task-specific researcher authorization, researcher-reported supervisor agreement
 execution evidence and proposed policy interpretation. Completed work and saved
 commands do not themselves amend policy or authorize a new task.
 
-The [original exposé](MA_Exposé_Ravaliya_Parth.pdf), §3, pp.2–3, is the research-question
+The [original exposé](implementations/general/docs/thesis/source_documents/MA_Exposé_Ravaliya_Parth.pdf), §3, pp.2–3, is the research-question
 starting point: representation components (SQ1), comparative fusion (SQ2),
 missing/degraded-modality robustness (SQ3), and evaluation beyond accuracy (SQ4).
 Use the [reconciled charter](docs/thesis_research_direction/RESEARCH_CHARTER.md),
@@ -81,22 +81,22 @@ common leaderboard or proof of successful fusion across all datasets.
 
 | Domain | Scientific role and evidence |
 |---|---|
-| PHM2026 | Industrial gear-condition and proxy-target studies. Canonical code: `src/phm2026/`; navigation: [PHM experiments](experiments/phm2026/README.md); evidence: `runs/` entries prefixed `phm2026_` and `artifacts/phm2026/`. Consult the inventory/evidence map for retained negative findings and proxy-target limitations; image-derived targets are not independently validated physical damage labels. |
-| REASSEMBLE | Robotic completed-action failure classification, representations, fusion and controlled robustness. Code: `src/reassemble/`; [core walkthrough](experiments/reassemble/README.md); evidence: `runs/reassemble/` and `artifacts/reassemble/`. Consult the [core closure](artifacts/reassemble/reports/REASSEMBLE_COMPLETION_STATUS.md), [extension closure](artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md) and inventory for their respective scopes, discontinued work, negative findings and limitations. |
-| MSM | Metal-milling interval classification from video and machine measurements. [Workspace](MSM/README.md), `MSM/src/`, protocols and saved evaluation records under `MSM/04_experiment_protocol/` and `MSM/06_evaluation_results/`. Consult the [research handoff](MSM/09_final_reports/REVIEW_HANDOFF.md) for study eligibility, findings and failed gates. |
-| HANDOVER | Robot handover success/failure classification. [Workspace](HANDOVER/README.md), adapters in `HANDOVER/src/`, assessment evidence in `HANDOVER/experiments/common_support_v2/`. Consult the [research handoff](HANDOVER/09_final_reports/REVIEW_HANDOFF.md) for participant-identity limitations and learned-stacking eligibility; preserve mandatory study-specific OOF gates. |
-| VIFAILBACK | Robot manipulation outcome classification with multiview video and numerical robot observations. [Workspace](VIFAILBACK/README.md), `VIFAILBACK/src/` and study-local source, protocols, fit coverage and reports under `VIFAILBACK/experiments/`. Check the relevant study and per-condition artifacts; implementation or scheduling is not completion. |
-| REBOOT / dataset research | Dataset discovery, annotation audits, alignment, visibility and feasibility. [REBOOT decision](REBOOT/07_research_decision/REBOOT_RESEARCH_DECISION.md) gates further work; feasibility is not model evaluation. [DATASET_RESEARCH](DATASET_RESEARCH/README.md) links canonical workspaces rather than defining additional independent datasets. |
-| Intel Welding | Historical research and dataset feasibility/foundation audits. [Namespace description](src/intel_welding/README.md), `scripts/intel_welding/`, [results review](docs/intel_welding/RESULTS_REVIEW.md) and `archive/legacy_intel_welding_dataset/`. Package placeholders are not implemented or evaluated models; failed scientific gates remain evidence. |
+| PHM2026 | Industrial gear-condition and proxy-target studies. Canonical code: `implementations/PHM2026/src/phm2026/`; navigation: [PHM experiments](implementations/PHM2026/experiments/walkthrough/README.md); evidence: `implementations/PHM2026/results/runs/` entries prefixed `phm2026_` and `implementations/PHM2026/results/artifacts/`. Consult the inventory/evidence map for retained negative findings and proxy-target limitations; image-derived targets are not independently validated physical damage labels. |
+| REASSEMBLE | Robotic completed-action failure classification, representations, fusion and controlled robustness. Code: `implementations/REASSEMBLE/src/reassemble/`; [core walkthrough](implementations/REASSEMBLE/experiments/core/README.md); evidence: `implementations/REASSEMBLE/results/runs/` and `implementations/REASSEMBLE/results/artifacts/`. Consult the [core closure](implementations/REASSEMBLE/results/artifacts/reports/REASSEMBLE_COMPLETION_STATUS.md), [extension closure](implementations/REASSEMBLE/results/artifacts/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md) and inventory for their respective scopes, discontinued work, negative findings and limitations. |
+| MSM | Metal-milling interval classification from video and machine measurements. [Workspace](implementations/MSM/README.md), `implementations/MSM/src/`, protocols and saved evaluation records under `implementations/MSM/results/04_experiment_protocol/` and `implementations/MSM/results/06_evaluation_results/`. Consult the [research handoff](implementations/MSM/results/09_final_reports/REVIEW_HANDOFF.md) for study eligibility, findings and failed gates. |
+| HANDOVER | Robot handover success/failure classification. [Workspace](implementations/HANDOVER/README.md), adapters in `implementations/HANDOVER/src/`, assessment evidence in `implementations/HANDOVER/experiments/common_support_v2/`. Consult the [research handoff](implementations/HANDOVER/results/09_final_reports/REVIEW_HANDOFF.md) for participant-identity limitations and learned-stacking eligibility; preserve mandatory study-specific OOF gates. |
+| VIFAILBACK | Robot manipulation outcome classification with multiview video and numerical robot observations. [Workspace](implementations/VIFAILBACK/README.md), `implementations/VIFAILBACK/src/` and study-local source, protocols, fit coverage and reports under `implementations/VIFAILBACK/experiments/`. Check the relevant study and per-condition artifacts; implementation or scheduling is not completion. |
+| REBOOT / dataset research | Dataset discovery, annotation audits, alignment, visibility and feasibility. [REBOOT decision](implementations/REBOOT/results/07_research_decision/REBOOT_RESEARCH_DECISION.md) gates further work; feasibility is not model evaluation. [DATASET_RESEARCH](implementations/general/docs/dataset_research/README.md) links canonical workspaces rather than defining additional independent datasets. |
+| Intel Welding | Historical research and dataset feasibility/foundation audits. [Namespace description](implementations/INTEL_WELDING/src/intel_welding/README.md), `implementations/INTEL_WELDING/scripts/`, [results review](implementations/INTEL_WELDING/docs/RESULTS_REVIEW.md) and `implementations/INTEL_WELDING/experiments/legacy/`. Package placeholders are not implemented or evaluated models; failed scientific gates remain evidence. |
 
-REASSEMBLE follow-ups also live in `00_experiments/`,
-`parth_ws_bootstrap/00_experimentation/`, `26.10.2026_feedback_experiments/` and
-`experiments/reassemble/`. Resolve each study's protocol, source snapshot,
-configuration and run manifest before using these layouts. `experiments/` contains
-both navigation and study evidence; linked files can point into original workspaces.
+REASSEMBLE follow-ups also live in `implementations/REASSEMBLE/experiments/additional/`,
+`implementations/REASSEMBLE/experiments/bootstrap/00_experimentation/`, `implementations/REASSEMBLE/experiments/cnn_seed_stability/phase1_feedback/` and
+`implementations/REASSEMBLE/experiments/core/`. Resolve each study's protocol, source snapshot,
+configuration and run manifest before using these layouts. Dataset-local experiments
+contain both navigation and study evidence; historical manifests retain their original names.
 
-Cross-dataset evaluation/synthesis lives in `CROSS_DATASET_COMPARISON/`, including
-the existing `CROSS_DATASET_COMPARISON/src/external_eval/` implementation reused
+Cross-dataset evaluation/synthesis lives in `implementations/cross_dataset/results/`, including
+the existing `implementations/cross_dataset/src/external_eval/` implementation reused
 by MSM/HANDOVER. Dataset-specific reports remain authoritative for eligibility
 and protocol. Do not assume an older charter or summary covers later studies.
 
@@ -129,6 +129,16 @@ when explicitly authorized by the researcher for the specified task.
 
 ## Dataset, label and security integrity
 
+The researcher explicitly approved a one-off **location-only exception on
+2026-11-26** for the eleven groups in the [recorded approval](implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/APPROVAL.json).
+It supersedes only the no-move rules, including the initial PHM EDA's replacement
+prerequisite for this relocation. All content/provenance protections and stop
+records remain in force at the mapped destinations. The [relocation receipt](implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md)
+records operations and checks. This is not standing permission for another move,
+raw-data mutation, scientific rerun or job resumption. `gtc-data-experiment/**`
+and `data/Full Dataset/**` were excluded and keep their protected identities.
+
+
 - Treat original raw data across every dataset as immutable: do not delete, move,
   rename, overwrite, rewrite, deduplicate, recompress, extract into raw-data roots
   or change raw permissions. General experiment, preprocessing or maintenance
@@ -155,13 +165,13 @@ when explicitly authorized by the researcher for the specified task.
   does not prove hardware synchronization or visual observability of an event;
   commands, measured robot state and force/torque are not interchangeable.
 - PHM scope remains EXP-A Runs 1–5, EXP-B Runs 1–7 and EXP-F Runs 1–8; see
-  [canonical dataset configuration](configs/datasets/phm2026.yaml). EXP-A Run 2
+  [canonical dataset configuration](implementations/PHM2026/configs/dataset.yaml). EXP-A Run 2
   carries a REPORTED organizer warning of 311 files overlapping Run 1, not an
   independently verified count. Preserve both runs; duplicate handling must be
   configurable, non-destructive and reported, defaulting to report-and-include.
   Run number/lifecycle stage is not ground-truth health or damage; distribution
   shift alone does not prove degradation.
-- Preserve `experiments/exp_a_initial_eda_r1_r3_r5/**` unchanged until a validated
+- Preserve `implementations/PHM2026/experiments/exp_a_initial_eda_r1_r3_r5/**` unchanged until a validated
   replacement reproduces it and the researcher approves a later migration.
   Existing generated outputs remain
   `HISTORICAL_OUTPUT_PROTECT_UNTIL_REPRODUCED`. Never overwrite historical results.
@@ -228,7 +238,7 @@ run evidence; source inspection alone establishes implementation, not execution.
 
 - RT-DETR pretraining does not imply its spatial Transformer/hybrid encoder,
   detector decoder or bounding-box heads ran. The core REASSEMBLE path in
-  `src/reassemble/section1_features.py` extracts CNN backbone maps; separate PHM
+  `implementations/REASSEMBLE/src/reassemble/section1_features.py` extracts CNN backbone maps; separate PHM
   detector and spatial-encoder studies must retain their own forward descriptions.
 - Distinguish frozen feature extraction with a fitted head, final-stage CNN
   fine-tuning and full executed-backbone fine-tuning. All three conditions exist
@@ -248,11 +258,11 @@ run evidence; source inspection alone establishes implementation, not execution.
 
 ## Organization, configuration and paths
 
-- Keep domain-owned implementation under `src/phm2026/`, `src/intel_welding/`
-  and `src/reassemble/`, with their domain scripts/configurations/tests. Existing
+- Keep domain-owned implementation under `implementations/PHM2026/src/phm2026/`, `implementations/INTEL_WELDING/src/intel_welding/`
+  and `implementations/REASSEMBLE/src/reassemble/`, with their domain scripts/configurations/tests. Existing
   dedicated MSM/HANDOVER/VIFAILBACK/REBOOT and experiment-local layouts remain
-  valid. `src/pi_multimodal_ad/` provides legacy compatibility; do not duplicate
-  the historical monolith or introduce circular imports between datasets.
+  valid. Root `src/` retains packaging links to the domain packages; do not
+  duplicate the historical monolith or introduce circular imports between datasets.
 - Shared helpers require actual reusable consumers across domains; generic names
   alone do not justify a shared abstraction. Do not invent empty packages to
   satisfy an obsolete proposed tree.
@@ -264,9 +274,9 @@ run evidence; source inspection alone establishes implementation, not execution.
   evaluation reports and cross-dataset comparisons traceable. Prefer navigation
   documents and provenance links over migration or dataset/checkpoint copies.
   Inspect symlink targets before writing; links can share protected evidence.
-- `configs/datasets/`, `configs/experiments/` and domain/experiment-specific
-  configurations coexist. Tests mirror actual ownership under `tests/` and
-  dedicated workspaces; central tiny synthetic fixtures are in `tests/fixtures/`.
+- Dataset and experiment-specific configurations coexist under `implementations/`.
+  Tests follow their dataset ownership; shared tiny synthetic fixtures are in
+  `implementations/general/tests/fixtures/`.
 
 ## Reproducibility, outputs and retention
 
@@ -296,11 +306,11 @@ reproduced until the stated reproduction procedure actually passes.
 
 ## Policy conflicts and historical exceptions
 
-- `README.md` retains PHM-centered background. `docs/active_scope.md` explicitly
+- `README.md` describes the broader research journey. `docs/active_scope.md` explicitly
   calls itself canonical for the active thesis pipeline and requires a researcher
   change to that document and canonical configuration for experiments outside
   A/B/F. Later research documents and domain records describe broader work;
-  [preserved MSM/HANDOVER task instructions](CROSS_DATASET_COMPARISON/provenance/task_authorization.txt)
+  [preserved MSM/HANDOVER task instructions](implementations/cross_dataset/results/provenance/task_authorization.txt)
   record specific execution authorization. Those records and the REPORTED
   supervisor agreement do not establish a general amendment of the written scope
   policy. That boundary remains unresolved: do not infer an exemption from
@@ -308,17 +318,17 @@ reproduced until the stated reproduction procedure actually passes.
   it, require traceable researcher direction resolving the conflict; otherwise
   retain the restrictive boundary and stop affected work. The charter's dated MSM
   proposal and later evaluation records retain their separate chronology.
-- [PHM retirement report](artifacts/phm2026/PHM_RAW_RETIREMENT_REPORT.md) and
-  [recovery instructions](docs/phm2026/RAW_DATA_RECOVERY.md) report a one-off raw-tree
+- [PHM retirement report](implementations/PHM2026/results/artifacts/PHM_RAW_RETIREMENT_REPORT.md) and
+  [recovery instructions](implementations/PHM2026/docs/RAW_DATA_RECOVERY.md) report a one-off raw-tree
   retirement with D1/D2 gates, in conflict with older blanket immutability wording.
-  [REASSEMBLE cache retention](docs/maintenance/REASSEMBLE_CACHE_RETENTION.md) reports
+  [REASSEMBLE cache retention](implementations/REASSEMBLE/docs/maintenance/REASSEMBLE_CACHE_RETENTION.md) reports
   a separate narrow derived-cache exception with retention/recovery requirements.
   These are historical authorization/execution records, not independent proof of
   authority for a new operation. Apply the explicit exception requirements above;
   neither record grants future deletion, replay, restoration or job resumption.
-- [Migration plan](docs/repository_restructure/MIGRATION_PLAN.md) and dated
+- [Migration plan](implementations/general/docs/repository_history/domain_restructure_202610/MIGRATION_PLAN.md) and dated
   structure records describe historical phases. Current code, `pyproject.toml`,
-  [compatibility contract](docs/repository_restructure/COMPATIBILITY_CONTRACT.md)
+  [compatibility contract](implementations/general/docs/repository_history/domain_restructure_202610/COMPATIBILITY_CONTRACT.md)
   and actual path existence must be checked before reusing old commands or claims
   about missing packaging, forwarding paths or proposed shared directories.
 - If policies conflict with later decisions or execution evidence, name exact

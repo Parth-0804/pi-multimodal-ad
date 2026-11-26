@@ -1,0 +1,60 @@
+% !TeX program = xelatex
+% Compile from the thesis root. This page exercises the styles in thesis context.
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage{fontspec}
+\usepackage[margin=1in]{geometry}
+\input{figures/tikz_style.tex}
+\pagestyle{empty}
+
+\newsavebox{\SmokeFigure}
+\newcommand{\CheckFigureWidth}[1]{%
+  \sbox{\SmokeFigure}{#1}%
+  \ifdim\wd\SmokeFigure=\linewidth\relax
+    \typeout{FIGURE SMOKE: \the\wd\SmokeFigure\space (linewidth \the\linewidth)}%
+  \else
+    \PackageError{figure-smoke}{Diagram width \the\wd\SmokeFigure\space
+      differs from linewidth \the\linewidth}{Check the TikZ bounding box.}%
+  \fi
+  \usebox{\SmokeFigure}%
+}
+
+\begin{document}
+\typeout{FIGURE SMOKE FONT: \fontname\font}
+\ifdim\textwidth=452.9679pt\relax\else
+  \PackageError{figure-smoke}{Thesis text width has changed}{Remeasure main.tex and update both smoke checks and VISUAL_STYLE.md.}
+\fi
+\noindent\CheckFigureWidth{%
+  \begin{tikzpicture}[x=\linewidth,y=1cm]
+    \path[use as bounding box] (0,0) rectangle (1,5.55);
+    \node[thesis panel label,anchor=west] at (.03,5.17) {Full-width diagram};
+    \draw[groupbox] (.03,.30) rectangle (.34,4.82);
+    \node[thesis annotation,anchor=west] at (.05,4.48) {Example inputs};
+    \node[data=ThesisVision] (vision) at (.185,3.75) {RGB};
+    \node[data=ThesisThermal] (thermal) at (.185,2.83) {Thermal};
+    \node[data=ThesisDepth] (depth) at (.185,1.91) {Depth};
+    \node[data=ThesisAudio] (audio) at (.185,.99) {Audio};
+    \node[module,minimum height=25bp] (align) at (.48,2.37) {Align};
+    \node[fusion] (fuse) at (.67,2.37) {Fusion};
+    \node[module] (score) at (.86,2.37) {Score};
+    \draw[arrow] (vision.east) -- ([yshift=9bp]align.west);
+    \draw[arrow] (thermal.east) -- ([yshift=3bp]align.west);
+    \draw[arrow] (depth.east) -- ([yshift=-3bp]align.west);
+    \draw[arrow] (audio.east) -- ([yshift=-9bp]align.west);
+    \draw[arrow] (align) -- (fuse);
+    \draw[arrow] (fuse) -- (score);
+  \end{tikzpicture}%
+}\par\medskip
+\noindent\begin{minipage}{.5\linewidth}
+  \noindent\CheckFigureWidth{%
+    \begin{tikzpicture}[x=\linewidth,y=1cm]
+      \path[use as bounding box] (0,0) rectangle (1,3.05);
+      \node[thesis panel label,anchor=west] at (.06,2.64) {Half-width diagram};
+      \node[data=ThesisVibration] (vibration) at (.26,1.53) {Vibration};
+      \node[data=ThesisWrench] (wrench) at (.26,.60) {Force/torque};
+      \node[fusion] (fuse) at (.78,1.06) {Fusion};
+      \draw[arrow] (vibration.east) -- ([yshift=3bp]fuse.west);
+      \draw[arrow] (wrench.east) -- ([yshift=-3bp]fuse.west);
+    \end{tikzpicture}%
+  }
+\end{minipage}
+\end{document}

@@ -1,0 +1,124 @@
+--- submitted/03_foundations.tex
++++ working/chapters/03_foundations.tex
+@@ -25,7 +25,7 @@
+ 
+ Calibration requires a separate fitting or assessment procedure that examines the relationship between predicted probabilities and observed outcomes.
+ 
+-The logit transformation converts a probability into its corresponding log-odds. Numerical implementations require appropriate clipping at the probability boundaries to avoid undefined logarithms.
++The logit transformation, \(\ell(p)=\log[p/(1-p)]\), converts a probability into its corresponding log-odds. Numerical implementations require appropriate clipping at the probability boundaries to avoid undefined logarithms.
+ 
+ Fusion can occur at different points in this prediction process. Feature-level fusion combines modality representations before the final prediction head, while prediction-level fusion combines modality-specific scores or probabilities. The distinction determines the information available to the fusion system and the relationships it can learn.
+ 
+@@ -397,7 +397,7 @@
+ 
+ \subsection{Logistic Stacking}
+ 
+-Stacked generalization provides a methodological foundation for learning a second-stage prediction model from the outputs of first-stage predictors. \textcite{Ting1999StackedGeneralization} investigate the construction of this learning problem using cross-validated predictions, allowing the second-stage model to learn from outputs obtained for observations excluded from the corresponding first-stage fitting.
++Stacked generalization provides a methodological foundation for learning a second-stage prediction model from the outputs of first-stage predictors. \textcite{Ting1999Issues} investigate the construction of this learning problem using cross-validated predictions, allowing the second-stage model to learn from outputs obtained for observations excluded from the corresponding first-stage fitting.
+ 
+ The original publication evaluates a different combination model from the logistic stacker investigated in this thesis. Its methodological contribution motivates the construction of a second-stage prediction problem rather than establishing the suitability of the exact F2 configuration.
+ 
+@@ -408,6 +408,8 @@
+  \label{eq:f2}
+ \end{equation}
+ 
++Here, \(p_v\) and \(p_s\) are the visual and sensor probabilities, \(b\) is the intercept, and \(\alpha_v\) and \(\alpha_s\) are their fitted coefficients.
++
+ Unlike a convex weighted average, the branch coefficients are not required to be positive or sum to one. The stacker can therefore learn unequal contributions from its inputs while adjusting the resulting prediction through its intercept and logistic transformation.
+ 
+ Its three-parameter structure provides a compact mechanism for investigating whether a fitted combination improves on equal probability averaging.
+@@ -430,7 +432,7 @@
+ 
+ Static fusion mechanisms use a fixed integration rule or globally fitted coefficients. Context-conditioned gating introduces the possibility that the relative usefulness of each branch varies between observations.
+ 
+-A gating network receives available process or quality information and produces an allocation score for each modality. The modality weights are calculated through masked softmax normalization, which excludes unavailable branches and normalizes the contributions of the remaining inputs.
++A gating network receives available process or quality information \(u\) and produces an allocation score \(q_m(u)\) for each modality \(m\). The modality weights are calculated through masked softmax normalization, which excludes unavailable branches and normalizes the contributions of the remaining inputs.
+ 
+ The normalization is defined when at least one modality remains available. If both modalities are absent, the normalization becomes undefined and the original implementation rejects the input.
+ 
+@@ -442,6 +444,8 @@
+  \label{eq:gate}
+ \end{equation}
+ 
++Here, \(a_m\in\{0,1\}\) indicates modality availability and \(p_m\) is its branch probability.
++
+ The principal REASSEMBLE investigation considers three types of conditioning. The action-context gate receives action-related process information and has an input width of six. The quality-context gate receives measured-quality descriptors and has an input width of 38. The combined gate incorporates both forms of context and has an input width of 42. These dimensions include the two modality availability indicators.
+ 
+ These gates combine scalar modality predictions rather than intermediate image regions or sensor tokens.
+@@ -472,6 +476,8 @@
+  p_A=\sigmoid\left[b+\sum_m\alpha_m\{1+\tanh(h_m(u))\}p_m\right].
+  \label{eq:anchored}
+ \end{equation}
++
++The adjustment network produces the branch-specific output \(h_m(u)\).
+ 
+ The final adjustment layer is initialized to zero, causing the initial adaptive model to reproduce its fitted F2 anchor.
+ 
+@@ -602,4 +608,4 @@
+ 
+ Chapter~\ref{ch:methodology} establishes the shared research methodology through which these components are investigated. It connects their technical properties to target validity, modality correspondence, assessment independence, predictive performance, uncertainty, and reliability conditions associated with requirements R1–R5.
+ 
+-\noindent\textit{Internal implementation evidence.} \texttt{E112}, \texttt{E114}, \EvidenceRef{E110}{}.
++\noindent\textit{Internal implementation evidence.} \EvidenceRef{E112}{}, \EvidenceRef{E114}{}, \EvidenceRef{E110}{}.
+--- submitted/04_methodology.tex
++++ working/chapters/04_methodology.tex
+@@ -40,7 +40,7 @@
+ \begin{figure}[htbp]
+ \caption{Workflow for Data Qualification and Model Evaluation}\label{fig:research-workflow}
+ \centering\includegraphics[width=\linewidth]{figures/research_workflow}
+-\displaynote{The five studies used different prediction targets. Each finding refers to the comparison within that study.}
++\displaynote{The five studies used different prediction targets. Each finding refers to the comparison within that study. The Intel holdout exposure refers to an earlier context audit, not a new trained-model test in the foundation review.}
+ \end{figure}
+ 
+ \subsection{Methodological Implementation of the Research Design Requirements}
+@@ -116,7 +116,7 @@
+ 
+ Success in adjacent industrial or robotic tasks does not establish successful welding-domain validation. An independent answer to the first welding application would require fresh welding observations, an appropriate weld-quality reference, and a reserved assessment population.
+ 
+-\noindent\textit{Internal implementation and decision evidence.} \EvidenceRef{E019}{}, \EvidenceRef{E018}{}, \EvidenceRef{E003}{Section~3.1}.
++\noindent\textit{Internal implementation and decision evidence.} \EvidenceRef{E019}{inspect\_sample, audit\_split, main}, \EvidenceRef{E018}{}, \EvidenceRef{E003}{Section~3.1}.
+ 
+ \section{Dataset Admission and Preparation Checks}
+ \label{sec:ch4-admission}
+@@ -249,7 +249,7 @@
+ 
+ Using predictions generated from observations already included in first-stage fitting can provide the stacker with an unrealistically favourable description of branch performance.
+ 
+-Stacked generalisation therefore motivates constructing second-stage training inputs through cross-validated first-stage predictions \parencite{Ting1999StackedGeneralization}.
++Stacked generalisation therefore motivates constructing second-stage training inputs through cross-validated first-stage predictions \parencite{Ting1999Issues}.
+ 
+ In the grouped REASSEMBLE setting, the corresponding dependence group is the recording.
+ 
+@@ -701,7 +701,7 @@
+ 
+ The software references identify the implementation frameworks and their associated architectural resources. They do not replace the experiment-specific source code and configuration records.
+ 
+-\noindent\textit{Internal implementation evidence.} \EvidenceRef{E064}{}, \EvidenceRef{E065}{}, \EvidenceRef{E067}{}, \EvidenceRef{E046}{}, \EvidenceRef{E033}{}, \EvidenceRef{E004}{}.
++\noindent\textit{Internal implementation evidence.} \EvidenceRef{E064}{}, \EvidenceRef{E065}{}, \EvidenceRef{E067}{}, \EvidenceRef{E046}{}, \EvidenceRef{E033}{}, \EvidenceRef{E004}{P01}.
+ 
+ \subsection{Levels of Experimental Verification}
+ 
+@@ -725,7 +725,7 @@
+ 
+ \subsection{Source Versioning and Experimental Reporting Boundary}
+ 
+-The original manuscript source manifest identifies repository commit e32ec43aef69cc58adff0ea91e508308041598c5.
++The original manuscript source manifest identifies repository commit \texttt{e32ec43aef69cc58adff0ea91e508308041598c5}.
+ 
+ The accompanying provenance records include hashes of selected source files and supporting reports, including relevant material that was not committed within the identified repository version.
+ 
+@@ -751,7 +751,7 @@
+ 
+ Appendix~\ref{app:reproducibility} provides the reproducibility documentation, while the evidence register and Appendix~\ref{app:chronology} establish the associated source provenance and research chronology.
+ 
+-\noindent\textit{Internal provenance evidence.} \EvidenceRef{E111}{}, \EvidenceRef{E109}{}, \texttt{E115}, \texttt{E116}, \texttt{E113}.
++\noindent\textit{Internal provenance evidence.} \EvidenceRef{E111}{}, \EvidenceRef{E109}{}, \EvidenceRef{E115}{}, \EvidenceRef{E116}{}, \EvidenceRef{E113}{}.
+ 
+ \section{Computational Constraints and Exploratory Research Boundaries}
+ \label{sec:ch4-boundaries}
+@@ -828,4 +828,5 @@
+ 
+ The empirical studies therefore provide bounded evidence concerning the suitability, predictive effectiveness, and reliability of the evaluated architectures under their respective conditions.
+ 
++\enlargethispage{\baselineskip}
+ The following chapters apply this framework to the individual industrial and robotic monitoring tasks. Each case study establishes its scientific motivation, describes the corresponding investigation, reports the supported experimental findings, and identifies the limitations governing their interpretation.

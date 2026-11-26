@@ -22,4 +22,10 @@ or reproduction was performed for the reorganisation. Source-path and packaging
 updates remain unfinished; saved commands may refer to former paths. The move
 record locates the preserved study documents and scripts.
 
+## Thesis and evidence
+
+Appendix G research chronology and the methodological context of Chapter 5; existing evidence E117. The [historical report](docs/ARCHITECTURE_VALIDATION_RESULTS.md) records Gates 1 and 2 as executed: the bearing-held-out Gate 2 failed, while the requested condition-only protocol gave a different outcome. Preserve that protocol fork. Gate 3 was not run, even though its implementation and preregistration exist; there is no completed four-arm distillation comparison.
+
+The same report records dataset source/license, fact-sheet target provenance, selected sensor channels, preparation and assessment units. Its results are REPORTED here, not newly reproduced. The [thesis-to-code map](../../docs/THESIS_CODE_MAP.md) points to the executed gate scripts and marks unresolved source lineage.
+
 [All implementations](../README.md) · [Repository map](../../REPO_MAP.md)
