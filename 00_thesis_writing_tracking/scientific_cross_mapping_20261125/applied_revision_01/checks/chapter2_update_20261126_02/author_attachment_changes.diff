@@ -1,0 +1,46 @@
+--- previous_author_attachment
++++ latest_author_attachment
+@@ -2,31 +2,31 @@
+ 
+ Multimodal Learning in Industrial and Robotic Monitoring
+ 
+-Industrial monitoring covers things like fault detection, checking the physical condition of a system, assessing manufacturing quality and confirming that a robot has completed its task. The traditional approach is to use single sensor readings and engineered features to characterise the system's behaviour. Learned representations take this further by utilising data from images, sound and sensor sequences. Multimodal learning looks at how information from different modalities can be combined to assist with a common prediction task [Baltrusaitis2019Multimodal, Huo2022Multisensor, Thoduka2024Handover].
+-
+-The literature touches on a number of related areas of research: traditional feature engineering, the use of pre-trained representations, modelling over time, feature combination, prediction fusion and adaptive methods (where the method can adapt to the context). They differ in terms of the information they require, their computational cost, the level of supervision they need and their sensitivity to the quality of the input.
+-
+-Industrial and robotic monitoring provides a platform on which to compare these approaches as the process can be monitored via a number of different modalities (cameras, acoustic sensors, machine sensors etc). Cameras will obviously provide a view of the visible process, whereas the acoustic and machine sensors provide information which is not visible. The benefit of combining data is highly dependent on the information that each modality retains, the particular prediction that you're trying to make and the test conditions of the system [Wang2020What, Hua2026Weld, Goodarzi2023Deep]. Simply increasing the amount of data does not necessarily lead to better predictions.
+-
+-Robotic welding is the principal driver of this thesis. The work on welding using visual and acoustic data has shown that multimodal integration can lead to improved prediction performance, but also that in some cases the addition of a further modality provides no benefit at all [P003, Hua2026Weld]. As the Intel Welding audit had already looked at the relevant group, an independent assessment of weld quality was not possible (see Chapter 1). The review therefore addresses the more general architectural question across a range of industrial and robotic monitoring tasks: how physical measurements, visual data and sensor data can be combined in order to assess system condition and task outcome.
++Industrial monitoring covers tasks such as fault detection, checking a system's physical condition, assessing manufacturing quality, and confirming that a robot has completed its task. The traditional approach uses single sensor readings and engineered features to characterise the system's behaviour. Learned representations take this further by utilising data from images, sound and sensor sequences. Multimodal learning examines how information from different modalities can be combined to support a common prediction task [Baltrusaitis2019Multimodal, Huo2022Multisensor, Thoduka2024Handover].
++
++The literature touches on several related areas of research: traditional feature engineering, the use of pre-trained representations, modelling over time, feature combination, prediction fusion, and adaptive methods (where the method can adapt to the context). They differ in the information they require, their computational cost, the level of supervision they need, and their sensitivity to input quality.
++
++Industrial and robotic monitoring provides a platform on which to compare these approaches as the process can be monitored via a number of different modalities (cameras, acoustic sensors, machine sensors etc). Cameras will obviously provide a view of the visible process, whereas the acoustic and machine sensors provide information which is not visible. The benefit of combining data depends heavily on what each modality retains, the specific prediction you're trying to make, and the system's test conditions [Wang2020What, Hua2026Weld, Goodarzi2023Deep]. Simply increasing the amount of data does not necessarily lead to better predictions.
++
++Robotic welding is the principal driver of this thesis. Work on welding using visual and acoustic data has shown that multimodal integration can improve prediction performance, but also that, in some cases, adding a further modality provides no benefit at all [P003, Hua2026Weld]. Because the Intel Welding audit had already examined the relevant group, an independent assessment of weld quality was not possible (see Chapter 1). The review therefore addresses a more general architectural question across a range of industrial and robotic monitoring tasks: how physical measurements, visual data, and sensor data can be combined to assess system condition and task outcome.
+ 
+ This chapter is organised around four research sub-questions: (SQ1) the appropriateness of the representations, (SQ2) the incremental value of data integration, (SQ3) reliability in the face of missing or degraded inputs and (SQ4) the need for evaluation criteria that go beyond prediction accuracy. The aim is to present the scientific evidence, identify the gaps in the comparisons and describe the experimental design requirements. The architecture is detailed in Chapter 3 and the experimental methodology in Chapter 4.
+ 
+ 2.1 Review Scope and Search Methodology
+ 
+-The review looks at the industrial fusion claims via the methodologies, the comparison tables and the experimental results of the papers. It's very much focused on the link between the proposed architecture, the physical observations that are actually available, the prediction target and the assessment protocol.
+-
+-A research gap is defined as a comparison that the existing body of scientific evidence does not address for a given target, input set and assessment population. The ability to identify such a gap will of course depend on the search strategy and the amount of published literature that is available.
++The review examines industrial fusion claims through the methodologies, comparison tables, and experimental results of the papers. It focuses on the link between the proposed architecture, the available physical observations, the prediction target, and the assessment protocol.
++
++A research gap is defined as a comparison that the existing body of scientific evidence does not address for a given target, input set and assessment population. The ability to identify such a gap will, of course, depend on the search strategy and the amount of published literature available.
+ 
+ 2.1.1 Research Themes and Search Questions
+ 
+-The representation theme is about what is being observed, what transformations are being applied and whether the representation retains the information that is relevant to the task at hand. The fusion theme is about whether the addition of further inputs leads to an improvement in performance on a standard prediction task when compared to a set of plausible single input references.
++The representation theme concerns what is being observed, what transformations are being applied, and whether the representation retains the information relevant to the task at hand. The fusion theme is about whether adding further inputs improves performance on a standard prediction task compared with a set of plausible single-input references.
+ 
+ The robustness theme looks at which absence, corruption, and distribution-change regimes were assessed. The evaluation theme looks at assessment independence, thresholds, uncertainty, resource measurement and reproducibility.
+ 
+ These themes intentionally include negative and inconclusive findings. Comparisons where an additional modality yields minimal or no benefit can provide valuable insights into representation suitability, redundancy, and the limitations of the evaluated fusion procedure.
+ 
+-The review makes a clear distinction between two objectives which are often confused. Training with multiple modalities in order to deploy a single input model is a privileged training scenario. Combining multiple available inputs at deployment is a multimodal inference problem. Cross-modal distillation and reconstruction link the two objectives but the acquisition assumptions are very different.
++The review clearly distinguishes between two objectives that are often confused. Training with multiple modalities to deploy a single-input model is a privileged training scenario. Combining multiple available inputs at deployment is a multimodal inference problem. Cross-modal distillation and reconstruction link the two objectives but the acquisition assumptions are very different.
+ 
+ The Baltrušaitis et al. (2019) taxonomy is the organising terminology [Baltrusaitis2019Multimodal]. The industrial claims are then assessed against the original studies rather than being entirely inferred from that survey.
+ 

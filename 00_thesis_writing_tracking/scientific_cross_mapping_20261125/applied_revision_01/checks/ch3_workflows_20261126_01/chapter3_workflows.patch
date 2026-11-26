@@ -1,0 +1,138 @@
+--- a/chapters/03_foundations.tex
++++ b/chapters/03_foundations.tex
+@@ -125,11 +125,47 @@
+ 
+ For the REASSEMBLE insertion, the main fusion models received just two numbers from the prediction branches: the calibrated camera probability \(p_v\) and the calibrated sensor probability \(p_s\). By this point, the camera branch had already averaged the frames, and the sensor branch had already reduced the signals to 220 statistics. A fusion model could change how much it used each prediction. It could not go back to a particular frame or inspect the force reading at the moment of contact.
+ 
++Figure~\ref{fig:fusion-interfaces} shows the inputs to the REASSEMBLE stacker and context gates.
++
++\begin{figure}[H]
++\centering
++\caption{Inputs to the REASSEMBLE stacker and context gates}
++\label{fig:fusion-interfaces}
++\includegraphics[width=\linewidth]{figures/fusion_interfaces}
++\displaynote{The 16 camera frames produced one calibrated prediction. Logistic regression on the 220 sensor statistics produced the other. F2 used the two probabilities directly. F4--F6 converted them to log-odds and combined them using context. PatchTST was evaluated separately as a sensor-only model.}
++\end{figure}
++
++\subsection{Feature concatenation in PHM}
++\label{sec:ch3-phm-feature-fusion}
++
+ PHM combined information at an earlier stage. Its \texttt{fused\_all\_three} model joined learned features from three groups: process context, root-mean-square vibration measurements, and condition indicators. One regression head then predicted the target from the joined features. The software class was called \texttt{LateFusionRegressor}, but the values being joined were features. All three groups came from sensor or process data. The photographs supplied the target for this comparison. Also, joining features can increase the number of trainable parameters, so a change in error may reflect both the extra information and the larger model. \textit{Implementation record: \EvidenceRef{E004}{Section~12.4}.}
+ 
+-\subsection{Equal averaging and logistic stacking}
++Figure~\ref{fig:workflow-phm-feature-fusion} shows this workflow.
++
++\begin{figure}[H]
++\centering
++\caption{PHM feature-concatenation workflow}
++\label{fig:workflow-phm-feature-fusion}
++\includegraphics[page=1,width=\linewidth]{figures/fusion_workflows_20261126.pdf}
++\displaynote{The inputs are engineered machine features. Post-run photographs define the condition-proxy target.}
++\end{figure}
++
++\subsection{Equal averaging (F1)}
++\label{sec:ch3-equal-averaging}
+ 
+ The simplest REASSEMBLE fusion rule, F1, took the arithmetic mean of \(p_v\) and \(p_s\). An increase of 0.1 in either branch raised the combined probability by 0.05. The rule learned no combination weights. The branch models and their calibration still had to be fitted on training data, and the calibration of their average still needed to be checked.
++
++Figure~\ref{fig:workflow-equal-averaging} shows this workflow.
++
++\begin{figure}[H]
++\centering
++\caption{Equal-averaging workflow (F1)}
++\label{fig:workflow-equal-averaging}
++\includegraphics[page=2,width=\linewidth]{figures/fusion_workflows_20261126.pdf}
++\end{figure}
++
++\subsection{Logistic stacking (F2)}
++\label{sec:ch3-logistic-stacking}
+ 
+ F2 learned a fixed combination from training predictions. It fitted an intercept \(b\), a camera coefficient \(\alpha_v\), and a sensor coefficient \(\alpha_s\):
+ 
+@@ -140,11 +176,22 @@
+ 
+ The two coefficients can have different sizes or signs. Within each fitted model, the same coefficients apply to every action. Their values describe how F2 used the two branch scores. They cannot identify which physical event caused an insertion to fail.
+ 
++Figure~\ref{fig:workflow-logistic-stacking} shows this workflow.
++
++\begin{figure}[H]
++\centering
++\caption{Logistic-stacking workflow (F2)}
++\label{fig:workflow-logistic-stacking}
++\includegraphics[page=3,width=\linewidth]{figures/fusion_workflows_20261126.pdf}
++\displaynote{The coefficients and intercept are fixed within each fitted model. Separate assessment folds use separately fitted models.}
++\end{figure}
++
+ Training F2 required care because its inputs were themselves model predictions. Following the principle of stacked generalisation, the study used predictions for training actions made by branches that had excluded the corresponding recording during fitting \parencite{Ting1999Issues}. These \textit{out-of-fold predictions} formed the prediction bank for the stacker. The outer assessment recordings stayed outside the fitting process.
+ 
+ One dependence remained inside the training data. F2 reused the prediction bank for its internal validation. A branch that produced a stacker-training score could therefore have learned from recordings later used for stacker validation. Chapter~\ref{ch:methodology} illustrates where this occurred. This detail matters because using evaluation information to select a model can make its reported performance look too favourable \parencite{P004}. The check must cover the whole procedure, including preprocessing, calibration, and the construction of the prediction bank \parencite{P017}.
+ 
+-\subsection{Giving the camera and sensors different weights for different actions}
++\subsection{Context-based gating (F4--F6)}
++\label{sec:ch3-context-gating}
+ 
+ A fixed stacker applies the same rule to an insertion and a placement. The context gates tested whether the rule should change from one action to the next. F4 received four action indicators and two input-availability flags. F5 received 36 measures of input quality and the two flags. F6 received all 42 values. For the recorded insertion, F4 could use the fact that the robot was inserting a part. F5 instead had access to the measured properties of the inputs.
+ 
+@@ -161,9 +208,19 @@
+ 
+ When both inputs were present, their weights added up to one. The original gates had no free final intercept or further calibration step. F2, by comparison, learned an intercept and operated directly on probabilities. A performance difference between F2 and a gate could therefore have several causes. To isolate the value of changing the weights, the comparison also had to account for the score transformation, the training loss, and the opportunity for recalibration.
+ 
++Figure~\ref{fig:workflow-context-gating} shows this workflow.
++
++\begin{figure}[H]
++\centering
++\caption{Context-based gating workflow (F4--F6)}
++\label{fig:workflow-context-gating}
++\includegraphics[page=4,width=\linewidth]{figures/fusion_workflows_20261126.pdf}
++\end{figure}
++
+ Earlier fusion methods made other choices about \textit{where} the inputs could interact. Gated Multimodal Units combined internal feature representations \parencite{P006}. Multimodal attention bottlenecks allowed information to pass through shared intermediate tokens \parencite{Nagrani2021MBT}. The REASSEMBLE gates had a narrower task: they weighted two action-level predictions.
+ 
+-\subsection{Adjusting F2 and testing a missing input}
++\subsection{Anchored adjustment and missing-input fallback}
++\label{sec:ch3-anchored-adjustment}
+ 
+ A later experiment began with the fitted F2 stacker and asked whether a small adjustment for each action could improve it. It kept F2’s intercept and branch coefficients. A second network used context to multiply each coefficient by an adjustment:
+ 
+@@ -176,21 +233,21 @@
+ 
+ Here \(h_m(u)\) is the adjustment-network output for branch \(m\). Its final layer started at zero, so the model initially reproduced F2 exactly. For a finite output, the multiplier lies between zero and two. The original coefficient keeps its sign. A control model used a constant adjustment, which made it possible to test whether changing the adjustment \textit{between actions} added value.
+ 
++Figure~\ref{fig:workflow-anchored-adjustment} shows this workflow.
++
++\begin{figure}[H]
++\centering
++\caption{Anchored-adjustment workflow}
++\label{fig:workflow-anchored-adjustment}
++\includegraphics[page=5,width=\linewidth]{figures/fusion_workflows_20261126.pdf}
++\displaynote{Both inputs were available in the clean comparison. Known input loss used the separate fallback described below.}
++\end{figure}
++
+ There are theoretical conditions under which adaptive weighting can help \parencite{Zhang2023QMF}. In practice, a quality measure must contain information about when a branch prediction becomes less useful. An observed property of a force signal, the confidence of the sensor model, and the accuracy of that confidence are three different quantities. Calibration can also become worse when test conditions change \parencite{P008}. A later quality-interaction experiment therefore compared prediction heads with matched exposure to altered inputs during training. It was a separate study from the original gate comparison.
+ 
+ The difference between a damaged signal and a missing signal is particularly clear in REASSEMBLE. In one controlled test, six force and torque channels were fixed at their training medians. The sensor input was still present. Its summaries and quality measures were calculated again from the altered signals, and the fusion model still had to decide how to use the sensor prediction. In a declared sensor outage, the evaluator already knew the branch was missing. It returned the camera probability and used the camera branch’s own decision threshold. If the camera alone was missing, it used the sensor branch in the same way. If both were missing, it rejected the input.
+ 
+ With a declared outage, methods that return the same surviving prediction necessarily give the same result for that action. Handling this case shows that the fallback rule works as specified. Recognising that six \textit{present} channels have stopped carrying useful information is a harder test. Research on ModDrop, EmbraceNet, and missing-input Transformers gives further examples of training for incomplete inputs \parencite{P005,P007,P016}.
+-
+-Figure~\ref{fig:fusion-interfaces} shows the inputs to the REASSEMBLE stacker and context gates.
+-
+-\begin{figure}[htbp]
+-\centering
+-\caption{Inputs to the REASSEMBLE stacker and context gates}
+-\label{fig:fusion-interfaces}
+-\includegraphics[width=\linewidth]{figures/fusion_interfaces}
+-\displaynote{The 16 camera frames produced one calibrated prediction. Logistic regression on the 220 sensor statistics produced the other. F2 used the two probabilities directly. F4--F6 converted them to log-odds and combined them using context. PatchTST was evaluated separately as a sensor-only model.}
+-\end{figure}
+ 
+ \begin{table}[htbp]
+ \centering
+--- a/README.md
++++ b/README.md
+@@ -15,6 +15,6 @@
+ 
+ Edit `frontmatter/abstract.tex` and `chapters/`. The full manuscript prints the bibliography; both review copies retain author–date citations without a reference list. Omitted appendix/chapter references use plain full-edition numbers. Manav's generated root retains the full citation context for consistent APA disambiguation; regenerate it from `main.tex` if its preamble or shared citation context changes.
+ 
+-Chapter 2 includes the literature synthesis table, the supplied welding-to-requirements diagram and five-study scope table. Three explanatory diagrams are added by section heading: prediction availability (§2.2.4), overlapping sensor patches (§3.3) and the stacker recording flow (§4.6.2). Chapter 3 retains its three comparison tables and fusion-interface figure; Chapter 4 retains the research-workflow figure. Editable figures and build details are documented in `figures/review_explanatory_20261126/README.md`. Unselected diagrams under `figures/draft_chapters_01_02/` remain drafts and are excluded from the delivery source ZIP. The date-free draft Figure 3 is preserved separately.
++Chapter 2 includes the literature synthesis table, the supplied welding-to-requirements diagram and five-study scope table. Three explanatory diagrams are added by section heading: prediction availability (§2.2.4), overlapping sensor patches (§3.3) and the stacker recording flow (§4.6.2). Chapter 3 retains its three comparison tables and fusion-interface overview. Five supplied vector workflows are placed under §§3.5.1–3.5.5: PHM feature concatenation, F1 equal averaging, F2 logistic stacking, context-based gating and anchored adjustment. The unchanged five-page source is included as `figures/fusion_workflows_20261126.pdf`. Chapter 4 retains the research-workflow figure. Editable figures and build details are documented in `figures/review_explanatory_20261126/README.md`. Unselected diagrams under `figures/draft_chapters_01_02/` remain drafts and are excluded from the delivery source ZIP. The date-free draft Figure 3 is preserved separately.
+ 
+ The DRAFT watermark remains controlled by `\thesisdrafttrue` in `main.tex` and in the Manav root. Historical chapter PDFs remain in the unchanged baseline and are excluded from this package. Appendix F and `tables/evidence_register.tex` retain the evidence index; empty publication URL fields remain empty rather than inventing links. The disclosure is in `appendices/I_ai_assistance.tex`.

@@ -7,9 +7,35 @@ import argparse
 import json
 from pathlib import Path
 
-PREFIX = Path("runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/frozen_prefix")
-PIXEL_RUN = Path("parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01")
-GUIDE = "docs/maintenance/REASSEMBLE_CACHE_RETENTION.md"
+PREFIX = Path("implementations/REASSEMBLE/results/runs/additional_improvements_executed/20260928T000346Z/01_temporal_visual/frozen_prefix")
+PIXEL_RUN = Path("implementations/REASSEMBLE/experiments/bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01")
+GUIDE = "implementations/REASSEMBLE/docs/maintenance/REASSEMBLE_CACHE_RETENTION.md"
+
+
+# Location-only compatibility for preserved manifests; their bytes stay unchanged.
+_RELOCATIONS = {
+    "runs/reassemble": "implementations/REASSEMBLE/results/runs",
+    "parth_ws_bootstrap": "implementations/REASSEMBLE/experiments/bootstrap",
+}
+
+
+def located(repo, path):
+    path = Path(path)
+    if not path.is_absolute():
+        path = repo / path
+    for old, new in _RELOCATIONS.items():
+        try:
+            tail = path.relative_to(repo / old)
+        except ValueError:
+            continue
+        return repo / new / tail
+    return path
+
+
+def repository_root():
+    return next(parent for parent in Path(__file__).resolve().parents
+                if (parent / "AGENTS.md").is_file()
+                and (parent / "pyproject.toml").is_file())
 
 
 def read(path):
@@ -32,7 +58,7 @@ def check_prefix(repo):
         raise ValueError("Prefix manifest and historical segment count disagree")
     missing, changed, seen = [], [], set()
     for entry in entries:
-        path = cache_path(repo / entry["path"], root)
+        path = cache_path(located(repo, entry["path"]), root)
         if path in seen:
             raise ValueError("Duplicate prefix manifest entry")
         seen.add(path)
@@ -118,7 +144,7 @@ def assess(repo, selection="all"):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--cache", choices=("prefix", "pixels", "all"), default="all")
-    parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[2])
+    parser.add_argument("--repo-root", type=Path, default=repository_root())
     args = parser.parse_args(argv)
     result = assess(args.repo_root, args.cache)
     print(json.dumps(result, indent=2))

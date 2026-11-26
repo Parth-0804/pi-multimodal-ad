@@ -1,0 +1,42 @@
+[
+  {
+    "source_paragraph_index": 2,
+    "before_tex": "Industrial monitoring covers things like fault detection, checking the physical condition of a\nsystem, assessing manufacturing quality and confirming that a robot has completed its task. The\ntraditional approach is to use single sensor readings and engineered features to characterise the\nsystem's behaviour. Learned representations take this further by utilising data from images, sound\nand sensor sequences. Multimodal learning looks at how information from different modalities can be\ncombined to assist with a common prediction task\n\\citep{Baltrusaitis2019Multimodal,Huo2022Multisensor,Thoduka2024Handover}.",
+    "after_tex": "Industrial monitoring covers tasks such as fault detection, checking a system's physical condition,\nassessing manufacturing quality, and confirming that a robot has completed its task. The traditional\napproach uses single sensor readings and engineered features to characterise the system's behaviour.\nLearned representations take this further by utilising data from images, sound and sensor sequences.\nMultimodal learning examines how information from different modalities can be combined to support a\ncommon prediction task \\citep{Baltrusaitis2019Multimodal,Huo2022Multisensor,Thoduka2024Handover}."
+  },
+  {
+    "source_paragraph_index": 3,
+    "before_tex": "The literature touches on a number of related areas of research: traditional feature engineering,\nthe use of pre-trained representations, modelling over time, feature combination, prediction fusion\nand adaptive methods (where the method can adapt to the context). They differ in terms of the\ninformation they require, their computational cost, the level of supervision they need and their\nsensitivity to the quality of the input.",
+    "after_tex": "The literature touches on several related areas of research: traditional feature engineering, the\nuse of pre-trained representations, modelling over time, feature combination, prediction fusion, and\nadaptive methods (where the method can adapt to the context). They differ in the information they\nrequire, their computational cost, the level of supervision they need, and their sensitivity to\ninput quality."
+  },
+  {
+    "source_paragraph_index": 4,
+    "before_tex": "Industrial and robotic monitoring provides a platform on which to compare these approaches as the\nprocess can be monitored via a number of different modalities (cameras, acoustic sensors, machine\nsensors, etc.). Cameras will obviously provide a view of the visible process, whereas the acoustic\nand machine sensors provide information which is not visible. The benefit of combining data is\nhighly dependent on the information that each modality retains, the particular prediction that\nyou're trying to make and the test conditions of the system\n\\citep{Wang2020What,Hua2026Weld,Goodarzi2023Deep}. Simply increasing the amount of data does not\nnecessarily lead to better predictions.",
+    "after_tex": "Industrial and robotic monitoring provides a platform on which to compare these approaches as the\nprocess can be monitored via a number of different modalities (cameras, acoustic sensors, machine\nsensors, etc.). Cameras will obviously provide a view of the visible process, whereas the acoustic\nand machine sensors provide information which is not visible. The benefit of combining data depends\nheavily on what each modality retains, the specific prediction you're trying to make, and the\nsystem's test conditions \\citep{Wang2020What,Hua2026Weld,Goodarzi2023Deep}. Simply increasing the\namount of data does not necessarily lead to better predictions."
+  },
+  {
+    "source_paragraph_index": 5,
+    "before_tex": "Robotic welding is the principal driver of this thesis. The work on welding using visual and\nacoustic data has shown that multimodal integration can lead to improved prediction performance, but\nalso that in some cases the addition of a further modality provides no benefit at all\n\\citep{P003,Hua2026Weld}. The Intel Welding audit documented prior examination of the proposed\nassessment population, so an independent assessment of weld quality was not possible on that\npopulation (see Chapter~\\ref{ch:introduction}). The review therefore addresses the more general\narchitectural question across a range of industrial and robotic monitoring tasks: how physical\nmeasurements, visual data and sensor data can be combined in order to assess system condition and\ntask outcome.",
+    "after_tex": "Robotic welding is the principal driver of this thesis. Work on welding using visual and acoustic\ndata has shown that multimodal integration can improve prediction performance, but also that, in\nsome cases, adding a further modality provides no benefit at all \\citep{P003,Hua2026Weld}. The Intel\nWelding audit documented prior examination of the proposed assessment population, so an independent\nassessment of weld quality was not possible on that population (see Chapter~\\ref{ch:introduction}).\nThe review therefore addresses a more general architectural question across a range of industrial\nand robotic monitoring tasks: how physical measurements, visual data, and sensor data can be\ncombined to assess system condition and task outcome."
+  },
+  {
+    "source_paragraph_index": 8,
+    "before_tex": "The review looks at the industrial fusion claims via the methodologies, the comparison tables and\nthe experimental results of the papers. It's very much focused on the link between the proposed\narchitecture, the physical observations that are actually available, the prediction target and the\nassessment protocol.",
+    "after_tex": "The review examines industrial fusion claims through the methodologies, comparison tables, and\nexperimental results of the papers. It focuses on the link between the proposed architecture, the\navailable physical observations, the prediction target, and the assessment protocol."
+  },
+  {
+    "source_paragraph_index": 9,
+    "before_tex": "A research gap is defined as a comparison that the existing body of scientific evidence does not\naddress for a given target, input set and assessment population. The ability to identify such a gap\nwill of course depend on the search strategy and the amount of published literature that is\navailable.",
+    "after_tex": "A research gap is defined as a comparison that the existing body of scientific evidence does not\naddress for a given target, input set and assessment population. The ability to identify such a gap\nwill, of course, depend on the search strategy and the amount of published literature available."
+  },
+  {
+    "source_paragraph_index": 11,
+    "before_tex": "The representation theme is about what is being observed, what transformations are being applied and\nwhether the representation retains the information that is relevant to the task at hand. The fusion\ntheme is about whether the addition of further inputs leads to an improvement in performance on a\nstandard prediction task when compared to a set of plausible single input references.",
+    "after_tex": "The representation theme concerns what is being observed, what transformations are being applied,\nand whether the representation retains the information relevant to the task at hand. The fusion\ntheme is about whether adding further inputs improves performance on a standard prediction task\ncompared with a set of plausible single-input references."
+  },
+  {
+    "source_paragraph_index": 14,
+    "before_tex": "The review makes a clear distinction between two objectives which are often confused. Training with\nmultiple modalities in order to deploy a single input model is a privileged training scenario.\nCombining multiple available inputs at deployment is a multimodal inference problem. Cross-modal\ndistillation and reconstruction link the two objectives but the acquisition assumptions are very\ndifferent.",
+    "after_tex": "The review clearly distinguishes between two objectives that are often confused. Training with\nmultiple modalities to deploy a single-input model is a privileged training scenario. Combining\nmultiple available inputs at deployment is a multimodal inference problem. Cross-modal distillation\nand reconstruction link the two objectives but the acquisition assumptions are very different."
+  }
+]

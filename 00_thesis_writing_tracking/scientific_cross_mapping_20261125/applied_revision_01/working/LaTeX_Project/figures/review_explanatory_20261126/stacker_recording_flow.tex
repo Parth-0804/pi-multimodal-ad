@@ -1,0 +1,69 @@
+% !TeX program = xelatex
+% Conceptual recording flow for one outer REASSEMBLE assessment split.
+% Build from the thesis root; no fixed inner-fold count is implied.
+% Final canvas: 159.20 x 100.00 mm. Captions belong in the manuscript.
+\documentclass[12pt,border=0pt]{standalone}
+\usepackage{fontspec,amsmath,amssymb,fix-cm}
+\input{figures/tikz_style.tex}
+\usetikzlibrary{calc}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\tikzset{
+  flow stage/.style={module,text width=37mm,minimum height=18mm},
+  flow fit/.style={fusion,text width=37mm,minimum height=18mm},
+  flow assessment/.style={module,text width=37mm,minimum height=12mm},
+  flow note/.style={groupbox,thesis annotation,text width=38mm,
+    inner xsep=3bp,inner ysep=3bp,align=center}
+}
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm]
+  % Clip neither text nor arrows: this fixed box defines the final print size.
+  \path[use as bounding box] (0,0) rectangle (159.2,100);
+  \draw[draw=ThesisBaseline!55!white,line width=.8bp,rounded corners=3bp,
+    fill=ThesisBaseline!3!white] (.6,25) rectangle (158.6,99.4);
+  \draw[draw=ThesisBaseline!55!white,line width=.8bp,rounded corners=3bp,
+    fill=ThesisContext!5!white] (.6,.6) rectangle (158.6,22.5);
+
+  \node[thesis panel label,anchor=west,inner sep=0pt]
+    at (3.5,95.5) {Development lane: one outer split};
+  \node[thesis annotation,anchor=west,inner sep=0pt]
+    at (3.5,89.5) {Each OOF row excludes its own recording from branch fitting.};
+
+  \node[flow stage] (development) at (25,77.5)
+    {Outer development\\recordings};
+  \node[flow stage] (folds) at (79.6,77.5)
+    {Grouped inner folds\\hold out recordings};
+  \node[flow stage] (oof) at (134.2,77.5)
+    {Out-of-fold (OOF)\\branch predictions};
+  \draw[arrow] (development.east) -- (folds.west);
+  \draw[arrow] (folds.east) -- (oof.west);
+
+  \node[flow fit] (bank) at (25,53)
+    {OOF prediction\\bank};
+  \node[flow fit] (fitting) at (79.6,53)
+    {Calibration and\\stacker fitting};
+  \node[flow fit] (pipeline) at (134.2,53)
+    {Selected fitted\\pipeline};
+  % A serpentine continuation keeps the complete development flow in one lane.
+  \draw[arrow] (oof.south) -- (134.2,65.2) -- (25,65.2) -- (bank.north);
+  \draw[arrow] (bank.east) -- (fitting.west);
+  \draw[arrow] (fitting.east) -- (pipeline.west);
+
+  \node[flow note] (reuse) at (25,33.7)
+    {Internal stacker\\validation reused\\this bank.};
+  \draw[draw=ThesisBaseline,dashed,line width=.8bp]
+    (bank.south) -- (reuse.north);
+
+  \node[thesis panel label,anchor=west,inner sep=0pt]
+    at (3.5,18.8) {Assessment lane};
+  \node[flow assessment] (assessment) at (25,8)
+    {Outer held-out\\recordings};
+  \node[flow assessment] (scoring) at (134.2,8)
+    {Final assessment\\scoring};
+  % Held-out recordings only enter scoring: no route leads to the OOF bank.
+  \draw[arrow] (assessment.east) -- (scoring.west);
+  \draw[arrow] (pipeline.south) -- (scoring.north);
+  \node[thesis annotation,anchor=east,align=right,inner sep=0pt]
+    at (130.2,32.2) {Apply selected fit};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,75 @@
+{
+  "created_utc": "2026-11-26T01:34:19.390006+00:00",
+  "source_root": "source_snapshot/",
+  "builds": {
+    "full_build": {
+      "exit_code": 0,
+      "pages": 272,
+      "pdf": "full_build/main.pdf",
+      "sha256": "013c18be5b85d2c7419eeaa4a29a192bced4b1fce0a5c8dc82f2e31ed415dbcc",
+      "unresolved_citations_references": [],
+      "biber_warnings_errors": [],
+      "latex_warnings": [
+        "Package caption Warning: The option `hypcap=true' will be ignored for this"
+      ],
+      "all_fonts_embedded": true,
+      "citation_context_count": 108
+    },
+    "review_build": {
+      "exit_code": 0,
+      "pages": 202,
+      "pdf": "review_build/review.pdf",
+      "sha256": "04d774b1a22ecb476be17639a28be1ed57aed96ef9fc24b533966becb800c8d4",
+      "unresolved_citations_references": [],
+      "biber_warnings_errors": [],
+      "latex_warnings": [],
+      "all_fonts_embedded": true,
+      "citation_context_count": 108
+    },
+    "manav_build": {
+      "exit_code": 0,
+      "pages": 124,
+      "pdf": "manav_build/manav_review.pdf",
+      "sha256": "9567c81b29ae78dd3d4917ba65b38b8391ebbb22cc36ffb3c36795898baadfb9",
+      "unresolved_citations_references": [],
+      "biber_warnings_errors": [],
+      "latex_warnings": [],
+      "all_fonts_embedded": true,
+      "citation_context_count": 108
+    }
+  },
+  "citation_context_consistent": true,
+  "shared_citation_keys": 108,
+  "source_snapshot_matches_working": true,
+  "baseline_check": "baseline_check.json",
+  "source_archive": {
+    "file": "final_latex_source.zip",
+    "files": 60,
+    "sha256": "2f2da5c27064ad792ae59c0656ea6c92530f2246fcaccdc652de1a5698b2f9f9",
+    "bytes": 3449845,
+    "zip_integrity": "passed",
+    "all_members_match_snapshot": true
+  },
+  "patch": {
+    "file": "cumulative_revision.patch",
+    "git_apply_check": "passed",
+    "all_60_snapshot_files_reconstructed": true,
+    "binary_figure_included": true
+  },
+  "manav_excerpt": {
+    "pages": 124,
+    "contents": "Abstract + Chapters 1\u20134 only",
+    "shared_text_pages_differing_from_review": [],
+    "complete_final_chapter4_paragraph": true
+  },
+  "visual_check": {
+    "opened_pages": [
+      54,
+      124
+    ],
+    "dpi": 110,
+    "findings": "Latest synthesis figure, caption and note fit; closing Chapter 4 paragraph intact. Prior unchanged figure/table checks are documented in ch03_ch04_update_20261126_01/validation.json."
+  },
+  "toolchain": "Existing authorized isolated XeLaTeX/TeX Live 2023, Biber 2.19, latexmk 4.83; no installations",
+  "new_experiments": false
+}

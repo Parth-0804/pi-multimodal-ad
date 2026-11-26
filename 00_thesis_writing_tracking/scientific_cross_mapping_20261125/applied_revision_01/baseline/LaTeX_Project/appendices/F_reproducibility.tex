@@ -1,0 +1,50 @@
+\chapter{Experiment Provenance and Reproducibility}
+\label{app:reproducibility}
+
+\section{Available Experiment Records}
+The experiment records identify the versions of datasets, model code and configurations used in each study. They include selected predictions, training records, completion receipts and result summaries. Some raw data, trained model weights, feature caches and historical prediction files are held separately. The source manifests record their locations where known.
+
+The numerical checks used existing outputs. The original training, gradient checks and saved-model inference belong to the recorded experiments. The checks described below did not involve refitting a model or running new inference on raw inputs.\ev{External inspection scope}{\EvidenceRef{E108}{}}
+
+\section{Numerical Verification}
+For REASSEMBLE, average precision was recalculated from saved predictions for the core and specified follow-up comparisons. For MSM, the check used the primary assessment probabilities for intact inputs and selected perturbations. For the original ViFailback experiment it used episode-level branch and fusion probabilities. For HANDOVER, the five clean means and seed standard deviations were recalculated from three sets of per-seed metrics. The individual trial probabilities were unavailable in the inspected export. The PHM comparison used the original run summary and paired-bootstrap record.
+
+\section{Reconstructing an Evaluation Cohort}
+The REASSEMBLE registry links each evaluation to the native recording and segment keys of its assessed actions. It distinguishes training, validation, calibration and assessment membership. Some legacy identifiers are aliases. The recorded fit identity also distinguishes runs that share an outer seed label but use different random states for model training.
+
+The 753 actions in the selected outer fold form a subset of the pooled 4,530-action assessment. Native recording and segment identifiers establish common test membership across models on the smaller set. Checkpoint selection, calibration and threshold procedures differed between some fits on that set, limiting attribution of a score difference to architecture.\ev{Cohort reconstruction instructions}{\EvidenceRef{E052}{}}
+
+MSM links intervals by their native IDs, label~2 policy and experiment or date group. HANDOVER links trial IDs within the official split and pairs video with the common wrench window. Participant identities are unresolved. ViFailback uses the recorded original and converted release revisions, canonical task identifiers and the final cohort with three-camera quality checks. Its original and matched studies share 4,382 episodes but use different fitting procedures.
+
+\section{Hashes and Source-State Identity}
+The external-source manifest gives SHA-256 digests for files at their original location and for local copies. It also identifies the inspected Git revision. Some reports included uncommitted changes, so the commit identifier alone cannot reconstruct those files.
+
+The recorded original and local hashes can differ after line-ending conversion. The source path and corresponding hash identify which version underlies a calculation. ViFailback completion records identify the condition, training seed and fit role for each completed comparison in Table~\ref{tab:vif-status}.\ev{Source-copy identities}{\EvidenceRef{E109}{}}
+
+\section{Saved-Result Checking and Experiment Replay}
+The archive's integrity checks compare file digests and references in the cohort registry. Score checks match the assessment identities, labels and probability definitions before computing performance. Failure-positive average precision uses precision at distinct score thresholds and increments in recall. Trapezoidal area under the precision--recall curve uses a different interpolation.
+
+Pooling disjoint outer-fold predictions before computing AP weights the resulting joint ranking. Averaging AP over folds gives each fold the specified aggregation weight. Similarly, averaging probabilities across seeds defines an ensemble, whereas averaging AP across seeds describes variation among fitted predictors. The uncertainty estimates use the study-specific cluster units. In HANDOVER the absence of participant identities prevents a participant-cluster interval.
+
+A training replication also depends on the original raw inputs, model and configuration versions, software dependencies and either the fitted weights or their initialization procedure, depending on the stage being repeated. Where only a summary survives, it is possible to check the reported aggregation but not to regenerate individual predictions from that summary.
+
+\section{Coverage of the Checks}
+The matched two-epoch REASSEMBLE comparison records new and reused fits and selected saved-model checks on pixel inputs. Those checks leave the cause of its seed-dependent behavior unresolved. In ViFailback, FROZEN20 and DONOR20 produced complete three-seed assessments, while FROZEN100 and DONOR100 produced single-role pilots. The computational budget placed FULL20, FULL100 and the SQ3 corruption tests outside the final evaluation. The available records support verification of the completed comparisons. Independent training replication would require a separate run.\ev{Diagnostic replay scope}{\EvidenceRef{E062}{}}
+
+\section{Project Evidence File Register}
+\label{sec:evidence-files}
+Each identifier refers to one source file or dated copy. Evidence footnotes link to files with a recorded GitHub URL. An entry marked \enquote{GitHub link TBD} has no GitHub link available. The accompanying file index gives relative source names and the sections, code routines or samples cited.
+
+\begingroup
+\singlespacing\small
+\setlength{\tabcolsep}{3pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{\fill}
+\captionof{table}{Project Evidence Files and Repository Links}\label{tab:project-evidence}
+\begin{longtable*}{@{}P{0.075\linewidth}P{0.19\linewidth}P{0.475\linewidth}P{0.21\linewidth}@{}}
+\toprule ID & Study or source & File & Repository link\\\midrule\endfirsthead
+\toprule ID & Study or source & File & Repository link\\\midrule\endhead
+\bottomrule\endfoot
+\PrintEvidenceRows
+\end{longtable*}
+\endgroup

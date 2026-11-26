@@ -1,0 +1,240 @@
+ .gitignore                                         |     40 +-
+ .../Manav_review_Abstract_Chapters_1-4.pdf         |    Bin 845912 -> 0 bytes
+ .../CHANGELOG.md                                   |     11 -
+ .../delivery_manifest.json                         |     40 -
+ .../final_pages.json                               |     26 -
+ .../integration_review.md                          |      7 -
+ .../packaging_validation.json                      |     12 -
+ .../redesign_integration.json                      |     15 -
+ .../request_scope.json                             |     24 -
+ .../snapshot_manifest.json                         |    289 -
+ .../validation.json                                |    149 -
+ .../working/LaTeX_Project/.gitignore               |     21 -
+ .../working/LaTeX_Project/AGENTS.md                |     12 -
+ .../working/LaTeX_Project/README.md                |     20 -
+ .../LaTeX_Project/appendices/A_literature.tex      |     25 -
+ .../LaTeX_Project/appendices/B_datasets.tex        |     37 -
+ .../LaTeX_Project/appendices/C_implementation.tex  |     45 -
+ .../appendices/D_supplementary_results.tex         |     82 -
+ .../LaTeX_Project/appendices/E_human_review.tex    |     41 -
+ .../LaTeX_Project/appendices/F_reproducibility.tex |     50 -
+ .../LaTeX_Project/appendices/G_chronology.tex      |     25 -
+ .../LaTeX_Project/appendices/H_handover.tex        |     54 -
+ .../LaTeX_Project/appendices/I_ai_assistance.tex   |     20 -
+ .../LaTeX_Project/appendices/J_prompt_record.tex   |     61 -
+ .../working/LaTeX_Project/chapter-preview.tex      |    549 -
+ .../LaTeX_Project/chapters/01_introduction.tex     |    330 -
+ .../chapters/02_literature_review.tex              |   1528 -
+ .../LaTeX_Project/chapters/03_foundations.tex      |    620 -
+ .../LaTeX_Project/chapters/04_methodology.tex      |    841 -
+ .../working/LaTeX_Project/chapters/05_phm.tex      |    121 -
+ .../LaTeX_Project/chapters/06_reassemble.tex       |    242 -
+ .../working/LaTeX_Project/chapters/07_msm.tex      |    125 -
+ .../LaTeX_Project/chapters/08_vifailback.tex       |    151 -
+ .../LaTeX_Project/chapters/09_discussion.tex       |    109 -
+ .../LaTeX_Project/chapters/10_conclusion.tex       |     34 -
+ .../working/LaTeX_Project/evidence_links.tex       |     91 -
+ .../figures/STYLE_INSTALL_VERIFICATION.md          |    143 -
+ .../working/LaTeX_Project/figures/VISUAL_STYLE.md  |     64 -
+ .../figures/ch02_synthesis_20261126/README.md      |    155 -
+ .../ch02_synthesis_20261126/fig_ch02_synthesis.pdf |    Bin 36666 -> 0 bytes
+ .../ch02_synthesis_20261126/fig_ch02_synthesis.tex |    167 -
+ .../ch02_synthesis_20261126/review_coverage.tex    |      4 -
+ .../verify_review_coverage.py                      |     63 -
+ .../LaTeX_Project/figures/draft-watermark.pdf      |    Bin 2743 -> 0 bytes
+ .../LaTeX_Project/figures/fusion_interfaces.png    |    Bin 170771 -> 0 bytes
+ .../LaTeX_Project/figures/fusion_research_gap.pdf  |    Bin 13825 -> 0 bytes
+ .../LaTeX_Project/figures/fusion_research_gap.tex  |     45 -
+ .../working/LaTeX_Project/figures/gap_coverage.png |    Bin 305239 -> 0 bytes
+ .../LaTeX_Project/figures/msm_example05_frames.png |    Bin 740481 -> 0 bytes
+ .../LaTeX_Project/figures/msm_example05_sensor.png |    Bin 151967 -> 0 bytes
+ .../LaTeX_Project/figures/phm_executed_route.png   |    Bin 104113 -> 0 bytes
+ .../LaTeX_Project/figures/phm_input_shapes.png     |    Bin 66152 -> 0 bytes
+ .../figures/reassemble_example_frames.png          |    Bin 1352607 -> 0 bytes
+ .../LaTeX_Project/figures/research_workflow.png    |    Bin 293029 -> 0 bytes
+ .../figures/review_explanatory_20261126/README.md  |     17 -
+ .../prediction_availability.pdf                    |    Bin 13500 -> 0 bytes
+ .../prediction_availability.tex                    |     59 -
+ .../sensor_patch_tokens.pdf                        |    Bin 14404 -> 0 bytes
+ .../sensor_patch_tokens.tex                        |     64 -
+ .../stacker_recording_flow.pdf                     |    Bin 17231 -> 0 bytes
+ .../stacker_recording_flow.tex                     |     69 -
+ .../LaTeX_Project/figures/smoke/style_smoke.py     |    130 -
+ .../LaTeX_Project/figures/smoke/style_smoke.tex    |     60 -
+ .../working/LaTeX_Project/figures/thesis.mplstyle  |     46 -
+ .../working/LaTeX_Project/figures/tikz_style.tex   |     54 -
+ .../LaTeX_Project/figures/within_study_results.png |    Bin 85819 -> 0 bytes
+ .../working/LaTeX_Project/frontmatter/abstract.tex |     39 -
+ .../working/LaTeX_Project/latexmkrc                |      2 -
+ .../working/LaTeX_Project/main.tex                 |    106 -
+ .../working/LaTeX_Project/manav_review.tex         |    110 -
+ .../working/LaTeX_Project/references.bib           |   1180 -
+ .../working/LaTeX_Project/references_additions.bib |     12 -
+ .../working/LaTeX_Project/review-settings.tex      |     30 -
+ .../working/LaTeX_Project/review.tex               |      6 -
+ .../LaTeX_Project/tables/evidence_register.tex     |    127 -
+ .../LaTeX_Project/tables/evidence_source_index.csv |    124 -
+ .../tables/expanded_literature_matrix.tex          |     67 -
+ .../LaTeX_Project/tables/headline_plot_data.json   |     22 -
+ .../LaTeX_Project/tables/literature_matrix.csv     |     39 -
+ .../LaTeX_Project/tables/literature_matrix.tex     |     50 -
+ .../working/LaTeX_Project/tables/review_counts.tex |      2 -
+ AGENTS.md                                          |      2 +-
+ .../CURRENT_EXPERIMENT_STATUS.md                   |     28 -
+ .../EXECUTIVE_AUDIT_SUMMARY.md                     |    270 -
+ .../KEY_FINDINGS_AND_LIMITATIONS.md                |     14 -
+ .../COMPLETE_MODEL_INVENTORY.md                    |     82 -
+ .../02_model_architecture/FUSION_ARCHITECTURES.md  |     44 -
+ .../02_model_architecture/SENSOR_ARCHITECTURES.md  |     45 -
+ .../02_model_architecture/VISUAL_ARCHITECTURES.md  |     37 -
+ .../ALL_MODEL_CONFIGURATION_TABLE.md               |    134 -
+ .../CONFIGURATION_DIFFERENCES.md                   |     40 -
+ .../EFFECTIVE_CONFIGURATIONS.json                  | 633616 ------------------
+ .../HYPERPARAMETER_TUNING_HISTORY.md               |     44 -
+ .../CHECKPOINT_SELECTION_AUDIT.md                  |     29 -
+ .../GPU_AND_COMPUTATIONAL_COST_AUDIT.md            |     23 -
+ .../REPRODUCIBILITY_ASSESSMENT.md                  |     24 -
+ .../05_results/IMPORTANT_RESULTS_TABLE.md          |     58 -
+ .../05_results/TRAIN_VS_VALIDATION_VS_TEST.md      |     20 -
+ .../HANDOVER/HELD_OUT_MODEL_COMPARISON.png         |    Bin 73577 -> 0 bytes
+ .../HANDOVER/HELD_OUT_SEED_DISTRIBUTIONS.png       |    Bin 77824 -> 0 bytes
+ .../HANDOVER/MODEL_AND_CONFIGURATION_AUDIT.md      |     28 -
+ .../MSM/HELD_OUT_MODEL_COMPARISON.png              |    Bin 92630 -> 0 bytes
+ .../MSM/HELD_OUT_SEED_DISTRIBUTIONS.png            |    Bin 97589 -> 0 bytes
+ .../MSM/MODEL_AND_CONFIGURATION_AUDIT.md           |     38 -
+ .../REASSEMBLE/100E_LEARNING_RATES.png             |    Bin 79917 -> 0 bytes
+ .../06_dataset_specific/REASSEMBLE/100E_LOSS.png   |    Bin 149825 -> 0 bytes
+ .../REASSEMBLE/100E_SENSOR_VISUAL_FUSION.png       |    Bin 77331 -> 0 bytes
+ .../REASSEMBLE/100E_VALIDATION_AP.png              |    Bin 182272 -> 0 bytes
+ .../REASSEMBLE/C20_OUTER_REFIT_CURVES.png          |    Bin 307260 -> 0 bytes
+ .../REASSEMBLE/FROZEN_VS_FINETUNED_100_EPOCHS.md   |     32 -
+ .../FUSION_RESULTS_AND_CONFIGURATIONS.md           |     30 -
+ .../REASSEMBLE/MODEL_AND_CONFIGURATION_AUDIT.md    |     37 -
+ .../TRAINING_GENERALIZATION_DIAGNOSTICS.md         |     17 -
+ .../VIFAILBACK/FROZEN_TRAIN_VS_VALIDATION.png      |    Bin 98581 -> 0 bytes
+ .../VIFAILBACK/HELD_OUT_BOTH_CLASSES_BY_SEED.png   |    Bin 152050 -> 0 bytes
+ .../VIFAILBACK/MODEL_AND_CONFIGURATION_AUDIT.md    |     53 -
+ .../LEAKAGE_AND_SELECTION_AUDIT.md                 |     43 -
+ .../07_scientific_validity/MISSING_EVIDENCE.md     |     20 -
+ .../SCIENTIFIC_COMPARABILITY_VERDICT.md            |     27 -
+ .../SEED_AND_FOLD_COVERAGE.md                      |     30 -
+ .../HPO_READINESS_AND_CONSTRAINTS.md               |     20 -
+ .../HYPERPARAMETERS_ALREADY_EXPLORED.md            |     34 -
+ .../MODEL_SELECTION_EVIDENCE_TABLE.md              |     18 -
+ .../PARAMETERS_NOT_YET_TUNED.md                    |      9 -
+ .../AUDIT_VALIDATION_RESULTS.md                    |     37 -
+ .../09_reviewer_handoff/RESEARCHER_HANDOFF.md      |     13 -
+ .../MODEL_CONFIGURATION_AUDIT_20261103/README.md   |     17 -
+ .../audit_utilities/audit_common.py                |    171 -
+ .../audit_utilities/checkpoints.py                 |    155 -
+ .../audit_utilities/consolidate.py                 |    105 -
+ .../audit_utilities/discover.py                    |    106 -
+ .../audit_utilities/evidence_completion.py         |    125 -
+ .../audit_utilities/external_datasets.py           |    133 -
+ .../audit_utilities/final_validation.py            |    190 -
+ .../audit_utilities/finish_extraction.py           |     84 -
+ .../audit_utilities/historical_audit.py            |    233 -
+ .../audit_utilities/last_fit_inventory.py          |    128 -
+ .../audit_utilities/metrics_check.py               |     41 -
+ .../audit_utilities/phm_audit.py                   |     63 -
+ .../audit_utilities/plots.py                       |    103 -
+ .../audit_utilities/polish_reports.py              |    245 -
+ .../audit_utilities/primary_reassemble.py          |    255 -
+ .../audit_utilities/render_reports.py              |    672 -
+ .../audit_utilities/run_audit.py                   |     64 -
+ .../audit_utilities/static_optimizer_metadata.py   |     29 -
+ .../audit_utilities/supplementary_fits.py          |    206 -
+ .../audit_utilities/supplementary_reporting.py     |    104 -
+ .../audit_utilities/test_audit.py                  |     74 -
+ .../audit_state.json.gz                            |    Bin 77 -> 0 bytes
+ .../test_tmp/test_compressed_audit_scratch_current |      1 -
+ .../test_tmp/test_static_optimizer_parser_rcurrent |      1 -
+ .../audit_utilities/vifailback_audit.py            |    170 -
+ .../ADDITIONAL_VERIFICATION_SUMMARY.json           |      8 -
+ .../provenance/AUDIT_START.json                    |     11 -
+ .../provenance/AUDIT_WORKING_NOTES.md              |     33 -
+ .../C20_POOLED_METRIC_RECOMPUTATION.json           |     31 -
+ .../provenance/CHECKPOINT_CANDIDATE_PATHS.json     |  39362 --
+ .../provenance/CHECKPOINT_INSPECTION.jsonl         |   4920 -
+ .../provenance/CHECKPOINT_SUMMARY.json             |     11 -
+ .../provenance/COMPLETION_EVIDENCE_LEDGER.json     |   2018 -
+ .../provenance/CONSOLIDATION_EVIDENCE_LEDGER.json  |   6631 -
+ .../provenance/DISCOVERY_CANDIDATE_PATHS.txt       |  50471 --
+ .../provenance/DISCOVERY_SUMMARY.json              |    399 -
+ .../provenance/END_COMMAND_RESULTS.json            |     71 -
+ .../EVIDENCE_LEDGER_external_datasets.json         |   5315 -
+ .../EVIDENCE_LEDGER_historical_audit.json          |  31852 -
+ .../provenance/EVIDENCE_LEDGER_phm_audit.json      |  31978 -
+ .../EVIDENCE_LEDGER_primary_reassemble.json        |   1017 -
+ .../EVIDENCE_LEDGER_vifailback_audit.json          |   9060 -
+ .../EXTERNAL_INDEPENDENT_METRIC_CHECKS.json        |  22757 -
+ .../provenance/EXTRACTION_CHECKS.json              |  28353 -
+ .../provenance/EXTRACTION_EVIDENCE_LEDGER.json     |  31978 -
+ .../provenance/EXTRACTION_STATUS.json              |      4 -
+ .../provenance/EXTRACTION_SUMMARY.json             |      8 -
+ .../provenance/FINAL_AUDIT_STATE.json.gz           |    Bin 21190686 -> 0 bytes
+ .../provenance/FINAL_AUDIT_STATE_02.json.gz        |    Bin 21907271 -> 0 bytes
+ .../provenance/FINAL_AUDIT_STATE_03.json.gz        |    Bin 22301201 -> 0 bytes
+ .../provenance/FINAL_AUDIT_STATE_04.json.gz        |    Bin 22434577 -> 0 bytes
+ .../FINAL_EXTRACTION_EVIDENCE_LEDGER.json          |    499 -
+ .../provenance/FULL_AUDIT_STATE.json.gz            |    Bin 14165931 -> 0 bytes
+ .../provenance/GIT_DIFF_CHECK.txt                  |      0
+ .../provenance/GIT_DIFF_STAT_AT_END.txt            |     20 -
+ .../provenance/GIT_DIFF_STAT_AT_START.txt          |     20 -
+ .../provenance/GIT_HEAD_AT_END.txt                 |      1 -
+ .../provenance/GIT_HEAD_AT_START.txt               |      1 -
+ .../provenance/GIT_HISTORY_MSM_HANDOVER.tsv        |      0
+ .../provenance/GIT_HISTORY_PHM.tsv                 |      9 -
+ .../provenance/GIT_HISTORY_REASSEMBLE.tsv          |     37 -
+ .../provenance/GIT_HISTORY_VIFAILBACK.tsv          |      9 -
+ .../provenance/GIT_STATUS_AT_END.txt               |   3385 -
+ .../provenance/GIT_STATUS_AT_START.txt             |   3253 -
+ .../provenance/GPU_RESOURCE_SNAPSHOT.txt           |      2 -
+ .../provenance/HPO_FRAMEWORK_CANDIDATE_FILES.txt   |      0
+ .../provenance/HPO_SEARCH_MATCHES.txt              |    243 -
+ .../provenance/LAST_FIT_EVIDENCE_LEDGER.json       |   1899 -
+ .../provenance/MARKDOWN_LINK_CHECK.json            |   1427 -
+ .../provenance/MODEL_CLASS_DISCOVERY.txt           |     47 -
+ .../provenance/PIP_CHECK.txt                       |      1 -
+ .../provenance/PLOT_EVIDENCE_LEDGER.json           |    527 -
+ .../provenance/PLOT_MANIFEST.json                  |    110 -
+ .../provenance/PRIMARY_AUDIT_STATE.json.gz         |    Bin 4564526 -> 0 bytes
+ .../provenance/PRIMARY_EVIDENCE_LEDGER.json        |   8864 -
+ .../provenance/PYTEST_RESULTS.txt                  |      2 -
+ .../provenance/REASSEMBLE_CURRENT_STATUS.json      |     54 -
+ .../provenance/REPORT_COUNTS.json                  |     16 -
+ .../provenance/REPORT_EVIDENCE_LEDGER.json         |    429 -
+ .../provenance/RESOURCE_SNAPSHOT_CONTEXT.json      |      8 -
+ .../provenance/SOFTWARE_VERSIONS.json              |     12 -
+ .../STATIC_OPTIMIZER_METADATA_VERIFICATION.json    |    590 -
+ .../SUPPLEMENTARY_REPORT_EVIDENCE_LEDGER.json      |    562 -
+ .../provenance/TRANSFER_GATE_RECHECK.json          |     17 -
+ .../provenance/USER_AUDIT_REQUEST.txt              |   1217 -
+ .../provenance/USER_PROCESS_SNAPSHOT.txt           |     27 -
+ .../WORKING_STATE_COMPRESSION_RECEIPT.json         |     56 -
+ .../experiments/common_support_v2/01_raw_dataset   |      1 -
+ README.md                                          |     41 +-
+ REPO_MAP.md                                        |     75 +-
+ docs/maintenance/REASSEMBLE_CACHE_RETENTION.md     |    116 -
+ .../cache_cleanup/20261026T211622Z/.gitignore      |      5 -
+ .../cache_cleanup/20261026T211622Z/README.md       |     33 -
+ .../20261026T211622Z/cleanup_driver.py.txt         |    243 -
+ .../cache_cleanup/20261026T211622Z/completion.json |     32 -
+ .../20261026T211622Z/output_manifest.json          |    111 -
+ .../cache_cleanup/20261026T211622Z/plan.json       |     32 -
+ .../20261026T211622Z/preflight_after.json          |     39 -
+ .../20261026T211622Z/preflight_before.json         |     35 -
+ .../cache_cleanup/20261026T211622Z/validation.json |     44 -
+ implementations/HANDOVER/README.md                 |     14 +-
+ implementations/INTEL_WELDING/README.md            |      6 +
+ implementations/MSM/README.md                      |      8 +-
+ implementations/PADERBORN/README.md                |      6 +
+ implementations/PHM2026/README.md                  |      6 +
+ implementations/README.md                          |     26 +-
+ implementations/REASSEMBLE/README.md               |      6 +
+ .../REASSEMBLE/src/reassemble/cache_preflight.py   |      2 +-
+ implementations/REBOOT/README.md                   |      6 +
+ implementations/VIFAILBACK/README.md               |      6 +
+ implementations/cross_dataset/README.md            |     16 +-
+ implementations/general/README.md                  |      4 +
+ 239 files changed, 208 insertions(+), 937711 deletions(-)

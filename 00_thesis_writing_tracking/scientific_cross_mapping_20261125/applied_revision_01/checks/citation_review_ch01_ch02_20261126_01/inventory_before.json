@@ -1,0 +1,1961 @@
+{
+  "files": [
+    "chapters/01_introduction.tex",
+    "chapters/02_literature_review.tex"
+  ],
+  "citations": [
+    {
+      "chapter": "01_introduction",
+      "file": "chapters/01_introduction.tex",
+      "line": 21,
+      "section": "Context and Motivation",
+      "command": "\\citep{Huo2022Multisensor,Thoduka2024Handover}",
+      "postnote": "",
+      "keys": [
+        "Huo2022Multisensor",
+        "Thoduka2024Handover"
+      ],
+      "passage": "Industrial monitoring means tracking the state and behavior of a\nphysical process by analyzing data collected during or after it\nruns. Industrial and robotic systems produce many types of data,\nsuch as visual observations, acoustic signals, force measurements,\nvibration, and other sensor signals\n\\citep{Huo2022Multisensor,Thoduka2024Handover}.\nEach data type shows a different aspect of the process and may\nrespond differently to changes in operation."
+    },
+    {
+      "chapter": "01_introduction",
+      "file": "chapters/01_introduction.tex",
+      "line": 28,
+      "section": "Context and Motivation",
+      "command": "\\citep{Wang2020What}",
+      "postnote": "",
+      "keys": [
+        "Wang2020What"
+      ],
+      "passage": "Multimodal learning enables the integration of these diverse data\ntypes, particularly when each source provides complementary or\nunique information. However, adding data sources does not inherently\nimprove predictions \\citep{Wang2020What}. The benefit depends on\nthe information each modality retains, the relevance of the data\nto the prediction task, and the methods used for data integration."
+    },
+    {
+      "chapter": "01_introduction",
+      "file": "chapters/01_introduction.tex",
+      "line": 36,
+      "section": "Context and Motivation",
+      "command": "\\citep{P003,Hua2026Weld}",
+      "postnote": "",
+      "keys": [
+        "P003",
+        "Hua2026Weld"
+      ],
+      "passage": "Robotic welding was the starting point for this research. A camera\ncan observe the weld pool, while acoustic and machine sensor\nmeasurements give information about other parts of the welding\nprocess. Previous studies have explored combining visual and\nacoustic data for weld assessment \\citep{P003,Hua2026Weld}."
+    },
+    {
+      "chapter": "01_introduction",
+      "file": "chapters/01_introduction.tex",
+      "line": 63,
+      "section": "Problem Statement and Research Gap",
+      "command": "\\citep{Wang2020What}",
+      "postnote": "",
+      "keys": [
+        "Wang2020What"
+      ],
+      "passage": "Prior work has shown that multimodal integration can improve\nprediction, but it also identifies circumstances in which a jointly\ntrained multimodal model will perform worse than its unimodal\ncounterparts \\citep{Wang2020What}. In one weld penetration study,\nthe image-only, audio-only, and fused models all achieved 100\\%\naccuracy on the reported clean test set\n\\citep[Tables~1--3]{Hua2026Weld}. There was therefore no demonstrable\nbenefit to the availability of an additional modality in terms\nof clean data accuracy."
+    },
+    {
+      "chapter": "01_introduction",
+      "file": "chapters/01_introduction.tex",
+      "line": 66,
+      "section": "Problem Statement and Research Gap",
+      "command": "\\citep[Tables~1--3]{Hua2026Weld}",
+      "postnote": "Tables~1--3",
+      "keys": [
+        "Hua2026Weld"
+      ],
+      "passage": "Prior work has shown that multimodal integration can improve\nprediction, but it also identifies circumstances in which a jointly\ntrained multimodal model will perform worse than its unimodal\ncounterparts \\citep{Wang2020What}. In one weld penetration study,\nthe image-only, audio-only, and fused models all achieved 100\\%\naccuracy on the reported clean test set\n\\citep[Tables~1--3]{Hua2026Weld}. There was therefore no demonstrable\nbenefit to the availability of an additional modality in terms\nof clean data accuracy."
+    },
+    {
+      "chapter": "01_introduction",
+      "file": "chapters/01_introduction.tex",
+      "line": 75,
+      "section": "Problem Statement and Research Gap",
+      "command": "\\citep{Zhang2023QMF,P008}",
+      "postnote": "",
+      "keys": [
+        "Zhang2023QMF",
+        "P008"
+      ],
+      "passage": "Another challenge concerns the reliability of each data type.\nWhen an input is missing, fallback mechanisms may be employed.\nIf an input is present but degraded, evidence is required to\ndemonstrate altered reliability. While adaptive fusion can adjust\nthe contribution of each input, modifying these weights alone\ndoes not ensure improved robustness \\citep{Zhang2023QMF,P008}."
+    },
+    {
+      "chapter": "01_introduction",
+      "file": "chapters/01_introduction.tex",
+      "line": 80,
+      "section": "Problem Statement and Research Gap",
+      "command": "\\citep{P017,P004,Guo2017Calibration,P008}",
+      "postnote": "",
+      "keys": [
+        "P017",
+        "P004",
+        "Guo2017Calibration",
+        "P008"
+      ],
+      "passage": "The fairness of these comparisons also depends on factors like\nthe prediction target, how the data is aligned over time, training\nmethods, calibration, and whether the test data is independent\n\\citep{P017,P004,Guo2017Calibration,P008}. Differences in any of\nthese areas can make it hard to know if performance gains are\ngeneralizable."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 14,
+      "section": "Multimodal Learning in Industrial and Robotic Monitoring",
+      "command": "\\citep{Baltrusaitis2019Multimodal,Huo2022Multisensor,Thoduka2024Handover}",
+      "postnote": "",
+      "keys": [
+        "Baltrusaitis2019Multimodal",
+        "Huo2022Multisensor",
+        "Thoduka2024Handover"
+      ],
+      "passage": "Industrial monitoring covers tasks such as fault detection, checking a system's physical condition,\nassessing manufacturing quality, and confirming that a robot has completed its task. The traditional\napproach uses single sensor readings and engineered features to characterise the system's behaviour.\nLearned representations take this further by utilising data from images, sound and sensor sequences.\nMultimodal learning examines how information from different modalities can be combined to support a\ncommon prediction task \\citep{Baltrusaitis2019Multimodal,Huo2022Multisensor,Thoduka2024Handover}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 27,
+      "section": "Multimodal Learning in Industrial and Robotic Monitoring",
+      "command": "\\citep{Wang2020What,Hua2026Weld,Goodarzi2023Deep}",
+      "postnote": "",
+      "keys": [
+        "Wang2020What",
+        "Hua2026Weld",
+        "Goodarzi2023Deep"
+      ],
+      "passage": "Industrial and robotic monitoring provides a platform on which to compare these approaches as the\nprocess can be monitored via a number of different modalities (cameras, acoustic sensors, machine\nsensors, etc.). Cameras will obviously provide a view of the visible process, whereas the acoustic\nand machine sensors provide information which is not visible. The benefit of combining data depends\nheavily on what each modality retains, the specific prediction you're trying to make, and the\nsystem's test conditions \\citep{Wang2020What,Hua2026Weld,Goodarzi2023Deep}. Simply increasing the\namount of data does not necessarily lead to better predictions."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 32,
+      "section": "Multimodal Learning in Industrial and Robotic Monitoring",
+      "command": "\\citep{P003,Hua2026Weld}",
+      "postnote": "",
+      "keys": [
+        "P003",
+        "Hua2026Weld"
+      ],
+      "passage": "Robotic welding is the principal driver of this thesis. Work on welding using visual and acoustic\ndata has shown that multimodal integration can improve prediction performance, but also that, in\nsome cases, adding a further modality provides no benefit at all \\citep{P003,Hua2026Weld}. The Intel\nWelding audit documented prior examination of the proposed assessment population, so an independent\nassessment of weld quality was not possible on that population (see Chapter~\\ref{ch:introduction}).\nThe review therefore addresses a more general architectural question across a range of industrial\nand robotic monitoring tasks: how physical measurements, visual data, and sensor data can be\ncombined to assess system condition and task outcome."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 77,
+      "section": "Research Themes and Search Questions",
+      "command": "\\citep{Baltrusaitis2019Multimodal}",
+      "postnote": "",
+      "keys": [
+        "Baltrusaitis2019Multimodal"
+      ],
+      "passage": "The Baltrušaitis et al. (2019) taxonomy is the organising terminology\n\\citep{Baltrusaitis2019Multimodal}. The industrial claims are then assessed against the original\nstudies rather than being entirely inferred from that survey."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 95,
+      "section": "Sources, Search Terms, and Search Period",
+      "command": "\\citep{Crossref2020REST}",
+      "postnote": "",
+      "keys": [
+        "Crossref2020REST"
+      ],
+      "passage": "Publisher and repository searches facilitated publication retrieval. Crossref supplied metadata for\nidentity verification \\citep{Crossref2020REST}, while OpenAlex supported citation tracing\n\\citep{Priem2022OpenAlex}. Zotero was employed to link bibliographic records with PDFs and appraisal\nnotes \\citep{Zotero2026}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 96,
+      "section": "Sources, Search Terms, and Search Period",
+      "command": "\\citep{Priem2022OpenAlex}",
+      "postnote": "",
+      "keys": [
+        "Priem2022OpenAlex"
+      ],
+      "passage": "Publisher and repository searches facilitated publication retrieval. Crossref supplied metadata for\nidentity verification \\citep{Crossref2020REST}, while OpenAlex supported citation tracing\n\\citep{Priem2022OpenAlex}. Zotero was employed to link bibliographic records with PDFs and appraisal\nnotes \\citep{Zotero2026}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 97,
+      "section": "Sources, Search Terms, and Search Period",
+      "command": "\\citep{Zotero2026}",
+      "postnote": "",
+      "keys": [
+        "Zotero2026"
+      ],
+      "passage": "Publisher and repository searches facilitated publication retrieval. Crossref supplied metadata for\nidentity verification \\citep{Crossref2020REST}, while OpenAlex supported citation tracing\n\\citep{Priem2022OpenAlex}. Zotero was employed to link bibliographic records with PDFs and appraisal\nnotes \\citep{Zotero2026}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 101,
+      "section": "Sources, Search Terms, and Search Period",
+      "command": "\\citep{Ting1999Issues}",
+      "postnote": "",
+      "keys": [
+        "Ting1999Issues"
+      ],
+      "passage": "Appendix~\\ref{app:literature} differentiates the initial screening population from the subsequent\nfull-text appraisal. The seminal stacked generalisation paper by Ting and Witten (1999) was included\nto support the discussion of prediction-level fusion methodology \\citep{Ting1999Issues},\nrepresenting a separate addition to the historical full-text appraisal count."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 113,
+      "section": "Inclusion and Exclusion Criteria",
+      "command": "\\citep{Wang2020What,P016,P023,Bengio2004CVVariance}",
+      "postnote": "",
+      "keys": [
+        "Wang2020What",
+        "P016",
+        "P023",
+        "Bengio2004CVVariance"
+      ],
+      "passage": "Transferable work is explicitly identified. Work on multimodal optimisation failure modes,\nmissing-input mechanisms, uncertainty weighting, and evaluation theory can all be valuable in\ndesigning industrial architectures, even if they do not amount to industrial validation\n\\citep{Wang2020What,P016,P023,Bengio2004CVVariance}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 118,
+      "section": "Inclusion and Exclusion Criteria",
+      "command": "\\citep{Altinses2023Fuzzy,P026,Thoduka2024Handover,P035}",
+      "postnote": "",
+      "keys": [
+        "Altinses2023Fuzzy",
+        "P026",
+        "Thoduka2024Handover",
+        "P035"
+      ],
+      "passage": "A publication may be included in the register as background or as a methodological contribution.\nSimulated robot regression, RGB-geometry inspection, physical camera-telemetry monitoring and\nsingle-camera feature-level fusion are different experimental settings\n\\citep{Altinses2023Fuzzy,P026,Thoduka2024Handover,P035}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 157,
+      "section": "Limitations of the Review",
+      "command": "\\citep[Table~1]{Bergmann2022The}",
+      "postnote": "Table~1",
+      "keys": [
+        "Bergmann2022The"
+      ],
+      "passage": "The main MVTec 3D-AD table gives 249 normal and 948 anomalous test samples (total 1197)\n\\citep[Table~1]{Bergmann2022The}. The welding penetration paper reports inconsistent acquisition and\ntraining numbers, and the light inspection paper reports different NwfDD values in its main table\nand its ablation table \\citep[PDF pp.~12, 15]{Hua2026Weld}; \\citep[PDF p.~10 Tables~IV, VI,\nVII]{P035}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 159,
+      "section": "Limitations of the Review",
+      "command": "\\citep[PDF pp.~12, 15]{Hua2026Weld}",
+      "postnote": "PDF pp.~12, 15",
+      "keys": [
+        "Hua2026Weld"
+      ],
+      "passage": "The main MVTec 3D-AD table gives 249 normal and 948 anomalous test samples (total 1197)\n\\citep[Table~1]{Bergmann2022The}. The welding penetration paper reports inconsistent acquisition and\ntraining numbers, and the light inspection paper reports different NwfDD values in its main table\nand its ablation table \\citep[PDF pp.~12, 15]{Hua2026Weld}; \\citep[PDF p.~10 Tables~IV, VI,\nVII]{P035}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 159,
+      "section": "Limitations of the Review",
+      "command": "\\citep[PDF p.~10 Tables~IV, VI,\nVII]{P035}",
+      "postnote": "PDF p.~10 Tables~IV, VI,\nVII",
+      "keys": [
+        "P035"
+      ],
+      "passage": "The main MVTec 3D-AD table gives 249 normal and 948 anomalous test samples (total 1197)\n\\citep[Table~1]{Bergmann2022The}. The welding penetration paper reports inconsistent acquisition and\ntraining numbers, and the light inspection paper reports different NwfDD values in its main table\nand its ablation table \\citep[PDF pp.~12, 15]{Hua2026Weld}; \\citep[PDF p.~10 Tables~IV, VI,\nVII]{P035}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 179,
+      "section": "Anomaly Detection, Defect Classification, and Failure Classification",
+      "command": "\\citep{Bergmann2019MVTec,Bergmann2022The,Hua2026Weld}",
+      "postnote": "",
+      "keys": [
+        "Bergmann2019MVTec",
+        "Bergmann2022The",
+        "Hua2026Weld"
+      ],
+      "passage": "Normal-only anomaly detection learns a reference for nominal observations. Supervised defect\nclassification, by contrast, uses labelled fault or quality classes. MVTec AD and MVTec 3D-AD are\nexamples of the normal-only approach, whereas welding penetration recognition is an example of\nsupervised classification \\citep{Bergmann2019MVTec,Bergmann2022The,Hua2026Weld}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 182,
+      "section": "Anomaly Detection, Defect Classification, and Failure Classification",
+      "command": "\\citep{Thoduka2024Handover}",
+      "postnote": "",
+      "keys": [
+        "Thoduka2024Handover"
+      ],
+      "passage": "HANDOVER defines five completed-interaction outcome classes: success, no approach, no grasp, no\nrelease and object drop \\citep{Thoduka2024Handover}. A task failure in the operational domain\ndoesn't necessarily mean that some physical damage has occurred or that we can identify the root\ncause of that damage."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 188,
+      "section": "Anomaly Detection, Defect Classification, and Failure Classification",
+      "command": "\\citep[PDF p.~8]{P035}",
+      "postnote": "PDF p.~8",
+      "keys": [
+        "P035"
+      ],
+      "passage": "Supervision is thus an important aspect of the evaluation. The weakly supervised inspection study\nbrings the MVTec data back in, as training requires image-level anomalous labels, which of course\nchanges the normal-only setting \\citep[PDF p.~8]{P035}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 192,
+      "section": "Anomaly Detection, Defect Classification, and Failure Classification",
+      "command": "\\citep[PDF pp.~6, 8--9]{P025}",
+      "postnote": "PDF pp.~6, 8--9",
+      "keys": [
+        "P025"
+      ],
+      "passage": "ZSG-IAD trains on reports and masks before evaluating on held-out categories or datasets. The\nzero-shot terminology refers to that assessment boundary rather than to the complete absence of\nanomaly supervised training \\citep[PDF pp.~6, 8--9]{P025}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 204,
+      "section": "Condition Estimation and Regression",
+      "command": "\\citep{AlDulaimi2019A}",
+      "postnote": "",
+      "keys": [
+        "AlDulaimi2019A"
+      ],
+      "passage": "Al-Dulaimi et al. look at a hybrid CNN-LSTM on simulated C-MAPSS trajectories using RMSE and an\nasymmetric prognostic score \\citep{AlDulaimi2019A}. Both branches of their model process the same\nset of selected telemetry channels. The study therefore provides evidence of complementary\nrepresentations of the sensor data rather than any physical camera/sensor complementarity."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 209,
+      "section": "Condition Estimation and Regression",
+      "command": "\\citep{Altinses2025Performance}",
+      "postnote": "",
+      "keys": [
+        "Altinses2025Performance"
+      ],
+      "passage": "The synthetic robot benchmarks of Altinses and Schwung examine cross-modal prediction,\nreconstruction, and downstream regression \\citep{Altinses2025Performance}. They show the importance\nof relationships between representations, though errors on different reconstructed outputs do not\nnecessarily tell you which modality is more useful for a given common prediction task."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 222,
+      "section": "Dataset-Provided Labels, Derived Targets, and Proxy Supervision",
+      "command": "\\citep{Petrich2021Multimodal}",
+      "postnote": "",
+      "keys": [
+        "Petrich2021Multimodal"
+      ],
+      "passage": "Reference labels have very different evidential roles. Post-build CT provides flaw localisation for\nthe voxel-level monitoring study by Petrich et al. \\citep{Petrich2021Multimodal}. Microscopy and\ndensity assessments are used to define quality classes in Li et al. \\citep{Li2022A}. Operando X-ray\nimaging is used to define process-state labels in Pandiyan et al. \\citep{Pandiyan2022Deep}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 223,
+      "section": "Dataset-Provided Labels, Derived Targets, and Proxy Supervision",
+      "command": "\\citep{Li2022A}",
+      "postnote": "",
+      "keys": [
+        "Li2022A"
+      ],
+      "passage": "Reference labels have very different evidential roles. Post-build CT provides flaw localisation for\nthe voxel-level monitoring study by Petrich et al. \\citep{Petrich2021Multimodal}. Microscopy and\ndensity assessments are used to define quality classes in Li et al. \\citep{Li2022A}. Operando X-ray\nimaging is used to define process-state labels in Pandiyan et al. \\citep{Pandiyan2022Deep}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 224,
+      "section": "Dataset-Provided Labels, Derived Targets, and Proxy Supervision",
+      "command": "\\citep{Pandiyan2022Deep}",
+      "postnote": "",
+      "keys": [
+        "Pandiyan2022Deep"
+      ],
+      "passage": "Reference labels have very different evidential roles. Post-build CT provides flaw localisation for\nthe voxel-level monitoring study by Petrich et al. \\citep{Petrich2021Multimodal}. Microscopy and\ndensity assessments are used to define quality classes in Li et al. \\citep{Li2022A}. Operando X-ray\nimaging is used to define process-state labels in Pandiyan et al. \\citep{Pandiyan2022Deep}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 250,
+      "section": "Retrospective Assessment and Online Monitoring",
+      "command": "\\citep[PDF p.~7 Section~VI]{Thoduka2024Handover}",
+      "postnote": "PDF p.~7 Section~VI",
+      "keys": [
+        "Thoduka2024Handover"
+      ],
+      "passage": "HANDOVER is very clear that its baselines classify outcomes post-trial, with causal online\nprediction still being work in progress \\citep[PDF p.~7 Section~VI]{Thoduka2024Handover}. A\npost-pass photo, a layer summary and the completed action all provide different information horizons\nfrom prospective monitoring \\citep{P045,Petrich2021Multimodal}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 252,
+      "section": "Retrospective Assessment and Online Monitoring",
+      "command": "\\citep{P045,Petrich2021Multimodal}",
+      "postnote": "",
+      "keys": [
+        "P045",
+        "Petrich2021Multimodal"
+      ],
+      "passage": "HANDOVER is very clear that its baselines classify outcomes post-trial, with causal online\nprediction still being work in progress \\citep[PDF p.~7 Section~VI]{Thoduka2024Handover}. A\npost-pass photo, a layer summary and the completed action all provide different information horizons\nfrom prospective monitoring \\citep{P045,Petrich2021Multimodal}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 259,
+      "section": "Retrospective Assessment and Online Monitoring",
+      "command": "\\citep[PDF pp.~6--7]{P003}",
+      "postnote": "PDF pp.~6--7",
+      "keys": [
+        "P003"
+      ],
+      "passage": "Computational delay must also be distinguished from observation time. DMAW uses 20 frames at 37~fps\nand reports a much shorter forward-pass latency. As a result, approximately half a second of\nobservation is distinct from computational delay \\citep[PDF pp.~6--7]{P003}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 262,
+      "section": "Retrospective Assessment and Online Monitoring",
+      "command": "\\citep{Pandiyan2022Deep}",
+      "postnote": "",
+      "keys": [
+        "Pandiyan2022Deep"
+      ],
+      "passage": "Similarly, simply varying the input duration of a CNN--LSTM does not, by itself, mean that a warning\ncan be generated before a defect occurs \\citep{Pandiyan2022Deep}. Active monitoring requires a\ndefined information cut-off, acquisition delay and end-to-end prediction workload."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 284,
+      "section": "Visual and Video Observations",
+      "command": "\\citep[PDF pp.~4--7]{P024}",
+      "postnote": "PDF pp.~4--7",
+      "keys": [
+        "P024"
+      ],
+      "passage": "GPAD combines RGB-depth features with point cloud priors \\citep[PDF pp.~4--7]{P024}. This is an\nexample of integration across representations that do not necessarily require three separate\nphysical acquisition sources."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 289,
+      "section": "Visual and Video Observations",
+      "command": "\\citep{Bergmann2022The,Bonfiglioli2023The}",
+      "postnote": "",
+      "keys": [
+        "Bergmann2022The",
+        "Bonfiglioli2023The"
+      ],
+      "passage": "RGB-geometry benchmarks describe appearance and shape rather than controller dynamics or motor\ncurrent \\citep{Bergmann2022The,Bonfiglioli2023The}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 293,
+      "section": "Visual and Video Observations",
+      "command": "\\citep{Huo2022Multisensor,Hua2026Weld,P045,Thoduka2024Handover}",
+      "postnote": "",
+      "keys": [
+        "Huo2022Multisensor",
+        "Hua2026Weld",
+        "P045",
+        "Thoduka2024Handover"
+      ],
+      "passage": "Physical camera-plus-measurement precedents include thermal imaging with vibration, welding images\nwith sound, tool images with acoustic emission, and robot video with force/torque and gripper state\n\\citep{Huo2022Multisensor,Hua2026Weld,P045,Thoduka2024Handover}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 297,
+      "section": "Visual and Video Observations",
+      "command": "\\citep[PDF pp.~19--22]{P045}",
+      "postnote": "PDF pp.~19--22",
+      "keys": [
+        "P045"
+      ],
+      "passage": "Their prediction units range from static inspection through to process windows and full trials. In\nthe tool wear study, the camera is used post-cutting pass, with the preceding acoustic emission\ncapturing the active cutting \\citep[PDF pp.~19--22]{P045}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 315,
+      "section": "Sensor Time Series and Process Measurements",
+      "command": "\\citep{Yang2024Fault,Li2025PGMTKD}",
+      "postnote": "",
+      "keys": [
+        "Yang2024Fault",
+        "Li2025PGMTKD"
+      ],
+      "passage": "The harmonic-drive study combines high-frequency vibration with servo information, whereas PGMTKD\ntransfers pressure-vibration teacher knowledge to a pressure-only student\n\\citep{Yang2024Fault,Li2025PGMTKD}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 322,
+      "section": "Sensor Time Series and Process Measurements",
+      "command": "\\citep{Kullu2022A}",
+      "postnote": "",
+      "keys": [
+        "Kullu2022A"
+      ],
+      "passage": "Representations can also inflate the apparent number of modalities without including any new\nmeasurements. Kullu et al. combine current and vibration using both raw and STFT representations\n\\citep{Kullu2022A}. Wan et al. derive statistical 'vibration' features from two acoustic sensors\nwithout acquiring an accelerometer channel at all \\citep{Wan2024Pipeline}. Wang et al. combine\nsource domain features with the decisions from the vibration data \\citep{Wang2025A}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 323,
+      "section": "Sensor Time Series and Process Measurements",
+      "command": "\\citep{Wan2024Pipeline}",
+      "postnote": "",
+      "keys": [
+        "Wan2024Pipeline"
+      ],
+      "passage": "Representations can also inflate the apparent number of modalities without including any new\nmeasurements. Kullu et al. combine current and vibration using both raw and STFT representations\n\\citep{Kullu2022A}. Wan et al. derive statistical 'vibration' features from two acoustic sensors\nwithout acquiring an accelerometer channel at all \\citep{Wan2024Pipeline}. Wang et al. combine\nsource domain features with the decisions from the vibration data \\citep{Wang2025A}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 324,
+      "section": "Sensor Time Series and Process Measurements",
+      "command": "\\citep{Wang2025A}",
+      "postnote": "",
+      "keys": [
+        "Wang2025A"
+      ],
+      "passage": "Representations can also inflate the apparent number of modalities without including any new\nmeasurements. Kullu et al. combine current and vibration using both raw and STFT representations\n\\citep{Kullu2022A}. Wan et al. derive statistical 'vibration' features from two acoustic sensors\nwithout acquiring an accelerometer channel at all \\citep{Wan2024Pipeline}. Wang et al. combine\nsource domain features with the decisions from the vibration data \\citep{Wang2025A}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 339,
+      "section": "Audio Observations",
+      "command": "\\citep[Table~3]{Purohit2019MIMII}",
+      "postnote": "Table~3",
+      "keys": [
+        "Purohit2019MIMII"
+      ],
+      "passage": "MIMII deliberately incorporates factory background recordings at a range of signal-to-noise ratios.\nIts fan baseline AUC drops from .94 at $+6$~dB to .70 at $-6$~dB \\citep[Table~3]{Purohit2019MIMII}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 342,
+      "section": "Audio Observations",
+      "command": "\\citep{Koizumi2019ToyADMOS}",
+      "postnote": "",
+      "keys": [
+        "Koizumi2019ToyADMOS"
+      ],
+      "passage": "ToyADMOS provides miniature machine recordings and an explicit noise-mixing protocol, making it a\nuseful reference for acoustic monitoring \\citep{Koizumi2019ToyADMOS}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 346,
+      "section": "Audio Observations",
+      "command": "\\citep{Li2022A}",
+      "postnote": "",
+      "keys": [
+        "Li2022A"
+      ],
+      "passage": "In process monitoring, airborne acoustic signals can be paired with either a melt pool camera or a\nphotodiode. Signal-to-image encoding in the Li et al. study is an acoustic-optical-signal experiment\n\\citep{Li2022A}, and Xie et al. use actual camera images \\citep{Xie2025Audiovisual}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 346,
+      "section": "Audio Observations",
+      "command": "\\citep{Xie2025Audiovisual}",
+      "postnote": "",
+      "keys": [
+        "Xie2025Audiovisual"
+      ],
+      "passage": "In process monitoring, airborne acoustic signals can be paired with either a melt pool camera or a\nphotodiode. Signal-to-image encoding in the Li et al. study is an acoustic-optical-signal experiment\n\\citep{Li2022A}, and Xie et al. use actual camera images \\citep{Xie2025Audiovisual}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 349,
+      "section": "Audio Observations",
+      "command": "\\citep{Koizumi2020Description}",
+      "postnote": "",
+      "keys": [
+        "Koizumi2020Description"
+      ],
+      "passage": "DCASE2020 Task2 provides audio-only baselines under an evaluation protocol that differs from that of\nlater domain shift challenges \\citep{Koizumi2020Description}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 364,
+      "section": "Synchronisation, Correspondence, and Modality Availability",
+      "command": "\\citep{Costanzino2024Multimodal,Petrich2021Multimodal}",
+      "postnote": "",
+      "keys": [
+        "Costanzino2024Multimodal",
+        "Petrich2021Multimodal"
+      ],
+      "passage": "RGB-point cloud feature mapping uses registered benchmark geometry. Process monitoring may instead\nrequire time synchronisation and projection onto a common spatial grid\n\\citep{Costanzino2024Multimodal,Petrich2021Multimodal}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 368,
+      "section": "Synchronisation, Correspondence, and Modality Availability",
+      "command": "\\citep{Chen2023Multisensor}",
+      "postnote": "",
+      "keys": [
+        "Chen2023Multisensor"
+      ],
+      "passage": "The digital twin study maps sensor features to robot TCP positions, showing how position can\nestablish correspondence even if it is not, in any normal sense, a predictive feature\n\\citep{Chen2023Multisensor}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 375,
+      "section": "Synchronisation, Correspondence, and Modality Availability",
+      "command": "\\citep{Li2022A}",
+      "postnote": "",
+      "keys": [
+        "Li2022A"
+      ],
+      "passage": "The acoustic-photodiode study explicitly lacks modality registration, which limits claims about\ncorrespondence between its two encoded streams \\citep{Li2022A}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 402,
+      "section": "Engineered Features and Conventional Machine Learning",
+      "command": "\\citep{Horwitz2023Back,Goodarzi2023Deep}",
+      "postnote": "",
+      "keys": [
+        "Horwitz2023Back",
+        "Goodarzi2023Deep"
+      ],
+      "passage": "The literature is replete with evidence of compact representations. Hand-crafted local geometry is\ncompetitive in 3D inspection, and a hydraulic CNN paper reports 1.7\\% error for its best single\nsensor versus 20.5\\% error for all seventeen sensors \\citep{Horwitz2023Back,Goodarzi2023Deep}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 410,
+      "section": "Engineered Features and Conventional Machine Learning",
+      "command": "\\citep[PDF p.~10, Table~V]{P035}",
+      "postnote": "PDF p.~10, Table~V",
+      "keys": [
+        "P035"
+      ],
+      "passage": "Industrial vision also offers lightweight alternatives. The weakly supervised inspection network\nuses a single camera, internal anomaly-aware features, and a compact CNN. Reported computational\ncost is 2.33 million parameters and 5.65~ms per image \\citep[PDF p.~10, Table~V]{P035}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 427,
+      "section": "Pretrained Visual Representations",
+      "command": "\\citep[Section~3]{Roth2022Towards}",
+      "postnote": "Section~3",
+      "keys": [
+        "Roth2022Towards"
+      ],
+      "passage": "PatchCore successfully employs pre-trained, locally aggregated intermediate CNN features together\nwith a memory of nominal patches for industrial inspection \\citep[Section~3]{Roth2022Towards}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 433,
+      "section": "Pretrained Visual Representations",
+      "command": "\\citep[Sections~4.1--4.2]{Zhao2024RTDETR}",
+      "postnote": "Sections~4.1--4.2",
+      "keys": [
+        "Zhao2024RTDETR"
+      ],
+      "passage": "RT-DETR provides another architectural precedent in the form of its multi-scale visual backbone\n\\citep[Sections~4.1--4.2]{Zhao2024RTDETR}. Features at several spatial scales would be viable\ncandidates for the prediction target."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 443,
+      "section": "Pretrained Visual Representations",
+      "command": "\\citep{Rudolph2023Asymmetric,Costanzino2024Multimodal}",
+      "postnote": "",
+      "keys": [
+        "Rudolph2023Asymmetric",
+        "Costanzino2024Multimodal"
+      ],
+      "passage": "Asymmetric student-teacher and cross-modal mapping methods also provide further evidence for\ntask-specific use of the learned visual representations\n\\citep{Rudolph2023Asymmetric,Costanzino2024Multimodal}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 447,
+      "section": "Pretrained Visual Representations",
+      "command": "\\citep{P031}",
+      "postnote": "",
+      "keys": [
+        "P031"
+      ],
+      "passage": "Vision-language inspection introduces semantic information as another potential source of\nrepresentation value. DSE-AD combines historical and current rail images with normal and abnormal\nposition prompts and assesses pixel localisation on a further rail domain \\citep{P031}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 462,
+      "section": "Temporal and Time-Series Representations",
+      "command": "\\citep[Sections~3.1--3.2]{Nie2023PatchTST}",
+      "postnote": "Sections~3.1--3.2",
+      "keys": [
+        "Nie2023PatchTST"
+      ],
+      "passage": "PatchTST addresses this through patch-based time-series representations and shared modelling across\nchannels \\citep[Sections~3.1--3.2]{Nie2023PatchTST}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 465,
+      "section": "Temporal and Time-Series Representations",
+      "command": "\\citep[Table~7]{Nie2023PatchTST}",
+      "postnote": "Table~7",
+      "keys": [
+        "Nie2023PatchTST"
+      ],
+      "passage": "On the Weather dataset at a forecasting horizon of 96, the patch-plus-channel independent model\nobtains an MSE of .152, compared with .164 without patching \\citep[Table~7]{Nie2023PatchTST}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 475,
+      "section": "Temporal and Time-Series Representations",
+      "command": "\\citep{P034,P013}",
+      "postnote": "",
+      "keys": [
+        "P034",
+        "P013"
+      ],
+      "passage": "Video representation learning looks at another temporal structure. TimeSformer and Video Swin model\nthe spatial and temporal relations between video frames \\citep{P034,P013}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 479,
+      "section": "Temporal and Time-Series Representations",
+      "command": "\\citep{AlDulaimi2019A}",
+      "postnote": "",
+      "keys": [
+        "AlDulaimi2019A"
+      ],
+      "passage": "These approaches provide an alternative to simply averaging independently encoded frames. The\nindustrial CNN-LSTM remaining useful life study also shows the importance of observation length\nwithin its simulated prediction task \\citep{AlDulaimi2019A}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 494,
+      "section": "Audio Representations",
+      "command": "\\citep{Hua2026Weld,P003}",
+      "postnote": "",
+      "keys": [
+        "Hua2026Weld",
+        "P003"
+      ],
+      "passage": "The Welding Penetration Network uses VMD and GASF; DMAW uses Transformer representations adapted to\nthe welding observations \\citep{Hua2026Weld,P003}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 500,
+      "section": "Audio Representations",
+      "command": "\\citep{P011}",
+      "postnote": "",
+      "keys": [
+        "P011"
+      ],
+      "passage": "The Audio Spectrogram Transformer is a pretrained candidate for acoustic representation learning\n\\citep{P011}. The results on the general audio benchmark are sufficiently promising to warrant\nindustrial investigation. However, the appropriateness of such representations will depend heavily\non the particular acoustic environment and the specific prediction task."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 505,
+      "section": "Audio Representations",
+      "command": "\\citep{Purohit2019MIMII,Koizumi2019ToyADMOS}",
+      "postnote": "",
+      "keys": [
+        "Purohit2019MIMII",
+        "Koizumi2019ToyADMOS"
+      ],
+      "passage": "MIMII and ToyADMOS both go some way to establishing the importance of background composition and\nnoise environment \\citep{Purohit2019MIMII,Koizumi2019ToyADMOS}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 518,
+      "section": "Frozen Representations, Fine-Tuning, and Computational Restrictions",
+      "command": "\\citep{Roth2022Towards,Costanzino2024Multimodal}",
+      "postnote": "",
+      "keys": [
+        "Roth2022Towards",
+        "Costanzino2024Multimodal"
+      ],
+      "passage": "Benchmark methods based on pretrained features show that you can get useful representations without\ngoing through the entire original representation-learning process on the industrial dataset\n\\citep{Roth2022Towards,Costanzino2024Multimodal}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 532,
+      "section": "Frozen Representations, Fine-Tuning, and Computational Restrictions",
+      "command": "\\citep{Li2025PGMTKD,Huang2026Rolling}",
+      "postnote": "",
+      "keys": [
+        "Li2025PGMTKD",
+        "Huang2026Rolling"
+      ],
+      "passage": "Distillation also makes a further distinction between training and deployment. The PGMTKD multimodal\nteachers are used to enrich a pressure-only student. The gated acoustic-vibration study reports a\ndistilled LightGBM student, though the nature of the teacher features and the timing of the inputs\nremain ambiguous \\citep{Li2025PGMTKD,Huang2026Rolling}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 560,
+      "section": "Unimodal References and Incremental Modality Value",
+      "command": "\\citep[PDF p.~7,\nTable~III]{P003}",
+      "postnote": "PDF p.~7,\nTable~III",
+      "keys": [
+        "P003"
+      ],
+      "passage": "The original welding motivation is why this reference is so important. DMAW fuses the image and\naudio Transformer representations to classify the four welding states. The reported accuracy is\n96.1\\% with fusion, 90.2\\% for the image model and 84.4\\% for the audio model \\citep[PDF p.~7,\nTable~III]{P003}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 567,
+      "section": "Unimodal References and Incremental Modality Value",
+      "command": "\\citep[PDF pp.~18, 22, Tables~1--3]{Hua2026Weld}",
+      "postnote": "PDF pp.~18, 22, Tables~1--3",
+      "keys": [
+        "Hua2026Weld"
+      ],
+      "passage": "In contrast, the weld penetration study reports 100\\% clean test accuracy for its image-only,\naudio-only, and fused models \\citep[PDF pp.~18, 22, Tables~1--3]{Hua2026Weld}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 573,
+      "section": "Unimodal References and Incremental Modality Value",
+      "command": "\\citep[PDF p.~7, Table~III]{Thoduka2024Handover}",
+      "postnote": "PDF p.~7, Table~III",
+      "keys": [
+        "Thoduka2024Handover"
+      ],
+      "passage": "A similar distinction is made in the case of robotic monitoring. The HANDOVER study reports 69.1\\%\naccuracy for video plus force/torque and 67.9\\% when gripper state is added to the I3D-D family\n\\citep[PDF p.~7, Table~III]{Thoduka2024Handover}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 581,
+      "section": "Unimodal References and Incremental Modality Value",
+      "command": "\\citep[PDF p.~24, Table~1]{P045}",
+      "postnote": "PDF p.~24, Table~1",
+      "keys": [
+        "P045"
+      ],
+      "passage": "The tool wear study reports an MAE of 6.6183 for their proposed model, 8.3002 for the visual\nResNet50 and 60.5118 for the acoustic reference. All the other multimodal architectures evaluated\nhave errors in excess of 45 \\citep[PDF p.~24, Table~1]{P045}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 588,
+      "section": "Unimodal References and Incremental Modality Value",
+      "command": "\\citep{Wang2020What,Goodarzi2023Deep}",
+      "postnote": "",
+      "keys": [
+        "Wang2020What",
+        "Goodarzi2023Deep"
+      ],
+      "passage": "Transferable results on the difficulties of multimodal optimisation and on industrial all-channel\nlosses underline the need to establish incremental gains against a strong admissible reference\n\\citep{Wang2020What,Goodarzi2023Deep}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 602,
+      "section": "Feature Concatenation",
+      "command": "\\citep[Table~4]{Wang2023Multimodal}",
+      "postnote": "Table~4",
+      "keys": [
+        "Wang2023Multimodal"
+      ],
+      "passage": "M3DM's direct concatenation ablation is worse than its point cloud reference, while the full hybrid\nsystem outperforms both individual inputs \\citep[Table~4]{Wang2023Multimodal}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 605,
+      "section": "Feature Concatenation",
+      "command": "\\citep{Li2025MADFlow}",
+      "postnote": "",
+      "keys": [
+        "Li2025MADFlow"
+      ],
+      "passage": "MADFlow also provides a further protocol-specific comparison between alignment and concatenation\n\\citep{Li2025MADFlow}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 609,
+      "section": "Feature Concatenation",
+      "command": "\\citep[PDF p.~4, Table~4]{P023}",
+      "postnote": "PDF p.~4, Table~4",
+      "keys": [
+        "P023"
+      ],
+      "passage": "CFA provides transferable evidence from forecasting. For DLinear on the Energy dataset, the first\nconcatenation gives an MSE of .670, compared with .263 without text and .243 with constrained fusion\n\\citep[PDF p.~4, Table~4]{P023}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 615,
+      "section": "Feature Concatenation",
+      "command": "\\citep[Table~3]{Li2022A}",
+      "postnote": "Table~3",
+      "keys": [
+        "Li2022A"
+      ],
+      "passage": "Manufacturing fusion can similarly improve one architecture at the expense of the other under the\nsame broad prediction task \\citep[Table~3]{Li2022A}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 630,
+      "section": "Prediction-Level and Late Fusion",
+      "command": "\\citep[PDF\np.~7, Table~VII]{Huo2022Multisensor}",
+      "postnote": "PDF\np.~7, Table~VII",
+      "keys": [
+        "Huo2022Multisensor"
+      ],
+      "passage": "Thermal-vibration diagnosis provides direct evidence of physical camera-sensor prediction-level\nfusion. They use separate CNN softmax outputs with weighted Dempster-Shafer aggregation and report a\nclean 100\\% diagnostic rate, compared with 99.06\\% for IRT and 96.32\\% for vibration \\citep[PDF\np.~7, Table~VII]{Huo2022Multisensor}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 637,
+      "section": "Prediction-Level and Late Fusion",
+      "command": "\\citep[PDF pp.~5--7]{Thoduka2024Handover}",
+      "postnote": "PDF pp.~5--7",
+      "keys": [
+        "Thoduka2024Handover"
+      ],
+      "passage": "HANDOVER compares late outputs with intermediate sensor integration in the RGB and optical flow\nbranches \\citep[PDF pp.~5--7]{Thoduka2024Handover}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 640,
+      "section": "Prediction-Level and Late Fusion",
+      "command": "\\citep{Costanzino2024Multimodal,Shangguan2025CPIR}",
+      "postnote": "",
+      "keys": [
+        "Costanzino2024Multimodal",
+        "Shangguan2025CPIR"
+      ],
+      "passage": "Cross-modal feature mapping and CPIR combine discrepancy maps, which need not be probabilities\n\\citep{Costanzino2024Multimodal,Shangguan2025CPIR}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 643,
+      "section": "Prediction-Level and Late Fusion",
+      "command": "\\citep{Wang2020What,Xie2025Audiovisual}",
+      "postnote": "",
+      "keys": [
+        "Wang2020What",
+        "Xie2025Audiovisual"
+      ],
+      "passage": "Some papers also use the term 'late fusion' to describe representation-level integration prior to\nclassification \\citep{Wang2020What,Xie2025Audiovisual}. That underlines the importance of knowing\nwhat information you are actually fusing."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 649,
+      "section": "Prediction-Level and Late Fusion",
+      "command": "\\citep[Sections~2--3]{Ting1999Issues}",
+      "postnote": "Sections~2--3",
+      "keys": [
+        "Ting1999Issues"
+      ],
+      "passage": "Stacked generalisation provides a scientific basis for learning a second-stage combination from\ncross-validated predictions. Probability outputs contain predictive information beyond the hard\nclass labels so that a second-stage learner can estimate the joint utility of the outputs\n\\citep[Sections~2--3]{Ting1999Issues}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 666,
+      "section": "Gated and Context-Conditioned Fusion",
+      "command": "\\citep[Section~3,\nTable~2]{P006}",
+      "postnote": "Section~3,\nTable~2",
+      "keys": [
+        "P006"
+      ],
+      "passage": "Gated Multimodal Units do provide evidence of transferable conditional representation integration.\nThe architecture fuses visual and textual information and achieves a macro F-score of .541, compared\nwith .521 for the concatenation baseline in the movie-genre classification task \\citep[Section~3,\nTable~2]{P006}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 674,
+      "section": "Gated and Context-Conditioned Fusion",
+      "command": "\\citep[PDF p.~9,\nTable~V]{P003}",
+      "postnote": "PDF p.~9,\nTable~V",
+      "keys": [
+        "P003"
+      ],
+      "passage": "Adaptive integration has also been looked at in an industrial context. DMAW achieved 96.1\\%\naccuracy, compared with 90.5\\% for summation and 92.6\\% for its gate comparator \\citep[PDF p.~9,\nTable~V]{P003}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 678,
+      "section": "Gated and Context-Conditioned Fusion",
+      "command": "\\citep[PDF pp.~3--5]{P026}",
+      "postnote": "PDF pp.~3--5",
+      "keys": [
+        "P026"
+      ],
+      "passage": "TC-MAF provides another approach whereby the auxiliary RGB evidence is bounded around a multimodal\nanchor using normal training dispersion and local disagreement \\citep[PDF pp.~3--5]{P026}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 684,
+      "section": "Gated and Context-Conditioned Fusion",
+      "command": "\\citep[PDF p.~3, Eq.~8]{P038}",
+      "postnote": "PDF p.~3, Eq.~8",
+      "keys": [
+        "P038"
+      ],
+      "passage": "An important evaluation dimension is what governs the allocation. GCCF-AD is described as dynamic\nfusion, but the formulation they report is a learned scalar with no explicit sample-quality input\n\\citep[PDF p.~3, Eq.~8]{P038}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 688,
+      "section": "Gated and Context-Conditioned Fusion",
+      "command": "\\citep{Li2025PGMTKD,P045}",
+      "postnote": "",
+      "keys": [
+        "Li2025PGMTKD",
+        "P045"
+      ],
+      "passage": "PGMTKD uses training losses to assign teacher contributions, and task loss balancing focuses on\noptimisation rather than any direct measure of input quality at deployment\n\\citep{Li2025PGMTKD,P045}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 691,
+      "section": "Gated and Context-Conditioned Fusion",
+      "command": "\\citep{Huang2026Rolling,Ying2025Trustworthy}",
+      "postnote": "",
+      "keys": [
+        "Huang2026Rolling",
+        "Ying2025Trustworthy"
+      ],
+      "passage": "GAF-Net uses progressive feature feedback, and trustworthy fusion employs evidence-based aggregation\n\\citep{Huang2026Rolling,Ying2025Trustworthy}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 709,
+      "section": "Comparability and Fairness of Fusion Evaluations",
+      "command": "\\citep{P045,P051}",
+      "postnote": "",
+      "keys": [
+        "P045",
+        "P051"
+      ],
+      "passage": "The tool wear study alters the architectural components as part of the fusion, and the incomplete\nfederated imagery study alters the client data access as well as the combining mechanism\n\\citep{P045,P051}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 716,
+      "section": "Comparability and Fairness of Fusion Evaluations",
+      "command": "\\citep[PDF p.~7, Table~3]{P026}",
+      "postnote": "PDF p.~7, Table~3",
+      "keys": [
+        "P026"
+      ],
+      "passage": "Comparisons using the same evidence sources can support a narrower attribution. TC-MAF retains the\nsame evidence sources, comparing bounded fusion against static averaging, weighted scores, rank\nfusion, and a learned gate \\citep[PDF p.~7, Table~3]{P026}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 719,
+      "section": "Comparability and Fairness of Fusion Evaluations",
+      "command": "\\citep[PDF p.~10, Table~4]{P033}",
+      "postnote": "PDF p.~10, Table~4",
+      "keys": [
+        "P033"
+      ],
+      "passage": "On the flip side, the disagreement-aware study uses a locally released code baseline that performs\nworse than the published M3DM result \\citep[PDF p.~10, Table~4]{P033}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 722,
+      "section": "Comparability and Fairness of Fusion Evaluations",
+      "command": "\\citep{Li2025PGMTKD}",
+      "postnote": "",
+      "keys": [
+        "Li2025PGMTKD"
+      ],
+      "passage": "Distilled predictors can also access training information that is not available to standard unimodal\nmodels \\citep{Li2025PGMTKD}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 745,
+      "section": "Missing Modalities",
+      "command": "\\citep{Li2025PGMTKD,Sui2026Incomplete,P005,P016}",
+      "postnote": "",
+      "keys": [
+        "Li2025PGMTKD",
+        "Sui2026Incomplete",
+        "P005",
+        "P016"
+      ],
+      "passage": "PGMTKD's pressure-only student and incomplete RGB-geometry methods do provide evidence for reduced\ninput inference. ModDrop and the missing-modality Transformers add further transferable mechanisms\nand counterexamples \\citep{Li2025PGMTKD,Sui2026Incomplete,P005,P016}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 751,
+      "section": "Missing Modalities",
+      "command": "\\citep[PDF p.~7, Table~3]{P026}",
+      "postnote": "PDF p.~7, Table~3",
+      "keys": [
+        "P026"
+      ],
+      "passage": "TC-MAF explicitly evaluates unavailable 3D input. I-AUROC drops from .9788 to .9330 and P-AUPRO from\n.9901 to .9586 \\citep[PDF p.~7, Table~3]{P026}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 755,
+      "section": "Missing Modalities",
+      "command": "\\citep[PDF\np.~29, Figure~8]{P051}",
+      "postnote": "PDF\np.~29, Figure~8",
+      "keys": [
+        "P051"
+      ],
+      "passage": "Federated substation monitoring varies the proportion of incomplete clients to 80\\% \\citep[PDF\np.~29, Figure~8]{P051}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 762,
+      "section": "Missing Modalities",
+      "command": "\\citep{P025}",
+      "postnote": "",
+      "keys": [
+        "P025"
+      ],
+      "passage": "ZSG-IAD reports input subset comparisons without fully defining the shared checkpoint and training\nexposure \\citep{P025}. Missing training images in the hot rolling regime constitute another\navailability regime \\citep{Ma2025A}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 763,
+      "section": "Missing Modalities",
+      "command": "\\citep{Ma2025A}",
+      "postnote": "",
+      "keys": [
+        "Ma2025A"
+      ],
+      "passage": "ZSG-IAD reports input subset comparisons without fully defining the shared checkpoint and training\nexposure \\citep{P025}. Missing training images in the hot rolling regime constitute another\navailability regime \\citep{Ma2025A}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 775,
+      "section": "Noise and Partial Degradation",
+      "command": "\\citep{Huo2022Multisensor,Hua2026Weld,Ying2025Trustworthy,Huang2026Rolling}",
+      "postnote": "",
+      "keys": [
+        "Huo2022Multisensor",
+        "Hua2026Weld",
+        "Ying2025Trustworthy",
+        "Huang2026Rolling"
+      ],
+      "passage": "Physical monitoring studies do provide evidence of a number of controlled degradation mechanisms.\nThermal-vibration diagnosis examines Gaussian noise and vibration bias/stuck faults, while welding\npenetration recognition examines artificial interference. Acoustic-thermal and acoustic-vibration\nstudies look at other noise settings\n\\citep{Huo2022Multisensor,Hua2026Weld,Ying2025Trustworthy,Huang2026Rolling}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 782,
+      "section": "Noise and Partial Degradation",
+      "command": "\\citep[PDF p.~7, Table~VIII]{Huo2022Multisensor}",
+      "postnote": "PDF p.~7, Table~VIII",
+      "keys": [
+        "Huo2022Multisensor"
+      ],
+      "passage": "At $-2$~dB, noisy IR thermography gives 95.26\\%, which jumps to 97.6\\% when combined with fault-free\nvibration. Noisy vibration alone gives 36.86\\%, jumping to 94.2\\% when combined with fault-free IR\nthermography \\citep[PDF p.~7, Table~VIII]{Huo2022Multisensor}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 788,
+      "section": "Noise and Partial Degradation",
+      "command": "\\citep[PDF pp.~18, 22, Tables~1--3]{Hua2026Weld}",
+      "postnote": "PDF pp.~18, 22, Tables~1--3",
+      "keys": [
+        "Hua2026Weld"
+      ],
+      "passage": "The welding penetration study reports a fused accuracy of 93.33\\% under its interference condition\n\\citep[PDF pp.~18, 22, Tables~1--3]{Hua2026Weld}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 811,
+      "section": "Temporal Misalignment and Distribution Shift",
+      "command": "\\citep{Petrich2021Multimodal,Chen2023Multisensor,P021}",
+      "postnote": "",
+      "keys": [
+        "Petrich2021Multimodal",
+        "Chen2023Multisensor",
+        "P021"
+      ],
+      "passage": "Registration studies have established the importance of alignment in multimodal monitoring.\nOmniFuser's repeated within-pass images provide a way to construct paired observations rather than\ndirectly test a synchronisation failure \\citep{Petrich2021Multimodal,Chen2023Multisensor,P021}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 815,
+      "section": "Temporal Misalignment and Distribution Shift",
+      "command": "\\citep[PDF p.~7, Table~V]{Thoduka2024Handover}",
+      "postnote": "PDF p.~7, Table~V",
+      "keys": [
+        "Thoduka2024Handover"
+      ],
+      "passage": "The literature also contains examples of evaluation under changed acquisition conditions. HANDOVER\ntrains on one robot and evaluates on a different robot, and there's a rail localisation study that\nevaluates a Subway-trained model on high-speed rail \\citep[PDF p.~7, Table~V]{Thoduka2024Handover};\n\\citep[PDF p.~10, Table~III]{P031}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 816,
+      "section": "Temporal Misalignment and Distribution Shift",
+      "command": "\\citep[PDF p.~10, Table~III]{P031}",
+      "postnote": "PDF p.~10, Table~III",
+      "keys": [
+        "P031"
+      ],
+      "passage": "The literature also contains examples of evaluation under changed acquisition conditions. HANDOVER\ntrains on one robot and evaluates on a different robot, and there's a rail localisation study that\nevaluates a Subway-trained model on high-speed rail \\citep[PDF p.~7, Table~V]{Thoduka2024Handover};\n\\citep[PDF p.~10, Table~III]{P031}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 820,
+      "section": "Temporal Misalignment and Distribution Shift",
+      "command": "\\citep{Wang2025A,Chu2024A,Huang2026Rolling,Bevans2023Heterogeneous}",
+      "postnote": "",
+      "keys": [
+        "Wang2025A",
+        "Chu2024A",
+        "Huang2026Rolling",
+        "Bevans2023Heterogeneous"
+      ],
+      "passage": "Target-adaptive methods, target-validated condition studies and independent build experiments are\nall different forms of access to the assessment domain\n\\citep{Wang2025A,Chu2024A,Huang2026Rolling,Bevans2023Heterogeneous}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 824,
+      "section": "Temporal Misalignment and Distribution Shift",
+      "command": "\\citep{P026,P033}",
+      "postnote": "",
+      "keys": [
+        "P026",
+        "P033"
+      ],
+      "passage": "Rebuilding normal memories on Eyecandies using fixed fusion hyperparameters is evidence of recipe\ntransfer, rather than deploying an unaltered model to an untouched target installation\n\\citep{P026,P033}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 838,
+      "section": "Quality-Aware and Uncertainty-Aware Fusion",
+      "command": "\\citep[PDF pp.~4--5]{Zhang2023QMF}",
+      "postnote": "PDF pp.~4--5",
+      "keys": [
+        "Zhang2023QMF"
+      ],
+      "passage": "QMF furnishes a theoretical basis for studying sample-dependent weighting via generalisation upper\nbounds under stated relationships between uncertainty and loss, assuming a common training and test\ndistribution \\citep[PDF pp.~4--5]{Zhang2023QMF}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 841,
+      "section": "Quality-Aware and Uncertainty-Aware Fusion",
+      "command": "\\citep[PDF pp.~4--5, 9]{P022}",
+      "postnote": "PDF pp.~4--5, 9",
+      "keys": [
+        "P022"
+      ],
+      "passage": "The transferable UDML experiments train on controlled Gaussian corruption intensities and recognise\nthat sample difficulty can be confused with modality corruption \\citep[PDF pp.~4--5, 9]{P022}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 848,
+      "section": "Quality-Aware and Uncertainty-Aware Fusion",
+      "command": "\\citep[PDF p.~8, Table~1]{Zhang2023QMF}",
+      "postnote": "PDF p.~8, Table~1",
+      "keys": [
+        "Zhang2023QMF"
+      ],
+      "passage": "QMF reports an NYU scene classification accuracy of 70.09\\% on clean inputs, compared to 70.30\\% for\nconcatenation. At corruption intensity ten, it reports 55.60\\% compared to 51.99\\% for late fusion\n\\citep[PDF p.~8, Table~1]{Zhang2023QMF}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 856,
+      "section": "Quality-Aware and Uncertainty-Aware Fusion",
+      "command": "\\citep[PDF\npp.~10--11, Tables~4--5]{P033}",
+      "postnote": "PDF\npp.~10--11, Tables~4--5",
+      "keys": [
+        "P033"
+      ],
+      "passage": "The effect of the adaptation mechanisms also differs across prediction endpoints. The disagreement\nadd-on increases the local MVTec image AUROC from .779 to .800 and, at the same time, reduces the\nEyecandies image AUROC from .810 to .794, even though the pixel metrics have improved \\citep[PDF\npp.~10--11, Tables~4--5]{P033}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 860,
+      "section": "Quality-Aware and Uncertainty-Aware Fusion",
+      "command": "\\citep{P026}",
+      "postnote": "",
+      "keys": [
+        "P026"
+      ],
+      "passage": "TC-MAF uses normal-training dispersion and local disagreement to control the contribution of\nauxiliary evidence \\citep{P026}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 867,
+      "section": "Quality-Aware and Uncertainty-Aware Fusion",
+      "command": "\\citep{Zhang2023QMF,P008}",
+      "postnote": "",
+      "keys": [
+        "Zhang2023QMF",
+        "P008"
+      ],
+      "passage": "QMF's theoretical justification does not validate the use of arbitrary quality proxies, and clean\ncalibration can actually degrade after a distribution shift \\citep{Zhang2023QMF,P008}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 886,
+      "section": "Modality Dropout, Augmentation, and Fallback Mechanisms",
+      "command": "\\citep[PDF pp.~3--5]{Altinses2023Fuzzy}",
+      "postnote": "PDF pp.~3--5",
+      "keys": [
+        "Altinses2023Fuzzy"
+      ],
+      "passage": "Fuzzy regularisation works by introducing failures via partial corruption and by replacing the\nentire input with a constant or noise. The evaluation is of Gazebo pose regression using random\nsample splits of overlapping windows \\citep[PDF pp.~3--5]{Altinses2023Fuzzy}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 891,
+      "section": "Modality Dropout, Augmentation, and Fallback Mechanisms",
+      "command": "\\citep[PDF p.~10]{P021}",
+      "postnote": "PDF p.~10",
+      "keys": [
+        "P021"
+      ],
+      "passage": "OmniFuser describes dropout and masking without any quantified outage table \\citep[PDF p.~10]{P021}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 895,
+      "section": "Modality Dropout, Augmentation, and Fallback Mechanisms",
+      "command": "\\citep[Table~7]{Altinses2025Performance}",
+      "postnote": "Table~7",
+      "keys": [
+        "Altinses2025Performance"
+      ],
+      "passage": "Generated replacement observations can also have a negative impact on performance. Replacing the\nclean depth with CycleGAN output worsens the synthetic robot benchmark's MSE (from $2.1745 \\times\n10^{-3}$ to $13.472 \\times 10^{-3}$) \\citep[Table~7]{Altinses2025Performance}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 920,
+      "section": "Grouped Evaluation and Leakage Prevention",
+      "command": "\\citep[PDF pp.~4--5]{Altinses2023Fuzzy}",
+      "postnote": "PDF pp.~4--5",
+      "keys": [
+        "Altinses2023Fuzzy"
+      ],
+      "passage": "Randomly partitioned observations can end up with shared acquisition contextual information or raw\nsamples. The fuzzy-regularisation study forms 20-step windows with a stride of one and then randomly\ndivides the resulting examples \\citep[PDF pp.~4--5]{Altinses2023Fuzzy}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 924,
+      "section": "Grouped Evaluation and Leakage Prevention",
+      "command": "\\citep{P003,Hua2026Weld}",
+      "postnote": "",
+      "keys": [
+        "P003",
+        "Hua2026Weld"
+      ],
+      "passage": "Weld run grouping is still unresolved in the closest welding studies \\citep{P003,Hua2026Weld}. These\nexamples do show a potential dependence between the observations but do not establish any particular\nlevel of leakage."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 930,
+      "section": "Grouped Evaluation and Leakage Prevention",
+      "command": "\\citep{Thoduka2024Handover}",
+      "postnote": "",
+      "keys": [
+        "Thoduka2024Handover"
+      ],
+      "passage": "The HANDOVER authors report an explicit participant-disjoint official split. An adapted learned\nfusion implementation would still require participant information in order to build the\ncorresponding inner partitions \\citep{Thoduka2024Handover}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 933,
+      "section": "Grouped Evaluation and Leakage Prevention",
+      "command": "\\citep{P004,P017}",
+      "postnote": "",
+      "keys": [
+        "P004",
+        "P017"
+      ],
+      "passage": "Normalisation, feature selection and model parameter optimisation all require an appropriate split\nbetween model development and model assessment \\citep{P004,P017}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 955,
+      "section": "Discrimination, Calibration, and Decision Thresholds",
+      "command": "\\citep{Bergmann2019MVTec,Costanzino2024Multimodal,Cheng2025Multimodal}",
+      "postnote": "",
+      "keys": [
+        "Bergmann2019MVTec",
+        "Costanzino2024Multimodal",
+        "Cheng2025Multimodal"
+      ],
+      "passage": "MVTec AD shows that useful ranking can exist alongside fairly poor thresholded localisation. The\nstrict FPR metrics highlight a different aspect of detection performance\n\\citep{Bergmann2019MVTec,Costanzino2024Multimodal,Cheng2025Multimodal}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 957,
+      "section": "Discrimination, Calibration, and Decision Thresholds",
+      "command": "\\citep[PDF\np.~7]{P031}",
+      "postnote": "PDF\np.~7",
+      "keys": [
+        "P031"
+      ],
+      "passage": "The rail vision-language study reports pixel-level metrics and optimal threshold F1 \\citep[PDF\np.~7]{P031}. These metrics address a completely different evaluation problem than image-level alarm\naccuracy at a threshold chosen from the training or validation set."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 963,
+      "section": "Discrimination, Calibration, and Decision Thresholds",
+      "command": "\\citep{Petrich2021Multimodal}",
+      "postnote": "",
+      "keys": [
+        "Petrich2021Multimodal"
+      ],
+      "passage": "In manufacturing, Petrich et al. report an accuracy of .9921 and a precision of .2487 on an\nimbalanced layer, which is a clear example of the impact of class distribution and threshold\nselection \\citep{Petrich2021Multimodal}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 966,
+      "section": "Discrimination, Calibration, and Decision Thresholds",
+      "command": "\\citep{Guo2017Calibration,P008}",
+      "postnote": "",
+      "keys": [
+        "Guo2017Calibration",
+        "P008"
+      ],
+      "passage": "Validation-fitted calibration can improve in-distribution probability quality, while dataset shift\ncan damage confidence estimates \\citep{Guo2017Calibration,P008}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 969,
+      "section": "Discrimination, Calibration, and Decision Thresholds",
+      "command": "\\citep{P055}",
+      "postnote": "",
+      "keys": [
+        "P055"
+      ],
+      "passage": "Proper scoring rules (negative log-likelihood, Brier score, etc.) provide a basis for assessing\nprobability forecasts \\citep{P055}. Their interpretation differs from that of discrimination or\nthresholded classification."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 983,
+      "section": "Uncertainty and Statistical Comparisons",
+      "command": "\\citep{Thoduka2024Handover}",
+      "postnote": "",
+      "keys": [
+        "Thoduka2024Handover"
+      ],
+      "passage": "HANDOVER's reported standard deviations are for five training runs on a fixed test set, whereas a\ngroup bootstrap of saved predictions samples assessment units conditional on the fitted models\n\\citep{Thoduka2024Handover}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 990,
+      "section": "Uncertainty and Statistical Comparisons",
+      "command": "\\citep[PDF\npp.~8--10]{Bengio2004CVVariance}",
+      "postnote": "PDF\npp.~8--10",
+      "keys": [
+        "Bengio2004CVVariance"
+      ],
+      "passage": "Cross-validation folds share training observations. Under the assumptions stated, the classic\nvariance result shows that no universally unbiased estimator of cross-validation variance exists;\nignoring covariance can substantially underestimate uncertainty \\citep[PDF\npp.~8--10]{Bengio2004CVVariance}. Conditional uncertainty intervals can still be useful when the\nestimand and dependence assumptions are stated explicitly."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 995,
+      "section": "Uncertainty and Statistical Comparisons",
+      "command": "\\citep{Gu2024Improved,Xu2025ModalityResilient}",
+      "postnote": "",
+      "keys": [
+        "Gu2024Improved",
+        "Xu2025ModalityResilient"
+      ],
+      "passage": "Small fusion effects, ambiguous repetition counts and conflicting descriptions of significance all\nwarrant the same level of caution \\citep{Gu2024Improved,Xu2025ModalityResilient}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1010,
+      "section": "Interpretability and Its Limits",
+      "command": "\\citep{P036}",
+      "postnote": "",
+      "keys": [
+        "P036"
+      ],
+      "passage": "The attention debate has both counterexamples to faithful explanation and evidence that the learned\nattention weights do, in fact, contain useful information. This leads to the conclusion that\ninterpretability should be evaluated on a task-specific basis rather than drawing general\nconclusions from the terminology of the architecture itself \\citep{P036}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1013,
+      "section": "Interpretability and Its Limits",
+      "command": "\\citep{P025}",
+      "postnote": "",
+      "keys": [
+        "P025"
+      ],
+      "passage": "ZSG-IAD measures schema validity, language consistency and coarse-to-final-mask overlap\n\\citep{P025}. These provide evidence of various forms of self-consistency."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1019,
+      "section": "Interpretability and Its Limits",
+      "command": "\\citep{Thoduka2024Handover}",
+      "postnote": "",
+      "keys": [
+        "Thoduka2024Handover"
+      ],
+      "passage": "HANDOVER leaves the use of human action prediction as a means of explanation as a future area of\nresearch \\citep{Thoduka2024Handover}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1026,
+      "section": "Interpretability and Its Limits",
+      "command": "\\citep{Li2025PGMTKD}",
+      "postnote": "",
+      "keys": [
+        "Li2025PGMTKD"
+      ],
+      "passage": "Process context should be distinguished from the explicit physical equation constraints (e.g.\nPGMTKD's pressure model \\citep{Li2025PGMTKD})."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1038,
+      "section": "Modularity, Reproducibility, and Computational Cost",
+      "command": "\\citep{P009}",
+      "postnote": "",
+      "keys": [
+        "P009"
+      ],
+      "passage": "An identified version, accessible source code, executable processing and independently reproduced\nresults all provide various levels of reproducibility assurance \\citep{P009}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1041,
+      "section": "Modularity, Reproducibility, and Computational Cost",
+      "command": "\\citep{P033}",
+      "postnote": "",
+      "keys": [
+        "P033"
+      ],
+      "passage": "The difference between local and published M3DM results remains unresolved. It motivates checks of\ndependencies, valid point filtering, checkpoints, and scoring conventions \\citep{P033}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1045,
+      "section": "Modularity, Reproducibility, and Computational Cost",
+      "command": "\\citep{Shangguan2025CPIR}",
+      "postnote": "",
+      "keys": [
+        "Shangguan2025CPIR"
+      ],
+      "passage": "Computational comparisons of course also require a common measurement boundary. The CPIR paper\nreports lower FPS than CFM, which is a clear performance vs speed trade-off\n\\citep{Shangguan2025CPIR}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1048,
+      "section": "Modularity, Reproducibility, and Computational Cost",
+      "command": "\\citep[PDF p.~10, Table~V]{P035}",
+      "postnote": "PDF p.~10, Table~V",
+      "keys": [
+        "P035"
+      ],
+      "passage": "The reported 5.65~ms for the lightweight image network doesn't include the independent sensor branch\nor acquisition delay \\citep[PDF p.~10, Table~V]{P035}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1051,
+      "section": "Modularity, Reproducibility, and Computational Cost",
+      "command": "\\citep{P034}",
+      "postnote": "",
+      "keys": [
+        "P034"
+      ],
+      "passage": "TimeSformer's compute requirements depend on the ImageNet pretraining and the workload it is\nevaluated on \\citep{P034}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1080,
+      "section": "Findings Supported Across the Reviewed Studies",
+      "command": "\\citep{P003,Huo2022Multisensor,Thoduka2024Handover,P045}",
+      "postnote": "",
+      "keys": [
+        "P003",
+        "Huo2022Multisensor",
+        "Thoduka2024Handover",
+        "P045"
+      ],
+      "passage": "There are tangible observations that can be used to improve the performance of a task-specific\nmonitoring pipeline. DMAW, thermal-vibration diagnosis, HANDOVER and tool wear prediction are all\ngood examples under their respective assessment protocols\n\\citep{P003,Huo2022Multisensor,Thoduka2024Handover,P045}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1083,
+      "section": "Findings Supported Across the Reviewed Studies",
+      "command": "\\citep{P026}",
+      "postnote": "",
+      "keys": [
+        "P026"
+      ],
+      "passage": "Controlled evidence integration can also improve RGB--geometry inspection under intact-input\nconditions. TC-MAF separately reports performance when the 3D input is unavailable \\citep{P026}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1091,
+      "section": "Findings Supported Across the Reviewed Studies",
+      "command": "\\citep{Roth2022Towards,Nie2023PatchTST,Horwitz2023Back}",
+      "postnote": "",
+      "keys": [
+        "Roth2022Towards",
+        "Nie2023PatchTST",
+        "Horwitz2023Back"
+      ],
+      "passage": "Representation learning offers a number of scientifically sound options for extracting information\nrelevant to the task. Pretrained convolutional features, patch-based temporal representations, and\nhand-crafted features are all candidates with some supporting evidence under certain learning and\nevaluation regimes \\citep{Roth2022Towards,Nie2023PatchTST,Horwitz2023Back}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1100,
+      "section": "Findings Supported Across the Reviewed Studies",
+      "command": "\\citep{Ting1999Issues,P006,Zhang2023QMF}",
+      "postnote": "",
+      "keys": [
+        "Ting1999Issues",
+        "P006",
+        "Zhang2023QMF"
+      ],
+      "passage": "Static and learned fusion mechanisms both offer different avenues for exploiting complementary\ninformation. Stacked generalisation motivates learning combinations of the outputs of individual\npredictors. In contrast, gated representation learning and quality-aware fusion justify\ncontext-dependent allocation \\citep{Ting1999Issues,P006,Zhang2023QMF}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1104,
+      "section": "Findings Supported Across the Reviewed Studies",
+      "command": "\\citep{Li2025PGMTKD,Altinses2023Fuzzy,P051}",
+      "postnote": "",
+      "keys": [
+        "Li2025PGMTKD",
+        "Altinses2023Fuzzy",
+        "P051"
+      ],
+      "passage": "A further well-established distinction concerns input reliability. Planned single-input deployment,\ncomplete inference-time absence, controlled corruption, and target domain adaptation all address\ndifferent issues \\citep{Li2025PGMTKD,Altinses2023Fuzzy,P051}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1118,
+      "section": "Unresolved Questions and Research Gap",
+      "command": "\\citep{Hua2026Weld,Thoduka2024Handover,P045,P033}",
+      "postnote": "",
+      "keys": [
+        "Hua2026Weld",
+        "Thoduka2024Handover",
+        "P045",
+        "P033"
+      ],
+      "passage": "The same clean-test accuracy is observed for the unimodal and fused welding models. HANDOVER\nperformance drops when the gripper state is added. Some alternative multimodal tool-wear models\nperform worse than the visual reference, although the proposed model improves on it. The Eyecandies\nimage scores also go down. All of this calls into question the notion of an unqualified fusion\nbenefit \\citep{Hua2026Weld,Thoduka2024Handover,P045,P033}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1122,
+      "section": "Unresolved Questions and Research Gap",
+      "command": "\\citep{Horwitz2023Back,Bonfiglioli2023The,Goodarzi2023Deep,Wang2020What}",
+      "postnote": "",
+      "keys": [
+        "Horwitz2023Back",
+        "Bonfiglioli2023The",
+        "Goodarzi2023Deep",
+        "Wang2020What"
+      ],
+      "passage": "Category-specific geometry losses, poor hydraulic channel combinations, and the difficulties of\nmultimodal optimisation all reinforce this conclusion\n\\citep{Horwitz2023Back,Bonfiglioli2023The,Goodarzi2023Deep,Wang2020What}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1134,
+      "section": "Unresolved Questions and Research Gap",
+      "command": "\\citep{Zhang2023QMF,P022}",
+      "postnote": "",
+      "keys": [
+        "Zhang2023QMF",
+        "P022"
+      ],
+      "passage": "Reliability introduces a related source of uncertainty. Adaptive weighting is justified when the\navailable context can identify changes in unimodal prediction reliability \\citep{Zhang2023QMF,P022}.\nThe value of conditioning information, its relationship to branch errors, and its comparison with\nexposure-matched static alternatives must be investigated on a task-specific basis."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1180,
+      "section": "Unresolved Questions and Research Gap",
+      "command": "\\citep{Wang2020What,Hua2026Weld,Goodarzi2023Deep,Thoduka2024Handover,Zhang2023QMF}",
+      "postnote": "",
+      "keys": [
+        "Wang2020What",
+        "Hua2026Weld",
+        "Goodarzi2023Deep",
+        "Thoduka2024Handover",
+        "Zhang2023QMF"
+      ],
+      "passage": "Existing work shows that multimodal representations and fusion techniques can improve performance in\nindustrial and robotic monitoring under certain experimental conditions. The body of work also shows\nthat additional observations and more complex fusion techniques do not necessarily outperform a very\ngood unimodal or static baseline. The degree to which the results can be generalised across\napplications is limited by differences in the prediction target, the quality of the representation,\nthe nature of the supervision, the training regime and the reliability of the inputs\n\\citep{Wang2020What,Hua2026Weld,Goodarzi2023Deep,Thoduka2024Handover,Zhang2023QMF}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1216,
+      "section": "Derived Research Design Requirements",
+      "command": "\\citep{Petrich2021Multimodal,Pandiyan2022Deep,Chen2023Multisensor}",
+      "postnote": "",
+      "keys": [
+        "Petrich2021Multimodal",
+        "Pandiyan2022Deep",
+        "Chen2023Multisensor"
+      ],
+      "passage": "This directly follows from the supervision and correspondence distinctions discussed in Sections 2.2\nand 2.3 (including the industrial studies that use independent reference instruments or registered\nobservations \\citep{Petrich2021Multimodal,Pandiyan2022Deep,Chen2023Multisensor})."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1229,
+      "section": "Derived Research Design Requirements",
+      "command": "\\citep{Horwitz2023Back,Roth2022Towards,Nie2023PatchTST}",
+      "postnote": "",
+      "keys": [
+        "Horwitz2023Back",
+        "Roth2022Towards",
+        "Nie2023PatchTST"
+      ],
+      "passage": "This is a direct consequence of evidence for engineered features, transferred visual\nrepresentations, and patch-based temporal learning under a variety of experimental conditions\n\\citep{Horwitz2023Back,Roth2022Towards,Nie2023PatchTST}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1251,
+      "section": "Derived Research Design Requirements",
+      "command": "\\citep{Hua2026Weld,Thoduka2024Handover,Wang2020What,Ting1999Issues}",
+      "postnote": "",
+      "keys": [
+        "Hua2026Weld",
+        "Thoduka2024Handover",
+        "Wang2020What",
+        "Ting1999Issues"
+      ],
+      "passage": "This is a direct consequence of the positive and negative fusion comparisons and the methodological\nunderpinnings of stacked generalisation\n\\citep{Hua2026Weld,Thoduka2024Handover,Wang2020What,Ting1999Issues}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1271,
+      "section": "Derived Research Design Requirements",
+      "command": "\\citep{Huo2022Multisensor,Altinses2023Fuzzy,P026,Zhang2023QMF}",
+      "postnote": "",
+      "keys": [
+        "Huo2022Multisensor",
+        "Altinses2023Fuzzy",
+        "P026",
+        "Zhang2023QMF"
+      ],
+      "passage": "This is a direct consequence of the missing input studies, the controlled industrial degradation\nstudies, and the theoretical underpinning of quality-aware weighting\n\\citep{Huo2022Multisensor,Altinses2023Fuzzy,P026,Zhang2023QMF}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1292,
+      "section": "Derived Research Design Requirements",
+      "command": "\\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}",
+      "postnote": "",
+      "keys": [
+        "P004",
+        "P017",
+        "Guo2017Calibration",
+        "P008",
+        "Bengio2004CVVariance",
+        "P009"
+      ],
+      "passage": "This is a direct consequence of the literature on assessment independence, calibration, selection\nuncertainty, reproducibility and target domain access\n\\citep{P004,P017,Guo2017Calibration,P008,Bengio2004CVVariance,P009}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1324,
+      "section": "Implications for the Empirical Investigations",
+      "command": "\\citep{Petrich2021Multimodal}",
+      "postnote": "",
+      "keys": [
+        "Petrich2021Multimodal"
+      ],
+      "passage": "Post-build CT can provide an independent reference for locating manufacturing defects\n\\citep{Petrich2021Multimodal}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1327,
+      "section": "Implications for the Empirical Investigations",
+      "command": "\\citep[PDF pp.~19--24]{P045}",
+      "postnote": "PDF pp.~19--24",
+      "keys": [
+        "P045"
+      ],
+      "passage": "In tool wear prediction, an image taken after a cutting pass and the acoustic emission recorded\nduring cutting have also been used together to estimate wear \\citep[PDF pp.~19--24]{P045}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1330,
+      "section": "Implications for the Empirical Investigations",
+      "command": "\\citep{PHM2026Challenge}",
+      "postnote": "",
+      "keys": [
+        "PHM2026Challenge"
+      ],
+      "passage": "PHM presents a very different measurement problem. Their gear photographs were taken periodically,\nwhereas the challenge specifies sensor-only operation at deployment \\citep{PHM2026Challenge}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1347,
+      "section": "Implications for the Empirical Investigations",
+      "command": "\\citep[PDF pp.~10--13]{Sliwowski2025REASSEMBLE}",
+      "postnote": "PDF pp.~10--13",
+      "keys": [
+        "Sliwowski2025REASSEMBLE"
+      ],
+      "passage": "The REASSEMBLE dataset publication sets the benchmark for action segmentation and visual condition\nchecks \\citep[PDF pp.~10--13]{Sliwowski2025REASSEMBLE}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1350,
+      "section": "Implications for the Empirical Investigations",
+      "command": "\\citep[Table~III]{Thoduka2024Handover}",
+      "postnote": "Table~III",
+      "keys": [
+        "Thoduka2024Handover"
+      ],
+      "passage": "Published handover experiments also establish a precedent for the multimodal classification of\ncompleted robotic trials \\citep[Table~III]{Thoduka2024Handover}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1370,
+      "section": "Implications for the Empirical Investigations",
+      "command": "\\citep[PDF p.~11, Tables~IV--V]{P021}",
+      "postnote": "PDF p.~11, Tables~IV--V",
+      "keys": [
+        "P021"
+      ],
+      "passage": "OmniFuser predicts milling tool wear states and cutting force \\citep[PDF p.~11, Tables~IV--V]{P021}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1372,
+      "section": "Implications for the Empirical Investigations",
+      "command": "\\citep[PDF\np.~24, Table~1]{P045}",
+      "postnote": "PDF\np.~24, Table~1",
+      "keys": [
+        "P045"
+      ],
+      "passage": "A visual-acoustic study also looks at tool wear estimation following a cutting pass \\citep[PDF\np.~24, Table~1]{P045}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1377,
+      "section": "Implications for the Empirical Investigations",
+      "command": "\\citep{Kim2026MSM}",
+      "postnote": "",
+      "keys": [
+        "Kim2026MSM"
+      ],
+      "passage": "The MSM dataset identifies abnormal cutting intervals which require intervention. Its descriptor can\ndifferentiate these from stable cutting with a defective tool and records camera coverage in the lab\n\\citep{Kim2026MSM}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1396,
+      "section": "Implications for the Empirical Investigations",
+      "command": "\\citep[PDF pp.~7--8, Tables~2--4]{Zeng2026ViFailback}",
+      "postnote": "PDF pp.~7--8, Tables~2--4",
+      "keys": [
+        "Zeng2026ViFailback"
+      ],
+      "passage": "Zeng et al. use visual symbols to diagnose failures, assess responses to questions and guide\ncorrective action \\citep[PDF pp.~7--8, Tables~2--4]{Zeng2026ViFailback}."
+    },
+    {
+      "chapter": "02_literature_review",
+      "file": "chapters/02_literature_review.tex",
+      "line": 1419,
+      "section": "Implications for the Empirical Investigations",
+      "command": "\\citep[PDF p.~7,\nTable~III]{Thoduka2024Handover}",
+      "postnote": "PDF p.~7,\nTable~III",
+      "keys": [
+        "Thoduka2024Handover"
+      ],
+      "passage": "The published HANDOVER benchmark looks at unimodal and fused models across the five outcome classes.\nIn its I3D comparison, the video + force/torque combination outperforms the video + force/torque +\ngripper state combination in terms of mean accuracy \\citep[PDF p.~7,\nTable~III]{Thoduka2024Handover}."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+\clearpage
+% Use the top text margin for this standalone disclosure. The four paragraphs
+% retain the manuscript's regular type size, margins and double spacing.
+\begingroup
+\makeatletter
+\renewcommand{\@makeschapterhead}[1]{%
+  {\parindent=0pt\raggedright\normalfont\Huge\bfseries #1\par}%
+  \nobreak\vspace{6pt}}
+\makeatother
+\chapter*{AI Assistance Disclosure}
+\addcontentsline{toc}{chapter}{AI Assistance Disclosure}
+\endgroup
+\noindent
+The author defined the scope of the research, provided the implementation records and saved experimental results, obtained full-text publications, and reviewed how the methods and findings were interpreted and presented. Preparation of the manuscript involved AI-assisted drafting and revision. The author used AI tools to develop and refine the text, including the abstract, and to examine whether descriptions of the models, experiments, and results were consistent with the available evidence.
+
+The author conducted the literature research and critically reviewed the papers, assessing how their methods, choice of baselines, and evaluation conditions supported their findings. AI tools helped the author prioritise papers for closer reading, locate relevant passages and tables during review, and organise the evidence into a comparison matrix. During the November revision, the author obtained additional publications and used AI assistance to match their titles and DOIs to Zotero records and check the corresponding PDF attachments. AI tools also supported numerical consistency checks, bibliography processing, APA citation editing, figure preparation, LaTeX editing and compilation, and the extraction of chapter text.
+
+The manuscript revision drew on existing publications, implementation records, and saved experimental outputs, without new model training or inference on raw data. The thesis distinguishes findings reported in publications, checks documented in earlier experiment records, and checks performed on saved outputs during revision. The 25 November revision used Codex to cross-map existing literature and controlled experiments, recompute the core F2 ranking diagnostic, reconcile the November 24 ViFailback closure and revise a preserved manuscript copy. Baseline hashes, source identities, the revision diff and actual validation outcomes accompany that copy. AI-assisted appraisal formed part of the same review process and provided no independent second human assessment. Ambiguous source claims, incomplete experiments, and unresolved questions of physical validation are documented as limitations.
+
+Appendix~\ref{app:prompt-record} presents two reconstructed examples of implementation and audit requests. Section~\ref{sec:results-archiving} summarises AI assistance in planning local archiving and Git version control for experimental outputs. OpenAI Codex assisted with the implementation and audit tasks and with preparation of Figure~\ref{fig:fusion-interfaces} \citep{OpenAICodex}. The records do not identify the model version used in earlier implementation sessions.

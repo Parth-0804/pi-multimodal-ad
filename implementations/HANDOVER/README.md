@@ -13,8 +13,22 @@ Robot handover success/failure classification. Recording/task groups do not esta
 
 [Source](src) · [Tests](tests) · [Documentation](docs)
 
-Native inputs stay at repository-root HANDOVER/01_raw_dataset/. Preserve participant-identity limitations and mandatory participant-safe OOF gates. Missing identity is not permission to substitute trial groups or in-sample stacking.
+Native inputs are physically retained at [01_raw_dataset/](01_raw_dataset/), also
+reached through the repaired [common-support study input link](experiments/common_support_v2/01_raw_dataset/).
+The [approved relocation receipt](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md)
+records the same-filesystem move and preservation of file identities. The
+[legacy execution-path audit](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/vifailback_adapter/LEGACY_CONSUMER_LIMITS.md)
+records remaining manifest-string and controller-path dependencies; no replay is
+claimed. Preserve participant-identity limitations and mandatory participant-safe
+OOF gates. Missing identity is not permission to substitute trial groups or
+in-sample stacking.
 
 Each study's frozen protocol, fit manifests and assessment records determine what ran and which comparisons are eligible. A folder or script is not execution evidence. Historical commands retain their original paths; navigation/package checks are not model reproduction.
+
+## Thesis and evidence
+
+Appendix H; existing evidence E082–E086. The [research handoff](results/09_final_reports/REVIEW_HANDOFF.md) reports completed unimodal and fixed-averaging assessment in the common-support study. F2, augmented F2 and learned quality gates were skipped because participant-disjoint OOF predictions cannot be certified from the released identity metadata. Their omission is a failed eligibility gate, not a negative fitted-model result.
+
+The [dataset overview](results/09_final_reports/DATASET_OVERVIEW.md), [validation](results/09_final_reports/DATASET_VALIDATION.md), [model implementation](results/09_final_reports/MODEL_IMPLEMENTATION.md) and [common-support configuration](experiments/common_support_v2/04_experiment_protocol/experiment_config.json) retain acquisition/source identity, preparation, target and observation-horizon rules. Use the [chapter map](../../docs/THESIS_CODE_MAP.md) for current source and assessment links.
 
 [All datasets](../README.md) · [Repository map](../../REPO_MAP.md)

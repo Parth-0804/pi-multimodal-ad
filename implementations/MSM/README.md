@@ -14,8 +14,14 @@ Metal-milling interval classification from video and machine measurements. Earli
 
 [Source](src) · [Tests](tests) · [Documentation](docs)
 
-Native inputs remain at repository-root `MSM/01_raw_dataset/` and `MILLING DATASET/data/`. Failed scientific gates and study eligibility remain authoritative. Shared fitting/evaluation implementation is in ../cross_dataset/src/external_eval/.
+The [native input records](01_raw_dataset/) and [legacy milling studies](experiments/legacy/) are physically consolidated here. The repaired [official dataset link](01_raw_dataset/official_dataset/) resolves to the retained [legacy source tree](experiments/legacy/data/raw/msm/versions/2/). Dataset/source identities remain distinct and protected. Failed scientific gates and study eligibility remain authoritative. Shared fitting/evaluation code is in [external_eval](../cross_dataset/src/external_eval/). The [legacy execution-path audit](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/vifailback_adapter/LEGACY_CONSUMER_LIMITS.md) identifies unresolved string-I/O and controller paths; current navigation does not certify unchanged historical commands as runnable.
 
 Each study's frozen protocol, fit manifests and assessment records determine what ran and which comparisons are eligible. A folder or script is not execution evidence. Historical commands retain their original paths; navigation/package checks are not model reproduction.
+
+## Thesis and evidence
+
+Chapter 7; existing evidence E068–E081 and E121. The [primary handoff](results/09_final_reports/REVIEW_HANDOFF.md) reports a completed three-seed comparison in which the stronger sensor reference exceeds the tested fusion models. Native class 1 is positive against classes 0+2; the DOWN-only, label-2-excluded sensitivity failed the fixed class-support gate. Earlier feasibility work must remain distinct from these completed assessments.
+
+[Dataset overview](results/09_final_reports/DATASET_OVERVIEW.md), [validation](results/09_final_reports/DATASET_VALIDATION.md), [model implementation](results/09_final_reports/MODEL_IMPLEMENTATION.md) and [reproducibility](results/09_final_reports/REPRODUCIBILITY.md) provide source/label provenance, preparation, fitting and saved-evidence locations. Their old execution commands are historical records. The [chapter map](../../docs/THESIS_CODE_MAP.md) links the current shared evaluator.
 
 [All datasets](../README.md) · [Repository map](../../REPO_MAP.md)

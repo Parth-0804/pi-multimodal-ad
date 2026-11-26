@@ -1,0 +1,430 @@
+{
+  "classification": "VERIFIED: recomputed saved predictions, not reproduced training",
+  "timestamp_utc": "2026-11-25T20:15:11.085295+00:00",
+  "timezone_for_review": "Europe/Berlin",
+  "head": "e2037412036c5bbfc01fb2323215a37ef0b2e090",
+  "dirty_tree": true,
+  "command": [
+    "00_thesus_writing_tracking/scientific_cross_mapping_20261125/f2_recompute.py",
+    "--out",
+    "00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/f2_recheck"
+  ],
+  "python": "3.12.3",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.7.2"
+  },
+  "cohort": {
+    "n": 4530,
+    "failures": 509,
+    "recordings": 148,
+    "prevalence": 0.11236203090507726,
+    "positive_class": "native completed-action failure",
+    "row_identity": "cohort.parquet order; (recording_id,segment_id) unique; saved test_rows verified against nested_splits.json"
+  },
+  "checks": {
+    "targets_and_folds_equal": true,
+    "outer_recording_disjoint": true,
+    "row_coverage_once": true,
+    "branch_probabilities_exact_parity": true,
+    "F2_exact_reuse": true,
+    "F1_formula_parity": true,
+    "coefficients_all_positive": true,
+    "F2_formula_max_abs_error": 2.220446049250313e-16,
+    "manual_AP_vs_sklearn": true,
+    "pairwise_AUROC_delta_vs_sklearn": true
+  },
+  "pooled": {
+    "sensor": {
+      "AP": 0.42939186936802726,
+      "AUROC": 0.7793245578590593,
+      "Brier": 0.08044814771184297
+    },
+    "visual": {
+      "AP": 0.23065831504271656,
+      "AUROC": 0.6977948286232056,
+      "Brier": 0.09429877740531123
+    },
+    "F1": {
+      "AP": 0.4457423126358656,
+      "AUROC": 0.7950611939576555,
+      "Brier": 0.08337391577338965
+    },
+    "F2": {
+      "AP": 0.44729855144048974,
+      "AUROC": 0.794968361094431,
+      "Brier": 0.07844301221744863
+    },
+    "saved_formula_without_visual": {
+      "AP": 0.43092191934298185,
+      "AUROC": 0.7770374492656188,
+      "Brier": 0.08227955085742271
+    }
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "n": 753,
+      "failures": 77,
+      "recordings": 26,
+      "prevalence": 0.10225763612217796,
+      "coefficients": {
+        "visual": 3.1142870718353524,
+        "sensor": 6.555473656516644,
+        "intercept": -3.462645774559234
+      },
+      "formula_max_abs_error": 2.220446049250313e-16,
+      "metrics": {
+        "sensor": {
+          "AP": 0.3277045645055636,
+          "AUROC": 0.7236801659878583,
+          "Brier": 0.08147948547993905
+        },
+        "visual": {
+          "AP": 0.23280511673119117,
+          "AUROC": 0.7264850534081303,
+          "Brier": 0.08622204212625897
+        },
+        "F2": {
+          "AP": 0.3671552457154409,
+          "AUROC": 0.7443710136017829,
+          "Brier": 0.07924474615357754
+        },
+        "saved_formula_without_visual": {
+          "AP": 0.3277045645055636,
+          "AUROC": 0.7236801659878583,
+          "Brier": 0.08130633125540199
+        }
+      },
+      "delta_F2_minus_sensor": {
+        "AP": 0.03945068120987727,
+        "AUROC": 0.02069084761392459
+      },
+      "ordering": {
+        "all_unordered_pairs_changed": 34902,
+        "positive_negative_pairs": 52052,
+        "incorrect_to_correct": 2951,
+        "correct_to_incorrect": 1874,
+        "ties_before": 0,
+        "ties_after": 0,
+        "net_AUROC_from_pairs": 0.020690847613924538
+      }
+    },
+    {
+      "fold": 1,
+      "n": 964,
+      "failures": 109,
+      "recordings": 31,
+      "prevalence": 0.11307053941908714,
+      "coefficients": {
+        "visual": 3.099190073698223,
+        "sensor": 6.709429737842258,
+        "intercept": -3.449530736808982
+      },
+      "formula_max_abs_error": 2.220446049250313e-16,
+      "metrics": {
+        "sensor": {
+          "AP": 0.47147222523203164,
+          "AUROC": 0.7967487526154838,
+          "Brier": 0.07743304623105607
+        },
+        "visual": {
+          "AP": 0.25711395199654896,
+          "AUROC": 0.7193197059928107,
+          "Brier": 0.09435036465171662
+        },
+        "F2": {
+          "AP": 0.4860883969917672,
+          "AUROC": 0.8084231986694566,
+          "Brier": 0.0749168745050075
+        },
+        "saved_formula_without_visual": {
+          "AP": 0.47147222523203164,
+          "AUROC": 0.7967487526154838,
+          "Brier": 0.07835680817369615
+        }
+      },
+      "delta_F2_minus_sensor": {
+        "AP": 0.014616171759735563,
+        "AUROC": 0.01167444605397272
+      },
+      "ordering": {
+        "all_unordered_pairs_changed": 43248,
+        "positive_negative_pairs": 93195,
+        "incorrect_to_correct": 3082,
+        "correct_to_incorrect": 1994,
+        "ties_before": 0,
+        "ties_after": 0,
+        "net_AUROC_from_pairs": 0.011674446053972852
+      }
+    },
+    {
+      "fold": 2,
+      "n": 1037,
+      "failures": 125,
+      "recordings": 32,
+      "prevalence": 0.12054001928640308,
+      "coefficients": {
+        "visual": 3.414462142641008,
+        "sensor": 6.630402833796571,
+        "intercept": -3.4277562284296486
+      },
+      "formula_max_abs_error": 1.1102230246251565e-16,
+      "metrics": {
+        "sensor": {
+          "AP": 0.49654297851382556,
+          "AUROC": 0.8088508771929824,
+          "Brier": 0.08288608918592381
+        },
+        "visual": {
+          "AP": 0.2502425812073756,
+          "AUROC": 0.7286140350877193,
+          "Brier": 0.09895217852272517
+        },
+        "F2": {
+          "AP": 0.5078721179389709,
+          "AUROC": 0.833280701754386,
+          "Brier": 0.0803794966893725
+        },
+        "saved_formula_without_visual": {
+          "AP": 0.49654297851382556,
+          "AUROC": 0.8088508771929824,
+          "Brier": 0.08708655947105469
+        }
+      },
+      "delta_F2_minus_sensor": {
+        "AP": 0.011329139425145351,
+        "AUROC": 0.024429824561403524
+      },
+      "ordering": {
+        "all_unordered_pairs_changed": 64479,
+        "positive_negative_pairs": 114000,
+        "incorrect_to_correct": 5222,
+        "correct_to_incorrect": 2437,
+        "ties_before": 0,
+        "ties_after": 0,
+        "net_AUROC_from_pairs": 0.02442982456140351
+      }
+    },
+    {
+      "fold": 3,
+      "n": 906,
+      "failures": 99,
+      "recordings": 29,
+      "prevalence": 0.10927152317880795,
+      "coefficients": {
+        "visual": 4.06349876142734,
+        "sensor": 6.574018335159987,
+        "intercept": -3.5504153440098536
+      },
+      "formula_max_abs_error": 2.220446049250313e-16,
+      "metrics": {
+        "sensor": {
+          "AP": 0.4859533229636379,
+          "AUROC": 0.808431276832764,
+          "Brier": 0.07460108031696999
+        },
+        "visual": {
+          "AP": 0.18355964674658587,
+          "AUROC": 0.6688946465898138,
+          "Brier": 0.09454678771298519
+        },
+        "F2": {
+          "AP": 0.4812645837789152,
+          "AUROC": 0.8113226440363988,
+          "Brier": 0.07468226100287034
+        },
+        "saved_formula_without_visual": {
+          "AP": 0.4859533229636379,
+          "AUROC": 0.808431276832764,
+          "Brier": 0.07668031252752965
+        }
+      },
+      "delta_F2_minus_sensor": {
+        "AP": -0.004688739184722734,
+        "AUROC": 0.0028913672036348093
+      },
+      "ordering": {
+        "all_unordered_pairs_changed": 51654,
+        "positive_negative_pairs": 79893,
+        "incorrect_to_correct": 3051,
+        "correct_to_incorrect": 2820,
+        "ties_before": 0,
+        "ties_after": 0,
+        "net_AUROC_from_pairs": 0.0028913672036348617
+      }
+    },
+    {
+      "fold": 4,
+      "n": 870,
+      "failures": 99,
+      "recordings": 30,
+      "prevalence": 0.11379310344827587,
+      "coefficients": {
+        "visual": 3.730206293325205,
+        "sensor": 6.217766052642035,
+        "intercept": -3.565643545773553
+      },
+      "formula_max_abs_error": 2.220446049250313e-16,
+      "metrics": {
+        "sensor": {
+          "AP": 0.3797881992930559,
+          "AUROC": 0.7450772314585544,
+          "Brier": 0.08607947902130887
+        },
+        "visual": {
+          "AP": 0.28399766879176963,
+          "AUROC": 0.6692607003891051,
+          "Brier": 0.09542725701689823
+        },
+        "F2": {
+          "AP": 0.4162112941601719,
+          "AUROC": 0.7651220374955784,
+          "Brier": 0.08326438842884067
+        },
+        "saved_formula_without_visual": {
+          "AP": 0.3797881992930559,
+          "AUROC": 0.7450772314585544,
+          "Brier": 0.08756966614705568
+        }
+      },
+      "delta_F2_minus_sensor": {
+        "AP": 0.03642309486711598,
+        "AUROC": 0.020044806037023966
+      },
+      "ordering": {
+        "all_unordered_pairs_changed": 58115,
+        "positive_negative_pairs": 76329,
+        "incorrect_to_correct": 5422,
+        "correct_to_incorrect": 3892,
+        "ties_before": 0,
+        "ties_after": 0,
+        "net_AUROC_from_pairs": 0.020044806037023934
+      }
+    }
+  ],
+  "unweighted_mean_fold": {
+    "sensor": {
+      "AP": 0.4322922581016229,
+      "AUROC": 0.7765576608175285
+    },
+    "visual": {
+      "AP": 0.24154379309469426,
+      "AUROC": 0.702514828293516
+    },
+    "F2": {
+      "AP": 0.4517183277170532,
+      "AUROC": 0.7925039191115206
+    }
+  },
+  "limitations": [
+    "No fitting, calibration, training or bootstrap rerun. Historical intervals are not newly verified here.",
+    "Unimodal predictions directory is empty at this location. Visual parity is verified between saved Section1B branch inputs and Section2 U2, not against unavailable original Section1 prediction files. Sensor parity additionally uses the observed Section1B sensor-control file.",
+    "Formula-without-visual is an arithmetic omission with jointly fitted parameters, not an independently fitted sensor-only control; zero is one arbitrary constant visual reference.",
+    "Five folds share training observations; foldwise directions are not five independent replications.",
+    "The diagnostic is post hoc, and fixed-prediction checks omit fitting/selection uncertainty."
+  ],
+  "input_manifest": {
+    "implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/cohort.parquet": {
+      "sha256": "ef224314224a1bdff8ee5f01bcea64f03458a30026011cd0b2096a105ff81aea",
+      "bytes": 86530
+    },
+    "implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/nested_splits.json": {
+      "sha256": "56dd1f32282a5771e16f780180e3cf62aa2684ae8e855ffd441418f91f14a668",
+      "bytes": 111163
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/oof.npz": {
+      "sha256": "14b4901674b9a00494137a38720ede6e3cdb5af4fa3c94d3487488c6e2f640a1",
+      "bytes": 37309
+    },
+    "implementations/REASSEMBLE/results/runs/fusion_method_comparison/predictions/oof.npz": {
+      "sha256": "e2ca736b2dccdb33a1dfc0cf33c2001a3b69cdb2d8ef82d5241c4f34b740995a",
+      "bytes": 1032769
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/sensor_controls/predictions/sensor_statistics_perm00.npz": {
+      "sha256": "7113f40880df7b839dd3d1fb7522cb712f7dfcae74d6c1be182f982cf1bf5e1e",
+      "bytes": 75111
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/assessment/stacker_coefficients.json": {
+      "sha256": "5fbe83254043bffd4428d4ba1021c273217a4a5a5bf718b9e566e8c928fba7c1",
+      "bytes": 985
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/assessment/results.json": {
+      "sha256": "0eeb2917ae32819477221585b388057d7ea36591d35025c29555f131bb5a044b",
+      "bytes": 16300
+    },
+    "implementations/REASSEMBLE/results/runs/fusion_method_comparison/assessment/results.json": {
+      "sha256": "991aaf33708a8c795a9f0d7ee3e9665788dd98c347752e1a87affdf3746956c6",
+      "bytes": 44384
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/provenance.json": {
+      "sha256": "e5feccd34c15d9c19c8e0cefc42b904c0e49c9a0d7de477e03454a136d476e9f",
+      "bytes": 619
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/implementation.json": {
+      "sha256": "17bd0ee6145bb5c93f0971efc9a673da9d55a6c1b6c24d176afd3f61132248a3",
+      "bytes": 957
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/config.json": {
+      "sha256": "12613220f0a1d29569d1cd28ea5f42a21b941ded40966680769da48ae4b4d3f7",
+      "bytes": 1883
+    },
+    "implementations/REASSEMBLE/results/runs/fusion_method_comparison/provenance.json": {
+      "sha256": "e7c7390c7bb849e744338b299d12bc384207c5990f48c5f398ece2303689d53a",
+      "bytes": 513
+    },
+    "implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/final_output_manifest.json": {
+      "sha256": "d8fbd33176fd90b64d3883b42e84658a9657aae8237bc63a6dae5c5c68d170bb",
+      "bytes": 181865
+    },
+    "implementations/REASSEMBLE/src/reassemble/section1b.py": {
+      "sha256": "66c30cb81814ca0eac9fa2829c94366f5643736a3cabae6b776742d9f635b141",
+      "bytes": 12436
+    },
+    "implementations/REASSEMBLE/src/reassemble/section2.py": {
+      "sha256": "707b60138573fa9a4a711fe88cb931168397aa49f9ee62182281c532240d98db",
+      "bytes": 13247
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/outer0.npz": {
+      "sha256": "b888c72014a07f1817e8e8f5abc7cbff742cc1240986ac55fd1ab7aa9f47e79c",
+      "bytes": 82634
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/outer0.json": {
+      "sha256": "365decd18283c0ba3f6012f96f7dceed6156dd2d7c4d1227b3bd848ffdf94a7a",
+      "bytes": 89465
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/outer1.npz": {
+      "sha256": "cc9d3bc7098ddfb36e02f8d406fd7029c69700fddf349fe754462cbdb958108c",
+      "bytes": 84180
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/outer1.json": {
+      "sha256": "042c19a4e356f729d8b1143be23a2c7db10dff620ad1772a140e94f2adb7068a",
+      "bytes": 86400
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/outer2.npz": {
+      "sha256": "b6ae7041bb5ff83dbe8cbd33ecf0c81fa9bfe13f3296f8c72a256ce4628f8655",
+      "bytes": 84844
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/outer2.json": {
+      "sha256": "8f0d374837ed92340fb41ea6b87774bd07e4f5847092684603cbb3b9352dc2d9",
+      "bytes": 86160
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/outer3.npz": {
+      "sha256": "ac4529641dd74acc8d3c018d602470591ddcc439f2fb9eda5ee42b73cc5e0a5c",
+      "bytes": 83756
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/outer3.json": {
+      "sha256": "bda1c5a224389692d459b8f9cefad358e7edacb3500980d36fc417450a345bd9",
+      "bytes": 87828
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/outer4.npz": {
+      "sha256": "417ad0caabc1b3b64700ea2bc238cf9e572711c4eb3be9a1d7cf21b6d8e0528e",
+      "bytes": 83562
+    },
+    "implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/outer4.json": {
+      "sha256": "ef2ba03990fdc20094be68b3543f403dfc7fc4bbde21814bc3938062cf28688d",
+      "bytes": 86777
+    }
+  }
+}

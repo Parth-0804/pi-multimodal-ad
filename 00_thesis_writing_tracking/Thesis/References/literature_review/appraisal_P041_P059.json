@@ -1,0 +1,1054 @@
+{
+  "schema_version": "1.0",
+  "review_date": "2026-11-18",
+  "scope": "P041–P059 supplied-PDF appraisal, not identity extraction or experimental reproduction",
+  "governing_document_provenance": [
+    {
+      "path": "C:\\Users\\Parth\\Downloads\\THESIS_REVISION_PACK_20261117\\00_READ_FIRST.md",
+      "sha256": "e18414365c04e0bc11531ae82d0c0a1571dae0f55d5a2fda80e136bb0f779822"
+    },
+    {
+      "path": "C:\\Users\\Parth\\Downloads\\THESIS_REVISION_PACK_20261117\\01_EXPOSE_ALIGNMENT_DECISION.md",
+      "sha256": "91fb8a2d8700007d1fecb1a09b0ac2f2af94282f4da703d3b22c8052f9ae44f7"
+    },
+    {
+      "path": "C:\\Users\\Parth\\Downloads\\THESIS_REVISION_PACK_20261117\\01_ORIGINAL_EXPOSE.pdf",
+      "sha256": "9f7e1c09db5678fe268a39eb8af823cb965153cc69a8922c129117fd815fb6e6"
+    },
+    {
+      "path": "C:\\Users\\Parth\\Downloads\\THESIS_REVISION_PACK_20261117\\02_THESIS_BASELINE_REPORT.md",
+      "sha256": "d87574f2912d311f03352875688d740d0bcfff65362679fcbf8f906e06285c37"
+    }
+  ],
+  "governing_interpretation": "Original architecture/representation/fusion RQ and SQ1–4 retained; November/later completed evidence overrides older October blocked chronology. Paper native cohorts do not replace admitted adapter cohorts.",
+  "corpus": {
+    "files": 19,
+    "unique_pdfs": 18,
+    "duplicate": {
+      "P047": "P046"
+    },
+    "candidate_direct_industrial_fusion": [
+      "P045",
+      "P046",
+      "P048",
+      "P051",
+      "P053",
+      "P054",
+      "P056"
+    ],
+    "denominator_note": "Recommendations, not automatic final inclusion. Foundations/datasets/transferable studies and duplicates not pooled into core industrial fusion denominator."
+  },
+  "limits": "Relevant supplied methods/results read, no independent reproduction. Exact versions/page locators and internal contradictions retained. No blanket current correction/retraction check claimed; Step1 primary identity metadata links preserved.",
+  "papers": [
+    {
+      "file_id": "P041",
+      "title": "On Calibration of Modern Neural Networks",
+      "authors": [
+        "Chuan Guo",
+        "Geoff Pleiss",
+        "Yu Sun",
+        "Kilian Q. Weinberger"
+      ],
+      "year": 2017,
+      "doi": null,
+      "stable_url": "https://proceedings.mlr.press/v70/guo17a.html",
+      "zotero_key": "7CLEVBIE",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\guo17a.pdf",
+      "pdf_sha256": "df7c93f97204f8a3c2b10f6d5bf5265baac25f00c1ae3b473a3e1dbc102dacb2",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P041.txt",
+      "text_sha256": "360059c5965ee071534427775e57df7f7e92e8e73d5228616fa760ef76320e17",
+      "pdf_pages": 10,
+      "read_version": "PMLR conference paper",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "foundation; retain outside core fusion denominator",
+      "SQ_links": [
+        "SQ4 probability quality",
+        "SQ2 calibrated probability interface"
+      ],
+      "read_locators": [
+        "PDF2–8; Table1 PDF6"
+      ],
+      "physical_inputs_and_target": "Conventional image/text neural classification, no industrial fusion. Top-label confidence versus correctness.",
+      "fusion_or_method": "Post-hoc calibration on frozen network; positive scalar temperature preserves argmax. Platt learned slope/intercept need not preserve ranking if slope is negative.",
+      "comparison_protocol": "Separate validation fitting; §4 PDF4 explicitly assumes identical train/validation/test distribution. ECE uses15equal-width bins; diagrams omit bin counts. Supplied10page main article, not all referenced supplementary experiments.",
+      "reported_results": [
+        {
+          "locator": "Table1 PDF6",
+          "metric": "ECE percent",
+          "values": "CIFAR100 ResNet11016.53→1.26 temperature; Reuters DAN0.85→0.91, so no universal improvement."
+        }
+      ],
+      "robustness": "No controlled missing/noisy modality or shifted calibration experiment; IID calibration does not establish OOD reliability.",
+      "limitations": [
+        "ECE depends on finite bins/support and is not a strictly proper scoring rule.",
+        "NLL/probability quality, accuracy and calibration are distinct."
+      ],
+      "admissible_claim": "Validation-fitted temperature is a defensible calibration baseline; confidence must be checked empirically, especially after shift."
+    },
+    {
+      "file_id": "P042",
+      "title": "Adaptive vibration-based bearing fault diagnosis for mud pumps using MSESSA-optimized variational mode decomposition",
+      "authors": [
+        "Chao Zhang",
+        "Bing Wang",
+        "Zhenzhong Zhang"
+      ],
+      "year": 2026,
+      "doi": "10.21595/jve.2026.26008",
+      "stable_url": "https://www.extrica.com/article/26008",
+      "zotero_key": null,
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\jve-28-4-26008.pdf",
+      "pdf_sha256": "b6f2c24d2afcab1288357c3303abc725ca21e2266056293dda936bc9c5dbf3fb",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P042.txt",
+      "text_sha256": "57dd47322449afb100baa75f188e8dd92826b2dff774fc209e26195c226136a8",
+      "pdf_pages": 35,
+      "read_version": "Publisher journal article",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "background single-modality; exclude core fusion denominator",
+      "SQ_links": [
+        "SQ1 sensor representation",
+        "SQ4 protocol admissibility"
+      ],
+      "read_locators": [
+        "PDF12–14,23–30; Table5 PDF28"
+      ],
+      "physical_inputs_and_target": "Single vibration stream, CWRU four bearing states and simulated mud-pump target; no camera or multimodal fusion.",
+      "fusion_or_method": "MSESSA optimizes VMD using reconstruction error/envelope entropy; selected IMF energy/peak factors feed statistical features and LightGBM.",
+      "comparison_protocol": "CWRU12kHz10240sample windows,595/885/885/900 samples; random80/20 per class PDF23, no bearing/run disjointness. Synthetic mud pump600rpm with load modulation/colored+Gaussian noise; PDF27 says30train+10test per class. No real field pump test.",
+      "reported_results": [
+        {
+          "locator": "PDF23",
+          "metric": "reported CWRU accuracy",
+          "values": "99.57%; no fusion interpretation."
+        },
+        {
+          "locator": "PDF28–30",
+          "metric": "reported simulated accuracy",
+          "values": "96.14%; unresolved test-denominator/count conflict, not admitted as a precise comparative fusion estimate."
+        }
+      ],
+      "robustness": "Synthetic vibration noise; not missing modality. VMD parameters reused with target-specific supervised training, not zero-shot learned-weight transfer.",
+      "limitations": [
+        "Table5 PDF28 assigns different reused VMD settings per known class; unknown-class inference parameter selection not explained (potential label-dependent preprocessing, not proven leakage).",
+        "PDF30 discusses15inner→outer plus4outer→inner errors despite stated10test/class;96.14% is not integer fraction of40 without unreported aggregation.",
+        "Window-random CWRU split risks recording dependence."
+      ],
+      "admissible_claim": "Optional vibration preprocessing background only; reporting conflicts preclude using apparent near-perfect scores as multimodal evidence."
+    },
+    {
+      "file_id": "P043",
+      "title": "WILDS: A Benchmark of in-the-Wild Distribution Shifts",
+      "authors": [
+        "Pang Wei Koh",
+        "Shiori Sagawa",
+        "Henrik Marklund",
+        "Sang Michael Xie",
+        "Marvin Zhang",
+        "Akshay Balsubramani",
+        "Weihua Hu",
+        "Michihiro Yasunaga",
+        "Richard Lanas Phillips",
+        "Irena Gao",
+        "Tony Lee",
+        "Etienne David",
+        "Ian Stavness",
+        "Wei Guo",
+        "Berton A. Earnshaw",
+        "Imran S. Haque",
+        "Sara Beery",
+        "Jure Leskovec",
+        "Anshul Kundaje",
+        "Emma Pierson",
+        "Sergey Levine",
+        "Chelsea Finn",
+        "Percy Liang"
+      ],
+      "year": 2021,
+      "doi": null,
+      "stable_url": "https://proceedings.mlr.press/v139/koh21a.html",
+      "zotero_key": "R2TL9DWG",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\koh21a.pdf",
+      "pdf_sha256": "ce963a0ae9567d43ce852c014b2f7f2860cfc5e86ad497ef8d4f1ffe42cb3677",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P043.txt",
+      "text_sha256": "d692a56a5cf6e7146c1d67dead361e077bf186d222d634dfb281c20a3993d0d7",
+      "pdf_pages": 28,
+      "read_version": "PMLR conference paper",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "foundation and TRANSFERABLE (non-industrial); retain outside core denominator",
+      "SQ_links": [
+        "SQ3 distribution shift",
+        "SQ4 group estimands/validation exposure"
+      ],
+      "read_locators": [
+        "PDF2,7–9; Tables1–2"
+      ],
+      "physical_inputs_and_target": "Ten diverse WILDS datasets and domain/subpopulation shifts; not an industrial fusion experiment.",
+      "fusion_or_method": "Standardized dataset-specific ERM/robustness comparisons; average and worst-group outcomes differ.",
+      "comparison_protocol": "Four ID comparison constructions: fixed train, fixed test, randomized, average. OOD validation used for early stopping/hyperparameters PDF9; not zero target information. At least3replicates and SD. Referenced detailed appendicesG/H not contained in supplied main paper.",
+      "reported_results": [
+        {
+          "locator": "Table1 PDF7",
+          "metric": "iWildCam macroF1",
+          "values": "Fixed-train ID47.0(SD1.4),OOD31.0(SD1.3). Different datasets use different metrics."
+        },
+        {
+          "locator": "Table2 PDF8",
+          "finding": "Robust algorithms do not consistently beat ERM; iWildCam CORAL32.8 versus ERM31.0 is an explicit improvement exception."
+        }
+      ],
+      "robustness": "Explicit domain/subpopulation shift; not missing channels or sensor-noise matrix.",
+      "limitations": [
+        "Purposively selected impactful shifts do not estimate field failure frequency.",
+        "Limited OOD domains and benchmark reuse permit test overfitting.",
+        "Worst-group accuracy and aggregate accuracy are different estimands; SD is not SE."
+      ],
+      "admissible_claim": "Report domain/group definitions and all target validation exposure; do not pool heterogeneous metrics or import numerical gaps into industrial fusion."
+    },
+    {
+      "file_id": "P044",
+      "title": "Dual warm-start fusion versus attention-based fusion in low-label ECG–PCG classification: a controlled ablation study",
+      "authors": [
+        "Erkan Kıymık"
+      ],
+      "year": 2026,
+      "doi": "10.1088/1361-6579/ae85b7",
+      "stable_url": "https://doi.org/10.1088/1361-6579/ae85b7",
+      "zotero_key": "HT6WVQCX",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\Kıymık_2026_Physiol._Meas._47_075010.pdf",
+      "pdf_sha256": "1e3705d28fef0647c3fe5d0e8ed9310b341e8e73cfbf517d55c417325bf01b97",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P044.txt",
+      "text_sha256": "3d012186b0f2ccf9c2d3b197e98f4994f40caeeb0607e78ebe812453514dd173",
+      "pdf_pages": 24,
+      "read_version": "Publisher article with IOP download cover sheet",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "TRANSFERABLE (non-industrial), medical counterexample; retain narrowly",
+      "SQ_links": [
+        "SQ1 initialization",
+        "SQ2 attention versus concatenation",
+        "SQ4 selection and controls"
+      ],
+      "read_locators": [
+        "PDF5–7,9–11,13–14,18,20; Tables4,6,11; printedpage=PDF−1"
+      ],
+      "physical_inputs_and_target": "Paired ECG waveforms and PCG log-mel spectra, CinC2016 TrainingA404recordings/1151segments(342normal809abnormal); cardiac abnormality classification.",
+      "fusion_or_method": "External dual warm starts, F00/F10/F01/F11 concatenation, eight-head attention and gated attention; SupCon/DeepJDOT alternative initialization.",
+      "comparison_protocol": "Fixed recording-level80/20:323train/81validation,922/229segments. No independent test. Best validation-AUROC epoch is evaluated on SAME validation. Twenty seeds main,10 alternatives; segment bootstrap1000 and paired Wilcoxon, no multiplicity correction found. Weighted CE plus balanced sampler;25epochs,all encoders fine-tuned. DeepJDOT uses unlabeled target training PCG, not validation.",
+      "reported_results": [
+        {
+          "locator": "Table4 PDF11",
+          "metric": "full-label validation AUROC mean±SD",
+          "values": "ECGwarm.9062±.0207;F11.9028±.0125;Attn.8900±.0153;GAttn.8888±.0115;F10.9120."
+        },
+        {
+          "locator": "Table6 PDF14",
+          "finding": "Attn−F11−.013 and gated−F11−.014 reported significant;F11−bestuni−.003±.025 nonsignificant, not equivalence."
+        },
+        {
+          "locator": "Table11 PDF18",
+          "metric": "full-label validation AUPRC",
+          "values": "F11.9665,attention.9600,gated.9603."
+        }
+      ],
+      "robustness": "Training augmentations only; clean evaluation. Alternative warm-start sources are not controlled missing/noisy sensor tests.",
+      "limitations": [
+        "Medical task; transfer design principle only.",
+        "Repeated selection/evaluation on validation, no independent test.",
+        "Twenty seeds are not twenty independent cohorts; segment bootstrap omits record clustering.",
+        "Prose varies on per-seed versus fixed best-unimodal selection; avoid stronger precision than tables."
+      ],
+      "admissible_claim": "Initialization and strong unimodal controls can dominate fusion complexity in this setting; not a universal anti-attention result."
+    },
+    {
+      "file_id": "P045",
+      "title": "A Tool Wear Prediction Network Fusing Visual-Acoustic Cross-Attention and Interval Guidance",
+      "authors": [
+        "Xilu Zhang",
+        "Ruying Pang",
+        "Ruikun Zhou",
+        "Zhiping Wang"
+      ],
+      "year": 2026,
+      "doi": "10.3390/machines14070826",
+      "stable_url": "https://doi.org/10.3390/machines14070826",
+      "zotero_key": "IY5UR3SH",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\machines-14-00826-v2.pdf",
+      "pdf_sha256": "e9d216fd590870bd5ce36ee6ca0f9782b9f9fcd10bd5100e85ed1ec9861dee47",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P045.txt",
+      "text_sha256": "e9254f5ca8c81d99d67d1a9e5e98c15ace4b4f247861230e2167f2f096149162",
+      "pdf_pages": 31,
+      "read_version": "Publisher journal article; supplied filename v2 is not evidence of scientific revision number",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "direct industrial physical visual–acoustic; retain core with caveats",
+      "SQ_links": [
+        "SQ1 representation",
+        "SQ2 intermediate/gated fusion",
+        "SQ3 failure limitations",
+        "SQ4 fair comparisons"
+      ],
+      "read_locators": [
+        "PDF5–8,19–29; Tables1–2 PDF24–25"
+      ],
+      "physical_inputs_and_target": "MATWI post-pass tool photographs (camera acquired during shutdown after each cut) paired with preceding active-cut acoustic emission; flank wear0–450micrometres. Not live video. Other numeric channels exist; AE preferred, max-variance backup if invalid.",
+      "fusion_or_method": "EfficientNetV2 ROI384 and sensor CNN256, whole-pass128sample GAF, bidirectional cross-attention, interval-guided wear experts. UAL global homoscedastic task-loss balancing is not per-sample modality calibration.",
+      "comparison_protocol": "PDF20 says17tool lifecycles1663samples; explicit PDF21 split lists7train+3validation+3test=13tools,4disposition unknown. Reimplemented comparators from scratch150epochs,batch8,AdamW3e−4; original MATWI MAE19 imported externally. PDF20 says GAF+wavelet two channels, PDF21–22 single GAF, unresolved input description.",
+      "reported_results": [
+        {
+          "locator": "Table1 PDF24",
+          "metric": "MAE/RMSE micrometres",
+          "values": "Proposed6.6183/12.5657; visualResNet50 8.3002/15.4149; acousticCABLSTM60.5118/89.6246; multimodalSwin45.0145/75.2110 and StageLSTM48.4795/72.0207. Multiple multimodal models below strong visual baseline."
+        },
+        {
+          "locator": "Table2 PDF25",
+          "metric": "MAE sequential ablation",
+          "values": "Basic7.5252→ROI/GAF7.0207→BCA6.9636→IGL6.8028→UAL6.6183; no repeated-training CI."
+        },
+        {
+          "locator": "PDF29",
+          "metric": "computation only",
+          "values": "5.52ms preprocessing+36.96forward=42.48ms; excludes acquisition and shutdown wait."
+        }
+      ],
+      "robustness": "No controlled missing/noisy/shift matrix. Backup-channel rule is not demonstrated dropout robustness. PDF28–29 qualitative chipping/occlusion and noisy gate-oscillation failures.",
+      "limitations": [
+        "Tool split coverage ambiguous.",
+        "Architectures/capacity vary, so fusion effect not isolated.",
+        "ExternalMAE19 unmatched; prose27% reduction conflicts with65% abstract arithmetic.",
+        "No repeated-seed CI; qualitative90% band not demonstrated predictive calibration.",
+        "Whole-pass resampling not demonstrated lossless; attention does not identify physical causality."
+      ],
+      "admissible_claim": "A direct image–acoustic comparator with strong vision and concrete negative fusion counterexamples; retain post-pass horizon and unresolved split coverage."
+    },
+    {
+      "file_id": "P046",
+      "title": "Multimodal Heterogeneous CNN with Adaptive Modality Fusion for Intelligent Fault Diagnosis of Bearings",
+      "authors": [
+        "Chang Sun",
+        "Chenkun Wang",
+        "Shiwei Huang",
+        "Tianci Zhang"
+      ],
+      "year": 2026,
+      "doi": "10.3390/machines14080875",
+      "stable_url": "https://doi.org/10.3390/machines14080875",
+      "zotero_key": "DQGJUVCH",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\machines-14-00875 (1).pdf",
+      "pdf_sha256": "165573b9e4c4d1995c04e8d532ace1a62f800b54f66e4a99ed6103cf62990382",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P046.txt",
+      "text_sha256": "bf962347d58fa328e38e77a2f94928a50b7c9f0dfd7f368b1486fcdb4ac432e4",
+      "pdf_pages": 28,
+      "read_version": "Publisher journal article",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "direct industrial acoustic–vibration; retain core; P047 duplicate",
+      "SQ_links": [
+        "SQ1 heterogeneous encoders",
+        "SQ2 adaptive fusion",
+        "SQ3 test-only noise",
+        "SQ4 unimodal controls"
+      ],
+      "read_locators": [
+        "PDF6–11,14,18,21–25; Tables3,5–7"
+      ],
+      "physical_inputs_and_target": "Ottawa microphone and accelerometer paired42kHz10s bearing recordings; seven classes. Bearing photos are illustrations, no physical camera input.",
+      "fusion_or_method": "Heterogeneous1D CNN branches, bidirectional cross-attention, sample-wise softmax modality weights and weighted feature concatenation.",
+      "comparison_protocol": "Nonoverlapping2048point windows, paired recording positions; random1/5/10/15/20training windows per class, remaining test. No bearing/recording group holdout demonstrated. Ten random-seed mean±SD.",
+      "reported_results": [
+        {
+          "locator": "Table3 PDF14",
+          "metric": "accuracy percent",
+          "values": "10/class95.82±1.25;1/class56.20±7.13;20/class97.83±2.52."
+        },
+        {
+          "locator": "Table7 PDF23",
+          "metric": "accuracy percent,10/class",
+          "values": "Vibration89.48±3.52;acoustic62.63±5.58;concat89.65±2.55;+crossattention91.87±2.73;+weight90.38±2.92;full95.82±1.25."
+        },
+        {
+          "locator": "Table5 PDF18",
+          "metric": "test-only one-branch Gaussian noise",
+          "values": "Clean95.82;acoustic0dB91.03±2.67;vibration0dB90.88±2.51,other branch clean."
+        },
+        {
+          "locator": "Tables6–7 PDF22–23",
+          "finding": "Homogeneous shallow fusion88.79,MRCFN83.60,MSLN77.22 below vibration-only89.48."
+        }
+      ],
+      "robustness": "Test-only Gaussian on one branch20/10/0dB. Only proposed has reported noise table, so adaptive-versus-static corruption benefit not isolated. Missing input not tested; variable speed/load future work PDF25.",
+      "limitations": [
+        "Window-random evaluation does not establish unseen-bearing/machine generalization.",
+        "Seed SD does not quantify independent bearing uncertainty.",
+        "Weights track injected noise but are not calibrated probabilities/physical importance."
+      ],
+      "admissible_claim": "Bounded acoustic–vibration fusion and test-time corruption evidence; no camera input, dropout test or cross-machine transfer."
+    },
+    {
+      "file_id": "P047",
+      "title": "Multimodal Heterogeneous CNN with Adaptive Modality Fusion for Intelligent Fault Diagnosis of Bearings",
+      "doi": "10.3390/machines14080875",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\machines-14-00875.pdf",
+      "pdf_sha256": "165573b9e4c4d1995c04e8d532ace1a62f800b54f66e4a99ed6103cf62990382",
+      "duplicate_of": "P046",
+      "role": "duplicate",
+      "review_status": "ExactSHAduplicate of P046; appraisal inherited, not independent study"
+    },
+    {
+      "file_id": "P048",
+      "title": "A sensor fusion based approach for bearing fault diagnosis of rotating machine",
+      "authors": [
+        "Tauheed Mian",
+        "Anurag Choudhary",
+        "Shahab Fatima"
+      ],
+      "year": 2022,
+      "doi": "10.1177/1748006X211044843",
+      "stable_url": "https://doi.org/10.1177/1748006x211044843",
+      "zotero_key": "RMJXCCIK",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\mian-et-al-2021-a-sensor-fusion-based-approach-for-bearing-fault-diagnosis-of-rotating-machine.pdf",
+      "pdf_sha256": "a589a7624253ec1afe87062f622cc043ad60166be107297f0be89f6c509da7e3",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P048.txt",
+      "text_sha256": "3e068b7010e49f83b67ecd6685aa769ae6bf123b3a1c5e988a249c15c08fa8c4",
+      "pdf_pages": 15,
+      "read_version": "Publisher article; issue2022, copyright/first-online2021",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "direct industrial thermal image–vibration; retain early-fusion core",
+      "SQ_links": [
+        "SQ1 statistical representation",
+        "SQ2 early fusion",
+        "SQ4 split/baseline audit"
+      ],
+      "read_locators": [
+        "PDF3–13 (printed663–673); Table11 PDF13"
+      ],
+      "physical_inputs_and_target": "FLIRP640thermal7fps640×480 and vibration6.4kHz, five laboratory bearing conditions at19/23/29Hz,10kgload; five-class diagnosis.",
+      "fusion_or_method": "Hilbert1D/2D transforms,15statistics/branch,30feature concatenation, NCA+Relief selects6,quadratic SVM.",
+      "comparison_protocol": "One-hour steady state then5minute capture. Vibration640sample100ms windows50%overlap PDF5; precise thermal multirate pairing unspecified. Five-fold CV, no bearing/run grouping or feature-selection nesting demonstrated. Speeds evaluated separately, not an unseen-speed transfer.",
+      "reported_results": [
+        {
+          "locator": "PDF10",
+          "metric": "unimodal accuracy percent19/23/29Hz",
+          "values": "Vibration98.4/97.8/97.4;thermal98.8/98.6/98.8."
+        },
+        {
+          "locator": "Table11 PDF13",
+          "metric": "accuracy percent19/23/29Hz",
+          "values": "Proposed100/100/99.6;CCAconcat99.6/99.6/99.4;CCAsum82.6/83.2/89;DWT99.6/99.6/100. DWT better at29Hz."
+        }
+      ],
+      "robustness": "No controlled missing/noisy modality tests; multiple separately evaluated speeds do not prove shift robustness.",
+      "limitations": [
+        "Overlapping windows and unspecified group split create dependence risk, not proof of leakage.",
+        "No seed/CI; selector/scaler isolation unclear.",
+        "Cross-paper Table12 not matched evidence; box-constraint plot average precision should not be equated with ranking AP."
+      ],
+      "admissible_claim": "Feature concatenation can improve reported thermal/vibration classification under this laboratory protocol; no universal fusion superiority or field-shift claim."
+    },
+    {
+      "file_id": "P049",
+      "title": "Attention is not Explanation",
+      "authors": [
+        "Sarthak Jain",
+        "Byron C. Wallace"
+      ],
+      "year": 2019,
+      "doi": "10.18653/v1/N19-1357",
+      "stable_url": "https://aclanthology.org/N19-1357/",
+      "zotero_key": "6P2V5GJA",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\N19-1357.pdf",
+      "pdf_sha256": "3750735a8bfd5f7d960a7cdb1bbdf6e16ac34cf0d449cf5c4bc45e3c3549e607",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P049.txt",
+      "text_sha256": "bee8f0f98bbbed65fdb437fc1098330d018d289a83b47be02b89fdceb6d986d4",
+      "pdf_pages": 14,
+      "read_version": "ACL Anthology published conference paper",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "TRANSFERABLE (non-industrial) interpretability counterexample",
+      "SQ_links": [
+        "SQ4 interpretation"
+      ],
+      "read_locators": [
+        "PDF2–8; Tables1–2; Algorithms1–3; Figures3–4"
+      ],
+      "physical_inputs_and_target": "NLP sentiment/classification, QA and NLI tokens; tests explanatory meaning of attention, no physical multimodal data.",
+      "fusion_or_method": "BiLSTM/CNN/average embeddings with simple additive or dot-product attention; Kendall correlation with gradient/leave-one-out importance,100random permutations, adversarial alternative attention with fixed latent states.",
+      "comparison_protocol": "Interpretation experiments on test examples. Output TVD tolerance.01classification/.05QA. Authors restrict scope from richer biattentive models PDF3 and concede gradient/erasure measures are not complete explanations PDF5.",
+      "reported_results": [
+        {
+          "locator": "Table2 PDF4",
+          "metric": "Kendall tau mean±SD over examples",
+          "values": "SSTclass0 gradient-attention BiLSTM.34±.21 versus average encoder.61±.20;20Newsclass0.07±.17 versus.79±.07."
+        },
+        {
+          "locator": "PDF6–8 Figures3–4",
+          "finding": "Many very different attention distributions preserve outputs; positive diabetes predictions explicitly show a meaningful perturbation exception."
+        }
+      ],
+      "robustness": "Attention perturbation is an interpretability intervention, not sensor corruption/dropout or machine shift.",
+      "limitations": [
+        "Empirical critique of specified NLP models, not a theorem for all attention/explanation.",
+        "Fixed-representation attention intervention does not prove causal raw-sensor effects."
+      ],
+      "admissible_claim": "Attention weights alone do not establish unique or causal physical explanation; do not claim every attention mechanism is uninterpretable."
+    },
+    {
+      "file_id": "P050",
+      "title": "Multimodal Transformer for Unaligned Multimodal Language Sequences",
+      "authors": [
+        "Yao-Hung Hubert Tsai",
+        "Shaojie Bai",
+        "Paul Pu Liang",
+        "J. Zico Kolter",
+        "Louis-Philippe Morency",
+        "Ruslan Salakhutdinov"
+      ],
+      "year": 2019,
+      "doi": "10.18653/v1/P19-1656",
+      "stable_url": "https://aclanthology.org/P19-1656/",
+      "zotero_key": "NUYUG26J",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\P19-1656.pdf",
+      "pdf_sha256": "f49c6240beea462dffce735ba8732129c15556999d06a0974ba76bb6726221f2",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P050.txt",
+      "text_sha256": "a438a42223e301c203f1f50f5ac0ded0ef66c5e11c1fb2b484de649b35bbcc0b",
+      "pdf_pages": 12,
+      "read_version": "ACL Anthology published conference paper",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "TRANSFERABLE (non-industrial) crossmodal architecture foundation",
+      "SQ_links": [
+        "SQ1 heterogeneous sequences",
+        "SQ2 intermediate attention",
+        "SQ4 budget controls"
+      ],
+      "read_locators": [
+        "PDF2–8,11–12; Tables1–5"
+      ],
+      "physical_inputs_and_target": "GloVe text, Facet facial video features, COVAREP74D acoustic features, MOSI/MOSEI/IEMOCAP sentiment/emotion; strongest individual branch is text.",
+      "fusion_or_method": "MulT six directed crossmodal stacks with target queries and low-level source keys/values, temporal convolution/positions and target-wise concatenation plus self-attention predictor.",
+      "comparison_protocol": "Aligned P2FA word averages versus native unaligned12.5/20Hzacoustic and15Hzvideo; CTC-trained adaptations for baselines needing alignment. Approx200kparameters matched. AppendixTable5 hyperparameters, validation grid/LR decay. Supplied main text does not establish group-disjoint split details or retraining CI.",
+      "reported_results": [
+        {
+          "locator": "Table4 PDF8",
+          "metric": "unaligned MOSEI binaryaccuracy/F1/MAE",
+          "values": "Text77.4/78.2/.653;audio65.6/68.8/.764;vision66.4/69.3/.759;lateTransformer78.6/78.5/.636;early78.9/78.8/.648;MulT81.6/81.6/.591."
+        },
+        {
+          "locator": "Tables2/4 PDF6/8",
+          "finding": "MulT correlation.694 versus.691 differs across tables; do not silently combine."
+        },
+        {
+          "locator": "Table3 PDF7",
+          "finding": "Aligned sad accuracy MulT86.7<MFM88.4, so not best on all metrics/tasks."
+        }
+      ],
+      "robustness": "Unequal sample rates/unaligned word features, not controlled hardware clock shift, sensor dropout or image corruption.",
+      "limitations": [
+        "Non-industrial language tasks; approximate parameter matching not full optimization equivalence.",
+        "Attention visualization is qualitative, not causal explanation."
+      ],
+      "admissible_claim": "Crossmodal attention can relate unequal-length streams without forced word alignment; industrial temporal-offset robustness remains a separate empirical question."
+    },
+    {
+      "file_id": "P051",
+      "title": "Real-Time Federated Fault Detection for Substations With Incomplete Multimodal Data",
+      "authors": [
+        "Xiangyu Zhao",
+        "Shang Cao",
+        "Lingyu Liang",
+        "Jingxing Yu",
+        "Huanming Zhang",
+        "Ruiye Zhou",
+        "Ge Ma"
+      ],
+      "year": 2026,
+      "doi": "10.1049/tje2.70222",
+      "stable_url": "https://doi.org/10.1049/tje2.70222",
+      "zotero_key": "J23SCJLU",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\Real‐Time Federated Fault Detection for Substations With Incomplete Multimodal Data - Zhao - 2026 - The Journal of Engineering - Wiley Online Library.pdf",
+      "pdf_sha256": "29bae92844c16331f385fff4c3a852f3efeb3b68dd5fcf08c2aef7c3a0b121c1",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P051.txt",
+      "text_sha256": "77323323a5e2b22ea52f6b4ac350781fc6290c656ce69124bedae45c1a84ba45",
+      "pdf_pages": 40,
+      "read_version": "Browser print of complete publisher webpage; not canonical typeset PDF",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "direct industrial incomplete visible/thermal clients; retain with access limits",
+      "SQ_links": [
+        "SQ1 physical imagery",
+        "SQ2 intermediate/federated fusion",
+        "SQ3 incomplete clients/noise",
+        "SQ4 quality assumptions"
+      ],
+      "read_locators": [
+        "Browser-print PDF2–32; Table2 PDF21–22; Table5 PDF28; Figures8–9 PDF29–30"
+      ],
+      "physical_inputs_and_target": "Visible and infrared images, NOT numeric process sensors.48650pairs(32420normal16230fault),five substations,Jan2022–Dec2024; six-class fault object detection.",
+      "fusion_or_method": "FED-MFD dualYOLOv12-S, four-region bidirectional attention, lightweight head, frozen absent branch, bimodal-teacher feature distillation/MLP hallucination; quality-weighted federated aggregation.",
+      "comparison_protocol": "15clients,Dirichletalpha.5,default20%single-modality clients,3seeds42/123/456. No recoverable train/validation/test ratios or station/time/event disjointness. Private data request only. Quality coefficients conflict PDF18 .4/.3/.3 versus PDF21 .5/.3/.2; image-size and rounds/epoch descriptions differ.",
+      "reported_results": [
+        {
+          "locator": "Table2 browserPDF22",
+          "metric": "mAP@.5 percent",
+          "values": "IR78.34±.19,VIS81.72±.17,early86.17±.23,late88.53±.26. Final row clipped in supplied browser table, not reconstructed."
+        },
+        {
+          "locator": "Table5 PDF28",
+          "metric": "mAP@.5 percent",
+          "values": "DBFEN83.62;+BRAM87.24;+LDH87.93;+distillation89.47;+MHM90.73;+quality91.83±.29. ± not assumed CI."
+        },
+        {
+          "locator": "Fig8 discussion PDF29",
+          "finding": "Up to80%incomplete clients reports8.1point decline; not separately specified sudden test-only camera outage."
+        },
+        {
+          "locator": "Fig9 PDF30",
+          "metric": "mAP versus Gaussian sigma",
+          "values": "0/10/20/30/40:91.8/90.5/88.3/84.8/81.9. Sigma scale unreconciled with [0,1] normalization."
+        }
+      ],
+      "robustness": "Missingness is federated-client incompleteness; deployment hallucination described without separate unexpected-outage matrix. Gaussian image noise tested, affected stream/scale unclear. Adverse-weather subset described, no separate result located. Non-IID clients not independent cross-machine transfer.",
+      "limitations": [
+        "40page browser capture has horizontally/bottom clipped Table2 (visually confirmed PDF22).",
+        "Centralized complete-data baselines versus federated incomplete protocol do not isolate fusion/capacity/exposure.",
+        "Missing split details/coefficient conflicts limit reproduction."
+      ],
+      "admissible_claim": "Industrial missing-data evidence is incomplete visible/thermal clients, with bounded image-noise results; not calibrated modality reliability or numeric machine-sensor fusion."
+    },
+    {
+      "file_id": "P052",
+      "title": "Multi-sensor and MTConnect dataset of metal cutting anomaly in milling from laboratory and industry settings",
+      "authors": [
+        "Eunseob Kim",
+        "Yuseop Sim",
+        "Adrian Shuai Li",
+        "Mir Imtiaz Mostafiz",
+        "Zachary Van Meter",
+        "Martin Byung-Guk Jun",
+        "Elisa Bertino",
+        "Ali Shakouri"
+      ],
+      "year": 2026,
+      "doi": "10.1038/s41597-026-07255-7",
+      "stable_url": "https://www.nature.com/articles/s41597-026-07255-7",
+      "zotero_key": "99GNJWMY",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\s41597-026-07255-7.pdf",
+      "pdf_sha256": "cc038ccc417876de8832e6081e1b2fc28f526706679f0890bd23119e790f1065",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P052.txt",
+      "text_sha256": "c7d72e07894bafd6ba118b5a8a29d3fff0c99b6892b257176aa068f47fea91ca",
+      "pdf_pages": 14,
+      "read_version": "Publisher Data Descriptor",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "direct industrial dataset foundation; not fusion-result denominator",
+      "SQ_links": [
+        "SQ1 acquisition",
+        "SQ4 labels/cohort provenance"
+      ],
+      "read_locators": [
+        "PDF2–12; Tables3–4 PDF9–11"
+      ],
+      "physical_inputs_and_target": "HurcoVM20i/VMX30Ui lab and HaasVF10 industry;48kHzaudio,51.2kHzlab vibration,MTConnect,power/low-frequency features,current. Smartphone door-window video LAB ONLY. Native0stable/1intervention-worthyabnormal/2defective-toolbutstablecut.",
+      "fusion_or_method": "Dataset descriptor, no predictive architecture. Label1 overrides2 if defective-tool cut abnormal. Experts use machining/sound/sensors; boundaries initializedNC/position then sound-refined.",
+      "comparison_protocol": "NTP common computer times; reference crop. Controller roughly.1slab,adapterpower/vibration~1s,industry1Hz/current10s; polling.1s not all fresh channels. Native release stats separate from admitted thesis adapter cohort. DatasetDOI10.34740/kaggle/ds/8392825.",
+      "reported_results": [
+        {
+          "locator": "Table4 PDF11",
+          "metric": "native label0/1/2 percentages",
+          "values": "VM20i69.17/26.33/4.5;VMX64.48/27.71/7.8;VF1097.49/2.51/0. Total8h12m23s,58%cut; not admitted model counts."
+        }
+      ],
+      "robustness": "Multiple domains enable research but no model missing/noise/transfer validation.",
+      "limitations": [
+        "No unimodal/fusion benchmark.",
+        "NTP claim does not independently validate camera-frame alignment.",
+        "Published:xx xx xxxx placeholder PDF12; retain2026volume/DOI, do not invent exact date."
+      ],
+      "admissible_claim": "Use native acquisition/label provenance; actual adapter manifests govern cohort counts, timing and target mapping. Label2 is not automatically a process anomaly."
+    },
+    {
+      "file_id": "P053",
+      "title": "A Multi-Channel Multi-Scale Spatiotemporal Convolutional Cross-Attention Fusion Network for Bearing Fault Diagnosis",
+      "authors": [
+        "Ruixue Li",
+        "Guohai Zhang",
+        "Yi Niu",
+        "Kai Rong",
+        "Wei Liu",
+        "Haoxuan Hong"
+      ],
+      "year": 2025,
+      "doi": "10.3390/s25185923",
+      "stable_url": "https://www.mdpi.com/1424-8220/25/18/5923",
+      "zotero_key": null,
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\sensors-25-05923-v2.pdf",
+      "pdf_sha256": "60db7375822e226bc86e3428b70d21ef8ce0014af5e666b19b0e849903c52313",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P053.txt",
+      "text_sha256": "ea5d81d7b3a1a81da09507ea47dc46a6502eb8a83fefffaec950a3ffcc491bab",
+      "pdf_pages": 28,
+      "read_version": "Publisher journal article; filename v2 alone is not scientific revision evidence",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "direct industrial acoustic–vibration; retain core with protocol caveats",
+      "SQ_links": [
+        "SQ1 signal-to-image",
+        "SQ2 cross-attention",
+        "SQ4 units and controls"
+      ],
+      "read_locators": [
+        "PDF6,10–18,20–24; Tables1–10"
+      ],
+      "physical_inputs_and_target": "Microphone and accelerometer Morlet-CWT images, no camera. Ottawa42kHz1750rpm400N9classes;KAIST25.6/51.2kHz5classes.",
+      "fusion_or_method": "MMSTCCAFN multiscale temporal vibration and multiscale spatial acoustic branches, channel/spatial cross-attention,GAP/FC. Sigmoid temporal gate is not calibrated modality quality.",
+      "comparison_protocol": "Ottawa350train50test/class;KAIST250train50test/class. Framework says train/validation/test but validation counts/windowstride and bearing/recording group separation not recovered. Batch32,200epochs,Adam.001,10trials. KAIST microphone zero-load only to avoid brake noise; paired-load admission unclear. Each dataset fit separately.",
+      "reported_results": [
+        {
+          "locator": "Table3 PDF16",
+          "metric": "Ottawa accuracy percent mean(SD)",
+          "values": "Vibration93.70(.9316),acoustic91.02(.9918),fusion99.56(.0993). Table5 PDF17 sum-fusion98.16(.3392)."
+        },
+        {
+          "locator": "Table8 PDF23",
+          "metric": "KAIST accuracy percent mean(SD)",
+          "values": "Vibration94.05(.9176),acoustic91.74(.8993),fusion99.91(.0722).Table9 PDF24 sum-fusion98.73(.2354)."
+        }
+      ],
+      "robustness": "No explicit missing/noise stress matrix. Noise-robustness asserted; zero-load collection avoids noise rather than validates it. Separately fitted datasets are not learned-weight transfer.",
+      "limitations": [
+        "Independent bearing/recording holdout not shown.",
+        "Reported extrema99.64/99.76 not straightforward fractions of stated450/250test without unreported aggregation.",
+        "PDF17 prose direction conflicts Table5 lower removed-module results; use table.",
+        "Single-branch models smaller than full, not capacity-isolated comparison."
+      ],
+      "admissible_claim": "Acoustic–vibration fusion improves reported within-dataset bearing classification; spectral images do not make this visual-camera evidence."
+    },
+    {
+      "file_id": "P054",
+      "title": "Discrepancy-Guided Complementary Fusion for Unsupervised Multimodal Anomaly Detection",
+      "authors": [
+        "Taehui Lee",
+        "Seyoung Jeong",
+        "Sang Jun Lee"
+      ],
+      "year": 2026,
+      "doi": "10.3390/s26123757",
+      "stable_url": "https://doi.org/10.3390/s26123757",
+      "zotero_key": "VWSZTZA4",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\sensors-26-03757-v2.pdf",
+      "pdf_sha256": "8f78db48ca9fcc9507c961d1a7a8cebe9acc1b3cde4f9703d90542c8e6939276",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P054.txt",
+      "text_sha256": "0a71d4054848d1ae0a400ad298e64b86d18dbf77b13c1587dfb631e9497f2268",
+      "pdf_pages": 15,
+      "read_version": "Publisher journal article; filename v2 alone is not scientific revision evidence",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "direct industrial RGB plus geometry; retain core; identity corrected",
+      "SQ_links": [
+        "SQ1 RGB/normals",
+        "SQ2 intermediate plus late fusion",
+        "SQ4 metric/resource tradeoff"
+      ],
+      "read_locators": [
+        "PDF5–13; Tables1–6; Table4 PDF12 visually checked"
+      ],
+      "physical_inputs_and_target": "RGB and surface normals, MVTec3Ddepth-derived/Eyecandiesprovided, not process timeseries; normal-only anomaly detection/localization.",
+      "fusion_or_method": "DGCF dualWideResNet50/OCBE reconstruction, absolute-discrepancy complementary injections, bounded alpha; N2F Gaussian training-feature noise. Validation-fixed z-normalized per-modality anomaly maps summed late; image maximum.",
+      "comparison_protocol": "256square,200epochs,batch16,lr.005,seed42. Split counts/groups not given. Early baseline pixelwise equal RGB/normal sum into one encoder; full dual encoders increases capacity. Five timing repeats are not training-seed replicates.",
+      "reported_results": [
+        {
+          "locator": "Tables1–2 PDF10–11",
+          "metric": "imageAUROC/pixelAUROC/AUPRO percent",
+          "values": "MVTec97.3/99.6/97.6;Eyecandies94.8/98.6/93.4."
+        },
+        {
+          "locator": "Table3 PDF12",
+          "metric": "early versus DGCF",
+          "values": "MVTec96.5/99.5/97.3→97.3/99.6/97.6;Eyecandies90.3/98.1/91.6→94.8/98.6/93.4."
+        },
+        {
+          "locator": "Table4 PDF12",
+          "finding": "Neither module95.8/99.6/97.7 versus full97.3/99.6/97.6 MVTec: image gain while AUPRO decreases.1point."
+        },
+        {
+          "locator": "Table6 PDF13",
+          "metric": "resource change",
+          "values": "369.1→528.8Mparams,1581.8→2222.9MBVRAM,102.8±.9→114.1±.7ms RTX3090batch1."
+        }
+      ],
+      "robustness": "N2F training perturbation/hyperparameter sensitivity is not test-input corruption. No missing/shift tests.",
+      "limitations": [
+        "No unimodal control located.",
+        "Fusion and capacity co-vary; fixed training seed.",
+        "P054 is DGCF, not bearing paper (P053)."
+      ],
+      "admissible_claim": "A discrepancy-guided RGB/normal reconstruction fusion example with metric/resource tradeoffs, not machine-timeseries or proven degradation robustness."
+    },
+    {
+      "file_id": "P055",
+      "title": "Strictly Proper Scoring Rules, Prediction, and Estimation",
+      "authors": [
+        "Tilmann Gneiting",
+        "Adrian E. Raftery"
+      ],
+      "year": 2007,
+      "doi": "10.1198/016214506000001437",
+      "stable_url": "https://doi.org/10.1198/016214506000001437",
+      "zotero_key": "JAQKL8FB",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\Strictly Proper Scoring Rules  Prediction  and Estimation.pdf",
+      "pdf_sha256": "e535b6f39f9179f7190a896117c27cf29585e7b5be2ba071232b704fd90a2d4e",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P055.txt",
+      "text_sha256": "15e0bcf26fbe26af7a6bfe60a86b8daf5eefe6997dd262e46dd859d7c5c42fde",
+      "pdf_pages": 21,
+      "read_version": "Publisher article with Taylor & Francis cover sheet",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "foundation; retain outside fusion denominator",
+      "SQ_links": [
+        "SQ4 proper scoring and CV assumptions"
+      ],
+      "read_locators": [
+        "PDF2–3,8,15; printed359–360,365,372"
+      ],
+      "physical_inputs_and_target": "General probability forecasts/outcomes, no industrial experimental dataset.",
+      "fusion_or_method": "Proper expected reward maximized at truth; strict unique optimum. Paper reward orientation reversed for minimized NLL/Brier losses.",
+      "comparison_protocol": "Theoretical expected propriety does not establish empirical calibration for finite learned forecasts. §7.2 PDF15 discusses unordered exchangeable observations/random-fold CV, not independent CVfolds.",
+      "reported_results": [
+        {
+          "locator": "Table1 PDF8/printed365",
+          "finding": "Binary logarithmic rewards logp/log(1−p) and Brier−(1−p)^2/−p^2 support mean NLL and mean(p−y)^2 with explicit loss sign."
+        }
+      ],
+      "robustness": "No missing/noisy/shift experiment or transferred calibration guarantee.",
+      "limitations": [
+        "Scores reflect more than calibration alone.",
+        "Do not cite as valid naive fold-independent SE proof.",
+        "Publication2007; publisher cover online2012 not citation year."
+      ],
+      "admissible_claim": "NLL/Brier are proper probability losses with explicit orientation/prevalence; pair with discrimination/calibration and dependence-aware uncertainty."
+    },
+    {
+      "file_id": "P056",
+      "title": "CAFM: A Cross-Modal Local Alignment Fusion Method for RGB-3D Industrial Anomaly Detection",
+      "authors": [
+        "Yayue Zhao",
+        "Xiaosong Li",
+        "Shenghan Zhou",
+        "Yingxiao Zhao"
+      ],
+      "year": 2026,
+      "doi": "10.21203/rs.3.rs-10461475/v1",
+      "stable_url": "https://www.researchsquare.com/article/rs-10461475/v1",
+      "zotero_key": "BG2FQYMI",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\v1_covered_fc4d1a73-d29f-4200-bc02-9bc8d7bb2f1d.pdf",
+      "pdf_sha256": "7b748ff8ca15042a6245207eef3e94bf7dbed2df98fd579cc0e8056788f92bcb",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P056.txt",
+      "text_sha256": "4983c3d11b9d94f9289b65e3398fdcf4b85cb8dff68881fdb4a9cc0395e26885",
+      "pdf_pages": 25,
+      "read_version": "Version1 preprint, posted2026-09-24; not peer-reviewed journal publication",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "direct industrial RGB–3D preprint; retain provisionally",
+      "SQ_links": [
+        "SQ1 frozen representations",
+        "SQ2 local intermediate/late fusion",
+        "SQ4 fitting/selection"
+      ],
+      "read_locators": [
+        "PDF6–20; printedpage=PDF−1; Tables1–7"
+      ],
+      "physical_inputs_and_target": "RGB DINO ViTb/8 and PointMAE pointcloud, normal-only anomaly detection/localization; ResearchSquarev1 posted24Sep2026, not peer-reviewed claim.",
+      "fusion_or_method": "CAFM local3Dquery-toRGBkey/value attention radius1,positionencoding,symmetricInfoNCE,bottleneck dropout; RGB/3D/fused memory banks,10%coreset,one-class linear SVM late aggregation.",
+      "comparison_protocol": "40epochs,AdamW.003,batch32;per-category head1000iterations. Target-normal learned memory/head means not zero-shot. Best performance checkpoint population unclear; fixed seeds mentioned, no retraining variance. Separate dataset-specific fits.",
+      "reported_results": [
+        {
+          "locator": "Tables1–3 PDF15–17",
+          "metric": "imageAUROC/AUPRO",
+          "values": "MVTecimage.981vsM3DM.945;Eyecandies.901vs.897. MVTecAUPRO.977<G2SF.979."
+        },
+        {
+          "locator": "Table4 PDF18",
+          "metric": "MVTec imageAUROC",
+          "values": "PC.857,RGB.857,fusedbank.914,RGB+PClate.932,threebankslate.981."
+        },
+        {
+          "locator": "Table5 PDF19",
+          "metric": "fusion-only sensitivity",
+          "values": "Temperature.2=.914 versus.4=.523,belowunimodal.857; configuration sensitivity, not universal fusion inferiority."
+        },
+        {
+          "locator": "Table7 PDF20",
+          "metric": "imageAUROC ablation",
+          "values": "M3DM.945,+bottleneck.958,+localfusion.981; multiple changes not purely local-attention effect."
+        }
+      ],
+      "robustness": "Unimodal-bank ablations not missing-input deployment tests; training dropout not sensor corruption; separate fitted datasets not learned-weight transfer.",
+      "limitations": [
+        "Preprint status and checkpoint-selection/split details limit inference.",
+        "No repeated-training CI."
+      ],
+      "admissible_claim": "Local RGB–3D alignment with multi-bank late aggregation and strong bank controls; not zero-shot, camera–machine-timeseries or tested missing/noisy robustness."
+    },
+    {
+      "file_id": "P057",
+      "title": "Diagnose, Correct, and Learn from Manipulation Failures via Visual Symbols",
+      "authors": [
+        "Xianchao Zeng",
+        "Xinyu Zhou",
+        "Youcheng Li",
+        "Jiayou Shi",
+        "Tianle Li",
+        "Liangming Chen",
+        "Lei Ren",
+        "Yong-Lu Li"
+      ],
+      "year": 2026,
+      "doi": null,
+      "stable_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Zeng_Diagnose_Correct_and_Learn_from_Manipulation_Failures_via_Visual_Symbols_CVPR_2026_paper.html",
+      "zotero_key": "7II4APPW",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\Zeng_Diagnose_Correct_and_Learn_from_Manipulation_Failures_via_Visual_Symbols_CVPR_2026_paper.pdf",
+      "pdf_sha256": "fc361d5ed2c2869d4ef4c68077c9a574d805eaac6d41062515ef69e89ff10b82",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P057.txt",
+      "text_sha256": "31f889b95cc6b8eb884faab920cb3b20e8d77f1f2f3e13ee67b4337818500fc6",
+      "pdf_pages": 10,
+      "read_version": "CVF open-access conference paper; exact title/authors agree with existing publisher-linked record",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "robot dataset/visual representation foundation; retain outside core sensor-fusion results",
+      "SQ_links": [
+        "SQ1 dataset/representation",
+        "SQ4 completed-outcome horizon and transfer"
+      ],
+      "read_locators": [
+        "PDF3–8; Tables2–4"
+      ],
+      "physical_inputs_and_target": "ALOHA head+two wrist cameras, visual/language symbols.5202trajectories100tasks,4545fail657success,58128VQA; completed action outcomes/reasons/guidance, no engineered machine-sensor statistics in paper model.",
+      "fusion_or_method": "Seven visual symbols, generated reasoning manually verified; Qwen3VL8BLoRA1epoch ViFailback8B uses headcamera; PMC/VSF separate policy interventions.",
+      "comparison_protocol": "Train4702trajectories95tasks52418VQA;benchmark500trajectories22tasks. Not all task-disjoint:95+22>100native tasks. Real robot3unseen tasks21trials/task matched layouts. Native paper counts not thesis admitted adapter counts.",
+      "reported_results": [
+        {
+          "locator": "Table2 PDF7",
+          "metric": "Lite mean score",
+          "values": "93.70versusGemini54.64;failure-detection98.20versus93.13."
+        },
+        {
+          "locator": "Table3 PDF7",
+          "metric": "Hard score",
+          "values": "72.64versusGPT4o40.00;open-ended GPT4o-based judgments,notbinaryfailureAP."
+        },
+        {
+          "locator": "Table4 PDF8",
+          "metric": "real-robot success percent",
+          "values": "Base50.8→PMC74.6(+23.8points);symbol52.4→VSF73.0(+20.6points);noCI."
+        }
+      ],
+      "robustness": "Headcamera versus3camera is not a visual–machine-sensor missingness comparison. No controlled sensor corruption. Unseen-task policy intervention not thesis frozen-CNN/sensor-head transfer.",
+      "limitations": [
+        "Labels generated/verified visually, not independent physical failure instrumentation.",
+        "Different tasks/inputs/metrics from thesis action-failure classifier; no imported AP."
+      ],
+      "admissible_claim": "Use for native visual-symbol dataset provenance and completed-outcome semantics; adapter/cohort and actual transfer claims require thesis artifacts."
+    },
+    {
+      "file_id": "P058",
+      "title": "Provable Dynamic Fusion for Low-Quality Multimodal Data",
+      "authors": [
+        "Qingyang Zhang",
+        "Haitao Wu",
+        "Changqing Zhang",
+        "Qinghua Hu",
+        "Huazhu Fu",
+        "Joey Tianyi Zhou",
+        "Xi Peng"
+      ],
+      "year": 2023,
+      "doi": null,
+      "stable_url": "https://proceedings.mlr.press/v202/zhang23ar.html",
+      "zotero_key": "L6LVCKTC",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\zhang23ar.pdf",
+      "pdf_sha256": "16afd960f50983ca90e31441dd9649fa8b5359a4270bc4f6661b7987f87e6c1e",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P058.txt",
+      "text_sha256": "233af91ad252acfabd7f3dd8463cd7f4e987d4cdb2424828fdb5130ec58f0920",
+      "pdf_pages": 17,
+      "read_version": "PMLR conference paper",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "TRANSFERABLE (non-industrial) reliability-aware method/theory; retain",
+      "SQ_links": [
+        "SQ2 dynamic late fusion",
+        "SQ3 quality corruption",
+        "SQ4 assumptions and negative controls"
+      ],
+      "read_locators": [
+        "PDF3–9,14–17; Tables1–3,5; AppendixTable5 PDF16 visually checked"
+      ],
+      "physical_inputs_and_target": "RGBDscene NYUD/SUN and image–text FOOD101/MVSA classification; non-industrial.50%modalities corrupted with Gaussian/saltpepper images or blank text.",
+      "fusion_or_method": "QMF energy/logsumexp uncertainty, negative-linear uncertainty weights and historical mean-training-loss ranking regularizer. Binary-logistic theoretical late-fusion bound.",
+      "comparison_protocol": "Theorem2 PDF4 compares UPPER BOUNDS assuming same joint train/testD,matched mean weights and nonpositive weight–loss covariance; not actual-risk guarantee. Assumption1 PDF5 requires uncertainty positively related to loss.10RGBD/3FOOD/5MVSA seeds; early stopping validation. Worst-case is worst seed, not population subgroup.",
+      "reported_results": [
+        {
+          "locator": "MainTable1 PDF8",
+          "metric": "accuracy percent clean/noiseepsilon10",
+          "values": "NYUQMF70.09/55.60;concatclean70.30,TMC71.06/53.36,late noise51.99. MVSAconcatBERT65.59<BERT75.61;QMF78.07<MMBT78.50clean,but61.28>55.35noise10."
+        }
+      ],
+      "robustness": "Genuine non-industrial test-quality corruption, not explicit missing-hardware evaluation. TheoremIID assumption does not prove shifted reliability.",
+      "limitations": [
+        "MainTable1 PDF8 versus AppendixTable5 PDF16 swaps NYU/SUN RGB/Depth rows;SUNconcat61.90versus62.48;mainNYUnoise55.60versusablationTable2PDF9 55.81. Preserve table-specific values.",
+        "Table3 correlation sign versus |r| descriptions need care.",
+        "§6PDF9 admits weak realRGBD uncertainty–loss correlation/unlearnable uncertainty cases.",
+        "Energy and adaptive weights are not calibrated error probabilities."
+      ],
+      "admissible_claim": "Dynamic quality weighting is conditional on a useful error-associated proxy; clean/noisy rankings differ. Never claim universally provable industrial superiority."
+    },
+    {
+      "file_id": "P059",
+      "title": "DETRs Beat YOLOs on Real-time Object Detection",
+      "authors": [
+        "Yian Zhao",
+        "Wenyu Lv",
+        "Shangliang Xu",
+        "Jinman Wei",
+        "Guanzhong Wang",
+        "Qingqing Dang",
+        "Yi Liu",
+        "Jie Chen"
+      ],
+      "year": 2024,
+      "doi": "10.1109/CVPR52733.2024.01605",
+      "stable_url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhao_DETRs_Beat_YOLOs_on_Real-time_Object_Detection_CVPR_2024_paper.pdf",
+      "zotero_key": "L94UM2YR",
+      "pdf_path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\Zhao_DETRs_Beat_YOLOs_on_Real-time_Object_Detection_CVPR_2024_paper.pdf",
+      "pdf_sha256": "6458894ad18097be73bb9c6c4a7c9621960f2185df58923e179c6fa23ad94388",
+      "text_path": "thesis_revision_20261117\\pdf_text\\P059.txt",
+      "text_sha256": "750a82982b57f5a31fb3588ec91e2dd434b00d4eb598c1dfed9956ae09d1cefc",
+      "pdf_pages": 10,
+      "read_version": "CVF open-access conference paper; exact title/authors agree with existing publisher-linked record",
+      "review_status": "Relevant full-text methods/results appraised; no independent experimental reproduction",
+      "role": "foundation and TRANSFERABLE (non-industrial); retain architecture provenance",
+      "SQ_links": [
+        "SQ1 pretrained representations",
+        "SQ4 resource/transfer scope"
+      ],
+      "read_locators": [
+        "PDF4–8; Figure4; Tables2–5"
+      ],
+      "physical_inputs_and_target": "COCO single-image bounding-box detection; no timeseries/video fusion.",
+      "fusion_or_method": "ResNet backbone then hybrid encoder (S5AIFIattention+CNNCCFF) then Transformer query decoder/head. Backbone-only extraction is CNN representation, distinct from complete RTDETR. Query uncertainty is classification/localization discrepancy, not calibrated modality reliability.",
+      "comparison_protocol": "COCO72epochs,R50/R101,640square;T4TensorRTFP16batch1 speed. Comparator input sizes/training budgets vary; not thesis CPU or extracted-encoder latency.",
+      "reported_results": [
+        {
+          "locator": "Table2 PDF7",
+          "metric": "COCOvalAP/FPS",
+          "values": "R50 53.1/108;R10154.3/74 in paper full-detector setting."
+        },
+        {
+          "locator": "Tables4–5 PDF8",
+          "finding": "Query selection47.9→48.7AP;6→5decoder layers53.1→53.0AP,9.3→8.8ms."
+        }
+      ],
+      "robustness": "No missing/noisy modalities or industrial shift experiment.",
+      "limitations": [
+        "§6PDF8 weaker small-objectAP acknowledged.",
+        "Pretrained object-detection architecture alone does not validate industrial anomaly representations."
+      ],
+      "admissible_claim": "Name precisely which component is used; do not describe backbone extraction as an all-Transformer or a reproduced full-detector result.",
+      "publisher_metadata_update": {
+        "verified_date": "2026-11-18",
+        "source": "https://api.crossref.org/works/10.1109/CVPR52733.2024.01605",
+        "pages": "16965-16974",
+        "published": [
+          2024,
+          6,
+          16
+        ],
+        "verification_scope": "Crossref publisher-deposited DOI/title/eight authors/venue/pages/date; source PDF appraised separately"
+      }
+    }
+  ]
+}

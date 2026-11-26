@@ -1,0 +1,90 @@
+{
+  "timestamp_utc": "2026-11-25T21:46:51.783381+00:00",
+  "scope": "Rebuild and package the author-supplied Abstract, Chapter 1 and Keywords; preserve the unchanged baseline and installed style files. No new experiments or literature work.",
+  "source_integrity_record": "source_integrity.json",
+  "source_edits": [
+    "frontmatter/abstract.tex",
+    "chapters/01_introduction.tex",
+    "main.tex (Keywords block only)"
+  ],
+  "companion_metadata_refresh": "tables/evidence_source_index.csv usage counts and pinpoints",
+  "normalization": "Only chat-escape artifacts were normalized when applying the supplied LaTeX; wording, citations, research questions and six sections retained.",
+  "prior_delivery": {
+    "revised_thesis.pdf": {
+      "sha256": "65a10454ad9f6c5282c934fca8a58c94236a884b65cc4546bc3962b06a430224",
+      "bytes": 3707821
+    },
+    "revised_review.pdf": {
+      "sha256": "86ef647de4a1b220c09e5787c1c9fca0fb3e7ee20a59060f144eb79f87d0a5e1",
+      "bytes": 3509310
+    },
+    "revised_latex_source.zip": {
+      "sha256": "cdf1e893fe48fe801315f94df70d7943f9534beef8b2273599e1bf3998fbae60",
+      "bytes": 3362804
+    }
+  },
+  "current_delivery": {
+    "revised_thesis.pdf": {
+      "sha256": "e454d6b623c67679421ea0529dcaf56014df98f834b66a2ae1d587bb9cb2754e",
+      "bytes": 3708437
+    },
+    "revised_review.pdf": {
+      "sha256": "cec7134d3337ebee764d4ee49d622b9161d468023540bb931bc875b05b19eab7",
+      "bytes": 3509444
+    },
+    "revised_latex_source.zip": {
+      "sha256": "1f47f6f8712b87c61d851e8e97d546b9a2910e26bbe4b32deeaa60fe8b944245",
+      "bytes": 3377152
+    }
+  },
+  "source_zip_entries": 54,
+  "archive_excludes": [
+    "build/",
+    "__pycache__/",
+    "historical chapter-pdfs/"
+  ],
+  "style_installer_zip_unchanged": true,
+  "compilation": {
+    "full_build": {
+      "abstract_physical_page": 2,
+      "keywords_physical_page": 3,
+      "introduction_physical_pages": [
+        13,
+        19
+      ],
+      "chapter_2_physical_page": 20,
+      "six_introduction_sections_present": true,
+      "abstract_counts_and_rounded_AP_values_present": true,
+      "clean_console_termination": true
+    },
+    "review_build": {
+      "abstract_physical_page": 1,
+      "keywords_physical_page": 2,
+      "introduction_physical_pages": [
+        3,
+        9
+      ],
+      "chapter_2_physical_page": 10,
+      "six_introduction_sections_present": true,
+      "abstract_counts_and_rounded_AP_values_present": true,
+      "clean_console_termination": true
+    }
+  },
+  "baseline_files_unchanged": 56,
+  "visual_inspection": {
+    "completed": true,
+    "full_pdf_physical_pages": [
+      2,
+      3,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "method": "Opened all nine rendered page previews at 1200-pixel height.",
+    "findings": "No clipped or overlapping text, unresolved reference markers or broken headings observed. Existing draft watermark and double spacing retained. The abstract concluding line and Keywords flow onto the second abstract page; paragraph and list continuations across Introduction pages are preserved."
+  }
+}

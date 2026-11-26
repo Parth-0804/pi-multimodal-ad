@@ -1,0 +1,991 @@
+{
+  "created": "2026-11-18",
+  "papers": [
+    {
+      "title": "EPIDIR: Integrating external frequency prompts and internal statistical decoupling for infrared image restoration",
+      "authors": [
+        "Wenxiao Xu",
+        "Qiyuan Yin",
+        "Zhuoran Zheng",
+        "Daqing Huang"
+      ],
+      "year": 2026,
+      "doi": "10.1016/j.neucom.2026.134552",
+      "arxiv_id": null,
+      "venue_and_version": "Publisher version; Neurocomputing 701 (2026), article 134552; available online 20 July 2026",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\1-s2.0-S0925231226019508-main.pdf",
+      "sha256": "b3cdae4fb292379f57081b4bd416cd365100952277700b4109a8b70492650fcd",
+      "existing_match_key": null,
+      "file_id": "P001",
+      "role": "Out-of-core single-modal IR restoration",
+      "question_links": "SQ1 peripheral;SQ3 indirect",
+      "retention_decision": "Exclude core fusion",
+      "read_pdf_pages": [
+        3,
+        7,
+        8
+      ],
+      "decisive_visual_pdf_pages": [
+        8
+      ],
+      "appraisal": "IR image restoration; image/patch PSNR and SSIM. Inputs: Infrared imagery only. Method: Frequency-prompt/SNR image restoration, not physical multimodal fusion. Controls: Other IR restoration networks, including AdaIR. Protocol: 80/20 train/validation images; independent test not established. Missing: Not tested. Noisy: Synthetic noise, blur, contrast, coupled image corruption. Shift: No machine/domain shift established. Evidence: PDF p8 Table2 hard USM PSNR17.7434/SSIM0.6064. Table1 HM blur PSNR31.5635 below AdaIR31.7097, SSIM0.9136 above0.9101. Limits: No fault labels. Means/SD do not alone establish significance. Exclude core fusion.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "IR image restoration; image/patch PSNR and SSIM",
+      "physical_modalities": "Infrared imagery only",
+      "fusion": "Frequency-prompt/SNR image restoration, not physical multimodal fusion",
+      "unimodal_controls": "Other IR restoration networks, including AdaIR",
+      "split_and_independence": "80/20 train/validation images; independent test not established",
+      "robustness": {
+        "missing": "Not tested",
+        "noisy": "Synthetic noise, blur, contrast, coupled image corruption",
+        "shifted": "No machine/domain shift established"
+      },
+      "results": "PDF p8 Table2 hard USM PSNR17.7434/SSIM0.6064. Table1 HM blur PSNR31.5635 below AdaIR31.7097, SSIM0.9136 above0.9101.",
+      "uncertainty_and_limits": "No fault labels. Means/SD do not alone establish significance. Exclude core fusion.",
+      "read_version": "Publisher version; Neurocomputing 701 (2026), article 134552; available online 20 July 2026"
+    },
+    {
+      "title": "Rotating machinery fault diagnosis based on convolutional neural network and infrared thermal imaging",
+      "authors": [
+        "Yongbo Li",
+        "Xiaoqiang Du",
+        "Fangyi Wan",
+        "Xianzhi Wang",
+        "Huangchao Yu"
+      ],
+      "year": 2020,
+      "doi": "10.1016/j.cja.2019.08.014",
+      "arxiv_id": null,
+      "venue_and_version": "Publisher version; Chinese Journal of Aeronautics 33(2) (2020), 427–438; available online 5 September 2019",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\1-s2.0-S1000936119303127-main.pdf",
+      "sha256": "2e0166b63050f2d555050920b088ed5561a33e7120c9d3e503fa08d46e3e7fec",
+      "existing_match_key": null,
+      "file_id": "P002",
+      "role": "Direct industrial unimodal thermal diagnosis",
+      "question_links": "SQ1 CNN;SQ2 unimodal;SQ4 split",
+      "retention_decision": "Retain background, not fusion",
+      "read_pdf_pages": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "decisive_visual_pdf_pages": [
+        9
+      ],
+      "appraisal": "Ten-state rotating-machine classification; thermal frame. Inputs: Thermal camera only in main classifier; vibration separately. Method: CNN; pooling temperature-region examples is not modality fusion. Controls: DBN/DNN/SAE thermal comparators; separate vibration entropy classifier is not matched. Protocol: 35/65 percent thermal image split,20 trials; independent runs/sessions not established. Missing: Not tested. Noisy: Temperature/warm-up variation; no controlled sensor corruption. Shift: Fixed3000rpm rig; no cross-machine test. Evidence: PDF p9 Table8 CNN98.59percent(3845/3900),SD0.00591. Separate vibration75.38percent(489/650), pp8/10. Limits: Different vibration denominator/representation. Prose/table disagreements: CNN98.64 vs98.59; SAE88.20 vs87.18. IR+vibration fusion future work.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Ten-state rotating-machine classification; thermal frame",
+      "physical_modalities": "Thermal camera only in main classifier; vibration separately",
+      "fusion": "CNN; pooling temperature-region examples is not modality fusion",
+      "unimodal_controls": "DBN/DNN/SAE thermal comparators; separate vibration entropy classifier is not matched",
+      "split_and_independence": "35/65 percent thermal image split,20 trials; independent runs/sessions not established",
+      "robustness": {
+        "missing": "Not tested",
+        "noisy": "Temperature/warm-up variation; no controlled sensor corruption",
+        "shifted": "Fixed3000rpm rig; no cross-machine test"
+      },
+      "results": "PDF p9 Table8 CNN98.59percent(3845/3900),SD0.00591. Separate vibration75.38percent(489/650), pp8/10.",
+      "uncertainty_and_limits": "Different vibration denominator/representation. Prose/table disagreements: CNN98.64 vs98.59; SAE88.20 vs87.18. IR+vibration fusion future work.",
+      "read_version": "Publisher version; Chinese Journal of Aeronautics 33(2) (2020), 427–438; available online 5 September 2019"
+    },
+    {
+      "title": "DMAW: A Dynamic Multimodal Measurement Fusion Network With Attention for Reliable Welding Process Monitoring Under Harsh Industrial Environments",
+      "authors": [
+        "Jiawei Fan",
+        "Ting Yuan",
+        "Haonan Zhang",
+        "Songlin Li",
+        "Uwe D. Hanebeck",
+        "Zhuguo Li",
+        "Edmond Q. Wu",
+        "Jiuchao Qian"
+      ],
+      "year": 2026,
+      "doi": null,
+      "arxiv_id": null,
+      "venue_and_version": "Author postprint in KITopen; article IEEE Sensors Journal 26(2) (2026), 2347–2358; article DOI independently confirmed by KITopen",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\1000189165.pdf",
+      "sha256": "03dcd61ce44d64beea0c80fd1012ea404cd0a2b8b4e1f7de87a6c10489277139",
+      "existing_match_key": "AFZPUKWM",
+      "file_id": "P003",
+      "role": "Direct industrial visual-acoustic welding",
+      "question_links": "SQ1 encoders;SQ2 fusion;SQ3 motivation only;SQ4 latency",
+      "retention_decision": "Retain priority, qualified",
+      "read_pdf_pages": [
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "decisive_visual_pdf_pages": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "appraisal": "Four welding-state classification;20-frame/audio pair, total pair count unclear. Inputs: Process images plus audio, not continuous machine telemetry. Method: Frozen adapted ViT branches; self/cross attention, category-dependent prediction mixture, gradient balancing. Controls: Image ViT90.2percent and audio ViT84.4percent; fusion variants. Protocol: 13,000 images,37fps,44.1kHz audio,20-frame pairs; split/group unit, repeats and CI not specified. Missing: No controlled absence test found. Noisy: Harsh-environment motivation; no graded noise experiment found. Shift: No held-out machine/condition or synchronization-shift protocol found. Evidence: PDF p7 TableIII DMAW accuracy96.1/precision96.4/recall96.3/F1 96.8percent; averaging undefined. p9 TableV sum90.5/gate92.6/FiLM93.7/gradient control93.4/dynamic96.1. Limits: Parameter/thickness by class and unknown split confound claims. Pulsed-MIG setup prose versus laser parameters inconsistent. p8 TableIV64.3M/27.27GFLOPs;26.2ms latency excludes calculated20/37=0.54s observation window.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Four welding-state classification;20-frame/audio pair, total pair count unclear",
+      "physical_modalities": "Process images plus audio, not continuous machine telemetry",
+      "fusion": "Frozen adapted ViT branches; self/cross attention, category-dependent prediction mixture, gradient balancing",
+      "unimodal_controls": "Image ViT90.2percent and audio ViT84.4percent; fusion variants",
+      "split_and_independence": "13,000 images,37fps,44.1kHz audio,20-frame pairs; split/group unit, repeats and CI not specified",
+      "robustness": {
+        "missing": "No controlled absence test found",
+        "noisy": "Harsh-environment motivation; no graded noise experiment found",
+        "shifted": "No held-out machine/condition or synchronization-shift protocol found"
+      },
+      "results": "PDF p7 TableIII DMAW accuracy96.1/precision96.4/recall96.3/F1 96.8percent; averaging undefined. p9 TableV sum90.5/gate92.6/FiLM93.7/gradient control93.4/dynamic96.1.",
+      "uncertainty_and_limits": "Parameter/thickness by class and unknown split confound claims. Pulsed-MIG setup prose versus laser parameters inconsistent. p8 TableIV64.3M/27.27GFLOPs;26.2ms latency excludes calculated20/37=0.54s observation window.",
+      "read_version": "Author postprint in KITopen; article IEEE Sensors Journal 26(2) (2026), 2347–2358; article DOI independently confirmed by KITopen"
+    },
+    {
+      "title": "Bias in error estimation when using cross-validation for model selection",
+      "authors": [
+        "Sudhir Varma",
+        "Richard Simon"
+      ],
+      "year": 2006,
+      "doi": "10.1186/1471-2105-7-91",
+      "arxiv_id": null,
+      "venue_and_version": "Publisher version; BMC Bioinformatics 7:91; published 23 February 2006",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\1471-2105-7-91.pdf",
+      "sha256": "573198025179f340870428087dd3a980a5c2cbdab890ace3d155e0cf8fcd6e1b",
+      "existing_match_key": "6GX3RI5Q",
+      "file_id": "P004",
+      "role": "Transferable evaluation foundation, older seminal exception",
+      "question_links": "SQ2 selection;SQ4 evaluation",
+      "retention_decision": "Retain methods",
+      "read_pdf_pages": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "decisive_visual_pdf_pages": [
+        5
+      ],
+      "appraisal": "Simulated binary classification; individual IID sample. Inputs: Gene-like Gaussian features; no physical modalities. Method: Evaluation/model-selection method, not fusion. Controls: Shrunken-centroid and SVM. Protocol: 40 samples,6000features;>=1000 simulations;20,000 independent test samples; nested leave-one-out evaluation. Missing: Not applicable. Noisy: Not a noise robustness trial. Shift: IID simulation, not machine/domain shift. Evidence: PDF p5 Table1 selected CV errors37.8/41.7percent against true50percent; biases12.2/8.3points. p6 nested estimates can be pessimistic. Limits: Older seminal2006 exception. Does not certify project strict nesting or group independence.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Simulated binary classification; individual IID sample",
+      "physical_modalities": "Gene-like Gaussian features; no physical modalities",
+      "fusion": "Evaluation/model-selection method, not fusion",
+      "unimodal_controls": "Shrunken-centroid and SVM",
+      "split_and_independence": "40 samples,6000features;>=1000 simulations;20,000 independent test samples; nested leave-one-out evaluation",
+      "robustness": {
+        "missing": "Not applicable",
+        "noisy": "Not a noise robustness trial",
+        "shifted": "IID simulation, not machine/domain shift"
+      },
+      "results": "PDF p5 Table1 selected CV errors37.8/41.7percent against true50percent; biases12.2/8.3points. p6 nested estimates can be pessimistic.",
+      "uncertainty_and_limits": "Older seminal2006 exception. Does not certify project strict nesting or group independence.",
+      "read_version": "Publisher version; BMC Bioinformatics 7:91; published 23 February 2006"
+    },
+    {
+      "title": "ModDrop: adaptive multi-modal gesture recognition",
+      "authors": [
+        "Natalia Neverova",
+        "Christian Wolf",
+        "Graham Taylor",
+        "Florian Nebout"
+      ],
+      "year": 2015,
+      "doi": null,
+      "arxiv_id": "1501.00102v2",
+      "venue_and_version": "arXiv v2, 6 June 2015; journal-style manuscript, no journal venue or article DOI asserted from supplied PDF",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\1501.00102v2.pdf",
+      "sha256": "6dc50a534ddbccdbcf7f03dd4cf77f53ce5537003d23e8c646970db71d79bde4",
+      "existing_match_key": "88S57IWM",
+      "file_id": "P005",
+      "role": "Transferable seminal missing-modality method",
+      "question_links": "SQ2 structuredfusion;SQ3 missing/noisy;SQ4 transfer",
+      "retention_decision": "Retain ModDrop2015version",
+      "read_pdf_pages": [
+        6,
+        8,
+        9,
+        10,
+        12,
+        13
+      ],
+      "decisive_visual_pdf_pages": [
+        12,
+        13
+      ],
+      "appraisal": "Gesture classification and quarter-MNIST digit classification. Inputs: RGB/depth/mocap; extended audio. MNIST quadrants are pseudo-modalities. Method: Pretrained branches, staged block-structured fusion, Bernoulli whole-modality dropout. Controls: Without ModDrop and individual-block comparisons. Protocol: Challenge official development/validation/test distinctions; Table10 independent test identity unclear. Missing: Whole branches removed at evaluation after dropout training. Noisy: Artificial salt/pepper and other corruptions. Shift: No natural machine/domain shift. Evidence: PDF p12 Table8 two MNIST quarters absent error35.91to7.19percent; clean1.02 both. p13 Table10 absent mocap accuracy38.41to92.82; absent audio84.10to92.59. Limits: NoCI in quoted table. Training exposure is not automatic reliability estimation. Non-industrial transferable older method.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Gesture classification and quarter-MNIST digit classification",
+      "physical_modalities": "RGB/depth/mocap; extended audio. MNIST quadrants are pseudo-modalities",
+      "fusion": "Pretrained branches, staged block-structured fusion, Bernoulli whole-modality dropout",
+      "unimodal_controls": "Without ModDrop and individual-block comparisons",
+      "split_and_independence": "Challenge official development/validation/test distinctions; Table10 independent test identity unclear",
+      "robustness": {
+        "missing": "Whole branches removed at evaluation after dropout training",
+        "noisy": "Artificial salt/pepper and other corruptions",
+        "shifted": "No natural machine/domain shift"
+      },
+      "results": "PDF p12 Table8 two MNIST quarters absent error35.91to7.19percent; clean1.02 both. p13 Table10 absent mocap accuracy38.41to92.82; absent audio84.10to92.59.",
+      "uncertainty_and_limits": "NoCI in quoted table. Training exposure is not automatic reliability estimation. Non-industrial transferable older method.",
+      "read_version": "arXiv v2, 6 June 2015; journal-style manuscript, no journal venue or article DOI asserted from supplied PDF"
+    },
+    {
+      "title": "Gated Multimodal Units for Information Fusion",
+      "authors": [
+        "John Arevalo",
+        "Thamar Solorio",
+        "Manuel Montes-y-Gómez",
+        "Fabio A. González"
+      ],
+      "year": 2017,
+      "doi": null,
+      "arxiv_id": "1702.01992v1",
+      "venue_and_version": "arXiv v1; first-page header Workshop track - ICLR 2017",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\1702.01992v1.pdf",
+      "sha256": "86a32379bc86f4ffb63e121473fc65c9b9878dd420b372bae8e4946a6708bc17",
+      "existing_match_key": "UD4TITRU",
+      "file_id": "P006",
+      "role": "Transferable gated intermediate-fusion foundation",
+      "question_links": "SQ2 gates;SQ3 motivation;SQ4 classnegatives",
+      "retention_decision": "Retain GMU",
+      "read_pdf_pages": [
+        4,
+        5,
+        7,
+        9,
+        11,
+        12
+      ],
+      "decisive_visual_pdf_pages": [
+        11
+      ],
+      "appraisal": "Multi-label movie genre classification; movie. Inputs: Poster image and plot text. Method: Elementwise sigmoid gate over tanh hidden representations; intermediate fusion. Controls: Text, visual, concatenation, probability average. Protocol: 15,552 train/2,608 dev/7,799 test;23 genres;25 random hyperparameter candidates. Missing: No controlled missing-modality trial established. Noisy: Synthetic modality informativeness, not factory corruption. Shift: No industrial cross-domain test. Evidence: PDF p11 Table2 macroF1 GMU0.541/concat0.521/average0.491/text0.488/visual0.284. Table3 Biography0.25<text0.40, History0.29<0.35. Limits: Aggregate gain does not hold for every genre. Gate activations are not calibrated reliability or causal explanations.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Multi-label movie genre classification; movie",
+      "physical_modalities": "Poster image and plot text",
+      "fusion": "Elementwise sigmoid gate over tanh hidden representations; intermediate fusion",
+      "unimodal_controls": "Text, visual, concatenation, probability average",
+      "split_and_independence": "15,552 train/2,608 dev/7,799 test;23 genres;25 random hyperparameter candidates",
+      "robustness": {
+        "missing": "No controlled missing-modality trial established",
+        "noisy": "Synthetic modality informativeness, not factory corruption",
+        "shifted": "No industrial cross-domain test"
+      },
+      "results": "PDF p11 Table2 macroF1 GMU0.541/concat0.521/average0.491/text0.488/visual0.284. Table3 Biography0.25<text0.40, History0.29<0.35.",
+      "uncertainty_and_limits": "Aggregate gain does not hold for every genre. Gate activations are not calibrated reliability or causal explanations.",
+      "read_version": "arXiv v1; first-page header Workshop track - ICLR 2017"
+    },
+    {
+      "title": "EmbraceNet: A robust deep learning architecture for multimodal classification",
+      "authors": [
+        "Jun-Ho Choi",
+        "Jong-Seok Lee"
+      ],
+      "year": 2019,
+      "doi": null,
+      "arxiv_id": "1904.09078v1",
+      "venue_and_version": "arXiv v1, 19 April 2019; supplied PDF is a preprint and does not establish a final publication DOI",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\1904.09078v1.pdf",
+      "sha256": "ead0b525f4a7fc86a55d480554ca8fba4e016f91c5ab86172e7363416f0db4b6",
+      "existing_match_key": "EF8NXKB9",
+      "file_id": "P007",
+      "role": "Transferable sensor missing-data foundation",
+      "question_links": "SQ2 stochasticfusion;SQ3 absent/block;SQ4 availability",
+      "retention_decision": "Retain EmbraceNet priority",
+      "read_pdf_pages": [
+        3,
+        4,
+        6,
+        9,
+        12
+      ],
+      "decisive_visual_pdf_pages": [
+        12
+      ],
+      "appraisal": "Gas chemical classification; wearable locomotion/gesture; sensor sequence. Inputs: 72 gas sensors in8types;19 wearable sensors. Method: Stochastic per-coordinate categorical branch selection with known availability-mask renormalization. Controls: Late fusion, mean fill, autoencoder and others. Protocol: Gas locations1,3,5 train/2val/4test; location6excluded. OPP four subjects, source task protocol;50percent average training modality loss. Missing: All255 nonempty gas combinations; sampled OPP combinations;10–30s blocks. Noisy: Missing blocks evaluated; no automatic bad-present-sensor detector. Shift: Gas held-out location split; no direct visual-machine fault transfer. Evidence: PDF p12 Table2 OPP locomotion80percent absent F1 0.810 vs late0.793; gesture late0.785 exceeds Embrace0.782; clean autoencoder better on both tasks. Limits: Not universal winner; all-absent mask undefined. Availability differs from uncertainty. Published DOI separately verified; empirical pages supplied preprint.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Gas chemical classification; wearable locomotion/gesture; sensor sequence",
+      "physical_modalities": "72 gas sensors in8types;19 wearable sensors",
+      "fusion": "Stochastic per-coordinate categorical branch selection with known availability-mask renormalization",
+      "unimodal_controls": "Late fusion, mean fill, autoencoder and others",
+      "split_and_independence": "Gas locations1,3,5 train/2val/4test; location6excluded. OPP four subjects, source task protocol;50percent average training modality loss",
+      "robustness": {
+        "missing": "All255 nonempty gas combinations; sampled OPP combinations;10–30s blocks",
+        "noisy": "Missing blocks evaluated; no automatic bad-present-sensor detector",
+        "shifted": "Gas held-out location split; no direct visual-machine fault transfer"
+      },
+      "results": "PDF p12 Table2 OPP locomotion80percent absent F1 0.810 vs late0.793; gesture late0.785 exceeds Embrace0.782; clean autoencoder better on both tasks.",
+      "uncertainty_and_limits": "Not universal winner; all-absent mask undefined. Availability differs from uncertainty. Published DOI separately verified; empirical pages supplied preprint.",
+      "read_version": "arXiv v1, 19 April 2019; supplied PDF is a preprint and does not establish a final publication DOI"
+    },
+    {
+      "title": "Can You Trust Your Model’s Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift",
+      "authors": [
+        "Yaniv Ovadia",
+        "Emily Fertig",
+        "Jie Ren",
+        "Zachary Nado",
+        "D Sculley",
+        "Sebastian Nowozin",
+        "Joshua V. Dillon",
+        "Balaji Lakshminarayanan",
+        "Jasper Snoek"
+      ],
+      "year": 2019,
+      "doi": null,
+      "arxiv_id": "1906.02530v2",
+      "venue_and_version": "arXiv v2, 17 December 2019; first page names 33rd Conference on Neural Information Processing Systems (NeurIPS 2019)",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\1906.02530v2.pdf",
+      "sha256": "1610d04d7f69d10751f0e9ff1db9fbd8b3fdf5306798879016192eb2dbf17a6f",
+      "existing_match_key": "2EURPGE2",
+      "file_id": "P008",
+      "role": "Transferable uncertainty-under-shift benchmark",
+      "question_links": "SQ3 confidenceundershift;SQ4 propermetrics",
+      "retention_decision": "Retain qualification",
+      "read_pdf_pages": [
+        3,
+        4,
+        5,
+        6,
+        8,
+        9
+      ],
+      "decisive_visual_pdf_pages": [
+        6
+      ],
+      "appraisal": "Classification/uncertainty across images, text and tabular tasks. Inputs: Each benchmark mainly unimodal; no industrial fusion. Method: Uncertainty estimators, temperature scaling, dropout, SVI, ensembles. Controls: Vanilla and alternative uncertainty methods. Protocol: MNIST ten runs; image16types x5severities; other task-specific splits and tuning budgets. Missing: Not a missing-fusion test. Noisy: Controlled image corruption and categorical randomization. Shift: Synthetic distribution shifts and OOD text. Evidence: PDF p6 Fig2 accuracy/calibration degrade; temperature scaling fails to preserve shift calibration. p9 ensembles usually strong, not universal; Criteo dropout better Brier above60percent randomization. Limits: No digitized plot coordinates. ECE not proper and can favor uninformative marginal prediction; no industrial reliability gate validation.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Classification/uncertainty across images, text and tabular tasks",
+      "physical_modalities": "Each benchmark mainly unimodal; no industrial fusion",
+      "fusion": "Uncertainty estimators, temperature scaling, dropout, SVI, ensembles",
+      "unimodal_controls": "Vanilla and alternative uncertainty methods",
+      "split_and_independence": "MNIST ten runs; image16types x5severities; other task-specific splits and tuning budgets",
+      "robustness": {
+        "missing": "Not a missing-fusion test",
+        "noisy": "Controlled image corruption and categorical randomization",
+        "shifted": "Synthetic distribution shifts and OOD text"
+      },
+      "results": "PDF p6 Fig2 accuracy/calibration degrade; temperature scaling fails to preserve shift calibration. p9 ensembles usually strong, not universal; Criteo dropout better Brier above60percent randomization.",
+      "uncertainty_and_limits": "No digitized plot coordinates. ECE not proper and can favor uninformative marginal prediction; no industrial reliability gate validation.",
+      "read_version": "arXiv v2, 17 December 2019; first page names 33rd Conference on Neural Information Processing Systems (NeurIPS 2019)"
+    },
+    {
+      "title": "Improving Reproducibility in Machine Learning Research (A Report from the NeurIPS 2019 Reproducibility Program)",
+      "authors": [
+        "Joelle Pineau",
+        "Philippe Vincent-Lamarre",
+        "Koustuv Sinha",
+        "Vincent Larivière",
+        "Alina Beygelzimer",
+        "Florence d’Alché-Buc",
+        "Emily Fox",
+        "Hugo Larochelle"
+      ],
+      "year": 2021,
+      "doi": null,
+      "arxiv_id": null,
+      "venue_and_version": "JMLR publisher PDF; volume 22 (2021), 1–20; first-page footer identifies jmlr.org/papers/v22/20-303.html",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\20-303.pdf",
+      "sha256": "09e3ba1d1c3dc7111bc3dc112f40c5d0f3d9dbc4b8198ef8bdc48eb852f4da29",
+      "existing_match_key": "DSK35A86",
+      "file_id": "P009",
+      "role": "Reproducibility/provenance foundation",
+      "question_links": "SQ4 auditability",
+      "retention_decision": "Retain methodology,notensembles",
+      "read_pdf_pages": [
+        7,
+        9,
+        13
+      ],
+      "decisive_visual_pdf_pages": [
+        9
+      ],
+      "appraisal": "Conference reproducibility programme; papers/reports. Inputs: Not a physical-data experiment. Method: Reporting/checklist/code policy, not fusion. Controls: Not applicable. Protocol: Observational surveys and voluntary challenge; selection/self-report limits. Missing: Not applicable. Noisy: Not applicable. Shift: Not applicable. Evidence: PDF p9 Table1 code availability40to74.4percent submission-to-camera-ready; Table2 173papers/73institutions/84reviewed reports. Limits: Code availability not correctness or independent reproduction. No causal policy estimate and no industrial metric.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Conference reproducibility programme; papers/reports",
+      "physical_modalities": "Not a physical-data experiment",
+      "fusion": "Reporting/checklist/code policy, not fusion",
+      "unimodal_controls": "Not applicable",
+      "split_and_independence": "Observational surveys and voluntary challenge; selection/self-report limits",
+      "robustness": {
+        "missing": "Not applicable",
+        "noisy": "Not applicable",
+        "shifted": "Not applicable"
+      },
+      "results": "PDF p9 Table1 code availability40to74.4percent submission-to-camera-ready; Table2 173papers/73institutions/84reviewed reports.",
+      "uncertainty_and_limits": "Code availability not correctness or independent reproduction. No causal policy estimate and no industrial metric.",
+      "read_version": "JMLR publisher PDF; volume 22 (2021), 1–20; first-page footer identifies jmlr.org/papers/v22/20-303.html"
+    },
+    {
+      "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "authors": [
+        "Alexey Dosovitskiy",
+        "Lucas Beyer",
+        "Alexander Kolesnikov",
+        "Dirk Weissenborn",
+        "Xiaohua Zhai",
+        "Thomas Unterthiner",
+        "Mostafa Dehghani",
+        "Matthias Minderer",
+        "Georg Heigold",
+        "Sylvain Gelly",
+        "Jakob Uszkoreit",
+        "Neil Houlsby"
+      ],
+      "year": 2021,
+      "doi": null,
+      "arxiv_id": "2010.11929v2",
+      "venue_and_version": "arXiv v2, 3 June 2021; first-page header Published as a conference paper at ICLR 2021",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2010.11929v2.pdf",
+      "sha256": "8ce7b83971a14508ca711a27c875c9b6914c4f6767cf3150fb1ca6c07aa056d6",
+      "existing_match_key": "S4XS7LE8",
+      "file_id": "P010",
+      "role": "Transferable visual Transformer foundation",
+      "question_links": "SQ1 visualcandidate;SQ4 pretrainbudget",
+      "retention_decision": "Retain ViT",
+      "read_pdf_pages": [
+        3,
+        4,
+        6,
+        7,
+        9
+      ],
+      "decisive_visual_pdf_pages": [
+        6
+      ],
+      "appraisal": "Image classification; image. Inputs: RGB images only. Method: Patch-token ViT; hybrid CNN token variant. Controls: CNN/ResNet and different pretraining/model sizes. Protocol: ImageNet1.3M/21K14M/JFT303M; authors report dedup; three fine-tuning seeds. Missing: Not tested. Noisy: Not main controlled robustness result appraised. Shift: Pretraining-size/data-regime comparisons, not machine shift. Evidence: PDF p6 Table2 ImageNet ViTH14/JFT88.55+/-0.04percent;L16/JFT87.76+/-0.03;L16/21K85.30+/-0.02. p7 low-data CNN advantage. Limits: H14 about2500 TPUv3-core-days. Finetuning SD is not repeated pretraining. Candidate, not executed thesis backbone.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Image classification; image",
+      "physical_modalities": "RGB images only",
+      "fusion": "Patch-token ViT; hybrid CNN token variant",
+      "unimodal_controls": "CNN/ResNet and different pretraining/model sizes",
+      "split_and_independence": "ImageNet1.3M/21K14M/JFT303M; authors report dedup; three fine-tuning seeds",
+      "robustness": {
+        "missing": "Not tested",
+        "noisy": "Not main controlled robustness result appraised",
+        "shifted": "Pretraining-size/data-regime comparisons, not machine shift"
+      },
+      "results": "PDF p6 Table2 ImageNet ViTH14/JFT88.55+/-0.04percent;L16/JFT87.76+/-0.03;L16/21K85.30+/-0.02. p7 low-data CNN advantage.",
+      "uncertainty_and_limits": "H14 about2500 TPUv3-core-days. Finetuning SD is not repeated pretraining. Candidate, not executed thesis backbone.",
+      "read_version": "arXiv v2, 3 June 2021; first-page header Published as a conference paper at ICLR 2021"
+    },
+    {
+      "title": "AST: Audio Spectrogram Transformer",
+      "authors": [
+        "Yuan Gong",
+        "Yu-An Chung",
+        "James Glass"
+      ],
+      "year": 2021,
+      "doi": null,
+      "arxiv_id": "2104.01778v3",
+      "venue_and_version": "arXiv v3, 8 July 2021; conference name absent from first-page header; existing Zotero record gives Interspeech 2021",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2104.01778v3.pdf",
+      "sha256": "c237e981755e9ba5047e7290ffcb7d38d8292e166730ae3cd180b7833f184303",
+      "existing_match_key": "BEL2IBQV",
+      "file_id": "P011",
+      "role": "Transferable audio Transformer foundation",
+      "question_links": "SQ1 acousticcandidate;SQ4 pretrain/ensemblebudget",
+      "retention_decision": "Retain AST",
+      "read_pdf_pages": [
+        2,
+        3,
+        4
+      ],
+      "decisive_visual_pdf_pages": [
+        3
+      ],
+      "appraisal": "Audio event classification; audio clip. Inputs: Audio log-Mel spectrogram only. Method: Overlapping spectrogram patches into ImageNet-initialized AST encoder. Controls: PANN/CNN-attention and no-pretrain AST. Protocol: Official AudioSet sets;3seeds, ESC50fivefold, SpeechCommands official split. Missing: Not tested. Noisy: No factory background-noise protocol verified. Shift: Cross-task pretraining transfer, not industrial machine shift. Evidence: PDF p3 Table1 single weight-averaged mAP0.459 vs last-epoch0.448; six-model ensemble0.485. Table2 pretrain0.347/0.459 vs no-pretrain0.148/0.366. p4 SpeechCommands AudioSet-pretrain97.88 below image-init98.11percent. Limits: 87M parameters and overlap cost; pretraining task-dependent. Proposed audio candidate, not completed thesis audio branch.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Audio event classification; audio clip",
+      "physical_modalities": "Audio log-Mel spectrogram only",
+      "fusion": "Overlapping spectrogram patches into ImageNet-initialized AST encoder",
+      "unimodal_controls": "PANN/CNN-attention and no-pretrain AST",
+      "split_and_independence": "Official AudioSet sets;3seeds, ESC50fivefold, SpeechCommands official split",
+      "robustness": {
+        "missing": "Not tested",
+        "noisy": "No factory background-noise protocol verified",
+        "shifted": "Cross-task pretraining transfer, not industrial machine shift"
+      },
+      "results": "PDF p3 Table1 single weight-averaged mAP0.459 vs last-epoch0.448; six-model ensemble0.485. Table2 pretrain0.347/0.459 vs no-pretrain0.148/0.366. p4 SpeechCommands AudioSet-pretrain97.88 below image-init98.11percent.",
+      "uncertainty_and_limits": "87M parameters and overlap cost; pretraining task-dependent. Proposed audio candidate, not completed thesis audio branch.",
+      "read_version": "arXiv v3, 8 July 2021; conference name absent from first-page header; existing Zotero record gives Interspeech 2021"
+    },
+    {
+      "title": "TS2Vec: Towards Universal Representation of Time Series",
+      "authors": [
+        "Zhihan Yue",
+        "Yujing Wang",
+        "Juanyong Duan",
+        "Tianmeng Yang",
+        "Congrui Huang",
+        "Yunhai Tong",
+        "Bixiong Xu"
+      ],
+      "year": 2022,
+      "doi": null,
+      "arxiv_id": "2106.10466v4",
+      "venue_and_version": "arXiv v4, 3 February 2022; first page copyright Association for the Advancement of Artificial Intelligence 2022",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2106.10466v4.pdf",
+      "sha256": "24783992080266234820e077f29a49de36d44fc71bf4c9553ffe6afd1207f4ff",
+      "existing_match_key": "TEKWQUNS",
+      "file_id": "P012",
+      "role": "Transferable self-supervised CNN time-series foundation",
+      "question_links": "SQ1 strongnonTransformer;SQ3 timestampmissing;SQ4 negatives",
+      "retention_decision": "Retain TS2Vec",
+      "read_pdf_pages": [
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "decisive_visual_pdf_pages": [
+        6,
+        7
+      ],
+      "appraisal": "Time-series classification and separate anomaly benchmarks; series/timestamp. Inputs: Univariate/multivariate time series, not physical camera fusion. Method: Hierarchical contrastive dilated CNN, not Transformer. Controls: T-Loss/TST/TS-TCC, RBF-SVM on320D, backbone ablations. Protocol: 125UCR/29UEA comparisons;128UCR ablation; missing experiment four large UCR datasets. Missing: Training AND test timestamp masks, not unseen entire sensor absence. Noisy: Augmentation ablations, not calibrated machine-noise detector. Shift: Separate benchmark transfer; not industrial cross-machine validation. Evidence: PDF p4 Table1 UCR accuracy0.830/UEA0.712. p6 Table5 CNN0.829/LSTM0.779/Transformer0.647; generic augmentations can hurt. p7 Fig6 50percent timestamp loss modest drops on selected series. Limits: Archive subsets differ. Partial timestamp robustness not whole-modality robustness. Anomaly F1 not action-failure AP.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Time-series classification and separate anomaly benchmarks; series/timestamp",
+      "physical_modalities": "Univariate/multivariate time series, not physical camera fusion",
+      "fusion": "Hierarchical contrastive dilated CNN, not Transformer",
+      "unimodal_controls": "T-Loss/TST/TS-TCC, RBF-SVM on320D, backbone ablations",
+      "split_and_independence": "125UCR/29UEA comparisons;128UCR ablation; missing experiment four large UCR datasets",
+      "robustness": {
+        "missing": "Training AND test timestamp masks, not unseen entire sensor absence",
+        "noisy": "Augmentation ablations, not calibrated machine-noise detector",
+        "shifted": "Separate benchmark transfer; not industrial cross-machine validation"
+      },
+      "results": "PDF p4 Table1 UCR accuracy0.830/UEA0.712. p6 Table5 CNN0.829/LSTM0.779/Transformer0.647; generic augmentations can hurt. p7 Fig6 50percent timestamp loss modest drops on selected series.",
+      "uncertainty_and_limits": "Archive subsets differ. Partial timestamp robustness not whole-modality robustness. Anomaly F1 not action-failure AP.",
+      "read_version": "arXiv v4, 3 February 2022; first page copyright Association for the Advancement of Artificial Intelligence 2022"
+    },
+    {
+      "title": "Video Swin Transformer",
+      "authors": [
+        "Ze Liu",
+        "Jia Ning",
+        "Yue Cao",
+        "Yixuan Wei",
+        "Zheng Zhang",
+        "Stephen Lin",
+        "Han Hu"
+      ],
+      "year": 2021,
+      "doi": null,
+      "arxiv_id": "2106.13230v1",
+      "venue_and_version": "arXiv v1, 24 June 2021, explicitly Preprint; existing record refers to the 2022 CVPR publication of the same work",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2106.13230v1.pdf",
+      "sha256": "9680fb44c5acbcfd63e84bad7c15470cdf3e1ea558c0bd57729171e282ccdd59",
+      "existing_match_key": "N7RPVHXV",
+      "file_id": "P013",
+      "role": "Transferable video Transformer foundation",
+      "question_links": "SQ1 videocandidate;SQ4 views/budget",
+      "retention_decision": "Retain VideoSwin",
+      "read_pdf_pages": [
+        3,
+        6,
+        7,
+        9
+      ],
+      "decisive_visual_pdf_pages": [
+        6
+      ],
+      "appraisal": "Human video action recognition; clip/multiview prediction. Inputs: RGB video. Method: Local shifted-window3D Transformer with spatial hierarchy. Controls: Video CNNs, TimeSformer/ViViT and Swin variants. Protocol: Kinetics/SSv2 official protocols, heterogeneous pretraining/views;32frames typical. Missing: Not tested. Noisy: Not appraised as a corruption trial. Shift: Task/pretraining comparisons, not industrial machine shift. Evidence: PDF p6 Table1 SwinT78.8percent/28.2M/88GFLOPs per view x4clips x3crops;SwinB1K80.6 vs21K82.7. Largest84.9 uses2107GFLOPs/view x50views. Limits: Per-view cost not total. No CI selected table. Candidate video architecture, not project executed model.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Human video action recognition; clip/multiview prediction",
+      "physical_modalities": "RGB video",
+      "fusion": "Local shifted-window3D Transformer with spatial hierarchy",
+      "unimodal_controls": "Video CNNs, TimeSformer/ViViT and Swin variants",
+      "split_and_independence": "Kinetics/SSv2 official protocols, heterogeneous pretraining/views;32frames typical",
+      "robustness": {
+        "missing": "Not tested",
+        "noisy": "Not appraised as a corruption trial",
+        "shifted": "Task/pretraining comparisons, not industrial machine shift"
+      },
+      "results": "PDF p6 Table1 SwinT78.8percent/28.2M/88GFLOPs per view x4clips x3crops;SwinB1K80.6 vs21K82.7. Largest84.9 uses2107GFLOPs/view x50views.",
+      "uncertainty_and_limits": "Per-view cost not total. No CI selected table. Candidate video architecture, not project executed model.",
+      "read_version": "arXiv v1, 24 June 2021, explicitly Preprint; existing record refers to the 2022 CVPR publication of the same work"
+    },
+    {
+      "title": "Attention Bottlenecks for Multimodal Fusion",
+      "authors": [
+        "Arsha Nagrani",
+        "Shan Yang",
+        "Anurag Arnab",
+        "Aren Jansen",
+        "Cordelia Schmid",
+        "Chen Sun"
+      ],
+      "year": 2021,
+      "doi": null,
+      "arxiv_id": "2107.00135v3",
+      "venue_and_version": "arXiv v3, 30 November 2022; first page identifies 35th Conference on Neural Information Processing Systems (NeurIPS 2021); publication year 2021 distinct from supplied revision year 2022",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2107.00135v3.pdf",
+      "sha256": "bfaab1347c8d88f0e8a2f0d09c7529ab70f7b5c4146b4532702762ed04fb8b18",
+      "existing_match_key": "PWPAEUX5",
+      "file_id": "P014",
+      "role": "Transferable audiovisual attention fusion",
+      "question_links": "SQ1 candidates;SQ2 intermediate;SQ3 restrictedasync;SQ4 cost",
+      "retention_decision": "Retain MBT",
+      "read_pdf_pages": [
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        15,
+        16
+      ],
+      "decisive_visual_pdf_pages": [
+        9
+      ],
+      "appraisal": "Audio/video event/action classification; clip. Inputs: Audio spectrogram and RGB video. Method: Four bottleneck tokens mediate cross-modal attention; selected intermediate fusion depth. Controls: Audio-only, visual-only; early/late/vanilla attention variants. Protocol: AS500K/MiniAS/VGGSound/EpicKitchens; task-specific tuning, four test crops. Missing: No whole-modality absence test. Noisy: No direct factory noise validation. Shift: Independent audio/video windows inside same labeled clip; limited asynchronous sampling, not clock drift. Evidence: PDF p9 Table1 AS500K audio41.5/visual31.3/AV49.6mAP; Table2 action40.7to43.4; Table3 VGGtop1 52.3/51.2/64.1. pp15–16 Fig8 async broadly robust. Limits: Three of60strongest classes do not improve over audio. Fusion depth task-specific. Attention maps not causal; no continuous machine telemetry.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Audio/video event/action classification; clip",
+      "physical_modalities": "Audio spectrogram and RGB video",
+      "fusion": "Four bottleneck tokens mediate cross-modal attention; selected intermediate fusion depth",
+      "unimodal_controls": "Audio-only, visual-only; early/late/vanilla attention variants",
+      "split_and_independence": "AS500K/MiniAS/VGGSound/EpicKitchens; task-specific tuning, four test crops",
+      "robustness": {
+        "missing": "No whole-modality absence test",
+        "noisy": "No direct factory noise validation",
+        "shifted": "Independent audio/video windows inside same labeled clip; limited asynchronous sampling, not clock drift"
+      },
+      "results": "PDF p9 Table1 AS500K audio41.5/visual31.3/AV49.6mAP; Table2 action40.7to43.4; Table3 VGGtop1 52.3/51.2/64.1. pp15–16 Fig8 async broadly robust.",
+      "uncertainty_and_limits": "Three of60strongest classes do not improve over audio. Fusion depth task-specific. Attention maps not causal; no continuous machine telemetry.",
+      "read_version": "arXiv v3, 30 November 2022; first page identifies 35th Conference on Neural Information Processing Systems (NeurIPS 2021); publication year 2021 distinct from supplied revision year 2022"
+    },
+    {
+      "title": "MultiBench: Multiscale Benchmarks for Multimodal Representation Learning",
+      "authors": [
+        "Paul Pu Liang",
+        "Yiwei Lyu",
+        "Xiang Fan",
+        "Zetian Wu",
+        "Yun Cheng",
+        "Jason Wu",
+        "Leslie Chen",
+        "Peter Wu",
+        "Michelle A. Lee",
+        "Yuke Zhu",
+        "Ruslan Salakhutdinov",
+        "Louis-Philippe Morency"
+      ],
+      "year": 2021,
+      "doi": null,
+      "arxiv_id": "2107.07502v2",
+      "venue_and_version": "arXiv v2, 10 November 2021; first page identifies NeurIPS 2021 Track on Datasets and Benchmarks; 97-page manuscript includes supplementary material",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2107.07502v2.pdf",
+      "sha256": "02a411c4143e2a5b9559c824b519fdc250108f6eb9d71b0cc56f503298789df1",
+      "existing_match_key": "6PLZSHAR",
+      "file_id": "P015",
+      "role": "Transferable multimodal benchmark foundation",
+      "question_links": "SQ2 baselines;SQ3 corruption/missing;SQ4 cost",
+      "retention_decision": "Retain MultiBench",
+      "read_pdf_pages": [
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        53,
+        54
+      ],
+      "decisive_visual_pdf_pages": [
+        9
+      ],
+      "appraisal": "15 datasets/20 tasks; units and metrics differ. Inputs: 10 modality types including image, force, proprioception, text, audio. Method: Standardized multimodal methods; source LF label includes representation concatenation. Controls: Best unimodal, simple LF, within/out-domain-origin methods refitted per task. Protocol: Clean training/corrupted test; task-specific splits. Out-domain method origin is not same-weight zero-shot transfer. Missing: Whole-modality drop, structured temporal drop. Noisy: Modality-specific and correlated synthetic imperfections. Shift: Natural distribution shift and uncertainty metrics future work in this version. Evidence: PDF p7 Table2 MuJoCoMSE unimodal0.334/indomain0.290/outdomain0.402;Kinetics56.5unimodal>56.1indomain. p9 Fig4 absolute versus clean-adjusted robustness differ. Limits: Appendixpp53–54 relative/effective robustness curves; do not pool rawMSE/AP. LF competitive but not always best. No industrial field deployment proof.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "15 datasets/20 tasks; units and metrics differ",
+      "physical_modalities": "10 modality types including image, force, proprioception, text, audio",
+      "fusion": "Standardized multimodal methods; source LF label includes representation concatenation",
+      "unimodal_controls": "Best unimodal, simple LF, within/out-domain-origin methods refitted per task",
+      "split_and_independence": "Clean training/corrupted test; task-specific splits. Out-domain method origin is not same-weight zero-shot transfer",
+      "robustness": {
+        "missing": "Whole-modality drop, structured temporal drop",
+        "noisy": "Modality-specific and correlated synthetic imperfections",
+        "shifted": "Natural distribution shift and uncertainty metrics future work in this version"
+      },
+      "results": "PDF p7 Table2 MuJoCoMSE unimodal0.334/indomain0.290/outdomain0.402;Kinetics56.5unimodal>56.1indomain. p9 Fig4 absolute versus clean-adjusted robustness differ.",
+      "uncertainty_and_limits": "Appendixpp53–54 relative/effective robustness curves; do not pool rawMSE/AP. LF competitive but not always best. No industrial field deployment proof.",
+      "read_version": "arXiv v2, 10 November 2021; first page identifies NeurIPS 2021 Track on Datasets and Benchmarks; 97-page manuscript includes supplementary material"
+    },
+    {
+      "title": "Are Multimodal Transformers Robust to Missing Modality?",
+      "authors": [
+        "Mengmeng Ma",
+        "Jian Ren",
+        "Long Zhao",
+        "Davide Testuggine",
+        "Xi Peng"
+      ],
+      "year": 2022,
+      "doi": null,
+      "arxiv_id": "2204.05454v1",
+      "venue_and_version": "arXiv v1, 12 April 2022; existing record gives CVPR 2022; title and arXiv identifier establish same work",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2204.05454v1.pdf",
+      "sha256": "baf3728f95d339ff25e25d7e81b36170049cbaf60a21ac4e5a91551df925e620",
+      "existing_match_key": "LC6SWI8E",
+      "file_id": "P016",
+      "role": "Transferable missing-modality Transformer/counterexample",
+      "question_links": "SQ2 fusiondepth;SQ3 missing;SQ4 fallback",
+      "retention_decision": "Retain highpriority",
+      "read_pdf_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "decisive_visual_pdf_pages": [
+        7
+      ],
+      "appraisal": "Genre/food/meme classification; example with optional text. Inputs: Image and text. Method: ViLT masked image/text/joint multitask tokens; bilevel searched fusion-start depth. Controls: Independently trained image/text; complete-trained ViLT; naive missing-trained baseline. Protocol: Complete training;10–100percent examples have observed text, all have image; separate validation for policy. Missing: Explicit test modality absence and robustness training. Noisy: Not a factory noise experiment. Shift: No natural machine shift. Evidence: PDF p7 Fig2 MMIMDb10percent text baseline macroF1 23.1<image35.0; proposed37.3. Food58.4baseline/73.3proposed/image71.5 from p3Table4/Fig2. Limits: Nearby Food prose inconsistent on unimodal73.3. Missing means example availability, not word dropout. Dataset-optimal depth not instance reliability; no universal fusion depth.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Genre/food/meme classification; example with optional text",
+      "physical_modalities": "Image and text",
+      "fusion": "ViLT masked image/text/joint multitask tokens; bilevel searched fusion-start depth",
+      "unimodal_controls": "Independently trained image/text; complete-trained ViLT; naive missing-trained baseline",
+      "split_and_independence": "Complete training;10–100percent examples have observed text, all have image; separate validation for policy",
+      "robustness": {
+        "missing": "Explicit test modality absence and robustness training",
+        "noisy": "Not a factory noise experiment",
+        "shifted": "No natural machine shift"
+      },
+      "results": "PDF p7 Fig2 MMIMDb10percent text baseline macroF1 23.1<image35.0; proposed37.3. Food58.4baseline/73.3proposed/image71.5 from p3Table4/Fig2.",
+      "uncertainty_and_limits": "Nearby Food prose inconsistent on unimodal73.3. Missing means example availability, not word dropout. Dataset-optimal depth not instance reliability; no universal fusion depth.",
+      "read_version": "arXiv v1, 12 April 2022; existing record gives CVPR 2022; title and arXiv identifier establish same work"
+    },
+    {
+      "title": "Leakage and the Reproducibility Crisis in ML-based Science",
+      "authors": [
+        "Sayash Kapoor",
+        "Arvind Narayanan"
+      ],
+      "year": 2022,
+      "doi": null,
+      "arxiv_id": "2207.07048v1",
+      "venue_and_version": "arXiv v1, 14 July 2022; supplied manuscript is the 2022 preprint, not a verified final journal version",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2207.07048v1.pdf",
+      "sha256": "c433bceda841ca09fe2fd7ddf857fc0818fdf98553e62e54a37cc394c6f70c42",
+      "existing_match_key": "EIUCFZDR",
+      "file_id": "P017",
+      "role": "Transferable leakage/evaluation foundation",
+      "question_links": "SQ2 baselinevalidity;SQ4 grouping/targets",
+      "retention_decision": "Retain methods,version-sensitive",
+      "read_pdf_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "decisive_visual_pdf_pages": [
+        3
+      ],
+      "appraisal": "Scientific literature audit and civil-war prediction case study. Inputs: No industrial modality fusion. Method: Leakage taxonomy/model-information sheet and reanalysis. Controls: Complex ML versus logistic regression in case study. Protocol: Selected literature inventory, not all-science prevalence; temporal/preprocessing/target-proxy dependencies. Missing: Not applicable. Noisy: Not applicable. Shift: Temporal validation leakage examined; not industrial shift trial. Evidence: Supplied PDF p3 Fig1 correcting leakage removes claimed ML advantage in examined studies. Supplied2022v1 inventory329papers; final2023Patterns294papers. Limits: Title/year/count version-sensitive. Does not prove project outer-test leakage; use project-specific code/ledger evidence.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Scientific literature audit and civil-war prediction case study",
+      "physical_modalities": "No industrial modality fusion",
+      "fusion": "Leakage taxonomy/model-information sheet and reanalysis",
+      "unimodal_controls": "Complex ML versus logistic regression in case study",
+      "split_and_independence": "Selected literature inventory, not all-science prevalence; temporal/preprocessing/target-proxy dependencies",
+      "robustness": {
+        "missing": "Not applicable",
+        "noisy": "Not applicable",
+        "shifted": "Temporal validation leakage examined; not industrial shift trial"
+      },
+      "results": "Supplied PDF p3 Fig1 correcting leakage removes claimed ML advantage in examined studies. Supplied2022v1 inventory329papers; final2023Patterns294papers.",
+      "uncertainty_and_limits": "Title/year/count version-sensitive. Does not prove project outer-test leakage; use project-specific code/ledger evidence.",
+      "read_version": "arXiv v1, 14 July 2022; supplied manuscript is the 2022 preprint, not a verified final journal version"
+    },
+    {
+      "title": "MOMENT: A Family of Open Time-series Foundation Models",
+      "authors": [
+        "Mononito Goswami",
+        "Konrad Szafer",
+        "Arjun Choudhry",
+        "Yifu Cai",
+        "Shuo Li",
+        "Artur Dubrawski"
+      ],
+      "year": 2024,
+      "doi": null,
+      "arxiv_id": "2402.03885v3",
+      "venue_and_version": "arXiv v3, 10 October 2024; first-page footer Proceedings of the 41st International Conference on Machine Learning, PMLR 235, 2024",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2402.03885v3.pdf",
+      "sha256": "037108e4be01e9ae7643bbe54bd4f65c9b5710d53f336c05054e68be645124e2",
+      "existing_match_key": "JAX85QSC",
+      "file_id": "P018",
+      "role": "Transferable time-series foundation-model candidate",
+      "question_links": "SQ1 pretrainedTS;SQ2 baselines;SQ4 budget/metrics",
+      "retention_decision": "Retain MOMENTcandidate",
+      "read_pdf_pages": [
+        3,
+        4,
+        5,
+        6,
+        8,
+        9
+      ],
+      "decisive_visual_pdf_pages": [
+        9
+      ],
+      "appraisal": "Forecasting/imputation/classification/anomaly; series/patch. Inputs: Time series; channels processed independently. Method: Masked-reconstruction pretrained Transformer40M/125M/385M. Controls: PatchTST, TS2Vec, shallow interpolation/KNN and others. Protocol: Authors train-only pretraining; creator splits else60/10/30;long time split/short whole series; seed13; downstream access differs. Missing: Imputation timestamp masks, not whole physical modality loss. Noisy: Not direct machine-noise reliability validation. Shift: Multiple datasets and adaptation access, not visual-sensor industrial shift. Evidence: PDF p8 Table4 classification M0accuracy0.794<TS2Vec0.851. p9 Table7 adjustedF1 LP0.628>KNN0.554 but VUSROC KNN0.706>LP0.684. p6 Weather96MSE LP0.154>PatchTST0.149. Limits: Frozen-encoder classification still trains supervised SVM. Large pretraining and metrics matter; not uniformly best or executed thesis component.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Forecasting/imputation/classification/anomaly; series/patch",
+      "physical_modalities": "Time series; channels processed independently",
+      "fusion": "Masked-reconstruction pretrained Transformer40M/125M/385M",
+      "unimodal_controls": "PatchTST, TS2Vec, shallow interpolation/KNN and others",
+      "split_and_independence": "Authors train-only pretraining; creator splits else60/10/30;long time split/short whole series; seed13; downstream access differs",
+      "robustness": {
+        "missing": "Imputation timestamp masks, not whole physical modality loss",
+        "noisy": "Not direct machine-noise reliability validation",
+        "shifted": "Multiple datasets and adaptation access, not visual-sensor industrial shift"
+      },
+      "results": "PDF p8 Table4 classification M0accuracy0.794<TS2Vec0.851. p9 Table7 adjustedF1 LP0.628>KNN0.554 but VUSROC KNN0.706>LP0.684. p6 Weather96MSE LP0.154>PatchTST0.149.",
+      "uncertainty_and_limits": "Frozen-encoder classification still trains supervised SVM. Large pretraining and metrics matter; not uniformly best or executed thesis component.",
+      "read_version": "arXiv v3, 10 October 2024; first-page footer Proceedings of the 41st International Conference on Machine Learning, PMLR 235, 2024"
+    },
+    {
+      "title": "REASSEMBLE: A Multimodal Dataset for Contact-rich Robotic Assembly and Disassembly",
+      "authors": [
+        "Daniel Sliwowski",
+        "Shail Jadav",
+        "Sergej Stanovcic",
+        "Jędrzej Orbik",
+        "Johannes Heidersberger",
+        "Dongheui Lee"
+      ],
+      "year": 2025,
+      "doi": null,
+      "arxiv_id": "2502.05086v2",
+      "venue_and_version": "arXiv v2, 28 April 2025; repository manuscript; title and arXiv ID match the existing dataset record",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2502.05086v2.pdf",
+      "sha256": "5a01295ce17aea2a24e2da4cc57afef675751219443814dcf1fddf0ec9afbf60",
+      "existing_match_key": "3RUPGG6C",
+      "file_id": "P019",
+      "role": "Direct robotic contact-rich dataset",
+      "question_links": "SQ1 modalities/alignment;SQ2 taskdistinction;SQ4 unit/annotation",
+      "retention_decision": "Retain coredataset",
+      "read_pdf_pages": [
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "decisive_visual_pdf_pages": [
+        9,
+        11
+      ],
+      "appraisal": "Contact-rich robotic assembly/disassembly dataset; action/skill and native task benchmarks. Inputs: Three RGB/three audio,6axis force-torque,proprio,event camera,mocap; released depth excluded. Method: Dataset; native wrist visual+flow TAS and visual condition checks, not definitive target-matched fusion test. Controls: Native DiffAct/ConditionNET, not thesis binary-failure matched sensor comparator. Protocol: Raw streams retain timestamps; not postprocessed into synchronized arrays. Fixed board/objects; operator annotations; no run-independent failure split established here. Missing: Not evaluated. Noisy: Not controlled sensor-noise evaluation. Shift: No demonstrated cross-machine fault transfer. Evidence: PDFpp7,13 4551actions/10195skills/4035success=>516failures calculated. pp10–11 DiffAct accuracy61.5/EDIT47.8/F1@50 44.1percent. pp12–13 visual condition checks~96percent. Limits: Published cohort differs from thesis4530. Retrospective labels, object/action prevalence, narration shortcut risk; native metrics not binary AP. Multimodal TAS preliminary/future comprehensive analysis.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Contact-rich robotic assembly/disassembly dataset; action/skill and native task benchmarks",
+      "physical_modalities": "Three RGB/three audio,6axis force-torque,proprio,event camera,mocap; released depth excluded",
+      "fusion": "Dataset; native wrist visual+flow TAS and visual condition checks, not definitive target-matched fusion test",
+      "unimodal_controls": "Native DiffAct/ConditionNET, not thesis binary-failure matched sensor comparator",
+      "split_and_independence": "Raw streams retain timestamps; not postprocessed into synchronized arrays. Fixed board/objects; operator annotations; no run-independent failure split established here",
+      "robustness": {
+        "missing": "Not evaluated",
+        "noisy": "Not controlled sensor-noise evaluation",
+        "shifted": "No demonstrated cross-machine fault transfer"
+      },
+      "results": "PDFpp7,13 4551actions/10195skills/4035success=>516failures calculated. pp10–11 DiffAct accuracy61.5/EDIT47.8/F1@50 44.1percent. pp12–13 visual condition checks~96percent.",
+      "uncertainty_and_limits": "Published cohort differs from thesis4530. Retrospective labels, object/action prevalence, narration shortcut risk; native metrics not binary AP. Multimodal TAS preliminary/future comprehensive analysis.",
+      "read_version": "arXiv v2, 28 April 2025; repository manuscript; title and arXiv ID match the existing dataset record"
+    },
+    {
+      "title": "Multimodal Negative Learning",
+      "authors": [
+        "Baoquan Gong",
+        "Xiyuan Gao",
+        "Pengfei Zhu",
+        "Qinghua Hu",
+        "Bing Cao"
+      ],
+      "year": 2025,
+      "doi": null,
+      "arxiv_id": "2510.20877v1",
+      "venue_and_version": "arXiv v1, 23 October 2025; first-page footer 39th Conference on Neural Information Processing Systems (NeurIPS 2025)",
+      "path": "C:\\Users\\Parth\\Downloads\\Additional Papers to be linked in Yotero\\2510.20877v1.pdf",
+      "sha256": "6ab96676e709e538cf5a1ba2809c6ddf77b75c007c1c169bffd508d0dd51c653",
+      "existing_match_key": "T2YGGPXQ",
+      "file_id": "P020",
+      "role": "Transferable noise-robust fusion and explicit negatives",
+      "question_links": "SQ2 late/dynamicfusion;SQ3 noisy;SQ4 negatives/cost",
+      "retention_decision": "Retain MNL",
+      "read_pdf_pages": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "decisive_visual_pdf_pages": [
+        7
+      ],
+      "appraisal": "Multimodal classification under noise; example. Inputs: MVSA/Food image-text;NYU RGB-depth;CREMA audio-video. Method: Negative-learning auxiliary loss added to static/dynamic fusion. Controls: Unimodal branches, static LF, PDF/QMF and other dynamic baselines. Protocol: 50percent modalities perturbed;epsilon0/5/10 modality-specific Gaussian/salt/blank/SNR;5seeds stated. Missing: Future work, not demonstrated whole-modality loss. Noisy: Explicit synthetic noisy-present modalities. Shift: Natural domain drift not established. Evidence: PDF p7 Table1 MVSAepsilon5 LF63.46<text69.50,LF+MNL74.03. Negative PDF74.40to74.07; Food QMF76.03to75.41. Limits: Small adverse differences not resolved without SD; selected SD appendix not read. No universal improvement. No added inference component does not remove training cost.",
+      "status": "FULL_TEXT_RELEVANT_METHODS_RESULTS_AND_DECISIVE_VISUAL_VERIFIED",
+      "assurance": "Targeted full-text and selected visual verification; author-reported results, no experiment reproduction. Not an all-appendix or correction-notice audit.",
+      "target_unit": "Multimodal classification under noise; example",
+      "physical_modalities": "MVSA/Food image-text;NYU RGB-depth;CREMA audio-video",
+      "fusion": "Negative-learning auxiliary loss added to static/dynamic fusion",
+      "unimodal_controls": "Unimodal branches, static LF, PDF/QMF and other dynamic baselines",
+      "split_and_independence": "50percent modalities perturbed;epsilon0/5/10 modality-specific Gaussian/salt/blank/SNR;5seeds stated",
+      "robustness": {
+        "missing": "Future work, not demonstrated whole-modality loss",
+        "noisy": "Explicit synthetic noisy-present modalities",
+        "shifted": "Natural domain drift not established"
+      },
+      "results": "PDF p7 Table1 MVSAepsilon5 LF63.46<text69.50,LF+MNL74.03. Negative PDF74.40to74.07; Food QMF76.03to75.41.",
+      "uncertainty_and_limits": "Small adverse differences not resolved without SD; selected SD appendix not read. No universal improvement. No added inference component does not remove training cost.",
+      "read_version": "arXiv v1, 23 October 2025; first-page footer 39th Conference on Neural Information Processing Systems (NeurIPS 2025)"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+% !TeX program = xelatex
+% Author-supplied composition, reconciled with current Chapter 2.8.
+% Build from the thesis root; see the adjacent README.md.
+% Final canvas: 159.20 x 125.00 mm.
+\documentclass[12pt,border=0pt]{standalone}
+\usepackage{fontspec,amsmath,amssymb,fix-cm}
+\input{figures/tikz_style.tex}
+\input{figures/ch02_synthesis_20261126/review_coverage.tex}
+\usetikzlibrary{calc}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+\tikzset{
+  synthesis banner/.style={
+    module, draw=ThesisHighlight!80!ThesisInk, fill=ThesisHighlight!14!white
+  },
+  synthesis card/.style={
+    module, draw=ThesisBaseline!65!white
+  },
+  synthesis text/.style={
+    thesis annotation, align=center, inner sep=0pt
+  },
+  synthesis heading/.style={
+    thesis label, font=\normalfont\bfseries\fontsize{10bp}{12bp}\selectfont,
+    align=center, inner sep=0pt
+  },
+  synthesis support/.style={
+    arrow, draw=ThesisInk, opacity=1, draw opacity=1, fill opacity=1,
+    line width=1bp, dash pattern=on 2bp off 1.4bp, dash phase=0pt
+  }
+}
+
+% Fixed-width cells keep text inside its column without scaling the labels.
+\newcommand{\StudyCell}[3]{%
+  \node[synthesis text,anchor=west,align=left,text width=29mm]
+    at (52.8,#1) {\textbf{#2}\\#3};%
+}
+\newcommand{\ScopeCell}[2]{%
+  \node[synthesis text,anchor=west,align=left,text width=38.5mm]
+    at (118.2,#1) {#2};%
+}
+\newcommand{\InputCell}[6][]{%
+  \filldraw[fill=#3,draw=ThesisInk,line width=.4bp]
+    (84.4,{#2+1.9}) circle (.85mm);
+  \filldraw[fill=#5,draw=ThesisInk,line width=.4bp,#1]
+    (84.4,{#2-1.9}) circle (.85mm);
+  \node[synthesis text,anchor=west,align=left,text width=29.4mm]
+    at (86.2,#2) {#4\\#6};%
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm]
+  % Protocol coverage in the initial 37-study appraisal matrix (PA/SD codes).
+  \draw[synthesis banner] (1,113) rectangle (45,123.5);
+  \node[thesis panel label,align=center,inner sep=0pt,text width=42mm]
+    at (23,118.25) {Evidence from\\Literature Review};
+  \node[synthesis heading] at (23,106.8) {Initial full-text review};
+  \node[synthesis text,font=\normalfont\bfseries\fontsize{18bp}{20bp}\selectfont]
+    at (23,98.5) {\AbsenceDropoutPercent\%};
+  \node[synthesis text] at (23,91.3)
+    {\AbsenceDropoutCount\ of \InitialAppraisalCount\ papers};
+  \node[synthesis text,text width=42mm] at (23,81.9)
+    {Planned input absence\\or simulated dropout};
+
+  \draw[synthesis card] (1,41) rectangle (45,73);
+  \node[synthesis heading] at (23,69.5) {Fusion findings (SQ2)};
+  \draw[synthesis card,fill=ThesisBaseline!7!white]
+    (3.2,56.7) rectangle (42.8,65.3);
+  \node[synthesis text,text width=38mm] at (23,61)
+    {\textbf{+}\ Reported gain:\\DMAW; tool wear};
+  \draw[synthesis card,densely dashed,fill=ThesisHighlight!10!white]
+    (3.2,46.5) rectangle (42.8,55.1);
+  \node[synthesis text,text width=38mm] at (23,50.8)
+    {\textbf{0 / --}\ No gain or lower:\\welding; HANDOVER};
+  \node[synthesis text] at (23,43.5) {Task- and control-dependent};
+
+  \draw[synthesis card] (1,2) rectangle (45,37.5);
+  \node[synthesis heading] at (23,33.8) {Reliability and audit};
+  \node[synthesis text,text width=41mm] at (23,23)
+    {\textbf{SQ3:} distinct conditions\\
+     Absence $\ne$ noise $\ne$ shift\\
+     Matched static exposure};
+  \node[synthesis text,text width=41mm] at (23,9.5)
+    {\textbf{SQ4:} group splits; leakage\\
+     Calibration and\\precision--recall vs.\ accuracy};
+
+  \draw[dashed,ThesisBaseline!70!white,line width=.8bp]
+    (48,2) -- (48,123.5);
+  \draw[dashed,ThesisBaseline!70!white,line width=.8bp]
+    (51,58.2) -- (158.2,58.2);
+
+  % Gap motivates the core requirements; dashed arrows indicate support from
+  % cross-cutting requirements. They do not denote executed model data flow.
+  \draw[synthesis banner] (51,115.2) rectangle (158.2,123.5);
+  \node[thesis panel label,align=center,inner sep=0pt]
+    at (104.6,119.35) {Research Gap and Derived Requirements};
+  \draw[fusion] (51,98.7) rectangle (158.2,112.5);
+  \node[synthesis heading] at (104.6,109.4)
+    {Conditional fusion effectiveness};
+  \node[synthesis text,text width=103mm] at (104.6,103.5)
+    {When do representation, fusion and reliability choices\\
+     add value under comparable conditions?};
+
+  \draw[synthesis card,fill=ThesisBaseline!5!white]
+    (51,77.8) rectangle (85,93);
+  \draw[fusion] (87.6,77.8) rectangle (121.6,93);
+  \draw[synthesis card,draw=ThesisHighlight!85!ThesisInk,
+    fill=ThesisHighlight!8!white] (124.2,77.8) rectangle (158.2,93);
+  \foreach \x/\r/\sq in {68/2/1,104.6/3/2,141.2/4/3} {
+    \node[synthesis heading] at (\x,89.1) {R\r\ (SQ\sq)};
+  }
+  \node[synthesis text,text width=31mm] at (68,83.4)
+    {Representation and\\fitting budget};
+  \node[synthesis text,text width=31mm] at (104.6,83.4)
+    {Incremental fusion;\\matched controls};
+  \node[synthesis text,text width=31mm] at (141.2,83.4)
+    {Reliability-aware\\comparisons};
+  \draw[ThesisInk,line width=.8bp] (104.6,98.7) -- (104.6,96);
+  \draw[ThesisInk,line width=.8bp] (68,96) -- (141.2,96);
+  \foreach \x in {68,104.6,141.2} {
+    \draw[arrow] (\x,96) -- (\x,93);
+  }
+
+  \draw[synthesis card,fill=ThesisBaseline!5!white]
+    (51,60.3) rectangle (103,72.4);
+  \draw[synthesis card,fill=ThesisBaseline!5!white]
+    (106.2,60.3) rectangle (158.2,72.4);
+  \node[synthesis heading] at (77,69.6) {R1: Target and pairing};
+  \node[synthesis text,text width=49mm] at (77,63.9)
+    {Validity and aligned units\\(Sections 2.2--2.3)};
+  \node[synthesis heading] at (132.2,69.6) {R5: Evaluation (SQ4)};
+  \node[synthesis text,text width=49mm] at (132.2,63.9)
+    {Grouped splits; calibration;\\uncertainty and claim bounds};
+  \foreach \x in {68,98,111.2,141.2} {
+    \draw[synthesis support] (\x,72.4) -- (\x,77.8);
+  }
+
+  % The rows map investigation scope, not satisfaction of every requirement.
+  \draw[synthesis banner] (51,49) rectangle (158.2,56.8);
+  \node[thesis panel label,align=center,inner sep=0pt]
+    at (104.6,52.9) {Empirical Scope and Assessment Boundaries};
+  \draw[synthesis card] (51,2) rectangle (158.2,47);
+  \fill[ThesisBaseline!8!white] (51.4,42) rectangle (157.8,46.6);
+  \fill[ThesisFusion!9!white] (51.4,34) rectangle (157.8,41.9);
+  \draw[ThesisBaseline!40!white,line width=.6bp] (51,42) -- (158.2,42);
+  \foreach \y in {34,26,18,10} {
+    \draw[ThesisBaseline!22!white,line width=.5bp] (51.4,\y) -- (157.8,\y);
+  }
+  \node[synthesis text,anchor=west,font=\normalfont\bfseries\fontsize{9bp}{11bp}\selectfont]
+    at (52.8,44.5) {Study};
+  \node[synthesis text,anchor=west,font=\normalfont\bfseries\fontsize{9bp}{11bp}\selectfont]
+    at (83.5,44.5) {Observations};
+  \node[synthesis text,anchor=west,font=\normalfont\bfseries\fontsize{9bp}{11bp}\selectfont]
+    at (118.2,44.5) {Scope / limits};
+
+  \StudyCell{38}{REASSEMBLE}{Chapter 6}
+  \InputCell{38}{ThesisVision}{Video}{ThesisSensor}{Sensors / time series}
+  \ScopeCell{38}{R1--R5 investigated\\Principal study}
+  \StudyCell{30}{PHM}{Chapter 5}
+  \InputCell[fill=white,draw=ThesisVision,line width=.8bp]
+    {30}{ThesisSensor}{Sensors}{ThesisVision}{Photo proxy target}
+  \ScopeCell{30}{R1--R3, R5\\No camera-outage test}
+  \StudyCell{22}{MSM}{Chapter 7}
+  \InputCell{22}{ThesisVision}{Video}{ThesisSensor}{Machine telemetry}
+  \ScopeCell{22}{R1--R5; lab intervals\\Bounded acquisition}
+  \StudyCell{14}{ViFailback}{Chapter 8}
+  \InputCell{14}{ThesisVision}{Video features}{ThesisSensor}{Robot state}
+  \ScopeCell{14}{R1--R3, R5\\R4 stress test unexecuted}
+  \StudyCell{6}{HANDOVER}{Appendix}
+  \InputCell{6}{ThesisVision}{Video}{ThesisWrench}{Wrench}
+  \ScopeCell{6}{R1--R5; fixed averaging\\Learned stacking omitted}
+
+  % Check the real content bounds before assigning the final canvas.
+  \makeatletter
+  \typeout{SYNTHESIS CONTENT: x=\the\pgf@picminx..\the\pgf@picmaxx;
+    y=\the\pgf@picminy..\the\pgf@picmaxy}
+  \ifdim\pgf@picminx<0pt \PackageError{synthesis}{Content outside left canvas}{}\fi
+  \ifdim\pgf@picminy<0pt \PackageError{synthesis}{Content outside bottom canvas}{}\fi
+  \ifdim\pgf@picmaxx>159.20mm \PackageError{synthesis}{Content outside right canvas}{}\fi
+  \ifdim\pgf@picmaxy>125mm \PackageError{synthesis}{Content outside top canvas}{}\fi
+  \makeatother
+  \pgfresetboundingbox
+  \path[use as bounding box] (0,0) rectangle (159.20,125);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,1654 @@
+--- /dev/null
++++ b/AGENTS.md
+@@ -0,0 +1,12 @@
++# Thesis project instructions
++
++This supplement applies to the working LaTeX project rooted at `main.tex`.
++Repository-level instructions remain applicable.
++
++## Figure verification
++
++- Follow the dimensions, typography and color roles in [figures/VISUAL_STYLE.md](figures/VISUAL_STYLE.md). Import the shared TikZ or Matplotlib style in every new diagram or plot.
++- Each time you create or edit a TikZ figure source or a Matplotlib figure script, build its vector PDF and render a PNG preview before finishing the change. When editing either shared style, run the smoke examples and rebuild figures that use the changed style.
++- Run builds from the thesis root. Use XeLaTeX for TikZ, for example `latexmk -xelatex -halt-on-error -outdir=build/figures figures/example.tex`. For a TikZ fragment, compile the document that inputs it. Run the Matplotlib script with the project's Python environment and have it save its PDF at the intended print dimensions.
++- For a one-page output, run `pdftoppm -r 150 -png -singlefile build/figures/example.pdf build/figures/example-preview`. For a multipage document, specify the figure page with `-f N -l N`, or omit `-singlefile` and open every affected page. Put previews and build logs in `build/figures/`.
++- Open the PNG and check the labels, legends, plot limits, arrows, margins and panel boundaries for clipping, overlap and readability at the final inclusion width. Confirm the PDF page dimensions for a standalone figure. Fix issues and rebuild both outputs. Report any build or visual check you could not complete.
+--- a/README.md
++++ b/README.md
+@@ -1,6 +1,6 @@
+ # Thesis project for chapter-by-chapter review
+ 
+-Open any PDF in `chapter-pdfs/` to read that chapter as typeset in the review edition. These ten PDFs can be read on their own and do not require changing the project or compiling LaTeX. Their printed page numbers match the review PDF, which begins with the abstract on page 1. Recreate these PDF snapshots when preparing a new review edition.
++This is the revised working source from 25 November 2026. The accompanying revision package supplies `revised_thesis.pdf` and `revised_review.pdf`. Historical chapter PDFs remain in the unchanged baseline and are omitted here because they predate these revisions. Recreate chapter snapshots from the revised review edition if separate chapter PDFs are needed.
+ 
+ The editable chapter sources are under `chapters/`. To preview edits to one chapter, choose XeLaTeX and `chapter-preview.tex` as the main document, set the chapter number on line 3, and recompile. The complete edition and the abstract-through-conclusion edition can also be built from this project.
+ 
+--- a/appendices/A_literature.tex
++++ b/appendices/A_literature.tex
+@@ -3,7 +3,7 @@
+ \section{Discovery Population and Evidence Status}
+ The screening record dated 16 November 2026 lists 120 unique candidates. Of these, 39 met the inclusion criteria, 37 were excluded and 44 remained potentially relevant but insufficiently verified. The corresponding full-text appraisal covered 37 of the 39 included works. The two accessible only through abstracts and bibliographic metadata contributed to the screening counts but supplied no methodological or numerical findings.\ev{Historical search and screening record}{\EvidenceRef{E006}{}, \EvidenceRef{E009}{}, \EvidenceRef{E005}{}}
+ 
+-The subsequent appraisal covered 59 PDF files. Two pairs were byte-identical, leaving \ExpandedPDFCount{} distinct files. Titles, authors, DOIs and repository identifiers showed that these represented \ExpandedPDFCount{} additional works, bringing the total appraised to \ReviewWorkCount{}. This total includes empirical industrial studies, transferable methods, statistical and representation methods, dataset descriptions and contextual studies.
++The subsequent appraisal covered 59 PDF files. Two pairs were byte-identical, leaving \ExpandedPDFCount{} distinct files. Titles, authors, DOIs and repository identifiers showed that these represented \ExpandedPDFCount{} additional works, bringing the total appraised to \ReviewWorkCount{}. This historical total includes empirical industrial studies, transferable methods, statistical and representation methods, dataset descriptions and contextual studies. The 25 November revision adds one separately identified methodological reference, \citet{Ting1999Issues}, to address the missing original foundation for stacked generalization. It is stored in \texttt{references\_additions.bib} and is outside the two-stage appraisal counts and matrices; the review was not restarted.
+ 
+ The search log for this screening round records more than 15 distinct queries. Several queries returned results together, precluding an exact count of the records retrieved by each. The subsequent appraisal drew on additional accessible full texts and used publisher or repository pages to check bibliographic identities and versions. This procedure limits the review's coverage to the works identified and accessible through these routes.\ev{Expanded appraisal and counts}{\EvidenceRef{E016}{}, \EvidenceRef{E010}{}, \EvidenceRef{E011}{}, \EvidenceRef{E012}{}}
+ 
+--- a/appendices/D_supplementary_results.tex
++++ b/appendices/D_supplementary_results.tex
+@@ -60,3 +60,23 @@
+ Several apparent comparisons reuse identical predictions. The M3 sensor row contains the original sensor vector, and the hundred-epoch fusion study uses the standalone visual outputs. Native recording and segment keys assign the 753 outer assessment actions to 26 recordings. The 28-recording list in the selected-fit metadata refers to the inner prediction bank.
+ 
+ MSM varied the target definition and grouping policy and compared exposure to synthetic corruption. HANDOVER evaluated its baselines without fitting learned fusion because participant-disjoint out-of-fold predictions were unavailable. ViFailback compared the original frozen representation and later matched donor conditions. Differences in targets, prevalence and grouping limit any comparison of average precision across these datasets.\ev{Sensitivity and status inventory}{\EvidenceRef{E108}{}}
++
++\section{Saved-Prediction Check of the Core F2 Visual Term}
++The 25 November arithmetic audit checks 4,530 unique actions, their 509 failure labels, fold assignments and separation of the 148 recording groups. Section~1B's held-out branch columns match Section~2's reused inputs; the sensor column also matches the separately saved statistical control. The original Section~1 visual prediction file is unavailable locally, so parity does not extend to a replay of that file or of training. The inspected fitting source and saved metadata order the columns as visual, then sensor.
++
++All visual coefficients are positive (3.099--4.063), as are all sensor coefficients (6.218--6.709). Reconstructing F2 from them differs from the saved probabilities by at most $2.22\times10^{-16}$. Independently calculated threshold-group AP and positive--negative ordering changes agree with the library metrics. Omitting the visual term preserves each fold's sensor AP and AUROC; Table~\ref{tab:f2-fold-audit} gives the full-model changes.
++
++\begin{table}[htbp]
++\caption{Core F2 Minus Sensor Ranking Within Each Held-Out Fold}\label{tab:f2-fold-audit}
++\centering\small
++\begin{tabular}{rrrrrr}\toprule
++Fold & Actions & Failures & Recordings & $\Delta$AP & $\Delta$AUROC\\\midrule
++0 & 753 & 77 & 26 & $+.039451$ & $+.020691$\\
++1 & 964 & 109 & 31 & $+.014616$ & $+.011674$\\
++2 & 1,037 & 125 & 32 & $+.011329$ & $+.024430$\\
++3 & 906 & 99 & 29 & $-.004689$ & $+.002891$\\
++4 & 870 & 99 & 30 & $+.036423$ & $+.020045$\\\bottomrule
++\end{tabular}
++\displaynote{Failure-positive metrics on saved outer predictions. Folds share training data and are not independent experimental replications. No new training or interval estimation was performed.}
++\end{table}
++Fold~3 has 3,051 corrected and 2,820 damaged positive--negative pairs. Its positive AUROC change and negative AP change are consistent because AP weights retrieval positions differently. Pooled AUROC is .779325 for sensors, .777037 after arithmetic omission and .794968 for F2. Fold-dependent score alignment therefore affects pooled metrics without changing within-fold sensor ordering. Setting the visual probability to zero is a particular constant reference, not an identified decomposition of pooled importance. The reduced map retains jointly fitted parameters; it is not a refitted sensor-only comparator.\ev{Audit inputs, source identities and reproducible calculation}{\EvidenceRef{E113}{}, \EvidenceRef{E122}{}}
+--- a/appendices/F_reproducibility.tex
++++ b/appendices/F_reproducibility.tex
+@@ -33,7 +33,7 @@
+ 
+ \section{Project Evidence File Register}
+ \label{sec:evidence-files}
+-Each identifier refers to one source file or dated copy. Evidence footnotes link to files with a recorded GitHub URL. An entry marked \enquote{GitHub link TBD} has no GitHub link available. The accompanying file index gives relative source names and the sections, code routines or samples cited.
++Each identifier refers to one source file or dated copy. Evidence footnotes link to files with a recorded GitHub URL. An entry marked \enquote{GitHub link TBD} has no GitHub link available. The accompanying file index gives relative source names and the sections, code routines or samples cited. New entries prefixed \texttt{repo:} in that index resolve from the research-repository root. The preserved revision package contains baseline hashes, the working-copy diff and current saved-score checks. The 25 November ViFailback check verifies 1,008 scalar metrics from 168 saved model/cohort vectors and the completed-fit records; its intervals remain the recorded November 24 paired analyses, not newly repeated bootstrap estimates.\ev{Revision saved-score verification}{\EvidenceRef{E113}{}, \EvidenceRef{E123}{}}
+ 
+ \begingroup
+ \singlespacing\small
+--- a/appendices/G_chronology.tex
++++ b/appendices/G_chronology.tex
+@@ -6,7 +6,9 @@
+ \section{From the Welding Motivation to Two Task-Specific Studies}
+ The PHM study began with image exploration and developed a continuous gear-condition proxy. The September v3 target used one deterministic view per tooth, teeth 5--28 and a top-three run aggregate. The earlier maximum-over-views targets and fixed image split addressed different prediction settings. The available records do not establish the initial reason for selecting PHM. Concerns about the validity of the proxy emerged through its construction and evaluation.\ev{PHM target chronology}{\EvidenceRef{E004}{sections 12--14}, \EvidenceRef{E023}{}}
+ 
+-Re-examination of the Intel welding data identified shared sessions across partitions and prior access to the proposed test set. No independent multimodal evaluation of weld quality followed. PHM and REASSEMBLE provided settings for the architecture and evaluation questions. In REASSEMBLE, native action outcomes and corresponding camera and telemetry observations supported comparison of the fusion methods. The experiment excluded audio because annotation times could not be reliably mapped to waveform times and spoken outcomes could reveal the labels.\ev{Welding and REASSEMBLE transition}{\EvidenceRef{E003}{sections 2--3}, \EvidenceRef{E004}{sections 14--15}}
++Re-examination of Intel Welding found intended-condition categories rather than independently verified defects, class-dependent modality availability, recipe/category confounding and 216 sessions crossing the supplied split. A proposed 32-session holdout had already appeared in a whole-population context audit. That exposure invalidates an untouched-test claim without proving that every model trained on those labels. The foundation review stopped before new model training; it supplies feasibility evidence, not a negative fusion result. PHM was already under way. REASSEMBLE subsequently provided native completed-action outcomes, aligned observations and recording identities for comparative evaluation; unresolved waveform timing and spoken outcome leakage prevented an acoustic predictor.\ev{Welding and assembly eligibility}{\EvidenceRef{E120}{}, \EvidenceRef{E004}{sections 14--15}}
++
++The September PADERBORN validation is retained as a bounded investigation, not an additional principal case study. Severity was fixed per bearing. The requested condition-only comparison favored the vibration predictor over the constant, whereas the stricter bearing-and-condition contrast was inconclusive: MAE difference $-.1184$ [95\% interval $-.2978$, .0589]. The report promoted the stricter protocol as primary without resolving that protocol fork. Recoverable bearing identity makes a shortcut plausible, not proven as the sole mechanism. Gate~3 distillation was not run; withholding current as privileged information was a study choice, not absence of current from the dataset.\ev{PADERBORN protocol fork and stopping boundary}{\EvidenceRef{E117}{}}
+ 
+ \section{Follow-Ups, Human Review and External Cases}
+ September follow-ups examined longer sensor training, a same-sensor hybrid, anchored adaptive coefficients, matched augmentation and boundary-aware visual pooling. These include positive exploratory results, but they did not execute a combined system containing every favorable choice. The discontinued temporal-model work is distinct from completed pooling experiments.
+@@ -15,5 +17,9 @@
+ 
+ A reviewer used the September interface to assess 64 REASSEMBLE clips. The returned ratings identified disagreements and potential boundary or presentation problems. Adjudication was incomplete, and the evaluation used the original labels.
+ 
+-The October MSM feasibility subset contained too few groups with positive cases. A subsequent evaluation included 1,895 intervals and varied both the grouping and the treatment of native label~2. HANDOVER evaluated five baselines on common input windows. Missing participant identities prevented participant-disjoint fitting of learned fusion. ViFailback progressed from cohort and telemetry checks to an evaluation of the original frozen backbone and a separate matched study of donor weights.\ev{Later external-study reconciliation}{\EvidenceRef{E003}{sections 3.4--3.6 and 4.5--4.7}, \EvidenceRef{E108}{}}
++The earlier \enquote{Milling Dataset} workspace and MSM refer to the same source, not independent datasets. The 114-case feasibility pilot failed positive-group support; later eligibility and alignment work admitted 1,895 intervals and enabled comparisons under several grouping and label-2 policies. Thus, a failed pilot gate did not establish failure of the later study. HANDOVER's pre-score common-window amendment retained all 151 official test trials, but absent participant mapping prevented the mandated OOF bank for learned fusion. These stopping and continuation decisions concern different requirements.\ev{Milling identity and external eligibility}{\EvidenceRef{E121}{}, \EvidenceRef{E108}{}}
+ 
++REBOOT remained a feasibility investigation. The 28 October decision admitted no normal/abnormal windows or supervised groups under the requested protocol despite 60 annotated cylinder-install episodes. Visual review was pending; no CNN extraction, training or performance estimate followed. The wider screening excluded RoboFAC for lack of real numerical counterparts, retained FAILURE only as a proposed RGB--audio pilot addressing a different input question, and removed CRIA at the researcher's request. Screening outcomes are not model results.\ev{REBOOT and screened alternatives}{\EvidenceRef{E118}{}, \EvidenceRef{E119}{}}
++
++ViFailback progressed from cohort and telemetry checks to original frozen evaluation, matched frozen/donor representation studies and bounded target-CNN adaptation. The 24 November closure records 79 of 111 planned fits complete. FULL20 has one seed and one outer fold with all three required inner fits; FULL100 is a separate pilot. Their paired adaptation effects remain inconclusive. The researcher stopped the remaining 32 FULL20 fits, and corruption evaluation remained unexecuted. This revision extends reporting through that closure while preserving the earlier protocols and complete frozen/donor results.\ev{ViFailback extended cutoff}{\EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
++
+--- a/appendices/I_ai_assistance.tex
++++ b/appendices/I_ai_assistance.tex
+@@ -15,6 +15,6 @@
+ 
+ The author conducted the literature research and critically reviewed the papers, assessing how their methods, choice of baselines, and evaluation conditions supported their findings. AI tools helped the author prioritise papers for closer reading, locate relevant passages and tables during review, and organise the evidence into a comparison matrix. During the November revision, the author obtained additional publications and used AI assistance to match their titles and DOIs to Zotero records and check the corresponding PDF attachments. AI tools also supported numerical consistency checks, bibliography processing, APA citation editing, figure preparation, LaTeX editing and compilation, and the extraction of chapter text.
+ 
+-The manuscript revision drew on existing publications, implementation records, and saved experimental outputs, without new model training or inference on raw data. The thesis distinguishes findings reported in publications, checks documented in earlier experiment records, and checks performed on saved outputs during revision. AI-assisted appraisal formed part of the same review process and provided no independent second human assessment. Ambiguous source claims, incomplete experiments, and unresolved questions of physical validation are documented as limitations.
++The manuscript revision drew on existing publications, implementation records, and saved experimental outputs, without new model training or inference on raw data. The thesis distinguishes findings reported in publications, checks documented in earlier experiment records, and checks performed on saved outputs during revision. The 25 November revision used Codex to cross-map existing literature and controlled experiments, recompute the core F2 ranking diagnostic, reconcile the November 24 ViFailback closure and revise a preserved manuscript copy. Baseline hashes, source identities, the revision diff and actual validation outcomes accompany that copy. AI-assisted appraisal formed part of the same review process and provided no independent second human assessment. Ambiguous source claims, incomplete experiments, and unresolved questions of physical validation are documented as limitations.
+ 
+ Appendix~\ref{app:prompt-record} presents two reconstructed examples of implementation and audit requests. Section~\ref{sec:results-archiving} summarises AI assistance in planning local archiving and Git version control for experimental outputs. OpenAI Codex assisted with the implementation and audit tasks and with preparation of Figure~\ref{fig:fusion-interfaces} \citep{OpenAICodex}. The records do not identify the model version used in earlier implementation sessions.
+--- a/appendices/J_prompt_record.tex
++++ b/appendices/J_prompt_record.tex
+@@ -56,3 +56,6 @@
+ 
+ \section{Provenance}
+ The two reconstructions draw on the preserved implementation and audit requests. The original implementation chats were unavailable, so the precise wording and authorship of individual lines cannot be verified. Section~\ref{sec:results-archiving} summarises the subsequent discussion about access to experimental outputs. Proposed prompts for future work fall outside this record.
++
++\section{Targeted Scientific Revision}
++The 25 November request approved sixteen proposed revisions, then required stronger positive architectural justification, an explicit literature comparison in Chapter~9, dataset-specific interpretation, retained effect sizes and uncertainty, the complete relevant investigation history, and the November 24 ViFailback update. It authorized application to a preserved working copy, a traceable diff and compilation, while retaining the original chapter structure, questions and registered title. It prohibited new training and restarting literature discovery. This paragraph summarizes the request; it is not a verbatim transcript or an independent validation of the resulting text.
+--- a/chapters/01_introduction.tex
++++ b/chapters/01_introduction.tex
+@@ -1,52 +1,330 @@
++% ============================================================
++% CHAPTER 1: INTRODUCTION
++% File: chapters/01_introduction.tex
++% ============================================================
++
+ \chapter{Introduction}
+ \label{ch:introduction}
+ 
+-\section{Industrial Monitoring and the Motivation for Multimodal Learning}
+-Robotic welding motivated a practical question. If a camera records the appearance of the weld pool while other instruments record sound or process signals, when does a joint prediction improve on the strongest single-input model? Visual and acoustic welding studies have already implemented learned fusion \citep{P003,Hua2026Weld}. In one weld-penetration study, the image-only, audio-only, and fused models all achieved 100\% accuracy on the reported clean test set \citep[Tables~1--3]{Hua2026Weld}. For that comparison, the extra channel left no measurable margin for a clean accuracy gain. Whether it could help under camera occlusion or acoustic interference is a separate question that requires observations under those conditions.
+-
+-The registered title reflects the original Intel Welding proposal. In the implementations, \textit{physics-informed} means that fusion weights can depend on observed physical process context, such as the assembly action being performed. The models impose no differential-equation or conservation-law constraints. The gear study was already under way when the Intel Welding audit found that acquisition sessions spanned partitions and proposed test recordings had been examined during development. The empirical evaluation consequently centred on five adjacent industrial and robotic monitoring tasks. Independent welding validation requires fresh welds. In the core assembly comparison, the visual classifier used the frozen ResNet18-vd CNN backbone inside RT-DETR-R18vd. A separate visual comparison evaluated the backbone together with the detector's spatial hybrid Transformer encoder.\ev{Researcher's account of the scope agreed with the supervisor}{\EvidenceRef{E003}{sections 2.3 and 3.1}}\ev{Sequence of the gear study and renewed welding audit}{\EvidenceRef{E004}{sections 11--14}}
+-
+-The question across applications was what each input contributed to the prediction. In the gear study, this first required a measurable indicator of condition. Robotic assembly then supplied labelled actions with paired video and machine signals for a direct comparison of fusion methods. Milling, manipulation, and human--robot handover provided further tests on different operations. Each comparison is interpreted against its own outcome, available inputs, and strongest single-input reference.
+-
+-\section{Problem Statement}
+-A monitoring model requires a target with a physical or operational interpretation and observations available at the intended decision time. A statistic extracted from a post-run photograph can define a continuous target for gear-condition regression. A label assigned to a completed assembly action defines an outcome-classification task. A camera frame from the end of that action may contain decisive evidence that was unavailable while the robot was executing it. These differences determine both what a model can learn and where its predictions could be used.
+-
+-Estimating the value of an additional input also requires matching the comparison. Visual and sensor observations must refer to the same event, and both the fused model and its component predictors must be assessed on the same held-out units. Changing the training budget, fitting a new calibration function, or exposing only one model to simulated failures changes the interpretation of a score difference. Known absence raises a different problem from an apparently valid sensor reading corrupted by noise. Prior work on multimodal learning has shown that a joint model can perform worse than its strongest component \citep{Wang2020What}. The useful comparison therefore includes strong single-input models, simple combinations, and explicit tests of input degradation.
+-
+-\section{Research Aim and Objectives}
+-The aim is to determine when combining visual and machine-sensor evidence improves industrial condition estimation or outcome classification. The implementation provides interchangeable visual and sensor representations, unimodal prediction heads, and fusion at the feature or prediction level. The comparison includes convolutional image features, statistical summaries of sensor windows, and patch-based Transformer encoders for sensor sequences. Static fusion uses fixed rules or fitted coefficients. A process-aware gate can change the relative weights with the context of an observation.
+-
+-The evaluation asks whether those choices improve ranking or regression error, whether predicted probabilities and decisions remain useful, and how each method behaves when an input is unavailable or degraded. Grouped assessment accounts for dependence between observations from a shared experiment, recording, or task where the necessary identifiers are available. The interpretation also considers costs of computation, uncertainty in the target, and the extent to which a result carries over to new operating conditions.
+-
+-\section{Main Research Question and Four Subquestions}
+-The original expos\'{e} posed the following main research question.
++
++% ============================================================
++% 1.1 CONTEXT AND MOTIVATION
++% ============================================================
++
++\section{Context and Motivation}
++
++Industrial monitoring means tracking the state and behavior of a
++physical process by analyzing data collected during or after it
++runs. Industrial and robotic systems produce many types of data,
++such as visual observations, acoustic signals, force measurements,
++vibration, and other sensor signals
++\citep{Huo2022Multisensor,Thoduka2024Handover}.
++Each data type shows a different aspect of the process and may
++respond differently to changes in operation.
++
++Multimodal learning enables the integration of these diverse data
++types, particularly when each source provides complementary or
++unique information. However, adding data sources does not inherently
++improve predictions \citep{Wang2020What}. The benefit depends on
++the information each modality retains, the relevance of the data
++to the prediction task, and the methods used for data integration.
++
++Robotic welding was the starting point for this research. A camera
++can observe the weld pool, while acoustic and machine sensor
++measurements give information about other parts of the welding
++process. Previous studies have explored combining visual and
++acoustic data for weld assessment \citep{P003,Hua2026Weld}.
++
++The primary architectural challenge extends beyond welding.
++Industrial monitoring systems require data representations that
++capture task-relevant information, fusion methods that effectively
++utilize complementary data from multiple sources, and evaluation
++protocols that assess whether predictions remain reliable when some
++data are missing or of low quality. Therefore, this research
++investigates multimodal fusion architectures across a range of
++industrial and robotic monitoring tasks.
++
++
++% ============================================================
++% 1.2 PROBLEM STATEMENT AND RESEARCH GAP
++% ============================================================
++
++\section{Problem Statement and Research Gap}
++
++The added value of additional modalities cannot be determined
++solely by the predictive performance of the combined model; it is
++essential to compare the architecture's performance against
++credible unimodal predictors on identical prediction targets
++and assessment observations.
++
++Prior work has shown that multimodal integration can improve
++prediction, but it also identifies circumstances in which a jointly
++trained multimodal model will perform worse than its unimodal
++counterparts \citep{Wang2020What}. In one weld penetration study,
++the image-only, audio-only, and fused models all achieved 100\%
++accuracy on the reported clean test set
++\citep[Tables~1--3]{Hua2026Weld}. There was therefore no demonstrable
++benefit to the availability of an additional modality in terms
++of clean data accuracy.
++
++Another challenge concerns the reliability of each data type.
++When an input is missing, fallback mechanisms may be employed.
++If an input is present but degraded, evidence is required to
++demonstrate altered reliability. While adaptive fusion can adjust
++the contribution of each input, modifying these weights alone
++does not ensure improved robustness \citep{Zhang2023QMF,P008}.
++
++The fairness of these comparisons also depends on factors like
++the prediction target, how the data is aligned over time, training
++methods, calibration, and whether the test data is independent
++\citep{P017,P004,Guo2017Calibration,P008}. Differences in any of
++these areas can make it hard to know if performance gains are
++generalizable.
++
++This thesis addresses this gap by investigating the added predictive
++value and robustness of multimodal fusion under fair, task-specific
++experimental conditions. It investigates how the selection of data
++representation, complementary information, and fusion method
++interact, and whether observed benefits in one context are
++transferable to other industrial and robotic monitoring tasks.
++
++Chapter~2 reviews existing research to lay out the scientific
++background and highlight the unresolved comparisons that define
++this research gap.
++
++
++% ============================================================
++% 1.3 RESEARCH QUESTIONS AND OBJECTIVES
++% ============================================================
++
++\section{Research Questions and Objectives}
++
++The main goal of this thesis is to study how to design and evaluate
++process-aware multimodal AI systems for reliable industrial
++monitoring and anomaly detection. It examines how using specific
++data representations and different fusion methods affects prediction,
++robustness, and practical usefulness.
++
++The first version of the expos\'{e} set out this main research
++question:
++
+ \begin{quote}
+-How can a process-aware multimodal AI architecture be designed and evaluated for robust industrial anomaly detection using robotic welding data as a case study?
++
++How can a process-aware multimodal AI architecture be designed
++and evaluated for robust industrial anomaly detection using
++robotic welding data as a case study?
++
+ \end{quote}
+-Four subquestions address representation, fusion, robustness, and evaluation.
++
++Four subquestions address the main architectural and methodological
++aspects of this study.
++
+ \begin{enumerate}[label=SQ\arabic*.,leftmargin=16mm]
+-\item Which lightweight or pretrained Transformer-based representation components are suitable for visual, audio, and sensor time-series data in a multimodal industrial anomaly detection pipeline?
+-\item How do unimodal baselines, simple concatenation fusion, modular late fusion, and process-aware gated cross-modal fusion compare in terms of predictive performance?
+-\item Can a gated cross-modal fusion architecture improve robustness when one or more modalities are missing, degraded, or unreliable?
+-\item How can multimodal architecture performance be evaluated beyond accuracy, including robustness, interpretability, modularity, and practical usability?
++
++\item Which lightweight or pretrained Transformer-based
++representation components are suitable for visual, audio, and
++sensor time-series data in a multimodal industrial anomaly
++detection pipeline?
++
++\item How do unimodal baselines, simple concatenation fusion,
++modular late fusion, and process-aware gated cross-modal fusion
++compare in terms of predictive performance?
++
++\item Can a gated cross-modal fusion architecture improve
++robustness when one or more modalities are missing, degraded,
++or unreliable?
++
++\item How can multimodal architecture performance be evaluated
++beyond accuracy, including robustness, interpretability,
++modularity, and practical usability?
++
+ \end{enumerate}
+-The welding case motivated all four questions.\ev{Research questions and scope}{\EvidenceRef{E002}{pp. 2--3}, \EvidenceRef{E001}{}} Audio remained relevant to the literature review. For REASSEMBLE, the correspondence between action annotations and waveforms was unresolved, and spoken outcomes posed an additional risk of revealing the label. The predictive experiments therefore concentrated on vision and machine sensing.\ev{REASSEMBLE audio feasibility}{\EvidenceRef{E004}{section 15}}
+-
+-\section{Scope and Evolution of the Research}
+-The PHM study asked what the gear measurements could establish about condition. Post-run photographs supplied a provisional continuous measure of candidate damage area. The main sensor comparison held out whole experiments and tested whether three groups of measurements could predict that measure more accurately than the training mean. Their mean absolute error was 0.824 percentage points, compared with 0.804 for the constant predictor (Table~\ref{tab:phm-loeo}). The paired analysis left the difference unresolved. An independent physical measurement would be needed to determine how faithfully the photographic target tracks damage.
+-
+-REASSEMBLE supplied the principal fusion test because video and sensor streams could be linked to native success or failure labels for the same completed actions. Across 4,530 actions from 148 recordings, failure average precision was .429 for the statistical sensor predictor, .446 for equal averaging of visual and sensor probabilities, and .447 for logistic stacking (Tables~\ref{tab:reassemble-unimodal} and~\ref{tab:reassemble-fusion}). The paired comparison supported a modest gain for stacking over its sensor component. Its advantage over equal averaging remained uncertain. The gates conditioned on quality alone or on quality and action context showed no consistent additional benefit when streams were absent or degraded. The measured gain applies to the fitted pipeline, which also introduced a second probability model.
+-
+-The external implementations examined whether the same approach remained useful on new targets. In MSM, camera and machine measurements covered milling intervals labelled for abnormal cutting. For the 1,895 intervals in the primary evaluation, average precision for abnormal cutting, averaged over three seeds, was .757 for stacking and .829 for logistic sensing (Table~\ref{tab:msm-clean}). In ViFailback, the target was the outcome of a completed manipulation episode, and entire tasks were held out. Original stacking had lower pooled macro average precision than the logistic sensor model at each of three seeds. A separate experiment transferred a convolutional encoder learned on REASSEMBLE and found mixed changes across seeds (Tables~\ref{tab:vif-bothclass} and~\ref{tab:vif-matched}).
+-
+-HANDOVER examined whether video and force--torque signals from the same part of a human--robot handover improved prediction of its recorded outcome. On 151 official test trials, equal averaging achieved failure average precision of .803, compared with .824 for the logistic sensor predictor (Table~\ref{tab:handover-clean}). The participant-to-trial mapping needed to verify participant-disjoint predictions for fitting a learned fusion model was unavailable. The empirical result therefore concerns simple averaging on those trials. Together, the three external studies show why a new application of a fusion pipeline needs a fresh comparison with its own sensor baseline.
+-
+-\section{Contributions of the Thesis}
+-The implementation specifies how the models transform each physical observation into a prediction. In REASSEMBLE, the pretrained RT-DETR-R18vd checkpoint supplied its own ResNet18-vd convolutional backbone. The implementation pooled its features and trained a binary action classifier. The separate PHM image regressor collected intermediate features during an RT-DETR-L prediction pass. The evaluation linked each fitted model to its training and assessment groups, calibration procedure, and component predictors. This makes explicit which comparisons test combining two predictions and which also test whether their relative weights should vary from one observation to the next. It also exposed limits, including a preprocessing-isolation concern in a separate PHM four-arm comparison.
+-
+-The second contribution is an account of reliability that distinguishes a known missing input, a degraded but present input, and a change of operating conditions. A programmed fallback can select the surviving sensor stream once the missing input has been identified. Recognizing an unreliable reading that still looks valid requires an additional form of evidence. Controlled tests evaluated input loss and corruption. The available group comparisons offered more limited evidence about changes in physical operating conditions. Later pooling, fine-tuning, and transfer studies are interpreted under their respective fitting procedures and degree of prior assessment exposure.
+-
+-The literature review examined \ReviewWorkCount{} works in full text across two stages of screening and appraisal. Its comparison matrix records the task, physical input sources, fusion method, unimodal controls, assessment design, tests of unreliable inputs, and source locations. The welding comparison illustrates why these controls matter. A fused model can achieve high accuracy even when a single input yields the same result. The empirical chapters examine how much the combined model adds on each task and, where degradation tests are available, whether that gain persists.
+-
+-\section{Organization of the Thesis}
+-Chapter~2 compares the closest welding and industrial fusion studies. Chapters~3 and~4 define the model components and evaluation procedures. Chapter~5 examines construction and prediction of the gear-condition proxy, and Chapter~6 presents the main assembly comparison. Chapters~7 and~8 report the milling and manipulation studies. Appendix~\ref{app:handover} gives the supplementary handover evaluation. Chapter~\ref{ch:discussion} draws on all five studies to answer the four subquestions and assess how far their findings answer the original welding question. Chapter~\ref{ch:conclusion} summarizes the contribution and the evidence still required for weld-quality assessment. The remaining appendices document the literature appraisal, datasets, implementation, sensitivity analyses, human review, reproducibility, research chronology, and prompt records.
++
++\ev{Research questions and scope}
++{\EvidenceRef{E002}{pp. 2--3}, \EvidenceRef{E001}{}}
++
++These considerations result in four research objectives: evaluating
++the suitability of specific data representations, investigating
++various fusion strategies, testing robustness to input degradation,
++and assessing the appropriateness of selected evaluation methods
++for multimodal monitoring systems. Broader architectural questions
++persist, despite changes in the original application scope.
++
++
++% ============================================================
++% 1.4 METHODOLOGY OVERVIEW AND CONTRIBUTIONS
++% ============================================================
++
++\section{Methodology Overview and Contributions}
++
++This research integrates a critical literature review with empirical
++investigations of multimodal representation and fusion architectures.
++The review encompassed \ReviewWorkCount{} full texts, screened and
++assessed in two stages, with emphasis on architectural approaches,
++unimodal baselines, fusion methods, evaluation protocols, and
++strategies for handling unreliable inputs.
++
++Dataset selection also considered modality correspondence,
++annotation suitability, assessment independence, and computational
++viability. The empirical component compared modality-specific
++representations and prediction models, then evaluated alternative
++fusion strategies and a series of controlled follow-up experiments.
++
++The implemented architectures use pre-trained convolutional visual
++representations, statistical sensor features, and patch-based
++temporal encoders. Information is combined using feature
++concatenation, probability averaging, logistic stacking, and
++context-conditioned weighting.
++
++Evaluation covers predictive performance, calibration, grouped
++assessment, uncertainty, and how the system behaves when inputs
++are missing or degraded, depending on the dataset and protocol.
++Tests on external datasets check if the chosen fusion methods
++and data representations work for different prediction tasks.
++
++The principal contributions of this thesis are:
++
++\begin{itemize}
++
++\item \textbf{Comparative evaluation of multimodal representations:}
++This includes empirical tests of pretrained visual features,
++statistical sensor representations, and patch-based temporal
++encoders. The study compares training budgets, feature combinations,
++and the compatibility of different representations. It assesses
++each representation's performance individually and in combination.
++
++\item \textbf{Comparative evaluation of fusion architectures:}
++Feature-level, prediction-level, and process-aware fusion
++architectures are implemented and evaluated against unimodal
++reference models. These comparisons establish the conditional
++predictive gain from information fusion and distinguish this
++gain from the effects of additional fitting and calibration
++to the extent permitted by the experimental controls.
++
++\item \textbf{Assessment of multimodal robustness:}
++The experiments test how fusion behaves when some data is
++missing or degraded, comparing fallback methods to adaptive
++input weighting. The study checks if the benefits seen with
++clean data remain when inputs are degraded.
++
++\item \textbf{Cross-dataset evaluation and methodological assessment:}
++The research explores re-using fusion methods and transferring
++supervised representations across different industrial and
++robotic monitoring tasks. The evaluation highlights the
++importance of target validity, data alignment, class-specific
++performance, grouped assessment, and uncertainty when comparing
++architectures across datasets.
++
++\end{itemize}
++
++Implementation records, literature comparison tables, and
++experimental artifacts all provide clear support for these
++contributions.
++
++
++% ============================================================
++% 1.5 SCOPE AND DELIMITATIONS
++% ============================================================
++
++\section{Scope and Delimitations}
++
++The original research plan focused on robotic welding as the main
++application for process-aware multimodal architectures. PHM gear
++monitoring work was already in progress when a renewed audit of
++the Intel Welding dataset found that some data sessions crossed
++the provided partitions and that some proposed test recordings
++had already been examined during development. This meant an
++independent confirmatory evaluation was not possible on that
++assessment population.
++
++The empirical work then shifted to related industrial and robotic
++monitoring tasks, while keeping the original architectural research
++questions the same.
++
++\ev{Researcher's account of the scope agreed with the supervisor}
++{\EvidenceRef{E003}{sections 2.3 and 3.1}}
++
++\ev{Sequence of the gear study and renewed welding audit}
++{\EvidenceRef{E004}{sections 11--14}}
++
++PHM2026 focused on building condition targets and sensor-based
++prediction. REASSEMBLE was the main experimental setting for
++comparing visual and sensor data, fusion methods, and how systems
++handle degraded inputs. MSM, ViFailback, and HANDOVER added studies
++on milling, robotic manipulation, and human--robot interaction.
++More details on dataset feasibility and protocols are in
++Appendix~\ref{app:chronology}.
++
++The predictive experiments focus on visual and machine sensor
++data. Audio remains relevant to the original research goals and
++literature review, but acoustic prediction was not completed.
++In REASSEMBLE, the correspondence between action annotations and
++acoustic data remained unresolved, and spoken outcomes could have
++revealed the prediction labels, introducing a risk of label leakage.
++An acoustic prediction branch was therefore not included.
++
++\ev{REASSEMBLE audio feasibility}
++{\EvidenceRef{E004}{section 15}}
++
++In this thesis, process-aware fusion means adjusting how predictions
++are combined based on the process context and available quality
++information. Although the registered title mentions
++\textit{physics-informed}, the architectures do not use explicit
++differential equations or conservation law constraints.
++
++The empirical work focuses on estimating conditions and classifying
++outcomes within set observation periods. Classifying completed
++actions and manipulation episodes does not, by itself, provide
++prospective anomaly detection or early warning.
++
++Robustness evaluation is limited to experiments where inputs
++were removed or degraded in a controlled way. Studies with
++external datasets focus on re-using architectures, fitting to
++specific datasets, and selected transfer methods, rather than
++testing if an unchanged model works in a new domain.
++
++Therefore, the conclusions only apply to the architectures,
++prediction targets, and evaluation conditions studied. Independent
++welding validation, predictive audio integration, prospective
++monitoring, and further operational validation are beyond the
++completed empirical scope of this work.
++
++
++% ============================================================
++% 1.6 STRUCTURE OF THE THESIS
++% ============================================================
++
++\section{Structure of the Thesis}
++
++Chapter~2 is the literature review, setting out the scientific
++basis, existing architectural approaches, and remaining research
++questions in the area of multimodal industrial monitoring.
++
++Chapter~3 covers the technical underpinnings of the investigated
++representation models, the prediction components, and the fusion
++mechanisms.
++
++Chapter~4 covers the research methodology, dataset qualification
++criteria, experimental design, and evaluation procedures.
++
++Chapter~5 looks at condition-target construction and prediction
++using PHM2026. Chapter~6 is the main REASSEMBLE chapter, covering
++representation comparisons, multimodal fusion, robustness
++experiments, and controlled architectural follow-up investigations.
++
++Chapters~7 and~8 examine the application of the investigated
++approaches to MSM milling and ViFailback robotic manipulation.
++Appendix~\ref{app:handover} provides the supplementary HANDOVER
++evaluation.
++
++Chapter~\ref{ch:discussion} brings the empirical findings together
++with the relevant literature, answers the research sub-questions,
++and looks at the scientific implications across the datasets
++considered.
++
++Chapter~\ref{ch:conclusion} covers the supported contributions,
++the remaining research questions and the priorities for future work.
++
++The other appendices contain the literature appraisal, dataset
++documentation, implementation details, experimental analysis,
++research timeline, and reproducibility records.
+--- a/chapters/02_literature_review.tex
++++ b/chapters/02_literature_review.tex
+@@ -97,17 +97,17 @@
+ SQ1 concerns the relationship between representations and task requirements. The evidence supports neither a universal preference for learned features nor an assumption that a large pretrained encoder is always necessary. Representation quality interacts with supervision, preprocessing, sample size, and the resources allocated to fitting.
+ 
+ \subsection{Engineered Features and Conventional Machine Learning}
+-Engineered statistics, spectral descriptors and conventional classifiers remain important references. Their relevance follows from predictive performance and information access, not from architectural novelty. Classical geometric features can be highly competitive for 3D inspection, and a multi-channel neural model can lose to a selected sensor \citep{Horwitz2023Back,Goodarzi2023Deep}. A strong reference prevents a weak learned branch from defining an artificially easy fusion comparison.
++Engineered summaries provide a deliberate restriction on the information a classifier can exploit. Location, spread, amplitude and trend can describe operating state without estimating a high-capacity sequence model from limited independent groups. The literature supports taking this restriction seriously: handcrafted local geometry is competitive in 3D inspection, while a hydraulic CNN study reports 1.7\% error for its best single sensor against 20.5\% with all seventeen sensors \citep{Horwitz2023Back,Goodarzi2023Deep}. These findings motivate compact references; they do not validate the exact 220-feature REASSEMBLE vector. Its suitability and the value of information discarded by summarization require the task-specific comparisons in Chapter~6.
+ 
+ Industrial vision also has lightweight alternatives. The weakly supervised inspection network uses one camera source, internal anomaly-aware features and a compact CNN; its reported cost is 2.33 million parameters and 5.65~ms per image \citep[PDF p.~10, Table~V]{P035}. This is relevant representation and cost evidence, but its anomalous training labels and modified MVTec supervision differ from normal-only inspection. Conventional and learned references should therefore be compared under the same target, assessment cases and fitted preprocessing rather than ranked by model family.
+ 
+ \subsection{Pretrained Visual Representations}
+-Pretrained CNN and Transformer features reduce industrial fitting requirements while importing substantial external learning. PatchCore, asymmetric student--teacher models and cross-modal feature mapping show useful nominal-data representations under different protocols \citep{Roth2022Towards,Rudolph2023Asymmetric,Costanzino2024Multimodal}. Their success supports transfer as a candidate strategy, not an architecture-independent guarantee.
++Pretrained visual features offer a concrete hypothesis: a hierarchy learned from large image collections may retain local appearance and object configuration useful with fewer target-specific fits. PatchCore successfully uses pretrained, locally aggregated intermediate CNN features with a memory of nominal patches for industrial inspection \citep[Section~3]{Roth2022Towards}. This supports testing transferred spatial representations, although its nominal-only patch retrieval differs from supervised action classification. RT-DETR supplies multiscale CNN maps before its hybrid encoder and detection decoder \citep[Sections~4.1--4.2]{Zhao2024RTDETR}. Extracting those maps is scientifically reasonable when appearance at several scales may matter; its published detector accuracy and speed do not establish the quality or cost of the extracted action representation. Asymmetric student--teacher and cross-modal mapping methods provide further task-specific precedents \citep{Rudolph2023Asymmetric,Costanzino2024Multimodal}.
+ 
+ Vision-language inspection imports semantic context as well. DSE-AD combines historical/current rail images with normal/abnormal position prompts and evaluates pixel localization on another rail domain \citep{P031}. Its paired-reference and prompt assumptions differ from isolated image classification. Similarly, a detector checkpoint can supply only convolutional features: that use does not imply execution of a Transformer encoder, decoder or detection head. A representation description must identify the actual forward path, trainable components and observation horizon before an improvement can be attributed to pretraining or attention.
+ 
+ \subsection{Temporal and Time-Series Representations}
+-Temporal structure can be represented through statistics, spectra, recurrence, attention or aggregation. PatchTST tokenizes channels into patches and shares Transformer weights across channel-independent paths. Its supervised, masked-pretraining and transfer experiments are different fitting regimes \citep[PDF pp.~3--8]{Nie2023PatchTST}. On Weather horizon 96, the patch-plus-channel-independent model reports MSE .152 against .164 without patching; this supports the design within forecasting, not superiority for robotic failure classification \citep[PDF p.~9, Table~7]{Nie2023PatchTST}.
++PatchTST motivates a contrasting information hypothesis: local subsequences become tokens, reducing attention sequence length while retaining within-patch structure; a shared, channel-independent encoder models dependencies across patches without fitting a separate Transformer for each channel \citep[Sections~3.1--3.2]{Nie2023PatchTST}. On Weather horizon 96, its patch-plus-channel-independent model reports MSE .152 against .164 without patching \citep[Table~7]{Nie2023PatchTST}. This is positive evidence for patching within forecasting. The thesis instead tests scratch-trained classifiers with different normalization, aggregation and targets, so forecasting superiority is a motivation to investigate, not a transferred conclusion.
+ 
+ Video-time attention addresses a different structure. TimeSformer separates temporal and spatial attention, while Video Swin introduces local spatiotemporal attention \citep{P034,P013}. Neither is equivalent to averaging independently encoded frames. The industrial CNN--LSTM RUL work also shows dependence on observation length within its simulated task \citep{AlDulaimi2019A}. SQ1 therefore requires explicit windows, ordering, normalization, pretraining and resource budgets. Selecting statistics after a bounded Transformer comparison remains a substantive answer to suitability.
+ 
+@@ -139,10 +139,10 @@
+ \subsection{Prediction-Level and Late Fusion}
+ Late fusion preserves separately fitted predictors and combines outputs through averaging, stacking or evidence rules. Thermal--vibration diagnosis uses separate CNN softmax outputs with weighted Dempster--Shafer aggregation. Its clean reported diagnostic rate is 100\%, compared with 99.06\% for IRT and 96.32\% for vibration \citep[PDF p.~7, Table~VII]{Huo2022Multisensor}. Fixed weights and the sample-CV protocol qualify the gain, but this is direct physical camera--sensor late-fusion evidence.
+ 
+-HANDOVER compares late outputs with intermediate sensor integration into RGB and optical-flow branches \citep[PDF pp.~5--7]{Thoduka2024Handover}. Inspection map fusion is different: cross-modal mapping and CPIR aggregate discrepancy maps that need not be probabilities \citep{Costanzino2024Multimodal,Shangguan2025CPIR}. Moreover, some papers call pre-classifier representation combination late fusion \citep{Wang2020What,Xie2025Audiovisual}. A learned prediction combiner therefore requires an explicit fitting bank, calibration contract and score scale, in addition to a common outer assessment.
++HANDOVER compares late outputs with intermediate sensor integration into RGB and optical-flow branches \citep[PDF pp.~5--7]{Thoduka2024Handover}. Inspection map fusion is different: cross-modal mapping and CPIR aggregate discrepancy maps that need not be probabilities \citep{Costanzino2024Multimodal,Shangguan2025CPIR}. Moreover, some papers call pre-classifier representation combination late fusion \citep{Wang2020What,Xie2025Audiovisual}. Stacked generalization supplies a positive rationale for learning a combination from cross-validated branch predictions: probability outputs retain information that hard labels discard, and a second-stage learner can estimate their joint predictive use \citep[Sections~2--3]{Ting1999Issues}. That paper evaluates a linear least-squares combiner, not this thesis's logistic F2. F2 is a low-dimensional candidate with an intercept and separately fitted branch coefficients. Recording-safe prediction banks, calibration and common outer assessment are application-specific requirements, not guarantees supplied by the citation.
+ 
+ \subsection{Gated and Context-Conditioned Fusion}
+-Gates can allocate embeddings, blend maps, alter prediction coefficients or balance training objectives. DMAW reports 96.1\% against 90.5\% for summation and 92.6\% for its gate comparator \citep[PDF p.~9, Table~V]{P003}. TC-MAF instead bounds auxiliary RGB evidence around a multimodal anchor using normal-training dispersion and local disagreement \citep[PDF pp.~3--5]{P026}. These are different adaptive mechanisms.
++A gate is a reasonable candidate when the usefulness of each stream varies with the example. Gated Multimodal Units mix hidden visual and textual representations and achieve macro F-score .541 against .521 for concatenation on movie-genre classification \citep[Section~3, Table~2]{P006}. This motivates conditional allocation, while the thesis's scalar probability or logit combinations require separate validation. Gates can allocate embeddings, blend maps, alter prediction coefficients or balance training objectives. DMAW reports 96.1\% against 90.5\% for summation and 92.6\% for its gate comparator \citep[PDF p.~9, Table~V]{P003}. TC-MAF instead bounds auxiliary RGB evidence around a multimodal anchor using normal-training dispersion and local disagreement \citep[PDF pp.~3--5]{P026}. These are different adaptive mechanisms.
+ 
+ The conditioner is decisive. GCCF-AD describes dynamic fusion, but Eq.~8 specifies a learned scalar $\alpha=\sigma(\omega)$ without an explicit sample-quality input \citep[PDF p.~3]{P038}. PGMTKD's teacher allocation uses training losses, while task-loss balancing does not become a deployment quality measurement \citep{Li2025PGMTKD,P045}. GAF-Net uses progressive feature feedback, and trustworthy fusion uses evidence-based aggregation \citep{Huang2026Rolling,Ying2025Trustworthy}. These mechanisms differ in which weights can vary, which inputs determine them and whether the resulting predictions improve on a fixed combination. Process context does not itself impose physical laws.
+ 
+@@ -175,7 +175,7 @@
+ 
+ QMF itself reports NYU scene-classification accuracy of 70.09\% on clean inputs, below concatenation at 70.30\%, but 55.60\% at corruption intensity ten, above late fusion at 51.99\% \citep[PDF p.~8, Table~1]{Zhang2023QMF}. These non-industrial RGB--depth results demonstrate a regime-specific benefit rather than universal dominance.
+ 
+-Results can also conflict across endpoints. The disagreement add-on improves local MVTec image AUROC from .779 to .800 but reduces Eyecandies image AUROC from .810 to .794 while improving pixel metrics \citep[PDF pp.~10--11, Tables~4--5]{P033}. TC-MAF's training-dispersion proxy has a smaller contribution than its evidence/fusion structure \citep{P026}. These findings require validation of the conditioning signal and outcomes; changing attention, an uncertainty plot or an evidence mass does not by itself establish calibrated reliability.
++Results can also conflict across endpoints. The disagreement add-on improves local MVTec image AUROC from .779 to .800 but reduces Eyecandies image AUROC from .810 to .794 while improving pixel metrics \citep[PDF pp.~10--11, Tables~4--5]{P033}. TC-MAF's training-dispersion proxy has a smaller contribution than its evidence/fusion structure \citep{P026}. The positive rationale is to reduce reliance on a stream when available context predicts its errors. QMF relates such weighting to a generalization bound under specified conditions, rather than validating arbitrary quality proxies \citep{Zhang2023QMF}. Clean calibration can also deteriorate under shift \citep{P008}. The empirical test is improvement against an exposure-matched static model while retaining acceptable clean performance; changing weights alone cannot establish that relationship.
+ 
+ \subsection{Modality Dropout, Augmentation, and Fallback Mechanisms}
+ Training dropout exposes a model to selected absence patterns, imputation generates substitutes and deterministic fallback routes to an available predictor. These mechanisms can yield the same output under some conditions without learning the same recovery. Survivor routing should therefore be evaluated as a policy, while corrupted-but-present inputs test a different prediction problem.
+@@ -225,7 +225,7 @@
+ Possible explanations include redundancy, optimization, noise, supervision and limited data; these studies do not identify one universal cause. Questions about independent groups, matched static controls, informative quality conditioning and calibrated risk remain protocol-specific. Where tables within a study disagree, the magnitude of the reported effect remains uncertain.
+ 
+ \subsection{Implications for Representation and Fusion Selection}
+-The welding results suggest an order for comparing architectures. First establish how well each physical input predicts the chosen target under a feasible fitting procedure (SQ1). Then compare equal averaging, a fitted static combination, and a context-dependent alternative with the strongest constituent predictor on the same assessment cases (SQ2). If the learned combination introduces another calibration step, a gain over a single branch estimates the benefit of the fitted pipeline. Isolating the contribution of the second input also requires a single-input control with the same opportunity for recalibration. If a gate is intended to handle failures, its static comparator needs comparable exposure to those failures during training (SQ3). The uncertainty of each contrast depends on the physical units that were independently assessed (SQ4).
++The welding results suggest an order for comparing architectures. First establish how well each physical input predicts the chosen target under a feasible fitting procedure (SQ1). Then compare equal averaging, a fitted static combination, and a context-dependent alternative with the strongest constituent predictor on the same assessment cases (SQ2). If the learned combination introduces another calibration step, a gain over a single branch estimates the benefit of the fitted pipeline. Incremental within-fold ordering should be distinguished from pooled score alignment. A matched single-input second-stage control further limits ambiguity about the additional fitted map; its absence does not erase ordering changes that a strictly increasing transformation of the original branch score cannot produce. If a gate is intended to handle failures, its static comparator needs comparable exposure to those failures during training (SQ3). The uncertainty of each contrast depends on the physical units that were independently assessed (SQ4).
+ 
+ \subsection{Implications for Experimental Design}
+ \label{sec:literature-study-gaps}
+@@ -241,7 +241,7 @@
+ OmniFuser forecasts milling-tool wear states and cutting force \citep[PDF p.~11, Tables~IV--V]{P021}. A visual--acoustic study estimates tool wear after a cutting pass \citep[PDF p.~24, Table~1]{P045}. The MSM dataset instead identifies abnormal cutting intervals that warrant intervention. Its descriptor distinguishes these intervals from stable cutting with a defective tool and documents camera coverage in the laboratory \citep{Kim2026MSM}. The open comparison is whether video improves on machine telemetry for that interval-level distinction within cuts observed by both streams. Chapter~\ref{ch:msm} tests representations and static fusion against their own single-input predictors (SQ1 and SQ2), then compares performance under missing or degraded inputs (SQ3). Grouped evaluation and the potential disagreement between ranking and probability scores address SQ4. The covered laboratory dates bound the claim about new operating conditions.
+ 
+ \paragraph{ViFailback manipulation (SQ1, SQ2, and SQ4).}
+-\citet[PDF pp.~7--8, Tables~2--4]{Zeng2026ViFailback} use visual symbols to diagnose failures, evaluate responses to questions, and guide corrective actions. For the binary outcome of a complete manipulation episode on a held-out task, two comparisons remain open. Does adding a generic visual representation improve on robot-state measurements, and does transferring a visual encoder from REASSEMBLE change that comparison? Chapter~\ref{ch:vifailback} compares generic frozen features with those of the transferred encoder (SQ1) and assesses probability fusion against the constituent sensor model (SQ2). Separately reporting success and failure ranking and their macro-average makes the minority outcome visible (SQ4). The defined corruption procedures lacked a completed stress evaluation for the compared models, leaving the reliability question (SQ3) open for this task.
++\citet[PDF pp.~7--8, Tables~2--4]{Zeng2026ViFailback} use visual symbols to diagnose failures, evaluate responses to questions, and guide corrective actions. For the binary outcome of a complete manipulation episode on a held-out task, two comparisons remain open. Does adding a generic visual representation improve on robot-state measurements, and does transferring a visual encoder from REASSEMBLE change that comparison? Chapter~\ref{ch:vifailback} compares generic frozen features with those of the transferred encoder and reports the completed portion of target-CNN adaptation (SQ1) and assesses probability fusion against the constituent sensor model (SQ2). Separately reporting success and failure ranking and their macro-average makes the minority outcome visible (SQ4). The defined corruption procedures lacked a completed stress evaluation for the compared models, leaving the reliability question (SQ3) open for this task.
+ 
+ \paragraph{HANDOVER human--robot interaction (SQ1--SQ4).}
+ The published HANDOVER benchmark compares unimodal and fused models for five outcome classes. Within its I3D comparison, video plus force--torque signals achieved higher mean accuracy than the combination that also included gripper state \citep[PDF p.~7, Table~III]{Thoduka2024Handover}. The supplementary thesis study asks a narrower question. Over a common observation window, does averaging video and wrench predictions improve the ranking of binary handover failures over the better single-input model? Appendix~\ref{app:handover} compares the two representations and fixed averaging (SQ1 and SQ2), examines sensor noise, blur, and fallback to one input (SQ3), and assesses decisions for each outcome class (SQ4). The published participant-disjoint split supports the official test comparison. The missing participant-to-trial mapping prevented a separate participant-disjoint fit of the planned learned stacker.
+--- a/chapters/03_foundations.tex
++++ b/chapters/03_foundations.tex
+@@ -21,7 +21,7 @@
+ PHM's scalar-regression route is different. It invokes the Ultralytics prediction path with a frozen RT-DETR-L model and hooks three multiscale maps. Pooling produces 768 features; the saved extraction adds latency, making the head input 769-dimensional. The PHM head therefore receives both image content and a timing covariate. REASSEMBLE calls only the detector's CNN backbone for the core comparison. Later CNN-versus-spatial-encoder studies are additional recipes with their own feature widths and budgets.\ev{PHM component map}{\EvidenceRef{E033}{extract\_features, train\_head}}
+ 
+ \subsection{Frame Sampling, Feature Aggregation, and Temporal Modelling}
+-Fixed sampling selects a reproducible number of frames across a complete action or episode. It makes sequence cost predictable and prevents longer clips automatically producing more visual tokens, but can miss brief contact or failure events. A frame mean is invariant to permutation. Boundary pooling or temporal bins retain some coarse position; a GRU or temporal Transformer learns order-dependent interactions. These alternatives address different hypotheses and must be evaluated using matched sampling and fitting rules before a difference can be attributed to temporal modelling.
++Fixed sampling selects a reproducible number of frames across a complete action or episode. It makes sequence cost predictable and prevents longer clips automatically producing more visual tokens, but can miss brief contact or failure events. A frame mean is invariant to permutation. Boundary pooling or temporal bins retain some coarse position; a GRU or temporal Transformer learns order-dependent interactions. Mean pooling is a low-capacity reference for an outcome attached to a complete window; it does not require frame-level labels. Boundary pooling tests whether a coarse position restriction preserves more useful evidence than equal weighting. TimeSformer's divided spatial--temporal attention outperforms its other tested attention schemes on Kinetics-400 and Something-Something V2, motivating investigation of temporal organization \citep[Table~1]{P034}, but does not justify a particular boundary rule. Matched sampling and fitting are needed before attributing a difference to learned temporal modelling.
+ 
+ The core REASSEMBLE route uses 16 deterministic hand-camera frames resized to $640\times640$, divided by 255, without additional ImageNet mean/standard-deviation normalization. These are actual recipe choices rather than generic defaults for every RT-DETR implementation. Dataset examples in Chapter~6 show sampled observations; they are illustrative, not independent evidence of label correctness or a performance effect.
+ 
+@@ -34,7 +34,7 @@
+ \subsection{Statistical and Signal-Derived Features}
+ For a channel sequence $x_1,\ldots,x_n$, common summaries include mean, standard deviation, extrema, quantiles, root-mean-square amplitude, and changes across the window. For example, $\mathrm{RMS}(x)=\sqrt{n^{-1}\sum_t x_t^2}$. These features trade temporal detail for compactness and can provide a strong reference when sample support is limited. Spectral features additionally summarize frequency content, but their interpretation depends on the physical sampling rate and the preprocessing window. A time series resampled to action progress is not interchangeable with a raw uniformly sampled vibration waveform.
+ 
+-REASSEMBLE's statistical branch uses ten statistics for each of 22 channels, producing 220 features. Its channels combine force, torque, gripper, joint effort, and joint velocity measurements. MSM uses its specified controller-measurement adapter. PHM uses engineered minute-level sensor/context features in the retained regression path. The model name alone cannot make these three input definitions equivalent.
++REASSEMBLE uses ten summaries for each of 22 progress-resampled channels: mean, standard deviation, median, minimum, maximum, lower and upper quartiles, range, RMS and linear progress slope. The resulting 220 features retain location, spread, magnitude and a coarse trend while discarding most temporal order. Force, torque, gripper, joint effort and joint velocity channels describe different aspects of the action. This representation tests whether compact state summaries suffice, without assuming that temporal detail is irrelevant. The later PatchTST--statistics combination tests that restriction empirically. MSM uses its separate controller-measurement adapter; PHM uses minute-level sensor/context features. These input definitions are not interchangeable.
+ 
+ \subsection{PatchTST Architecture}
+ PatchTST represents a time series as patches rather than treating each timestamp as a separate token. Its original formulation combines patching with channel-independent processing, enabling a Transformer to model temporal structure within channels \citep{Nie2023PatchTST}. An architecture inspired by this design can be initialized from scratch; that is not pretrained time-series weight transfer. The thesis uses the term PatchTST with the implementation specified, because PHM's custom regressor and REASSEMBLE's Hugging Face classifier differ in patching, aggregation, targets, and fitting.
+@@ -77,7 +77,7 @@
+  p_{\mathrm{F2}}=\sigmoid(b+\alpha_v p_v+\alpha_s p_s).
+  \label{eq:f2}
+ \end{equation}
+-The inputs are calibrated probabilities, not logits. Coefficients need not be positive or sum to one. F2 is therefore a fitted probability map with three parameters, rather than a convex weighted average. Its training inputs should exclude fitting the corresponding branch on that row's dependence group. In the retained core, branch out-of-fold construction excludes each scored row's recording, and outer assessment recordings are excluded from fitting. These exclusions do not establish independence of every later meta-validation stage: stacker validation reuses an outer-training prediction bank, creating the training-side dependency described in Chapter~6. This dependence occurs within the outer training set.
++The inputs are calibrated probabilities, not logits. Coefficients need not be positive or sum to one. F2 is therefore a fitted probability map with three parameters, rather than a convex weighted average. It can learn unequal use of the two predictions and a prevalence-related intercept with little additional fitted capacity. This makes it a useful empirical comparator to equal averaging, although neither its linear log-odds link nor its coefficients guarantee calibration or causal modality importance. Its training inputs should exclude fitting the corresponding branch on that row's dependence group. In the retained core, branch out-of-fold construction excludes each scored row's recording, and outer assessment recordings are excluded from fitting. These exclusions do not establish independence of every later meta-validation stage: stacker validation reuses an outer-training prediction bank, creating the training-side dependency described in Chapter~6. This dependence occurs within the outer training set.
+ 
+ Model selection using evaluation data can bias its selected estimate \citep{P004}. This general risk does not itself establish outer-assessment leakage. That claim requires the actual preprocessing, fitting and prediction-bank dependencies \citep{P017}. Each of the three stages can use different training predictions for fitting the branch calibrator, the stacker and the decision threshold.
+ 
+@@ -119,7 +119,9 @@
+ \displaynote{The stacker and all three gates used the statistical sensor predictor. PatchTST was evaluated separately as a sensor-only comparator in the core experiment. Each branch supplied a calibrated probability. The gates converted those probabilities to logits before weighting them.}
+ \end{figure}
+ \section{Component Selection Criteria and Implementation Mapping}
+-Selection considers target relevance, observation horizon, group support, training exposure, incremental input value, calibration, and computational scope. A frozen representation is attractive when nested fits must remain feasible; a statistical reference is essential when a larger encoder may overfit or be insufficiently trained. An adaptive fusion stage is warranted for investigation when reliability varies and meaningful quality signals exist, but it must still beat an exposure-matched simpler control.
++The original REASSEMBLE protocol fixed a bounded comparison: a pretrained CNN with a fitted head, compact sensor statistics and a scratch-trained patch encoder. It explicitly warned that its modest neural training budget could not exclude benefits from longer training. These records establish the historical starting point, not a comparative search proving that this checkpoint was optimal. The later choice of statistics for the fusion study followed the initial results and is part of the selection history.\ev{Recorded component choices}{\EvidenceRef{E112}{}, \EvidenceRef{E114}{}}
++
++The scientific justification is partly retrospective. Pretrained CNN maps test reusable spatial appearance; frozen extraction makes repeated head fitting feasible. Statistics test compact state information, whereas PatchTST permits learned summaries of ordered subsequences. Mean pooling supplies a fixed-size reference; boundary pooling tests coarse location within a completed action. Logistic stacking tests joint use of branch probabilities with only three fitted parameters. Adaptive extensions test whether context adds value beyond constant coefficients. The publications above make these reasonable candidates; the experiments, rather than the publications or their later rationale, establish their bounded suitability. No measured comparison establishes the computational optimality of the initial choices.
+ 
+ The original visual, audio and sensor question consequently includes implemented and candidate components. AST supplies a pretrained spectrogram-Transformer option, with reported scores distinguishing checkpoint weight averaging from multi-model ensembles and showing task-dependent transfer benefits \citep{P011}. Alignment checks prevented admission of a predictive audio branch here. The published ViT, Video Swin, AST and MOMENT evaluations provide architectural precedents. The executed comparison instead concerns frozen CNN features, statistical sensors, a scratch temporal encoder and explicitly defined fusion interfaces.
+ 
+--- a/chapters/04_methodology.tex
++++ b/chapters/04_methodology.tex
+@@ -10,7 +10,7 @@
+ \begin{figure}[htbp]
+ \caption{Workflow for Data Qualification and Model Evaluation}\label{fig:research-workflow}
+ \centering\includegraphics[width=\textwidth]{figures/research_workflow.png}
+-\displaynote{The five studies used different prediction targets. Each finding refers to the comparison within that study.}
++\displaynote{The five studies used different prediction targets. Each finding refers to the comparison within that study. The Intel holdout exposure refers to an earlier context audit, not a new trained-model test in the foundation review.}
+ \end{figure}
+ 
+ \section{Dataset Selection Criteria and Research Chronology}
+@@ -18,7 +18,7 @@
+ 
+ The initial welding proposal preceded the PHM and REASSEMBLE studies. Later investigations addressed uncertainties exposed by those studies: stronger sensor references, visual pooling, fine-tuning budgets, quality-conditioned fusion, and external adaptation. The October alignment record retained the original four-question hierarchy after a narrower quality-gate investigation had been considered. Follow-ups motivated by observed outcomes were exploratory. Appendix~G summarizes the scientific chronology.
+ 
+-The experimental inventory identifies the completed comparisons and their source records. For ViFailback these cover the original frozen study and the matched frozen and donor-backbone comparisons. The computational budget at thesis freeze placed target-CNN fine-tuning and the SQ3 corruption evaluation outside the final scope. The source manifest identifies the inspected Git commit \texttt{e32ec43aef69cc58adff0ea91e508308041598c5} and records hashes for selected files, including uncommitted report outputs.\ev{Remote source manifest}{\EvidenceRef{E111}{}, \EvidenceRef{E109}{}}
++The original manuscript source manifest identifies commit \texttt{e32ec43aef69cc58adff0ea91e508308041598c5} and hashes of selected files, including uncommitted reports. This revision extends the experimental reporting cutoff through 24 November 2026 and records saved-score checks made on 25 November. ViFailback now includes the completed one-fold FULL20 comparison and FULL100 pilot; the remaining target-CNN fits and corruption evaluation remain unfinished. The dated closure supplements the earlier frozen/donor inventory rather than changing its protocol or results.\ev{Historical manifest and extended reporting boundary}{\EvidenceRef{E111}{}, \EvidenceRef{E109}{}, \EvidenceRef{E115}{}, \EvidenceRef{E116}{}, \EvidenceRef{E113}{}}
+ 
+ \section{Intel Welding Feasibility Assessment and Resulting Scope Decisions}
+ The Intel foundation scripts inspect sample structure, readability, timing/session fields, and duplicates. Their configuration disables a final test, and the audit encodes that earlier context evaluation had exposed the proposed holdout population. Reusing that population would preclude an independent confirmatory test. The retained subset does not establish the full original label mapping or a completed native multimodal classifier. Earlier contextual baseline reports therefore provide historical feasibility information, rather than evidence that a proposed Transformer-fusion architecture failed empirically.\ev{Intel Welding feasibility assessment}{\EvidenceRef{E019}{inspect\_sample, audit\_split, main}, \EvidenceRef{E018}{}, \EvidenceRef{E003}{section 3.1}}
+@@ -58,7 +58,7 @@
+ 
+ For classification, the main ranking statistic is average precision as implemented by \texttt{average\_precision\_score}. With recall increments $\Delta R_k$ and precision $P_k$, $\mathrm{AP}=\sum_k\Delta R_kP_k$. It is not the same numerical quantity as trapezoidal area under a precision--recall curve. AUROC measures ranking over negative--positive pairs; AP depends strongly on the positive-class prevalence. Precision--recall analysis is particularly useful for imbalanced outcomes, but scores from different prevalences should not be treated as a model ranking across datasets \citep{Saito2015PrecisionRecall}.
+ 
+-Binary failure AP, success AP, their macro average, mean-fold AP, and AP computed from pooled held-out predictions are different estimands. The nonlinear metric implies that mean-fold AP generally differs from pooled AP. ViFailback tables name macro AP explicitly; REASSEMBLE's original headline uses pooled failure AP. Threshold metrics and Brier score $n^{-1}\sum_i(p_i-y_i)^2$ address different questions. Interpret calibration summaries in light of how the bins were defined and how many observations contributed.
++Binary failure AP, success AP, their macro average, mean-fold AP, and AP computed from pooled held-out predictions are different estimands. The nonlinear metric implies that mean-fold AP generally differs from pooled AP. ViFailback tables name both-class macro AP explicitly; REASSEMBLE uses pooled failure AP, while MSM uses abnormal-cutting AP averaged over seed-specific pooled predictions. Threshold metrics and Brier score $n^{-1}\sum_i(p_i-y_i)^2$ address different questions. Interpret calibration summaries in light of how the bins were defined and how many observations contributed.
+ 
+ For a paired model comparison, define $\Delta=\mathrm{AP}(p_A,y)-\mathrm{AP}(p_B,y)$ on identical rows. A cluster bootstrap samples dependence groups with replacement and recomputes the paired difference. Core REASSEMBLE reports use 2,000 recording-level replicates; a PHM report uses 10,000 run-cluster replicates over 20 runs. These are intervals conditional on the saved fitted models and the chosen resampling unit. They do not capture all retraining, model-selection, seed, or new-site uncertainty. Five MSM dates provide a particularly small basis for a date-cluster interval. Cross-validation folds are overlapping training experiments, not independent replications; uncertainty should not be inferred from a naive standard error over folds \citep{Bengio2004CVVariance}.
+ 
+--- a/chapters/05_phm.tex
++++ b/chapters/05_phm.tex
+@@ -1,7 +1,7 @@
+ \chapter{PHM Case Study: Target Construction and Condition Prediction}
+ Across twenty gear runs in three held-out experiments, combining three groups of sensor features gave a mean absolute error of 0.8238 percentage points against a photographic condition proxy. A predictor that returned the training mean gave an error of 0.8042. Both errors measure agreement with an image-processing rule applied to post-run tooth photographs. The records contain no independent measurement of the damaged area against which to validate that rule.
+ 
+-In retrospect, PHM serves as a methodological negative control for the wider fusion comparison. Even a reduction in prediction error would need independent validation before it could be interpreted as better damage measurement. The study therefore distinguishes changes in the target from changes in the predictor. Image-only and supplementary experiments had different targets or assessment populations. Under the official challenge protocol, periodic photographs were available during training, whereas deployment relied on sensor measurements \citep{PHM2026Challenge}.
++PHM provides a diagnostic case of target validity and limited predictive benefit. It was not designed as a negative control with an independently known null effect. Even a reduction in prediction error would need independent validation before it could be interpreted as better damage measurement. The study therefore distinguishes changes in the target from changes in the predictor. Image-only and supplementary experiments had different targets or assessment populations. Under the official challenge protocol, periodic photographs were available during training, whereas deployment relied on sensor measurements \citep{PHM2026Challenge}.
+ 
+ \begin{figure}[htbp]
+ \caption{PHM Scalar Regression From Post-Run Photographs}\label{fig:phm-route}
+--- a/chapters/06_reassemble.tex
++++ b/chapters/06_reassemble.tex
+@@ -100,13 +100,13 @@
+ \subsection{Interpretation and Implications for Fusion}
+ Visual AP exceeds the action reference by 0.0499 $[.0225,.0836]$, and PatchTST exceeds it by 0.0608 $[.0293,.0974]$. Their AUROC differences, 0.0127 $[-.0154,.0406]$ and 0.0203 $[-.0115,.0494]$, remain unresolved. These are metric-specific findings, not equivalence results. Lower neural AP than sensor statistics also does not exclude incremental information: useful errors can differ even when one standalone predictor is weaker.
+ 
+-The fusion experiment therefore uses the statistical sensor predictor as its reference. Each fitted fusion pipeline is compared with that predictor on the same held-out actions. The stacker also fits a new logistic map to the branch probabilities. Isolating the contribution of video to the stacker would require a sensor-only comparator with the same second fitting step. A separate follow-up tests how the training budget affects PatchTST performance.\ev{Paired unimodal and incremental fusion comparisons}{\EvidenceRef{E047}{}}
++The fusion experiment therefore uses the statistical sensor predictor as its reference. Each fitted fusion pipeline is compared with that predictor on the same held-out actions. The stacker also fits a new logistic map to the branch probabilities. The saved visual term's contribution to within-fold ordering is examined below. Attribution of the complete pooled gain remains limited by the absent matched sensor-only second-stage control. A separate follow-up tests how the training budget affects PatchTST performance.\ev{Paired unimodal and incremental fusion comparisons}{\EvidenceRef{E047}{}}
+ 
+ \section{Experiment B: Fusion Strategies}
+ Six fusion families share the cohort and recording structure: probability averaging, stacking, representation concatenation and three context-dependent gates. Their input spaces and calibration stages differ.\ev{Fusion experiment}{\EvidenceRef{E048}{}}
+ 
+ \subsection{Objective and Hypotheses}
+-The first hypothesis is that the combined visual--sensor pipeline improves held-out failure ranking relative to the retained sensor pipeline. The second is that action or quality context improves allocation between branches. These questions are distinct: a fixed map can use complementary predictions without an effective per-instance reliability estimate. The incremental comparison also changes the fitted probability map, so an improvement over sensors alone cannot isolate visual information from the benefit of an additional calibration or stacking stage. An otherwise identical sensor-only meta-calibration control was not completed. Both sensor-only and simple static fusion references are therefore needed when interpreting adaptive models.
++The first hypothesis is that the combined visual--sensor pipeline improves held-out failure ranking relative to the retained sensor pipeline. The second is that action or quality context improves allocation between branches. These questions are distinct: a fixed map can use complementary predictions without an effective per-instance reliability estimate. The comparison changes both inputs and the fitted probability map. Within-fold ordering can nevertheless identify a visual contribution beyond a strictly increasing transformation of the sensor score. A matched sensor-only second-stage model, which was not completed, would strengthen attribution of the full pipeline contrast. Both sensor-only and simple static fusion references are therefore needed when interpreting adaptive models.
+ 
+ Clean gains do not establish corruption recognition; the subsequent experiment tests frozen clean-trained models directly.\ev{Fusion questions and controls}{\EvidenceRef{E048}{}}
+ 
+@@ -150,7 +150,9 @@
+ An oracle that always selected a correct branch would identify 410 of 509 failures, approximately 0.8055 recall. That is an unavailable truth-dependent upper reference, not an achieved fusion result or a deployable gate. Complementarity provides potential information, while learning which branch to trust from available inputs remains a separate problem. These counts describe decisions at fixed thresholds. Paired AP comparisons assess the ranking of the same actions across thresholds.\ev{Error-overlap analysis}{\EvidenceRef{E047}{}}
+ 
+ \subsection{Interpretation and Comparison Limits}
+-The core supports a small increment from the fitted combined pipeline over the retained sensor predictor. Error-overlap counts make visual complementarity plausible, but they do not identify the causal contribution of visual information separately from the additional probability map. The missing sensor-only meta-calibration control limits that attribution. F1 and F2 have similar ranking and different Brier/ECE; a calibration improvement and an information gain are not interchangeable claims.
++Independent saved-prediction recomputation separates within-fold ordering from cross-fold score alignment. All five F2 sensor coefficients are positive. Omitting the visual term while retaining the jointly fitted parameters, $q_{s,k}=\sigma(b_k+\alpha_{s,k}p_s)$, therefore preserves sensor ordering within fold $k$. Its AP and AUROC match the sensor branch exactly within every fold. Restoring vision improves AUROC in all five folds and AP in four; the remaining AP difference is $-0.00469$. Thus, the visual term supplies beneficial observed ordering changes beyond a strictly increasing transformation of the same sensor probabilities, although its AP benefit is not uniform. Appendix~\ref{app:supplementary-results} gives the fold-level check.
++
++Pooled AP is .42939 for sensors, .43092 for the reduced score and .44730 for complete F2. Different fold-specific maps can change pooled ordering while preserving every within-fold ranking. This omission is an arithmetic diagnostic, not a refitted sensor-only control or a missing-modality experiment. It does not uniquely allocate the pooled gain to vision, establish information conditional on all sensor features, or quantify causal modality importance. AP changes also do not measure calibration. The folds share training populations; historical recording-bootstrap intervals condition on fixed models and omit training and repeated selection uncertainty. These findings do not establish population-wide superiority or a resolved advantage over equal averaging.\ev{Independent saved-score verification}{\EvidenceRef{E113}{}}
+ 
+ Within the tested representations and budgets, neither intermediate fusion nor the original adaptive gates establishes an advantage over the successful static reference. This finding is architecture- and protocol-specific. The later anchored model changes the link and learns a different function class; its positive exploratory AP result is therefore compatible with the original gates' bounded negative evidence.\ev{Original REASSEMBLE fusion comparisons}{\EvidenceRef{E044}{}}
+ 
+@@ -231,6 +233,10 @@
+ The full hundred-epoch arm records about 23.96 training hours and 25.82 active process hours. The twenty-epoch cap records about 126.23 training hours across twenty-five fits; 137.47 hours includes validation/inference. Different accounting units and populations prevent treating these totals as intrinsic model costs. Removed derived caches also make a cold reproduction differ from historical cached timing. The completed subset screen supplies a bounded paired comparison, while five-fold or multi-seed performance requires the corresponding predictions.\ev{Measured training and process times}{\EvidenceRef{E060}{}}\ev{Sample allocation by fitting role}{\EvidenceRef{E058}{}}
+ 
+ \section{Study Synthesis and Remaining Questions}
+-The clearest result was the improvement in failure ranking from sensor statistics alone to the logistic stacker. The paired comparison with equal averaging remained inconclusive. Without a sensor-only model given the same second-stage calibration, the gain cannot be attributed to the camera alone. Outer-test recordings remained independent of fitting and threshold selection, although reuse of the outer-training OOF bank limited independence during inner stacker validation. The original adaptive gates showed no general advantage. When absence was known, routing returned the surviving branch's prediction. Performance under corruption showed why detecting an unreliable stream that is still present is a separate problem.
+-
+-The three favorable follow-ups changed different parts of the pipeline. Last-quarter pooling used the end of the completed action. Anchored adaptation improved ranking but reduced recall and increased calibration error relative to its anchor. Longer PatchTST training improved the temporal sensor predictor but left it below sensor statistics alone; the two sensor representations performed better together. No run combined the three changes. Choosing components after comparing their results on the same recordings would compound selection bias: the choices could reflect idiosyncrasies of that cohort. A joint pipeline would need to be fixed in advance and evaluated on untouched recordings. The augmentation-matched and quality-interaction comparisons left their primary robustness contrasts unresolved. Generalization to natural failures and shifts, independently adjudicated labels, new seeds and predictions made before action completion also remains open.
++The follow-ups distinguish representation suitability, complementary information and fusion effectiveness. Longer PatchTST training improves AP by .0297 (95\% recording-bootstrap CI [.0122, .0451]) but remains .1441 below statistics. Insufficient training therefore contributes to the initial gap without fully explaining it under this recipe. Yet their same-sensor combination improves on statistics by .0110 [.0054, .0181]. A weaker standalone representation can retain useful complementary predictions; this is not fusion of two sensing modalities.
++
++Last-quarter visual pooling raises AP by .0885 [.0424, .1293] with the same fitted head size as whole-action pooling. Additional head parameters cannot explain that contrast. Concentrated outcome cues or reduced dilution are plausible explanations, but neither was isolated, and the observation still extends to completion. The selected pooling variant also improves its separate F2 comparison by .0461 [.0260, .0632]. The spatial-encoder and matched adaptation studies show that additional processing or updated weights need not improve the downstream combination; inconclusive adaptation intervals do not establish equivalence.
++
++Core F2 includes verified within-fold visual ordering gains, while its advantage over averaging remains unresolved. Anchored adjustment improves clean AP over its anchor and a constant-adjustment control, but lower recall and higher calibration error qualify the gain. Matched corruption exposure leaves the principal adaptive robustness effects unresolved. Changing coefficients therefore does not establish recognition of unreliable inputs. Known absence is separate: the common routing rule fixes the surviving prediction.
++
++These interventions were assessed separately on an already examined population. No run combines boundary pooling, the same-sensor hybrid and anchored adaptation. Their strongest individual results do not define an evaluated final architecture. New recordings, natural faults, earlier prediction horizons and uncertainty beyond the fixed fits remain open.\ev{Controlled follow-ups and uncertainty}{\EvidenceRef{E040}{}, \EvidenceRef{E042}{}, \EvidenceRef{E062}{}, \EvidenceRef{E113}{}}
+--- a/chapters/08_vifailback.tex
++++ b/chapters/08_vifailback.tex
+@@ -6,7 +6,7 @@
+ 
+ The primary replication contrasts original frozen vision, logistic sensing, averaging and F2. HGB supplied a stronger numerical reference, while camera ablations and donor transfer tested visual representations. The primary comparison was specified on 30 October 2026 after some early results had been observed. Its interpretation is therefore partly retrospective.
+ 
+-The matched study completed twenty-epoch head fits and hundred-epoch pilots with both frozen backbones. The computational budget at thesis freeze did not cover a completed target-CNN fine-tuning comparison or the SQ3 corruption evaluation. The reported comparisons therefore concern clean episode predictions.\ev{Original ViFailback experiment}{\EvidenceRef{E102}{}}\ev{Matched ViFailback experiments}{\EvidenceRef{E096}{}}
++The reporting cutoff for this revision is extended through the completed-scope analysis of 24 November 2026. In addition to the frozen and donor comparisons, FULL20 completed seed~42, outer fold~0 and its three inner fits; FULL100 completed its single-role pilot. The researcher then stopped further training. The remaining target-CNN matrix and SQ3 corruption study are unfinished, not negative model results. All reported comparisons concern intact inputs.\ev{Original and extended scope}{\EvidenceRef{E102}{}, \EvidenceRef{E096}{}, \EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
+ 
+ \section{Dataset Overview and Prediction Task}
+ The native source contains 5,202 episodes with 4,545 failure and 657 no-failure annotations across 100 canonical tasks and 109 source directories. The evaluation pins both the original release and its converted LeRobot representation \citep{ViFailbackHF2025}. Matching version identities matters because the paper, source directory layout, converted observations and admitted model cohort describe different levels of the evidence.
+@@ -32,7 +32,7 @@
+ 
+ The logistic sensor branch uses balanced L2 regression with $C=1$, training-only scaling and a separately fitted sigmoid calibrator. Averaging and F2 consume its calibrated probabilities alongside the visual branch. F2 is unweighted L2 logistic probability stacking; HGB is a stronger separate reference and never replaces the sensor input inside original F2. Consequently, a gain over vision or logistic sensing cannot be reported as a gain over the strongest available unimodal method.
+ 
+-The donor arms transferred compatible CNN tensors from a completed source checkpoint and fitted a fresh ViFailback head, scaler, calibrator and fusion model. The FROZEN and DONOR conditions held the CNN weights fixed. Target adaptation in the deferred FULL conditions would train the convolutions and normalization affine terms while keeping running moments fixed. The completed DONOR comparison therefore measures supervised target-head fitting on a transferred frozen representation.\ev{Matched model definitions}{\EvidenceRef{E097}{}}
++The donor arms transferred compatible CNN tensors from a completed source checkpoint and fitted a fresh ViFailback head, scaler, calibrator and fusion model. The FROZEN and DONOR conditions held the CNN weights fixed. The FULL conditions train the executed CNN convolutions and normalization affine terms while holding running moments fixed; their completed coverage is stated below. This is CNN adaptation, not training the detector encoder, decoder or detection heads. The completed DONOR comparison therefore measures supervised target-head fitting on a transferred frozen representation.\ev{Matched model definitions}{\EvidenceRef{E097}{}}
+ 
+ \section{Evaluation Protocol}
+ The original protocol uses three outer task-disjoint folds and three inner OOF assessments within each outer-training pool. Each branch separates gradient-fitting T, checkpoint-selection V, calibration C and assessment A task groups. A final branch is not automatically fitted to the entire outer-training pool: its T/V/C roles remain distinct. The inner assessment probabilities build a meta bank without using examples that fitted, selected or calibrated their generating branch.
+@@ -42,7 +42,7 @@
+ The later matched twenty-epoch arms use the first twenty epochs of a fixed cosine-50 schedule, while the hundred-epoch arms use cosine-100. Highest V macro AP selects the checkpoint, then lower V BCE and the earliest epoch resolve ties. All configured epochs are intended to execute even when the chosen checkpoint is earlier. The twenty-epoch study has a complete three-inner OOF bank. The hundred-epoch pilot instead reserves 788 meta episodes under one predeclared role, followed by 1,107 outer assessments. It is not a full nested three-fold hundred-epoch experiment.\ev{Original evaluation contract}{\EvidenceRef{E094}{}}\ev{Matched training contract}{\EvidenceRef{E098}{}}
+ 
+ \section{Experimental Investigations}
+-The original study evaluated the frozen visual branch, its high-camera control, the sensor models and clean fusion. The matched comparison in Table~\ref{tab:vif-status} comprised 74 completed fits and twenty fusion assessments. Eighteen assessments came from the twenty-epoch conditions across outer folds and seeds. Two more came from the hundred-epoch pilots. These fits reused episodes across conditions and seeds. The deferred conditions contributed no performance estimates.\ev{Matched evaluation scope}{\EvidenceRef{E105}{}, \EvidenceRef{E103}{}}
++The original study evaluated the frozen visual branch, its high-camera control, sensor models and clean fusion. By 24 November, the matched study had 79 completed fits of 111 planned: 36 each for FROZEN20 and DONOR20, four for FULL20, and one for each hundred-epoch pilot. These support 22 outer fusion assessments: eighteen frozen/donor twenty-epoch assessments, one FULL20 assessment and three pilots. Conditions and seeds reuse episodes. The 32 remaining FULL20 fits contribute no performance estimates.\ev{Extended matched evaluation scope}{\EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
+ 
+ \begin{table}[htbp]
+ \caption{Final Scope of the Matched ViFailback Comparisons and Robustness Tests}\label{tab:vif-status}
+@@ -53,16 +53,15 @@
+ \multicolumn{2}{@{}l}{\textit{Completed final scope}}\\
+ FROZEN20 & 36 fits across three seeds and three outer folds\\
+ DONOR20 & 36 fits across three seeds and three outer folds\\
+-FROZEN100 & One single-role pilot fit\\
+-DONOR100 & One single-role pilot fit\\\addlinespace
+-\multicolumn{2}{@{}l}{\textit{Deferred / out of final scope}}\\
+-FULL20 & Target-CNN fine-tuning over twenty epochs\\
+-FULL100 & Target-CNN fine-tuning over one hundred epochs\\
++FULL20 & Four fits: seed 42, outer fold 0 and its three inner fits\\
++FROZEN100 / FULL100 / DONOR100 & One single-role pilot fit each\\\addlinespace
++\multicolumn{2}{@{}l}{\textit{Unfinished / not evaluated}}\\
++Remaining FULL20 & 32 planned fits; researcher stopped further training\\
+ SQ3 corruption tests & Missing, degraded and temporally shifted inputs\\\bottomrule
+ \end{tabularx}
+-\displaynote{The completed conditions used intact inputs. The computational budget limited the fine-tuning and corruption comparisons to future work.}
++\displaynote{Coverage through 24 November 2026. Completed fits and inconclusive contrasts are distinct from unexecuted conditions. All completed comparisons used intact inputs.}
+ \end{table}
+-\ev{Matched fit coverage}{\EvidenceRef{E104}{}}
++\ev{Matched fit coverage}{\EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
+ 
+ \subsection{Unimodal Reference Models}
+ The original frozen visual head completed all 36 planned fits, as did its high-camera-only control. The logistic sensor branch is deterministic under the fixed partitions. S1 and S3 denote the same fitted recipe. HGB supplies a stronger numerical comparison. Table~\ref{tab:vif-bothclass} gives the pooled seed-42 scores from the thesis experiment. Reporting average precision for each outcome makes the disparity between failure and success ranking visible.
+@@ -82,7 +81,7 @@
+ \end{table}
+ \ev{Original both-class scores}{\EvidenceRef{E089}{}}
+ 
+-Target-CNN fine-tuning would require a separate paired assessment. A source checkpoint and a successful gradient check establish implementation feasibility only. Neither estimates the effect on held-out episodes.
++The completed target-CNN comparisons are assessed against their matched frozen controls below. Their existence does not imply completion of the three-fold, three-seed adaptation matrix.
+ 
+ \subsection{Original Fusion-Procedure Comparison}
+ In the original frozen comparison, F2 improves over vision and averaging but has lower pooled macro AP than the logistic sensor branch for all three seeds: 0.628787, 0.625400 and 0.621067 against 0.648974. The sensor HGB point score is higher still. These results support a narrower conclusion than ``fusion works'': the numerical information can improve weak visual prediction, but adding the visual branch does not improve the strongest component used in F2.
+@@ -112,8 +111,23 @@
+ 
+ On the same 1,107 outer episodes, the hundred-epoch frozen-backbone pilot achieved macro AP of 0.550995 for vision and 0.694219 for F2. This arm reused the completed historical head-training trajectory after verifying the same checkpoint selection. The donor-backbone pilot achieved 0.571448 and 0.696600, respectively. Both pilots used a single seed and fit role, with a separate 788-episode bank for fitting fusion. Neither pilot updated the target CNN.\ev{Donor identity and pilot fit provenance}{\EvidenceRef{E098}{}, \EvidenceRef{E099}{}, \EvidenceRef{E100}{}}
+ 
++\paragraph{Completed target-CNN adaptation.}
++On the same 1,107 outer-fold-0 episodes, FULL20 achieved visual macro AP .492370 and F2 .697858; FULL100 achieved .544332 and .699260. The corresponding sensor LR and HGB references were .707996 and .757878. Table~\ref{tab:vif-adaptation} reports the paired differences against each arm's own frozen control. Neither visual nor F2 contrast resolves improvement or deterioration; an interval including zero does not establish equivalence. The twenty-epoch meta bank contains 3,275 inner-OOF episodes, whereas the hundred-epoch pilot uses 788 held-out meta episodes. Comparisons between these protocols cannot isolate training duration.
++
++\begin{table}[htbp]
++\caption{Completed ViFailback CNN-Adaptation Contrasts}\label{tab:vif-adaptation}
++\centering\small
++\begin{tabularx}{\linewidth}{@{}lYY@{}}\toprule
++Contrast & Visual macro-AP difference & F2 macro-AP difference\\\midrule
++FULL20 $-$ FROZEN20 & $+.004946$ [$-.027460$, $+.040927$] & $-.009260$ [$-.026854$, $+.005016$]\\
++FULL100 $-$ FROZEN100 & $-.006662$ [$-.027982$, $+.027078$] & $+.005040$ [$-.019473$, $+.029255$]\\\bottomrule
++\end{tabularx}
++\displaynote{Seed 42, outer fold 0 only. Paired 95\% intervals resample canonical tasks, conditional on fixed models; they omit refitting, selection and unverified session/operator dependence. Twenty- and hundred-epoch fusion-fitting protocols differ.}
++\end{table}
++\ev{Completed adaptation results and recorded independent arithmetic}{\EvidenceRef{E115}{}}
++
+ \subsection{Scope of the Robustness Evaluation}
+-ViFailback contributes clean-input comparisons to SQ1 and SQ2. The computational budget at thesis freeze placed the SQ3 corruption study outside the final evaluation. The specified visual interventions included missing frames or windows, blur, occlusion, camera loss, JPEG degradation and within-episode timing shifts. Sensor interventions included missing channels or intervals, Gaussian noise, frozen readings and timing shifts. The matched CNN comparison contained no quality gate. Performance under these interventions remains a question for future work.
++ViFailback contributes clean-input comparisons to SQ1 and SQ2. The SQ3 corruption study remained unexecuted at the extended reporting cutoff. The specified visual interventions included missing frames or windows, blur, occlusion, camera loss, JPEG degradation and within-episode timing shifts. Sensor interventions included missing channels or intervals, Gaussian noise, frozen readings and timing shifts. The matched CNN comparison contained no quality gate. Performance under these interventions remains a question for future work.
+ 
+ The specified availability rules route complete single-modality absence to the surviving branch and abstain when both inputs are absent. These rules do not estimate reliability from data. The edge-padded sampling shifts simulate timing errors without measuring drift between hardware clocks.\ev{Specified corruption and fallback conditions}{\EvidenceRef{E091}{}}
+ 
+@@ -129,9 +143,9 @@
+ 
+ The three donor-minus-frozen visual contrasts had task-cluster intervals spanning zero. These paired intervals used 2,000 draws and held the fitted models, donor and split assignments fixed. They omit uncertainty from refitting, donor selection and possible dependence within sessions or operators. The exploratory comparisons had no multiplicity adjustment. Coefficients were fixed before outer scoring, although the labels and some tasks had already been examined during development.\ev{Task-cluster uncertainty and evaluation limits}{\EvidenceRef{E101}{}}
+ 
+-The completed comparisons isolate transfer between frozen backbones. The deferred FULL conditions would test target-CNN adaptation, and matched camera and sensor perturbations would test how the value of each stream changes as its input degrades.
++The complete twenty-epoch frozen/donor comparison addresses representation transfer. The November 24 extension additionally assesses target adaptation on one outer fold, with inconclusive paired effects. The rest of the adaptation matrix remains unfinished, and no completed matched corruption comparison establishes robustness.
+ 
+ \section{Relationship to the Earlier Case Studies}
+-In MSM, the logistic sensor model achieved higher pooled failure AP than the original stacker. In ViFailback, it achieved higher macro-AP in both the original comparison and the later matched frozen comparison. In HANDOVER, the logistic sensor model also outperformed averaging. Missing participant identities precluded a learned-fusion comparison. The direction of the effect can be compared across these tasks, although their absolute AP values refer to different outcomes.
++In MSM, the logistic sensor model achieved higher abnormal-cutting AP, averaged over seed-specific pooled predictions, than the original stacker. In ViFailback, it achieved higher macro-AP in both the original comparison and the later matched frozen comparison. In HANDOVER, the logistic sensor model also outperformed averaging. Missing participant identities precluded a learned-fusion comparison. The direction of the effect can be compared across these tasks, although their absolute AP values refer to different outcomes.
+ 
+-Transferring the donor CNN produced mixed effects across target seeds. For complete ViFailback episodes under the task-disjoint protocol, the logistic sensor predictor ranked outcomes more accurately than F2 in the matched twenty-epoch comparison. Whether target-specific CNN adaptation or input degradation changes that ordering remains open.
++Transferring the donor CNN produced mixed effects across target seeds. For complete ViFailback episodes under the task-disjoint protocol, the logistic sensor predictor ranked outcomes more accurately than F2 in the matched twenty-epoch comparison. The completed adaptation contrasts do not establish a change in that conclusion, but cannot resolve adaptation across the full cohort. Effects of input degradation remain unmeasured.
+--- a/chapters/09_discussion.tex
++++ b/chapters/09_discussion.tex
+@@ -8,7 +8,9 @@
+ \section{Representation Suitability --- Answer to SQ1}
+ In PHM, the image-regression experiment extracted detector features during a full prediction pass. In the principal sensor experiment, post-run photographs instead supplied the continuous target. A patch-based Transformer encoded sequences summarizing speed, torque, temperature, vibration and condition indicators. For SQ1, the regression error measures how well this representation predicts the photographic proxy. Assessing physical tooth damage would require a separate reference (Chapter~5).
+ 
+-Across 4,530 completed REASSEMBLE actions, engineered sensor statistics achieved pooled failure average precision (AP) of .429, compared with .242 for a short-budget, scratch-trained PatchTST and .231 for a frozen convolutional image encoder with mean frame pooling (Table~\ref{tab:reassemble-unimodal}). The backbone that produced the image features was ResNet18-vd inside the pretrained RT-DETR-R18vd checkpoint. Averaging the frame features discarded their temporal order. Pooling near the action boundary improved an exploratory visual result, which is consistent with outcome cues appearing near completion. It leaves open whether the same representation would be useful before the outcome became visible. A separate two-epoch frozen versus fine-tuned comparison gave opposite visual effects across two seeds (Appendix~\ref{app:supplementary-results}). These results apply to the training budgets, patch lengths, masks, and pooling rules tested here.
++Across 4,530 completed REASSEMBLE actions, sensor statistics achieved pooled failure AP .429, against .242 for the initial scratch-trained PatchTST and .231 for frozen RT-DETR-R18vd CNN features with mean pooling (Table~\ref{tab:reassemble-unimodal}). In the matched budget follow-up, longer PatchTST training raised AP from .2557 to .2853, an increment of .0297 (95\% CI [.0122, .0451]); it remained below statistics. Combining the two sensor representations reached .4403, an increment of .0110 [.0054, .0181] over statistics. Thus, the temporal representation was weaker alone yet useful in combination. This result concerns representations of the same sensors, not two sensing modalities.
++
++Last-quarter pooling increased visual AP by .0885 [.0424, .1293] with unchanged head size; its simultaneous lower bound over the five pooling contrasts was .0301. Greater visibility of outcome cues near completion and reduced dilution are competing explanations, rather than isolated mechanisms. The rule still averages frames and does not demonstrate learned temporal order or early warning. Matched two-epoch adaptation gave opposite visual effects across two seeds, with intervals spanning zero; the hundred-epoch one-fold F2 increment was .0141 [$-.0008$, .0291] (Appendix~\ref{app:supplementary-results}). These results distinguish budget, aggregation and adaptation, without testing their best-performing choices jointly.
+ 
+ In MSM, the frozen camera representation had mean AP of .299 for abnormal milling intervals. Ninety sensor statistics yielded .829 with logistic regression and .901 with histogram gradient boosting (HGB). Weak visual performance could reflect limited visibility of the event or how the frozen encoder represented it. The study did not isolate these explanations (Table~\ref{tab:msm-clean}). ViFailback pooled three camera views per episode and summarized 28 robot-observation channels. Transferring a visual encoder trained on REASSEMBLE produced mixed changes across target-training seeds relative to generic frozen features (Table~\ref{tab:vif-matched}). A newly fitted head could use the transferred features, but their predictive advantage varied across seeds.
+ 
+@@ -19,14 +21,14 @@
+ 
+ REASSEMBLE supplied the most direct comparison of the four approaches. Across 148 held-out recordings evaluated in five folds, concatenation achieved .412 failure AP, the statistical sensor predictor .429, equal probability averaging .446, and logistic stacking (F2) .447. The original gates ranged from .441 to .445 (Tables~\ref{tab:reassemble-unimodal} and~\ref{tab:reassemble-fusion}). The paired AP difference between stacking and sensors was .0179 (95\% recording-level bootstrap CI [.0086, .0283]). Against averaging, the difference was .0016 (95\% CI [$-.0076$, .0112]). The fitted stacker ranked failures more accurately than its sensor component. The interval for stacking versus averaging included gains and losses in failure ranking.
+ 
+-Attributing that gain specifically to visual information requires an additional control. The stacker fitted a logistic map, with an intercept, to calibrated branch probabilities. Its sensor component had no corresponding second calibration stage. The original gates combined branch logits using constrained weights, and feature concatenation changed both the information available to the classifier and its capacity. These comparisons measure the performance of fitted systems. The later matched controls address more specific questions about how the weights were chosen.
++The saved-score audit identifies a narrower visual contribution directly: all sensor coefficients are positive, and removing the visual term preserves sensor AP and AUROC within each fold. Restoring it improves AUROC in five of five folds and AP in four, with AP differences from $-.00469$ to $+.03945$. Those changes cannot arise from a strictly increasing transformation of the same sensor scores. Fold-specific transformations nevertheless alter pooled ranking: reduced-score AP is .43092 versus sensor AP .42939. The missing refitted sensor-only second-stage control therefore limits attribution of the complete pooled increment, without negating the within-fold evidence. This is conditional usefulness in the evaluated models, not causal modality importance or a population-wide information claim.\ev{F2 arithmetic and scope}{\EvidenceRef{E113}{}}
+ 
+-On MSM, mean AP over three seeds was .757 for stacking, .736 for averaging, .829 for the constituent logistic sensor model, and .901 for the separate sensor HGB reference. The paired date-cluster interval for stacking minus logistic sensing was below zero, conditional on the saved fits and five dates. Figure~\ref{fig:within-study} shows the reversal of the stacking--sensor comparison between assembly and milling. ViFailback gave a similar direction for a different endpoint. Original stacking attained pooled macro-AP of .621--.629 across three seeds versus .649 for logistic sensing (Table~\ref{tab:vif-bothclass} and Chapter~8). Macro-AP here weights success and failure equally. In HANDOVER, averaging the two branch predictions gave mean failure AP of .803 on 151 official test trials, below the sensor component at .824. The missing participant-to-trial mapping prevented construction of the participant-disjoint predictions required to fit the planned stacker. HANDOVER therefore supplies a measured comparison for averaging and an open question for learned fusion. Across these tasks, the clearest gain occurred for simple prediction fusion in assembly. The two other stacking studies and the handover averaging study each favored their constituent sensor model on the primary ranking metric.
++On MSM, mean abnormal-cutting AP over three seeds was .757 for stacking, .736 for averaging, .829 for its logistic sensor component and .901 for the separate HGB reference. The paired stacking-minus-logistic contrast was $-.0717$ (95\% CI [$-.1004$, $-.0515$]), conditional on the saved fits and five date clusters. Figure~\ref{fig:within-study} shows the reversal of the stacking--sensor comparison between assembly and milling. ViFailback gave a similar direction for a different endpoint. Original stacking attained pooled macro-AP of .621--.629 across three seeds versus .649 for logistic sensing (Table~\ref{tab:vif-bothclass} and Chapter~8). Macro-AP here weights success and failure equally. In HANDOVER, averaging the two branch predictions gave mean failure AP of .803 on 151 official test trials, below the sensor component at .824. The missing participant-to-trial mapping prevented construction of the participant-disjoint predictions required to fit the planned stacker. HANDOVER therefore supplies a measured comparison for averaging and an open question for learned fusion. Across these tasks, the clearest gain occurred for simple prediction fusion in assembly. The two other stacking studies and the handover averaging study each favored their constituent sensor model on the primary ranking metric.
+ 
+ \begin{figure}[htbp]
+ \caption{Prediction Performance With Intact Inputs by Study}\label{fig:within-study}
+ \centering\includegraphics[width=\textwidth]{figures/within_study_results.png}
+-\displaynote{REASSEMBLE uses pooled failure average precision for 4,530 actions. MSM uses the mean of three seed-specific average precision scores, each calculated from pooled outer-fold predictions. The panels have different targets, prevalence, and evaluation protocols. The panel values and their sources are listed in Appendix~\ref{app:reproducibility}, \EvidenceRef{E107}{}.}
++\displaynote{REASSEMBLE uses pooled failure average precision for 4,530 actions. MSM uses mean abnormal-cutting AP over three seeds, each score calculated from pooled outer-fold predictions. The panels have different targets, prevalence, and evaluation protocols. The panel values and their sources are listed in Appendix~\ref{app:reproducibility}, \EvidenceRef{E107}{}.}
+ \end{figure}
+ 
+ \section{Robustness and Reliability --- Answer to SQ3}
+@@ -34,7 +36,7 @@
+ 
+ In REASSEMBLE, known complete loss of a stream routed the prediction to the surviving branch. Every fusion rule using that policy inherited the survivor's score. When both streams remained present and the sensor stream received Gaussian noise at one training standard deviation, stacking gave AP of .222 and the quality-only and combined gates gave .175 and .179, respectively. Intact vision alone achieved .231. Responding to noise by changing a weight therefore did not ensure a better failure ranking. The result pertains to this corruption and severity.
+ 
+-A later context-conditioned adjustment to the static REASSEMBLE stacker raised clean AP from .4473 to .4683. Its paired clean increment was .0210 (95\% CI [.0015, .0419]). Under matched augmentation, the mean adaptive increment over six corruption conditions was .0097 (95\% CI [$-.0034$, .0228]). A further pilot comparing a quality interaction with an exposure-matched static model also left its primary robustness increment unresolved, .0030 (95\% CI [$-.0267$, .0322]). These follow-ups support a gain for a particular adjustment on clean data. They do not show that conditioning on the measured quality variables improved decisions across degraded inputs.\ev{Distinct adaptive investigations}{\EvidenceRef{E004}{sections 18.2--18.3 and 19.5}}
++The anchored adjustment raises clean REASSEMBLE AP from .4473 to .4683: an increment of .0210 (95\% CI [.0015, .0419]) over its static anchor and .0226 [.0036, .0432] over a constant-adjustment control. The latter narrows the explanation beyond another fixed coefficient change, although capacity differs and context need not measure reliability. Under matched corruption exposure, the mean adaptive increment over six conditions is .0097 [$-.0034$, .0228]. The separate exposure-matched quality-interaction pilot gives .0030 [$-.0267$, .0322]. Both primary robustness effects and their clean-performance requirements remain unresolved. Matching exposure removes one source of unfairness, not differences in capacity or optimization. These studies establish a particular clean gain without demonstrating consistent recognition of degraded but present inputs.\ev{Distinct adaptive investigations}{\EvidenceRef{E004}{sections 18.2--18.3 and 19.5}, \EvidenceRef{E040}{}}
+ 
+ In MSM, the strongest sensor noise reduced stacking to .207 AP. The augmentation-trained gate reached .299, approximately the score of intact vision alone. Under the strongest image blur, the same gate reached .683, below stacking at .771 and intact logistic sensing at .829. In HANDOVER, the strongest blur left averaging at .779 versus .824 for intact logistic sensing. Known complete loss used an explicit fallback. The participant grouping requirement prevented evaluation of a learned gate there (Appendix~\ref{app:handover}). ViFailback evaluated a clean camera-view ablation. The SQ3 corruption tests were outside its final computational budget, leaving the effect of degradation on its predictors unmeasured.
+ 
+@@ -50,11 +52,15 @@
+ In HANDOVER, 110 of the 151 test trials were failures. At a threshold of .5, a training-prior predictor labelled every trial a failure, achieving failure F1 of .843 and zero specificity for successes. The official split remained usable for evaluating fixed baselines, while unavailable participant identifiers prevented participant-level uncertainty estimates for their contrasts. These examples support reporting prediction time, label provenance, class-specific discrimination, probability error, threshold consequences, and the grouping used for uncertainty. The branch predictions and fitted coefficients show how each stream contributed to a fused score. Establishing whether operators interpret it correctly or can act in time would require prospective observation and a usability study.
+ 
+ \section{Agreement and Disagreement With Previous Research}
+-Evidence from welding itself qualifies the expectation of a fusion advantage. In one penetration-state study, the clean image-only, audio-only, and fused models each reached 100\% accuracy \citep[Tables~1--3]{Hua2026Weld}. Distinct physical measurements may be available even when the reported endpoint leaves no measurable room for a clean gain. In the published HANDOVER study, five-class outcome accuracy averaged over five trainings was 69.1\% with video and force/torque and 67.9\% after gripper state was added \citep[Table~III]{Thoduka2024Handover}. The present HANDOVER implementation uses binary outcomes, different models, and failure AP. The common finding is that an additional stream can lower performance on a shared outcome. Absolute scores from the two experiments answer different questions.
++Pretrained spatial features are reasonable candidates because PatchCore demonstrates useful industrial inspection from intermediate CNN features, while RT-DETR learns a multiscale hierarchy for detection \citep{Roth2022Towards,Zhao2024RTDETR}. Their positive findings do not imply that every downstream component helps. The matched REASSEMBLE spatial-encoder comparison favored CNN-based F2 over the hybrid representation by .0158 AP (95\% CI [.0058, .0248]). Different feature widths and head sizes prevent attribution solely to attention. This limits transfer of the detector's architectural conclusions to action outcomes; it does not contradict its detection benchmark.
+ 
+-Other industrial studies report clear gains within their respective protocols. Acoustic--thermal gearbox monitoring achieved 99.54\% mean accuracy against 90.54\% for the stronger individual thermal stream on a random within-condition split \citep[Table~2]{Ying2025Trustworthy}. On MVTec~3D-AD, combining RGB and 3D inputs raised mean image AUROC to 93.7\% from 88.0\% for RGB alone \citep[Table~3]{Rudolph2023Asymmetric}. These results concern different acquisition regimes and outcomes from completed-action failure. Conversely, studies of multimodal optimization and industrial input subsets identify losses against stronger individual channels \citep{Wang2020What,Horwitz2023Back,Goodarzi2023Deep}. REASSEMBLE and the external studies provide evidence in both directions. The performance differences alone cannot identify whether limited visibility, an unsuitable representation, or the fusion training procedure caused a particular loss.
++PatchTST's favorable forecasting ablation supports local patch tokens and channel-shared temporal encoding \citep{Nie2023PatchTST}. Our longer-budget result confirms that optimization duration affected the scratch classifier, yet statistics remained stronger. Their successful same-sensor combination supports complementary predictive use rather than replacement by the higher-scoring representation. Classical geometry's competitiveness in inspection is consistent with taking compact, task-relevant summaries seriously \citep{Horwitz2023Back}; it does not establish why these particular robot statistics work. Likewise, TimeSformer's divided spatial--temporal attention motivates examining temporal organization \citep{P034}. The boundary-pooling gain supports sensitivity to aggregation, but uses an order-invariant mean within a selected interval and does not test that learned-attention mechanism.
+ 
+-Previous work provides both a theory and experimental tests of quality-aware weighting \citep{Zhang2023QMF}. RGB--geometry research tests absent 3D input \citep[Table~3]{P026}, and fuzzy-regularized camera--telemetry fusion tests corruption in simulated robot pose regression \citep{Altinses2023Fuzzy}. Training-time removal of images, a model designed for single-stream inference, an unannounced sensor malfunction, and adaptation with target-domain data impose different information constraints. The remaining question for a particular industrial task is whether a quality signal changes decisions beneficially once the static and unimodal controls have comparable observations, calibration, and training exposure.
++The positive REASSEMBLE F2 contrast and negative external contrasts agree with a conditional view of fusion. Welding's image-only, audio-only and fused penetration classifiers all reached 100\% clean accuracy \citep[Tables~1--3]{Hua2026Weld}. Published HANDOVER five-class accuracy fell from 69.1\% with video and force/torque to 67.9\% after adding gripper state \citep[Table~III]{Thoduka2024Handover}; our binary, differently fitted AP comparison is not a replication. Other settings do show gains: acoustic--thermal gearbox monitoring reports 99.54\% against 90.54\% for thermal alone under a random within-condition split \citep[Table~2]{Ying2025Trustworthy}. Such results disagree with an unconditional prediction of a gain here, not with the bounded negative findings in MSM or ViFailback. Wang and colleagues identify unequal overfitting and optimization difficulties in jointly trained multimodal networks \citep{Wang2020What}. They supply plausible competing mechanisms, not a demonstrated cause of losses in our separately fitted branches and stacker.
++
++Stacking's use of cross-validated probability outputs motivates a small learned combiner \citep{Ting1999Issues}. Our within-fold audit establishes beneficial visual ordering changes in the saved F2, while its pooled advantage over averaging remains unresolved. This distinguishes complementary predictions from evidence that learning the combiner is necessary. It also explains why the coefficients cannot be read as causal modality percentages.
++
++Adaptive weighting has a positive precedent: QMF links useful uncertainty weighting to a generalization bound and reports gains under specified RGB--depth corruption \citep{Zhang2023QMF}. Our anchored clean increment, .0210 [.0015, .0419], supports a particular context-dependent adjustment, whereas the matched-exposure robustness increment, .0097 [$-.0034$, .0228], remains unresolved. This is neither a replication nor a refutation of QMF: the quality variables, links, training procedures and targets differ. It identifies what does not transfer automatically from its result. Lower clean recall and higher ECE after anchored adjustment further show that improved AP is not calibrated reliability. This agrees with evidence that clean calibration need not survive shift \citep{P008}. Missing-input and simulated-robot studies address other access regimes \citep{P026,Altinses2023Fuzzy}; shared fallback cannot establish adaptive fault recognition.
+ 
+ \section{Lessons Across Datasets and Limits of Comparison}
+ Table~\ref{tab:cross-study} returns to the main research question. The units range from gear runs to individual actions, milling intervals, manipulation episodes, and handovers. Within each study, the single-input and fused models can be compared directly. Differences in targets, observation windows, class frequencies, and splits preclude a common ranking across datasets.
+@@ -66,15 +72,24 @@
+ \begin{tabularx}{\textwidth}{P{27mm}YYY}
+ \toprule Study & Target/unit & Supported lesson & Principal boundary\\\midrule
+ PHM & Photo-derived proxy per gear run & Three sensor groups gave no clear improvement over the training mean & Physical damage reference unavailable\\
+-REASSEMBLE & Completed action failure & Stacking improved on sensors. Equal averaging performed similarly & Extra calibration step in stacking\\
++REASSEMBLE & Completed action failure & Stacking improved on sensors; advantage over averaging unresolved & Within-fold visual gain; pooled attribution and selection limits\\
+ MSM & Abnormal milling interval & Sensor models ranked abnormal intervals more accurately than stacking & Five dates in the paired interval\\
+-ViFailback & Whole-episode outcome & Original stacking fell below logistic sensing. Encoder transfer had mixed effects & Target-CNN adaptation and corruption tests deferred\\
++ViFailback & Whole-episode outcome & Original stacking fell below logistic sensing. Encoder transfer had mixed effects & One-fold adaptation inconclusive; corruption untested\\
+ HANDOVER & Success or failure of a handover trial & Averaging improved on vision alone but fell below logistic sensing & Participant grouping for learned fusion unresolved\\\bottomrule
+ \end{tabularx}
+ \displaynote{Each effect applies to the evaluation protocol for its study.}
+ \end{table}
+ 
+-MSM and HANDOVER reused a visual feature extractor and refitted predictors to their local targets. ViFailback additionally tested parameters learned on REASSEMBLE by fitting fresh heads on the transferred features. Reusing a procedure, transferring learned weights, and deploying an unchanged predictor on a new physical installation each require different evidence. Figure~\ref{fig:gap-coverage} locates the completed comparisons within the literature synthesis. The accompanying matrix identifies the studies and the comparisons underlying each question.
++The target definitions help interpret these differences without establishing their causes. REASSEMBLE labels completed actions: 509 of 4,530 are failures (11.24\%). Its sixteen sampled frames and progress-resampled sensor channels cover the action, and recording-disjoint assessment supports the observed within-fold visual contribution. Boundary pooling demonstrates sensitivity to where visual evidence is retained. It does not show that a camera would help at an earlier decision time.
++
++MSM instead distinguishes native intervention-requiring abnormal cutting (336 intervals) from stable-normal (1,434) and stable-defective (125) cutting: prevalence is 17.73\%. Sixteen frames and ninety statistics of fifteen controller channels describe the admitted cutting window. The target can remain negative despite a defective tool; it is not the robotic failure endpoint. Strong sensor performance, including HGB, supports informativeness of this processed telemetry for that mapping. Weak frozen vision may reflect visibility, alignment error or representation mismatch; none is isolated. Estimated alignment is not hardware synchronization. Sensitivity analyses vary label treatment and grouping, while five acquisition dates constrain the paired uncertainty.
++
++ViFailback labels whole episodes, with 3,753 failures among 4,382 cases (85.65\%). Three-camera means and 280 summaries of robot positions, velocities and gripper effort discard most temporal and view-specific structure; these numerical observations are not wrench measurements. Task-disjoint assessment and both-class macro AP expose weak success ranking that high failure AP conceals. Completed donor transfer and limited target adaptation do not establish a visual advantage. Limited representation suitability, redundant predictions or different observability of native outcomes remain competing hypotheses.
++
++HANDOVER uses shared trial windows, sixteen frames and 36 wrench summaries; one robot measures wrench while the other estimates it from joint torques. Its official test contains 110 failures among 151 trials (72.85\%). Averaging underperforms logistic sensing on that cohort, but missing participant mapping blocks the mandated OOF fitting of learned fusion. This is an eligibility limit, not an observed failure of a gate. Differences in prevalence also alter AP baselines across studies, so absolute scores cannot identify which task or architecture is intrinsically easier.
++
++All external predictors receive local outcome supervision. MSM and HANDOVER reuse the architecture and refit predictors; ViFailback additionally transfers REASSEMBLE-supervised CNN weights and fits fresh target components. None tests an unchanged source model on an unseen installation. Figure~\ref{fig:gap-coverage} locates these bounded comparisons within the literature synthesis.
++
+ \begin{figure}[htbp]
+ \caption{Literature Comparisons and Experimental Coverage}\label{fig:gap-coverage}
+ \centering\includegraphics[width=\textwidth]{figures/gap_coverage.png}
+@@ -84,7 +99,7 @@
+ \section{Threats to Validity and Unresolved Evidence}
+ Three features of the data limit a causal interpretation of architectural differences. First, the target may only approximate the phenomenon of interest. PHM has no independent quantitative tooth-damage reference, MSM's label mapping defines which intervals count as abnormal, and some robotic outcomes remained ambiguous under visual review. Second, the number of independently acquired units can be much smaller than the number of predictions. Gear experiments, recording sessions, dates, tasks, and participants capture different sources of dependence. Where identifiers were missing, independence across those groups could not be verified. Third, several later analyses revisited assessment populations examined during development. Intervals conditional on fitted predictions and variation over a few seeds do not capture that selection history.
+ 
+-Preprocessing before the separate four-arm PHM loop limits attribution of its results to architecture. In other experiments, differences in calibration, capacity, training budget or corruption exposure accompanied architectural changes. Some historical configurations lack the detail needed to reconstruct training exactly. ViFailback evaluated clean predictions from frozen visual backbones. Target-CNN adaptation and corruption effects were outside the final evaluation (Chapter~8). The literature synthesis covers the full texts available to a single reviewer.
++Preprocessing before the separate four-arm PHM loop limits attribution of its results to architecture. In other experiments, differences in calibration, capacity, training budget or corruption exposure accompanied architectural changes. Some historical configurations lack the detail needed to reconstruct training exactly. ViFailback's complete frozen/donor matrix is supplemented by the November 24 one-fold FULL20 comparison and FULL100 pilot. Their adaptation effects remain inconclusive; the remaining adaptation fits and corruption study are unexecuted (Chapter~8). The literature synthesis covers the full texts available to a single reviewer.
+ 
+ Finally, the completed-window studies allowed the predictor to observe evidence near the outcome. Synthetic blur, noise, or stream removal test specified interventions. They give limited information about gradual calibration drift, unobserved timing faults, or shifts to another physical machine. Transferring a predictor to an earlier decision time or a different installation requires observations at that time and place.
+ 
+--- a/chapters/10_conclusion.tex
++++ b/chapters/10_conclusion.tex
+@@ -6,25 +6,25 @@
+ 
+ In PHM, post-run photographs supplied a continuous measure of candidate damage area on gear teeth. The photographs defined the target for sensor regression. Across held-out experiments, combining three sensor groups gave a mean absolute error of 0.824 percentage points, compared with 0.804 for predicting the training mean (Table~\ref{tab:phm-loeo}). The paired interval allowed either model to have lower error. Even an accurate prediction of this proxy would still require independent measurements to establish how closely the photographed area tracked physical damage.
+ 
+-REASSEMBLE made a direct fusion comparison possible. Video and machine signals covered the same completed action, each action had a recorded outcome, and entire recordings could be held out for assessment. Across 4,530 actions from 148 recordings, logistic stacking achieved failure average precision (AP) of .447, compared with .429 for its sensor component and .446 for equal probability averaging (Tables~\ref{tab:reassemble-unimodal} and~\ref{tab:reassemble-fusion}). The recording-level bootstrap supported a gain over sensors for these fitted models. The difference between stacking and averaging remained uncertain. Because the sensor predictor lacked a matched second calibration stage, the comparison cannot isolate how much of the gain came from the visual input itself.
++REASSEMBLE made a direct fusion comparison possible. Video and machine signals covered the same completed action, each action had a recorded outcome, and entire recordings could be held out for assessment. Across 4,530 actions from 148 recordings, logistic stacking achieved failure average precision (AP) of .447, compared with .429 for its sensor component and .446 for equal probability averaging (Tables~\ref{tab:reassemble-unimodal} and~\ref{tab:reassemble-fusion}). The paired increment over sensors was .0179 (95\% recording-bootstrap CI [.0086, .0283]); the increment over averaging, .0016 [$-.0076$, .0112], remained unresolved. Independent saved-score analysis verifies that vision improves within-fold AUROC in all five folds and AP in four, beyond strictly increasing recalibration of the same sensor score. Cross-fold score alignment and the absent refitted sensor-only second-stage control still limit attribution of the full pooled gain. These intervals condition on the saved fits, not the complete selection process.
+ 
+-The external studies tested whether the same finding held for different targets. In MSM, stacking ranked abnormal milling intervals less accurately than the logistic sensor model, with average precision across seeds of .757 and .829, respectively (Table~\ref{tab:msm-clean}). In ViFailback, the target was the outcome of a whole manipulation episode. Across three seeds, stacking yielded macro-AP of .621--.629 against .649 for logistic sensing. Initializing the visual encoder from REASSEMBLE gave mixed results across the matched runs (Tables~\ref{tab:vif-bothclass} and~\ref{tab:vif-matched}). In HANDOVER, averaging video and force--torque predictions on 151 trials yielded mean failure AP of .803, below the sensor component at .824 (Table~\ref{tab:handover-clean}). Participant-to-trial identifiers were unavailable, so the supplementary study could not construct the participant-disjoint predictions needed to train and evaluate its proposed stacker.
++The external studies tested whether the same finding held for different targets. In MSM, stacking ranked abnormal milling intervals less accurately than the logistic sensor model, with mean abnormal-cutting AP of .757 and .829, respectively; the paired difference was $-.0717$ [$-.1004$, $-.0515$] conditional on five date clusters (Table~\ref{tab:msm-clean}). In ViFailback, the target was the outcome of a whole manipulation episode. Across three seeds, stacking yielded macro-AP of .621--.629 against .649 for logistic sensing. Initializing the visual encoder from REASSEMBLE gave mixed results across the matched runs, while the completed November 24 one-fold target-adaptation contrasts remained inconclusive (Tables~\ref{tab:vif-bothclass}, \ref{tab:vif-matched} and~\ref{tab:vif-adaptation}). In HANDOVER, averaging video and force--torque predictions on 151 trials yielded mean failure AP of .803, below the sensor component at .824 (Table~\ref{tab:handover-clean}). Participant-to-trial identifiers were unavailable, so the supplementary study could not construct the participant-disjoint predictions needed to train and evaluate its proposed stacker.
+ 
+-Taken together, the studies support a modular architecture in which each observation can be evaluated on its own before its predictions are combined with another stream. The value of that combination depended on the target, the available observations, and the strength of the sensor predictor. The results concern gear-condition estimation and retrospective classification of completed operations. Independent weld-quality detection remains the unanswered application of the original question.
++Taken together, the studies motivate modular evaluation: measure each stream's contribution before combining predictions. This is a design recommendation supported by contrasting outcomes, not experimentally demonstrated superiority of a single modular architecture. The value of that combination depended on the target, the available observations, and the strength of the sensor predictor. The results concern gear-condition estimation and retrospective classification of completed operations. Independent weld-quality detection remains the unanswered application of the original question.
+ 
+ \section{Supported Contributions}
+-The representation comparison (SQ1) favored sensor statistics on the main assembly task. In REASSEMBLE, the frozen ResNet18-vd backbone inside the pretrained RT-DETR-R18vd checkpoint supplied pooled frame features to a binary action classifier. Engineered sensor statistics outperformed the short-budget PatchTST time-series Transformer in the principal assembly comparison. Pooling features near the action boundary improved a separate exploratory visual result. The suitability of pretrained audio representations remains open because audio alignment did not support a predictive comparison.
++SQ1 is partially answered for the evaluated tasks and budgets. REASSEMBLE statistics outperformed the scratch-trained PatchTST even after its matched training extension, yet their combination improved AP by .0110 [.0054, .0181]. The frozen ResNet18-vd CNN supplied a reusable spatial representation; last-quarter pooling improved visual AP by .0885 [.0424, .1293] with unchanged head size. These findings establish conditional suitability and complementary predictive use, not universal preference for statistics, freezing or a Transformer. Learned temporal order, pretrained time-series weights, audio and earlier prediction remain unresolved.
+ 
+-For fusion choice (SQ2), the shared assembly cohort allowed feature concatenation, probability averaging, logistic stacking, and scalar gates conditioned on process context to be evaluated on the same actions. Feature concatenation reached AP of .412. The simpler prediction-level combinations ranked failures more accurately under the tested training procedures. The external results qualify that finding by identifying tasks on which even the learned combination fell below its sensor component.
++SQ2 is answered comparatively within the assessed recipes, but remains open as a general architecture-selection rule. The shared assembly cohort allowed feature concatenation, probability averaging, logistic stacking, and scalar gates conditioned on process context to be evaluated on the same actions. Feature concatenation reached AP of .412. The simpler prediction-level combinations ranked failures more accurately under the tested training procedures. The external results qualify that finding by identifying tasks on which even the learned combination fell below its sensor component.
+ 
+-For missing or degraded inputs (SQ3), a known missing stream could be handled by routing predictions to the available model. When a stream remained present but became unreliable, the two original gates evaluated under corruption showed no consistent advantage. Under strong sensor noise in REASSEMBLE, stacking fell to AP .222, below the intact visual predictor at .231. A subsequent gate that adjusted a static prediction using context improved clean performance in an exploratory comparison. Tests with matched corruption exposure left its robustness gain unresolved. This gate and the later visual pooling method were evaluated in separate experiments.
++For missing or degraded inputs (SQ3), a known missing stream could be handled by routing predictions to the available model. When a stream remained present but became unreliable, the two original gates evaluated under corruption showed no consistent advantage. Under strong sensor noise in REASSEMBLE, stacking fell to AP .222, below the intact visual predictor at .231. Anchored adaptation improved clean AP by .0210 [.0015, .0419], but the matched-exposure robustness increment was .0097 [$-.0034$, .0228]. SQ3 is therefore only partially answered: explicit fallback is established, while consistent adaptive benefit under degraded present inputs remains unresolved. This gate and the later visual pooling method were evaluated in separate experiments.
+ 
+-For evaluation beyond accuracy (SQ4), the distinction between ranking failures and estimating their probability affected model choice. On the seed-42 MSM comparison, stacking yielded a lower Brier score than logistic sensing (.056 and .062, respectively), although sensing ranked abnormal intervals more accurately. Grouped analyses, uncertainty estimates, a review of action labels, and component timings exposed different limits on reliability and practical use. The code and configuration records identify which branches and fusion rules produced these results. The literature matrix places them alongside prior welding, camera--sensor, and missing-input studies and narrows the open question to the performance of adaptive weighting under comparable training and calibration conditions.
++SQ4 is answered at the retrospective evaluation level: distinguishing ranking, probability error, class-specific decisions and uncertainty changes the interpretation of performance. Prospective utility and end-to-end deployment performance remain untested. On the seed-42 MSM comparison, stacking yielded a lower Brier score than logistic sensing (.056 and .062, respectively), although sensing ranked abnormal intervals more accurately. Grouped analyses, uncertainty estimates, a review of action labels, and component timings exposed different limits on reliability and practical use. The code and configuration records identify which branches and fusion rules produced these results. The literature matrix places them alongside prior welding, camera--sensor, and missing-input studies and narrows the open question to the performance of adaptive weighting under comparable training and calibration conditions.
+ 
+ \section{Principal Limitations}
+ Each dataset imposes a different evidential limit. PHM lacks an independent physical reference, and the preprocessing order in its separate four-arm diagnostic prevents a leakage-free interpretation of that experiment. The industrial and robotic datasets offer incomplete information about independence at the level of tools, objects, or participants. Complete-action and complete-episode predictions can use evidence that only becomes visible near the outcome. Deploying a warning system would require a prediction horizon that excludes such information.
+ 
+-The comparison also depends on how the models were fitted. Calibration, training budgets, and exposure to corruptions differed in some comparisons. Several follow-ups revisited previously evaluated populations, and the reported bootstrap intervals condition on the fitted models. The short-budget fine-tuning comparison did not resolve a mechanism for the observed differences. Some longer training runs and planned sensor-degradation evaluations remained incomplete. Where only run summaries were available, they limited the scope for independent checks of individual predictions.
++The comparison also depends on how the models were fitted. Calibration, training budgets, and exposure to corruptions differed in some comparisons. Several follow-ups revisited previously evaluated populations, and the reported bootstrap intervals condition on the fitted models. The short-budget fine-tuning comparison did not resolve a mechanism for the observed differences. The reporting cutoff includes the November 24 ViFailback closure: 79 of 111 matched fits completed, with 32 FULL20 fits unfinished and the corruption evaluation unexecuted. Completed adaptation intervals include gains and losses; unfinished work supplies no negative model result. Where only run summaries were available, they limited the scope for independent checks of individual predictions.
+ 
+ \section{Priorities for Future Research}
+ An independent welding study is the most direct next test of the original question. It should specify the weld-level outcome and prediction time, pair the camera and process measurements to that decision, and reserve complete new welding sessions for assessment. An independent inspection should establish weld quality. For PHM, a physical measure of damage linked to a known tooth would likewise distinguish measurement validity from the ability to predict the photographic proxy. Independent review of ambiguous robotic outcomes would strengthen the corresponding classification targets.
+--- /dev/null
++++ b/figures/STYLE_INSTALL_VERIFICATION.md
+@@ -0,0 +1,143 @@
++# Figure style installation and verification
++
++25 November 2026. Setup and synthetic smoke verification only.
++
++## Location and merge
++
++Installed in the editable project identified by the revision README:
++`00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/`.
++Its `main.tex` reads the local `chapters/` and `figures/` directories. The other
++project under `applied_revision_01/baseline/` is explicitly the unchanged baseline.
++
++Source: `../../thesis_figure_style_for_applied_revision_01.zip`, SHA-256
++`a0e34e2e73b9174e17b7cd9cb857556f4d9f8bdb1e79f5968cadfd8b22325986`.
++Starting repository HEAD: `e2037412036c5bbfc01fb2323215a37ef0b2e090`;
++the working thesis already consisted of untracked files.
++
++| Installed file | Merge result |
++|---|---|
++| [VISUAL_STYLE.md](VISUAL_STYLE.md) | Added; aligned provenance, native-font commands and PDF checks with this revision |
++| [tikz_style.tex](tikz_style.tex) | Added byte-for-byte from the payload |
++| [thesis.mplstyle](thesis.mplstyle) | Added byte-for-byte from the payload |
++| [smoke/style_smoke.tex](smoke/style_smoke.tex) | Added; records font selection and asserts the verified text width |
++| [smoke/style_smoke.py](smoke/style_smoke.py) | Added; native XeLaTeX option, robust PDF-width check and refusal to overwrite output PDFs |
++| [../AGENTS.md](../AGENTS.md) | Added a thesis-scoped supplement containing the payload's Figure verification section verbatim; repository instructions retained |
++| This report | Added installation, validation and handoff evidence |
++
++No matching destination filenames existed and no merge conflict requires a
++researcher decision. The approved eleven-role semantic palette is unchanged.
++The [exact payload adaptation diff](../build/figures/verification_20261125_01/payload_adaptations.patch)
++records all changes to the incoming files.
++
++## Verified layout and typography
++
++**VERIFIED:** the [layout probe](../build/figures/verification_20261125_01/active_layout_probe.tex)
++copies the active `main.tex` preamble, then invokes its chapter-body `\apaprose`.
++It was compiled from the thesis root with the existing XeLaTeX toolchain.
++
++| Property | Measured result |
++|---|---|
++| Class and page | `report[12pt,a4paper,oneside]`, A4 |
++| Geometry | `margin=1in`; zero odd/even side-margin offsets |
++| Normal `\textwidth` and `\linewidth` | 452.9679 TeX pt = 159.20 mm |
++| Half width | 226.48395 TeX pt = 79.60 mm |
++| `\textheight` | 700.50687 TeX pt |
++| Body font | Latin Modern Roman 12 Regular/Bold at 12 TeX pt |
++| Normal chapter baseline skip | 23.99748 TeX pt after `\apaprose` |
++
++These measurements match the supplied v3 dimensions. No thesis preamble or margin
++change was needed. Inside narrower containers, use the local `\linewidth`.
++See [probe console](../build/figures/verification_20261125_01/layout_console.txt)
++and [probe fonts](../build/figures/verification_20261125_01/layout_pdffonts.txt).
++
++## Smoke results
++
++**VERIFIED:** both smoke checks executed from this thesis root. All accepted PDFs
++are single-page vector output with zero image objects and all fonts embedded.
++Their text sizes are 9, 10 and 11 PDF pt. The Matplotlib script checked every
++color-to-role mapping against both the guide and TikZ definitions.
++
++| Example | Width check | PDF and opened 150 dpi preview |
++|---|---|---|
++| TikZ | Full and half picture boxes equal their respective `\linewidth`; the containing PDF remains A4 | [PDF](../build/figures/verification_20261125_01/final/tikz/style_smoke.pdf), [PNG](../build/figures/verification_20261125_01/final/style_smoke-preview.png) |
++| Matplotlib full | 451.28 PDF pt = 159.2016 mm; within 0.01 PDF pt of target | [PDF](../build/figures/verification_20261125_01/final/matplotlib_native_v2/style_smoke_full.pdf), [PNG](../build/figures/verification_20261125_01/final/style_smoke_full_native-preview.png) |
++| Matplotlib half | 225.64 PDF pt = 79.6008 mm; within 0.01 PDF pt of target | [PDF](../build/figures/verification_20261125_01/final/matplotlib_native_v2/style_smoke_half.pdf), [PNG](../build/figures/verification_20261125_01/final/style_smoke_half_native-preview.png) |
++
++The TikZ preview is 1241 × 1754 pixels; plot previews are 941 × 330 and 471 × 330.
++Pixel dimensions include renderer rounding. PDF dimensions are authoritative.
++The three accepted previews and all three archive reference previews were opened.
++Visual inspection found no clipping, overlapping labels, obstructed legends or
++ambiguous arrow directions. The half-width labels remain readable; marker shapes
++and line patterns accompany the semantic colors. This is inspection of the smoke
++examples, not a review of chapter figures or the full manuscript.
++
++The first direct Matplotlib run used `cmr10.ttf` for both normal and bold text,
++so it was not accepted as a thesis-font match. Native `--tex-fonts` export uses
++PGF/XeLaTeX and the existing Latin Modern OTF fonts, with Computer Modern math
++matching the thesis's TeX math family. No font conversion or dependency installation
++was performed. The direct TrueType alternative lacks `lmroman12-regular.ttf` and
++`lmroman12-bold.ttf` locally; it is not required by the accepted native route.
++
++The first native export exposed the archive's raw-text MediaBox parser limitation:
++XeLaTeX compresses PDF page objects and rounds dimensions to hundredths of a PDF
++point. The script now reads MediaBox through `pypdf` with a 0.01-point tolerance.
++A further size check found discrete TeX math sizes slightly below 9 PDF pt;
++`fix-cm` enables the intended sizes. The native preamble also suppresses the
++standalone page number. Earlier attempts and logs are retained in the same
++verification directory, distinct from the accepted `matplotlib_native_v2` outputs.
++No requested validation remains blocked by a missing dependency.
++
++## Toolchain and commands
++
++Existing environment: XeTeX/TeX Live 2023, latexmk 4.83, Python 3.12.3 and
++Matplotlib 3.11.1. `pypdf`, Pillow and Poppler were already available. The existing
++isolated TeX environment was loaded from `/tmp/thesis_tex_20261125/env.sh`;
++Python was `../../../../../ma_thesis_env/bin/python` relative to this thesis root.
++The temporary TeX location is execution evidence, not a new portable default.
++The guide uses tools on `PATH` and the selected project Python environment.
++
++Commands executed from the thesis root after loading that environment:
++
++```sh
++latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error \
++  -outdir=build/figures/verification_20261125_01/layout \
++  build/figures/verification_20261125_01/active_layout_probe.tex
++latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error \
++  -outdir=build/figures/verification_20261125_01/final/tikz \
++  figures/smoke/style_smoke.tex
++MPLCONFIGDIR=build/figures/verification_20261125_01/mpl-cache \
++  PYTHONDONTWRITEBYTECODE=1 ../../../../../ma_thesis_env/bin/python \
++  figures/smoke/style_smoke.py --tex-fonts \
++  --outdir build/figures/verification_20261125_01/final/matplotlib_native_v2
++```
++
++Each accepted PDF was inspected with `pdfinfo`, `pdffonts` and `pdfimages -list`,
++then rendered with `pdftoppm -r 150 -png -singlefile`. Dimensions, actual text
++sizes, page counts and absence of raster objects were also checked with `pypdf`.
++[Machine-readable validation](../build/figures/verification_20261125_01/validation.json)
++records the accepted paths and hashes; adjacent `accepted_*` reports retain the
++Poppler output. Use a new run directory when repeating the checks.
++
++## Preservation and handoff
++
++**VERIFIED:** all ten pre-existing figure assets retain their starting SHA-256
++identities. This pass wrote only new style/instruction/report files and isolated
++build outputs. It did not edit chapters, the abstract or `main.tex`.
++
++The [starting manifest](../build/figures/verification_20261125_01/project_before.json)
++covered 47 existing project files. A later comparison detected concurrent changes
++outside this pass to `main.tex`, `frontmatter/abstract.tex` and
++`chapters/01_introduction.tex`; those edits were left untouched. Their identities
++are recorded in `validation.json`. The current normalized preamble still exactly
++matches the measured preamble. Consequently this report does not claim that the
++entire working project remained byte-for-byte unchanged during the task.
++
++`build/` is ignored by the existing repository rule; the verification artifacts
++remain local. The archive and original assets remain in place. No files were
++staged, committed or pushed. Final Git checks and installed-file identities are
++recorded in the verification directory. Since these sources were untracked,
++ordinary `git diff --stat` does not enumerate the additions; the file table and
++payload diff above do.
++
++The separate `02_REDO_CHAPTERS_01_04.md` task has not been executed. The installed
++guide, shared styles and verified smoke examples are ready for that later task.
+--- /dev/null
++++ b/figures/VISUAL_STYLE.md
+@@ -0,0 +1,64 @@
++# Thesis figure style
++
++## Page layout and canvas
++
++`main.tex` uses XeLaTeX, `report[12pt,a4paper,oneside]` and `geometry[margin=1in]`. **VERIFIED for this working revision on 25 November 2026:** a compiled probe copied the active `main.tex` preamble and applied its normal chapter-body `\apaprose` settings. It measured `\textwidth = \linewidth = 452.9679pt` and `\textheight = 700.50687pt`, matching the archive's November 20 v3 dimensions. The body selected `lmroman12-regular` and `lmroman12-bold` at 12 TeX pt. See [the installation verification](STYLE_INSTALL_VERIFICATION.md) for the probe and build evidence. Inside a minipage, list or subfigure, measure the local `\linewidth`.
++
++| Canvas | TeX width | Millimetres | Inches for Matplotlib |
++|---|---:|---:|---:|
++| Full | `\textwidth` = 452.9679 TeX pt | 159.20 | 6.267717 |
++| Half | `.5\textwidth` = 226.48395 TeX pt | 79.60 | 3.133858 |
++
++Use `width=\linewidth` in `\includegraphics` when the figure should fill its container. Use `width=.5\linewidth` for a half-width figure in the main text block. For two panels with a gutter, subtract the gutter before dividing the available width. Choose the canvas height for the content. The conversion is 72.27 TeX pt per inch and 72 PDF pt per inch.
++
++Size TikZ diagrams at their final print width. In the thesis, use the containing `\linewidth` to lay out the picture. For standalone PDFs, set the bounding box to the corresponding target width and include any border in that width. In Matplotlib, pass the target width to `figsize=(width_inches, height_inches)`. Keep the saved PDF bounding box at that size.
++
++## Semantic palette
++
++These are the default thesis-wide roles. Both shared styles use these colors, and the Matplotlib cycle follows the order below. Use explicit styles for named roles when plotting a subset or changing series order.
++
++| Role | Hex | TikZ color | Use |
++|---|---|---|---|
++| Vision | `#0072B2` | `ThesisVision` | Visible-light photographs, RGB video and derived visual features |
++| Sensor / telemetry | `#009E73` | `ThesisSensor` | Aggregate telemetry, robot state, and other numerical machine channels |
++| Context / metadata | `#56B4E9` | `ThesisContext` | Process settings, action type and other contextual inputs |
++| Fusion / proposed component | `#CC79A7` | `ThesisFusion` | The combination stage or method under evaluation where that role is the comparison |
++| Baseline / reference | `#595959` | `ThesisBaseline` | Control or comparator where that role is the comparison |
++| Highlight | `#E69F00` | `ThesisHighlight` | A selected region, event or condition that needs a callout |
++| Audio / acoustics | `#882255` | `ThesisAudio` | Microphone waveforms and their acoustic features or timing cues |
++| Thermal imagery | `#D55E00` | `ThesisThermal` | Thermal-camera frames and their image-derived features |
++| Depth / geometry | `#332288` | `ThesisDepth` | Depth maps, point clouds and features derived from geometric measurements |
++| Vibration | `#117733` | `ThesisVibration` | Accelerometer traces and vibration-derived RMS, spectra or summary features |
++| Force / torque | `#999933` | `ThesisWrench` | Separately identified force, torque or wrench measurements |
++
++Use the most specific role the figure shows. For example, color a PHM vibration feature `ThesisVibration` and a combined machine-sensor branch `ThesisSensor`. Use `ThesisContext` for a speed setpoint and `ThesisSensor` for a measured speed or scalar temperature. Label the role of audio in the study, such as a timing cue or excluded input. For depth and derived geometry, label shared acquisition sources.
++
++Use modality colors for input branches and modality comparisons. In method comparisons, use the method roles and label each method. Pair colors with labels and line styles, markers, hatching or borders so the figure remains intelligible in grayscale. Use `#222222` for label text and arrows on a white background. Use lighter palette colors for marks or tinted fills with dark text. The colors draw from the [Okabe–Ito palette](https://jfly.uni-koeln.de/color/) and [Paul Tol’s muted palette](https://sronpersonalpages.nl/~pault/).
++
++## Type and drawing
++
++- The thesis body uses 12 TeX pt Latin Modern Roman from `fontspec`. TikZ inherits the document's roman family and math fonts, including optical sizes appropriate to smaller labels. For Matplotlib here, use the smoke script's `--tex-fonts` option: the PGF backend exports through the existing XeLaTeX toolchain with native Latin Modern text and TeX math. It converts the shared PDF-point text sizes to TeX points. The direct PDF backend remains available with registered TrueType Latin Modern faces via `--font-dir`; it uses Computer Modern mathtext. The listed Computer Modern Roman and DejaVu Serif fallbacks do not constitute a thesis-font match.
++- Set panel headings at 11 PDF pt bold, axis and node labels at 10 PDF pt, and ticks, legends and secondary annotations at 9 PDF pt minimum at final placement. Use `thesis panel label`, `thesis label` and `thesis annotation` in TikZ. Keep thesis captions in LaTeX.
++- Use a 3 PDF pt corner radius, at least 6 PDF pt horizontal and 4 PDF pt vertical node padding, and 8 PDF pt padding for grouped content. Use 0.8 PDF pt for ordinary outlines, arrows and plot axes, 1.2 PDF pt for the fusion outline and 1.4 PDF pt for plot series. Use the `arrow` style with the PGF `stealth` tip.
++- Export new diagrams and plots as vector PDF. Keep fonts embedded; the direct Matplotlib PDF backend uses `pdf.fonttype: 42`, while PGF/XeLaTeX embeds native TeX fonts independently of that setting. Place photos or source frames at suitable raster resolution inside the PDF when needed. Use the PNG preview for inspection. Keep `bbox_inches` at its standard setting so the export preserves the authored width.
++
++## Smoke check
++
++Run from the thesis root with the existing XeLaTeX tools on `PATH` and the project Python environment selected. The TikZ example verifies diagram widths in an A4 thesis-size page; its PDF page is not a cropped 159.20 mm figure. The Matplotlib example checks all eleven palette roles and writes individual full- and half-width PDFs with illustrative values, not scientific results. Use a new output directory for each verification pass; the Python smoke check refuses to overwrite its PDFs.
++
++```sh
++figure_run=build/figures/smoke_YYYYMMDD_01
++mkdir -p "$figure_run"
++latexmk -xelatex -halt-on-error -outdir="$figure_run/tikz" figures/smoke/style_smoke.tex
++python figures/smoke/style_smoke.py --tex-fonts --outdir "$figure_run/matplotlib"
++pdftoppm -r 150 -png -singlefile "$figure_run/tikz/style_smoke.pdf" "$figure_run/style_smoke-preview"
++pdftoppm -r 150 -png -singlefile "$figure_run/matplotlib/style_smoke_full.pdf" "$figure_run/style_smoke_full-preview"
++pdftoppm -r 150 -png -singlefile "$figure_run/matplotlib/style_smoke_half.pdf" "$figure_run/style_smoke_half-preview"
++pdffonts "$figure_run/tikz/style_smoke.pdf"
++pdffonts "$figure_run/matplotlib/style_smoke_full.pdf"
++pdffonts "$figure_run/matplotlib/style_smoke_half.pdf"
++```
++
++The native-font route needs XeLaTeX, `kpsewhich`, PGF/TikZ, `fontspec`, Latin Modern and Matplotlib; the canvas check uses `pypdf` to read compressed PDF page objects. These are available in the existing local toolchain; its environment setup is recorded in the verification report. No new dependency or font installation was needed. The width tolerance is 0.01 PDF pt (less than 0.004 mm), accommodating XeLaTeX's PDF dimension rounding. As an alternative, pass `--font-dir` with verified `lmroman12-regular.ttf` and `lmroman12-bold.ttf` faces. This environment has only the native OTF faces, so the direct TrueType route was not used for the accepted font check. Do not silently treat fallback output as matching the thesis typography.
++
++Open the PNGs and check the content at its inclusion width, as specified in [AGENTS.md](../AGENTS.md).
+--- /dev/null
++++ b/figures/smoke/style_smoke.py
+@@ -0,0 +1,130 @@
++"""Verify the shared palette and export non-data sample plots at both widths."""
++
++import argparse
++from pathlib import Path
++import subprocess
++
++import matplotlib
++
++matplotlib.use("Agg")
++
++import matplotlib.pyplot as plt
++from matplotlib import colors, font_manager
++
++
++FIGURES = Path(__file__).resolve().parents[1]
++TEXT_WIDTH_PT = 452.9679  # Thesis build, as recorded in VISUAL_STYLE.md.
++TEX_POINTS_PER_INCH = 72.27
++ROLES = (
++    "Vision", "Sensor", "Context", "Fusion", "Baseline", "Highlight",
++    "Audio", "Thermal", "Depth", "Vibration", "Wrench",
++)
++EXAMPLES = (
++    ("full", 1, "Imaging and audio", (
++        ("Vision", "RGB", [0.19, 0.29, 0.53, 0.60, 0.73]),
++        ("Thermal", "Thermal", [0.14, 0.34, 0.43, 0.58, 0.64]),
++        ("Depth", "Depth", [0.22, 0.43, 0.61, 0.70, 0.79]),
++        ("Audio", "Audio", [0.10, 0.20, 0.33, 0.43, 0.58]),
++    )),
++    ("half", 0.5, "Telemetry signals", (
++        ("Sensor", "Combined", [0.19, 0.29, 0.53, 0.60, 0.73]),
++        ("Vibration", "Vibration", [0.14, 0.34, 0.43, 0.58, 0.64]),
++        ("Wrench", "Force/torque", [0.22, 0.43, 0.61, 0.70, 0.79]),
++    )),
++)
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--outdir", type=Path, default=Path("build/figures"))
++    parser.add_argument("--font-dir", type=Path, help="directory with lmroman12*.ttf")
++    parser.add_argument(
++        "--tex-fonts", action="store_true",
++        help="export through PGF/XeLaTeX with native Latin Modern fonts",
++    )
++    args = parser.parse_args()
++    if args.tex_fonts and args.font_dir:
++        parser.error("choose --tex-fonts or --font-dir")
++
++    if args.font_dir:
++        for face in ("regular", "bold"):
++            font_manager.fontManager.addfont(args.font_dir / f"lmroman12-{face}.ttf")
++
++    plt.style.use(FIGURES / "thesis.mplstyle")
++    if args.tex_fonts:
++        # Register native faces for Matplotlib's font metadata queries only;
++        # XeLaTeX, rather than the direct PDF backend, embeds the actual fonts.
++        for face in ("regular", "bold"):
++            native = subprocess.check_output(
++                ["kpsewhich", f"lmroman12-{face}.otf"], text=True,
++            ).strip()
++            font_manager.fontManager.addfont(native)
++        plt.switch_backend("pgf")
++        plt.rcParams.update({
++            "pgf.texsystem": "xelatex",
++            "pgf.rcfonts": False,
++            "pgf.preamble": (
++                r"\usepackage{fontspec}\usepackage{amsmath,amssymb}"
++                r"\usepackage{fix-cm}\pagestyle{empty}"
++            ),
++        })
++        # PGF writes TeX pt; the shared style specifies PDF pt (bp).
++        for key in ("font.size", "axes.titlesize", "axes.labelsize",
++                    "xtick.labelsize", "ytick.labelsize", "legend.fontsize",
++                    "legend.title_fontsize"):
++            plt.rcParams[key] *= TEX_POINTS_PER_INCH / 72
++        print("Text backend: PGF/XeLaTeX, native Latin Modern; verify with pdffonts")
++
++    for weight in (() if args.tex_fonts else ("normal", "bold")):
++        properties = font_manager.FontProperties(family=["serif"], weight=weight)
++        font = Path(font_manager.findfont(properties))
++        if font.suffix.lower() != ".ttf":
++            raise ValueError(f"Use a TrueType face for PDF embedding: {font}")
++        if args.font_dir and font.parent != args.font_dir.resolve():
++            raise ValueError(f"Matplotlib selected {font} instead of the supplied {weight} face")
++        print(f"Serif {weight}: {font.name}")
++        if not args.font_dir:
++            print("Font selection only: use --tex-fonts or verified --font-dir "
++                  "to check the thesis face; fallback is not a font-match pass.")
++
++    styles = dict(zip(ROLES, plt.rcParams["axes.prop_cycle"], strict=True))
++    tikz = (FIGURES / "tikz_style.tex").read_text(encoding="utf-8")
++    rules = (FIGURES / "VISUAL_STYLE.md").read_text(encoding="utf-8")
++    for role, props in styles.items():
++        hex_code = colors.to_hex(props["color"])[1:].upper()
++        if f"`#{hex_code}` | `Thesis{role}`" not in rules:
++            raise ValueError(f"{role} in Matplotlib differs from the documented palette")
++        if rf"\definecolor{{Thesis{role}}}{{HTML}}{{{hex_code}}}" not in tikz:
++            raise ValueError(f"TikZ and Matplotlib disagree on {role}: #{hex_code}")
++
++    args.outdir.mkdir(parents=True, exist_ok=True)
++    for name, *_ in EXAMPLES:
++        path = args.outdir / f"style_smoke_{name}.pdf"
++        if path.exists():
++            raise FileExistsError(f"Preserve existing output; choose a new --outdir: {path}")
++    for name, fraction, title, series in EXAMPLES:
++        width_inches = fraction * TEXT_WIDTH_PT / TEX_POINTS_PER_INCH
++        fig, ax = plt.subplots(figsize=(width_inches, 2.2))
++        points = range(5)
++        for role, label, values in series:
++            ax.plot(points, values, label=label, **styles[role])
++        ax.set(title=title, xlabel=r"Step $t$", ylabel="Illustrative value")
++        ax.set_xticks(points)
++        ax.set_ylim(0, 1)
++        ax.legend(loc="upper left")
++        path = args.outdir / f"style_smoke_{name}.pdf"
++        fig.savefig(path)
++        plt.close(fig)
++
++        # XeLaTeX may compress page objects and rounds dimensions to 0.01 bp.
++        from pypdf import PdfReader
++
++        pdf = PdfReader(path)
++        width_bp = float(pdf.pages[0].mediabox.width)
++        if len(pdf.pages) != 1 or abs(width_bp - 72 * width_inches) > 0.01:
++            raise ValueError(f"Unexpected PDF canvas width in {path}")
++        print(f"{path} ({width_inches:.6f} in; PDF width {width_bp:.6f} bp)")
++
++
++if __name__ == "__main__":
++    main()
+--- /dev/null
++++ b/figures/smoke/style_smoke.tex
+@@ -0,0 +1,60 @@
++% !TeX program = xelatex
++% Compile from the thesis root. This page exercises the styles in thesis context.
++\documentclass[12pt,a4paper,oneside]{report}
++\usepackage{fontspec}
++\usepackage[margin=1in]{geometry}
++\input{figures/tikz_style.tex}
++\pagestyle{empty}
++
++\newsavebox{\SmokeFigure}
++\newcommand{\CheckFigureWidth}[1]{%
++  \sbox{\SmokeFigure}{#1}%
++  \ifdim\wd\SmokeFigure=\linewidth\relax
++    \typeout{FIGURE SMOKE: \the\wd\SmokeFigure\space (linewidth \the\linewidth)}%
++  \else
++    \PackageError{figure-smoke}{Diagram width \the\wd\SmokeFigure\space
++      differs from linewidth \the\linewidth}{Check the TikZ bounding box.}%
++  \fi
++  \usebox{\SmokeFigure}%
++}
++
++\begin{document}
++\typeout{FIGURE SMOKE FONT: \fontname\font}
++\ifdim\textwidth=452.9679pt\relax\else
++  \PackageError{figure-smoke}{Thesis text width has changed}{Remeasure main.tex and update both smoke checks and VISUAL_STYLE.md.}
++\fi
++\noindent\CheckFigureWidth{%
++  \begin{tikzpicture}[x=\linewidth,y=1cm]
++    \path[use as bounding box] (0,0) rectangle (1,5.55);
++    \node[thesis panel label,anchor=west] at (.03,5.17) {Full-width diagram};
++    \draw[groupbox] (.03,.30) rectangle (.34,4.82);
++    \node[thesis annotation,anchor=west] at (.05,4.48) {Example inputs};
++    \node[data=ThesisVision] (vision) at (.185,3.75) {RGB};
++    \node[data=ThesisThermal] (thermal) at (.185,2.83) {Thermal};
++    \node[data=ThesisDepth] (depth) at (.185,1.91) {Depth};
++    \node[data=ThesisAudio] (audio) at (.185,.99) {Audio};
++    \node[module,minimum height=25bp] (align) at (.48,2.37) {Align};
++    \node[fusion] (fuse) at (.67,2.37) {Fusion};
++    \node[module] (score) at (.86,2.37) {Score};
++    \draw[arrow] (vision.east) -- ([yshift=9bp]align.west);
++    \draw[arrow] (thermal.east) -- ([yshift=3bp]align.west);
++    \draw[arrow] (depth.east) -- ([yshift=-3bp]align.west);
++    \draw[arrow] (audio.east) -- ([yshift=-9bp]align.west);
++    \draw[arrow] (align) -- (fuse);
++    \draw[arrow] (fuse) -- (score);
++  \end{tikzpicture}%
++}\par\medskip
++\noindent\begin{minipage}{.5\linewidth}
++  \noindent\CheckFigureWidth{%
++    \begin{tikzpicture}[x=\linewidth,y=1cm]
++      \path[use as bounding box] (0,0) rectangle (1,3.05);
++      \node[thesis panel label,anchor=west] at (.06,2.64) {Half-width diagram};
++      \node[data=ThesisVibration] (vibration) at (.26,1.53) {Vibration};
++      \node[data=ThesisWrench] (wrench) at (.26,.60) {Force/torque};
++      \node[fusion] (fuse) at (.78,1.06) {Fusion};
++      \draw[arrow] (vibration.east) -- ([yshift=3bp]fuse.west);
++      \draw[arrow] (wrench.east) -- ([yshift=-3bp]fuse.west);
++    \end{tikzpicture}%
++  }
++\end{minipage}
++\end{document}
+--- /dev/null
++++ b/figures/thesis.mplstyle
+@@ -0,0 +1,46 @@
++# Shared thesis figure style. See VISUAL_STYLE.md for canvas sizes and roles.
++font.family: serif
++font.serif: Latin Modern Roman, cmr10, DejaVu Serif
++font.size: 10
++text.usetex: False
++text.color: 222222
++mathtext.fontset: cm
++
++axes.titlesize: 11
++axes.titleweight: bold
++axes.labelsize: 10
++axes.labelcolor: 222222
++axes.edgecolor: 222222
++axes.linewidth: 0.8
++axes.formatter.use_mathtext: True
++xtick.labelsize: 9
++ytick.labelsize: 9
++xtick.color: 222222
++ytick.color: 222222
++xtick.major.width: 0.8
++ytick.major.width: 0.8
++legend.fontsize: 9
++legend.title_fontsize: 9
++legend.frameon: False
++
++# Vision, sensor, context, fusion/proposed, baseline, highlight.
++# Audio, thermal imagery, depth/geometry, vibration, force/torque.
++# The paired dashes and markers distinguish series in grayscale.
++axes.prop_cycle: cycler('color', ['0072B2', '009E73', '56B4E9', 'CC79A7', '595959', 'E69F00', '882255', 'D55E00', '332288', '117733', '999933']) + cycler('linestyle', ['-', '--', ':', '-.', '--', ':', '--', '-.', ':', '-', '-.']) + cycler('marker', ['o', 's', 'v', 'D', 'x', '^', 'P', '>', 'p', 'h', '<'])
++lines.linewidth: 1.4
++lines.markersize: 4
++patch.linewidth: 0.8
++axes.axisbelow: True
++axes.grid: False
++grid.color: D9D9D9
++grid.linewidth: 0.5
++
++figure.facecolor: white
++axes.facecolor: white
++figure.constrained_layout.use: True
++savefig.format: pdf
++savefig.facecolor: white
++savefig.bbox: standard
++savefig.transparent: False
++pdf.fonttype: 42
++pdf.use14corefonts: False
+--- /dev/null
++++ b/figures/tikz_style.tex
+@@ -0,0 +1,54 @@
++% Input from a LaTeX preamble, with the working directory at the thesis root.
++\RequirePackage{tikz}
++
++% Shared semantic palette. See VISUAL_STYLE.md for the role definitions.
++\definecolor{ThesisVision}{HTML}{0072B2}
++\definecolor{ThesisSensor}{HTML}{009E73}
++\definecolor{ThesisContext}{HTML}{56B4E9}
++\definecolor{ThesisFusion}{HTML}{CC79A7}
++\definecolor{ThesisBaseline}{HTML}{595959}
++\definecolor{ThesisHighlight}{HTML}{E69F00}
++\definecolor{ThesisAudio}{HTML}{882255}
++\definecolor{ThesisThermal}{HTML}{D55E00}
++\definecolor{ThesisDepth}{HTML}{332288}
++\definecolor{ThesisVibration}{HTML}{117733}
++\definecolor{ThesisWrench}{HTML}{999933}
++\definecolor{ThesisInk}{HTML}{222222}
++
++\tikzset{
++  thesis label/.style={
++    font=\normalfont\fontsize{10bp}{12bp}\selectfont,
++    text=ThesisInk
++  },
++  thesis annotation/.style={
++    thesis label,
++    font=\normalfont\fontsize{9bp}{11bp}\selectfont
++  },
++  thesis panel label/.style={
++    thesis label,
++    font=\normalfont\bfseries\fontsize{11bp}{13bp}\selectfont
++  },
++  thesis box/.style={
++    thesis label,
++    rectangle, rounded corners=3bp, line width=0.8bp,
++    inner xsep=6bp, inner ysep=4bp, align=center
++  },
++  module/.style={
++    thesis box, draw=ThesisBaseline, fill=white
++  },
++  fusion/.style={
++    module, draw=ThesisFusion, fill=ThesisFusion!12!white, line width=1.2bp,
++    font=\normalfont\bfseries\fontsize{10bp}{12bp}\selectfont
++  },
++  data/.style={
++    thesis box, draw=#1, fill=#1!12!white
++  },
++  data/.default=ThesisSensor,
++  arrow/.style={
++    -stealth, draw=ThesisInk, line width=0.8bp, line cap=round,
++    shorten >=1bp, shorten <=1bp
++  },
++  groupbox/.style={
++    thesis box, draw=ThesisBaseline, dashed, inner sep=8bp
++  }
++}
+--- a/frontmatter/abstract.tex
++++ b/frontmatter/abstract.tex
+@@ -1,3 +1,39 @@
+-The registered title reflects the robotic welding proposal, and the implementation treats physics-informed fusion as conditioning on observed physical process context without imposing differential-equation or conservation-law constraints. After an audit documented development exposure to the proposed Intel Welding test recordings, evaluation centred on five adjacent industrial and robotic tasks, including a visual comparison of the frozen ResNet18-vd CNN backbone in RT-DETR-R18vd alone and with its hybrid Transformer encoder. A review of 94 full-text works examined fusion methods, single-input baselines and tests of missing or degraded inputs. In one weld-penetration study, images, sound and their combination achieved identical clean-test accuracy.
++% ============================================================
++% ABSTRACT
++% File: frontmatter/abstract.tex
++% ============================================================
+ 
+-Independent validation of weld quality remains open. In PHM, already under way when the welding split was audited, three sensor groups predicted a photograph-derived gear-condition measure with a mean absolute error of 0.824 percentage points, compared with 0.804 for the training mean. Across 4,530 completed REASSEMBLE actions from 148 recordings, failure average precision reached .429 for sensors alone, .446 for equal averaging of video and sensor predictions, and .447 for logistic stacking. The difference between fusion methods remained uncertain. Two adaptive gates showed no consistent advantage under input loss or degradation. Sensor models outperformed stacking in MSM milling and ViFailback manipulation, and equal averaging in human–robot handover. Assembly provided the clearest evidence of a fusion benefit. Across tasks, the results support evaluating learned fusion against both a strong sensor model and simple averaging.
++Industrial monitoring increasingly relies on data from cameras,
++acoustic signals, and machine sensors. Although multimodal learning
++can leverage the strengths of each data type, adding sources does
++not necessarily improve prediction accuracy or reliability,
++particularly when data quality or relevance varies.
++
++This thesis investigates the design and evaluation of process-aware
++multimodal fusion architectures. It presents a critical review of
++\ReviewWorkCount{} full-text works and five empirical studies
++encompassing industrial gear monitoring, robotic assembly, milling,
++manipulation, and human--robot handover. The research employs
++pretrained visual representations, handcrafted sensor features,
++and patch-based temporal encoders. It evaluates feature-level,
++prediction-level, and adaptive fusion, and also examines grouped
++assessment and controlled input degradation where applicable.
++
++In the REASSEMBLE dataset, analysis of 4,530 completed actions from
++148 recordings demonstrated that logistic stacking increased failure
++average precision from 0.429 for its sensor component to 0.447.
++However, the difference from equal averaging (0.446) was small,
++and the advantage of stacking remained statistically unresolved.
++Subsequent experiments indicated that training budget, feature
++aggregation, and complementarity between representations can
++influence predictive performance. External evaluations revealed
++that the benefits of fusion were not consistently observed, and
++adaptive reweighting did not reliably enhance robustness.
++
++The results indicate that the value of multimodal fusion depends
++on the prediction task, the available information, and the evaluation
++protocol, rather than solely on architectural complexity. Issues such
++as independent welding validation, predictive audio fusion, early
++warning, and generalization of unchanged models to new domains
++remain unresolved. Consequently, the conclusions are limited to the
++tasks and conditions examined in this study.
+--- a/main.tex
++++ b/main.tex
+@@ -9,6 +9,7 @@
+ \usepackage{csquotes}
+ \usepackage[backend=biber,style=apa,natbib=true,sortcites=true]{biblatex}
+ \addbibresource{references.bib}
++\addbibresource{references_additions.bib}
+ \usepackage{xcolor,xurl,enumitem,caption,subcaption}
+ \usepackage[hidelinks,unicode]{hyperref}
+ % Set \thesisdraftfalse here for a copy without the DRAFT watermark.
+@@ -67,7 +68,9 @@
+ \vspace*{-\baselineskip}
+ \noindent\input{frontmatter/abstract.tex}
+ 
+-\textit{Keywords:} robotic welding, multimodal monitoring, sensor fusion, missing modalities, failure classification\par
++\textit{Keywords:} Multimodal learning, industrial monitoring,
++sensor fusion, representation learning, adaptive fusion, robustness,
++cross-dataset evaluation\par
+ \endgroup
+ \clearpage
+ \ifdefined\ThesisReviewCopy\else
+--- /dev/null
++++ b/references_additions.bib
+@@ -0,0 +1,11 @@
++% Targeted addition authorized in the November 25 revision. Separate from the historical review corpus.
++% Original publication metadata inspected in the paper; arXiv is a later deposit.
++@article{Ting1999Issues,
++  author = {Ting, Kai Ming and Witten, Ian H.},
++  title = {Issues in Stacked Generalization},
++  journal = {Journal of Artificial Intelligence Research},
++  volume = {10},
++  pages = {271--289},
++  year = {1999},
++  url = {https://arxiv.org/abs/1105.5466}
++}
+--- a/tables/evidence_register.tex
++++ b/tables/evidence_register.tex
+@@ -113,3 +113,15 @@
+ \EvidenceFile{E109}{Cross-study}{source_manifest.json}||
+ \EvidenceFile{E110}{Cross-study}{implementation_model_map.json}||
+ \EvidenceFile{E111}{Cross-study}{implementation_source_snapshot.json}||
++\EvidenceFile{E112}{Architecture history}{SECTION_1_PROTOCOL.md}||
++\EvidenceFile{E113}{F2 verification}{results.json}||
++\EvidenceFile{E114}{Architecture history}{SECTION_1B_PROTOCOL.md}||
++\EvidenceFile{E115}{ViFailback closure}{RESULT_ANALYSIS.md}||
++\EvidenceFile{E116}{ViFailback closure}{FINAL_STATUS.json}||
++\EvidenceFile{E117}{Research chronology}{ARCHITECTURE_VALIDATION_RESULTS.md}||
++\EvidenceFile{E118}{Research chronology}{REBOOT_RESEARCH_DECISION_V2.md}||
++\EvidenceFile{E119}{Research chronology}{FINAL_DATASET_RECOMMENDATION.md}||
++\EvidenceFile{E120}{Research chronology}{RESULTS_REVIEW.md}||
++\EvidenceFile{E121}{Research chronology}{README.md}||
++\EvidenceFile{E122}{F2 verification}{f2_recompute.py}||
++\EvidenceFile{E123}{ViFailback verification}{vif_saved_score_recheck.json}||
+--- a/tables/evidence_source_index.csv
++++ b/tables/evidence_source_index.csv
+@@ -1,8 +1,8 @@
+ file_id,study_or_source,relative_source_name,pinpoints_used,mentions
+ E001,Study design,source_context/revision_pack/01_EXPOSE_ALIGNMENT_DECISION.md,,1
+ E002,Study design,source_context/revision_pack/01_ORIGINAL_EXPOSE.pdf,pp. 2--3,2
+-E003,Study design,source_context/revision_pack/02_THESIS_BASELINE_REPORT.md,sections 2.3 and 3.1 | section 3.1 | sections 2--3 | sections 3.3 and 4.4 | sections 3.4--3.6 and 4.5--4.7,5
+-E004,Study design,source_context/revision_pack/02_THESIS_WRITING_MAP_v3.md,sections 11--14 | section 15 | section 12.4 | section 15.4 | P01 | section 12.5 | section 12.6 | sections 18.2--18.3 and 19.5 | sections 10--11 | sections 12--14 | sections 14--15 | sections 18--21,14
++E003,Study design,source_context/revision_pack/02_THESIS_BASELINE_REPORT.md,sections 3.3 and 4.4 | sections 2.3 and 3.1 | section 3.1,3
++E004,Study design,source_context/revision_pack/02_THESIS_WRITING_MAP_v3.md,sections 10--11 | sections 12--14 | sections 14--15 | sections 18--21 | sections 11--14 | section 15 | section 12.4 | section 15.4 | P01 | section 12.5 | section 12.6 | sections 18.2--18.3 and 19.5,14
+ E005,Literature,literature_audit/additional_web_search_log.json,,1
+ E006,Literature,literature_audit/candidate_screening.csv,,1
+ E007,Literature,literature_audit/evidence.json,,1
+@@ -17,7 +17,7 @@
+ E016,Literature,literature_review/review_counts.json,,1
+ E017,Literature,step1_zotero/identity_catalog.json,,1
+ E018,Intel Welding,configs/intel_welding/foundations.json,,1
+-E019,Intel Welding,scripts/intel_welding/04_foundations.py,"inspect_sample, audit_split, main",1
++E019,Intel Welding,scripts/intel_welding/04_foundations.py,"inspect\_sample, audit\_split, main",1
+ E020,PHM,docs/active_scope.md,,2
+ E021,PHM,docs/planning/HANDOFF.md,,1
+ E022,PHM,docs/thesis/FINAL_CLAIM_MATRIX.md,,1
+@@ -31,16 +31,16 @@
+ E030,PHM,src/phm2026/fusion/modality_fusion.py,,1
+ E031,PHM,src/phm2026/models/patchtst/model.py,patchify,3
+ E032,PHM,src/phm2026/models/patchtst/regression.py,,2
+-E033,PHM,src/phm2026/models/rtdetr/regression.py,"extract_features, train_head | extract_features",3
++E033,PHM,src/phm2026/models/rtdetr/regression.py,"extract\_features, train\_head | extract\_features",3
+ E034,PHM,src/phm2026/README.md,,1
+-E035,PHM,src/phm2026/targets/image_damage.py,measure_damage_candidate,1
++E035,PHM,src/phm2026/targets/image_damage.py,measure\_damage\_candidate,1
+ E036,PHM,tutorials/final_baseline_rtdetr/REPORT.md,,1
+ E037,PHM,tutorials/patchtst_freq_baseline/REPORT.md,,2
+ E038,REASSEMBLE,00_experiments/adaptive_fusion_robustness/results/run_01/comparison/per_condition_metrics.csv,,1
+ E039,REASSEMBLE,00_experiments/rt_detr_encoder_comparison/results/run_01/comparison/metrics.csv,,1
+-E040,REASSEMBLE,artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_EXECUTED_HANDOFF.md,,3
++E040,REASSEMBLE,artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_EXECUTED_HANDOFF.md,,5
+ E041,REASSEMBLE,artifacts/reassemble/reports/AUDIO_FEASIBILITY_HANDOFF.md,,1
+-E042,REASSEMBLE,artifacts/reassemble/reports/BOUNDARY_AWARE_VISUAL_POOLING_HANDOFF.md,,2
++E042,REASSEMBLE,artifacts/reassemble/reports/BOUNDARY_AWARE_VISUAL_POOLING_HANDOFF.md,,3
+ E043,REASSEMBLE,artifacts/reassemble/reports/EFFICIENCY_HANDOFF.md,,1
+ E044,REASSEMBLE,artifacts/reassemble/reports/FINAL_REASSEMBLE_HANDOFF.md,,5
+ E045,REASSEMBLE,artifacts/reassemble/reports/MODALITY_DROPOUT_HANDOFF.md,,1
+@@ -60,9 +60,9 @@
+ E059,REASSEMBLE,docs/thesis_review_handoff/REASSEMBLE_FINETUNING_CURRENT_STATUS_20261110_02/12_CURRENT_25_VS_75_FIT_STATUS.md,,1
+ E060,REASSEMBLE,docs/thesis_review_handoff/REASSEMBLE_FINETUNING_CURRENT_STATUS_20261110_02/14_UNRESOLVED_EVIDENCE.md,,1
+ E061,REASSEMBLE,experiments/reassemble/01_rtdetr_baseline/01_data_preprocessing/01_example_selected_16_frames.png,,1
+-E062,REASSEMBLE,results/comparison/RESULTS_SUMMARY.md,,4
++E062,REASSEMBLE,results/comparison/RESULTS_SUMMARY.md,,5
+ E063,REASSEMBLE,src/reassemble/additional_improvements/models.py,,1
+-E064,REASSEMBLE,src/reassemble/section1_features.py,"load_visual, extract",5
++E064,REASSEMBLE,src/reassemble/section1_features.py,"load\_visual, extract",5
+ E065,REASSEMBLE,src/reassemble/section1_models.py,VisualHead | SensorHead,5
+ E066,REASSEMBLE,src/reassemble/section2_models.py,,1
+ E067,REASSEMBLE,src/reassemble/splits.py,,1
+@@ -101,12 +101,24 @@
+ E100,ViFailback,VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/14_final_research_reports/07_REASSEMBLE_WEIGHT_TRANSFER.md,,1
+ E101,ViFailback,VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/14_final_research_reports/10_UNCERTAINTY_AND_LEAKAGE_LIMITATIONS.md,,1
+ E102,ViFailback,VIFAILBACK/README.md,,1
+-E103,ViFailback update,audit/external_status_refresh_20261118/01_EXECUTIVE_SUMMARY.md,,1
+-E104,ViFailback update,audit/external_status_refresh_20261118/FIT_COVERAGE.json,,1
+-E105,ViFailback update,audit/external_status_refresh_20261118/source_manifest.json,,1
++E103,ViFailback update,audit/external_status_refresh_20261118/01_EXECUTIVE_SUMMARY.md,,0
++E104,ViFailback update,audit/external_status_refresh_20261118/FIT_COVERAGE.json,,0
++E105,ViFailback update,audit/external_status_refresh_20261118/source_manifest.json,,0
+ E106,Cross-study,artifacts/reassemble/reports/CROSS_STUDY_SYNTHESIS_HANDOFF.md,,2
+ E107,Cross-study,tables/headline_plot_data.json,,1
+ E108,Cross-study,thesis_manuscript/evidence/external_dataset_results.json,,5
+ E109,Cross-study,thesis_manuscript/evidence/external_sources/source_manifest.json,,3
+ E110,Cross-study,thesis_manuscript/evidence/implementation_model_map.json,,3
+ E111,Cross-study,thesis_manuscript/evidence/implementation_source_snapshot.json,,1
++E112,Architecture history,repo:implementations/REASSEMBLE/docs/SECTION_1_PROTOCOL.md,,1
++E113,F2 verification,repo:00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/f2_recheck/results.json,,6
++E114,Architecture history,repo:implementations/REASSEMBLE/docs/SECTION_1B_PROTOCOL.md,,1
++E115,ViFailback closure,repo:VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md,,6
++E116,ViFailback closure,repo:VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/FINAL_STATUS.json,,5
++E117,Research chronology,repo:implementations/PADERBORN/docs/ARCHITECTURE_VALIDATION_RESULTS.md,,1
++E118,Research chronology,repo:implementations/REBOOT/results/07_research_decision/REBOOT_RESEARCH_DECISION_V2.md,,1
++E119,Research chronology,repo:implementations/general/docs/dataset_research/NEW_DATASET_SELECTION_20261028/FINAL_DATASET_RECOMMENDATION.md,,1
++E120,Research chronology,repo:implementations/INTEL_WELDING/docs/RESULTS_REVIEW.md,,1
++E121,Research chronology,repo:implementations/MSM/experiments/legacy/README.md,,1
++E122,F2 verification,repo:00_thesus_writing_tracking/scientific_cross_mapping_20261125/f2_recompute.py,,1
++E123,ViFailback verification,repo:00_thesus_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/vif_saved_score_recheck.json,,1
+--- a/tables/headline_plot_data.json
++++ b/tables/headline_plot_data.json
+@@ -1,22 +1,22 @@
+-{
+-  "estimand": "pooled failure/positive AP; MSM mean over three seeds",
+-  "caution": "Separate within-study panels; no common prevalence, target or uncertainty. No CI drawn.",
+-  "sources": [
+-    "artifacts/reassemble/reports/SECTION_2_FUSION_HANDOFF.md",
+-    "MSM/09_final_reports/EXPERIMENT_RESULTS.md"
+-  ],
+-  "values": {
+-    "REASSEMBLE": {
+-      "Visual": 0.230658315,
+-      "Sensor logistic": 0.4293918694,
+-      "Static F2": 0.4472985514
+-    },
+-    "MSM": {
+-      "Visual": 0.298901,
+-      "Sensor logistic": 0.828616,
+-      "Sensor HGB": 0.901299,
+-      "Averaging": 0.735594,
+-      "Static F2": 0.756879
+-    }
+-  }
+-}
+\ No newline at end of file
++{
++  "estimand": "REASSEMBLE: pooled failure AP; MSM: abnormal-cutting AP, mean over three seed-specific pooled predictions",
++  "caution": "Separate within-study panels; no common prevalence, target or uncertainty. No CI drawn.",
++  "sources": [
++    "artifacts/reassemble/reports/SECTION_2_FUSION_HANDOFF.md",
++    "MSM/09_final_reports/EXPERIMENT_RESULTS.md"
++  ],
++  "values": {
++    "REASSEMBLE": {
++      "Visual": 0.230658315,
++      "Sensor logistic": 0.4293918694,
++      "Static F2": 0.4472985514
++    },
++    "MSM": {
++      "Visual": 0.298901,
++      "Sensor logistic": 0.828616,
++      "Sensor HGB": 0.901299,
++      "Averaging": 0.735594,
++      "Static F2": 0.756879
++    }
++  }
++}

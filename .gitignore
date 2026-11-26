@@ -405,7 +405,7 @@ scratch/
 /implementations/PHM2026/experiments/blind_inspection_legacy/
 
 # Relocated derived study outputs; raw-data exclusions remain unchanged.
-/implementations/PHM2026/results/processed/raw_vibration/
+/implementations/PHM2026/results/processed/raw_vibration/*
 /implementations/PADERBORN/results/processed/bearing_features/
 
 # Paderborn validation data (ARCH-VAL-PB) - large, downloaded, not versioned
@@ -705,3 +705,50 @@ data/rawvib/
 /implementations/general/research_workflow/automation/**/*.lock
 /implementations/REASSEMBLE/experiments/core/**/*.lock
 /implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/*.lock
+
+# Academic-review consolidation (2026-11-26): exact compact evidence only.
+# These are publication candidates, not permission to stage/push. See
+# 00_thesis_writing_tracking/consolidation_20261126/PUBLICATION_MANIFEST.md.
+!/implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/loeo_predictions.csv
+!/implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/loeo_summary.csv
+!/implementations/PHM2026/results/runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/tables/run_damage_targets.csv
+!/implementations/PHM2026/results/runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/tables/per_tooth_damage.csv
+!/implementations/PHM2026/results/processed/raw_vibration/l1_screen.json
+!/implementations/PHM2026/results/processed/raw_vibration/sector_screen.json
+!/00_thesis_writing_tracking/scientific_cross_mapping_20261125/f2_verification/fold_metrics.csv
+!/00_thesis_writing_tracking/Thesis/References/CITATION_PDFS.csv
+!/00_thesis_writing_tracking/Thesis/References/PDF_PROVENANCE.csv
+
+# Bibliographic metadata stays reviewable; third-party full text stays local.
+/00_thesis_writing_tracking/Thesis/References/PDFs/
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/citation_review_ch01_ch02_20261126_01/root_pdf_texts/
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/citation_review_ch01_ch02_20261126_01/metadata_inventory.json
+
+# Compilation products and page renders are retained locally, not published.
+# Do not ignore the surrounding validation reports, manifests or source snapshots.
+/00_thesis_writing_tracking/**/*.aux
+/00_thesis_writing_tracking/**/*.bbl
+/00_thesis_writing_tracking/**/*.bcf
+/00_thesis_writing_tracking/**/*.blg
+/00_thesis_writing_tracking/**/*.fdb_latexmk
+/00_thesis_writing_tracking/**/*.fls
+/00_thesis_writing_tracking/**/*.out
+/00_thesis_writing_tracking/**/*.run.xml
+/00_thesis_writing_tracking/**/*.synctex.gz
+/00_thesis_writing_tracking/**/*.toc
+/00_thesis_writing_tracking/**/*.lof
+/00_thesis_writing_tracking/**/*.lot
+/00_thesis_writing_tracking/**/*.xdv
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/**/*_build/
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/**/render*/
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/**/previews*/
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/**/source_previews/
+
+# Approved location-only consolidation (2026-11-26); payload policy is unchanged.
+/implementations/general/docs/dataset_research/NEW_DATASET_SELECTION_20261028/source_evidence/
+/implementations/cross_dataset/results/INDEPENDENT_REVIEW_PACKAGE/10_Visual_And_Sensor_Examples/
+/implementations/PHM2026/experiments/exp_a_initial_eda_r1_r3_r5/outputs/**/*.csv
+# Local per-file migration inventories and ignore-policy mirrors are operational records.
+/implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/preflight_*/FILE_METADATA_*.jsonl
+/implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/preflight_*/ignore_policy_shadow/
+/implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/selftest_*/

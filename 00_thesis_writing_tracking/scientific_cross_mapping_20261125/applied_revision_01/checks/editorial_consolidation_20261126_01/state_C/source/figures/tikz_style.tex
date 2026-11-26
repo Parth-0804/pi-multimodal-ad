@@ -1,0 +1,54 @@
+% Input from a LaTeX preamble, with the working directory at the thesis root.
+\RequirePackage{tikz}
+
+% Shared semantic palette. See VISUAL_STYLE.md for the role definitions.
+\definecolor{ThesisVision}{HTML}{0072B2}
+\definecolor{ThesisSensor}{HTML}{009E73}
+\definecolor{ThesisContext}{HTML}{56B4E9}
+\definecolor{ThesisFusion}{HTML}{CC79A7}
+\definecolor{ThesisBaseline}{HTML}{595959}
+\definecolor{ThesisHighlight}{HTML}{E69F00}
+\definecolor{ThesisAudio}{HTML}{882255}
+\definecolor{ThesisThermal}{HTML}{D55E00}
+\definecolor{ThesisDepth}{HTML}{332288}
+\definecolor{ThesisVibration}{HTML}{117733}
+\definecolor{ThesisWrench}{HTML}{999933}
+\definecolor{ThesisInk}{HTML}{222222}
+
+\tikzset{
+  thesis label/.style={
+    font=\normalfont\fontsize{10bp}{12bp}\selectfont,
+    text=ThesisInk
+  },
+  thesis annotation/.style={
+    thesis label,
+    font=\normalfont\fontsize{9bp}{11bp}\selectfont
+  },
+  thesis panel label/.style={
+    thesis label,
+    font=\normalfont\bfseries\fontsize{11bp}{13bp}\selectfont
+  },
+  thesis box/.style={
+    thesis label,
+    rectangle, rounded corners=3bp, line width=0.8bp,
+    inner xsep=6bp, inner ysep=4bp, align=center
+  },
+  module/.style={
+    thesis box, draw=ThesisBaseline, fill=white
+  },
+  fusion/.style={
+    module, draw=ThesisFusion, fill=ThesisFusion!12!white, line width=1.2bp,
+    font=\normalfont\bfseries\fontsize{10bp}{12bp}\selectfont
+  },
+  data/.style={
+    thesis box, draw=#1, fill=#1!12!white
+  },
+  data/.default=ThesisSensor,
+  arrow/.style={
+    -stealth, draw=ThesisInk, line width=0.8bp, line cap=round,
+    shorten >=1bp, shorten <=1bp
+  },
+  groupbox/.style={
+    thesis box, draw=ThesisBaseline, dashed, inner sep=8bp
+  }
+}

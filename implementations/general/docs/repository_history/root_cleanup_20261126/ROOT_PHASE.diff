@@ -1,0 +1,64 @@
+--- before/AGENTS.md
++++ after/AGENTS.md
+@@ -311,7 +311,7 @@
+ - [PHM retirement report](artifacts/phm2026/PHM_RAW_RETIREMENT_REPORT.md) and
+   [recovery instructions](docs/phm2026/RAW_DATA_RECOVERY.md) report a one-off raw-tree
+   retirement with D1/D2 gates, in conflict with older blanket immutability wording.
+-  [REASSEMBLE cache retention](docs/maintenance/REASSEMBLE_CACHE_RETENTION.md) reports
++  [REASSEMBLE cache retention](implementations/REASSEMBLE/docs/maintenance/REASSEMBLE_CACHE_RETENTION.md) reports
+   a separate narrow derived-cache exception with retention/recovery requirements.
+   These are historical authorization/execution records, not independent proof of
+   authority for a new operation. Apply the explicit exception requirements above;
+--- before/README.md
++++ after/README.md
+@@ -34,4 +34,6 @@
+ 
+ Raw datasets, large checkpoints/caches and copyright-restricted publications are excluded from the proposed review publication; existing tracked assets still require review. [Dataset guides](implementations/README.md) link source/version records, native locations and acquisition requirements; PHM has [recovery instructions](implementations/PHM2026/docs/RAW_DATA_RECOVERY.md). Obtain external resources under their official access terms. Historical paths/endpoints and payload availability require checking. The [consolidation/publication records](00_thesis_writing_tracking/consolidation_20261126/) identify retained hashes, exclusions and pending permissions.
+ 
++Physical consolidation is still partial: protected raw/source trees and frozen studies remain at their historical roots. The [root-cleanup receipt](implementations/general/docs/repository_history/root_cleanup_20261126/README.md) identifies completed moves, exact remaining destinations and dependency gates.
++
+ Dependencies: [pyproject.toml](pyproject.toml), [requirements.txt](requirements.txt). Before execution, read [AGENTS.md](AGENTS.md), [active scope](docs/active_scope.md), [data boundaries](docs/data_boundaries.md) and [output policy](docs/output_policy.md). Historical commands do not authorize reruns; this navigation does not amend the PHM-centred written scope. [License](LICENSE).
+--- before/REPO_MAP.md
++++ after/REPO_MAP.md
+@@ -38,16 +38,17 @@
+ 
+ ## Protected locations and dependencies
+ 
+-Native inputs retain their original roots, including `MSM/01_raw_dataset/`, `HANDOVER/01_raw_dataset/`, `REBOOT/01_raw_dataset/`, `MILLING DATASET/data/` and `VIFAILBACK/01_original_dataset/`. Protected PHM `gtc-data-experiment/**` and Intel `data/Full Dataset/**` identities remain protected even when absent. No raw tree or model run is relocated by the thesis consolidation.
++Remaining native-input roots include `HANDOVER/01_raw_dataset/`, `REBOOT/01_raw_dataset/`, `MILLING DATASET/data/` and `VIFAILBACK/01_original_dataset/`. The root `MSM/` is already absent; its input records are at `implementations/MSM/01_raw_dataset/`, whose pre-existing `official_dataset` link is broken and awaits a verified target repair. Protected PHM `gtc-data-experiment/**` and Intel `data/Full Dataset/**` identities remain protected even when absent. No raw tree or model run is relocated by the thesis consolidation or the subsequent bounded root cleanup.
+ 
+ `implementations/` is the canonical browsing structure. Root `src/` has compatibility links to the PHM2026, REASSEMBLE, Intel Welding and shared external-evaluation packages. `implementations/VIFAILBACK/` links into the retained frozen root workspace. Original phase-one and bootstrap source/configuration/fit references remain at `26.10.2026_feedback_experiments/` and `parth_ws_bootstrap/00_experimentation/`. The protected initial PHM EDA remains at [experiments/exp_a_initial_eda_r1_r3_r5/](experiments/exp_a_initial_eda_r1_r3_r5/); `REBOOT/runs/` retains feasibility evidence.
+ 
+ ## History, retrieval and policy
+ 
+ - [November 26 thesis consolidation](00_thesis_writing_tracking/consolidation_20261126/) records the approved local changes and publication dependencies.
++- [November 26 root cleanup](implementations/general/docs/repository_history/root_cleanup_20261126/README.md) records the model-audit, maintenance-document and Handover-link moves; remaining protected relocations and frozen-study dependency gates are explicit.
+ - [November 25 broader physical move proposal](implementations/general/docs/repository_history/final_consolidation_20261125/MOVE_PLAN.md) is an earlier proposal, not an instruction to move dataset implementations now.
+ - [November 24 organization checks](implementations/general/docs/repository_history/post_report_cleanup_20261124/STATUS.json) and [change record](implementations/general/docs/repository_history/post_report_cleanup_20261124/CHANGES.json) describe that earlier scope.
+ - [Earlier dataset consolidation](implementations/general/docs/repository_history/dataset_layout_cleanup.json) and [physical path mapping](implementations/general/docs/repository_history/physical_restructure_20261119/PATH_MAPPING.json) resolve older source names.
+-- [PHM raw recovery](implementations/PHM2026/docs/RAW_DATA_RECOVERY.md), dataset-native acquisition records and [REASSEMBLE cache retention](docs/maintenance/REASSEMBLE_CACHE_RETENTION.md) distinguish retained evidence from external or regenerable payloads.
++- [PHM raw recovery](implementations/PHM2026/docs/RAW_DATA_RECOVERY.md), dataset-native acquisition records and [REASSEMBLE cache retention](implementations/REASSEMBLE/docs/maintenance/REASSEMBLE_CACHE_RETENTION.md) distinguish retained evidence from external or regenerable payloads.
+ 
+ Relocation, link checks and recomputation of saved metrics do not reproduce training. Scope, data and retention decisions remain governed by [AGENTS.md](AGENTS.md), [active scope](docs/active_scope.md), [data boundaries](docs/data_boundaries.md) and [output policy](docs/output_policy.md). Later task-specific research authorization does not silently amend the PHM-centred scope document.
+--- before/implementations/MSM/README.md
++++ after/implementations/MSM/README.md
+@@ -14,7 +14,7 @@
+ 
+ [Source](src) · [Tests](tests) · [Documentation](docs)
+ 
+-Native inputs remain at repository-root `MSM/01_raw_dataset/` and `MILLING DATASET/data/`. Failed scientific gates and study eligibility remain authoritative. Shared fitting/evaluation implementation is in ../cross_dataset/src/external_eval/.
++Native input records are at `implementations/MSM/01_raw_dataset/`; the root `MSM/` no longer exists. The pre-existing `official_dataset` link there is broken; its intended source tree remains at repository-root `MILLING DATASET/data/`. A verified target repair is pending with the protected-location consolidation. Failed scientific gates and study eligibility remain authoritative. Shared fitting/evaluation implementation is in ../cross_dataset/src/external_eval/.
+ 
+ Each study's frozen protocol, fit manifests and assessment records determine what ran and which comparisons are eligible. A folder or script is not execution evidence. Historical commands retain their original paths; navigation/package checks are not model reproduction.
+ 
+--- before/implementations/REASSEMBLE/src/reassemble/cache_preflight.py
++++ after/implementations/REASSEMBLE/src/reassemble/cache_preflight.py
+@@ -9,7 +9,7 @@
+ 
+ PREFIX = Path("runs/reassemble/additional_improvements_executed/20260928T000346Z/01_temporal_visual/frozen_prefix")
+ PIXEL_RUN = Path("parth_ws_bootstrap/00_experimentation/visual_backbone_f2_frozen_vs_final_stage_16_vs_32_frames/run_01")
+-GUIDE = "docs/maintenance/REASSEMBLE_CACHE_RETENTION.md"
++GUIDE = "implementations/REASSEMBLE/docs/maintenance/REASSEMBLE_CACHE_RETENTION.md"
+ 
+ 
+ def read(path):

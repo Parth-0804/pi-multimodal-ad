@@ -14,4 +14,8 @@ Repository-wide tools and thesis material. Dataset-owned implementation belongs 
 
 Scientific protocols, authorization records, negative/incomplete results and required AI-use provenance remain retained. Old command records are historical; consult current dataset guides and the path mapping before reuse.
 
+## Thesis and evidence
+
+The [canonical manuscript and review snapshots](../../00_thesis_writing_tracking/README.md) now provide the writing entry point. Material under `docs/thesis/` remains historical evidence and research support, not a competing current manuscript. The [original exposé](docs/thesis/source_documents/MA_Exposé_Ravaliya_Parth.pdf), [research chronology](../../00_thesis_writing_tracking/scientific_cross_mapping_20261125/RESEARCH_CHRONOLOGY.md) and [thesis-to-code map](../../docs/THESIS_CODE_MAP.md) connect the original objective, later studies and existing evidence identifiers.
+
 [All datasets](../README.md) · [Repository map](../../REPO_MAP.md)
