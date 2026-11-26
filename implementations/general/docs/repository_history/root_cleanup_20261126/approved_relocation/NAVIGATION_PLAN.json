@@ -1,0 +1,222 @@
+{
+  "scope": "Current navigation only, apply only after parent MOVE_COMPLETE; no historical evidence or manuscript edits",
+  "changes": [
+    {
+      "path": "README.md",
+      "before": "Physical consolidation is still partial: protected raw/source trees and frozen studies remain at their historical roots. The [root-cleanup receipt](implementations/general/docs/repository_history/root_cleanup_20261126/README.md) identifies completed moves, exact remaining destinations and dependency gates.",
+      "after": "The eleven groups covered by the researcher-approved location exception are now physically consolidated under `implementations/`. The [relocation receipt](implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md) records their destinations, file-identity checks and repairs. Frozen source, configurations and saved results retain their identities; historical manifests keep their original path names. Direct frozen-study commands require an explicit relocation context, and [remaining legacy execution-path limits](implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/vifailback_adapter/LEGACY_CONSUMER_LIMITS.md) are documented. These path checks do not reproduce experiments or authorize resuming stopped work."
+    },
+    {
+      "path": "REPO_MAP.md",
+      "before": "[original workspace](VIFAILBACK/README.md)",
+      "after": "[preserved original workspace guide](implementations/VIFAILBACK/docs/WORKSPACE_BEFORE_CONSOLIDATION.md)"
+    },
+    {
+      "path": "REPO_MAP.md",
+      "before": "Remaining native-input roots include `HANDOVER/01_raw_dataset/`, `REBOOT/01_raw_dataset/`, `MILLING DATASET/data/` and `VIFAILBACK/01_original_dataset/`. The root `MSM/` is already absent; its input records are at `implementations/MSM/01_raw_dataset/`, whose pre-existing `official_dataset` link is broken and awaits a verified target repair. Protected PHM `gtc-data-experiment/**` and Intel `data/Full Dataset/**` identities remain protected even when absent. No raw tree or model run is relocated by the thesis consolidation or the subsequent bounded root cleanup.",
+      "after": "The approved native-input destinations are [HANDOVER inputs](implementations/HANDOVER/01_raw_dataset/), [REBOOT inputs](implementations/REBOOT/01_raw_dataset/), [legacy milling data](implementations/MSM/experiments/legacy/data/) and [ViFailback originals](implementations/VIFAILBACK/01_original_dataset/). MSM input records remain at [01_raw_dataset/](implementations/MSM/01_raw_dataset/); its repaired `official_dataset` link resolves to the retained legacy dataset tree. The [one-off relocation receipt](implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md) covers the exact eleven approved groups, including raw/source material, frozen studies and initial PHM EDA. Content, provenance and stopped-study protections remain in force at their new locations. Protected PHM `gtc-data-experiment/**` and Intel `data/Full Dataset/**` were outside that scope and retain their protected identities even when absent."
+    },
+    {
+      "path": "REPO_MAP.md",
+      "before": "`implementations/` is the canonical browsing structure. Root `src/` has compatibility links to the PHM2026, REASSEMBLE, Intel Welding and shared external-evaluation packages. `implementations/VIFAILBACK/` links into the retained frozen root workspace. Original phase-one and bootstrap source/configuration/fit references remain at `26.10.2026_feedback_experiments/` and `parth_ws_bootstrap/00_experimentation/`. The protected initial PHM EDA remains at [experiments/exp_a_initial_eda_r1_r3_r5/](experiments/exp_a_initial_eda_r1_r3_r5/); `REBOOT/runs/` retains feasibility evidence.",
+      "after": "`implementations/` is the canonical physical study structure. Root `src/` retains compatibility links to the PHM2026, REASSEMBLE, Intel Welding and shared external-evaluation packages. [ViFailback](implementations/VIFAILBACK/README.md) now owns its physical workspace. REASSEMBLE retains [phase-one feedback](implementations/REASSEMBLE/experiments/cnn_seed_stability/phase1_feedback/) and [bootstrap studies](implementations/REASSEMBLE/experiments/bootstrap/00_experimentation/); initial PHM EDA is at [its preserved experiment directory](implementations/PHM2026/experiments/exp_a_initial_eda_r1_r3_r5/), and [REBOOT runs](implementations/REBOOT/runs/) retain feasibility evidence. Historical manifests keep original names such as `26.10.2026_feedback_experiments/` and `parth_ws_bootstrap/`; current navigation resolves their physical destinations.\n\nFrozen source and output identities are preserved, not regenerated. Direct frozen-study CLI calls require an explicit relocation context: consult the [REASSEMBLE loader](implementations/REASSEMBLE/src/reassemble/relocation.py), [ViFailback activation guide](implementations/VIFAILBACK/relocation/README.md) and [legacy consumer limits](implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/vifailback_adapter/LEGACY_CONSUMER_LIMITS.md). Literal string I/O and child-process paths are not universally translated; these checks establish bounded path compatibility, not full historical replay."
+    },
+    {
+      "path": "REPO_MAP.md",
+      "before": "- [November 26 root cleanup](implementations/general/docs/repository_history/root_cleanup_20261126/README.md) records the model-audit, maintenance-document and Handover-link moves; remaining protected relocations and frozen-study dependency gates are explicit.",
+      "after": "- [November 26 root cleanup](implementations/general/docs/repository_history/root_cleanup_20261126/README.md) retains the earlier model-audit, maintenance-document and Handover-link phases. The later [approved eleven-group relocation](implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md) records physical consolidation, identity preservation and bounded adapter checks."
+    },
+    {
+      "path": "implementations/README.md",
+      "before": "Source, scripts, configurations and tests live with their dataset where applicable. Data and frozen run references retain protected original paths; links expose them here without copying. Root src/ contains compatibility import links, not duplicate implementations.",
+      "after": "Source, scripts, configurations, tests and the eleven approved remaining raw/study groups now live with their owning implementations. The [location-exception receipt](general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md) records the exact moves and retained identities. Historical manifests preserve their original path names; source, data and saved results remain protected. Direct frozen-study commands need an explicit relocation context, with [legacy execution-path limits](general/docs/repository_history/root_cleanup_20261126/approved_relocation/vifailback_adapter/LEGACY_CONSUMER_LIMITS.md). Root `src/` retains compatibility import links. Physical consolidation and path checks do not establish experimental replay."
+    },
+    {
+      "path": "implementations/REASSEMBLE/README.md",
+      "before": "Original phase-one and bootstrap fit references remain at their recorded root paths.",
+      "after": "The original [phase-one feedback workspace](experiments/cnn_seed_stability/phase1_feedback/) and [bootstrap workspace](experiments/bootstrap/) now live here; their frozen source, configurations, stop records and results retain their identities. Historical manifests retain original names."
+    },
+    {
+      "path": "implementations/REASSEMBLE/README.md",
+      "before": "Each study's frozen protocol, fit manifests and assessment records determine what ran and which comparisons are eligible. A folder or script is not execution evidence. Historical commands retain their original paths; navigation/package checks are not model reproduction.",
+      "after": "Each study's frozen protocol, fit manifests and assessment records determine what ran and which comparisons are eligible. A folder or script is not execution evidence. Direct commands for relocated frozen studies require the explicit [relocation loader](src/reassemble/relocation.py); consult the [relocation receipt](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md) for bounded checks and remaining dependencies. Historical commands retain their original paths. Navigation and source-identity checks do not reproduce models or authorize job resumption."
+    },
+    {
+      "path": "implementations/VIFAILBACK/README.md",
+      "before": "Multiview completed-episode outcome classification. This is the canonical browsing entry under implementations/. Linked folders retain the original immutable data and frozen experiment locations; no raw data or checkpoint is copied or moved.",
+      "after": "Multiview completed-episode outcome classification. This is the canonical physical workspace under `implementations/`. The approved location-only relocation preserved original data, frozen source, configurations, checkpoints and saved-result identities. Historical manifests retain their original path names; no experiment was replayed."
+    },
+    {
+      "path": "implementations/VIFAILBACK/README.md",
+      "before": "The current training queue is closed by the researcher. Unexecuted fits are not negative model results. Use the study-local stop, coverage and analysis records for actual completion; the older dataset-level status may describe an earlier plan. No restart is authorized by this navigation.",
+      "after": "The current training queue is closed by the researcher. Unexecuted fits are not negative model results. Use the study-local stop, coverage and analysis records for actual completion; the older dataset-level status may describe an earlier plan. Direct frozen-study CLI commands require the explicit context described in the [relocation activation guide](relocation/README.md), including activation in each participating Python process. The [relocation receipt](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md) records preservation and bounded source checks. No restart is authorized by this navigation."
+    },
+    {
+      "path": "implementations/VIFAILBACK/README.md",
+      "before": "[original dataset/label verification](../../VIFAILBACK/10_final_research_reports/02_DATASET_AND_LABEL_VERIFICATION.md), [preprocessing report](../../VIFAILBACK/10_final_research_reports/03_DATA_PREPROCESSING.md), [original protocol](../../VIFAILBACK/configs/protocol.json) and matched study's [protocol/source evidence](../../VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/)",
+      "after": "[original dataset/label verification](10_final_research_reports/02_DATASET_AND_LABEL_VERIFICATION.md), [preprocessing report](10_final_research_reports/03_DATA_PREPROCESSING.md), [original protocol](configs/protocol.json) and matched study's [protocol/source evidence](experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/)"
+    },
+    {
+      "path": "implementations/VIFAILBACK/README.md",
+      "before": "[Original workspace](../../VIFAILBACK/README.md)",
+      "after": "[Preserved original workspace guide](docs/WORKSPACE_BEFORE_CONSOLIDATION.md) \u00b7 [Independent dataset verification](02_dataset_verification/independent_verification/)"
+    },
+    {
+      "path": "implementations/MSM/README.md",
+      "before": "Native input records are at `implementations/MSM/01_raw_dataset/`; the root `MSM/` no longer exists. The pre-existing `official_dataset` link there is broken; its intended source tree remains at repository-root `MILLING DATASET/data/`. A verified target repair is pending with the protected-location consolidation. Failed scientific gates and study eligibility remain authoritative. Shared fitting/evaluation implementation is in ../cross_dataset/src/external_eval/.",
+      "after": "The [native input records](01_raw_dataset/) and [legacy milling studies](experiments/legacy/) are physically consolidated here. The repaired [official dataset link](01_raw_dataset/official_dataset/) resolves to the retained [legacy source tree](experiments/legacy/data/raw/msm/versions/2/). Dataset/source identities remain distinct and protected. Failed scientific gates and study eligibility remain authoritative. Shared fitting/evaluation code is in [external_eval](../cross_dataset/src/external_eval/). The [legacy execution-path audit](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/vifailback_adapter/LEGACY_CONSUMER_LIMITS.md) identifies unresolved string-I/O and controller paths; current navigation does not certify unchanged historical commands as runnable."
+    },
+    {
+      "path": "implementations/HANDOVER/README.md",
+      "before": "Native inputs stay at repository-root `HANDOVER/01_raw_dataset/`, reached through\nthe [common-support study input link](experiments/common_support_v2/01_raw_dataset/).\nThe [relocation receipt](../general/docs/repository_history/root_cleanup_20261126/model_audit_and_handover/README.md)\nrecords the moved browsing link and removal of its empty old containers; the raw\ntree remains at its original location. Preserve participant-identity limitations\nand mandatory participant-safe OOF gates. Missing identity is not permission to\nsubstitute trial groups or in-sample stacking.",
+      "after": "Native inputs are physically retained at [01_raw_dataset/](01_raw_dataset/), also\nreached through the repaired [common-support study input link](experiments/common_support_v2/01_raw_dataset/).\nThe [approved relocation receipt](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md)\nrecords the same-filesystem move and preservation of file identities. The\n[legacy execution-path audit](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/vifailback_adapter/LEGACY_CONSUMER_LIMITS.md)\nrecords remaining manifest-string and controller-path dependencies; no replay is\nclaimed. Preserve participant-identity limitations and mandatory participant-safe\nOOF gates. Missing identity is not permission to substitute trial groups or\nin-sample stacking."
+    },
+    {
+      "path": "implementations/REBOOT/README.md",
+      "before": "Native inputs and retained investigation runs remain in repository-root REBOOT/. Training is not authorized by this guide; annotation/control/grouping and independent review gates remain necessary.",
+      "after": "The [native inputs](01_raw_dataset/) and [retained investigation runs](runs/) are physically consolidated here with their identities preserved. Original manifests keep their historical path names. The [legacy execution-path audit](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/vifailback_adapter/LEGACY_CONSUMER_LIMITS.md) identifies remaining discovery/import and decoder-path dependencies; this relocation does not certify historical CLI replay. Training is not authorized by this guide; annotation/control/grouping and independent review gates remain necessary."
+    },
+    {
+      "path": "implementations/cross_dataset/README.md",
+      "before": "Native-source review examples remain under `CROSS_DATASET_COMPARISON/`; their\nraw-data protection is unchanged.",
+      "after": "The [native-source review examples](results/INDEPENDENT_REVIEW_PACKAGE/10_Visual_And_Sensor_Examples/)\nare now physically retained with the review package. Their content and provenance\nremain protected; the [approved relocation receipt](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md)\nrecords the location-only change."
+    },
+    {
+      "path": "implementations/cross_dataset/README.md",
+      "before": "Old source aliases were removed. Source-path and packaging updates remain\nunfinished; use the [move mapping](../general/docs/repository_history/dataset_layout_cleanup.json)\nwhen following historical commands or source references.",
+      "after": "Old source aliases were removed. The [earlier move mapping](../general/docs/repository_history/dataset_layout_cleanup.json)\nand [legacy execution-path audit](../general/docs/repository_history/root_cleanup_20261126/approved_relocation/vifailback_adapter/LEGACY_CONSUMER_LIMITS.md)\nidentify remaining path dependencies in historical commands, manifest-string I/O\nand child-process controllers. Explicit context adapters cover only their stated\ninterfaces; physical consolidation does not establish full replay compatibility."
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "## Chapter 5 \u2014 PHM2026",
+      "after": "The [approved eleven-group relocation](../implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/README.md) places the remaining raw/study groups under their implementations while preserving frozen source, configurations, stop records and saved outputs. Historical manifests keep original path identities. Direct frozen-study CLI execution requires an explicit context: see the [REASSEMBLE loader](../implementations/REASSEMBLE/src/reassemble/relocation.py), [ViFailback activation guide](../implementations/VIFAILBACK/relocation/README.md) and [remaining legacy consumer limits](../implementations/general/docs/repository_history/root_cleanup_20261126/approved_relocation/vifailback_adapter/LEGACY_CONSUMER_LIMITS.md). These bounded path checks do not reproduce experiments or resolve missing execution lineage.\n\n## Chapter 5 \u2014 PHM2026"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "[Protected initial EDA](../experiments/exp_a_initial_eda_r1_r3_r5/)",
+      "after": "[Protected initial EDA](../implementations/PHM2026/experiments/exp_a_initial_eda_r1_r3_r5/)"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "Frozen original sources remain under `26.10.2026_feedback_experiments/` and `parth_ws_bootstrap/00_experimentation/`; these are historical sources, not aliases for the current core implementation",
+      "after": "Frozen originals now reside in [phase-one feedback](../implementations/REASSEMBLE/experiments/cnn_seed_stability/phase1_feedback/) and [bootstrap studies](../implementations/REASSEMBLE/experiments/bootstrap/00_experimentation/). Their manifests retain the historical `26.10.2026_feedback_experiments/` and `parth_ws_bootstrap/` identities; these sources remain separate from the current core implementation"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "[REBOOT/runs](../REBOOT/runs/)",
+      "after": "[retained investigation runs](../implementations/REBOOT/runs/)"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "../VIFAILBACK/src/vifailback/",
+      "after": "../implementations/VIFAILBACK/src/vifailback/"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "../VIFAILBACK/configs/protocol.json",
+      "after": "../implementations/VIFAILBACK/configs/protocol.json"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "../VIFAILBACK/10_final_research_reports/10_INDEPENDENT_VERIFICATION.md",
+      "after": "../implementations/VIFAILBACK/10_final_research_reports/10_INDEPENDENT_VERIFICATION.md"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "../VIFAILBACK/10_final_research_reports/",
+      "after": "../implementations/VIFAILBACK/10_final_research_reports/"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "../VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/training.py",
+      "after": "../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/training.py"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "../VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/model_runtime.py",
+      "after": "../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/model_runtime.py"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "../VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/protocol.json",
+      "after": "../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/protocol.json"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "../VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/fusion_evaluation.py",
+      "after": "../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/fusion_evaluation.py"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "../VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/FINAL_STATUS.json",
+      "after": "../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/FINAL_STATUS.json"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before": "../VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/GIT_COMMITS.json",
+      "after": "../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/GIT_COMMITS.json"
+    },
+    {
+      "path": "implementations/PHM2026/docs/studies/THESIS_CODE_TRACEABILITY.md",
+      "before": "[initial EDA](../../../../experiments/exp_a_initial_eda_r1_r3_r5)",
+      "after": "[initial EDA](../../experiments/exp_a_initial_eda_r1_r3_r5/)"
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "before_sha256": "fbc42ec2fedb8dd855f45c61e5163bfafa603b238eea53676147bc0493837599",
+      "after_sha256": "c8c310e9dae3bfbdc02bf05347927fc965530c51dae65056c34ecdf8d5bd5feb"
+    },
+    {
+      "path": "REPO_MAP.md",
+      "before_sha256": "957341840a32b87cd57f93042bf98506cc0f3c52288876a0d5bc733a9fe61b1e",
+      "after_sha256": "f77d3ad6658239c80d40eb06c8e9989dd1ecdadea94549f914e4d0774571ee92"
+    },
+    {
+      "path": "implementations/README.md",
+      "before_sha256": "ffe0a5076fcbbf6cf37b8452eb09e99919a7464ba4e571800f056bb6a55e189d",
+      "after_sha256": "e8cb5f8d6d5226dde75d0d48a05f9b6bfecc7b9a4f5b886d6250047906f6be5c"
+    },
+    {
+      "path": "implementations/REASSEMBLE/README.md",
+      "before_sha256": "0d04f21ac25ec9cf7840e4c0f39eca6171dae1da85dce10bb29bcb98d87f7697",
+      "after_sha256": "65219369bdc4cd7e1e531309131345078175ac4cc34502d10e69aacd6f60edee"
+    },
+    {
+      "path": "implementations/VIFAILBACK/README.md",
+      "before_sha256": "154f3159c876d8cb3dda96aa365e86d42465c91db719418b0fed562fb0caa4b4",
+      "after_sha256": "b74f9d2bb71ea9be6727b469058f87a259fd1944cb80607e15dc8adfc37fa03a"
+    },
+    {
+      "path": "implementations/MSM/README.md",
+      "before_sha256": "548fb62e17aeced7c4a9c4fef78b75708adfb467fe861ac59335e272d92e4468",
+      "after_sha256": "685e6afa47830fe6b34ddfb15b54a50a1b2acd5f16cc96e3f4e497d53208bc66"
+    },
+    {
+      "path": "implementations/HANDOVER/README.md",
+      "before_sha256": "baf285dcb5d62320b5ea57dd68a37bc5526b9bb87f7d9a30c1960db95660c312",
+      "after_sha256": "bc0d9ca0e20796cc046b7cceb0b3e26a552f6d71e97f8d90c309ba7bb6d9f249"
+    },
+    {
+      "path": "implementations/REBOOT/README.md",
+      "before_sha256": "cc4807f77cf4b366970f651616027a70de15d8f389ff2b49da5e8280633a5271",
+      "after_sha256": "e326c15abc867116a1b8c24c4df94ff8fae48947a480ba5455d4e8fe4840b885"
+    },
+    {
+      "path": "implementations/cross_dataset/README.md",
+      "before_sha256": "dddc5bfcd7ea641d9d2ddd7b8aeeef053853a79612ed3a7cfe7158252aeb8d17",
+      "after_sha256": "0bafad8dc0964b6f819d56398d56979f46927eb551cc66e6895a95485f2d9315"
+    },
+    {
+      "path": "docs/THESIS_CODE_MAP.md",
+      "before_sha256": "4c689c0736e85895b70fbf4f28d57ed50f8a1f2551aa224abda8356464393b3c",
+      "after_sha256": "6f80828195368792d6b3db1a6a1adb9ccc506f63e5e20091782c758c98a203f4"
+    },
+    {
+      "path": "implementations/PHM2026/docs/studies/THESIS_CODE_TRACEABILITY.md",
+      "before_sha256": "8a5108a3be986b1af3adb26c8d4753b89152d7371a4a98e55f9d7914744b7455",
+      "after_sha256": "bf44e2c086cf178d350a77442f1cdaab26f66cbf3595458e3e1c3b7ccf44df8e"
+    }
+  ]
+}

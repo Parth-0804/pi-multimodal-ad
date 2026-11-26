@@ -1,0 +1,2381 @@
+{
+  "utc": "2026-10-28T22:38:59.751958+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1797,
+      "sha256": "bb678dfe3c385169837ead2466f8266cf277fef6e8a63278db1629ef7e279d83"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 48,
+      "sha256": "788346c5f2838136e4b6dc5ccb054dbd3f1434e438adff550394fdd3f0a7411e"
+    },
+    {
+      "path": "26102026_tests/test_compare100.py",
+      "bytes": 5340,
+      "sha256": "e6f2e78f288687795a7033ce3bccda4976a9bab32053f97fcf2056b19322d7ce"
+    },
+    {
+      "path": "26102026_source/compare100_controller.py",
+      "bytes": 13595,
+      "sha256": "c956d1f6e750da8d31b1d15c19edf17852b1a8b4d3d697dfd1897d7d197e54a8"
+    },
+    {
+      "path": "26102026_source/compare100_train.py",
+      "bytes": 2021,
+      "sha256": "320097ece59148d67490f690ee4e2adc8e88ba5eae4c17bd522f7ac8a0c3c693"
+    },
+    {
+      "path": "26102026_source/compare100_report.py",
+      "bytes": 8664,
+      "sha256": "6a335b3c33afe01eb52501b3bfc575c096c4e30e5072d011858e9075beca95ed"
+    },
+    {
+      "path": "26102026_source/compare100_common.py",
+      "bytes": 2015,
+      "sha256": "c083f2bb1afb1e8d4db3243c5cc41b889076177b09cf8d8c2f6093988ae129e2"
+    },
+    {
+      "path": "26102026_configuration/PHASE1_SELECTED_JOB.json",
+      "bytes": 108918,
+      "sha256": "3579a1abd785e8af7460c93066b788d6482a04e5c3817ef796febc7f9ff736ef"
+    },
+    {
+      "path": "26102026_configuration/PHASE1_COMPARISON_CONFIG.json",
+      "bytes": 1718,
+      "sha256": "58db88d6bb12b361390130ef06fed1b5cace7ec02aff7516463c823ac3ef29f6"
+    },
+    {
+      "path": "26102026_execution/PHASE1_MAIN_STUDY_RESUMPTION_RECEIPT.json",
+      "bytes": 992,
+      "sha256": "fdc8af4871d9278ea5a5ccd7df9b69736d5813f216cebd39bfc1d62f91fb79b9"
+    },
+    {
+      "path": "26102026_execution/PHASE1_COMPARISON_PROCESS_ATTEMPTS.json",
+      "bytes": 2757,
+      "sha256": "a3a7ab2df48cb569a1347d343e4960d78bbec083beaf928da0d88e50f29de9c3"
+    },
+    {
+      "path": "26102026_execution/PHASE1_PROGRESS.json",
+      "bytes": 401,
+      "sha256": "3b077f44a27a8bbf7acbc19f538b0a09d33f05a3a43bfcce98a6da8e7577e729"
+    },
+    {
+      "path": "26102026_execution/PHASE1_100EPOCH_COMPARISON_METRICS.json",
+      "bytes": 1502,
+      "sha256": "362918ab9ac977a62cf08a1a8718235bf81d05159d1dc3a06f55cde7f9e226f5"
+    },
+    {
+      "path": "26102026_execution/PHASE1_COMPARISON_ALL_COMPLETE.json",
+      "bytes": 198,
+      "sha256": "ff4bd8c5705f42538e61e0a38e186788566edd746739f2831d9be8f675d943af"
+    },
+    {
+      "path": "26102026_execution/PHASE1_COMPARISON_CONTROLLER.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "26102026_execution/PHASE1_COMPARISON_SINGLE_WRITER.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "26102026_execution/PHASE1_COMPARISON_STATUS.json",
+      "bytes": 1636,
+      "sha256": "61bff5fc93d9df2c886d7ee71f43d75f7d72166dcd06ac271cafdde58574ad64"
+    },
+    {
+      "path": "26102026_execution/PHASE1_CONTROLLER_LAUNCH.json",
+      "bytes": 757,
+      "sha256": "931a307c12bea3d6244a789d584938660ac907c2a9c5fd829e31c8b21020ab8e"
+    },
+    {
+      "path": "26102026_evidence/PHASE1_MAIN_STATUS_AT_REQUEST.json",
+      "bytes": 1064,
+      "sha256": "bd80db1d4682d04a72e7c56ff77f6fc7879488e56bb0bdbf435d1d1e39f7739e"
+    },
+    {
+      "path": "26102026_evidence/PHASE1_VALIDATION.json",
+      "bytes": 777,
+      "sha256": "3ec2449dc2cd52b67059962b78f297157301177693d5e09ba3e30c23ac14dfd0"
+    },
+    {
+      "path": "26102026_evidence/PHASE1_PAUSE_COMPLETE.json",
+      "bytes": 822,
+      "sha256": "da8940471b8633d230a583c308f8bf704aa11e8477cb90b2e5d4f3c7f6759121"
+    },
+    {
+      "path": "26102026_evidence/PHASE1_LAUNCH_VERIFICATION.json",
+      "bytes": 1285,
+      "sha256": "ef9c816c60c38a2e76e91291dc6d47ae31af4f3d0e2936fc835494c67b564127"
+    },
+    {
+      "path": "26102026_evidence/PHASE1_MAIN_STOPPED_STATUS.json",
+      "bytes": 1506,
+      "sha256": "c36bbb69b42e57712add85af5570612fd37fd083d2ae74c5470c4fa66d3b1e98"
+    },
+    {
+      "path": "26102026_evidence/PHASE1_PAUSE_REQUEST.json",
+      "bytes": 359,
+      "sha256": "0af1c52297f9ab340fe4a9fe70afbf9fb0748b4c06a4397254b7a9917a2edf9e"
+    },
+    {
+      "path": "26102026_evidence/PHASE1_PAUSE_STOP_COMPLETED.json",
+      "bytes": 359,
+      "sha256": "0af1c52297f9ab340fe4a9fe70afbf9fb0748b4c06a4397254b7a9917a2edf9e"
+    },
+    {
+      "path": "26102026_evidence/PHASE1_COMPARISON_PROVENANCE.json",
+      "bytes": 78502,
+      "sha256": "131cc14266adae3c45a2910df0c09937a59d0a4ed2cd98fa2283efe3fbbb82ed"
+    },
+    {
+      "path": "26102026_evidence/PHASE1_FIT_SELECTION.json",
+      "bytes": 2300,
+      "sha256": "4a41b22315b7d486cef18390a27331f829b9ebbfcdfa5e2bf3449c5fcbdaa365"
+    },
+    {
+      "path": "26102026_reports/PHASE1_100EPOCH_PROTOCOL.md",
+      "bytes": 5999,
+      "sha256": "dc196e24a4f37873d867998296e0cd03b119f41b2a2a4c12be0eaf4ffd381597"
+    },
+    {
+      "path": "26102026_reports/PHASE1_100EPOCH_COMPARISON_REPORT.md",
+      "bytes": 3249,
+      "sha256": "ce8ea513c57fc2cddcbc297ffce351105d9c22bdddf6a862eeb7647744d5489a"
+    },
+    {
+      "path": "26102026_reports/PHASE1_GPU_OPTIMIZATION_REPORT.md",
+      "bytes": 4756,
+      "sha256": "d87565e19383d9886121e5dd6843ad001bba7f2a96467e4d39689f8d3a77249b"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_76.json",
+      "bytes": 256171,
+      "sha256": "7ac39d648cb949088cc0910506c4b9b98e7b9cdc77289ec8c5552d4aa2abee8a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_19.json",
+      "bytes": 151,
+      "sha256": "03ad900b5efb0acff511bede0010457a3f3053ac5776404866e03ebe300a44f0"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_37.json",
+      "bytes": 151,
+      "sha256": "06ce0b5ddbcb8afc08e6340358f2a1612a3501965ca8820273f1bacf60c5fd2c"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_10.json",
+      "bytes": 151,
+      "sha256": "6c7d565f11346d4172b97693dbb84ecfbd2981ae435ab767f516431375ba6ee0"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_53.json",
+      "bytes": 151,
+      "sha256": "3a44807fbf00de045ef21802aa8aca8b5897f9bf5d378f67ab738aadad23e6a7"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_02.json",
+      "bytes": 151,
+      "sha256": "c04240280918228d6cedb394540d8a1f51444a9b9636a5c5b860cb091f808079"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_96.json",
+      "bytes": 257303,
+      "sha256": "bac0b4125e986e08856f3d60d6acd04d2d7d934aceecc4c7abe1810c9d24f1b0"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_18.json",
+      "bytes": 151,
+      "sha256": "394b75055e5731e844e3d799401ebde900f83a63e2375246d7b8e69739e445d5"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_17.json",
+      "bytes": 150,
+      "sha256": "d07914d271bf12e25e15e786fbba8e463ce5af661d90793d3c3025d453f56955"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_40.json",
+      "bytes": 256999,
+      "sha256": "099fdf553a3ab6ed8e7b8e1e69f134a0bf5108da68e75a44f32c29eaa2fd2a61"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_64.json",
+      "bytes": 152,
+      "sha256": "32342e0042e54b893d2b14c955f21381a2ffcf84935ce0610ad21e85333b8acd"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_78.json",
+      "bytes": 257147,
+      "sha256": "5b0edd695447b379c7a7d823a00310ca490f594fed160a9c5499721b4c5e160b"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_16.json",
+      "bytes": 152,
+      "sha256": "c739b05bea615feeb8dec76954c3618e0ff12e078b43d495dbdb9ee11a7467e8"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_39.json",
+      "bytes": 152,
+      "sha256": "522cef200c00452bbbdc749b380e7e6cfdf925e751ae6a8dee014a6cb3d7cbf7"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_92.json",
+      "bytes": 151,
+      "sha256": "6ba8aab1f1acde21db8476b622b077e570c4a06ee06d399abdf5b57d08822062"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_27.json",
+      "bytes": 152,
+      "sha256": "3d091db7a00cf73d2c74d4058579dd4b6fafeabf9764a132922dfed6a8c3a1c6"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_49.json",
+      "bytes": 151,
+      "sha256": "a7f636f1ef9cf217d36d188e8a2d4f6e93f418fc7f0a0dfe31181ba44057876d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_16.json",
+      "bytes": 259412,
+      "sha256": "644248ae930798300e01944541697f5042df405b9271242312ff20531f4df044"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_COMPARISON_ARM_COMPLETE.json",
+      "bytes": 672,
+      "sha256": "d5c41e9e3e22663eae8847845015bd05c125f55ee2051e272bb95d348268b437"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_81.json",
+      "bytes": 257303,
+      "sha256": "fa449d841d78c3010cc0d880e569025ca5e451c783869f6dfc34f07ead0815d3"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_61.json",
+      "bytes": 150,
+      "sha256": "7af4906621d3df2a15c157647f46b291ba7132439c25364841bf8b7d26d14d50"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_04.json",
+      "bytes": 259254,
+      "sha256": "50910ad13b8dc681fc9a8f604285ac104bf4e2f8bb87aae591f1154aa7a44c90"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_97.json",
+      "bytes": 152,
+      "sha256": "c2a799e5d904eb47529a0bdfcb81bd9be704d66fc5aed712b61cd9eb8542e635"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_47.json",
+      "bytes": 256999,
+      "sha256": "271db5f375f6e9a09731fb26a9d1625dc8497e21fdc875466c0a978a92f64883"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_89.json",
+      "bytes": 257505,
+      "sha256": "d3be7860ec1fc28df9273cce3485f73bd3b7de412764ffd0ade55890632bef87"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_35.json",
+      "bytes": 257293,
+      "sha256": "2ed952babb993ff553bd9cf19ec973d3e6a7aa67bb030206fb488312b26d0ef1"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_82.json",
+      "bytes": 256684,
+      "sha256": "2d25e70d9d3818a88dd7013ccb8174d44da31ee6b9aa8738a70a90f05634ce95"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_56.json",
+      "bytes": 257007,
+      "sha256": "f743191383283d2de83775487747aa121b1e320a161f329b09691134d80b907d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_46.json",
+      "bytes": 257153,
+      "sha256": "7b507118468bb30591e6a48405fd491af99203de1edfc4ea7feb932074b8b6a0"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_34.json",
+      "bytes": 151,
+      "sha256": "75d01d3b38d919bc76b6fb301d24a47eb6a62bf47775e20f0d8743c10446711a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_15.json",
+      "bytes": 151,
+      "sha256": "dd2f01f17f49ec5a3625608257f184017b4505b977a7635af3beab50fe3409d4"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_55.json",
+      "bytes": 256676,
+      "sha256": "7933dfe793c102d09adb6081b41069515eb3726f97d3c5fe23d08aaeba3e7700"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_24.json",
+      "bytes": 258437,
+      "sha256": "42361106efadb61e13c0255ef4e89b1f71510b660e65d14b1ae91cfedf8754c7"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_97.json",
+      "bytes": 257309,
+      "sha256": "7a76e725ce5328f2acf0fa36aa3f1a533f35d8ec2f432fa045aab980f011e496"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_30.json",
+      "bytes": 151,
+      "sha256": "98819f1714c9ee73e781865da87accf129d0d06e812c9e13bacf2a5df80f2563"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_79.json",
+      "bytes": 150,
+      "sha256": "e21f43f908734a4f01c910009d93eea37298f1b3371b2a48104c600bab2c51ea"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_22.json",
+      "bytes": 150,
+      "sha256": "90157a9224825ca92d53017a971f8a290cacdeb884e4c874fa45cd9e6e45c72d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_68.json",
+      "bytes": 151,
+      "sha256": "b98134f44f375fda66498841b0bf87770caf15ffc67797be7d1f4cf2729c5ded"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_26.json",
+      "bytes": 152,
+      "sha256": "f2a7d65e8c7e782c3254bcf2740f6b4caf37bf739fc9a453811805fc282c36b5"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_92.json",
+      "bytes": 257344,
+      "sha256": "8e132e6754444fbc9e7cb88f33e694cac59a107871dc4ac7ecb76f5c9ac0a687"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_95.json",
+      "bytes": 257134,
+      "sha256": "4159a77c1992266933e4a83d0e0236d31178d8e3d17f015c255ed0506155f7d8"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_36.json",
+      "bytes": 257131,
+      "sha256": "c40d35176d63d9cde516d7dff532439212d2dfdb5d9a87f358fda3319c43b7e8"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_46.json",
+      "bytes": 151,
+      "sha256": "564a7b721dbe4fceea13db75586fce900e70f2ebe7776f30fceda5ef8ec4b8bc"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_71.json",
+      "bytes": 256051,
+      "sha256": "038ae4bdb0f70ebcc57ff626d440f98ff954010a63ac81fed3713ddb5ed1d536"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_39.json",
+      "bytes": 257339,
+      "sha256": "0809eac7819a73d3354da4aa844baa76695c5b9d688a550210783f2efb0dfee2"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_41.json",
+      "bytes": 151,
+      "sha256": "88bc13a80c3faebe1fbdeb5d31dfdd3640a13a02febc3e7c6d782e9716985910"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_94.json",
+      "bytes": 257522,
+      "sha256": "f9d3f7b5923f991ca4c0c0520b5770805cc1e049046e7d9a0573a4d51c58e361"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_03.json",
+      "bytes": 151,
+      "sha256": "11eb8571bdfa99e17276d33bb8837bba47cd0f484fef3b2a72c66af21ac161b4"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_21.json",
+      "bytes": 258968,
+      "sha256": "9e403d0a4c9df9b610f3b5cc3b20bc3c47c59428eb5145780eb5db7131fca3ec"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_72.json",
+      "bytes": 151,
+      "sha256": "1eba3939a7ad2944ee7a07e0a9656b163a5c26532d9655d80e49319713314735"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_51.json",
+      "bytes": 257163,
+      "sha256": "0b2be7a463570c78340c9f6187bb8a4a9c8c1f81bf4c5a346b11e02660308dac"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_87.json",
+      "bytes": 257625,
+      "sha256": "8744590c0d491cfe6e30fd892f27b530546890522c5e65e76dfc2b3591b7e04d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_63.json",
+      "bytes": 152,
+      "sha256": "d3900ea70656b9d8990bb0067b0681a9521276f59380a5898a14a07c445a5236"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_42.json",
+      "bytes": 257153,
+      "sha256": "356d1db0f3e6b001e3cca874f1d90d68b69625d11aa3b9708509328c55729d4d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_76.json",
+      "bytes": 150,
+      "sha256": "c4fcaf5c605887b1b89bb2535b286e84f71a47c76f65c468104f8699fc28c9fb"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_EPOCH_SLOT_0.pt",
+      "bytes": 181388577,
+      "sha256": null
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_LEARNING_CURVES.png",
+      "bytes": 198665,
+      "sha256": "04cafc25ad746da5c93b0fed57f52da961fa231bcb78b36e41752dce2281cf97"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_50.json",
+      "bytes": 151,
+      "sha256": "6c57c675d2dcc605b8e4618bef98da02d4f4ef48c5a6412cd23346166b6890c8"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_09.json",
+      "bytes": 259436,
+      "sha256": "faf59ba7fa4276d753c31457b842c90557b4b8fa117a7e1868448dcee95a114f"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_60.json",
+      "bytes": 256521,
+      "sha256": "a719d231371c24e7872e624e4a36466cbed6ad219980b33a473a1f8a8cc0d5ff"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_45.json",
+      "bytes": 257325,
+      "sha256": "4504bddd568bfa8739a1533e9b15e5f44fa913d2c6462719c6a13e259b6d3198"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_CALIBRATOR.json",
+      "bytes": 59928,
+      "sha256": "535272bcc4de9423e8c3e413988bc09bea77a1b013bf71d6333da0abe4147507"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_42.json",
+      "bytes": 151,
+      "sha256": "0467b36da98b8416b5e1ce46e6a239c055df94f99d2ef0842f80d0f47c0e2a2d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_57.json",
+      "bytes": 152,
+      "sha256": "508791e92c0acdd97653fd35de2171552e8f9a4b56efc22cde1b12719f2bd377"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_83.json",
+      "bytes": 256949,
+      "sha256": "b4254c493f9530afd0d756861ecdfd26511e0fffaacd3c54c369d298a7b7a93f"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_06.json",
+      "bytes": 151,
+      "sha256": "b8dc540544f60551e9778c4b1f8c8a9065ae6e9535c94df8874796b223034ce0"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_52.json",
+      "bytes": 256990,
+      "sha256": "d1843e753082f8afff8c729a8ca785ceaceb4f91d52976521aaa1f67aceda79e"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_12.json",
+      "bytes": 151,
+      "sha256": "53c5e0fb4fd4e6e53929dc8fbbf57e682c914527724f600d3db8de9b59c2e638"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_44.json",
+      "bytes": 256642,
+      "sha256": "d47154cf3e89408beb5128bb23c2cc2fff0770d33bb5cb8109abecc174eb096e"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_04.json",
+      "bytes": 150,
+      "sha256": "a4cd47892ae434ba167a527f658a1beb3d66eb7bde13f310ce6cc0bdbd7b2d39"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_70.json",
+      "bytes": 150,
+      "sha256": "0ce8f7d2f88a7cdfb480c94c35d2227fd410d98673c40fbc693e17d992056ef9"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_11.json",
+      "bytes": 152,
+      "sha256": "71fb22b452babded7e47101f4c629c0bd59a084a31d9c716e6d03d671c69a0e3"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_53.json",
+      "bytes": 256829,
+      "sha256": "c79b5592ffc07801d85cc2742eecba74387adc0421093c9d814427431b9a44aa"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_66.json",
+      "bytes": 256007,
+      "sha256": "3657111c61bd891ecfc3582ff4bc7e1d17cc41fb7ed3a51511e34e48fcf0b17e"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_27.json",
+      "bytes": 257131,
+      "sha256": "822467a52452386e272252162fb3570591d7994f2e3a1b96321264bc21767044"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_48.json",
+      "bytes": 256659,
+      "sha256": "7f1a52c95bfaaa864bb9e525c83b0dac84070a0fa41b78f2343f7ccf9fb0bd24"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_100.json",
+      "bytes": 151,
+      "sha256": "06f36cffc82149a0273579c51929b5b92c8af3e89f8437a29c9c05a8a9ae35d9"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_88.json",
+      "bytes": 258099,
+      "sha256": "f697fdfc1ebda14107019e5dcf177eacf35b20c479536093a91762d6a599c75d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_60.json",
+      "bytes": 151,
+      "sha256": "a64f95ff01363d66ed487f27642d428d859e074730fdb82302e26368bc034ee0"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_14.json",
+      "bytes": 259297,
+      "sha256": "72989958674f2b5f7cdf17b5a1461013ea09a74245359cd5989a663f919de2e1"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_59.json",
+      "bytes": 151,
+      "sha256": "00c45150e7cae577b8a18a2fea92bcf73f790b0c3bb8d01aa96a1531d856f2d6"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_88.json",
+      "bytes": 151,
+      "sha256": "06e83032971107d210cbb18eb5e2d541a421dc81a6d787e2a9f2490158298d7c"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_26.json",
+      "bytes": 257161,
+      "sha256": "102af4039036b203a5eca4e6c0dd991d4e48842939e81e827e155aae21f22d63"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_38.json",
+      "bytes": 151,
+      "sha256": "b875f8b8a449d12aa27ecefac084eb049a95a479054d5b9c636e55d6124df61a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_86.json",
+      "bytes": 151,
+      "sha256": "fbc99437db6656430dfa32526d1a612d2821ed3d85428abf2e46650ff52a5971"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_54.json",
+      "bytes": 152,
+      "sha256": "e4201d7190fcab875d6a6895955084752ce0a880ae1f1edfa72a1d7a83190055"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_51.json",
+      "bytes": 152,
+      "sha256": "eacc4886a045bdd1524948d3373fc5c721890cdab8072fa7a748a4ee06a7ee5f"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_05.json",
+      "bytes": 151,
+      "sha256": "94cb8519dc24ea2effc7f37e9f27e3f3885fdd36c6fcb525cda80a1923d1b271"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_56.json",
+      "bytes": 150,
+      "sha256": "dfb138ee9a88063e606957ffc60b84943cdb4e59918c8e2c87d9842170b0a6e9"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_17.json",
+      "bytes": 259100,
+      "sha256": "d98a087b236f6b250426df7936daa152f8f7e391ecb863ad0d44d30df38d424b"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_13.json",
+      "bytes": 152,
+      "sha256": "fc1d15612d57c92c6664524dbe02414410a8b7956334816ef9569f455bea70c9"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_40.json",
+      "bytes": 151,
+      "sha256": "763edcb4ff659ac023bddd6abd89b4998fcbdc63b4884a71036373f74cc7951e"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_19.json",
+      "bytes": 259090,
+      "sha256": "cd6e0a4f51217cd47a0e88da269a7d5d5a1d81d8aa7bf4a62a6c3cb5d7b4bb4d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_13.json",
+      "bytes": 259412,
+      "sha256": "19f4d21bf807ec9f9b88674bf7ae9f78eff4455b2d50723787f2ec19989da4c8"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_37.json",
+      "bytes": 256994,
+      "sha256": "346ba96fdac25563b399ec50e93fa739dbbb5a3f32a3512918638d867314211d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_24.json",
+      "bytes": 152,
+      "sha256": "c19fe14a4f032d65eee26f6b6477b6b413f88113892b5ab08ad45e0b6b7b6564"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_29.json",
+      "bytes": 150,
+      "sha256": "d6db48911e5d565fe46395a71bdf2015def25044afbc89b3501a6a1fa3ac36f6"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_07.json",
+      "bytes": 259259,
+      "sha256": "438334e26bdfff741cb19e1735daf184ff774d46b440fd606751d4cd828cfbca"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_65.json",
+      "bytes": 152,
+      "sha256": "f8225394cc81c1a0d6b4d501739994ff7eda89335b7f8d129686c0e47f2052de"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_15.json",
+      "bytes": 259262,
+      "sha256": "14d6dda1efff2edb4b2e332128fda3e1adf3fa78f896bf9884b336bce41d61f8"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_83.json",
+      "bytes": 151,
+      "sha256": "6e11c2fa2be634502137d3e986eca307a87156305a5476f6bf40b3c149ee6923"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_43.json",
+      "bytes": 151,
+      "sha256": "354fbaad0f1e66131f1b740f2fbfda8be126bbeefb16be275f2ba825edbb30ae"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_20.json",
+      "bytes": 259072,
+      "sha256": "a5c627aec306cf4f332bf149a2d31e089b29aef76b341619d24355b9165a91e5"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_FIT_COMPLETE.json",
+      "bytes": 231665,
+      "sha256": "94b4998d17fb482e9e80abbd413a076ee650c68ced665f7a27b1e8462f2b91cc"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_84.json",
+      "bytes": 151,
+      "sha256": "00054c156c96fce17e46f24ff707b252e66e5a5eb72c330938d6ba081d078c63"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_67.json",
+      "bytes": 151,
+      "sha256": "e94d366a3ff2d7d8e542369aa68d7b379017497f1aa84ffb5274f3d6940a90b7"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_12.json",
+      "bytes": 266675,
+      "sha256": "da2101607777254197135d3d1c3765b545e88a669ba061422a3f672eac137c6c"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_43.json",
+      "bytes": 257146,
+      "sha256": "9b664ff9ddd519e3c8bb3d2dc020858e6828a3830cd868b6282627bfa4d60fd1"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_21.json",
+      "bytes": 151,
+      "sha256": "ad8fa7cf3492f8278d44662749316ed8af3b24f8468ac89fa38b0c3ea9ebe8fd"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_57.json",
+      "bytes": 256654,
+      "sha256": "21a12dcb48bc7e33ee132062f033b3391e0d16632e9a86e618bd5b607a66336f"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_07.json",
+      "bytes": 151,
+      "sha256": "64e9fa929d307d7592375c44e11e415be0063d51ae0894905c644efd3c20eef0"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_100.json",
+      "bytes": 258475,
+      "sha256": "1230e6eb7e6436173ea0c2809116bb5840c3bcb271996dae6c4aeb689a6c4495"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_33.json",
+      "bytes": 151,
+      "sha256": "f4d11b9cd4b6c490c4138fb5b4731f6f5d5209d1767d3eca38fc113529ebf9c7"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_LEARNING_CURVE.json",
+      "bytes": 107965,
+      "sha256": "7b4de10e8ca0316dd0cb457880e72a27dee1d3244984ab37daf04c7c65a96145"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_03.json",
+      "bytes": 259572,
+      "sha256": "3e5fd516751c5945235db733e3a71f0b62286ddf03149de579af6f02103bd4b8"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_48.json",
+      "bytes": 151,
+      "sha256": "c3fc04600f763eae5093dfc4a2e113e0bbd0799487d328cfb5ad503823cbb72c"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_14.json",
+      "bytes": 151,
+      "sha256": "9494ee5cd63b4ae5e6d849d4f8baaba1bce8a414b069d63e2d15492b360a078d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_75.json",
+      "bytes": 257158,
+      "sha256": "808e4114000e4ab99bb2ac34f6944c57984b23f835200c7a1a5d865e9b97f219"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_80.json",
+      "bytes": 257494,
+      "sha256": "4d83cdaabd7ee595f3129d95dd6aacd22a2364f75396c2a5fed5815c86fbd21a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_90.json",
+      "bytes": 152,
+      "sha256": "e02573ed234a4d0e3e122885f8154d055767d21f972de5e09772827b5da5edb7"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_91.json",
+      "bytes": 256628,
+      "sha256": "154335794e3dd337fd9f68b9b7e625d669c5dfef2bbfda52d45153968780649c"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_32.json",
+      "bytes": 152,
+      "sha256": "fa4bc14c05fec836d6a5d83b45486f17d08cab86f937b910b95a790ba0f01626"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_96.json",
+      "bytes": 151,
+      "sha256": "2c9faf28c3f92a1240e03b7e37153d27384a21e09010d2b8421156194b117ad4"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_02.json",
+      "bytes": 260084,
+      "sha256": "6314fb8ad901af7186f441c025fa3e455117d6f9d3b8d091fe3a118b7894c327"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_25.json",
+      "bytes": 257651,
+      "sha256": "05cfb2135d97518677d8e0a6b6ba536e04fe168185aefa30d520eaf109042662"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_58.json",
+      "bytes": 152,
+      "sha256": "90923e3cabaab0eb3ec01f08d38af216bf8b53d94a1ba0a7d4ec0b8fb7466ff8"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_LATEST_EPOCH.json",
+      "bytes": 264,
+      "sha256": "7f360ace02eb2739e26ca5618e08490a07f792ad609f00fcec8cc1f3b530267e"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_08.json",
+      "bytes": 259267,
+      "sha256": "ec55ba21acd2edebbfa245bb7ff10e18ae33b02f215f64af654f4b86b574781f"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_85.json",
+      "bytes": 150,
+      "sha256": "72620a746fd8a821ad29341e3ab9b7cc7bf7f7cdce45cad8495b5496f2255ba5"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_31.json",
+      "bytes": 257802,
+      "sha256": "85a85b79693f9a33613a0bc49215c87fa817425d501a53f6733abc2f5af8ecc7"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_08.json",
+      "bytes": 151,
+      "sha256": "b5364047db3a0a655deb8d4937745f32be8ab18856130d95e3027c8bb1ea79c8"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_30.json",
+      "bytes": 257131,
+      "sha256": "809bd1fc33d099e248a7410e985f0db2a5f16a3a287c4556da6ec90a6ac73fc6"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_36.json",
+      "bytes": 152,
+      "sha256": "cdf86c8ad59896558f50843ba849d066400572570bfb72acdbea56b268b9674f"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_84.json",
+      "bytes": 257290,
+      "sha256": "8560d39dffedaaa063425d884aebf06bcde38ffd9cefaf3159d01a93b442ccbe"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_06.json",
+      "bytes": 259593,
+      "sha256": "5c9fee4a7bd027211a703fb598495b0473161741cbaf7ccf4428aac001e57428"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_74.json",
+      "bytes": 149,
+      "sha256": "aa0b504668e8e706ef49743ace3462ddd24cc14dcc6f9f4fbf0e99c8028480ea"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_34.json",
+      "bytes": 257480,
+      "sha256": "5dc36f121b644ca6529286b2def1df38df5e43e2e534999347d9c363c5445784"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_90.json",
+      "bytes": 257330,
+      "sha256": "8b22564d6428f6477981ef4d94f572ceb3b7127df3455f31ad0dcb54fee3bc17"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_93.json",
+      "bytes": 257655,
+      "sha256": "080eaeb367b3783c949412e67e4c6b4a219f7ea8f71620f2a4db5c56a49c74c9"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_95.json",
+      "bytes": 151,
+      "sha256": "b0706e5a4430e52e48ee5aca4699f0509b11b03236bd5f320954b4d14ab9d74a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_65.json",
+      "bytes": 256180,
+      "sha256": "a51fb7d99ebce3ec9b77d02d035fe401ce4ce9c89b0caeb5e5220f5dbfad9a19"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_69.json",
+      "bytes": 256019,
+      "sha256": "f79d26a689dfaf10e26581e80b2147a660003d717ad4217788d932b6de168642"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_11.json",
+      "bytes": 259245,
+      "sha256": "b23616d8e78aa0820c7f9c517a6331ab0a87fcaebe1de10d3fa76a9d091f00fd"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_99.json",
+      "bytes": 257645,
+      "sha256": "75f8a2b377d3abad334a09dbe51db7426a36e063c3b72d7b12734b6221d2b02a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_10.json",
+      "bytes": 259278,
+      "sha256": "49dcf03e328ae179cde12e00607be54043c0674795067241e5cb8fc3ee013163"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_01.json",
+      "bytes": 151,
+      "sha256": "ca4d46483c9099337bc104822b0cd1a1bd840952087b34447fa2016d1358ad24"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_44.json",
+      "bytes": 152,
+      "sha256": "a85b8a1ad4b6d0fd84314bfbeeb87ad33c97ab09cf741dfd4829321ae71f814e"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_31.json",
+      "bytes": 151,
+      "sha256": "f5b71bb09452f2a0c6aba7286705616ae27d2e4bb966c8933b635fd7633a6d4b"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_66.json",
+      "bytes": 151,
+      "sha256": "f66e86bb564ec9ca22c8a2526c9f459513cba8f63fb416a18f41a957cb87bd74"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_87.json",
+      "bytes": 152,
+      "sha256": "6bce9b4457c7606d9087e44efdae7000dcb75f5122ec9068798bc8171c014a59"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_23.json",
+      "bytes": 258921,
+      "sha256": "2680c758c933bebd5ea92d388cd1adcc510e1e2a68bbfb7ddd52805e26f901df"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_73.json",
+      "bytes": 257476,
+      "sha256": "356f88e49b91cb8621699a8a48d491aaa1660d69b59abd963e29c3ab4a0cfe3e"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_25.json",
+      "bytes": 151,
+      "sha256": "84c0bafc3a151a5ded8ea88b00421a2c7f12c7eb10d9ba826293c9f90eef99fa"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_FIRST_EPOCH_GRADIENT_UPDATES.json",
+      "bytes": 15452,
+      "sha256": "c8204673b54eab3aa14c0fdd3939b2d971e675c3e3704c1ad0eb487b871d1089"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_81.json",
+      "bytes": 151,
+      "sha256": "ce5932daff707762e6e2c45fef0a417ecbf0e298e38908b32de1254e9a832b14"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_89.json",
+      "bytes": 149,
+      "sha256": "e2e121c56714d56b20e853a079b0f7f72bc4ede927478d3e72a520ddda4b1e8b"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_74.json",
+      "bytes": 257330,
+      "sha256": "c82d463ecc8adcdf09c57bb67bb5b7ccb1f8a778257f022a49f3064e8f06074a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_49.json",
+      "bytes": 257283,
+      "sha256": "8fcfac9c6a46e10c769ed9c5121cf152fd2f99e110ea0008c018c2622eefac21"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_01.json",
+      "bytes": 267207,
+      "sha256": "6d080b980716257d1acbe62f6f2a427c0de20c261eb5cd9bda7c1730a4fbcab9"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_54.json",
+      "bytes": 256494,
+      "sha256": "850c60d0418d21696f8a17210d9ebddeb880cee6b5556f14daa5599d53d0370a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_85.json",
+      "bytes": 257333,
+      "sha256": "f73c4749ced33085798787e6d371922d50623aaa68ab7fb93ccf979f61e920b8"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_05.json",
+      "bytes": 259423,
+      "sha256": "7da6aeb85b0720e1134973fc0488582ff8f1fa99d7c7f5fda8debbdb84460394"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_59.json",
+      "bytes": 256839,
+      "sha256": "081cc28cd493cd180afafea6c5635258e9ebda2f5d48b068eaf3be29c606bf6a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_72.json",
+      "bytes": 256981,
+      "sha256": "e52e1b728b313de02d78c010fecb5b030b6b7c1d6f2d9b5efc2626caa4486207"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_RESUMPTION.json",
+      "bytes": 272,
+      "sha256": "0ffbcd2b962971d62dc2ba9a606514dd9bfc981180fb3459bd9fe0b40b6e0d98"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_80.json",
+      "bytes": 152,
+      "sha256": "83767a4fff1a1838402993bfa7d167526021f62b91305bd9b2725189fc6018b4"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_PREDICTIONS.json",
+      "bytes": 248610,
+      "sha256": "2e961839134e0fd84d55312de837372d02ef8a558724337d94fa5ba5818e6356"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_62.json",
+      "bytes": 151,
+      "sha256": "bbe2a97b187f3dabfe84ad06e9eb66b37fa1a18275dccb1ea0553d0a5ab05bef"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_35.json",
+      "bytes": 150,
+      "sha256": "599c3a0505ef7219488966e47bf5929549a14b4bc3cad574fb5269b94f1a43aa"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_64.json",
+      "bytes": 256338,
+      "sha256": "d8af52542da2e108bdde7a4bd8988119475d38fd5376e3c3dcd6442b925f63ce"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_BEST_MODEL.pt",
+      "bytes": 45347917,
+      "sha256": "5700e8912cf360c845087923e4b417631a886daf928e1655b1031c9ac27c8ce0"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_94.json",
+      "bytes": 151,
+      "sha256": "9cde0a214046a6206cd982a9401a452ab8ddabd9deb2c709d235c1938f188f4c"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_63.json",
+      "bytes": 256162,
+      "sha256": "69e0b6fd8b4c911a87cbfa94324e8f022e901393b877c97fcaa057aeae2ae559"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_50.json",
+      "bytes": 257461,
+      "sha256": "103f064e285114a576ab7a753033751d11b0c7a8468bf78af0e29b0e2ede31db"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_55.json",
+      "bytes": 149,
+      "sha256": "c084accb2bac7bea6e5fd173d0a11ef8cbbb2b1ef6aca5467c2b19a1bf47806b"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_67.json",
+      "bytes": 256170,
+      "sha256": "98162be98bdf2be939265a28587569d35ee5e28e2bf9af62cc7829efca0e2c20"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_75.json",
+      "bytes": 151,
+      "sha256": "84a6dddbfc8fb7813e81508dc1f606fd3394d8ebc11405702eefa3e977c0fff5"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_70.json",
+      "bytes": 256012,
+      "sha256": "9f7d2b7e64913078ba38b3c633b11f4ccd304c67e3c36ac94c258ee1eef6d555"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_77.json",
+      "bytes": 150,
+      "sha256": "e7e6b9c1a8652bc8f282aff3feafc2607e378ee1a773004a574b897c2fa25234"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_98.json",
+      "bytes": 151,
+      "sha256": "3bd806b1ab43ad152df785f5adc20310201cb752dcdff2cdef71bbfb07d2f979"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_09.json",
+      "bytes": 152,
+      "sha256": "df8b8ed9896a1e89e987c0219f143fd3ad4905c227f6c86e3310e7e8c53e67b4"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_86.json",
+      "bytes": 257843,
+      "sha256": "ea42897d9de87f6875dbdc989a0366c9849e0d9826bce8be52ab538ec07bf1c0"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_23.json",
+      "bytes": 151,
+      "sha256": "c07be57f011551e68fcdb5a7efa66ca9fc06f1626462c1804f94a07e23c4d8ae"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_82.json",
+      "bytes": 152,
+      "sha256": "2ed5258bd79c6f6fe1972079acb4dacbf27771054305a78565552bb65f65fc0c"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_28.json",
+      "bytes": 151,
+      "sha256": "167b9a427d76cc02b0f86fdbc33e43fc8f237c410f4a41001474a348a618d6eb"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_68.json",
+      "bytes": 256043,
+      "sha256": "349ca95c533a1252a6bbd77560f4ea959dacf43082b049eded7aceb1b6dec288"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_29.json",
+      "bytes": 257163,
+      "sha256": "22707875efc12f6782632f0e0415ac3b2e1ec2ae827891f9d5f5c9d783f0acfb"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_22.json",
+      "bytes": 259303,
+      "sha256": "68f8e80bc52a9434f250d4f448dd2e5513ea59f1d2dca3ea4ab5c375cc559cd3"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_77.json",
+      "bytes": 256985,
+      "sha256": "2c104fb74df9fb86495dfb6db6121f353bc350ecd9e7dfc7bec7ac7019079f45"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_52.json",
+      "bytes": 151,
+      "sha256": "7c30fd687c8fff4d354f6ad7c1b3aff0e9429c3d61f21ffd52a2e7de52c3af98"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_73.json",
+      "bytes": 151,
+      "sha256": "2287753639df03dee219d27c6ddaa57b7b532d5d7eeca2bb15cb98e83a2ca85a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_61.json",
+      "bytes": 256308,
+      "sha256": "84c647e2e2152fa3c357af58d079ec0e762a458d67cd060e6c25dce97e38d0d5"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_28.json",
+      "bytes": 257635,
+      "sha256": "9080ea6ed03adf4a215b5f8b52ba3ffc7fdaa2d3120a40913b0761f04cc6f7dc"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_33.json",
+      "bytes": 257015,
+      "sha256": "3b40f418b5be541bdef366890af40ae91340a75d3339dcccdbd7ef496143ba4f"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_45.json",
+      "bytes": 152,
+      "sha256": "591f9b09b9c1fb762105020c10e9726f43a1c5b1780ee57b49254f9177d522c2"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_38.json",
+      "bytes": 257293,
+      "sha256": "933d81650b5dc8c74912d9e6276bebb5c56a7078f9e7bf2db5024397df5ebd3d"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_EPOCH_SLOT_1.pt",
+      "bytes": 181388193,
+      "sha256": null
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_20.json",
+      "bytes": 151,
+      "sha256": "28ad3d27dfcce6c534f6fa2e10a082aa852b0eb15a9e4ba412acd29d3c70cc24"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_79.json",
+      "bytes": 256507,
+      "sha256": "7e4546f453da026e0e1b06c3b0eebfb63ac7b75fabb478af0ae7dbcf66c6015c"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_98.json",
+      "bytes": 257641,
+      "sha256": "db5b5c3e469cf0059b62cb668ad72b0076478fa419b7cbfaa7c06cdd7ddeb111"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_93.json",
+      "bytes": 150,
+      "sha256": "c52182ad51318aaf878914dd73304c8fa465fd273342a9128957edfc89f7794f"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_47.json",
+      "bytes": 150,
+      "sha256": "8dade10ff1992bc17f9688871e092f17f4945ffd63518414ccf0b84d0d4079fc"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_32.json",
+      "bytes": 257279,
+      "sha256": "85fe88870f1abd39d1ecd39ce511c2e73c0cdc6bc93196b5417e6aa419845cbb"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_41.json",
+      "bytes": 257140,
+      "sha256": "52cb870ec4cb6bb77ce58e182f236ebf9cd98982d7c80c19961c78530d2428f3"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_78.json",
+      "bytes": 150,
+      "sha256": "d354a64a946e44ec13ad34244708c71df2aa21ceb89c385717e67312403dfcab"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_62.json",
+      "bytes": 256191,
+      "sha256": "84f55bd4c287afc5c5c2e8cd2d2a960574a80513ddd362a79478e63bdb933ba1"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_18.json",
+      "bytes": 258959,
+      "sha256": "6a019aed4e510dffebae48261ebbb0d38e04defe05ee2f7113ae97eeb265f8e4"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_91.json",
+      "bytes": 152,
+      "sha256": "464a03288e8cf9276b1f939fc032bf3df8a8fdefdce27c9cc2b06e57c19b6564"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_69.json",
+      "bytes": 151,
+      "sha256": "65ad7e0277b443888098d413177317ba8947cf6ee520a07aa4d8fa62eede153a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_58.json",
+      "bytes": 256837,
+      "sha256": "73c8f8e00af2769c64856d01c7034b9aa3e8cb0f3fe1192c0a1f75b2bd3c60b5"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_99.json",
+      "bytes": 150,
+      "sha256": "40837509d56a0fd1ccb556d1fb60964682e7183b259413781247f024f940ce9a"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_71.json",
+      "bytes": 152,
+      "sha256": "1bf790aa391ff568899caa06fb25d3f3ac24d1a20be5ded9c8ef8c66085df058"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_76.json",
+      "bytes": 638,
+      "sha256": "4680d9951fd1a1cf350c31c37811a11e0f3a1a29088cd08208ee595dae4eba67"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_19.json",
+      "bytes": 151,
+      "sha256": "7987072afd7b7f85e18f044f0274be3da9bdeb050d63d0ba2b527245165bb91b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_37.json",
+      "bytes": 154,
+      "sha256": "ed557e772e2c91a388cb99236a59040c0ffb5d65bd9bffc2a2e576ca66b849c3"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_10.json",
+      "bytes": 155,
+      "sha256": "6c4480f09613b8e35e921ea95cd2d5b7438929020332550ddebe90fe3caab1ce"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_53.json",
+      "bytes": 155,
+      "sha256": "05c92b46f04bf99d246f23d065efd932fabd91e24461be2a1990985ea531034b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_02.json",
+      "bytes": 154,
+      "sha256": "62f19a37329167ba0b5863a3bd78cfa58da3d08fb01bcd93e915c309e630006f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_96.json",
+      "bytes": 637,
+      "sha256": "505dbcdbd90d9e62bb35f5a21001ecf0dde992a7c18ed1d6aaa6aa2d0719a002"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_18.json",
+      "bytes": 153,
+      "sha256": "bd1e40297af28211cf324e1908483dd3e7b470cb949da3e18eb623ebc23a8061"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_17.json",
+      "bytes": 154,
+      "sha256": "ea2f88093b875be3362d3184d9f354b1852c98478fa39680fc612427ed1297b6"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_40.json",
+      "bytes": 798,
+      "sha256": "65301ed353e4f1caf10e56807628c2e3b8a30e3dd2ef980a8e0bb77ebfc470ff"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_64.json",
+      "bytes": 153,
+      "sha256": "ffd3459408a77e80e969dfd98de102246b8bb157329269e0533e3a954a50472f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_78.json",
+      "bytes": 797,
+      "sha256": "98673db16c1c3dd5d769096480963bcb1e48abc242992896766e8287cf8e8cac"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_16.json",
+      "bytes": 153,
+      "sha256": "75171839c4ecf7fdd2b3c677c05299cd11bcb981160ad61ba428a0efd6664ac0"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_39.json",
+      "bytes": 154,
+      "sha256": "ee4f53b026b5312125348f845f5e28545b3d74501b50fa294ae174bfab8e61bd"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_92.json",
+      "bytes": 153,
+      "sha256": "74ffaecf8f2a27c4fd92aeca3c3359580c6cd931776654d180981aaabb7deb20"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_27.json",
+      "bytes": 155,
+      "sha256": "981893fa3a32fca79d80efe0b419ae8da77ed1e552f33e810f6f4deabda3cc58"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_49.json",
+      "bytes": 153,
+      "sha256": "ce3c65c611fc67b92edcda7d4d51f37e9c6ad00df7ba09c6119ec95306fd4405"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_16.json",
+      "bytes": 796,
+      "sha256": "6ec4c82e8c39b968e5489f8f89c1cfd2877b8b601b83c82ea14dcf2a16885e6f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_COMPARISON_ARM_COMPLETE.json",
+      "bytes": 667,
+      "sha256": "0ab0110a7d1c56ec127ad88ba8160e67569373d272bff70b88f798ca1e959119"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_81.json",
+      "bytes": 798,
+      "sha256": "dbc6add1c2733aa898441e3f0c42b30c8bd4fbc0a5d87213dad0f33f5998e7fd"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_61.json",
+      "bytes": 154,
+      "sha256": "a91d0186caab1a228fcd5d1bab2ef810d9a49c2e53fbf958825848f21e18ab24"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_04.json",
+      "bytes": 798,
+      "sha256": "e1fbe831af1dfe8dc932d7151a48688f44ac956dc60a5d776223b59f6154c531"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_97.json",
+      "bytes": 154,
+      "sha256": "d597f5915ec24460ee9c1b1819c08cc31b5290942157ecbf6f15345e5ab21624"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_47.json",
+      "bytes": 797,
+      "sha256": "3ace34c6e011d15beed19d4cd81d74052eb9e1e1af12c785600f649dd7501d2b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_89.json",
+      "bytes": 797,
+      "sha256": "86c2a0dda7fdd949b69560abd40546372b095ca66054ff55987c806829827634"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_35.json",
+      "bytes": 638,
+      "sha256": "9d5519cc09d06d78cecfe3a92df450fff7cf8dcf6acc7a659d6915c40e9a7556"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_82.json",
+      "bytes": 798,
+      "sha256": "59f019912f3c39c6e986d456aa45aa3545a7dc09e187534ab6a4f95c9a19f635"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_56.json",
+      "bytes": 639,
+      "sha256": "0b076c7038e4fdfe30da98cb300a11f1958d2b89676d5d5ed10a208342059140"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_46.json",
+      "bytes": 797,
+      "sha256": "60dc75d9a0b9084d962a266ed24694f60099189074bccedab9b8c8d27a09ce2d"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_34.json",
+      "bytes": 153,
+      "sha256": "a62595b3d16041d19c1fa3d555ddee20003c5c88b37cd7460b70c3caec01f097"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_15.json",
+      "bytes": 152,
+      "sha256": "b689e579284ce8d75403a552e2d9eca1eee176bd7ab676ca266df2e56183996a"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_55.json",
+      "bytes": 639,
+      "sha256": "64952072b0c6a8f9c92374b52beb6ec622e6df80eb9f598d14b26faf4caa98cd"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_24.json",
+      "bytes": 794,
+      "sha256": "ae30ba77358a53e8dda98cc1b4d172345ccb825593067a244237eae2a28c5e5e"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_97.json",
+      "bytes": 638,
+      "sha256": "18c5b5dbddfef3a2d9cee2d5ca2cd2f5216ce62c52249f3b9b4b5cbc5a15cc34"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_30.json",
+      "bytes": 154,
+      "sha256": "05f7f9aee1cff2d588ccb2609d675ccb50a0b0a47ba34fbeca809e09741b400e"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_79.json",
+      "bytes": 154,
+      "sha256": "3071b486d6ef6b1c99905a167ad965264f2c075fea4bb2069d30cab2b98fa583"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_22.json",
+      "bytes": 155,
+      "sha256": "adf5ec2de449b405c9fdede6e7ca16b8eb18d69e7eb039c144b4731e6f973ef6"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_68.json",
+      "bytes": 155,
+      "sha256": "35e74d8b8984e4d768b05ca4cf6abf130a4c41094b24f74085cc0b59f103d83c"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_26.json",
+      "bytes": 154,
+      "sha256": "769edf8a75d8c07ce08115c0acad802f8e4db6aef497f1146aecc68d1e921ad0"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_92.json",
+      "bytes": 797,
+      "sha256": "8f052762766ed7af4c7487e6908d112470fb9030731a629b3624a34a6c169cf3"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_95.json",
+      "bytes": 797,
+      "sha256": "ebd89d65700a46f9601f3a92acd5e80fd4d1634a8368df78f180fefc09077561"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_36.json",
+      "bytes": 639,
+      "sha256": "d8399377f6b574dc5e994784818c53cfd12ff965c9b14c7bb29fe496fa131e77"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_46.json",
+      "bytes": 153,
+      "sha256": "ff223ca6a58e6e765d17ae1b376af32dc502f70456c2f41a9f0c4425dc493882"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_71.json",
+      "bytes": 796,
+      "sha256": "09469e8c3c7a6a18ae50f62ac925e305864cd55a423a86f69d91221b87af7045"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_39.json",
+      "bytes": 797,
+      "sha256": "fafb654fa1393dd23360baee7207942757e600a8ddde30564c17628f1aa9c3de"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_41.json",
+      "bytes": 153,
+      "sha256": "d171cb570eee2eb33932309a3c3375e12f16daf1badbe96b9c9170890601b4d3"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_94.json",
+      "bytes": 798,
+      "sha256": "e187b8ff3aebce24cd6d967664fef599eb56c7a20e7dc5e42eee3fe0b0f673d9"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_03.json",
+      "bytes": 154,
+      "sha256": "0ea1a134eabb65e03c0d9f56c8b5b836a38cb9f9d9cf4e5f8c653d99c8448537"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_21.json",
+      "bytes": 798,
+      "sha256": "f4601f5d987bff89f9d58235d7af7bf80362ca7dba183cd081a9d5da7786d2a3"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_72.json",
+      "bytes": 155,
+      "sha256": "53c603c2e71e1408ca97ca12dc417ee9e52a9bb8e6e2158aa00bedd1144ce908"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_51.json",
+      "bytes": 798,
+      "sha256": "e1e2bbfd8ce14a322bb5aeef4e6cef7e2707175a4abbfcb5745e2e7229177a4d"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_87.json",
+      "bytes": 798,
+      "sha256": "18247e3b00fca4796b933ee8f70978e8646dae5c6a4bee13b39f116bc5911075"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_63.json",
+      "bytes": 154,
+      "sha256": "7f5f69976476ad35cd697477ea13be76dd5abfa6d887f86cdd375fe6acb07efc"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_42.json",
+      "bytes": 798,
+      "sha256": "6e9fcb2ace0997be39c73d14a74836de86394cad96e295863326c36d2bcb829d"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_76.json",
+      "bytes": 154,
+      "sha256": "e7f64a0c282668c4eda4b71e7083a5994852ec9063e40f4f1f9c125aa07543ae"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_EPOCH_SLOT_0.pt",
+      "bytes": 1967893,
+      "sha256": "ffc778249e4acb85a796614d2373012aa47ead419f7a2ecb818378943ebd8e28"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_LEARNING_CURVES.png",
+      "bytes": 189347,
+      "sha256": "578e477e166bb8453c4dc4d8cba2860c78a077346984cfb5cfc51840f3efc0d2"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_50.json",
+      "bytes": 153,
+      "sha256": "12c75cf7c2029cd8c5f4bb0cab0ab016d96157763f4024c9717ae295b4cd05e4"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_09.json",
+      "bytes": 797,
+      "sha256": "aa9cb36128803b326619e7c1a6e3bb8fedf7e9e9cc23e25c04602ae4b50cb14f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_60.json",
+      "bytes": 635,
+      "sha256": "28f8f9bb0cf8aa0d320db6b9c2a77678454986e508596db0cb55183282b5e7e8"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_45.json",
+      "bytes": 796,
+      "sha256": "e6b0283923346a3ae7d3f7ba48a35eaf93cf38097e855f5713c34b496a453e29"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_CALIBRATOR.json",
+      "bytes": 59965,
+      "sha256": "4b8539900856e58c7e4f3acd08403d791ab228bdfb8b63133f23f49874b6ea2e"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_42.json",
+      "bytes": 155,
+      "sha256": "79d13ed5dc9d5be502ca7ec8ae5c0f480d1a5835721eae85c7fbc0cc4b368ff1"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_57.json",
+      "bytes": 150,
+      "sha256": "7d2adaa66f54ff3fc112dc109923020c7415aef36a27aed617bfa20be3e11a13"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_83.json",
+      "bytes": 797,
+      "sha256": "98e390d5978c91e9dc823b5cdc1a05bdedfa18d5cdc154f9bdb42804f96b8ef5"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_06.json",
+      "bytes": 154,
+      "sha256": "f3fd119850e93d410a203e5bfae526fba52cd851489cb7a080c4a6bae747bf81"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_52.json",
+      "bytes": 798,
+      "sha256": "c720f8e03f4be43c8dc7a7a4630424432d9bb02dee393790ab80388c00c46be9"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_12.json",
+      "bytes": 154,
+      "sha256": "24fba912884afcc6e69ba156a2daa4ef15d66003d50de8a41f8cc7a0cedf256c"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_44.json",
+      "bytes": 797,
+      "sha256": "6cc94047fabd20298e5ab2dbc61938d555c1667d17950f71cdc93ac161ba5605"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_04.json",
+      "bytes": 153,
+      "sha256": "9c94406764d706a5497b86f84d7bfa4c1299dbc229a05a3750fa9c65d4016603"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_70.json",
+      "bytes": 154,
+      "sha256": "fbf0884df8482885f77cbc45b734b62ab8a79ecdaf460377c8019443b97c063b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_11.json",
+      "bytes": 154,
+      "sha256": "fed95f0a54029552e6c87597c47f762d33d1c7a27d34bf9a79bd01e0f462297c"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_53.json",
+      "bytes": 797,
+      "sha256": "8c00ce429868abe5ecdd53fd1695e0a4f3ee4cfe38463267cfc2a61d7ab73244"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_66.json",
+      "bytes": 639,
+      "sha256": "b7bfcf3bfa5e5d8fc1d0bc193df0b785dceb6d3e89b18a9bc9ad530079e370e5"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_27.json",
+      "bytes": 639,
+      "sha256": "1055b075f2e8530eb4402f1d6a02921b51ec2c8e575e86eb9414c2ab1f05e895"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_48.json",
+      "bytes": 639,
+      "sha256": "83c8d0d02f8b9b6a30b32bfae01de251c7f0e5b582be4f9bcce258441158fc5c"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_100.json",
+      "bytes": 153,
+      "sha256": "780a451490abe3cb58aca7bc45563ee887277c4125725375f4d405df2b288315"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_88.json",
+      "bytes": 797,
+      "sha256": "791afc49269d504c51ceb1829803598e8132de25ed6f6d5dc75349ef019f295f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_60.json",
+      "bytes": 153,
+      "sha256": "5d82475165005d4425677cde600a6480daa773ebbc4d5d941512be8f738a8538"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_14.json",
+      "bytes": 797,
+      "sha256": "aa6697f4b10c15349285e723a69bf820cc6b19aeda51f595daff324514139f16"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_59.json",
+      "bytes": 155,
+      "sha256": "c0cdbb9e4075f7341771ff4bf96766711586c24cf64f81f687c2970d027aa95c"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_88.json",
+      "bytes": 154,
+      "sha256": "5ec9ab087b6c995aec7bccd01df14fe5962a6a52548932055ffc0dd0afdcff0f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_26.json",
+      "bytes": 638,
+      "sha256": "a3b5208c7206bea87ca67b953b52ccfa25a73747c791596353b2e2fc00e18e6d"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_38.json",
+      "bytes": 155,
+      "sha256": "b8dd247a0cc5afe2f60f2fc112fdc584004964e510c873af948a89fda7e1d409"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_86.json",
+      "bytes": 155,
+      "sha256": "dcb448785356b43fe9cabfe7a112b7c8f68d4b02ba365aff94325e0e775352e2"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_54.json",
+      "bytes": 155,
+      "sha256": "a6ef1f56426e55e7a0e4f90ca2d6cafede4e07e78c34cb46488e21444b90e645"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_51.json",
+      "bytes": 155,
+      "sha256": "13ab502e35fc37bb097754543d8522fc5263445067653f06182ab45d75607b9b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_05.json",
+      "bytes": 155,
+      "sha256": "103b18e857406585b6fb4fcbb1aa5b716dc5b7004b48eee4ed153146435d9fd4"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_56.json",
+      "bytes": 153,
+      "sha256": "2dbfb9de3b979004dd0b877f28b57f6c69b4406106c04c410d2558996f7a3d88"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_17.json",
+      "bytes": 638,
+      "sha256": "e20e4f5c6aeecf3557cecaa907ffe40f75d2bb4103ab4ba5bde1d4eee0995dd6"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_13.json",
+      "bytes": 154,
+      "sha256": "0a76335fa89f0ef5673b50e0f575655a939adb65fadc367edbf2ede2ab5cf552"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_40.json",
+      "bytes": 154,
+      "sha256": "41de740741ead70478ad4904ca0d74b5cb08e4e581991014156a17cfd70c93b4"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_19.json",
+      "bytes": 798,
+      "sha256": "e0d9d859e95ffc7b5b7dc97852eff22f4af1e08f9d37b249ff00ab3f9572ca15"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_13.json",
+      "bytes": 796,
+      "sha256": "1346d5d8462b291fb2fde4b89934e09500bd827fdd6ff3798fd8febad6a65d96"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_37.json",
+      "bytes": 639,
+      "sha256": "a28f41d0dc05d254e9a1cd06922841a11516b0eaed7cec49bca3bf2a079bcea4"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_24.json",
+      "bytes": 153,
+      "sha256": "5e3d7d145104e8f3891b93bdeb92c8dad90c8dac27257125b7019aecd90aa0b0"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_29.json",
+      "bytes": 153,
+      "sha256": "7a6bd42321cba5200c3beebed9538c013d25797335be8bb402f65090ffc81d01"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_07.json",
+      "bytes": 796,
+      "sha256": "3b8169381e21c71f36d7e9bbe588dcb18083591b68ea2ced426ded95bcec8a02"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_65.json",
+      "bytes": 154,
+      "sha256": "1caf566c2d5365c4c006d94d221cc91e037eee77243cf400d6b91f7a2c832b09"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_15.json",
+      "bytes": 798,
+      "sha256": "3ea4b92c0e22d6f9ba64524a060d4741276be35440ce467aaa01df17bcf42741"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_83.json",
+      "bytes": 152,
+      "sha256": "4d6b6fa7a3e15185a7b17864ad9e808c45fe2555f25887f58bd8d8b7c356ec1f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_43.json",
+      "bytes": 154,
+      "sha256": "4f2d2018902510ceb208d8f1a53b5b35f3087c414baa3ca705ed5ff734ccb4a6"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_20.json",
+      "bytes": 797,
+      "sha256": "951c849239c61280566169e54601c16b0c196f7b2e0cb62b39d6c7121a03cd20"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_FIT_COMPLETE.json",
+      "bytes": 227337,
+      "sha256": "7d27c61d73444488bb836c6950dcd67b1c3e54271c07c8e6ad4eb52f0d1d508c"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_84.json",
+      "bytes": 154,
+      "sha256": "0cd5a8afa19fee1c427dc0f16cb741576919836b2862dbb0c5d5ef7666ffd96d"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_67.json",
+      "bytes": 155,
+      "sha256": "785057e490991e6d822e219954669133a47b10fdce0828b3401f4306cbc8e293"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_12.json",
+      "bytes": 795,
+      "sha256": "e26c81600ac636cd6293d5d920a330a75e475999653f026d8bf6155c1e5470a1"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_43.json",
+      "bytes": 798,
+      "sha256": "10d74c5813aa5707d4cfcc78429ba4d4bd2337109f7da0ea03f7230948e48aa3"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_21.json",
+      "bytes": 154,
+      "sha256": "1881d91bab4a6a2ed711632d09aef030228f617dbdb8b9e75df9d3c756a3090c"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_57.json",
+      "bytes": 796,
+      "sha256": "4b0cc0ab7261a240c5c87f88dd3caf4e0c4db7ffc02568098eec27c53b796182"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_07.json",
+      "bytes": 153,
+      "sha256": "24bbfbf52d8205ec925763decaaff2a8a6cd15271902566cb0e9b08e58ea454a"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_100.json",
+      "bytes": 798,
+      "sha256": "2033022eb404bb9daaff2addbd9dca6a6393d7679bcc4f9b2e4ebce110b72aa0"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_33.json",
+      "bytes": 154,
+      "sha256": "66a29ee9e02b44e49e97573a22d75f3e8a14ade2ea53d2f07c6fa64674b358c3"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_LEARNING_CURVE.json",
+      "bytes": 103880,
+      "sha256": "ef20492120a8b7ddeb6cee96425c8d81e89a3225ee79ae6559663795984968c8"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_03.json",
+      "bytes": 796,
+      "sha256": "7c4177fb8cac3b75fc6dc4124cc35c42c3c6563f7703474972e65478fff26b1a"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_48.json",
+      "bytes": 154,
+      "sha256": "1f6a5ee5a3954b7cdd2aa430a917c6f166c81f3683b800e04f5946c9b5653c72"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_14.json",
+      "bytes": 153,
+      "sha256": "220fc7e5a844e675718c1a1a5b37466fbe60348bab05215c6c9e0fc91ac7b4ab"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_75.json",
+      "bytes": 638,
+      "sha256": "7f6f77bc25d4236fb12e107e38e9ef8c267355f65a47beba6112bba558232e88"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_80.json",
+      "bytes": 797,
+      "sha256": "38444257c275375cfe6fcb45b6b1419a5b39eaffca2c1f940138cf315b146a89"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_90.json",
+      "bytes": 154,
+      "sha256": "c21372e8ff9044988e5edb2d84d133aea2bbe2d3ae938060b9ed22df04b18d57"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_91.json",
+      "bytes": 798,
+      "sha256": "58e21806a3c7fe58d73345abb39483cf31835ab02b7a78207161b6ee3168e12a"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_32.json",
+      "bytes": 154,
+      "sha256": "c5f289c3705901ef7ebc13e8201e57b321a764515abf439601f697e0d81d6d9d"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_96.json",
+      "bytes": 154,
+      "sha256": "e221a3d4bcd5806ea72e49f4bb76951b4d121619f613a34092e44bed2c3cfc9d"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_02.json",
+      "bytes": 798,
+      "sha256": "5b4abe0361e94d6aba2737d8486310d3c6b49a7e62692f1298644173491f4090"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_25.json",
+      "bytes": 797,
+      "sha256": "9903a86fc63fd0cbb60404bea85b31c33ba595f097f551baf505010e3fdc2e02"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_58.json",
+      "bytes": 152,
+      "sha256": "003501de872129bbf91b6eb451ad4e914b0778307f5dbb8de88a279e1c592e39"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_LATEST_EPOCH.json",
+      "bytes": 264,
+      "sha256": "cafe162aeb24d3165ec83c56c5ca7c5113c80225805157eb8f49306367bd8695"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_08.json",
+      "bytes": 798,
+      "sha256": "9a9fb06ab8fbc336377e883fb590c1dabd1c8f156a3dd0b7d281cb6b29316522"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_85.json",
+      "bytes": 154,
+      "sha256": "b1b9069e078e23a921c58c123d8faf7c79d4ae1f4f3b7692d896f8820e0a881b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_31.json",
+      "bytes": 795,
+      "sha256": "2832889c44269d77710533374bc2b1ee9a303b35bc8c8180f8f60f654f1bb1f5"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_08.json",
+      "bytes": 153,
+      "sha256": "aa2554e7acb9b895fc4d2f2e72f13d63666182f0d882ababa8206a0e97582316"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_30.json",
+      "bytes": 639,
+      "sha256": "95a167453b3eb711a17d18223de022a5acf0411798287007f89e2019185e083a"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_36.json",
+      "bytes": 153,
+      "sha256": "b2e04dec4ceaffdd933f03a790fe128531fb115703707876d8088195b1771c7f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_84.json",
+      "bytes": 798,
+      "sha256": "ba1cb511abf37807d2a787bc66a55aeecd907e77c3f218bd6e1c97265bd767c3"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_06.json",
+      "bytes": 797,
+      "sha256": "53e8218972b2cf35d6f42768f816e1fb5da8318c144fd33a05034d0bbbf00fc0"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_74.json",
+      "bytes": 153,
+      "sha256": "f2a590eeb5e989c27af52653a376cef1db09363771572f2fb506d163be4c4462"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_34.json",
+      "bytes": 638,
+      "sha256": "2b84867479cb1cba4c9bf8850488678e53d68632f301bd4f96ab9051e782b0d4"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_90.json",
+      "bytes": 638,
+      "sha256": "628d1f152470b96371110a3a16654490198b25393b66cbe33a630781bb0a3f96"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_93.json",
+      "bytes": 797,
+      "sha256": "8ec59e48947ff30433db92180463453bb00ce688cad63bd49e1121f26b5e80a8"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_95.json",
+      "bytes": 155,
+      "sha256": "2acb2db056105cb0d8b3b8c8ebdfb765de65a31b39c98dc4b009d7aa14fb768c"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_65.json",
+      "bytes": 797,
+      "sha256": "b18e3318b5a42f72dc8bcc138a1f7965f94f40b72088840ef310c5c1019dec2f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_69.json",
+      "bytes": 639,
+      "sha256": "5e2185081128a1748ba2b3433d6ae914946470d31c118c16aae560a5b8ae88c2"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_11.json",
+      "bytes": 797,
+      "sha256": "ea6d291bc751ddfc6125e5747efc2c84980a4d5479ba85108ca2b5bd997c882f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_99.json",
+      "bytes": 797,
+      "sha256": "bec82c69d64e439f83ed4dcabfc700aa73fd458a3123c38c7bef8ca69ffe48ca"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_10.json",
+      "bytes": 1113,
+      "sha256": "a4351e2431b5836f227ed0979d1c7f6545d9f46682e8a4dd4e9ed9c94ef2721b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_01.json",
+      "bytes": 153,
+      "sha256": "36aa2a1f52fa46af2db0f976846835afc3b41d305d8fe50d37bf1385c083e3c0"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_44.json",
+      "bytes": 154,
+      "sha256": "7d4df0240ea1e514475fa149840563221edf2e9150e23e12bb169a44ac190e3d"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_31.json",
+      "bytes": 152,
+      "sha256": "98ac203454bf6ccac930618b02ffbb213b1b52347a6810b14f2da20dcd424393"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_66.json",
+      "bytes": 154,
+      "sha256": "acb280ae89f8353c73b3e0cdeba5871fbb57d448e82bb125a8d15c65f804f6fc"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_87.json",
+      "bytes": 154,
+      "sha256": "a64d0008d57067ef293a0a75315b4841fdac889dfd2f9bf84014ad8957de40f2"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_23.json",
+      "bytes": 798,
+      "sha256": "0fdf72041e9b7d54104977650dbbff8b5626849b12334003bdd71d7f1ad34d05"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_73.json",
+      "bytes": 639,
+      "sha256": "ff746ac9f5b844beba46f14f696ff24ab6c790e4c516f2d4604a84c269d8c524"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_25.json",
+      "bytes": 154,
+      "sha256": "5ce8f61fb7ae40decd842d14e74e3f211663f26ca4a8436e52cce13f9bda0ffa"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_FIRST_EPOCH_GRADIENT_UPDATES.json",
+      "bytes": 738,
+      "sha256": "771830a22b0fabfd3f4c82bb6d7cf3a12b2e3d208c2933559a951f66d6464d4b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_81.json",
+      "bytes": 155,
+      "sha256": "7db2e0d1ec26c9721e5cac3efad4ecd3bcae87873ffc4f2e0ff5f8776b5839e1"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_89.json",
+      "bytes": 154,
+      "sha256": "64e20a6bb8cbd025ff574a22bfb45d555141566bd9732f66ba274ce94b759171"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_74.json",
+      "bytes": 637,
+      "sha256": "5190012a9b87bff281d3f28d8920db3859ec75b1b16190e7d31b051996ad273f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_49.json",
+      "bytes": 798,
+      "sha256": "507b8fb1f52008c354b2afde787986b22c5ad924474c3c2d30872c5e58ceee7a"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_01.json",
+      "bytes": 795,
+      "sha256": "0fa607d6422d5082ad4bed1655a01dfae7e8e278ace8173649c456a5676aa8b6"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_54.json",
+      "bytes": 796,
+      "sha256": "ad6490478d1818f8f86031b4a920d0f0e750dd3f860ac785aab6ba16a2fc790b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_85.json",
+      "bytes": 798,
+      "sha256": "18c0b0d0f6abb748594aa166e2ef2b2b1b35345c251f24b8d22162625cb10220"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_05.json",
+      "bytes": 798,
+      "sha256": "c6cf623013c352425c1c168a0c87fc4ca381d6733c72fa73484b068bbf2282a9"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_59.json",
+      "bytes": 639,
+      "sha256": "061db07684d10da4a2e9acc41072d0b06c519f8934d032831f83cf8540c749ed"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_72.json",
+      "bytes": 638,
+      "sha256": "eb1efb6ff92580db2d22e1f6c2fbf9cebefb7bad018d17e2636f7203d9295fdf"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_80.json",
+      "bytes": 153,
+      "sha256": "b910ca4849d276b9b0be6b6ae03a40b157260fb0e16ab970f10d1fcfc59f0c5f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_PREDICTIONS.json",
+      "bytes": 248642,
+      "sha256": "51218ce427ca2dc387e77d7deb873852c45da03566730e9fceee888400265f35"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_62.json",
+      "bytes": 155,
+      "sha256": "56fd1678a0413c022d9cf39cb5724091f4a61f5591bcabccd3cf9b62d58ba5e8"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_35.json",
+      "bytes": 155,
+      "sha256": "0829dcef3bf9a76afd48801ab97278239152a648f12cdc881c3c766c4640b0f6"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_64.json",
+      "bytes": 797,
+      "sha256": "336bc2ba44659fd28fe3e6e5e9a2998f7655c257a29b5581e005193a9e37d10b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_BEST_MODEL.pt",
+      "bytes": 470549,
+      "sha256": "8c71fe8da4e300678ea40a280964c891e12b84b9c91c228d215cfd48c7d538c7"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_94.json",
+      "bytes": 154,
+      "sha256": "302261408811a86d9f76300f4373f57dfe32990f16ca5e97ba67c2759c8431f4"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_63.json",
+      "bytes": 795,
+      "sha256": "ea88daf3374a58fa9f483eaeabc354f5889143b5d49af60db4e631ce8a592031"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_50.json",
+      "bytes": 798,
+      "sha256": "c51812595980a9264e2253d2629500abc384616815da1a8ead73e92d7989fd0a"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_55.json",
+      "bytes": 154,
+      "sha256": "743d7761f51bbeed5c05e77452c7a1d612b60ff361861301ca71eb5e1781c8da"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_67.json",
+      "bytes": 638,
+      "sha256": "8461ecf5ecba4e5c59b33d59bf16e91f73d185af353e4d6e193389b69d9c3e0a"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_75.json",
+      "bytes": 154,
+      "sha256": "d47ad8905a7270848cffd4f1ad42503dc44084b80668fdc3b7445ad7ddb07318"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_70.json",
+      "bytes": 796,
+      "sha256": "e7fded98ca1d787db8b55fdb665482c4cf7bfce80d964a9f63ddbfcabdcb06cf"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_77.json",
+      "bytes": 153,
+      "sha256": "2b5e830e99afc0b3e0932aa93cbd26e117d315608da8a7dccef0c59bebab9ab6"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_98.json",
+      "bytes": 155,
+      "sha256": "a4b21c35286afb753225445dab35cdc76984bd179084d09687ce87b4ee488486"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_09.json",
+      "bytes": 154,
+      "sha256": "2f524ebb0303c2874b77971e297ec8cf0d4baadfc63dd7a43c7b11df3cb156b4"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_86.json",
+      "bytes": 797,
+      "sha256": "3cc9d020033968c750a0e5b01d2e49f3177003919ba1f9aa49528a311fc662cc"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_23.json",
+      "bytes": 153,
+      "sha256": "50c4eace40575b1c13b6efef764cf35a7e92e055cef3665f93500060c2a3f128"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_82.json",
+      "bytes": 154,
+      "sha256": "80ca0ec8ddbd9b6174503eb345ec9b7f82f4f0dcd3fb6261191183c8a3d6ae05"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_28.json",
+      "bytes": 155,
+      "sha256": "caa8afab34870b0460f1a67bbcc87fc377fdca173b854c1aa31f38065bca153f"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_68.json",
+      "bytes": 639,
+      "sha256": "ac1a5ab33858f0d872eeaaf90d2a5a64a3551c982b85f214cc8995b3f0fedc64"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_29.json",
+      "bytes": 639,
+      "sha256": "1347e90f239aa2cdbe8cb18100f735b5df6258c7c42477cf4bbb90ba01e659b9"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_22.json",
+      "bytes": 797,
+      "sha256": "8665085c9d95589a977a906b128abc904414e89f9ad3184cfcfb1b19a8f8d4b5"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_77.json",
+      "bytes": 639,
+      "sha256": "2e6948bdbd4399df014734120adb0f31099a9eabeabd1d20f94141ce21a09d33"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_52.json",
+      "bytes": 153,
+      "sha256": "d610814a614e0415e7f89c54afa96e8b102c5b3fa97807a368cb892cec06fe08"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_73.json",
+      "bytes": 155,
+      "sha256": "999a75f2fd1be2955a1fcddee050bef226da612f4c1e41a894b1a5aea55470dd"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_61.json",
+      "bytes": 798,
+      "sha256": "9723a5d5e7d90eb53a4be159a97b9d18ada5777b955f6a543ceb541a04edd668"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_28.json",
+      "bytes": 638,
+      "sha256": "a2b6790f3723c2d2383db626e009b170aa15bfab590e0b20c81eeb1566367adc"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_33.json",
+      "bytes": 639,
+      "sha256": "da3730d46d314423582536ac320ecae5e66eb0d5bed13a170785ada4d38011f1"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_45.json",
+      "bytes": 155,
+      "sha256": "31d9c993bfef5d0ae5a0434eaae9cb03f5cef64d1270f139801f91e24d472165"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_38.json",
+      "bytes": 797,
+      "sha256": "a59c3a9c1cb0a051d642b749eefadbfbfc9c087c1aa57ccd25d7675ae2dfb3f5"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_EPOCH_SLOT_1.pt",
+      "bytes": 1967573,
+      "sha256": "c520163b801457eb8406f0f1ce9b842da85fbff3dcedcdbf1ca2e7749a276201"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_20.json",
+      "bytes": 155,
+      "sha256": "f1602e93018b5ee1669b55d7c0f39ccbc29e7fa99a3a09195ff815df6132be42"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_79.json",
+      "bytes": 798,
+      "sha256": "b90eb8f6e9056fda0cbb1707e05bc0f1c86046c15879b066d19b80d764281ef4"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_98.json",
+      "bytes": 797,
+      "sha256": "56da343cffef57eef7c2638929400ab44f7febf850d545ad877c1c5d66bfebc3"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_93.json",
+      "bytes": 154,
+      "sha256": "183ca3a8bec9249f9c3698ef36333704cd1d7bde298efec5d7cfc563622d7bfa"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_47.json",
+      "bytes": 153,
+      "sha256": "fa654c6062fe107ae6febb5b22e6d8a2931e92c6a86f9ca4a07cf15128e17c4b"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_32.json",
+      "bytes": 798,
+      "sha256": "cf2015c12bc92811990fd2978e0dc1014743c833e82b4f50324e963bdfeef457"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_41.json",
+      "bytes": 795,
+      "sha256": "7386c21360e28a2e09bab28dbddd0bb8297c0bb1b1fd8a37365afdd37cf45ad9"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_78.json",
+      "bytes": 154,
+      "sha256": "ab98dfcb224507a7156b362a2979d55bf15493112248b5866a661be856b02618"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_62.json",
+      "bytes": 798,
+      "sha256": "4c7d342c46e6f06f2a96ab403be33e523f6fce1e20c5fa8d0ebc7cb8df98af10"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_18.json",
+      "bytes": 798,
+      "sha256": "cc8b3ae24db30c24b6bcad461b173156326bee80a8fef1576b248eabe9246896"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_91.json",
+      "bytes": 155,
+      "sha256": "5b39c0f8c2a54a9a52dafc3082c3e96bb936eebfe88276b79c86765d61694a81"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_69.json",
+      "bytes": 155,
+      "sha256": "fc278dfc41a420d6b256bb6f675dc148345fc5843e99218b2628262619e6928a"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_GPU_TELEMETRY_EPOCH_58.json",
+      "bytes": 796,
+      "sha256": "09bf73d4cc6211d4d879eadea71895f65ac514caab55dd91b7bfec8b6c86a3ee"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_99.json",
+      "bytes": 154,
+      "sha256": "6e3e3be0d12a9080a09112a63e68af0d3723670f7dd8566be4771d9ffbbe7d5e"
+    },
+    {
+      "path": "26102026_execution/26102026_B_frozen100_seed42_selectedjob02/PHASE1_TOTAL_TIMING_EPOCH_71.json",
+      "bytes": 150,
+      "sha256": "5d1883f6f269140112fef466a5a5d3b0ebee6af7abf59980800c1d3ee7073736"
+    },
+    {
+      "path": "26102026_execution/26102026_frozen_source/58db88d6bb12_PHASE1_COMPARISON_CONFIG.json",
+      "bytes": 1718,
+      "sha256": "58db88d6bb12b361390130ef06fed1b5cace7ec02aff7516463c823ac3ef29f6"
+    },
+    {
+      "path": "26102026_execution/26102026_frozen_source/e6f2e78f2886_test_compare100.py",
+      "bytes": 5340,
+      "sha256": "e6f2e78f288687795a7033ce3bccda4976a9bab32053f97fcf2056b19322d7ce"
+    },
+    {
+      "path": "26102026_execution/26102026_frozen_source/dc196e24a4f3_PHASE1_100EPOCH_PROTOCOL.md",
+      "bytes": 5999,
+      "sha256": "dc196e24a4f37873d867998296e0cd03b119f41b2a2a4c12be0eaf4ffd381597"
+    },
+    {
+      "path": "26102026_execution/26102026_frozen_source/c956d1f6e750_compare100_controller.py",
+      "bytes": 13595,
+      "sha256": "c956d1f6e750da8d31b1d15c19edf17852b1a8b4d3d697dfd1897d7d197e54a8"
+    },
+    {
+      "path": "26102026_execution/26102026_frozen_source/320097ece591_compare100_train.py",
+      "bytes": 2021,
+      "sha256": "320097ece59148d67490f690ee4e2adc8e88ba5eae4c17bd522f7ac8a0c3c693"
+    },
+    {
+      "path": "26102026_execution/26102026_frozen_source/3ec2449dc2cd_PHASE1_VALIDATION.json",
+      "bytes": 777,
+      "sha256": "3ec2449dc2cd52b67059962b78f297157301177693d5e09ba3e30c23ac14dfd0"
+    },
+    {
+      "path": "26102026_execution/26102026_frozen_source/c083f2bb1afb_compare100_common.py",
+      "bytes": 2015,
+      "sha256": "c083f2bb1afb1e8d4db3243c5cc41b889076177b09cf8d8c2f6093988ae129e2"
+    },
+    {
+      "path": "26102026_execution/26102026_frozen_source/4a41b22315b7_PHASE1_FIT_SELECTION.json",
+      "bytes": 2300,
+      "sha256": "4a41b22315b7d486cef18390a27331f829b9ebbfcdfa5e2bf3449c5fcbdaa365"
+    },
+    {
+      "path": "26102026_execution/26102026_frozen_source/6a335b3c33af_compare100_report.py",
+      "bytes": 8664,
+      "sha256": "6a335b3c33afe01eb52501b3bfc575c096c4e30e5072d011858e9075beca95ed"
+    },
+    {
+      "path": "26102026_execution/26102026_frozen_source/3579a1abd785_PHASE1_SELECTED_JOB.json",
+      "bytes": 108918,
+      "sha256": "3579a1abd785e8af7460c93066b788d6482a04e5c3817ef796febc7f9ff736ef"
+    },
+    {
+      "path": "26102026_execution/26102026_logs/PHASE1_MAIN_RESUME_1793227119304548928.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT003.log",
+      "bytes": 13199,
+      "sha256": "e739afaa27d74bcded2b32aca6861f9b87eeabfca3ca12dffa0c96e91dea79fb"
+    },
+    {
+      "path": "26102026_execution/26102026_logs/PHASE1_B_frozen100_ATTEMPT001.log",
+      "bytes": 13864,
+      "sha256": "dde96a73b1d032840cac10e63d6991dced59a1e7cd0a909112cba5592155e9c8"
+    },
+    {
+      "path": "26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT002.log",
+      "bytes": 670,
+      "sha256": "345647ce787372eb7e00299cb901a11f2610ef6e054ed3a065eccd581bb06de0"
+    },
+    {
+      "path": "26102026_execution/26102026_logs/PHASE1_C_full_finetuned16_ATTEMPT001.log",
+      "bytes": 3429,
+      "sha256": "a3bd2ca0dce5770945daf852763609c67730e38e6c854922f04789639d47f38e"
+    },
+    {
+      "path": "26102026_execution/26102026_paused_study_checkpoint/PHASE1_PAUSED_POINTER.json",
+      "bytes": 263,
+      "sha256": "781d194d0808bcde41040b5eb501d6fdc8e4e63dfa132aaa2af7976a791c961a"
+    },
+    {
+      "path": "26102026_execution/26102026_paused_study_checkpoint/PHASE1_EPOCH_SLOT_1.pt",
+      "bytes": 181357409,
+      "sha256": null
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/26102026_checks/training_shutdown_8cbedb14.json",
+      "bytes": 129,
+      "sha256": "26762806064b42011c18553fcfc4e4f8c273eab27630a27aaec76cfadbbdcc8b"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/26102026_checks/validation_shutdown_13fe10b3.json",
+      "bytes": 129,
+      "sha256": "26762806064b42011c18553fcfc4e4f8c273eab27630a27aaec76cfadbbdcc8b"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/26102026_checks/validation_shutdown_e1c8ae7e.json",
+      "bytes": 129,
+      "sha256": "26762806064b42011c18553fcfc4e4f8c273eab27630a27aaec76cfadbbdcc8b"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/26102026_checks/training_shutdown_baed24dc.json",
+      "bytes": 129,
+      "sha256": "a22ed6bae4d4139ca8b5c03de3fecbacc5a7f175bf36fade563642af3a3f4440"
+    },
+    {
+      "path": "26102026_execution/26102026_C_full_finetuned16_seed42_selectedjob02/26102026_checks/calibration_and_prediction_shutdown_3999bea8.json",
+      "bytes": 129,
+      "sha256": "26762806064b42011c18553fcfc4e4f8c273eab27630a27aaec76cfadbbdcc8b"
+    }
+  ],
+  "large_checkpoint_hashes": "Per-arm epoch pointers and immutable pause proof contain SHA256"
+}

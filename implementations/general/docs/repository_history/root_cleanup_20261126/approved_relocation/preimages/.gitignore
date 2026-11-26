@@ -1,0 +1,745 @@
+# Large dataset folder (Intel Robotic Welding raw data)
+# Note: data_sample/ IS tracked for small manifest samples
+/data/Full Dataset/
+
+# Large multimodal files (video, audio, sensor, archive formats)
+*.avi
+*.mp4
+*.mov
+*.mkv
+*.flac
+*.wav
+*.mp3
+*.xlsx
+*.xls
+*.csv
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.h5
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.tdms
+*.parquet
+
+# Local configs and environment
+.env
+.env.local
+local_config.yaml
+
+# Python
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+
+
+
+
+
+
+
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# UV
+#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#uv.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+#poetry.toml
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
+#   https://pdm-project.org/en/latest/usage/project/#working-with-version-control
+#pdm.lock
+#pdm.toml
+.pdm-python
+.pdm-build/
+
+# pixi
+#   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
+#pixi.lock
+#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
+#   in the .venv directory. It is recommended not to include this directory in version control.
+.pixi
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
+
+# Abstra
+# Abstra is an AI-powered process automation framework.
+# Ignore directories containing user credentials, local state, and settings.
+# Learn more at https://abstra.io/docs
+.abstra/
+
+# Visual Studio Code
+#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
+#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
+#  you could uncomment the following to ignore the entire vscode folder
+# .vscode/
+
+# Ruff stuff:
+.ruff_cache/
+
+# PyPI configuration file
+.pypirc
+
+# Cursor
+#  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
+#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
+#  refer to https://docs.cursor.com/context/ignore-files
+.cursorignore
+.cursorindexingignore
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
+
+# Project-specific: ignore raw dataset folder if copied into repo and large multimodal formats
+/Full Dataset/
+
+# Large multimodal raw formats
+*.avi
+*.mp4
+*.mov
+*.flac
+*.wav
+*.tdms
+*.mat
+*.npy
+
+# Archives and checkpoints
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Manifests folder (if generated locally). Keep committed manifests in a different folder or add an explicit allow rule.
+/manifests/
+# ============================================================
+# PHM 2026 / GTC dataset
+# ============================================================
+
+# Raw PHM dataset files
+/gtc-data-experiment/
+*.part
+*.hdf5
+
+# Synology temporary authentication/session
+synology_cookies.txt
+
+# ============================================================
+# Thesis-specific tracking policy
+# ============================================================
+
+# Local environment and credentials
+/ma_thesis_env/
+.env.*
+*.env
+!.env.example
+!.env.template
+local_config.*
+!local_config.example.yaml
+!local_config.example.yml
+.netrc
+*.pem
+*.key
+*.p12
+*.pfx
+*.session
+*cookies*.txt
+credentials*.json
+*_credentials.json
+service-account*.json
+*_token.json
+!credentials.example.json
+!service-account.example.json
+
+# Local IDE and OS state
+.idea/
+.vscode/
+!/.vscode/
+/.vscode/*
+!/.vscode/thesis.code-workspace
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo
+
+# Temporary work and generated execution outputs
+
+/outputs/
+/eda_outputs/
+/basic_eda_outputs/
+/tmp/
+/.scratch/
+/.image_cache/
+/wandb/
+/mlruns/
+/lightning_logs/
+
+# Additional model/export artifacts
+*.safetensors
+*.onnx
+
+# Preserve historical EXP-A numerical-output visibility state
+/experiments/exp_a_initial_eda_r1_r3_r5/outputs/**/*.csv
+
+# Intentional compact input manifests
+!data/manifests/
+!data/manifests/**/
+!data/manifests/**/*.csv
+!data/manifests/**/*.json
+!data/manifests/**/*.yaml
+!data/manifests/**/*.yml
+!data/manifests/**/*.md
+
+# Repository audit inventory
+!docs/repository_audit/REPO_FILE_INVENTORY.csv
+
+# Tiny synthetic test fixtures only
+!tests/fixtures/
+!tests/fixtures/**/
+!tests/fixtures/**/*.csv
+!tests/fixtures/**/*.json
+!tests/fixtures/**/*.yaml
+!tests/fixtures/**/*.yml
+!tests/fixtures/**/*.txt
+!tests/fixtures/**/*.zip
+!tests/fixtures/**/*.h5
+!tests/fixtures/**/*.hdf5
+!tests/fixtures/**/*.png
+!tests/fixtures/**/*.jpg
+!tests/fixtures/**/*.jpeg
+
+# Curated results: ignore by default, allow reviewed final artifacts
+/results/*
+!/results/final_tables/
+!/results/final_tables/**/
+!/results/final_tables/**/*.csv
+!/results/final_tables/**/*.tex
+!/results/final_tables/**/*.md
+!/results/final_figures/
+!/results/final_figures/**/
+!/results/final_figures/**/*.png
+!/results/final_figures/**/*.jpg
+!/results/final_figures/**/*.jpeg
+!/results/final_figures/**/*.svg
+!/results/final_figures/**/*.pdf
+!/results/reports/
+!/results/reports/**/
+!/results/reports/**/*.md
+!/results/reports/**/*.json
+!/results/reports/**/*.html
+!/results/reports/**/*.pdf
+!/results/provenance/
+!/results/provenance/**/
+!/results/provenance/**/*.json
+!/results/provenance/**/*.yaml
+!/results/provenance/**/*.yml
+!/results/provenance/**/*.md
+!/results/provenance/**/*.csv
+
+
+# Blind human-inspection workspaces: images and answer keys must never be committed.
+scratch/
+/implementations/PHM2026/experiments/blind_inspection_legacy/
+
+# Relocated derived study outputs; raw-data exclusions remain unchanged.
+/implementations/PHM2026/results/processed/raw_vibration/*
+/implementations/PADERBORN/results/processed/bearing_features/
+
+# Paderborn validation data (ARCH-VAL-PB) - large, downloaded, not versioned
+data/paderborn/
+
+# RAW-VIB derived tables (large, regenerable)
+data/rawvib/
+
+# Exact PHM raw-retirement provenance (small, explicitly authorized manifests)
+!/artifacts/phm2026/raw_data_manifest.csv
+!/artifacts/phm2026/raw_data_manifest.json
+!/artifacts/phm2026/official_inventory.json
+!/artifacts/phm2026/cli_validation.json
+!/artifacts/phm2026/recovery_validation.json
+!/artifacts/phm2026/PHM_RAW_RETIREMENT_REPORT.md
+!/artifacts/phm2026/downloads/
+!/artifacts/phm2026/downloads/*.json
+!/artifacts/phm2026/retirement_gate_D2.json
+!/artifacts/phm2026/retirement_execution.json
+!/artifacts/phm2026/retained_artifact_verification.json
+!/artifacts/phm2026/post_retirement_storage.json
+!/implementations/REASSEMBLE/results/artifacts/audits/STORAGE_PREFLIGHT_AFTER_PHM_RETIREMENT_20260927T133716Z.md
+
+# Study 2: retain small audit evidence; exclude bulk recording checkpoints.
+/implementations/REASSEMBLE/results/runs/**/records/
+!/implementations/REASSEMBLE/results/artifacts/audits/PHASE_A_B_GATE_REPORT.md
+!/implementations/REASSEMBLE/results/artifacts/audits/inventory.md
+!/implementations/REASSEMBLE/results/artifacts/audits/label_audit.md
+!/implementations/REASSEMBLE/results/artifacts/audits/storage_actual.md
+!/implementations/REASSEMBLE/results/artifacts/audits/known_issues.json
+!/implementations/REASSEMBLE/results/artifacts/audits/modality_selection.json
+!/implementations/REASSEMBLE/results/artifacts/audits/nested_splits.json
+!/implementations/REASSEMBLE/results/artifacts/audits/leakage_audit.json
+!/implementations/REASSEMBLE/results/artifacts/audits/gates.json
+!/implementations/REASSEMBLE/results/artifacts/audits/validation.json
+!/implementations/REASSEMBLE/results/artifacts/audits/output_manifest.json
+!/implementations/REASSEMBLE/results/artifacts/audits/grouping_leakage_audit.md
+
+# Explicitly selected small Study 2 acquisition and audit provenance.
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/config.json
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/environment.json
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/provenance.json
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/final_provenance.json
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/input_manifest.json
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/acquisition.json
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/archive_inventory.json
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/upstream_reference.json
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/official_record_download.json
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/early_label_check.json
+!/implementations/REASSEMBLE/results/runs/dataset_inventory_and_label_audit/final_preservation_storage.json
+!/implementations/REASSEMBLE/results/runs/dataset_acquisition/provenance.json
+!/implementations/REASSEMBLE/results/runs/dataset_acquisition/scope.json
+!/implementations/REASSEMBLE/results/runs/dataset_acquisition/implementation_snapshot.json
+
+# Section 1: bulk caches and per-fit checkpoints stay local.
+/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/features/
+/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/predictions/
+/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/checkpoints/
+/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/driver.lock
+/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/live_status.json
+!/implementations/REASSEMBLE/results/artifacts/reports/SECTION_1_UNIMODAL_HANDOFF.md
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/config.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/nested_splits.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/provenance.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/environment.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/pretrained_model.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/training_implementation.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/failures_and_corrections.md
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/assessment/results.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/assessment/metrics.md
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/assessment/tuning.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/assessment/SECTION_1_UNIMODAL_HANDOFF.md
+
+# Completed Section 1: selected small assessment and validation evidence.
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/preservation_validation.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/final_output_manifest.json
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/finalization/SECTION_1_UNIMODAL_HANDOFF.md
+!/implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/finalization/validation.json
+
+# Section1B: keep per-fit numerical caches local; retain selected evidence.
+/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/sensor_controls/
+/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/sensor_controls/
+/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/stacking/
+/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/stacking/
+/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/execution.lock
+/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/execution.lock
+/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/live_status.json
+/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/live_status.json
+!/implementations/REASSEMBLE/results/artifacts/reports/SECTION_1B_FUSION_ADMISSIBILITY_HANDOFF.md
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/config.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/provenance.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/implementation.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/failures_and_corrections.md
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/sensor_reproduction.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/validation.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/assessment/results.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/assessment/stacker_coefficients.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_thread_parity_failure/assessment/SECTION_1B_FUSION_ADMISSIBILITY_HANDOFF.md
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/config.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/provenance.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/implementation.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/failures_and_corrections.md
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/sensor_reproduction.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/validation.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/assessment/results.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/assessment/stacker_coefficients.json
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/assessment/SECTION_1B_FUSION_ADMISSIBILITY_HANDOFF.md
+
+# Section 1B final reviewed report and compact diagnostic evidence.
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/finalization/SECTION_1B_FUSION_ADMISSIBILITY_HANDOFF.md
+!/implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/complementarity_precomputed.json
+
+# Section 2 clean fusion: local numerical/checkpoint bulk; selected evidence only.
+/implementations/REASSEMBLE/results/runs/fusion_method_comparison/inputs/
+/implementations/REASSEMBLE/results/runs/fusion_method_comparison/fits/
+/implementations/REASSEMBLE/results/runs/fusion_method_comparison/predictions/
+/implementations/REASSEMBLE/results/runs/fusion_method_comparison/execution.lock
+/implementations/REASSEMBLE/results/runs/fusion_method_comparison/live_status.json
+!/implementations/REASSEMBLE/results/artifacts/reports/SECTION_2_FUSION_HANDOFF.md
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/config.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/provenance.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/implementation.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/preexecution_validation.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/validation.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/failures_and_corrections.md
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/assessment/results.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/assessment/gate_weights.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/assessment/selected_hyperparameters.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/assessment/SECTION_2_FUSION_HANDOFF.md
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/finalization/SECTION_2_FUSION_HANDOFF.md
+
+# Section 2 final interpretation review (no additional model fitting).
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/assessment/review_comparisons.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/assessment/review_decision.json
+!/implementations/REASSEMBLE/results/runs/fusion_method_comparison/finalization/provenance.json
+
+# Autonomous completion: compact reports/configs; numerical bulk stays local.
+/implementations/REASSEMBLE/results/runs/completion_preservation_preflight/**
+!/implementations/REASSEMBLE/results/runs/completion_preservation_preflight/config.json
+!/implementations/REASSEMBLE/results/runs/completion_preservation_preflight/environment.json
+!/implementations/REASSEMBLE/results/runs/completion_preservation_preflight/preservation.json
+!/implementations/REASSEMBLE/results/runs/completion_preservation_preflight/implementation.json
+!/implementations/REASSEMBLE/results/runs/completion_preservation_preflight/results.json
+!/implementations/REASSEMBLE/results/runs/completion_preservation_preflight/validation.json
+!/implementations/REASSEMBLE/results/runs/completion_preservation_preflight/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/completion_preservation_preflight/failures_and_corrections.md
+/implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/**
+!/implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/config.json
+!/implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/environment.json
+!/implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/preservation.json
+!/implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/implementation.json
+!/implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/results.json
+!/implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/validation.json
+!/implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/failures_and_corrections.md
+/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/**
+!/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/config.json
+!/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/environment.json
+!/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/preservation.json
+!/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/implementation.json
+!/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/results.json
+!/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/validation.json
+!/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/failures_and_corrections.md
+/implementations/REASSEMBLE/results/runs/audio_modality_feasibility/**
+!/implementations/REASSEMBLE/results/runs/audio_modality_feasibility/config.json
+!/implementations/REASSEMBLE/results/runs/audio_modality_feasibility/environment.json
+!/implementations/REASSEMBLE/results/runs/audio_modality_feasibility/preservation.json
+!/implementations/REASSEMBLE/results/runs/audio_modality_feasibility/implementation.json
+!/implementations/REASSEMBLE/results/runs/audio_modality_feasibility/results.json
+!/implementations/REASSEMBLE/results/runs/audio_modality_feasibility/validation.json
+!/implementations/REASSEMBLE/results/runs/audio_modality_feasibility/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/audio_modality_feasibility/failures_and_corrections.md
+/implementations/REASSEMBLE/results/runs/component_efficiency_benchmark/**
+!/implementations/REASSEMBLE/results/runs/component_efficiency_benchmark/config.json
+!/implementations/REASSEMBLE/results/runs/component_efficiency_benchmark/environment.json
+!/implementations/REASSEMBLE/results/runs/component_efficiency_benchmark/preservation.json
+!/implementations/REASSEMBLE/results/runs/component_efficiency_benchmark/implementation.json
+!/implementations/REASSEMBLE/results/runs/component_efficiency_benchmark/results.json
+!/implementations/REASSEMBLE/results/runs/component_efficiency_benchmark/validation.json
+!/implementations/REASSEMBLE/results/runs/component_efficiency_benchmark/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/component_efficiency_benchmark/failures_and_corrections.md
+/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/**
+!/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/config.json
+!/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/environment.json
+!/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/preservation.json
+!/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/implementation.json
+!/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/results.json
+!/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/validation.json
+!/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/failures_and_corrections.md
+/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/**
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/config.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/environment.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/preservation.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/implementation.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/results.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/validation.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/output_manifest.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/failures_and_corrections.md
+!/implementations/REASSEMBLE/results/artifacts/reports/SECTION_3_ROBUSTNESS_HANDOFF.md
+!/implementations/REASSEMBLE/results/artifacts/reports/MODALITY_DROPOUT_HANDOFF.md
+!/implementations/REASSEMBLE/results/artifacts/reports/AUDIO_FEASIBILITY_HANDOFF.md
+!/implementations/REASSEMBLE/results/artifacts/reports/EFFICIENCY_HANDOFF.md
+!/implementations/REASSEMBLE/results/artifacts/reports/OBJECT_GENERALIZATION_FEASIBILITY.md
+!/implementations/REASSEMBLE/results/artifacts/reports/FINAL_REASSEMBLE_HANDOFF.md
+!/implementations/REASSEMBLE/results/artifacts/reports/CROSS_STUDY_SYNTHESIS_HANDOFF.md
+!/implementations/REASSEMBLE/results/artifacts/reports/THESIS_STORYLINE_ADDENDUM.md
+!/implementations/REASSEMBLE/results/artifacts/reports/THESIS_FIGURE_INDEX.md
+!/implementations/REASSEMBLE/results/artifacts/reports/THESIS_TABLE_INDEX.md
+!/implementations/REASSEMBLE/results/artifacts/reports/FINAL_EVIDENCE_MAP.md
+!/implementations/REASSEMBLE/results/artifacts/reports/REASSEMBLE_COMPLETION_STATUS.md
+
+# Explicit compact provenance and reviewed thesis artifact destinations.
+!/implementations/REASSEMBLE/results/runs/completion_preservation_preflight/*_attempt*.json
+!/implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/*_attempt*.json
+!/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/*_attempt*.json
+!/implementations/REASSEMBLE/results/runs/audio_modality_feasibility/*_attempt*.json
+!/implementations/REASSEMBLE/results/runs/component_efficiency_benchmark/*_attempt*.json
+!/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/*_attempt*.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/*_attempt*.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/claim_inventory.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/claim_review.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/figure_index.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/metric_traceability.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/synthesis_context.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/seal.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/tables/
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/tables/*.csv
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/tables/*.md
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/figures/
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/figures/*.pdf
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/figures/*.png
+!/implementations/REASSEMBLE/results/runs/modality_dropout_fusion/training.json
+!/implementations/REASSEMBLE/results/runs/object_generalization_feasibility/object_support.csv
+
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/review/
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/review/FINAL_EVIDENCE_MAP.generated.md
+
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/format_correction_v2.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/review_correction_v2/
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/review_correction_v2/*.json
+!/implementations/REASSEMBLE/results/runs/final_synthesis_claim_review/review_correction_v2/failures_and_corrections.md
+
+# Additional exploratory extension: compact audited summaries only in Git.
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/*.npz
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/*.npy
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/*.pt
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/*.joblib
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/*.log
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/*.writing
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/features/
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/fits/
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/visual_bank/
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/sensor_bank/
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/visual_probabilities/
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/branches/
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/outer*.json
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/execution.json
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/*.writing.*
+# Compact reviewed extension tables (full numerical/row tables remain local).
+!/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/representation_and_robustness_studies/**/comparison/metrics.csv
+!/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/representation_and_robustness_studies/**/effective_coefficient_summary.csv
+!/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/representation_and_robustness_studies/05_final_comparison/*.csv
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/frozen_prefix/
+
+# Mutable queue locks are runtime state, not research evidence.
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/supervisor.lock
+
+# Preserve ignore coverage after the approved physical moves.
+*.writing*
+/implementations/HANDOVER/experiments/common_support_v2/06_evaluation_results/predictions/
+/implementations/HANDOVER/experiments/common_support_v2/08_visual_examples_and_eda/prediction_examples/
+/implementations/HANDOVER/experiments/common_support_v2/08_visual_examples_and_eda/sample_previews/
+/implementations/general/results/pretrained/*.pt
+
+# Reviewed documentation recovery bundle.
+!implementations/general/docs/repository_history/document_cleanup_20261120/removed_documents.tar.gz
+
+# Local metadata inventory for the pending, researcher-reviewed structural move.
+/implementations/general/docs/repository_history/final_consolidation_20261125/FILE_METADATA_BEFORE.jsonl
+
+# Keep downloaded payloads and regenerated caches local after repository moves.
+/DATASET_RESEARCH/NEW_DATASET_SELECTION_20261028/source_evidence/
+/CROSS_DATASET_COMPARISON/INDEPENDENT_REVIEW_PACKAGE/10_Visual_And_Sensor_Examples/
+/implementations/REASSEMBLE/experiments/additional/**/cache/
+/implementations/REASSEMBLE/experiments/additional/**/cohort_and_frames.json
+/implementations/REASSEMBLE/experiments/additional/**/*.lock
+/implementations/PHM2026/results/runs/phm2026_rtdetr_pseudo_boxes/*/cache/
+/implementations/REASSEMBLE/results/human_review/*/clips/
+/implementations/general/research_workflow/automation/**/test_work/
+/implementations/general/research_workflow/automation/**/runtime/
+/implementations/general/research_workflow/automation/**/*.lock
+/implementations/REASSEMBLE/experiments/core/**/*.lock
+/implementations/REASSEMBLE/results/runs/followup_exploratory_studies/**/*.lock
+
+# Academic-review consolidation (2026-11-26): exact compact evidence only.
+# These are publication candidates, not permission to stage/push. See
+# 00_thesis_writing_tracking/consolidation_20261126/PUBLICATION_MANIFEST.md.
+!/implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/loeo_predictions.csv
+!/implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/loeo_summary.csv
+!/implementations/PHM2026/results/runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/tables/run_damage_targets.csv
+!/implementations/PHM2026/results/runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/tables/per_tooth_damage.csv
+!/implementations/PHM2026/results/processed/raw_vibration/l1_screen.json
+!/implementations/PHM2026/results/processed/raw_vibration/sector_screen.json
+!/00_thesis_writing_tracking/scientific_cross_mapping_20261125/f2_verification/fold_metrics.csv
+!/00_thesis_writing_tracking/Thesis/References/CITATION_PDFS.csv
+!/00_thesis_writing_tracking/Thesis/References/PDF_PROVENANCE.csv
+
+# Bibliographic metadata stays reviewable; third-party full text stays local.
+/00_thesis_writing_tracking/Thesis/References/PDFs/
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/citation_review_ch01_ch02_20261126_01/root_pdf_texts/
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/citation_review_ch01_ch02_20261126_01/metadata_inventory.json
+
+# Compilation products and page renders are retained locally, not published.
+# Do not ignore the surrounding validation reports, manifests or source snapshots.
+/00_thesis_writing_tracking/**/*.aux
+/00_thesis_writing_tracking/**/*.bbl
+/00_thesis_writing_tracking/**/*.bcf
+/00_thesis_writing_tracking/**/*.blg
+/00_thesis_writing_tracking/**/*.fdb_latexmk
+/00_thesis_writing_tracking/**/*.fls
+/00_thesis_writing_tracking/**/*.out
+/00_thesis_writing_tracking/**/*.run.xml
+/00_thesis_writing_tracking/**/*.synctex.gz
+/00_thesis_writing_tracking/**/*.toc
+/00_thesis_writing_tracking/**/*.lof
+/00_thesis_writing_tracking/**/*.lot
+/00_thesis_writing_tracking/**/*.xdv
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/**/*_build/
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/**/render*/
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/**/previews*/
+/00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/checks/**/source_previews/

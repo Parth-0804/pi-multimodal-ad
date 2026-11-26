@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-27T19:05:16.837811+00:00",
+  "stage": "STOPPED",
+  "status": "PARTIAL",
+  "arm": "C_full_finetuned16",
+  "epoch_budget": 20,
+  "pending_B_fits": 0,
+  "completed_C_fits": 3,
+  "required_C_fits": 75,
+  "remaining_CNN_training_hours": 377.23495886683185,
+  "remaining_planning_GPU_job_hours": [
+    452.6819506401982,
+    528.1289424135646
+  ],
+  "remaining_planning_days_exclusive_GPU": [
+    18.86174794334159,
+    22.00537260056519
+  ],
+  "host_resources": {
+    "process_tree_RSS_GiB": 0.971923828125,
+    "process_tree_threads": 15,
+    "system_available_RAM_GiB": 55.26367950439453,
+    "disk_free_GiB": 70.69869613647461,
+    "system_load_average": [
+      5.07421875,
+      3.57568359375,
+      3.2119140625
+    ]
+  },
+  "error": "InterruptedError('REQUESTED_STOP_AFTER_COMPLETED_EPOCH')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/26102026_source/c20_controller.py\", line 171, in main\n    child(seed,job,expected,attempts)\n  File \"/home/student/Master_Thesis_WS/pi-multimodal-ad/26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_c_only_20epoch_revision_01/26102026_source/c20_controller.py\", line 133, in child\n    raise InterruptedError('REQUESTED_STOP_AFTER_COMPLETED_EPOCH')\nInterruptedError: REQUESTED_STOP_AFTER_COMPLETED_EPOCH\n",
+  "controller_pid": 2076000
+}

@@ -1,0 +1,29 @@
+{
+  "recorded_utc": "2026-10-26T23:03:22.728471+00:00",
+  "phase1_tests_passed": true,
+  "combined_test_count": 26,
+  "pytest_seconds": 12.65,
+  "test_command": "env PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 ma_thesis_env/bin/python -B -m pytest --import-mode=importlib -q -p no:cacheprovider 26.10.2026_feedback_experiments/26102026_phase1_full_cnn_seed_stability/26102026_tests 26.10.2026_feedback_experiments/tests/test_gpu_audit.py",
+  "git_diff_check_passed": true,
+  "pip_check_passed": true,
+  "pip_check_output": "No broken requirements found.",
+  "metadata_recheck": "4530 actions,148 recordings; original success/failure, action text, source stem and timestamps match",
+  "real_CNN_gate_sha256": "d105cc4ab033b8f6598d076974af5eb631b16349d83500c70641f4a563e435a6",
+  "preflight_source_reconciliation_sha256": "3b3e96939e8d7ccce67d51ad19fe658cd871ad1aaef58c88148031799a14a63b",
+  "scope": "Synthetic checks plus separately evidenced full-cohort identity and real-CNN GPU checks; no outer-test labels used for tuning",
+  "source_hashes": {
+    "phase_metrics.py": "249e80c191a407c9724bf05e3024968b5580d5a6aa3ede6801a7824dc0744af2",
+    "phase_inference.py": "7526554881d1cbb97f63be0d45eec94ba7626e9b2d58e24f52d7148145bc7241",
+    "phase_evaluation.py": "e5a61fa3fc4e81a3dec7d2b5e05a479daaaebf36a65aa1a009b78ef4ea969ca1",
+    "phase_model.py": "ce735eff4b893f3f980a1ad0b83682893ee209292b6c1a7e3fefe1870d53d493",
+    "phase_common.py": "448999568817c113943ac8d601da27e8fb0752df110839f698231d1ef5e92520",
+    "phase_preflight.py": "ea7a440abf39115c5aaf3af3dfbbf0d06e77912fa43508881bafdbfd4c18ed82",
+    "phase_checkpoint.py": "7a926df7df4b986691f678f2d1cadecb66218fbc09bbfe4ae9dd00692ab9e8d6",
+    "phase_loader.py": "fb22a18f6348336a7f1dff6ddba5c1832cc77e66c2cf6c2d5f51d69e7a1348ce",
+    "verify_inputs.py": "e2fe6caa1edd1da00b98b2d3404794401b9dabe97e66c3ea3b537695fa80077f",
+    "phase_training.py": "f8cda57aca3852603572f4f54108b7230c5e717febdb72ba6487ea4a6c434bbd",
+    "phase_controller.py": "824436f29f47bd06f4c91a1067bc994822947baf1899b0abcce29bbbc0a9c985",
+    "phase_reporting.py": "13de0df3db1149444cfd0341d212e2c0a0319e202a7337b2f2f167083ed7f593"
+  },
+  "earlier_test_development": "Initial synthetic fixture-spawn and test scheduler-construction failures were corrected before these passing checks; no scientific results were emitted by those failed tests."
+}

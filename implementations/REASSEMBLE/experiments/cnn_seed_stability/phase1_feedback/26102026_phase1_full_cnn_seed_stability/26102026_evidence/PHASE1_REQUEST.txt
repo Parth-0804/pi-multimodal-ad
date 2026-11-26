@@ -1,0 +1,943 @@
+# CODEX MASTER TASK — PHASE 1
+## REASSEMBLE: Full CNN Fine-Tuning, Seed Stability, F2 Fusion and GPU-Optimized Execution
+
+### Your role
+
+Act as an independent machine learning researcher, senior PyTorch engineer, and scientific reproducibility auditor.
+
+We are conducting experiments for a master's thesis on multimodal industrial anomaly detection.
+
+The supervisor has requested:
+
+1. Longer training of the pretrained CNN.
+2. Full-backbone fine-tuning rather than keeping the CNN frozen.
+3. A controlled comparison against the frozen reference.
+4. Repeated experiments across different random seeds.
+5. Evaluation of whether visual improvements translate into better multimodal fusion.
+
+**Your objective is to implement and execute Phase 1 using the GPU optimizations already established by our latest audit.**
+
+Do not start Phase 2 robustness experiments or Phase 3 MSM Milling experiments.
+
+---
+
+# PART 0 — MANDATORY: INSPECT THE EXISTING GPU OPTIMIZATION
+
+A dedicated GPU optimization investigation was completed on 26 October 2026.
+
+Locate and inspect:
+
+- `PHASE1_GPU_OPTIMIZATION_REPORT.md`
+- Associated benchmark configurations and implementation.
+- Benchmark evidence and numerical validation files.
+- Selected exact-live16 loader.
+- GPU performance gate.
+- Worker-shutdown tests.
+- Existing project training and evaluation code.
+
+Search the repository if the report is stored under another directory.
+
+The supplied report contains the following findings.
+
+### Verified within the supplied benchmark report
+
+| Item | Reported finding |
+|---|---|
+| Available GPUs | One NVIDIA Tesla T4 |
+| VRAM | 16 GB nominal |
+| Selected DataLoader workers | 4 |
+| FFmpeg decoder threads | 2 per video |
+| Prefetch factor | 2 |
+| Pinned memory | Enabled |
+| Persistent workers | Enabled |
+| Frame decoding | Exact 16 required frames |
+| Microbatch | 1 action, containing 16 frames |
+| Gradient accumulation | 8 actions per optimizer update |
+| Training precision | FP32 |
+| Sustained GPU compute utilization | 97.9% |
+| Throughput | 6.637 actions/second |
+| Projected 2,966-action epoch | 7.45 minutes |
+| Worker shutdown | Successful in final benchmark |
+| Full scientific training | Not launched |
+
+These values were measured on a bounded benchmark using 24 training actions from 20 recordings.
+
+**Critical limitation: The benchmark used the earlier final-stage fine-tuning configuration, not our proposed fully trainable CNN.**
+
+The 97.9% result must therefore not be automatically attributed to full-backbone training.
+
+### Immediate instructions
+
+1. Inspect the actual benchmark implementation.
+2. Verify that its source code and artifacts are present.
+3. Reuse the successful loader and preprocessing approach where compatible.
+4. Do not repeat the entire historical GPU optimization search without a reason.
+5. Preserve the existing optimization report and all its evidence.
+6. Do not treat the reported epoch duration as a measured full-backbone epoch.
+7. Verify that the optimized input path works with full CNN backpropagation.
+
+If any report claim cannot be reproduced or traced to an actual artifact, document the discrepancy.
+
+---
+
+# PART 1 — HISTORICAL EXPERIMENT AUDIT
+
+Before launching new training, verify what we have already implemented.
+
+Inspect the REASSEMBLE code, configurations, logs, saved models, predictions and evaluation outputs.
+
+### 1.1 Required investigations
+
+Determine:
+
+- Which pretrained checkpoint is loaded.
+- Which RT-DETR components are actually executed.
+- Whether the full detector or only CNN feature-extraction components are used.
+- Whether temporal information is modeled or merely pooled.
+- How the 16 frames are selected.
+- Which parameters were frozen in historical experiments.
+- Which parameters were previously fine-tuned.
+- How the visual classification head was trained.
+- How the sensor-statistics model was fitted.
+- How F2 static fusion was trained.
+- How recording-group splits and out-of-fold predictions were constructed.
+
+Do not infer architecture from checkpoint names.
+
+Inspect actual forward paths and parameter-update logic.
+
+### 1.2 Historical training budget audit
+
+Create:
+
+`PHASE1_HISTORICAL_AUDIT.md`
+
+Include this table:
+
+| Experiment | Trainable components | Epoch candidates | Actual selected epochs | Seeds | Learning rates | Early stopping | Runtime | Evidence |
+|---|---|---|---|---|---|---|---|---|
+
+Include:
+
+- Original Frozen16 CNN.
+- Original sensor model.
+- Original F2.
+- CNN versus hybrid encoder.
+- Frozen16 and FineTuned16.
+- Frozen32 and FineTuned32.
+- Later matched two-epoch study.
+- Relevant temporal-pooling studies.
+- Existing seed experiments.
+
+Distinguish configured budgets from epochs actually executed and selected.
+
+Preserve the original results and checkpoint provenance.
+
+The previously reported F2 AP of approximately 0.4473 is a historical reference to verify, not a value to reproduce by assumption.
+
+### 1.3 Dataset and split integrity
+
+Verify:
+
+- Original failure-target provenance.
+- Positive and negative class definitions.
+- Action and recording identifiers.
+- Frame-label alignment.
+- Recording-disjoint evaluation.
+- Existing fold definitions.
+- Preprocessing and normalization boundaries.
+- Whether historical test results were used for model selection.
+
+Do not change the task definition without explicitly documenting it.
+
+---
+
+# PART 2 — INTEGRATE THE OPTIMIZED 16-FRAME INPUT PIPELINE
+
+This part is crucial.
+
+The GPU report identified input starvation as a major cause of poor GPU utilization.
+
+The optimized loader achieved high sustained GPU utilization by removing unnecessary preprocessing and keeping training inputs ready.
+
+We want to use that implementation in our new experiment.
+
+## 2.1 Preferred configuration
+
+Start with the previously selected configuration:
+
+```yaml
+frames_per_action: 16
+data_loading:
+  num_workers: 4
+  pin_memory: true
+  persistent_workers: true
+  prefetch_factor: 2
+  ffmpeg_threads_per_video: 2
+  exact_selected_frame_decode: true
+
+training:
+  action_microbatch_size: 1
+  frames_batched_per_cnn_call: 16
+  gradient_accumulation_actions: 8
+  precision: fp32
+```
+
+These are starting values inherited from the successful benchmark, not immutable settings if full-backbone training reveals a problem.
+
+Preserve the experimental effective batch size unless a change is independently justified and documented.
+
+## 2.2 Full-cohort input identity verification
+
+The benchmark verified exact 16-frame identity on a bounded subset.
+
+Before full training:
+
+1. Reconstruct the selected-frame identities for every relevant action in the full experimental cohort.
+2. Verify the same frames, frame order, preprocessing, pixel values and normalization as the intended reference.
+3. Check decoded input dimensions and dtype.
+4. Check invalid, missing and corrupted videos.
+5. Verify recording and label associations.
+6. Confirm the loader does not silently substitute frames.
+7. Save an input-identity manifest and validation summary.
+
+The optimized 16-frame path must not accidentally switch from original whole-action sampling to last-quarter sampling or another temporal strategy.
+
+Keep temporal selection fixed across experimental arms.
+
+Use existing hashes and manifests where available; avoid unnecessary full video decoding if equivalent validation evidence is already present.
+
+## 2.3 Preserve the worker-shutdown fix
+
+The report documents previous FFmpeg-thread proliferation and abnormal DataLoader worker shutdown.
+
+Reuse the validated cooperative-shutdown mechanism.
+
+Test:
+
+- Complete iteration.
+- Worker exhaustion.
+- Early termination.
+- Exception handling.
+- Checkpoint interruption.
+- Epoch transitions.
+
+Ensure that draining prefetched inputs does not perform extra model updates or alter the training sample count.
+
+Do not introduce multiprocessing modifications that re-create the previous failures.
+
+---
+
+# PART 3 — DEFINE THE THREE EXPERIMENTAL MODELS
+
+The main scientific question is:
+
+**Does full-backbone fine-tuning improve visual failure prediction and multimodal F2 fusion beyond what can be achieved by longer classifier-only training?**
+
+We require three configurations.
+
+| ID | Model | CNN parameters | Training |
+|---|---|---|---|
+| A | Original Frozen16 | Frozen | Historical reference |
+| B | Long Frozen16 | Frozen | Extended classifier training |
+| C | Full FineTuned16 | All executed CNN backbone layers trainable | Extended CNN + classifier training |
+
+## Model A — Historical reference
+
+Use the verified original Frozen16 architecture and its corresponding historical evaluation.
+
+Do not overwrite or silently retrain it.
+
+If exact comparability requires a new evaluation with fixed splits or corrected metrics, report this separately as a reconstructed reference.
+
+## Model B — Extended frozen baseline
+
+- Load the same pretrained CNN initialization.
+- Keep the CNN frozen.
+- Train the classification head for up to 50 epochs.
+- Apply the same 16-frame policy.
+- Use training-side validation for checkpoint selection.
+- Repeat across the predetermined seeds.
+
+Where possible, reuse fixed visual features efficiently.
+
+Feature caching is valid only if the features and all preprocessing remain identical to the intended frozen-model computation.
+
+## Model C — Fully fine-tuned CNN
+
+- Load the same pretrained CNN initialization.
+- Initialize the corresponding classifier head.
+- Make the entire executed CNN backbone trainable.
+- Train the CNN and classifier jointly.
+- Use exactly 16 frames per action.
+- Train for up to 50 epochs.
+- Repeat across the predetermined seeds.
+
+This means full-backbone **fine-tuning**, not training a CNN from random initialization.
+
+### Full-backbone verification
+
+Before the scientific run, explicitly demonstrate:
+
+1. Early CNN layers have the intended trainable parameters.
+2. Middle and final CNN stages are trainable.
+3. Nonzero gradients reach the intended backbone parameters.
+4. CNN weights actually change after optimizer updates.
+5. The classifier receives gradients.
+6. No unintended `.detach()` or `no_grad()` blocks CNN training.
+7. Unused RT-DETR detector components are not accidentally included.
+8. Parameters intended to remain frozen do not change.
+
+Inspect the model's BatchNorm behavior carefully.
+
+The historical benchmark kept the backbone in evaluation mode and its earlier parameters unchanged.
+
+That policy cannot be copied blindly into full-backbone fine-tuning.
+
+Choose and document the appropriate BatchNorm running-statistics and affine-parameter policy before the experiment.
+
+Do not describe a model as fully fine-tuned if substantial executed CNN components remain unintentionally frozen.
+
+---
+
+# PART 4 — REBENCHMARK THE FULLY TRAINABLE CNN
+
+**Do not skip this part.**
+
+The existing optimized loader was benchmarked under partial fine-tuning.
+
+Full-backbone training may change memory requirements, backward-pass computation, and throughput.
+
+### 4.1 Full-backbone smoke test
+
+Run a small, representative training workload using Model C.
+
+Check:
+
+- Forward pass.
+- Backpropagation through the complete CNN.
+- Optimizer update.
+- Finite loss and gradients.
+- Correct gradient accumulation.
+- Model-weight updates.
+- Checkpoint saving.
+- Checkpoint reload.
+- Correct predictions after reload.
+
+Use training-side samples only.
+
+### 4.2 Benchmark the previously optimized loader
+
+Use the selected four-worker, exact-live16 configuration.
+
+Record:
+
+- GPU compute utilization.
+- VRAM allocation and peak usage.
+- Actions per second.
+- Optimizer updates per second.
+- CPU loading wait.
+- CNN computation time.
+- Epoch-time estimate.
+- Worker stability.
+- Numerical stability.
+
+Compare appropriate configurations only when the measurements suggest a meaningful remaining bottleneck.
+
+Do not redo every historical loader benchmark.
+
+### 4.3 Precision strategy
+
+The report established that:
+
+- Native BF16 is unavailable on the T4.
+- FP32 was used in the validated benchmark.
+- FP16 was not previously validated.
+- `torch.compile` was not previously benchmarked.
+
+Therefore:
+
+**Use FP32 as the validated starting point.**
+
+Do not automatically enable BF16.
+
+FP16 mixed precision may be tested only if necessary and supported, with checks for:
+
+- Finite gradients.
+- Loss scaling.
+- Numerical stability.
+- Prediction differences.
+- Checkpoint compatibility.
+- Actual throughput improvement.
+
+Do not claim equivalence without testing it.
+
+If alternative precision becomes part of the final protocol, document it as an experimental setting and preserve the comparability of B and C.
+
+### 4.4 GPU utilization goal
+
+The previous report already achieved approximately 98% kernel-busy utilization in its selected benchmark.
+
+Do not chase 100% utilization as an artificial target.
+
+Optimize actual training throughput while preserving the experiment.
+
+A lower utilization figure during full-backbone training should trigger diagnosis only when it reflects meaningful idle time or avoidable performance loss.
+
+GPU kernel-busy utilization is not equivalent to the percentage of peak GPU FLOPS.
+
+### 4.5 Multi-GPU handling
+
+The supplied audit found **one visible Tesla T4**.
+
+Therefore, do not configure multi-GPU distributed training by default.
+
+Do not launch competing GPU jobs on the single T4 merely to increase utilization.
+
+If the actual allocation changes, verify the newly assigned GPUs before proposing a parallel strategy.
+
+---
+
+# PART 5 — TRAINING DURATION AND CHECKPOINT SELECTION
+
+Manav requested significantly longer CNN training.
+
+The experiment should investigate whether the previous short training budgets were insufficient.
+
+## 5.1 Training budget
+
+For Models B and C:
+
+- Maximum: **50 epochs**.
+- Planned minimum training exposure: **25 epochs**, unless the run fails or becomes numerically unsafe.
+- Save metrics for every epoch.
+- Use training-side validation to select checkpoints.
+- Permit earlier checkpoint selection even if training continues to at least epoch 25.
+
+Define any learning-rate scheduling, early-stopping patience and continuation rule before evaluating the outer-test folds.
+
+Apply equivalent checkpoint-selection principles to B and C.
+
+If a common classifier warm-up phase is used, explicitly control for it. Do not accidentally provide one model substantially more classifier-training exposure.
+
+## 5.2 Optimizer configuration
+
+Inspect existing optimizers and learning rates first.
+
+For full-backbone fine-tuning, consider differential learning rates for the pretrained CNN and newly initialized classifier.
+
+Choose an appropriate configuration using training-side evidence.
+
+Do not conduct unrestricted hyperparameter searches against outer-test performance.
+
+Record:
+
+- Optimizer.
+- Learning rates by parameter group.
+- Weight decay.
+- Batch and effective batch sizes.
+- Gradient clipping.
+- Learning-rate scheduler.
+- Augmentation.
+- Random seed.
+- Number of optimizer steps.
+- Epoch count.
+- Early-stopping rule.
+
+## 5.3 Required learning curves
+
+For every model, fold and seed, record:
+
+- Training loss.
+- Validation loss.
+- Validation Average Precision.
+- Validation AUROC when defined.
+- Learning rate.
+- Epoch duration.
+- GPU memory.
+- GPU utilization.
+- Best validation checkpoint.
+- Final executed epoch.
+
+Identify:
+
+- Underfitting.
+- Convergence.
+- Overfitting.
+- Numerical instability.
+- Training-budget saturation.
+
+Do not conclude that 50 epochs are better merely because the model ran longer.
+
+---
+
+# PART 6 — RANDOM-SEED STABILITY
+
+Use exactly these predetermined seeds for the main comparison:
+
+```python
+SEEDS = [42, 123, 20261023]
+```
+
+Do not optimize the seed value.
+
+For Models B and C, repeat training using these seeds.
+
+### Keep fixed
+
+- Dataset version.
+- Labels.
+- Recording groups.
+- Outer evaluation folds.
+- Frame selection.
+- Model structure within each condition.
+- Evaluation metrics.
+- Validation-selection protocol.
+
+Allow stochastic elements such as initialization, data ordering and augmentation to vary according to seed.
+
+Record unavoidable nondeterminism.
+
+### Required evaluation
+
+For each model:
+
+1. Visual AP per seed and fold.
+2. Mean performance across seeds.
+3. Seed-to-seed standard deviation.
+4. Selected epochs.
+5. Paired B-versus-C differences.
+6. Training-time variation.
+7. Whether the direction of any improvement is consistent.
+
+Do not select the highest-performing seed.
+
+Do not treat folds and seeds as independent samples when estimating uncertainty.
+
+---
+
+# PART 7 — PRESERVE LEAKAGE-SAFE EVALUATION
+
+This phase must preserve scientifically valid recording-disjoint evaluation.
+
+Inspect the historical fold construction and stacking procedure before training.
+
+### Critical controls
+
+- Keep related actions from the same recording together within evaluation splits.
+- Use only appropriate training-side observations for preprocessing fitting and model selection.
+- Do not select checkpoints using outer-test labels.
+- Do not select learning rates using outer-test AP.
+- Do not choose the best random seed using outer-test outcomes.
+- Verify that action identifiers and prediction files remain aligned.
+
+Because REASSEMBLE has already been repeatedly examined, label this as a follow-up experiment on a previously studied dataset.
+
+Do not claim that the evaluation constitutes an untouched independent confirmation.
+
+### F2 stacking requirements
+
+For each outer fold:
+
+1. Produce appropriately out-of-fold visual probabilities from the outer-training data.
+2. Produce appropriately out-of-fold sensor probabilities.
+3. Fit the static F2 fusion model on the training-side probability pairs.
+4. Train the required base predictors on permitted outer-training data.
+5. Generate held-out outer-test probabilities.
+6. Apply the fitted F2 model without refitting on the outer test.
+
+Ensure that checkpoint and hyperparameter selection inside the out-of-fold procedure respects the relevant training and validation boundaries.
+
+Verify whether the existing nested evaluation already implements these requirements.
+
+Reuse valid historical machinery instead of writing a competing protocol unnecessarily.
+
+**If the current fusion procedure has leakage or cannot be made comparable, stop and document the issue before producing headline metrics.**
+
+---
+
+# PART 8 — RE-EVALUATE STATIC F2 FUSION
+
+The goal is to determine whether longer CNN training improves multimodal fusion, not merely visual classification.
+
+Compare:
+
+| Configuration | Visual model | Sensor model | Fusion |
+|---|---|---|---|
+| F2-A | Original Frozen16 | Historical reference | Historical F2 |
+| F2-B | Long Frozen16 | Matched sensor reference | Newly fitted F2 |
+| F2-C | Full FineTuned16 | Matched sensor reference | Newly fitted F2 |
+
+Preserve the sensor-statistics methodology where valid.
+
+Refit F2-B and F2-C using their corresponding leakage-safe training-side predictions.
+
+Do not reuse the original F2 coefficients as though they were automatically calibrated for newly trained visual models.
+
+### Questions to answer
+
+1. Did longer classifier training improve visual AP?
+2. Did full-backbone fine-tuning improve visual AP beyond the longer frozen control?
+3. Did the new visual representations improve F2 fusion AP?
+4. Were improvements consistent across seeds?
+5. How did training cost and inference cost change?
+6. Was the difference practically meaningful?
+
+### Metrics
+
+Use:
+
+- Average Precision as the primary metric.
+- AUROC as a secondary metric.
+- Positive-class prevalence.
+- Relevant calibration measures where supported.
+- Per-fold and per-seed results.
+- Paired performance differences.
+- Appropriate uncertainty estimates.
+- Training and inference runtime.
+
+Report pooled held-out predictions and fold-level statistics separately where relevant.
+
+Do not interpret a small AP increase as statistically established superiority without appropriate evidence.
+
+---
+
+# PART 9 — COMPUTATIONAL EXECUTION STRATEGY
+
+The GPU optimization report estimated approximately 7.45 minutes for a 2,966-action epoch in the previous partial fine-tuning benchmark.
+
+**Do not reuse this number as the full-CNN training duration.**
+
+The report's estimated GPU-hour totals concern an earlier training matrix and cannot be directly applied to the proposed 25–50 epoch, three-seed, full-backbone experiment.
+
+## 9.1 Audit the actual fit matrix
+
+The prior report mentions 25 fits per condition.
+
+Verify the current protocol's true requirements:
+
+- Outer folds.
+- Inner out-of-fold fits.
+- Validation/checkpoint-selection fits.
+- Conditions.
+- Seeds.
+- Maximum epochs.
+- Evaluation and inference passes.
+
+Calculate the total number of required training fits before scheduling the workload.
+
+Avoid double-counting models or rerunning equivalent deterministic components.
+
+## 9.2 Stage execution safely
+
+Use this sequence:
+
+**Stage A — Verification**
+
+- Historical audit.
+- Optimized loader integration.
+- Full-cohort frame identity verification.
+- Leakage checks.
+
+**Stage B — Pilot**
+
+- Full-backbone gradient test.
+- Resource benchmark.
+- Checkpoint resume test.
+- Representative training pilot.
+- Estimate runtime for the complete matrix.
+
+**Stage C — Controlled training**
+
+- Run Model B and Model C under the frozen protocol.
+- Execute the predetermined seeds and required folds.
+- Save per-run artifacts and progress.
+
+**Stage D — Fusion and analysis**
+
+- Produce out-of-fold predictions.
+- Refit F2.
+- Evaluate paired results.
+- Generate reports.
+
+Do not skip essential evaluation folds solely to reduce compute.
+
+If a pilot reveals an invalid protocol, fix it before starting all runs.
+
+## 9.3 GPU and process scheduling
+
+Because only one T4 was reported:
+
+- Execute GPU-heavy training jobs without unnecessary contention.
+- Keep CPU preprocessing efficient.
+- Monitor GPU utilization throughout training.
+- Watch for memory leaks across epochs.
+- Track disk usage and available space.
+- Ensure processes terminate cleanly.
+- Keep all long-running training sessions resumable.
+
+There is no arbitrary GPU-hour limit for this task.
+
+Nevertheless, report realistic progress and remaining runtime.
+
+Do not claim a run is complete while its process remains active.
+
+## 9.4 Checkpointing and recovery
+
+Long training must survive interruptions.
+
+Save, as appropriate:
+
+- Model weights.
+- Optimizer state.
+- Scheduler state.
+- Epoch and completed optimizer-step counts.
+- Random-number generator states.
+- Sampler/order information.
+- Best validation score.
+- Best checkpoint.
+- Latest resumable checkpoint.
+- Configuration and data provenance.
+
+The existing GPU report validated model/optimizer/RNG checkpoint replay on a fixed batch.
+
+It did **not** validate the future runner's entire sampler and prefetch-resumption behavior.
+
+Before launching long training, verify either:
+
+1. Correct deterministic mid-epoch continuation; or
+2. Correct resumption from an explicitly defined completed-epoch boundary.
+
+Do not silently skip or duplicate training samples after resuming.
+
+Store compact metric histories for all epochs while using a documented, disk-aware checkpoint-retention policy for new runs.
+
+Preserve historical checkpoints.
+
+---
+
+# PART 10 — SOFTWARE QUALITY AND REPRODUCIBILITY
+
+Reuse the existing domain-first REASSEMBLE project organization.
+
+Do not create an unrelated second training framework.
+
+Prefer small, well-tested extensions to existing code.
+
+Preserve:
+
+- Historical results.
+- Previous configurations.
+- Existing checkpoint paths.
+- Other dataset implementations.
+- Git working-tree changes.
+
+No commit or push unless explicitly requested.
+
+### Required checks
+
+Implement or run tests for:
+
+1. Correct 16-frame selection.
+2. Full-cohort input identity.
+3. Correct failure-label alignment.
+4. Recording-disjoint splits.
+5. Backbone freeze/unfreeze behavior.
+6. Backbone gradient propagation.
+7. Weight updates.
+8. Effective batch size.
+9. Checkpoint save/reload.
+10. Resume behavior.
+11. Loader cleanup.
+12. F2 out-of-fold training integrity.
+13. Prediction/label alignment.
+14. Metric calculation consistency.
+
+Record software versions, GPU hardware, source revision, pretrained checkpoint identity, and experiment configurations.
+
+---
+
+# PART 11 — REQUIRED REPORTS AND ARTIFACTS
+
+Use a new versioned Phase 1 experiment directory consistent with the existing repository conventions.
+
+Do not overwrite the completed GPU audit.
+
+## Report 1 — `PHASE1_HISTORICAL_AUDIT.md`
+
+Document what was previously trained, actual epochs, seeds, architectures, trainable parameters, and evidence gaps.
+
+## Report 2 — `PHASE1_EXPERIMENT_PROTOCOL.md`
+
+Document the frozen research protocol:
+
+- Hypotheses.
+- Models A/B/C.
+- Full CNN fine-tuning policy.
+- Seeds.
+- Epoch rules.
+- Splits.
+- Learning rates.
+- Checkpoint selection.
+- Stacking procedure.
+- Metrics.
+- Leakage controls.
+
+Finalize this before using new outer-test results.
+
+## Report 3 — `PHASE1_GPU_INTEGRATION.md`
+
+Document:
+
+- Reused optimized loader.
+- Full-cohort identity validation.
+- Full-backbone benchmark.
+- Sustained GPU utilization.
+- Peak memory.
+- Actions/second.
+- Epoch duration.
+- Worker stability.
+- Before/after measurements where directly comparable.
+- Numerical correctness checks.
+- Final training configuration.
+
+Clearly distinguish earlier partial-fine-tuning benchmark results from new full-backbone results.
+
+## Report 4 — `PHASE1_TRAINING_RESULTS.md`
+
+Include all conditions, folds and seeds.
+
+Provide:
+
+- Learning curves.
+- Actual executed epochs.
+- Selected checkpoints.
+- Visual AP.
+- AUROC.
+- Training duration.
+- GPU utilization.
+- GPU-hours.
+- Convergence and overfitting observations.
+- Failures and resumed runs.
+
+## Report 5 — `PHASE1_FUSION_RESULTS.md`
+
+Include:
+
+- F2-A/B/C comparisons.
+- Matched visual and sensor predictions.
+- Fusion coefficients where relevant.
+- Average Precision.
+- Other metrics.
+- Per-seed variation.
+- Per-fold comparisons.
+- Paired uncertainty estimates.
+- Scientific limitations.
+
+## Report 6 — `PHASE1_EXECUTIVE_REVIEW.md`
+
+Write a research-level summary suitable for discussion with supervisor Manav.
+
+Answer:
+
+1. What exactly was trained?
+2. Did longer classifier training help?
+3. Did full CNN fine-tuning help?
+4. Did the visual improvement extend to static F2 fusion?
+5. Were the findings stable across seeds?
+6. How much computational effort did the improvements require?
+7. What did the GPU optimization contribute to experimental efficiency?
+8. Which findings are positive, negative or inconclusive?
+9. Which findings remain exploratory?
+10. Which architecture is the most defensible candidate for the next research phase?
+
+Provide precise references to actual configurations, logs, predictions, checkpoints and metrics.
+
+---
+
+# PART 12 — FINAL HANDOFF
+
+When execution completes, provide the following.
+
+## A. Execution status
+
+| Task | Status | Evidence |
+|---|---|---|
+| Historical audit | | |
+| GPU integration | | |
+| Full CNN gradient verification | | |
+| Full-backbone benchmark | | |
+| Long Frozen16 training | | |
+| Full FineTuned16 training | | |
+| Three-seed stability | | |
+| F2 retraining | | |
+| Final evaluation | | |
+| Reports | | |
+
+Use completed, partial, blocked or not started.
+
+## B. Final experimental comparison
+
+| Model | Seeds | Executed/selected epochs | Visual AP | Fusion AP | GPU-hours |
+|---|---|---|---|---|---|
+| Original Frozen16 | Historical | | | | |
+| Long Frozen16 | 3 | | | | |
+| Full FineTuned16 | 3 | | | | |
+
+Report measured results and their variation, not invented summary numbers.
+
+## C. GPU performance summary
+
+Include:
+
+| Measurement | Previous optimized pilot | New full-backbone training |
+|---|---|---|
+| GPU utilization | 97.9% reported | Measured |
+| Actions/sec | 6.637 reported | Measured |
+| Epoch duration | 7.45 min projected | Measured |
+| Peak VRAM | Approximately 4.15 GiB reported | Measured |
+| Gradient coverage | Final CNN stage | Full executed CNN |
+
+Make clear that the workloads differ and the columns are not necessarily a matched speed comparison.
+
+## D. Scientific verdict
+
+Provide a direct conclusion:
+
+- **Supported:** findings backed by the executed evaluation.
+- **Contradicted:** hypotheses not supported by the evidence.
+- **Inconclusive:** results with insufficient precision or methodological limitations.
+- **Unknown:** missing evidence.
+
+Do not claim general superiority, robustness or cross-dataset transfer from this Phase 1 experiment.
+
+## E. Next-phase readiness
+
+Explain whether the resulting trained CNN checkpoints and architecture are ready for:
+
+- Phase 2: controlled robustness experiments.
+- Phase 3: MSM Milling architecture replication and representation-transfer experiments.
+
+Do not automatically execute those phases.
+
+---
+
+# FINAL INSTRUCTIONS
+
+**Start by inspecting the existing GPU optimization artifacts and historical REASSEMBLE implementation.**
+
+Reuse the successful exact-16-frame, four-worker loading configuration when validated.
+
+Do not repeat the previous extensive GPU search unnecessarily.
+
+Verify the entire CNN is actually trainable, benchmark that new workload, and establish a correct resumable training pipeline.
+
+Then execute the controlled Long Frozen16 versus Full FineTuned16 experiments across the three predetermined seeds, using up to 50 epochs and leakage-safe F2 evaluation.
+
+There is no arbitrary GPU-time cutoff.
+
+If resource constraints or evaluation-integrity problems prevent safe execution, document the exact blocker and stop the affected work.
+
+**The goal is not to force better accuracy or higher GPU utilization. The goal is to produce trustworthy evidence about whether longer full-backbone fine-tuning improves our REASSEMBLE visual and multimodal models.**
+
+Preserve everything required for scientific reproduction.

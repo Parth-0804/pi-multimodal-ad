@@ -1,0 +1,51 @@
+--- preimages/implementations/cross_dataset/README.md
++++ implementations/cross_dataset/README.md
+@@ -22,11 +22,13 @@
+ fitting, transfer of learned weights and zero-shot evaluation are distinct claims.
+ Frozen package copies remain historical evidence, not additional datasets.
+ 
+-The model-configuration audit and protected native-source subtrees under
+-`CROSS_DATASET_COMPARISON/` retain their original paths where required by
+-training dependencies or data protection. The
+-[approved move plan](../general/docs/repository_history/physical_restructure_20261119/BULK_MOVE_PLAN.md)
+-records those exceptions.
++The [model-configuration audit](results/MODEL_CONFIGURATION_AUDIT_20261103/README.md)
++is physically located with these results. Its historical source/provenance paths
++remain unchanged; a corrected current utility discovers the repository root.
++The [relocation receipt](../general/docs/repository_history/root_cleanup_20261126/model_audit_and_handover/README.md)
++records file-identity preservation and distinguishes path checks from audit replay.
++Native-source review examples remain under `CROSS_DATASET_COMPARISON/`; their
++raw-data protection is unchanged.
+ 
+ Old source aliases were removed. Source-path and packaging updates remain
+ unfinished; use the [move mapping](../general/docs/repository_history/dataset_layout_cleanup.json)
+--- preimages/implementations/HANDOVER/README.md
++++ implementations/HANDOVER/README.md
+@@ -13,7 +13,13 @@
+ 
+ [Source](src) · [Tests](tests) · [Documentation](docs)
+ 
+-Native inputs stay at repository-root HANDOVER/01_raw_dataset/. Preserve participant-identity limitations and mandatory participant-safe OOF gates. Missing identity is not permission to substitute trial groups or in-sample stacking.
++Native inputs stay at repository-root `HANDOVER/01_raw_dataset/`, reached through
++the [common-support study input link](experiments/common_support_v2/01_raw_dataset/).
++The [relocation receipt](../general/docs/repository_history/root_cleanup_20261126/model_audit_and_handover/README.md)
++records the moved browsing link and removal of its empty old containers; the raw
++tree remains at its original location. Preserve participant-identity limitations
++and mandatory participant-safe OOF gates. Missing identity is not permission to
++substitute trial groups or in-sample stacking.
+ 
+ Each study's frozen protocol, fit manifests and assessment records determine what ran and which comparisons are eligible. A folder or script is not execution evidence. Historical commands retain their original paths; navigation/package checks are not model reproduction.
+ 
+--- preimages/audit_utilities/discover.py
++++ implementations/cross_dataset/results/MODEL_CONFIGURATION_AUDIT_20261103/audit_utilities/discover.py
+@@ -7,7 +7,9 @@
+ import os
+ 
+ OUT = Path(__file__).resolve().parents[1]
+-REPO = OUT.parents[1]
++REPO = next(parent for parent in OUT.parents
++            if (parent / "pyproject.toml").is_file()
++            and (parent / "AGENTS.md").is_file())
+ SKIP = {'.git', '.agents', '.codex', '.aws', '.ssh', 'ma_thesis_env',
+         '__pycache__', '.pytest_cache', '.mypy_cache', 'node_modules'}
+ 

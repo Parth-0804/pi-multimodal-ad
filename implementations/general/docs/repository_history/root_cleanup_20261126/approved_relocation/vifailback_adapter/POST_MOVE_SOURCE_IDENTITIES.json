@@ -1,0 +1,41 @@
+{
+  "recorded_at_utc": "2026-11-26T19:48:28Z",
+  "stage": "POST_MOVE_SOURCE_IDENTITY_VALIDATION",
+  "status": "PASS",
+  "command": "python3 -B implementations/VIFAILBACK/relocation/adapter.py identities",
+  "exit_code": 0,
+  "no_resume": true,
+  "frozen_source_unchanged": true,
+  "checks": [
+    {
+      "identity": "original_implementation",
+      "entries": 31,
+      "exact_match": true
+    },
+    {
+      "identity": "reused_REASSEMBLE_source",
+      "entries": 5,
+      "exact_match": true
+    },
+    {
+      "identity": "matched_implementation",
+      "entries": 11,
+      "exact_match": true
+    },
+    {
+      "identity": "matched_protocol",
+      "exact_match": true,
+      "sha256": "71cbb3b01b0adb47d2e055bf79391276f1f2f3a9dd339e5b0f07013932caa9c5"
+    }
+  ],
+  "validation_source_sha256": {
+    "implementations/VIFAILBACK/relocation/adapter.py": "3d42958b815fe30372341a694a0594d220452b7292942248b6c1fd6c6db16b0f",
+    "implementations/REASSEMBLE/src/reassemble/relocation.py": "8c044c0158185d9d884b48a6b099f5e29c9d8a9f64fdd1ad2809c1b20e7add59"
+  },
+  "models_imported": false,
+  "new_model_library_imports": [],
+  "raw_payloads_or_checkpoints_read": false,
+  "experiment_execution": false,
+  "scope": "Saved source/configuration identity and relocation checks only",
+  "limitation": "This validates unchanged bounded source/configuration identities through the explicit import context. It does not reproduce experiments, validate raw/checkpoint payloads, or certify unchanged historical subprocess commands."
+}

@@ -1,0 +1,67 @@
+{
+  "classification": "VERIFIED source inspection; no model execution",
+  "rows": [
+    {
+      "historical_source": "VIFAILBACK/src/vifailback/common.py",
+      "line": 16,
+      "interfaces": "PROJECT, REPO, resolve, code_identity",
+      "adaptation_scope": "Fixed-depth historical roots; configuration/input paths; source/config hash dictionary keys"
+    },
+    {
+      "historical_source": "VIFAILBACK/src/vifailback/reference.py",
+      "line": 10,
+      "interfaces": "STUDY, PHASE, primitives, identities",
+      "adaptation_scope": "Direct repository joins to bootstrap/phase sources; unchanged lazy primitive imports; reused-source identity keys"
+    },
+    {
+      "historical_source": "VIFAILBACK/src/vifailback/video.py",
+      "line": 19,
+      "interfaces": "decoder executable path",
+      "adaptation_scope": "Direct repository join to relocated legacy milling decoder"
+    },
+    {
+      "historical_source": "VIFAILBACK/src/vifailback/cohort.py",
+      "line": 53,
+      "interfaces": "resolve(c[followup_root])",
+      "adaptation_scope": "Historical cohort/exclusion input location; no contents inspected by adapter"
+    },
+    {
+      "historical_source": "VIFAILBACK/src/vifailback/sensors.py",
+      "line": 24,
+      "interfaces": "resolve(c[historical_root])",
+      "adaptation_scope": "Original numerical-input location; no source payloads inspected by adapter"
+    },
+    {
+      "historical_source": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/common.py",
+      "line": 13,
+      "interfaces": "STUDY, PROJECT, REPO, relative, resolve, code_identity",
+      "adaptation_scope": "Fixed-depth roots and os.path.relpath logical keys; frozen protocol and destination boundary unchanged"
+    },
+    {
+      "historical_source": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/resources.py",
+      "line": 10,
+      "interfaces": "SOURCE, REVISION, STOP",
+      "adaptation_scope": "Direct repository joins for original source-stop gates; stop logic untouched"
+    },
+    {
+      "historical_source": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/model_runtime.py",
+      "line": 138,
+      "interfaces": "resolve(donor checkpoint), resolve(pretrained weights)",
+      "adaptation_scope": "Mapped donor identity and unchanged external weights path; no weights opened"
+    },
+    {
+      "historical_source": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/data.py",
+      "line": 158,
+      "interfaces": "resolve configuration inputs, manifest_identity",
+      "adaptation_scope": "Historical configuration strings retained; filesystem lookup mapped; raw/model validation not invoked"
+    },
+    {
+      "historical_source": "VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/controller.py",
+      "line": 45,
+      "interfaces": "check_frozen_code",
+      "adaptation_scope": "Complete implementation dictionary and pinned protocol hash comparison remain unchanged"
+    }
+  ],
+  "python_source_files_in_original_and_matched_namespaces": 40,
+  "explicit_subprocess_boundary": "New interpreters require their own explicit context; no automatic worker or controller launcher is added."
+}

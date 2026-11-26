@@ -1,0 +1,76 @@
+{
+  "windows": [
+    {
+      "repetition": 0,
+      "seconds": 62.059666674002074,
+      "actions": 120,
+      "actions_per_second": 1.9336230184792498,
+      "optimizer_updates": 15,
+      "optimizer_updates_per_second": 0.24170287730990622,
+      "GPU_compute_percent": 93.76521739130435,
+      "peak_allocated_bytes": 8340647424,
+      "peak_reserved_bytes": 9214885888,
+      "peak_vram_MiB": 8983.0,
+      "CPU_loading_wait_seconds": 3.6499771825037897,
+      "forward_backward_cuda_event_seconds": 57.568889099121094,
+      "representative_training_epoch_seconds": 1233.4358751457912,
+      "reference_2966_action_epoch_seconds": 1533.9080946257513
+    },
+    {
+      "repetition": 1,
+      "seconds": 62.594404128030874,
+      "actions": 120,
+      "actions_per_second": 1.9171042790750346,
+      "optimizer_updates": 15,
+      "optimizer_updates_per_second": 0.23963803488437932,
+      "GPU_compute_percent": 94.36206896551724,
+      "peak_allocated_bytes": 8340647424,
+      "peak_reserved_bytes": 9214885888,
+      "peak_vram_MiB": 8983.0,
+      "CPU_loading_wait_seconds": 3.751125877839513,
+      "forward_backward_cuda_event_seconds": 58.01728607177734,
+      "representative_training_epoch_seconds": 1244.0637820446136,
+      "reference_2966_action_epoch_seconds": 1547.125022031163
+    }
+  ],
+  "actions_per_second": 1.9253282179701259,
+  "time_estimates": {
+    "full_CNN_training_hours_min25": 495.32680078418923,
+    "full_CNN_training_hours_max50": 990.6536015683785,
+    "method": "Measured full-backbone actions/s times exact T presentation counts; validation/inference/checkpoint overhead additional",
+    "T_actions_per_seed_epoch_over25fits": 45776,
+    "main_full_backbone_fits": 75,
+    "main_frozen_fits": 75,
+    "planning_hours_with_20_to_40_percent_overhead": [
+      594.3921609410271,
+      1386.9150421957297
+    ]
+  },
+  "full_backbone": true,
+  "precision": "float32",
+  "loader_workers": 4,
+  "frames": 16,
+  "initial_frozen_feature_logit_errors": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "observed_forward_classes": [
+    "AvgPool2d",
+    "Conv2d",
+    "Identity",
+    "MaxPool2d",
+    "RTDetrFrozenBatchNorm2d",
+    "RTDetrResNetBackbone",
+    "RTDetrResNetBasicLayer",
+    "RTDetrResNetConvLayer",
+    "RTDetrResNetEmbeddings",
+    "RTDetrResNetEncoder",
+    "RTDetrResNetShortCut",
+    "RTDetrResNetStage",
+    "ReLU",
+    "Sequential"
+  ],
+  "all_workers_clean": true,
+  "source": "new full-backbone workload; not the earlier final-stage benchmark"
+}

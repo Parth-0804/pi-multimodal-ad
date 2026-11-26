@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-26T19:52:41.858912+00:00",
+  "status": "PASS_WITH_DOCUMENTED_REPLAY_LIMITS",
+  "physical_relocation_complete": true,
+  "groups_moved": 11,
+  "old_group_roots_remaining": [],
+  "regular_files_metadata_preserved": 90183,
+  "file_metadata_mismatches": [],
+  "ignored_to_exposed_files": 0,
+  "ignore_mismatches": [],
+  "symlinks_checked": 74,
+  "broken_symlinks": [],
+  "move_link_repairs": 11,
+  "additional_preexisting_browse_link_repairs": 16,
+  "manuscript_and_submitted_pdf_guard": {
+    "files": 11,
+    "sha256_changes": []
+  },
+  "reassemble_selected_hashes_matched": 62,
+  "vifailback_identity_entries_matched": 47,
+  "vifailback_frozen_protocol_match": true,
+  "synthetic_tests": {
+    "move_engine": 5,
+    "shared_adapter": 6,
+    "vifailback_adapter": 7,
+    "cache_checker": 7
+  },
+  "current_navigation_report": "NAVIGATION_LINKS_AFTER.json",
+  "additional_document_links_checked": 75,
+  "preexisting_missing_authority_links": [
+    {
+      "file": "AGENTS.md",
+      "target": "docs/thesis_research_direction/RESEARCH_CHARTER.md"
+    },
+    {
+      "file": "AGENTS.md",
+      "target": "docs/thesis_research_direction/EXPOSE_ALIGNMENT_DECISION.md"
+    },
+    {
+      "file": "AGENTS.md",
+      "target": "docs/thesis_research_direction/THESIS_EXPERIMENT_INVENTORY.md"
+    },
+    {
+      "file": "AGENTS.md",
+      "target": "docs/thesis_research_direction/EXISTING_EVIDENCE_MAP.md"
+    }
+  ],
+  "python_files_ast_checked": [
+    "implementations/REASSEMBLE/src/reassemble/relocation.py",
+    "implementations/REASSEMBLE/src/reassemble/cache_preflight.py",
+    "implementations/REASSEMBLE/tests/test_relocation.py",
+    "implementations/REASSEMBLE/tests/test_cache_preflight.py",
+    "implementations/VIFAILBACK/relocation/adapter.py",
+    "implementations/VIFAILBACK/relocation/test_adapter.py"
+  ],
+  "git_diff_check_exit": 0,
+  "head_unchanged": "7274a0ec3b163de1e3ca66a09e2a164693be7c75",
+  "staged_paths": [],
+  "scientific_experiments_executed": false,
+  "pdf_builds_or_previews": false,
+  "commit_push_or_access_changes": false,
+  "policy_identity_correction": "Two phase policy edits restored exactly; only AGENTS mismatch predated this phase. See POLICY_RESTORATION.json and reassemble_adapter/IDENTITY_CLASSIFICATION_CORRECTION.json.",
+  "limitations": [
+    "No training/model reproduction or validation of raw/checkpoint payloads.",
+    "Frozen contexts require explicit activation per interpreter; shell/subprocess and other legacy string-I/O replay boundaries remain documented.",
+    "Four historical authority links in AGENTS were missing before this phase; no substitute evidence invented.",
+    "Final GitHub publication contents and stable review commit/tag remain pending researcher review."
+  ]
+}
