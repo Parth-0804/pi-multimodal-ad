@@ -1,0 +1,41 @@
+\chapter{Human-Review Protocol and Supporting Materials}
+\label{app:human-review}
+
+\section{Review Sample and Presentation}
+
+The retained review package contains 64 clips, balanced across the four action classes and spread across recordings. It is an audit sample, not a population-random estimate of annotation accuracy. Fixed blind IDs and sheet order support correspondence between the material presented and returned ratings. The browser interface supplied compatible WebM playback copies while retaining the original MP4 files. An additional encoding can soften visual detail, so the originals remain relevant when investigating presentation artifacts. Package checks addressed file hashes, decoding, frame counts, cadence and interface logic; they did not themselves establish annotation correctness.\ev{Interface preparation and preserved inputs}{\EvidenceRef{E050}{}}
+
+One reviewer returned complete ratings for all 64 clips. The submitted rating file was checked against the blind identifiers, required fields, allowed responses and reasons for flagged cases. The first assessment was complete at the reporting date. The flagged cases awaited adjudication.
+
+\section{Single-Reviewer Results}
+
+\begin{table}[htbp]
+\caption{Reviewer Agreement With Recorded Outcomes for 64 Clips}\label{tab:human-review-outcomes}
+\centering
+
+\begin{tabular}{lrrrr}
+\toprule Action & Agree & Disagree & Indeterminate & Total \\
+\midrule
+Pick &13&0&3&16\\
+Insert &14&1&1&16\\
+Remove &15&0&1&16\\
+Place &15&1&0&16\\
+\midrule
+Total &57&2&5&64\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The reviewer agreed with the recorded outcome on 57 of 59 determinate clips (96.6\%) and disagreed on two (3.4\%). Five of the 64 clips had indeterminate outcomes (7.8\%). Across the full sample, agreement was 57 of 64 (89.1\%). The 96.6\% estimate is conditional on a judgeable outcome. The 89.1\% estimate includes all sampled clips. Equal sampling of each action class limits generalization of either percentage to the full dataset.\ev{Completed ratings, counts and limitations}{\EvidenceRef{E051}{}}
+
+\section{Boundary and Presentation Flags}
+
+Boundary ratings were 60 acceptable, three questionable and one indeterminate. Visibility was rated adequate for all 64 clips. Four clips received possible recording or presentation artifact flags. Because flag categories overlap, their sum is not the number of affected clips: ten unique clips require follow-up. The flag list retains reasons and exact blind IDs. An adequate visibility rating also does not imply that the observed interval unambiguously establishes the action outcome; five outcomes remained indeterminate despite that visibility assessment.
+
+Adjudication remained incomplete. The original clips and annotation boundaries would help distinguish an ambiguous task outcome from a boundary or playback problem. The evaluation used the original labels for all cases, including those flagged. No thresholds or predictions were changed following the review.
+
+\section{Interpretation and Reviewer Independence}
+
+One reviewer supplied all ratings, so inter-rater agreement could not be estimated. The results describe agreement between that reviewer and the recorded labels for the sampled clips. Establishing inter-rater reliability would require a second reviewer who had not seen the first reviewer's ratings or interpretations.
+
+The author had access to generic AI-generated examples of wording. The reviewer supplied every clip-level rating. Verification of the submitted fields and totals contributed no additional judgment about the clips.
