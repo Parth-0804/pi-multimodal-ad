@@ -1,0 +1,58 @@
+% DRAFT: conceptual research dimensions, not an executed architecture.
+\documentclass[tikz,border=0pt]{standalone}
+\input{figures/draft_chapters_01_02/draft_preamble.tex}
+\begin{document}
+\begin{tikzpicture}[x=1bp,y=1bp]
+\path[use as bounding box] (0,0) rectangle (451.28,421);
+\node[draft box,text width=430bp,minimum height=44bp] (domain) at (225.64,396)
+ {\textbf{Industrial and robotic monitoring}\\
+  {\fontsize{9bp}{11bp}\selectfont Physical condition \enspace\textbullet\enspace
+  Manufacturing quality \enspace\textbullet\enspace Operational outcomes}};
+\node[data=ThesisVision,text width=126bp,minimum height=73bp,outer sep=0pt] (vision) at (70,301)
+ {\textbf{Visual observations}\\Images and video};
+\node[data=ThesisSensor,text width=126bp,minimum height=73bp,outer sep=0pt] (sensor) at (225.64,301)
+ {\textbf{Machine sensors}\\{\fontsize{9bp}{11bp}\selectfont Force, vibration, process
+ measurements, robot state}};
+\node[data=ThesisAudio,dashed,text width=126bp,minimum height=73bp,outer sep=0pt]
+(audio) at (381.28,301)
+ {\textbf{Acoustic observations}\\{\fontsize{9bp}{11bp}\selectfont Original scope;
+ predictive evaluation not completed}};
+\draw[draft rule] (domain.south) -- (225.64,353);
+\draw[draft rule] (70,353) -- (381.28,353);
+\draw[arrow] (70,353) -- (vision.north);
+\draw[arrow] (225.64,353) -- (sensor.north);
+\draw[arrow,dashed] (381.28,353) -- (audio.north);
+\node[draft small,text width=438bp] at (225.64,241) {Parallel research dimensions across
+the available observations};
+\node[draft box,text width=126bp,minimum height=88bp] (sq1) at (70,181)
+ {\textbf{SQ1}\\\textbf{Representation}\\\textbf{suitability}\\{\fontsize{9bp}{11bp}\selectfont
+ Which information is retained for the target?}};
+\node[draft box,text width=126bp,minimum height=88bp] (sq2) at (225.64,181)
+ {\textbf{SQ2}\\\textbf{Fusion effectiveness}\\{\fontsize{9bp}{11bp}\selectfont When
+ does combining\\information improve\\prediction?}};
+\node[draft box,text width=126bp,minimum height=88bp] (sq3) at (381.28,181)
+ {\textbf{SQ3}\\\textbf{Reliability
+ and}\\\textbf{robustness}\\{\fontsize{9bp}{11bp}\selectfont What happens with\\missing
+ or degraded\\inputs?}};
+% No arrows run from SQ1 to SQ2 to SQ3: these are parallel dimensions.
+% Shared scope connector avoids one-modality-to-one-SQ assignments.
+\draw[draft rule] (vision.south) -- (70,254);
+\draw[draft rule] (sensor.south) -- (225.64,254);
+\draw[draft rule,dashed] (audio.south) -- (381.28,254);
+\draw[draft rule] (70,254) -- (381.28,254);
+\draw[arrow] (225.64,254) -- (225.64,249);
+\node[draft box,fill=ThesisBaseline!5!white,text width=430bp,minimum height=48bp] (sq4)
+at (225.64,99)
+ {\textbf{SQ4 \enspace Evaluation beyond accuracy}\\{\fontsize{9bp}{11bp}\selectfont
+ Predictive performance, uncertainty, interpretability, modularity and practical
+ feasibility}};
+\draw[draft rule] (sq1.south) -- (70,127) -- (381.28,127) -- (sq3.south);
+\draw[draft rule] (sq2.south) -- (225.64,127);
+\draw[arrow] (225.64,127) -- (sq4.north);
+\node[fusion,text width=430bp,minimum height=50bp,outer sep=0pt] (goal) at (225.64,27)
+ {Evidence-based assessment of multimodal fusion architectures\\
+ {\normalfont\fontsize{9bp}{11bp}\selectfont Predictive value \textbullet\ Complementary
+ information \textbullet\ Robustness \textbullet\ Cross-dataset applicability}};
+\draw[arrow] (sq4.south) -- (goal.north);
+\end{tikzpicture}
+\end{document}

@@ -2,27 +2,82 @@
 \label{app:handover}
 
 \section{Objective and Relationship to the Research Questions}
-HANDOVER tests whether paired video and force--torque signals can identify the recorded outcome of a completed human--robot handover. The single-input predictors address representation choice (SQ1), and averaging their probabilities tests the contribution of the second input on the same trials (SQ2). For SQ3, controlled blur, sensor noise, and single-stream fallback show how the baselines behave when input quality or availability changes. For SQ4, class-specific decisions at a fixed threshold complement the ranking scores. Missing participant identifiers limit the uncertainty analysis and prevent participant-disjoint fitting of the proposed learned fusion model.\ev{HANDOVER study interpretation}{\EvidenceRef{E086}{}}
+HANDOVER tests whether paired video and force--torque signals can identify the recorded
+outcome of a completed human--robot handover. The single-input predictors address
+representation choice (SQ1), and averaging their probabilities tests the contribution of
+the second input on the same trials (SQ2). For SQ3, controlled blur, sensor noise, and
+single-stream fallback show how the baselines behave when input quality or availability
+changes. For SQ4, class-specific decisions at a fixed threshold complement the ranking
+scores. Missing participant identifiers limit the uncertainty analysis and prevent
+participant-disjoint fitting of the proposed learned fusion model.\ev{HANDOVER study
+interpretation}{\EvidenceRef{E086}{}}
 
-The HANDOVER dataset paper compared video, force/torque and gripper inputs for completed-trial failure detection \citep{Thoduka2024Handover}. Its five-class I3D model achieved 69.1\% accuracy with video and force/torque, falling to 67.9\% when the gripper input was added. The authors also investigated temporal action modelling with auxiliary action supervision. The binary experiment here evaluates a different target and uses AP, which precludes a numerical comparison with those five-class accuracies.
+The HANDOVER dataset paper compared video, force/torque and gripper inputs for
+completed-trial failure detection \citep{Thoduka2024Handover}. Its five-class I3D model
+achieved 69.1\% accuracy with video and force/torque, falling to 67.9\% when the gripper
+input was added. The authors also investigated temporal action modelling with auxiliary
+action supervision. The binary experiment here evaluates a different target and uses AP,
+which precludes a numerical comparison with those five-class accuracies.
 
 \section{Dataset and Common-Support Cohort}
-The source describes successful and failed robot handovers \citep{Thoduka2024Handover}. The evaluation uses the pinned Zenodo v1 release \citep{Thoduka2024HandoverData}, with 589 native trials involving Toyota HSR and Kinova Gen3 and 17 participants reported by its datasheet. Native outcomes are success, no approach, outcome~2, and drop. Outcome~2 means no grasp for robot-to-human handover or no release for human-to-robot handover. The binary target maps success to zero and every nonzero native outcome to failure. Trial IDs restart across official splits, so identities are split-qualified; an ID is not a participant surrogate.
+The source describes successful and failed robot handovers \citep{Thoduka2024Handover}.
+The evaluation uses the pinned Zenodo v1 release \citep{Thoduka2024HandoverData}, with
+589 native trials involving Toyota HSR and Kinova Gen3 and 17 participants reported by
+its datasheet. Native outcomes are success, no approach, outcome~2, and drop. Outcome~2
+means no grasp for robot-to-human handover or no release for human-to-robot handover.
+The binary target maps success to zero and every nonzero native outcome to failure.
+Trial IDs restart across official splits, so identities are split-qualified; an ID is
+not a participant surrogate.
 
-The native official split contains 337 training, 101 validation and 151 test trials. The common-support cohort retains 587: 335 train, 101 validation and all 151 test trials, after two training trials fail the timing gate. The test has 41 successes and 110 failures, giving positive prevalence 0.728477. Released outcome counts govern the analysis where a small datasheet discrepancy changes the distribution of outcome~2 versus drop; it does not change the binary failure total. The official participant-based split is the publisher's claim, not an independently verified identity separation.\ev{HANDOVER native and admitted cohort}{\EvidenceRef{E082}{}}
+The native official split contains 337 training, 101 validation and 151 test trials. The
+common-support cohort retains 587: 335 train, 101 validation and all 151 test trials,
+after two training trials fail the timing gate. The test has 41 successes and 110
+failures, giving positive prevalence 0.728477. Released outcome counts govern the
+analysis where a small datasheet discrepancy changes the distribution of outcome~2
+versus drop; it does not change the binary failure total. The official participant-based
+split is the publisher's claim, not an independently verified identity
+separation.\ev{HANDOVER native and admitted cohort}{\EvidenceRef{E082}{}}
 
 \section{Preparation and Input Construction}
-The initial full-video analysis excluded 92 test trials because their final frames extended beyond wrench coverage. Before scoring the models, the observation window was defined as the intersection of camera and wrench coverage for every trial, class and robot. The 16 source-clock bin-centre frames and numerical statistics use that same window. All official test trials could then be assessed. The completed-trial label can still depend on an event after the end of the shared window.
+The initial full-video analysis excluded 92 test trials because their final frames
+extended beyond wrench coverage. Before scoring the models, the observation window was
+defined as the intersection of camera and wrench coverage for every trial, class and
+robot. The 16 source-clock bin-centre frames and numerical statistics use that same
+window. All official test trials could then be assessed. The completed-trial label can
+still depend on an event after the end of the shared window.
 
-For the authors' resampling procedure, matching the nearest raw wrench timestamp reproduced the supplied arrays under a maximum permitted gap of 0.1~s. Video presentation timestamps and sensor time refer to separate clocks. Six statistics for each of six force/torque channels give 36 numerical features. The HSR measures wrench directly, whereas the Gen3 estimates it from joint torques. Fourteen traces met the timing criterion but were zero on every channel. These trials were included with their original labels.\ev{HANDOVER common support and wrench semantics}{\EvidenceRef{E083}{}}
+For the authors' resampling procedure, matching the nearest raw wrench timestamp
+reproduced the supplied arrays under a maximum permitted gap of 0.1~s. Video
+presentation timestamps and sensor time refer to separate clocks. Six statistics for
+each of six force/torque channels give 36 numerical features. The HSR measures wrench
+directly, whereas the Gen3 estimates it from joint torques. Fourteen traces met the
+timing criterion but were zero on every channel. These trials were included with their
+original labels.\ev{HANDOVER common support and wrench semantics}{\EvidenceRef{E083}{}}
 
 \section{Models and Fitting Procedure}
-The pretrained visual condition (P) used the frozen ResNet18-vd CNN backbone inside the RT-DETR-R18vd checkpoint. Spatial and temporal means produced one 896-dimensional vector per trial. A newly fitted 896--128--1 head trained for ten fixed epochs. Averaging the frames removed their order. The numerical branch fitted training-only scaling and balanced L2 logistic regression to the 36 statistics. A fixed HGB control, a training-prior predictor, and equal averaging of the visual and logistic predictions completed the five baselines. Each was evaluated under three fixed seeds. Learned stacking and the quality gates required participant identifiers for their training predictions.
+The pretrained visual condition (P) used the frozen ResNet18-vd CNN backbone inside the
+RT-DETR-R18vd checkpoint. Spatial and temporal means produced one 896-dimensional vector
+per trial. A newly fitted 896--128--1 head trained for ten fixed epochs. Averaging the
+frames removed their order. The numerical branch fitted training-only scaling and
+balanced L2 logistic regression to the 36 statistics. A fixed HGB control, a
+training-prior predictor, and equal averaging of the visual and logistic predictions
+completed the five baselines. Each was evaluated under three fixed seeds. Learned
+stacking and the quality gates required participant identifiers for their training
+predictions.
 
-HANDOVER uses statistical wrench descriptors in place of the REASSEMBLE raw-sequence temporal branch. Its own data determine the visual head and sensor scaler. None of the fitted source-classifier components or F2 coefficients were transferred. The planned R condition required a REASSEMBLE-trained CNN checkpoint that met the HANDOVER selection criteria. No eligible checkpoint was established for that condition.\ev{HANDOVER model boundary}{\EvidenceRef{E085}{}}
+HANDOVER uses statistical wrench descriptors in place of the REASSEMBLE raw-sequence
+temporal branch. Its own data determine the visual head and sensor scaler. None of the
+fitted source-classifier components or F2 coefficients were transferred. The planned R
+condition required a REASSEMBLE-trained CNN checkpoint that met the HANDOVER selection
+criteria. No eligible checkpoint was established for that condition.\ev{HANDOVER model
+boundary}{\EvidenceRef{E085}{}}
 
 \section{Evaluation and Results}
-The primary metric is failure-positive AP on the same 151 official test trials, computed separately for each seed. Table~\ref{tab:handover-clean} presents the three-seed mean and descriptive spread. The deterministic numerical branches repeat identical predictions across seed labels; their zero spread does not imply independent replication.
+The primary metric is failure-positive AP on the same 151 official test trials, computed
+separately for each seed. Table~\ref{tab:handover-clean} presents the three-seed mean
+and descriptive spread. The deterministic numerical branches repeat identical
+predictions across seed labels; their zero spread does not imply independent
+replication.
 
 \begin{table}[htbp]
 \caption{HANDOVER Test Performance on the Common Set of Trials}\label{tab:handover-clean}
@@ -39,16 +94,41 @@ Averaging&0.803102&0.013458\\\hline
 \end{table}
 \ev{HANDOVER test comparison}{\EvidenceRef{E084}{}}
 
-Averaging increased AP by 0.031455 relative to vision and reduced it by 0.020522 relative to logistic sensing. All three seed differences against sensing were negative. Failure-class F1 also reflects the high proportion of failures. With a threshold of 0.5 the prior predictor calls every trial a failure, giving F1 of 0.842912 and zero specificity for success. Logistic sensing had higher AP than vision but a success specificity of only 0.170732.
+Averaging increased AP by 0.031455 relative to vision and reduced it by 0.020522
+relative to logistic sensing. All three seed differences against sensing were negative.
+Failure-class F1 also reflects the high proportion of failures. With a threshold of 0.5
+the prior predictor calls every trial a failure, giving F1 of 0.842912 and zero
+specificity for success. Logistic sensing had higher AP than vision but a success
+specificity of only 0.170732.
 
-Under the strongest blur, averaging yielded AP of 0.779066, compared with 0.823624 for intact logistic sensing. At the highest sensor-noise level, averaging yielded 0.796955, noisy logistic sensing 0.824952 and HGB 0.731344. Removing either input entirely triggered a fixed fallback to the surviving branch.\ev{HANDOVER stress boundaries}{\EvidenceRef{E086}{}}
+Under the strongest blur, averaging yielded AP of 0.779066, compared with 0.823624 for
+intact logistic sensing. At the highest sensor-noise level, averaging yielded 0.796955,
+noisy logistic sensing 0.824952 and HGB 0.731344. Removing either input entirely
+triggered a fixed fallback to the surviving branch.\ev{HANDOVER stress
+boundaries}{\EvidenceRef{E086}{}}
 
 \section{Participant Identity and the Learned-Fusion Restriction}
-F2, F2-aug, QG-clean and QG-aug required out-of-fold branch probabilities from participant-disjoint splits. The mapping from trial to participant was unavailable. Trial IDs, robot IDs and task labels do not identify individual participants. The official validation set retained its original role, and none of these four fusion methods was fitted.
+F2, F2-aug, QG-clean and QG-aug required out-of-fold branch probabilities from
+participant-disjoint splits. The mapping from trial to participant was unavailable.
+Trial IDs, robot IDs and task labels do not identify individual participants. The
+official validation set retained its original role, and none of these four fusion
+methods was fitted.
 
-The missing participant mapping also prevents estimation of a participant-cluster interval. A trial bootstrap would treat repeated observations from the same person as independent. The variation across seeds describes optimization on a fixed set of test trials. Participant independence is reported for the official split by the dataset authors, but could not be checked from trial-level identities.\ev{HANDOVER grouping restriction}{\EvidenceRef{E084}{}}
+The missing participant mapping also prevents estimation of a participant-cluster
+interval. A trial bootstrap would treat repeated observations from the same person as
+independent. The variation across seeds describes optimization on a fixed set of test
+trials. Participant independence is reported for the official split by the dataset
+authors, but could not be checked from trial-level identities.\ev{HANDOVER grouping
+restriction}{\EvidenceRef{E084}{}}
 
 \section{Interpretation of the HANDOVER Results}
-On the 151 handovers, logistic sensing ranked failures better than the visual model or simple averaging. The HGB sensor model achieved the highest clean AP among the five baselines. These results concern predictions made from the common camera and wrench observation window.
+On the 151 handovers, logistic sensing ranked failures better than the visual model or
+simple averaging. The HGB sensor model achieved the highest clean AP among the five
+baselines. These results concern predictions made from the common camera and wrench
+observation window.
 
-Whether a learned fusion rule could improve on sensing remains open for this cohort. The proposed comparison requires a participant mapping or equivalent grouping information to obtain independent training predictions for the fusion model. Without that comparison the study provides no estimate of an effect from learned reliability weighting or transfer of source-trained CNN weights.
+Whether a learned fusion rule could improve on sensing remains open for this cohort. The
+proposed comparison requires a participant mapping or equivalent grouping information to
+obtain independent training predictions for the fusion model. Without that comparison
+the study provides no estimate of an effect from learned reliability weighting or
+transfer of source-trained CNN weights.

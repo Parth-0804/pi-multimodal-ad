@@ -1,0 +1,188 @@
+--- starting-tree/chapters/04_methodology.tex
++++ reconciled/chapters/04_methodology.tex
+@@ -21,30 +21,138 @@
+ 
+ \section{Research design and research questions}
+ \label{sec:ch4-design}
+-
+-REASSEMBLE was the main study of multimodal fusion. Its hand camera and machine sensors
+-recorded the same robotic actions, and each completed action had a recorded outcome.
+-This made it possible to ask three questions on the same cases. How well could the
+-camera predict failure on its own? How well could the sensors predict it? Did combining
+-the two improve on the stronger individual predictor?
+-
+-The other studies tested related questions under different conditions. PHM established
+-target-validity and modality-correspondence limits while combining sensor groups to
+-predict a photographic proxy. MSM supplied the primary completed external manufacturing
+-comparison: locally fitted visual, sensor and fusion models, six target/grouping
+-sensitivities, and controlled corruption tests. ViFailback added task-disjoint robotic
+-assessment and transfer of a specified REASSEMBLE-learned visual representation; target-CNN
+-adaptation remained partial and its corruption study was unexecuted. HANDOVER's official
+-test split supported unimodal models and fixed averaging, while missing participant
+-identities prevented the required participant-safe OOF fits for learned fusion. That
+-supporting study is retained in Appendix~\ref{app:handover}.
+-
+-The five research requirements guided how these tests were read. \textbf{R1} concerned
+-the target and the pairing of observations. \textbf{R2} concerned how each input was
+-represented. \textbf{R3} asked what fusion added over a strong single input. \textbf{R4}
+-concerned the response to missing or damaged inputs. \textbf{R5} concerned the strength
+-of the evidence, including the choice of test groups, the uncertainty of the results,
+-and the cost of the method.
++\label{sec:literature-study-gaps}
++
++The welding studies in Chapter~\ref{ch:literature} give different answers about the
++value of a second input. Figure~\ref{fig:fusion-research-gap} shows how those
++comparisons led to five questions for reading the empirical evidence. The
++requirements organize the historical evidence; they do not imply that every
++experiment was prospectively designed around this framework.
++
++\begin{figure}[htbp]
++  \centering
++  \caption{From welding evidence to requirements for testing fusion}
++  \label{fig:ch02-synthesis-requirements}
++  \label{fig:fusion-research-gap}
++  \includegraphics[width=\linewidth]{figures/fusion_research_gap.pdf}
++  \displaynote{DMAW reported 96.1\% accuracy for fusion and 90.2\% for
++    its strongest single input \parencite{P003}. In weld penetration, both
++    single-input models and fusion reached 100\% on the clean test set
++    \parencite{Hua2026Weld}. The reported contrasts are within each study.}
++\end{figure}
++
++\textbf{R1. What is predicted, and when?} A camera can supply a predictor or a
++reference measured after the event. For each study, we identify the physical event,
++which observations describe that event, when each was available, and how the target
++was obtained. In PHM, post-run photographs supply a proxy for gear condition. In
++REASSEMBLE, the camera and sensors are predictors paired with a recorded action
++outcome. A readable image or aligned timestamp alone does not establish target
++validity or physical correspondence.
++
++\textbf{R2. What does each representation retain (SQ1)?} Published results for
++engineered features, pretrained visual features and temporal patches concern
++different targets and fitting conditions
++\parencite{Horwitz2023Back,Roth2022Towards,Nie2023PatchTST}. We compare individual
++branches on the same target and observation window, recording their training
++histories and fitting budgets. A branch's standalone score leaves open whether it
++contributes information to another predictor.
++
++\textbf{R3. What does fusion add (SQ2)?} The clean welding tie and the loss after
++adding gripper state in handover make the strongest single input an essential
++comparator \parencite{Hua2026Weld,Thoduka2024Handover}. On the 4,530 eligible
++REASSEMBLE actions, we compare camera and sensor predictions, fixed averaging and
++fitted combinations with the same recordings held out. The feature-level model F3
++projects a 128-dimensional visual representation and 220 sensor statistics to two
++128-dimensional vectors and concatenates them. This is distinct from combining
++two representations of the sensor stream. Matched opportunities for fitting and
++recalibration are needed to isolate the contribution of an additional input.
++Chapter~\ref{ch:reassemble} gives the fitting and calibration differences that
++limit attribution to the fusion rule alone.
++
++\textbf{R4. Which reliability condition is being tested (SQ3)?} Knowing an input is
++absent calls for a different response from receiving a degraded but apparently
++available signal \parencite{P026,Zhang2023QMF}. We identify the affected input and
++what the model knows about its condition. In the matched REASSEMBLE comparison,
++static and adaptive models receive comparable corruption exposure during fitting.
++Both are assessed on clean and corrupted cases. Timing changes and transfer to
++another domain are separate tests.
++
++\textbf{R5. How dependable is the comparison (SQ4)?} Selection on related
++observations can inflate performance estimates \parencite{P004,P017}. The
++assessment unit follows the acquisition process, such as a gear experiment,
++recording, or manipulation task. Ranking, probability calibration and uncertainty
++answer different questions about failure prediction. Fitting and inference costs
++also need a stated measurement boundary. Across datasets, we distinguish refitting
++a procedure, transferring representation weights and testing an unchanged
++predictor. Table~\ref{tab:fusion-study-scope} identifies which comparisons the
++available data support; investigating a requirement does not mean that every
++condition needed for a strong claim was satisfied.
++
++The published tasks help define the boundaries of the five investigations.
++Post-build CT can supply an independent physical reference in manufacturing
++\parencite{Petrich2021Multimodal}; PHM instead uses periodic photographs and a
++sensor-only deployment specification \parencite{PHM2026Challenge}. Milling studies
++of wear and cutting force \parencites[Tables~IV--V]{P021}[Table~1]{P045}
++motivate the value of additional
++observations, while MSM asks whether video adds information about abnormal cutting
++beyond machine telemetry \parencite{Kim2026MSM}. REASSEMBLE's published segmentation
++and visual condition-check benchmarks \parencite{Sliwowski2025REASSEMBLE} differ
++from the completed-action failure target here. Published handover trials establish
++a five-class outcome benchmark \parencite{Thoduka2024Handover}; the supplementary
++thesis study instead compares binary failure predictions and their fixed average.
++ViFailback's published visual-symbol diagnosis and corrective-action task
++\parencite[Tables~2--4]{Zeng2026ViFailback} differs from the binary episode-outcome comparison
++here: the latter tests generic and transferred visual features against robot state.
++These differences determine the targets and controls; they do not establish a
++common cross-dataset leaderboard.
++
++\begin{table}[htbp]
++  \centering
++  \caption{Inputs and assessment limits of the five thesis studies}
++  \label{tab:fusion-study-scope}
++  \begingroup
++  \singlespacing\small
++  \setlength{\tabcolsep}{4pt}
++  \renewcommand{\arraystretch}{1.28}
++  \begin{tabularx}{\linewidth}{@{}P{.22\linewidth} P{.23\linewidth} Y@{}}
++    \toprule
++    \textbf{Study} & \textbf{Predictor inputs} & \textbf{Scope and assessment limits}\\
++    \midrule
++    PHM (Ch.~\ref{ch:phm})
++      & Machine sensors
++      & R1--R3, R5. Sensor-group comparison against a photographic proxy;
++        target validity and modality correspondence limit the claim.
++        Camera outages are outside the sensor-only prediction task.\\
++    REASSEMBLE (Ch.~\ref{ch:reassemble})
++      & Video and machine sensors
++      & R1--R5. Principal study of representation and fusion comparisons,
++        including adaptive versus static weighting under matched corruption
++        exposure on completed actions.\\
++    MSM (Ch.~\ref{ch:msm})
++      & Video and machine telemetry
++      & R1--R5. Primary completed external manufacturing comparison:
++        locally fitted branches and fusion, six target/grouping sensitivities,
++        and controlled corruption. Assessment covers laboratory cutting intervals.\\
++    ViFailback (Ch.~\ref{ch:vifailback})
++      & Video features and robot state
++      & R1--R3, R5. Task-disjoint assessment and transfer of a specified
++        REASSEMBLE-learned visual representation. Target-CNN adaptation was
++        partial; the corruption stress test (R4) was unexecuted.\\
++    HANDOVER (App.~\ref{app:handover})
++      & Video and force--torque measurements
++      & R1--R5 with unimodal predictors and fixed averaging. The authors report
++        a participant-disjoint test split. Missing participant-to-trial identities
++        prevent independent verification and participant-safe OOF fitting of
++        learned fusion.\\
++    \bottomrule
++  \end{tabularx}
++  \endgroup
++  \displaynote{The R codes indicate which requirements a study investigated.
++    Each conclusion applies to that study's target and assessment population.
++    The challenge specification and dataset papers document the original
++    acquisition and tasks
++    \parencite{PHM2026Challenge,Sliwowski2025REASSEMBLE,Kim2026MSM,Zeng2026ViFailback,Thoduka2024Handover}.}
++\end{table}
+ 
+ The work was exploratory. For example, the first REASSEMBLE results helped determine
+ which sensor representation entered the main fusion comparison. Later tests examined
+@@ -488,9 +596,19 @@
+ aligned sample lists, reusing features, and preserving evidence within these limits.
+ Scientific findings still depend on the completed comparisons. Limited resources do not
+ establish why a model performed poorly, and an unassessed configuration has no measured
+-result. Head-only timings exclude frame reading and feature extraction; operational
+-timing would also need acquisition and preprocessing costs. Chapters~6 and~8 report
+-study-specific training coverage and timing boundaries.
++result. Head-only timings exclude frame reading and feature extraction. Timing the
++whole model after a completed action still excludes the time spent waiting for that
++action to finish. An operational warning claim would need to include acquisition,
++synchronisation, preprocessing and inference up to the moment a decision becomes
++available. Chapters~\ref{ch:reassemble} and~\ref{ch:vifailback} report study-specific
++training coverage and timing boundaries.
++
++The clearest findings come from comparisons in which the competing models saw the
++same assessment cases and the difference between them can be stated precisely.
++The 753-action REASSEMBLE follow-up can show how a change affected those previously
++studied actions. A fresh test of the resulting design would require the target,
++decision time, recording groups, models, fault conditions and main performance
++measure to be fixed before opening new assessment data.
+ 
+ % Resource provenance (read-only records; HFU server use supplied by the researcher):
+ % implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/final_evidence/14_final_research_reports/11_GPU_RUNTIME_AND_STORAGE.md

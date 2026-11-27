@@ -1,0 +1,31 @@
+% The review shares its abstract, body, model figures, evidence register and APA
+% bibliography database with the complete edition. No master AUX or BBL is required.
+% These 17 works appear in the full edition's omitted material. Including them
+% in Biber's disambiguation context preserves the full APA author/year forms.
+\AtBeginDocument{\nocite{OpenAICodex,P001,P002,P015,P020,P027,P042,P043,P044,P046,P048,P049,P050,P053,P054,P056,Thoduka2024HandoverData}}
+
+% References to omitted appendices and their tables retain their full-edition
+% numbers as plain text. Figures, tables and chapters present here stay linked.
+\newcommand{\ReviewOutsideLabel}[2]{\expandafter\def\csname ReviewOutside@#1\endcsname{#2}}
+\ReviewOutsideLabel{app:literature}{A}
+\ReviewOutsideLabel{app:implementation}{C}
+\ReviewOutsideLabel{app:supplementary-results}{D}
+\ReviewOutsideLabel{app:human-review}{E}
+\ReviewOutsideLabel{app:reproducibility}{F}
+\ReviewOutsideLabel{app:chronology}{G}
+\ReviewOutsideLabel{app:handover}{H}
+\ReviewOutsideLabel{tab:literature-matrix}{A.1}
+\ReviewOutsideLabel{tab:handover-clean}{H.1}
+\NewDocumentCommand{\ReviewRef}{s m}{%
+  \ifcsname ReviewOutside@#2\endcsname
+    \csname ReviewOutside@#2\endcsname
+  \else
+    \IfBooleanTF{#1}{\ReviewNativeRef*{#2}}{\ReviewNativeRef{#2}}%
+  \fi}
+\AtBeginDocument{\let\ReviewNativeRef\ref\let\ref\ReviewRef}
+
+% The shared evidence macro controls all footnotes and external GitHub URLs.
+% Inline IDs lacking a URL have no Appendix F destination in this excerpt.
+\let\ReviewEvidenceDestination\EvidenceDestination
+\renewcommand{\EvidenceDestination}[1]{%
+  \begingroup\renewcommand{\hyperlink}[2]{##2}\ReviewEvidenceDestination{#1}\endgroup}

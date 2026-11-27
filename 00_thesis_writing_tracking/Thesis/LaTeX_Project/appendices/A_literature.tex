@@ -1,25 +1,72 @@
 \chapter{Literature Search Records and Evidence Tables}
 \label{app:literature}
 \section{Discovery Population and Evidence Status}
-The screening record dated 16 November 2026 lists 120 unique candidates. Of these, 39 met the inclusion criteria, 37 were excluded and 44 remained potentially relevant but insufficiently verified. The corresponding full-text appraisal covered 37 of the 39 included works. The two accessible only through abstracts and bibliographic metadata contributed to the screening counts but supplied no methodological or numerical findings.\ev{Historical search and screening record}{\EvidenceRef{E006}{}, \EvidenceRef{E009}{}, \EvidenceRef{E005}{}}
+The screening record dated 16 November 2026 lists 120 unique candidates. Of these, 39
+met the inclusion criteria, 37 were excluded and 44 remained potentially relevant but
+insufficiently verified. The corresponding full-text appraisal covered 37 of the 39
+included works. The two accessible only through abstracts and bibliographic metadata
+contributed to the screening counts but supplied no methodological or numerical
+findings.\ev{Historical search and screening record}{\EvidenceRef{E006}{},
+\EvidenceRef{E009}{}, \EvidenceRef{E005}{}}
 
-The subsequent appraisal covered 59 PDF files. Two pairs were byte-identical, leaving \ExpandedPDFCount{} distinct files. Titles, authors, DOIs and repository identifiers showed that these represented \ExpandedPDFCount{} additional works, bringing the total appraised to \ReviewWorkCount{}. This historical total includes empirical industrial studies, transferable methods, statistical and representation methods, dataset descriptions and contextual studies. The 25 November revision adds one separately identified methodological reference, \citet{Ting1999Issues}, to address the missing original foundation for stacked generalization. It is stored in \texttt{references\_additions.bib} and is outside the two-stage appraisal counts and matrices; the review was not restarted.
+The subsequent appraisal covered 59 PDF files. Two pairs were byte-identical, leaving
+\ExpandedPDFCount{} distinct files. Titles, authors, DOIs and repository identifiers
+showed that these represented \ExpandedPDFCount{} additional works, bringing the total
+appraised to \ReviewWorkCount{}. This historical total includes empirical industrial
+studies, transferable methods, statistical and representation methods, dataset
+descriptions and contextual studies. The 25 November revision adds one separately
+identified methodological reference, \citet{Ting1999Issues}, to address the missing
+original foundation for stacked generalization. It is stored in
+\texttt{references\_additions.bib} and is outside the two-stage appraisal counts and
+matrices; the review was not restarted.
 
-The search log for this screening round records more than 15 distinct queries. Several queries returned results together, precluding an exact count of the records retrieved by each. The subsequent appraisal drew on additional accessible full texts and used publisher or repository pages to check bibliographic identities and versions. This procedure limits the review's coverage to the works identified and accessible through these routes.\ev{Expanded appraisal and counts}{\EvidenceRef{E016}{}, \EvidenceRef{E010}{}, \EvidenceRef{E011}{}, \EvidenceRef{E012}{}}
+The search log for this screening round records more than 15 distinct queries. Several
+queries returned results together, precluding an exact count of the records retrieved by
+each. The subsequent appraisal drew on additional accessible full texts and used
+publisher or repository pages to check bibliographic identities and versions. This
+procedure limits the review's coverage to the works identified and accessible through
+these routes.\ev{Expanded appraisal and counts}{\EvidenceRef{E016}{},
+\EvidenceRef{E010}{}, \EvidenceRef{E011}{}, \EvidenceRef{E012}{}}
 
 \section{Extraction, Locators, and Versions}
-For each study, the appraisal recorded the prediction unit and target, physical inputs, derived representations, fusion method, single-input comparisons and assignment of data to training and evaluation. Missing inputs, noisy inputs and changes of operating conditions were coded separately. Numerical findings cite the relevant page, table or figure. Where the available text left a procedure unspecified, its status was recorded as unknown.
+For each study, the appraisal recorded the prediction unit and target, physical inputs,
+derived representations, fusion method, single-input comparisons and assignment of data
+to training and evaluation. Missing inputs, noisy inputs and changes of operating
+conditions were coded separately. Numerical findings cite the relevant page, table or
+figure. Where the available text left a procedure unspecified, its status was recorded
+as unknown.
 
-The appraisal distinguishes the published bibliographic record from the version examined. Preprints and journal articles sometimes give different sample counts for the same work. File hashes identify the version used for each extraction. The 37 initial full-text records include 148 short quotations that locate the evidence for their codes. The review compared reported methods and results without rerunning the published experiments.\ev{Extraction and identity records}{\EvidenceRef{E007}{}, \EvidenceRef{E008}{}, \EvidenceRef{E017}{}, \EvidenceRef{E014}{}}
+The appraisal distinguishes the published bibliographic record from the version
+examined. Preprints and journal articles sometimes give different sample counts for the
+same work. File hashes identify the version used for each extraction. The 37 initial
+full-text records include 148 short quotations that locate the evidence for their codes.
+The review compared reported methods and results without rerunning the published
+experiments.\ev{Extraction and identity records}{\EvidenceRef{E007}{},
+\EvidenceRef{E008}{}, \EvidenceRef{E017}{}, \EvidenceRef{E014}{}}
 
 \section{Comparison Matrix and Denominators}
-Table~\ref{tab:literature-matrix} gives the codes for the initial 37 studies. Table~\ref{tab:expanded-register} identifies the contribution and principal limitation of each of the 57 additional works. The accompanying matrix gives the missing-input, noise and shift tests for individual studies, together with source locations.\ev{Full expanded comparison register}{\EvidenceRef{E013}{}, \EvidenceRef{E015}{}}
+Table~\ref{tab:literature-matrix} gives the codes for the initial 37 studies.
+Table~\ref{tab:expanded-register} identifies the contribution and principal limitation
+of each of the 57 additional works. The accompanying matrix gives the missing-input,
+noise and shift tests for individual studies, together with source locations.\ev{Full
+expanded comparison register}{\EvidenceRef{E013}{}, \EvidenceRef{E015}{}}
 
-Within-protocol input variants do not guarantee equal capacity, pretraining, calibration or selection budget. Planned single-input deployment, missing training images, generated substitution, stochastic dropout and unexpected inference outage are different conditions. Ordinary defective objects, natural geometric gaps and fixed noisy data are not automatically controlled corruption experiments. The codes describe this inspected evidence and cannot estimate field-wide prevalence.
+Within-protocol input variants do not guarantee equal capacity, pretraining, calibration
+or selection budget. Planned single-input deployment, missing training images, generated
+substitution, stochastic dropout and unexpected inference outage are different
+conditions. Ordinary defective objects, natural geometric gaps and fixed noisy data are
+not automatically controlled corruption experiments. The codes describe this inspected
+evidence and cannot estimate field-wide prevalence.
 
 \input{tables/literature_matrix.tex}
 
 \input{tables/expanded_literature_matrix.tex}
 
 \section{Benchmark Identity and Assessment Populations}
-The MVTec 3D-AD dataset paper lists 249 anomaly-free and 948 anomalous test samples, a total of 1,197. It reports 2,656 training and 294 validation samples separately \citep[Table~1, PDF p.~4]{Bergmann2022The}. UCF reports the same test count \citep{Cheng2025Multimodal}, whereas some other method descriptions give 1,137. The discrepancy leaves the samples underlying those comparisons uncertain. The review uses the published scores, whose comparability also depends on preprocessing, masks and metric definitions.
+The MVTec 3D-AD dataset paper lists 249 anomaly-free and 948 anomalous test samples, a
+total of 1,197. It reports 2,656 training and 294 validation samples separately
+\citep[Table~1, PDF p.~4]{Bergmann2022The}. UCF reports the same test count
+\citep{Cheng2025Multimodal}, whereas some other method descriptions give 1,137. The
+discrepancy leaves the samples underlying those comparisons uncertain. The review uses
+the published scores, whose comparability also depends on preprocessing, masks and
+metric definitions.

@@ -5,22 +5,26 @@
 \begin{document}
 \begin{tikzpicture}[x=1bp,y=1bp]
 \path[use as bounding box] (0,66) rectangle (451.28,400);
-\node[thesis panel label,align=center,text width=218bp] at (113,384) {A\enspace Initial search round};
+\node[thesis panel label,align=center,text width=218bp] at (113,384) {A\enspace Initial
+search round};
 \node[thesis panel label,align=center,text width=205bp] at (341.64,384) {B\enspace Later expansion};
 \node[draft box,text width=204bp,minimum height=42bp] (screen) at (113,342)
  {\textbf{\ScreenedCount{} candidate records screened}};
 \node[draft box,text width=204bp,minimum height=38bp] (include) at (113,278)
- {\textbf{\IncludedCount{} discovery inclusions}\\{\fontsize{9bp}{11bp}\selectfont Other decisions: \ExcludedCount{} excluded; \MaybeCount{} maybe}};
+ {\textbf{\IncludedCount{} discovery inclusions}\\{\fontsize{9bp}{11bp}\selectfont Other
+ decisions: \ExcludedCount{} excluded; \MaybeCount{} maybe}};
 \node[draft literature,text width=111bp,minimum height=65bp] (initial) at (65.5,192)
  {\textbf{\InitialCount{} works}\\Full-text appraised};
 \node[draft box,dashed,text width=71bp,minimum height=65bp] (abs) at (182.5,192)
  {\textbf{\AbstractOnlyCount{} works}\\{\fontsize{9bp}{11bp}\selectfont Abstract / metadata only}};
 \node[draft box,text width=199bp,minimum height=42bp] (input) at (341.64,342)
- {\textbf{\InputPDFCount{} input PDF files}\\{\fontsize{9bp}{11bp}\selectfont Separate acquisition and appraisal stream}};
+ {\textbf{\InputPDFCount{} input PDF files}\\{\fontsize{9bp}{11bp}\selectfont Separate
+ acquisition and appraisal stream}};
 \node[draft box,text width=199bp,minimum height=38bp] (dedup) at (341.64,278)
  {\textbf{Two duplicate pairs reconciled}\\{\fontsize{9bp}{11bp}\selectfont P039=P038; P047=P046}};
 \node[draft literature,text width=199bp,minimum height=65bp] (exp) at (341.64,192)
- {\textbf{\ExpansionCount{} distinct PDFs / additional works}\\{\fontsize{9bp}{11bp}\selectfont Identity and version reconciliation}};
+ {\textbf{\ExpansionCount{} distinct PDFs / additional
+ works}\\{\fontsize{9bp}{11bp}\selectfont Identity and version reconciliation}};
 \draw[arrow] (screen) -- (include);
 \draw[draft rule] (include.south) -- (113,244) -- (65.5,244);
 \draw[arrow] (65.5,244) -- (initial.north);
@@ -30,7 +34,9 @@
 \draw[arrow] (dedup) -- (exp);
 \node[draft small,text width=96bp] at (182.5,144) {Outside full-text count};
 \node[draft requirement,text width=430bp,minimum height=46bp] (all) at (225.64,91)
- {\textbf{\TotalWorkCount{} historical appraised work records = \InitialCount{} + \ExpansionCount{}}\\{\fontsize{9bp}{11bp}\selectfont Distinct canonical work identities; not a count of industrial fusion experiments}};
+ {\textbf{\TotalWorkCount{} historical appraised work records = \InitialCount{} +
+ \ExpansionCount{}}\\{\fontsize{9bp}{11bp}\selectfont Distinct canonical work
+ identities; not a count of industrial fusion experiments}};
 \draw[arrow] (initial.south) -- (65.5,128) -- (155,128) -- (155,114);
 \draw[arrow] (exp.south) -- (341.64,128) -- (297,128) -- (297,114);
 \end{tikzpicture}

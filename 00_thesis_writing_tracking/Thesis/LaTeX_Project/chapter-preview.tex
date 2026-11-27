@@ -24,7 +24,8 @@
         \includegraphics[width=.70\paperwidth]{figures/draft-watermark.pdf}}}}}
 \fi
 \captionsetup{labelfont=bf,textfont=it,labelsep=newline,justification=raggedright,singlelinecheck=false,position=top}
-\newcommand{\displaynote}[1]{\par\smallskip\begingroup\raggedright\small\noindent\textit{Note.} #1\par\endgroup}
+\newcommand{\displaynote}[1]{\par\smallskip\begingroup\raggedright\small\noindent\textit{Note.}
+#1\par\endgroup}
 \usepackage{fancyhdr}
 \setlength{\headheight}{15pt}
 \pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small\nouppercase{\leftmark}}\fancyfoot[C]{\thepage}
@@ -38,13 +39,16 @@
 \input{tables/review_counts.tex}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\sigmoid}{\operatorname{sigmoid}}
-\newcommand{\thesistitle}{Physics-Informed Multi-Modal Transformer Architectures for Robust Industrial Welding Anomaly Detection}
+\newcommand{\thesistitle}{Physics-Informed Multi-Modal Transformer Architectures for
+Robust Industrial Welding Anomaly Detection}
 \hypersetup{pdftitle={\thesistitle},pdfauthor={Parth Ravaliya}}
 \ifdefined\ThesisReviewCopy
   \input{review-settings.tex}
 \fi
 \newcommand{\PreviewCitation}[5]{\expandafter\def\csname pc@\detokenize{#1|#2|#3|#4}\endcsname{#5}}
-\newcommand{\PreviewCite}[4]{\ifcsname pc@\detokenize{#1|#2|#3|#4}\endcsname\csname pc@\detokenize{#1|#2|#3|#4}\endcsname\else\textbf{[citation pending: \detokenize{#4}]}\fi}
+\newcommand{\PreviewCite}[4]{\ifcsname pc@\detokenize{#1|#2|#3|#4}\endcsname\csname
+pc@\detokenize{#1|#2|#3|#4}\endcsname\else\textbf{[citation pending:
+\detokenize{#4}]}\fi}
 \NewDocumentCommand{\citep}{O{} O{} m}{\PreviewCite{citep}{#1}{#2}{#3}}
 \NewDocumentCommand{\citet}{O{} O{} m}{\PreviewCite{citet}{#1}{#2}{#3}}
 \NewDocumentCommand{\parencite}{O{} O{} m}{\PreviewCite{parencite}{#1}{#2}{#3}}
@@ -60,40 +64,53 @@
 
 \PreviewCitation{citep}{}{}{AlDulaimi2019A}{(Al-Dulaimi et al., 2019)}
 \PreviewCitation{citep}{}{}{Altinses2023Fuzzy}{(Altinses \& Schwung, 2023)}
-\PreviewCitation{citep}{}{}{Altinses2023Fuzzy,P026,Thoduka2024Handover,P035}{(Altinses \& Schwung, 2023; Deng et al., 2026; Thoduka et al., 2024b; Z. Zhang et al., 2024)}
+\PreviewCitation{citep}{}{}{Altinses2023Fuzzy,P026,Thoduka2024Handover,P035}{(Altinses
+\& Schwung, 2023; Deng et al., 2026; Thoduka et al., 2024b; Z. Zhang et al., 2024)}
 \PreviewCitation{citep}{}{}{Altinses2025Performance}{(Altinses \& Schwung, 2025)}
 \PreviewCitation{citep}{}{}{Baltrusaitis2019Multimodal}{(Baltrušaitis et al., 2019)}
 \PreviewCitation{citep}{}{}{Bengio2004CVVariance}{(Bengio \& Grandvalet, 2004)}
 \PreviewCitation{citep}{}{}{Bergmann2019MVTec}{(Bergmann et al., 2019)}
-\PreviewCitation{citep}{}{}{Bergmann2019MVTec,Bergmann2022The,Hua2026Weld}{(Bergmann et al., 2019; Bergmann et al., 2022; Hua et al., 2026)}
-\PreviewCitation{citep}{}{}{Bergmann2019MVTec,Costanzino2024Multimodal,Cheng2025Multimodal}{(Bergmann et al., 2019; Cheng et al., 2025; Costanzino et al., 2024)}
+\PreviewCitation{citep}{}{}{Bergmann2019MVTec,Bergmann2022The,Hua2026Weld}{(Bergmann et
+al., 2019; Bergmann et al., 2022; Hua et al., 2026)}
+\PreviewCitation{citep}{}{}{Bergmann2019MVTec,Costanzino2024Multimodal,Cheng2025Multimodal}{(Bergmann
+et al., 2019; Cheng et al., 2025; Costanzino et al., 2024)}
 \PreviewCitation{citep}{}{}{Bergmann2022The}{(Bergmann et al., 2022)}
-\PreviewCitation{citep}{}{}{Bergmann2022The,Bonfiglioli2023The}{(Bergmann et al., 2022; Bonfiglioli et al., 2023)}
+\PreviewCitation{citep}{}{}{Bergmann2022The,Bonfiglioli2023The}{(Bergmann et al., 2022;
+Bonfiglioli et al., 2023)}
 \PreviewCitation{citep}{}{}{Bevans2023Heterogeneous}{(Bevans et al., 2023)}
 \PreviewCitation{citep}{}{}{Bonfiglioli2023The}{(Bonfiglioli et al., 2023)}
 \PreviewCitation{citep}{}{}{Chen2023Multisensor}{(L. Chen et al., 2023)}
 \PreviewCitation{citep}{}{}{Cheng2025Multimodal}{(Cheng et al., 2025)}
 \PreviewCitation{citep}{}{}{Chu2024A}{(Chu et al., 2024)}
 \PreviewCitation{citep}{}{}{Costanzino2024Multimodal}{(Costanzino et al., 2024)}
-\PreviewCitation{citep}{}{}{Costanzino2024Multimodal,Petrich2021Multimodal}{(Costanzino et al., 2024; Petrich et al., 2021)}
-\PreviewCitation{citep}{}{}{Costanzino2024Multimodal,Shangguan2025CPIR}{(Costanzino et al., 2024; Shangguan et al., 2025)}
+\PreviewCitation{citep}{}{}{Costanzino2024Multimodal,Petrich2021Multimodal}{(Costanzino
+et al., 2024; Petrich et al., 2021)}
+\PreviewCitation{citep}{}{}{Costanzino2024Multimodal,Shangguan2025CPIR}{(Costanzino et
+al., 2024; Shangguan et al., 2025)}
 \PreviewCitation{citep}{}{}{Crossref2020REST}{(Crossref, 2020)}
 \PreviewCitation{citep}{}{}{Goodarzi2023Deep}{(Goodarzi et al., 2023)}
 \PreviewCitation{citep}{}{}{Gu2024Improved}{(Gu et al., 2024)}
-\PreviewCitation{citep}{}{}{Gu2024Improved,Xu2025ModalityResilient}{(Gu et al., 2024; J. Xu et al., 2025)}
+\PreviewCitation{citep}{}{}{Gu2024Improved,Xu2025ModalityResilient}{(Gu et al., 2024; J.
+Xu et al., 2025)}
 \PreviewCitation{citep}{}{}{Guo2017Calibration}{(Guo et al., 2017)}
 \PreviewCitation{citep}{}{}{Guo2017Calibration,P008}{(Guo et al., 2017; Ovadia et al., 2019)}
 \PreviewCitation{citep}{}{}{Horwitz2023Back}{(Horwitz \& Hoshen, 2023)}
-\PreviewCitation{citep}{}{}{Horwitz2023Back,Bonfiglioli2023The,Goodarzi2023Deep,Wang2020What}{(Bonfiglioli et al., 2023; Goodarzi et al., 2023; Horwitz \& Hoshen, 2023; W. Wang et al., 2020)}
-\PreviewCitation{citep}{}{}{Horwitz2023Back,Goodarzi2023Deep}{(Goodarzi et al., 2023; Horwitz \& Hoshen, 2023)}
+\PreviewCitation{citep}{}{}{Horwitz2023Back,Bonfiglioli2023The,Goodarzi2023Deep,Wang2020What}{(Bonfiglioli
+et al., 2023; Goodarzi et al., 2023; Horwitz \& Hoshen, 2023; W. Wang et al., 2020)}
+\PreviewCitation{citep}{}{}{Horwitz2023Back,Goodarzi2023Deep}{(Goodarzi et al., 2023;
+Horwitz \& Hoshen, 2023)}
 \PreviewCitation{citep}{}{}{Hua2026Weld}{(Hua et al., 2026)}
 \PreviewCitation{citep}{}{}{Hua2026Weld,P003}{(Fan et al., 2026; Hua et al., 2026)}
-\PreviewCitation{citep}{}{}{Hua2026Weld,Thoduka2024Handover,P045,P033}{(Hua et al., 2026; Thoduka et al., 2024b; J. Xu et al., 2026; X. Zhang et al., 2026)}
+\PreviewCitation{citep}{}{}{Hua2026Weld,Thoduka2024Handover,P045,P033}{(Hua et al.,
+2026; Thoduka et al., 2024b; J. Xu et al., 2026; X. Zhang et al., 2026)}
 \PreviewCitation{citep}{}{}{Huang2026Rolling}{(Huang \& Tong, 2026)}
-\PreviewCitation{citep}{}{}{Huang2026Rolling,Ying2025Trustworthy}{(Huang \& Tong, 2026; Ying et al., 2025)}
+\PreviewCitation{citep}{}{}{Huang2026Rolling,Ying2025Trustworthy}{(Huang \& Tong, 2026;
+Ying et al., 2025)}
 \PreviewCitation{citep}{}{}{Huo2022Multisensor}{(Huo et al., 2022)}
-\PreviewCitation{citep}{}{}{Huo2022Multisensor,Hua2026Weld,P045,Thoduka2024Handover}{(Hua et al., 2026; Huo et al., 2022; Thoduka et al., 2024b; X. Zhang et al., 2026)}
-\PreviewCitation{citep}{}{}{Huo2022Multisensor,Hua2026Weld,Ying2025Trustworthy,Huang2026Rolling}{(Hua et al., 2026; Huang \& Tong, 2026; Huo et al., 2022; Ying et al., 2025)}
+\PreviewCitation{citep}{}{}{Huo2022Multisensor,Hua2026Weld,P045,Thoduka2024Handover}{(Hua
+et al., 2026; Huo et al., 2022; Thoduka et al., 2024b; X. Zhang et al., 2026)}
+\PreviewCitation{citep}{}{}{Huo2022Multisensor,Hua2026Weld,Ying2025Trustworthy,Huang2026Rolling}{(Hua
+et al., 2026; Huang \& Tong, 2026; Huo et al., 2022; Ying et al., 2025)}
 \PreviewCitation{citep}{}{}{Kim2026MSM}{(Kim et al., 2026)}
 \PreviewCitation{citep}{}{}{Koizumi2019ToyADMOS}{(Koizumi et al., 2019)}
 \PreviewCitation{citep}{}{}{Koizumi2020Description}{(Koizumi et al., 2020)}
@@ -101,10 +118,13 @@
 \PreviewCitation{citep}{}{}{Li2022A}{(J. Li et al., 2022)}
 \PreviewCitation{citep}{}{}{Li2025MADFlow}{(Y. Li et al., 2025)}
 \PreviewCitation{citep}{}{}{Li2025PGMTKD}{(C. Li et al., 2025)}
-\PreviewCitation{citep}{}{}{Li2025PGMTKD,Altinses2023Fuzzy,P051}{(Altinses \& Schwung, 2023; C. Li et al., 2025; X. Zhao et al., 2026)}
-\PreviewCitation{citep}{}{}{Li2025PGMTKD,Huang2026Rolling}{(Huang \& Tong, 2026; C. Li et al., 2025)}
+\PreviewCitation{citep}{}{}{Li2025PGMTKD,Altinses2023Fuzzy,P051}{(Altinses \& Schwung,
+2023; C. Li et al., 2025; X. Zhao et al., 2026)}
+\PreviewCitation{citep}{}{}{Li2025PGMTKD,Huang2026Rolling}{(Huang \& Tong, 2026; C. Li
+et al., 2025)}
 \PreviewCitation{citep}{}{}{Li2025PGMTKD,P045}{(C. Li et al., 2025; X. Zhang et al., 2026)}
-\PreviewCitation{citep}{}{}{Li2025PGMTKD,Sui2026Incomplete,P005,P016}{(C. Li et al., 2025; M. Ma et al., 2022; Neverova et al., 2015; Sui et al., 2026)}
+\PreviewCitation{citep}{}{}{Li2025PGMTKD,Sui2026Incomplete,P005,P016}{(C. Li et al.,
+2025; M. Ma et al., 2022; Neverova et al., 2015; Sui et al., 2026)}
 \PreviewCitation{citep}{}{}{MSMKaggle2025}{(Manufuturetoday, 2025)}
 \PreviewCitation{citep}{}{}{Ma2025A}{(L. Ma et al., 2025)}
 \PreviewCitation{citep}{}{}{Nagrani2021MBT}{(Nagrani et al., 2021)}
@@ -114,11 +134,13 @@
 \PreviewCitation{citep}{}{}{P002}{(Y. Li et al., 2020)}
 \PreviewCitation{citep}{}{}{P003}{(Fan et al., 2026)}
 \PreviewCitation{citep}{}{}{P003,Hua2026Weld}{(Fan et al., 2026; Hua et al., 2026)}
-\PreviewCitation{citep}{}{}{P003,Huo2022Multisensor,Thoduka2024Handover,P045}{(Fan et al., 2026; Huo et al., 2022; Thoduka et al., 2024b; X. Zhang et al., 2026)}
+\PreviewCitation{citep}{}{}{P003,Huo2022Multisensor,Thoduka2024Handover,P045}{(Fan et
+al., 2026; Huo et al., 2022; Thoduka et al., 2024b; X. Zhang et al., 2026)}
 \PreviewCitation{citep}{}{}{P004}{(Varma \& Simon, 2006)}
 \PreviewCitation{citep}{}{}{P004,P017}{(Kapoor \& Narayanan, 2023; Varma \& Simon, 2006)}
 \PreviewCitation{citep}{}{}{P005}{(Neverova et al., 2015)}
-\PreviewCitation{citep}{}{}{P005,P007,P016}{(Choi \& Lee, 2019; M. Ma et al., 2022; Neverova et al., 2015)}
+\PreviewCitation{citep}{}{}{P005,P007,P016}{(Choi \& Lee, 2019; M. Ma et al., 2022;
+Neverova et al., 2015)}
 \PreviewCitation{citep}{}{}{P006}{(Arevalo et al., 2017)}
 \PreviewCitation{citep}{}{}{P007}{(Choi \& Lee, 2019)}
 \PreviewCitation{citep}{}{}{P008}{(Ovadia et al., 2019)}
@@ -152,7 +174,8 @@
 \PreviewCitation{citep}{}{}{P044}{(Kıymık, 2026)}
 \PreviewCitation{citep}{}{}{P045}{(X. Zhang et al., 2026)}
 \PreviewCitation{citep}{}{}{P045,P051}{(X. Zhang et al., 2026; X. Zhao et al., 2026)}
-\PreviewCitation{citep}{}{}{P045,Petrich2021Multimodal}{(Petrich et al., 2021; X. Zhang et al., 2026)}
+\PreviewCitation{citep}{}{}{P045,Petrich2021Multimodal}{(Petrich et al., 2021; X. Zhang
+et al., 2026)}
 \PreviewCitation{citep}{}{}{P046}{(Sun et al., 2026)}
 \PreviewCitation{citep}{}{}{P048}{(Mian et al., 2022)}
 \PreviewCitation{citep}{}{}{P049}{(Jain \& Wallace, 2019)}
@@ -167,13 +190,17 @@
 \PreviewCitation{citep}{}{}{Paszke2019PyTorch}{(Paszke et al., 2019)}
 \PreviewCitation{citep}{}{}{Pedregosa2011ScikitLearn}{(Pedregosa et al., 2011)}
 \PreviewCitation{citep}{}{}{Petrich2021Multimodal}{(Petrich et al., 2021)}
-\PreviewCitation{citep}{}{}{Petrich2021Multimodal,Chen2023Multisensor,P021}{(L. Chen et al., 2023; Petrich et al., 2021; Z. Wang et al., 2025)}
+\PreviewCitation{citep}{}{}{Petrich2021Multimodal,Chen2023Multisensor,P021}{(L. Chen et
+al., 2023; Petrich et al., 2021; Z. Wang et al., 2025)}
 \PreviewCitation{citep}{}{}{Priem2022OpenAlex}{(Priem et al., 2022)}
 \PreviewCitation{citep}{}{}{Purohit2019MIMII}{(Purohit et al., 2019)}
-\PreviewCitation{citep}{}{}{Purohit2019MIMII,Koizumi2019ToyADMOS}{(Koizumi et al., 2019; Purohit et al., 2019)}
+\PreviewCitation{citep}{}{}{Purohit2019MIMII,Koizumi2019ToyADMOS}{(Koizumi et al., 2019;
+Purohit et al., 2019)}
 \PreviewCitation{citep}{}{}{Roth2022Towards}{(Roth et al., 2022)}
-\PreviewCitation{citep}{}{}{Roth2022Towards,Costanzino2024Multimodal}{(Costanzino et al., 2024; Roth et al., 2022)}
-\PreviewCitation{citep}{}{}{Roth2022Towards,Rudolph2023Asymmetric,Costanzino2024Multimodal}{(Costanzino et al., 2024; Roth et al., 2022; Rudolph et al., 2023)}
+\PreviewCitation{citep}{}{}{Roth2022Towards,Costanzino2024Multimodal}{(Costanzino et
+al., 2024; Roth et al., 2022)}
+\PreviewCitation{citep}{}{}{Roth2022Towards,Rudolph2023Asymmetric,Costanzino2024Multimodal}{(Costanzino
+et al., 2024; Roth et al., 2022; Rudolph et al., 2023)}
 \PreviewCitation{citep}{}{}{Rudolph2023Asymmetric}{(Rudolph et al., 2023)}
 \PreviewCitation{citep}{}{}{Saito2015PrecisionRecall}{(Saito \& Rehmsmeier, 2015)}
 \PreviewCitation{citep}{}{}{Shangguan2025CPIR}{(Shangguan et al., 2025)}
@@ -185,13 +212,18 @@
 \PreviewCitation{citep}{}{}{ViFailbackHF2025}{(sii-rhos-ai, 2025)}
 \PreviewCitation{citep}{}{}{Wan2024Pipeline}{(Wan et al., 2024)}
 \PreviewCitation{citep}{}{}{Wang2020What}{(W. Wang et al., 2020)}
-\PreviewCitation{citep}{}{}{Wang2020What,Goodarzi2023Deep}{(Goodarzi et al., 2023; W. Wang et al., 2020)}
-\PreviewCitation{citep}{}{}{Wang2020What,Horwitz2023Back,Goodarzi2023Deep}{(Goodarzi et al., 2023; Horwitz \& Hoshen, 2023; W. Wang et al., 2020)}
-\PreviewCitation{citep}{}{}{Wang2020What,P016,P023,Bengio2004CVVariance}{(Bengio \& Grandvalet, 2004; S. Lee et al., 2026; M. Ma et al., 2022; W. Wang et al., 2020)}
-\PreviewCitation{citep}{}{}{Wang2020What,Xie2025Audiovisual}{(W. Wang et al., 2020; Xie et al., 2025)}
+\PreviewCitation{citep}{}{}{Wang2020What,Goodarzi2023Deep}{(Goodarzi et al., 2023; W.
+Wang et al., 2020)}
+\PreviewCitation{citep}{}{}{Wang2020What,Horwitz2023Back,Goodarzi2023Deep}{(Goodarzi et
+al., 2023; Horwitz \& Hoshen, 2023; W. Wang et al., 2020)}
+\PreviewCitation{citep}{}{}{Wang2020What,P016,P023,Bengio2004CVVariance}{(Bengio \&
+Grandvalet, 2004; S. Lee et al., 2026; M. Ma et al., 2022; W. Wang et al., 2020)}
+\PreviewCitation{citep}{}{}{Wang2020What,Xie2025Audiovisual}{(W. Wang et al., 2020; Xie
+et al., 2025)}
 \PreviewCitation{citep}{}{}{Wang2023Multimodal}{(Y. Wang et al., 2023)}
 \PreviewCitation{citep}{}{}{Wang2025A}{(C. Wang et al., 2025)}
-\PreviewCitation{citep}{}{}{Wang2025A,Chu2024A,Huang2026Rolling,Bevans2023Heterogeneous}{(Bevans et al., 2023; Chu et al., 2024; Huang \& Tong, 2026; C. Wang et al., 2025)}
+\PreviewCitation{citep}{}{}{Wang2025A,Chu2024A,Huang2026Rolling,Bevans2023Heterogeneous}{(Bevans
+et al., 2023; Chu et al., 2024; Huang \& Tong, 2026; C. Wang et al., 2025)}
 \PreviewCitation{citep}{}{}{Wolf2020Transformers}{(Wolf et al., 2020)}
 \PreviewCitation{citep}{}{}{Xie2025Audiovisual}{(Xie et al., 2025)}
 \PreviewCitation{citep}{}{}{Xu2025ModalityResilient}{(J. Xu et al., 2025)}
@@ -203,32 +235,43 @@
 \PreviewCitation{citep}{}{}{Zhao2024RTDETR}{(Y. Zhao et al., 2024)}
 \PreviewCitation{citep}{}{}{Zotero2026}{(Corporation for Digital Scholarship, 2026)}
 \PreviewCitation{citep}{PDF p.~10}{}{P021}{(Z. Wang et al., 2025, PDF p. 10)}
-\PreviewCitation{citep}{PDF p.~10, Tables~IV, VI, VII}{}{P035}{(Z. Zhang et al., 2024, PDF p. 10, Tables IV, VI, VII)}
+\PreviewCitation{citep}{PDF p.~10, Tables~IV, VI, VII}{}{P035}{(Z. Zhang et al., 2024,
+PDF p. 10, Tables IV, VI, VII)}
 \PreviewCitation{citep}{PDF p.~10, Table~4}{}{P033}{(J. Xu et al., 2026, PDF p. 10, Table 4)}
 \PreviewCitation{citep}{PDF p.~10, Table~III}{}{P031}{(Lei \& Qi, 2025, PDF p. 10, Table III)}
 \PreviewCitation{citep}{PDF p.~10, Table~V}{}{P035}{(Z. Zhang et al., 2024, PDF p. 10, Table V)}
-\PreviewCitation{citep}{PDF p.~11, Tables~IV--V}{}{P021}{(Z. Wang et al., 2025, PDF p. 11, Tables IV–V)}
+\PreviewCitation{citep}{PDF p.~11, Tables~IV--V}{}{P021}{(Z. Wang et al., 2025, PDF p.
+11, Tables IV–V)}
 \PreviewCitation{citep}{PDF p.~24, Table~1}{}{P045}{(X. Zhang et al., 2026, PDF p. 24, Table 1)}
 \PreviewCitation{citep}{PDF p.~29, Figure~8}{}{P051}{(X. Zhao et al., 2026, PDF p. 29, Figure 8)}
 \PreviewCitation{citep}{PDF p.~3}{}{P038}{(An et al., 2026, PDF p. 3)}
 \PreviewCitation{citep}{PDF p.~4, Table~4}{}{P023}{(S. Lee et al., 2026, PDF p. 4, Table 4)}
 \PreviewCitation{citep}{PDF p.~7}{}{P031}{(Lei \& Qi, 2025, PDF p. 7)}
-\PreviewCitation{citep}{PDF p.~7, Section~VI}{}{Thoduka2024Handover}{(Thoduka et al., 2024b, PDF p. 7, Section VI)}
+\PreviewCitation{citep}{PDF p.~7, Section~VI}{}{Thoduka2024Handover}{(Thoduka et al.,
+2024b, PDF p. 7, Section VI)}
 \PreviewCitation{citep}{PDF p.~7, Table~3}{}{P026}{(Deng et al., 2026, PDF p. 7, Table 3)}
 \PreviewCitation{citep}{PDF p.~7, Table~III}{}{P003}{(Fan et al., 2026, PDF p. 7, Table III)}
-\PreviewCitation{citep}{PDF p.~7, Table~III}{}{Thoduka2024Handover}{(Thoduka et al., 2024b, PDF p. 7, Table III)}
-\PreviewCitation{citep}{PDF p.~7, Table~V}{}{Thoduka2024Handover}{(Thoduka et al., 2024b, PDF p. 7, Table V)}
-\PreviewCitation{citep}{PDF p.~7, Table~VII}{}{Huo2022Multisensor}{(Huo et al., 2022, PDF p. 7, Table VII)}
-\PreviewCitation{citep}{PDF p.~7, Table~VIII}{}{Huo2022Multisensor}{(Huo et al., 2022, PDF p. 7, Table VIII)}
+\PreviewCitation{citep}{PDF p.~7, Table~III}{}{Thoduka2024Handover}{(Thoduka et al.,
+2024b, PDF p. 7, Table III)}
+\PreviewCitation{citep}{PDF p.~7, Table~V}{}{Thoduka2024Handover}{(Thoduka et al.,
+2024b, PDF p. 7, Table V)}
+\PreviewCitation{citep}{PDF p.~7, Table~VII}{}{Huo2022Multisensor}{(Huo et al., 2022,
+PDF p. 7, Table VII)}
+\PreviewCitation{citep}{PDF p.~7, Table~VIII}{}{Huo2022Multisensor}{(Huo et al., 2022,
+PDF p. 7, Table VIII)}
 \PreviewCitation{citep}{PDF p.~8}{}{P035}{(Z. Zhang et al., 2024, PDF p. 8)}
-\PreviewCitation{citep}{PDF p.~8, Table~1}{}{Zhang2023QMF}{(Q. Zhang et al., 2023, PDF p. 8, Table 1)}
+\PreviewCitation{citep}{PDF p.~8, Table~1}{}{Zhang2023QMF}{(Q. Zhang et al., 2023, PDF
+p. 8, Table 1)}
 \PreviewCitation{citep}{PDF p.~9, Table~7}{}{Nie2023PatchTST}{(Nie et al., 2023, PDF p. 9, Table 7)}
 \PreviewCitation{citep}{PDF p.~9, Table~V}{}{P003}{(Fan et al., 2026, PDF p. 9, Table V)}
-\PreviewCitation{citep}{PDF pp.~10--11, Tables~4--5}{}{P033}{(J. Xu et al., 2026, PDF pp. 10–11, Tables 4–5)}
-\PreviewCitation{citep}{PDF pp.~10--13}{}{Sliwowski2025REASSEMBLE}{(Sliwowski et al., 2025, PDF pp. 10–13)}
+\PreviewCitation{citep}{PDF pp.~10--11, Tables~4--5}{}{P033}{(J. Xu et al., 2026, PDF
+pp. 10–11, Tables 4–5)}
+\PreviewCitation{citep}{PDF pp.~10--13}{}{Sliwowski2025REASSEMBLE}{(Sliwowski et al.,
+2025, PDF pp. 10–13)}
 \PreviewCitation{citep}{PDF pp.~12, 15}{}{Hua2026Weld}{(Hua et al., 2026, PDF pp. 12, 15)}
 \PreviewCitation{citep}{PDF pp.~18, 22}{}{Hua2026Weld}{(Hua et al., 2026, PDF pp. 18, 22)}
-\PreviewCitation{citep}{PDF pp.~18, 22, Tables~1--3}{}{Hua2026Weld}{(Hua et al., 2026, PDF pp. 18, 22, Tables 1–3)}
+\PreviewCitation{citep}{PDF pp.~18, 22, Tables~1--3}{}{Hua2026Weld}{(Hua et al., 2026,
+PDF pp. 18, 22, Tables 1–3)}
 \PreviewCitation{citep}{PDF pp.~19--22}{}{P045}{(X. Zhang et al., 2026, PDF pp. 19–22)}
 \PreviewCitation{citep}{PDF pp.~19--24}{}{P045}{(X. Zhang et al., 2026, PDF pp. 19–24)}
 \PreviewCitation{citep}{PDF pp.~3--5}{}{Altinses2023Fuzzy}{(Altinses \& Schwung, 2023, PDF pp. 3–5)}
@@ -241,7 +284,8 @@
 \PreviewCitation{citep}{PDF pp.~5--7}{}{Thoduka2024Handover}{(Thoduka et al., 2024b, PDF pp. 5–7)}
 \PreviewCitation{citep}{PDF pp.~6, 8--9}{}{P025}{(Q. Chen et al., 2026, PDF pp. 6, 8–9)}
 \PreviewCitation{citep}{PDF pp.~6--7}{}{P003}{(Fan et al., 2026, PDF pp. 6–7)}
-\PreviewCitation{citep}{PDF pp.~8--10}{}{Bengio2004CVVariance}{(Bengio \& Grandvalet, 2004, PDF pp. 8–10)}
+\PreviewCitation{citep}{PDF pp.~8--10}{}{Bengio2004CVVariance}{(Bengio \& Grandvalet,
+2004, PDF pp. 8–10)}
 \PreviewCitation{citep}{Tables~1--3}{}{Hua2026Weld}{(Hua et al., 2026, Tables 1–3)}
 \PreviewCitation{citep}{Table~1}{}{Bergmann2022The}{(Bergmann et al., 2022, Table 1)}
 \PreviewCitation{citep}{Table~2}{}{Ying2025Trustworthy}{(Ying et al., 2025, Table 2)}
@@ -359,7 +403,8 @@
 \PreviewCitation{citet}{}{}{Zhang2023QMF}{Q. Zhang et al. (2023)}
 \PreviewCitation{citet}{}{}{Zhao2024RTDETR}{Y. Zhao et al. (2024)}
 \PreviewCitation{citet}{}{}{Zotero2026}{Corporation for Digital Scholarship (2026)}
-\PreviewCitation{citet}{PDF pp.~7--8, Tables~2--4}{}{Zeng2026ViFailback}{Zeng et al. (2026, PDF pp. 7–8, Tables 2–4)}
+\PreviewCitation{citet}{PDF pp.~7--8, Tables~2--4}{}{Zeng2026ViFailback}{Zeng et al.
+(2026, PDF pp. 7–8, Tables 2–4)}
 \PreviewCitation{parencite}{}{}{AlDulaimi2019A}{(Al-Dulaimi et al., 2019)}
 \PreviewCitation{parencite}{}{}{Altinses2023Fuzzy}{(Altinses \& Schwung, 2023)}
 \PreviewCitation{parencite}{}{}{Altinses2025Performance}{(Altinses \& Schwung, 2025)}

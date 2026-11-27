@@ -43,8 +43,26 @@
 \citep{Bevans2023Heterogeneous} & MULTI-CAM & E & A & N & N & B \\
 \bottomrule
 \end{longtable}
-\displaynote{All 37 records have evidence status F. The codes describe the inspected protocol. They do not rate study quality.}
-\noindent\textit{Data:} CAM-S denotes a physical camera and a separate non-image signal; RGB-G denotes RGB and geometry; OPT-AUD denotes photodiode and acoustic signals, without a camera input. MS denotes machine/process channels; SV denotes parallel representations of the same telemetry; IMG-U has incompletely documented image provenance. SIM-CS/SIM-G are synthetic. RGB, AUD and VIB are single physical modalities; MULTI-CAM uses several imaging sources; X is transferable non-industrial evidence.
-\par\noindent\textit{Fusion:} E, early; I, intermediate; L, output-score fusion; H, hybrid feature/output fusion; KD, privileged cross-modal training; U, unimodal; TAX, taxonomy. Authors' terminology is normalized by where information is combined.
-\par\noindent\textit{Baseline:} M, input variants evaluated within one protocol; P, partial/ambiguous; R, retained-input student with/without teachers; L, literature comparison; A, module/map/task ablations only; U, unimodal reference; S, survey; N, not established. M does not guarantee matched capacity, pretraining or tuning.
-\par\noindent\textit{Missing:} PA, planned missing-input inference; SD, simulated dropout; TR, missing training images with complete tests; GS, generated substitution; RS, retrained input subsets; N, no controlled trial established; NA, survey. \textit{Noise:} S, synthetic intervention; B, recorded-background mixing; F, fixed noisy benchmark; N, no controlled trial established. \textit{Shift:} A, target-adaptive transfer; C, condition transfer with target validation; B, independent-build/layout transfer with limited outcome coverage; T, simulated translation; W, unseen window duration; N, no held-out domain transfer established.
+\displaynote{All 37 records have evidence status F. The codes describe the inspected
+protocol. They do not rate study quality.}
+\noindent\textit{Data:} CAM-S denotes a physical camera and a separate non-image signal;
+RGB-G denotes RGB and geometry; OPT-AUD denotes photodiode and acoustic signals, without
+a camera input. MS denotes machine/process channels; SV denotes parallel representations
+of the same telemetry; IMG-U has incompletely documented image provenance. SIM-CS/SIM-G
+are synthetic. RGB, AUD and VIB are single physical modalities; MULTI-CAM uses several
+imaging sources; X is transferable non-industrial evidence.
+\par\noindent\textit{Fusion:} E, early; I, intermediate; L, output-score fusion; H,
+hybrid feature/output fusion; KD, privileged cross-modal training; U, unimodal; TAX,
+taxonomy. Authors' terminology is normalized by where information is combined.
+\par\noindent\textit{Baseline:} M, input variants evaluated within one protocol; P,
+partial/ambiguous; R, retained-input student with/without teachers; L, literature
+comparison; A, module/map/task ablations only; U, unimodal reference; S, survey; N, not
+established. M does not guarantee matched capacity, pretraining or tuning.
+\par\noindent\textit{Missing:} PA, planned missing-input inference; SD, simulated
+dropout; TR, missing training images with complete tests; GS, generated substitution;
+RS, retrained input subsets; N, no controlled trial established; NA, survey.
+\textit{Noise:} S, synthetic intervention; B, recorded-background mixing; F, fixed noisy
+benchmark; N, no controlled trial established. \textit{Shift:} A, target-adaptive
+transfer; C, condition transfer with target validation; B, independent-build/layout
+transfer with limited outcome coverage; T, simulated translation; W, unseen window
+duration; N, no held-out domain transfer established.

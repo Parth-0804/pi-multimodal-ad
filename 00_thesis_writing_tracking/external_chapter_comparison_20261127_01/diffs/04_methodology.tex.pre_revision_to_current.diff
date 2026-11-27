@@ -1,0 +1,83 @@
+--- pre_revision/04_methodology.tex
++++ current/04_methodology.tex
+@@ -28,14 +28,16 @@
+ camera predict failure on its own? How well could the sensors predict it? Did combining
+ the two improve on the stronger individual predictor?
+ 
+-The other studies tested related questions under different conditions. In PHM, the model
+-combined groups of machine measurements to predict a gear-condition indicator. In MSM,
+-the question was whether video added information about abnormal cutting beyond what the
+-milling machine’s own measurements already provided. ViFailback tested complete
+-manipulation episodes on held-out tasks. It also examined whether visual features
+-learned on REASSEMBLE remained useful for a different robot dataset. HANDOVER supplied
+-video and force–torque measurements from human–robot trials. Its official test split
+-supported a comparison of the two individual predictors and their fixed average.
++The other studies tested related questions under different conditions. PHM established
++target-validity and modality-correspondence limits while combining sensor groups to
++predict a photographic proxy. MSM supplied the primary completed external manufacturing
++comparison: locally fitted visual, sensor and fusion models, six target/grouping
++sensitivities, and controlled corruption tests. ViFailback added task-disjoint robotic
++assessment and transfer of a specified REASSEMBLE-learned visual representation; target-CNN
++adaptation remained partial and its corruption study was unexecuted. HANDOVER's official
++test split supported unimodal models and fixed averaging, while missing participant
++identities prevented the required participant-safe OOF fits for learned fusion. That
++supporting study is retained in Appendix~\ref{app:handover}.
+ 
+ The five research requirements guided how these tests were read. \textbf{R1} concerned
+ the target and the pairing of observations. \textbf{R2} concerned how each input was
+@@ -130,11 +132,9 @@
+ evidence still need separate consideration.
+ 
+ Sensor preparation included checking channel order, units, timestamps, repeated entries,
+-and missing values. Pairing was especially important in MSM. For one milling recording,
+-VMX9, the accepted offset placed video time 49.73 seconds ahead of sensor time. An
+-earlier candidate offset of 16.04 seconds was rejected (Chapter~\ref{ch:msm}). Using the
+-wrong offset would still produce a readable video clip. It would show a different part
+-of the cut from the one described by the sensor measurements and interval label.
++and missing values. MSM illustrates why a readable clip is insufficient: choosing the
++wrong timing offset pairs a cutting label with a different visual interval.
++Chapter~\ref{ch:msm} gives the VMX9 correction and the accepted alignment support.
+ 
+ In ViFailback, duplicate or invalid telemetry records and unreadable video affected
+ which episodes could enter the comparison. Removing an episode also removes its outcome
+@@ -203,12 +203,9 @@
+ Reusing evaluation results to select a configuration can make its reported performance
+ look too favourable \parencite{P004}.
+ 
+-The PHM records contain a concrete example. The principal sensor experiment fitted its
+-normaliser again inside each training fold. A separate four-model diagnostic fitted the
+-normaliser before the program changed which gear experiment was held out. In that
+-diagnostic, measurements from the held-out experiment could affect scaling. The two
+-procedures are reported separately. Measuring how much this changed the diagnostic
+-result would require running it again with scaling fitted inside each fold.
++The separate PHM four-arm diagnostic illustrates this risk;
++Section~\ref{sec:phm-diagnostics} distinguishes its shared normalizer from the
++fold-local preprocessing of the principal sensor comparison.
+ 
+ A frozen image encoder presents a different case. If its weights were learned from an
+ external dataset and its feature extraction uses no target labels or statistics from the
+@@ -254,19 +251,11 @@
+ 
+ \subsection{Checking which actions entered each comparison}
+ 
+-The original five outer partitions together covered 4,530 completed actions from 148
+-recordings, including 509 failures. One later study used 753 actions from a single
+-previously examined partition. An earlier summary assigned these actions to 28
+-recordings. Checking the actual action and recording identifiers gave \textbf{26
+-recordings}. The corrected count matters because recordings were the units kept together
+-during assessment.
+-
+-Those 753 actions provided a common set of cases for a follow-up comparison. They did
+-not provide a fresh external test. Even when a later model excluded every assessment
+-recording during fitting, earlier results on those recordings had helped determine which
+-experiment to try next.
+-
+-\noindent\textit{Assessment population record:} \EvidenceRef{E052}{}.
++Assessment identities take precedence over shorthand metadata. The REASSEMBLE
++follow-ups include a previously examined 753-action subset from 26 recordings;
++Section~\ref{sec:reassemble-followups} and Appendix~\ref{app:supplementary-results}
++retain the reconciliation and study-specific controls. Sharing assessment cases permits
++paired comparisons, but does not make an exploratory follow-up a fresh external test.
+ 
+ \section{Fitting models, adjusting probabilities, and choosing thresholds}
+ \label{sec:ch4-fitting}

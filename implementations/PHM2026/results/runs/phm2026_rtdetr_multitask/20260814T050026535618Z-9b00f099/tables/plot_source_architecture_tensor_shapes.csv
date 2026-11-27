@@ -1,0 +1,6 @@
+stage,shape,meaning
+source,1440×2560×3,JPEG RGB
+input,B×3×640×640,float32/255 scale-fill
+encoder,B×256×20×20,shared layer 27
+decoder,B×300×6,queries: xywh/conf/class
+scalar,B×1,global pool + MLP
