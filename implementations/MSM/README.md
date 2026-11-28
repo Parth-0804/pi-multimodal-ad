@@ -20,7 +20,9 @@ Each study's frozen protocol, fit manifests and assessment records determine wha
 
 ## Thesis and evidence
 
-Chapter 7; existing evidence E068–E081 and E121. The [primary handoff](results/09_final_reports/REVIEW_HANDOFF.md) reports a completed three-seed comparison in which the stronger sensor reference exceeds the tested fusion models. Native class 1 is positive against classes 0+2; the DOWN-only, label-2-excluded sensitivity failed the fixed class-support gate. Earlier feasibility work must remain distinct from these completed assessments.
+Evidence IDs below follow the researcher-requested 28 November renumbering. The [complete mapping](../../00_thesis_writing_tracking/final_thesis_prep/evidence_publication_20261128/manifest.json) relates them to the prior IDs retained in historical records.
+
+Chapter 7; current evidence E066–E079 and E119. The [primary handoff](results/09_final_reports/REVIEW_HANDOFF.md) reports a completed three-seed comparison in which the stronger sensor reference exceeds the tested fusion models. Native class 1 is positive against classes 0+2; the DOWN-only, label-2-excluded sensitivity failed the fixed class-support gate. Earlier feasibility work must remain distinct from these completed assessments.
 
 [Dataset overview](results/09_final_reports/DATASET_OVERVIEW.md), [validation](results/09_final_reports/DATASET_VALIDATION.md), [model implementation](results/09_final_reports/MODEL_IMPLEMENTATION.md) and [reproducibility](results/09_final_reports/REPRODUCIBILITY.md) provide source/label provenance, preparation, fitting and saved-evidence locations. Their old execution commands are historical records. The [chapter map](../../docs/THESIS_CODE_MAP.md) links the current shared evaluator.
 

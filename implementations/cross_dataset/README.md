@@ -40,6 +40,8 @@ interfaces; physical consolidation does not establish full replay compatibility.
 
 ## Thesis and evidence
 
-Chapters 7–9 and Appendix F; existing evidence E068–E111 supplies dataset and synthesis records. The [thesis-to-code map](../../docs/THESIS_CODE_MAP.md) is the shared browsing route. Keep MSM, HANDOVER and ViFailback assessment units, eligible populations, positive-class definitions and AP aggregation separate. A historical review package or duplicated snapshot is provenance, not an additional independent experiment.
+Evidence IDs below follow the researcher-requested 28 November renumbering. The [complete mapping](../../00_thesis_writing_tracking/final_thesis_prep/evidence_publication_20261128/manifest.json) relates them to the prior IDs retained in historical records.
+
+Chapters 7–9 and Appendix F; current evidence E066–E109 supplies dataset and synthesis records. The [thesis-to-code map](../../docs/THESIS_CODE_MAP.md) is the shared browsing route. Keep MSM, HANDOVER and ViFailback assessment units, eligible populations, positive-class definitions and AP aggregation separate. A historical review package or duplicated snapshot is provenance, not an additional independent experiment.
 
 [All implementations](../README.md) · [Repository map](../../REPO_MAP.md)

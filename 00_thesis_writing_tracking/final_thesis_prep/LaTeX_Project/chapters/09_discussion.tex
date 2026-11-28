@@ -8,8 +8,7 @@ defect outcomes were unavailable and the proposed holdout had already appeared i
 audit. REASSEMBLE subsequently supplied labelled completed actions, aligned observations
 and recording identities for the central fusion comparison
 (Appendix~\ref{app:chronology}).\ev{Original application and study chronology}
-{\EvidenceRef{E002}{pp. 2--3}, \EvidenceRef{E120}{},
-\EvidenceRef{E004}{sections 14--15}}
+{\EvidenceRef{E002}{pp. 2--3}, \EvidenceRef{E118}{}}
 
 REASSEMBLE provides the central controlled study; Table~\ref{tab:cross-study} places the
 other evaluations around it. Comparisons use common targets and held-out observations
@@ -77,7 +76,7 @@ regression and 0.9013 with histogram gradient boosting (HGB). The relative senso
 depended on the protocol: logistic sensing exceeded HGB in four of the six
 target/grouping comparisons. F2 used the prespecified logistic sensor branch throughout.
 Performance with HGB inside the stacker remains an open experiment.\ev{MSM
-representations and protocol sensitivity}{\EvidenceRef{E135}{}, \EvidenceRef{E077}{}}
+representations and protocol sensitivity}{\EvidenceRef{E133}{}, \EvidenceRef{E075}{}}
 Weak visual performance could reflect limited
 visibility of the event or how the frozen encoder represented it. The study did not
 isolate these explanations (Table~\ref{tab:msm-clean}). ViFailback pooled three camera
@@ -114,7 +113,7 @@ achieved failure AP 0.4294, equal probability averaging 0.4457 and logistic stac
 0.4473. Stacking improved failure ranking over sensors, while its difference from
 averaging remained unresolved (Figure~\ref{fig:within-study}). The averaging comparison
 is a post-hoc descriptive contrast, and the intervals condition on the fitted
-models.\ev{Paired core fusion contrasts}{\EvidenceRef{E047}{}, \EvidenceRef{E048}{section N}}
+models.\ev{Paired core fusion contrasts}{\EvidenceRef{E045}{}, \EvidenceRef{E046}{section N}}
 
 The saved-score audit identifies a narrower visual contribution directly: all sensor
 coefficients are positive, and removing the visual term preserves sensor AP and AUROC
@@ -125,7 +124,7 @@ nevertheless alter pooled ranking: reduced-score AP is .43092 versus sensor AP .
 The missing refitted sensor-only second-stage control therefore limits attribution of
 the complete pooled increment, without negating the within-fold evidence. This is
 conditional usefulness in the evaluated models, not causal modality importance or a
-population-wide information claim.\ev{F2 arithmetic and scope}{\EvidenceRef{E113}{}}
+population-wide information claim.\ev{F2 arithmetic and scope}{\EvidenceRef{E111}{}}
 
 On MSM, mean abnormal-cutting AP over three seeds was 0.7569 for stacking and 0.8286 for
 its logistic sensor component. The paired stacking-minus-logistic difference was
@@ -138,14 +137,14 @@ protocols, and five of the six folder-cluster intervals excluded zero. These int
 remain conditional on the saved fits and split assignments; neither grouping establishes
 independence of physical tools or workpieces. Figure~\ref{fig:within-study} shows both
 uncertainty estimates for this single MSM comparison.\ev{MSM protocol-specific point
-estimates}{\EvidenceRef{E135}{}}
+estimates}{\EvidenceRef{E133}{}}
 
 ViFailback gave the same observed direction for a different endpoint. Original stacking
 and the complete matched FROZEN20/DONOR20 comparisons all scored below logistic sensing
 on pooled macro AP. Here macro AP weights success and failure equally;
 Chapter~\ref{ch:vifailback} reports the conditions and their separate fitting
-protocols.\ev{Original and matched ViFailback comparisons}{\EvidenceRef{E089}{},
-\EvidenceRef{E139}{}, \EvidenceRef{E115}{}}
+protocols.\ev{Original and matched ViFailback comparisons}{\EvidenceRef{E087}{},
+\EvidenceRef{E137}{}, \EvidenceRef{E113}{}}
 
 In HANDOVER, averaging the two branch
 predictions gave mean failure AP of .803 on 151 official test trials, below the sensor
@@ -164,9 +163,9 @@ their constituent sensor model on the primary ranking metric.
 \singlespacing
 % Native TikZ and the shared thesis styles are loaded by thesis-formatting.tex.
 % Exact saved contrasts, not differences reconstructed from rounded chapter scores:
-% E047: implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/assessment/results.json
+% E045: implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/assessment/results.json
 %       fusion_minus_sensor/AUPRC: observed estimate and paired recording-cluster CI.
-% E048: implementations/REASSEMBLE/results/runs/fusion_method_comparison/assessment/review_comparisons.json
+% E046: implementations/REASSEMBLE/results/runs/fusion_method_comparison/assessment/review_comparisons.json
 %       paired/F1-F2/AUPRC: negate estimate and swap negated endpoints for F2-F1.
 %       Saved status: post-hoc descriptive review contrast.
 % MSM: implementations/MSM/results/06_evaluation_results/metrics/paired_group_bootstrap_95ci.csv
@@ -240,7 +239,7 @@ their constituent sensor model on the primary ranking metric.
 \endgroup
 \displaynote{Positive differences favor stacking. REASSEMBLE uses 4,530 actions from
 148 recordings and paired recording-cluster intervals; the stacking--averaging contrast
-is descriptive and post hoc (\EvidenceRef{E047}{}, \EvidenceRef{E048}{section N}).
+is descriptive and post hoc (\EvidenceRef{E045}{}, \EvidenceRef{E046}{section N}).
 MSM uses means of three seed-specific pooled APs. Its two rows are alternative
 uncertainty estimates for one model comparison, using identical predictions and fitted
 models; their source is \nolinkurl{paired_group_bootstrap_95ci.csv}.
@@ -258,7 +257,7 @@ removed no information. The gate was computed from context, so corrupting inputs
 other branches could leave its weights unchanged. Small changes around an already weak
 regression predictor give limited evidence about reliability. The photographs supplied
 the target in the principal comparison, leaving inference-time camera loss outside that
-experiment.\ev{PHM group dropout and conditioning}{\EvidenceRef{E004}{section 12.6}}
+experiment.
 
 In REASSEMBLE, known complete loss of a stream routed the prediction to the surviving
 branch. Every fusion rule using that policy inherited the survivor's score. When both
@@ -274,7 +273,7 @@ corruption; the joint-effort and joint-velocity constant-channel counts remained
 Clean fitting therefore offered no variation in these fields from which to learn how
 their changes related to branch error. This limitation does not establish the cause of
 a particular gate's failure.\ev{Clean quality fields and core corruption conditions}
-{\EvidenceRef{E048}{}, \EvidenceRef{E049}{}}
+{\EvidenceRef{E046}{}, \EvidenceRef{E047}{}}
 % Fourteen-change count: preceding read-only feature audit, not a new training result.
 % implementations/REASSEMBLE/results/runs/fusion_method_comparison/implementation.json
 % implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/visual/*.npz
@@ -296,8 +295,7 @@ Under matched corruption exposure, the mean adaptive increment over six conditio
 requirements remain unresolved. Matching exposure removes one source of unfairness, not
 differences in capacity or optimization. These studies establish a particular clean gain
 without demonstrating consistent recognition of degraded but present inputs.\ev{Distinct
-adaptive investigations}{\EvidenceRef{E004}{sections 18.2--18.3 and 19.5},
-\EvidenceRef{E040}{}}
+adaptive investigations}{\EvidenceRef{E038}{}}
 
 In MSM, the strongest sensor noise reduced stacking to .207 AP. The augmentation-trained
 gate reached .299, approximately the score of intact vision alone. Under the strongest
@@ -313,7 +311,7 @@ descriptors therefore did not improve this measured clean comparison. This exper
 is separate from the matched CNN study, which included no quality gate. ViFailback
 corruption performance was unmeasured; the clean comparison cannot establish whether
 either gate recognized degraded inputs.\ev{Original gate control and matched-study
-scope}{\EvidenceRef{E090}{}, \EvidenceRef{E139}{}}
+scope}{\EvidenceRef{E088}{}, \EvidenceRef{E137}{}}
 
 REASSEMBLE, MSM, and HANDOVER implemented a fallback to the surviving predictor when a
 stream was declared absent. Across the five studies, a consistent predictive gain from
@@ -336,7 +334,7 @@ threshold at which an operator would act. Under severe pixel noise, F2 retained 
 while its Brier score rose from 0.0784 on clean inputs to 0.2968 and its expected
 calibration error from 0.0138 to 0.4368. Failure ranking alone would therefore conceal
 substantial deterioration in the predicted probabilities.\ev{Core F2 clean and severe
-pixel-noise scores}{\EvidenceRef{E138}{clean and V1\_0.1}}
+pixel-noise scores}{\EvidenceRef{E136}{clean and V1\_0.1}}
 
 A review of 64 selected action clips found
 57 agreements among 59 determinate judgments, with five indeterminate and two
@@ -354,8 +352,8 @@ stacker fitted an intercept and coefficients for two probability inputs. These d
 fitting objectives and probability mappings could change probability levels and ranking
 differently. The comparison does not isolate class weighting, the added visual input or
 the fitted probability mapping as the cause of the lower Brier score.\ev{Matched MSM
-seed-42 scores and fitting definitions}{\EvidenceRef{E076}{}, \EvidenceRef{E136}{},
-\EvidenceRef{E068}{}, \EvidenceRef{E077}{}}
+seed-42 scores and fitting definitions}{\EvidenceRef{E074}{}, \EvidenceRef{E134}{},
+\EvidenceRef{E066}{}, \EvidenceRef{E075}{}}
 
 In ViFailback, failure prevalence exceeded 85\%. At seed 42, stacking achieved failure AP of .945 and
 success AP of .312, yielding macro-AP of .629 (Table~\ref{tab:vif-bothclass}). Reporting
@@ -372,7 +370,7 @@ stacking F2. The effect on F2 remains unresolved because a matched stacker refit
 uncalibrated branch scores was unavailable. Chapter~\ref{ch:vifailback} gives the
 coefficients and raw/calibrated scores; the retained summaries do not establish every
 original or inner-fit slope.\ev{Reported calibration maps and inspected fusion inputs}
-{\EvidenceRef{E139}{}}
+{\EvidenceRef{E137}{}}
 % Implementation, not independent per-fit execution reconstruction:
 % implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/training.py
 % _postfit calibrates on C and writes probability.
@@ -518,7 +516,7 @@ architecture. In other experiments, differences in calibration, capacity, traini
 budget or corruption exposure accompanied architectural changes. Incomplete historical
 PHM training-source lineage and unavailable ViFailback per-fit histories limit
 independent reconstruction.\ev{Historical source and per-fit reconstruction limits}
-{\EvidenceRef{E131}{}, \EvidenceRef{E132}{}, \EvidenceRef{E139}{}}
+{\EvidenceRef{E129}{}, \EvidenceRef{E130}{}, \EvidenceRef{E137}{}}
 ViFailback's complete frozen/donor comparisons are supplemented by one-fold FULL20
 evidence and separate hundred-epoch pilots; the adaptation contrasts remain
 inconclusive. Whether the fine-tuning effect persists across the remaining task folds
@@ -526,7 +524,7 @@ and seeds is unknown, and corruption performance was unmeasured. The recorded fo
 was 43 additional GPU-days for the remaining FULL20 fits, with 47 days allowed including
 variation and overhead; its derivation was unavailable. This forecast covered
 fine-tuning only (Section~\ref{sec:ch4-boundaries}).\ev{Completed adaptation scope and
-recorded forecast}{\EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
+recorded forecast}{\EvidenceRef{E113}{}, \EvidenceRef{E114}{}}
 The literature synthesis covers the full texts available to a single reviewer.
 
 Finally, the completed-window studies allowed the predictor to observe evidence near the

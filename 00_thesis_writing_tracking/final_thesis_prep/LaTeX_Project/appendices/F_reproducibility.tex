@@ -11,7 +11,7 @@ locations where known.
 The numerical checks used existing outputs. The original training, gradient checks and
 saved-model inference belong to the recorded experiments. The checks described below did
 not involve refitting a model or running new inference on raw inputs.\ev{External
-inspection scope}{\EvidenceRef{E108}{}}
+inspection scope}{\EvidenceRef{E106}{}}
 
 \section{Numerical Verification}
 For REASSEMBLE, average precision was recalculated from saved predictions for the core
@@ -33,7 +33,7 @@ The 753 actions in the selected outer fold form a subset of the pooled 4,530-act
 assessment. Native recording and segment identifiers establish common test membership
 across models on the smaller set. Checkpoint selection, calibration and threshold
 procedures differed between some fits on that set, limiting attribution of a score
-difference to architecture.\ev{Cohort reconstruction instructions}{\EvidenceRef{E052}{}}
+difference to architecture.\ev{Cohort reconstruction instructions}{\EvidenceRef{E050}{}}
 
 MSM links intervals by their native IDs, label~2 policy and experiment or date group.
 HANDOVER links trial IDs within the official split and pairs video with the common
@@ -52,7 +52,7 @@ The recorded original and local hashes can differ after line-ending conversion. 
 source path and corresponding hash identify which version underlies a calculation.
 ViFailback completion records identify the condition, training seed and fit role for
 each completed comparison in Table~\ref{tab:vif-status}.\ev{Source-copy
-identities}{\EvidenceRef{E109}{}}
+identities}{\EvidenceRef{E107}{}}
 
 \section{Saved-Result Checking and Experiment Replay}
 The archive's integrity checks compare file digests and references in the cohort
@@ -82,7 +82,7 @@ assessments, FULL20 provides one outer-fold comparison, and the three hundred-ep
 conditions provide separate single-role pilots. The remaining FULL20 fits and SQ3
 corruption tests have no measured results. The completed records support checking saved
 results within those scopes; they do not constitute independent training replication.\ev{Diagnostic replay
-scope}{\EvidenceRef{E062}{}, \EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
+scope}{\EvidenceRef{E060}{}, \EvidenceRef{E113}{}, \EvidenceRef{E114}{}}
 
 \section{Verification of reported metrics}
 The retained verification recalculated failure-positive AP, Brier score and fifteen-bin
@@ -99,26 +99,27 @@ source gaps preserved. ViFailback calibration coefficients and control scores re
 attributed to the retained reports: individual matched prediction/calibrator files were
 not locally available for a new reconstruction. Earlier checks
 retain their own dates and access scope.\ev{Recorded verification of 27 November 2026 and its inspected inputs}
-{\EvidenceRef{E135}{}, \EvidenceRef{E137}{}, \EvidenceRef{E139}{}, \EvidenceRef{E141}{}}
+{\EvidenceRef{E133}{}, \EvidenceRef{E135}{}, \EvidenceRef{E137}{}, \EvidenceRef{E139}{}}
 
 \section{Project Evidence File Register}
 \label{sec:evidence-files}
-Each identifier refers to one source file or dated copy. Evidence footnotes link to
-files with a recorded GitHub URL. An entry marked \enquote{GitHub link TBD} has no
-GitHub link available. The accompanying file index gives relative source names and the
-sections, code routines or samples cited. New entries prefixed \texttt{repo:} in that
-index resolve from the research-repository root. For E144--E154, the register itself
+Each identifier refers to one source file or dated copy. The \enquote{Link here}
+entry links directly to that file at a verified GitHub commit. The accompanying file
+index gives source paths, recorded hashes, publication revisions and the sections,
+code routines or samples cited. New entries prefixed \texttt{repo:} in that
+index resolve from the research-repository root. For E142--E152, the register itself
 gives the repository-relative paths; source comments retain their checked SHA-256
 identities. The preserved package contains
 baseline hashes, the source diff and retained saved-score checks. Its ViFailback check
 verified 1,008 scalar metrics from 168 saved model/cohort vectors and the completed-fit
 records. The paired intervals remain those recorded on 24 November; the saved-score
-check did not repeat their bootstrap calculation.\ev{Saved-score verification recorded on 25 November 2026}{\EvidenceRef{E113}{}, \EvidenceRef{E123}{}}
+check did not repeat their bootstrap calculation.\ev{Saved-score verification recorded on 25 November 2026}{\EvidenceRef{E111}{}, \EvidenceRef{E121}{}}
 
-The original live path indexed by E095 is unavailable. E154 identifies the retained
-final snapshot of 24 November 2026, which includes the FULL100 pilot, 22 completed
-outer fusion assessments and six pooled summaries. No hash was recorded for the earlier
-E095 entry, so identity with that earlier live file cannot be established.
+The original live path indexed by E093 is unavailable; its link identifies the
+archived copy recovered from the preserved thesis evidence package and checked against
+its recorded hash. E152 identifies the retained final snapshot of 24 November 2026,
+which includes the FULL100 pilot, 22 completed outer fusion assessments and six pooled
+summaries. These are separate dated versions.
 
 \begingroup
 \singlespacing\small

@@ -27,7 +27,7 @@ The pretrained-initialization comparison covered three fixed training seeds and 
 specified target, grouping and corruption conditions. An initial development run tested
 the implementation on a small sample. Performance estimates came from the subsequent
 held-out intervals that met the timing and input-coverage criteria.\ev{MSM experimental
-design}{\EvidenceRef{E079}{}}
+design}{\EvidenceRef{E077}{}}
 
 \section{Dataset, Cutting-Label Semantics, and Domain Challenges}
 The source dataset combines laboratory and industrial metal-cutting observations
@@ -48,7 +48,7 @@ annotation uses process behavior, sound and measurements, so the label is an obs
 process judgment rather than an independently instrumented future-failure endpoint.
 Relabeling every defective-tool interval as abnormal would change the task. The study
 instead repeats the pipeline after excluding label~2 and retains that as a distinct
-target sensitivity.\ev{MSM target definition}{\EvidenceRef{E074}{}}
+target sensitivity.\ev{MSM target definition}{\EvidenceRef{E072}{}}
 
 Of 2,512 native labeled intervals, 1,895 satisfy the joint video and numerical-input
 requirements, including 336 positives. The remaining 617 retain their original labels
@@ -71,7 +71,7 @@ update cadence limit any claim about event onset or control latency. Group ident
 creates a further difficulty: experiment folders provide a useful split boundary, but
 they are not verified identities for physical tools, workpieces or sessions. These
 limits motivate both the technical gates and the stricter grouping sensitivities.\ev{MSM
-validation limits}{\EvidenceRef{E075}{}}
+validation limits}{\EvidenceRef{E073}{}}
 
 \section{Preparation, Timing Alignment, and Cohort Support}
 Preparation admits examples only when both modalities meet a fixed input contract.
@@ -98,7 +98,7 @@ ordered, distinct native frames with source timestamps and content identities. T
 assessment concerns the accepted support, not every point of the original recording. An
 accepted offset supplies a defensible correspondence under the recorded calibration; it
 does not prove hardware synchronization or eliminate residual timing uncertainty.\ev{MSM
-timing and alignment checks}{\EvidenceRef{E075}{}}
+timing and alignment checks}{\EvidenceRef{E073}{}}
 
 \subsection{Visual Coverage and Geometry}
 The frozen recipe corrects the source sample aspect ratio of $3{:}8$ and uses
@@ -114,7 +114,7 @@ conditions alter actual image content before feature extraction. Neither the com
 nor a displayed context view is a detector box, a tool annotation, or a verified
 abnormal region. The derived galleries support examination of the evidence and errors;
 they do not replace independent frame-level annotations.\ev{MSM visual input
-contract}{\EvidenceRef{E068}{}}
+contract}{\EvidenceRef{E066}{}}
 
 \subsection{Sensor Coverage and Measurement Interpretation}
 The evaluated numerical input comprises fifteen MTConnect channels: power, spindle speed
@@ -130,7 +130,7 @@ nor substitutes an accelerometer branch. Means, standard deviations, imputation 
 and corruption scales that require population estimation are fitted only within the
 appropriate training partition. This prevents the assessment distribution from
 influencing the numerical normalization, while leaving the source stream's aggregation
-and latency limitations intact.\ev{MSM numerical coverage}{\EvidenceRef{E075}{}}
+and latency limitations intact.\ev{MSM numerical coverage}{\EvidenceRef{E073}{}}
 
 \subsection{Class Support and Independent Groups}
 The primary cohort has 45 nominal experiment groups, 17 containing positives, seven
@@ -156,7 +156,7 @@ Exclude label 2, calendar date &99/645&157/341&80/784\\\hline
 \displaynote{Each cell gives the number of positive intervals divided by the total
 number of intervals. Label~1 is positive.}
 \end{table}
-\ev{MSM complete split support}{\EvidenceRef{E069}{}}
+\ev{MSM complete split support}{\EvidenceRef{E067}{}}
 
 Experiment and date identifiers serve as proxies for physical independence. Repeated
 tool or workpiece use across dates remains unresolved. The additional DOWN-only,
@@ -177,8 +177,8 @@ is 0 (stable normal). Within-interval $z$ scores scale these curves for display.
 fitted model used training-only normalization and assigned one prediction to the whole
 interval.}
 \end{figure}
-\ev{Illustrative input and identity source}{\EvidenceRef{E071}{}, \EvidenceRef{E072}{},
-\EvidenceRef{E073}{data row 5}}
+\ev{Illustrative input and identity source}{\EvidenceRef{E069}{}, \EvidenceRef{E070}{},
+\EvidenceRef{E071}{data row 5}}
 \section{Architecture Reuse, Adaptations, and Evaluation Protocol}
 The pretrained condition (P) used the ResNet18-vd CNN backbone inside the RT-DETR-R18vd
 checkpoint \citep{Zhao2024RTDETR}. The extractor stopped at the CNN feature maps, before
@@ -195,7 +195,7 @@ the logistic branch, not the HGB predictions. Averaging combines the two branch
 probabilities without a fitted fusion parameter. Original F2 is a newly fitted
 unweighted L2 logistic model on visual and sensor probabilities generated out of fold.
 No source failure head, scaler, calibrator or fusion coefficient is transferred.\ev{MSM
-executed composition}{\EvidenceRef{E077}{}}
+executed composition}{\EvidenceRef{E075}{}}
 
 The clean and augmented quality gates are additional comparisons. They reuse a small
 softmax gate over branch logits, with label-free image-quality summaries, numerical
@@ -229,7 +229,7 @@ The CNN cache check reports maximum difference zero on an outer-training-only ex
 These support consistency of the saved procedure and its outputs. Their scope is
 narrower than reproduction of stochastic training: exact reload and metric recomputation
 cannot alone certify that every training step would recur in another environment.\ev{MSM
-implementation and reproduction scope}{\EvidenceRef{E078}{}}
+implementation and reproduction scope}{\EvidenceRef{E076}{}}
 
 \subsection{Evaluation Protocol and Conditions Without Estimates}
 The completed matrix uses three outer and two inner StratifiedGroupKFold partitions,
@@ -247,7 +247,7 @@ These are not mean-fold APs.
 
 Conditions with a missing source checkpoint, inadequate class support or insufficient
 temporal coverage yielded no estimate. The results below cover the conditions that met
-the original criteria.\ev{MSM fixed evaluation protocol}{\EvidenceRef{E070}{}}
+the original criteria.\ev{MSM fixed evaluation protocol}{\EvidenceRef{E068}{}}
 
 \section{Investigation A: Clean Unimodal and Fusion Comparison}
 \label{sec:msm-clean}
@@ -273,7 +273,7 @@ QG-aug&0.8265&0.0162\\\hline
 \displaynote{Entries summarize pooled average precision across three fixed seeds as the
 mean and sample standard deviation.}
 \end{table}
-\ev{MSM primary results}{\EvidenceRef{E076}{}}
+\ev{MSM primary results}{\EvidenceRef{E074}{}}
 
 The visual training diagnostic averaged AP 0.9807 across the nine outer fits
 (three folds by three seeds; range 0.9634--0.9994), compared with mean seed-specific
@@ -281,7 +281,7 @@ pooled held-out AP 0.2989. The training score is an in-sample mean on overlappin
 sets, not a second pooled assessment score. These predictions did not enter F2.
 The gap is consistent with overfitting or acquisition shift, but does not isolate
 visibility, alignment or representation quality as its cause.\ev{Visual training and
-held-out diagnostics}{\EvidenceRef{E137}{}}
+held-out diagnostics}{\EvidenceRef{E135}{}}
 
 \section{Investigation B: Target-Definition and Grouping Sensitivities}
 Logistic sensing had higher mean AP than F2 in all six prespecified protocols. Excluding
@@ -310,7 +310,7 @@ use 1,895 intervals; label-2 exclusion leaves 1,770. All retain 336 positives.
 Protocols reuse observations and change the fitting/assessment groups; they are
 sensitivity analyses, not independent replications.}
 \end{table}
-\ev{All-protocol saved results}{\EvidenceRef{E135}{}, \EvidenceRef{E081}{}}
+\ev{All-protocol saved results}{\EvidenceRef{E133}{}, \EvidenceRef{E079}{}}
 
 The sensor-reference ranking also depends on the protocol: logistic sensing has higher
 mean AP than HGB in four of the six comparisons, while HGB leads in the primary
@@ -329,7 +329,7 @@ split assignments fixed and cannot account for unidentified equipment reuse.
 QG-clean averaged $0.0088$ AP above logistic sensing, with one negative seed and a
 calendar-date bootstrap interval of $[-0.0971,0.0564]$. The interval admits gains and
 losses and leaves equivalence unresolved.\ev{Milling results and paired bootstrap
-units}{\EvidenceRef{E081}{}, \EvidenceRef{E144}{}}
+units}{\EvidenceRef{E079}{}, \EvidenceRef{E142}{}}
 
 \section{Investigation C: Input Degradation, Quality Gates, and Fallback}
 Table~\ref{tab:msm-robustness} covers the strongest declared severity of all seven
@@ -363,16 +363,16 @@ Sensors absent & 0.2989 & 0.2989 & 0.2989 & 0.2989 & --\\
 logistic sensing for visual faults and vision for sensor faults. HGB receives the
 same sensor condition; it is unavailable when all sensors are absent. Known absence
 uses the programmed survivor route. Intermediate severities remain in the saved
-robustness report (E080).}
+robustness report (E078).}
 \end{table}
-\ev{All seven stress families}{\EvidenceRef{E136}{}, \EvidenceRef{E080}{}}
+\ev{All seven stress families}{\EvidenceRef{E134}{}, \EvidenceRef{E078}{}}
 
 Whole-modality absence invokes a separately programmed surviving-branch fallback:
 0.8286 AP without vision and 0.2989 without sensors. Equal fallback scores across
 fusion methods are imposed behavior, not adaptive recovery learned from data.
 Differences in augmentation exposure between a gate and its static control would
 confound the effect of quality conditioning.\ev{MSM input perturbation and fallback
-results}{\EvidenceRef{E080}{}}
+results}{\EvidenceRef{E078}{}}
 
 \section{Metric Trade-offs, Limitations, and Transition to ViFailback}
 For seed~42, F2 had lower AP than logistic sensing but a lower Brier score (0.0561
@@ -388,8 +388,8 @@ probabilities. These different fitting objectives and probability mappings can a
 probability error and ranking differently. They offer a plausible explanation for the
 AP--Brier trade-off, but this comparison does not isolate class weighting, the added
 visual input or the fitted mapping as its cause.\ev{MSM seed-42 scores and fitting
-definitions}{\EvidenceRef{E136}{}, \EvidenceRef{E068}{}, \EvidenceRef{E149}{},
-\EvidenceRef{E150}{}}
+definitions}{\EvidenceRef{E134}{}, \EvidenceRef{E066}{}, \EvidenceRef{E147}{},
+\EvidenceRef{E148}{}}
 
 The visual model ranked held-out intervals poorly despite a much stronger training
 result. Inadequate features, limited event visibility, residual alignment error and

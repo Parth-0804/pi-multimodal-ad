@@ -26,7 +26,9 @@ when reading historical paths.
 
 ## Thesis and evidence
 
-Original application and Appendix G research chronology; existing evidence E018–E019 and E120. The later [foundation review](docs/RESULTS_REVIEW.md) is a NO-GO before new model training because of target, grouping, holdout and support limitations. It does not establish absence of unimodal signal or failure of a trained fusion architecture. The [legacy study](experiments/legacy/README.md) remains a separate historical investigation.
+Evidence IDs below follow the researcher-requested 28 November renumbering. The [complete mapping](../../00_thesis_writing_tracking/final_thesis_prep/evidence_publication_20261128/manifest.json) relates them to the prior IDs retained in historical records.
+
+Original application and Appendix G research chronology; current evidence E016–E017 and E118. The later [foundation review](docs/RESULTS_REVIEW.md) is a NO-GO before new model training because of target, grouping, holdout and support limitations. It does not establish absence of unimodal signal or failure of a trained fusion architecture. The [legacy study](experiments/legacy/README.md) remains a separate historical investigation.
 
 The [research contract](docs/research_contract.md), [foundation configuration](configs/foundations.json), [audit scripts](scripts/) and retained result manifests supply the dataset/input identities, preprocessing probes and decision procedure. See the [thesis-to-code map](../../docs/THESIS_CODE_MAP.md) for current browsing paths and the limits of historical source correspondence.
 

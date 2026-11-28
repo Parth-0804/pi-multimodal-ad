@@ -36,8 +36,8 @@
     \prop_get:NnNTF \g_thesis_evidence_urls_prop {#1} \l_tmpa_tl
       {
         \tl_if_empty:NTF \l_tmpa_tl
-          { GitHub~link~TBD }
-          { \exp_args:NV \href \l_tmpa_tl {GitHub~file} }
+          { Link~unavailable }
+          { \exp_args:NV \href \l_tmpa_tl {Link~here} }
       }
       { \PackageError{thesis-evidence}{Unknown~file~ID~#1}{} }
   }

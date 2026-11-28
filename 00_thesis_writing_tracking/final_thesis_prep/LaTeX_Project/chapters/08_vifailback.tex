@@ -24,12 +24,12 @@ averaging, F2 and clean gate comparisons. Thus the weak visual ranking and the o
 fusion-versus-sensor direction were available before this clarification. The exact
 sequence of human inspection is not independently established. The note retained the
 cohort, splits, recipes and budgets; it did not create a fresh confirmatory holdout.\ev{Dated
-priority clarification and preceding snapshot}{\EvidenceRef{E142}{}, \EvidenceRef{E143}{}}
+priority clarification and preceding snapshot}{\EvidenceRef{E140}{}, \EvidenceRef{E141}{}}
 
 All reported comparisons concern intact inputs. Table~\ref{tab:vif-status} distinguishes
 the complete frozen/donor comparisons from target-CNN adaptation on one outer fold and
-the separate hundred-epoch pilots.\ev{Comparison scope}{\EvidenceRef{E102}{},
-\EvidenceRef{E096}{}, \EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
+the separate hundred-epoch pilots.\ev{Comparison scope}{\EvidenceRef{E100}{},
+\EvidenceRef{E094}{}, \EvidenceRef{E113}{}, \EvidenceRef{E114}{}}
 
 \section{Dataset, Episode Labels, and Cohort Construction}
 The native source contains 5,202 episodes with 4,545 failure and 657 no-failure
@@ -52,7 +52,7 @@ episode contributes one target, although it supplies 48 sampled RGB images. The 
 retrospective prediction of native whole-episode annotations. It is not frame-level
 failure localization, verification of a task's final mechanical success independently of
 annotation, or advance warning before a failure occurs.\ev{Native and final ViFailback
-labels}{\EvidenceRef{E087}{}}
+labels}{\EvidenceRef{E085}{}}
 
 \subsection{Exclusions and Independence Limits}
 The provisional core contained 4,384 episodes after 818 unique exclusions or
@@ -70,7 +70,7 @@ receiving a guessed sign correction. Agreement of converted 25~Hz observations d
 independently certify original hardware synchronization. Canonical task separation also
 leaves operator/session identity and semantic similarity between tasks unresolved,
 limiting the independence claim to the grouping actually checked.\ev{Cohort validity and
-remaining dependence}{\EvidenceRef{E093}{}}
+remaining dependence}{\EvidenceRef{E091}{}}
 
 \section{Preparation, Three-View Inputs, and Pre-Checks}
 Sixteen uniform, matching frame indices are selected in each of three cameras. These are
@@ -94,8 +94,8 @@ bounded project examination, not an independent human-rated prevalence sample or
 held-out classifier benchmark. The additional automated consistency checks are also not
 a signed second-human review. Technical decoding and a successful native-label join do
 not resolve every episode's semantic meaning.\ev{ViFailback
-preprocessing}{\EvidenceRef{E088}{}}\ev{Scope of independent
-checks}{\EvidenceRef{E092}{}}
+preprocessing}{\EvidenceRef{E086}{}}\ev{Scope of independent
+checks}{\EvidenceRef{E090}{}}
 
 \section{Models, Transfer/Adaptation Regimes, and Evaluation Protocol}
 The original visual branch loaded the ResNet18-vd CNN backbone inside the pretrained
@@ -119,7 +119,7 @@ Its search is real candidate selection, unlike the fixed MSM recipe or a claim t
 every parameter was optimized. It remains secondary and does not change the prespecified
 F2 input after its favorable assessment.
 
-\ev{Exploratory HGB recipe}{\EvidenceRef{E094}{}}
+\ev{Exploratory HGB recipe}{\EvidenceRef{E092}{}}
 
 The donor arms transferred compatible CNN tensors from a completed source checkpoint and
 fitted a fresh ViFailback head, scaler, calibrator and fusion model. The FROZEN and
@@ -128,7 +128,7 @@ convolutions and normalization affine terms while holding running moments fixed;
 completed coverage is stated below. This is CNN adaptation, not training the detector
 encoder, decoder or detection heads. The completed DONOR comparison therefore measures
 supervised target-head fitting on a transferred frozen representation.\ev{Matched model
-definitions}{\EvidenceRef{E097}{}}
+definitions}{\EvidenceRef{E095}{}}
 
 \subsection{Task Partitions, Calibration, and Fitting Budgets}
 The original protocol uses three outer task-disjoint folds and three inner OOF
@@ -155,14 +155,14 @@ are intended to execute even when the chosen checkpoint is earlier. The twenty-e
 study has a complete three-inner OOF bank. The hundred-epoch pilot instead reserves 788
 meta episodes under one predeclared role, followed by 1,107 outer assessments. It is not
 a full nested three-fold hundred-epoch experiment.\ev{Original evaluation
-contract}{\EvidenceRef{E094}{}}\ev{Matched training contract}{\EvidenceRef{E098}{}}
+contract}{\EvidenceRef{E092}{}}\ev{Matched training contract}{\EvidenceRef{E096}{}}
 
 \section{Empirical Investigations}
 The original study evaluated the frozen visual branch, its high-camera control, sensor
 models and clean fusion. Table~\ref{tab:vif-status} records the coverage of the matched
 comparisons. Conditions and seeds reuse episodes; the hundred-epoch pilots use a separate
-fitting protocol from the twenty-epoch nested comparison.\ev{Matched evaluation scope}{\EvidenceRef{E115}{},
-\EvidenceRef{E116}{}}
+fitting protocol from the twenty-epoch nested comparison.\ev{Matched evaluation scope}{\EvidenceRef{E113}{},
+\EvidenceRef{E114}{}}
 
 \begin{table}[htbp]
 \caption{Final Scope of the Matched ViFailback Comparisons and Robustness
@@ -186,7 +186,7 @@ frozen/donor twenty-epoch assessments, one FULL20 assessment and three pilots. C
 fits and inconclusive contrasts are distinct from unexecuted conditions. All completed
 comparisons used intact inputs.}
 \end{table}
-\ev{Matched fit coverage recorded on 24 November 2026}{\EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
+\ev{Matched fit coverage recorded on 24 November 2026}{\EvidenceRef{E113}{}, \EvidenceRef{E114}{}}
 
 \subsection{Unimodal References and Original Fusion}
 The original frozen visual head completed all 36 planned fits, as did its
@@ -209,7 +209,7 @@ Original F2&0.945168&0.312405&0.628787&0.752701\\\hline
 \end{tabular}
 \displaynote{Scores pool the original seed-42 results separately for each class.}
 \end{table}
-\ev{Original both-class scores}{\EvidenceRef{E089}{}}
+\ev{Original both-class scores}{\EvidenceRef{E087}{}}
 
 \begin{table}[htbp]
 \caption{Completed Original ViFailback Controls}\label{tab:vif-controls}
@@ -227,7 +227,7 @@ per seed under the original study. The high-camera head completed 36 fits, as di
 three-view V1. The two gates use intact inputs; these scores do not test corruption
 adaptation.}
 \end{table}
-\ev{Original controls}{\EvidenceRef{E089}{}, \EvidenceRef{E090}{}}
+\ev{Original controls}{\EvidenceRef{E087}{}, \EvidenceRef{E088}{}}
 The high-camera control did not consistently improve on three-view pooling. The clean
 quality gate scored below its availability-only control and logistic sensing at each
 seed (Table~\ref{tab:vif-controls}); these point comparisons do not establish a
@@ -268,7 +268,7 @@ DONOR20&20261023&0.492185&0.630936&0.648974\\\hline
 \end{tabular}
 \displaynote{Macro average precision was calculated from pooled predictions over three outer folds.}
 \end{table}
-\ev{Matched complete outer comparisons}{\EvidenceRef{E096}{}}
+\ev{Matched complete outer comparisons}{\EvidenceRef{E094}{}}
 
 \paragraph{Transferred parameters and paired contrasts.}
 Following donor feature extraction, DONOR20 completed 36 target-head fits. Its source
@@ -292,7 +292,7 @@ head-training trajectory after verifying the same checkpoint selection. The
 donor-backbone pilot achieved 0.571448 and 0.696600, respectively. Both pilots used a
 single seed and fit role, with a separate 788-episode bank for fitting fusion. Neither
 pilot updated the target CNN.\ev{Donor identity and pilot fit
-provenance}{\EvidenceRef{E098}{}, \EvidenceRef{E099}{}, \EvidenceRef{E100}{}}
+provenance}{\EvidenceRef{E096}{}, \EvidenceRef{E097}{}, \EvidenceRef{E098}{}}
 
 \subsection{Partial Target-CNN Adaptation}
 On the same 1,107 outer-fold-0 episodes, FULL20 achieved visual macro AP .492370 and F2
@@ -317,14 +317,14 @@ $+.029255$]\\\bottomrule
 conditional on fixed models; they omit refitting, selection and unverified
 session/operator dependence. Twenty- and hundred-epoch fusion-fitting protocols differ.}
 \end{table}
-\ev{Completed adaptation results and recorded independent arithmetic}{\EvidenceRef{E115}{}}
+\ev{Completed adaptation results and recorded independent arithmetic}{\EvidenceRef{E113}{}}
 
 \subsection{Calibration, Threshold Behavior, and Corruption Limits}
 In outer fold~0, FROZEN20 seed~42 F2 had macro AP 0.7071 and Brier score 0.1539,
 yet balanced accuracy was 0.5 at threshold 0.5. Ranking and probability metrics thus
 need not imply useful decisions at the fixed operating threshold; tuning it on these
 assessment episodes would bias decision-performance estimates.\ev{Matched secondary
-metrics}{\EvidenceRef{E154}{}, \EvidenceRef{E096}{}}
+metrics}{\EvidenceRef{E152}{}, \EvidenceRef{E094}{}}
 
 The retained source implements calibration as $p=\sigma(a s+b)$ on the branch's raw
 failure logit $s$, with $a$ and $b$ fitted on C only. Under this convention a negative
@@ -353,7 +353,7 @@ calibrator and keyed prediction files were unavailable in the inspected evidence
 check verified the equation and correspondence with retained reports, without numerically
 reconstructing each fitted map.}
 \end{table}
-\ev{Raw/calibrated ranking and F2 input definition}{\EvidenceRef{E139}{}}
+\ev{Raw/calibrated ranking and F2 input definition}{\EvidenceRef{E137}{}}
 
 The inspected training path saves calibrated \texttt{probability} values, and the F2
 path consumes that column in both the inner meta bank and outer assessment. This is
@@ -381,7 +381,7 @@ The specified availability rules route complete single-modality absence to the s
 branch and abstain when both inputs are absent. These rules do not estimate reliability
 from data. The edge-padded sampling shifts simulate timing errors without measuring
 drift between hardware clocks.\ev{Specified corruption and fallback
-conditions}{\EvidenceRef{E091}{}}
+conditions}{\EvidenceRef{E089}{}}
 
 
 \section{Synthesis, Limitations, and Role in the Thesis}
@@ -391,7 +391,7 @@ assignments fixed. They omit uncertainty from refitting, donor selection and pos
 dependence within sessions or operators. The exploratory comparisons had no multiplicity
 adjustment. Coefficients were fixed before outer scoring, although the labels and some
 tasks had already been examined during development.\ev{Task-cluster uncertainty and
-evaluation limits}{\EvidenceRef{E101}{}}
+evaluation limits}{\EvidenceRef{E099}{}}
 
 The complete twenty-epoch frozen/donor comparison addresses representation transfer. The
 inconclusive target-adaptation contrasts leave its consistency across task folds and

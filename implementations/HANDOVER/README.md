@@ -27,7 +27,9 @@ Each study's frozen protocol, fit manifests and assessment records determine wha
 
 ## Thesis and evidence
 
-Appendix H; existing evidence E082–E086. The [research handoff](results/09_final_reports/REVIEW_HANDOFF.md) reports completed unimodal and fixed-averaging assessment in the common-support study. F2, augmented F2 and learned quality gates were skipped because participant-disjoint OOF predictions cannot be certified from the released identity metadata. Their omission is a failed eligibility gate, not a negative fitted-model result.
+Evidence IDs below follow the researcher-requested 28 November renumbering. The [complete mapping](../../00_thesis_writing_tracking/final_thesis_prep/evidence_publication_20261128/manifest.json) relates them to the prior IDs retained in historical records.
+
+Appendix H; current evidence E080–E084. The [research handoff](results/09_final_reports/REVIEW_HANDOFF.md) reports completed unimodal and fixed-averaging assessment in the common-support study. F2, augmented F2 and learned quality gates were skipped because participant-disjoint OOF predictions cannot be certified from the released identity metadata. Their omission is a failed eligibility gate, not a negative fitted-model result.
 
 The [dataset overview](results/09_final_reports/DATASET_OVERVIEW.md), [validation](results/09_final_reports/DATASET_VALIDATION.md), [model implementation](results/09_final_reports/MODEL_IMPLEMENTATION.md) and [common-support configuration](experiments/common_support_v2/04_experiment_protocol/experiment_config.json) retain acquisition/source identity, preparation, target and observation-horizon rules. Use the [chapter map](../../docs/THESIS_CODE_MAP.md) for current source and assessment links.
 

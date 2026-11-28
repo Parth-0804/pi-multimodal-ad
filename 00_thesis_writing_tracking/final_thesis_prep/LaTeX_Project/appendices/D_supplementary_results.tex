@@ -23,8 +23,8 @@ fitted the head and final CNN stage. Each arm completed twenty-five visual fits.
 epoch budgets do not isolate the effect of adaptation. The common follow-up sensor
 reference differs from the core selected-$C$ baseline (AP 0.4294).}
 \end{table}
-\ev{Original four-arm results and fitting scope}{\EvidenceRef{E146}{},
-\EvidenceRef{E147}{}}
+\ev{Original four-arm results and fitting scope}{\EvidenceRef{E144}{},
+\EvidenceRef{E145}{}}
 
 The frozen32 versus fine-tuned32 diagnosis then compares equal epoch and data budgets on
 the same complete 4,530-action cohort. It contains five matched outer folds for seed~42
@@ -33,7 +33,7 @@ to the earlier seed-42 two-epoch fine-tuned32 arm: four inner fits and one final
 outer fold. They are not an independent replication. Equal budgets do not imply equal
 parameter counts, computation or training time. The fixed numerical branch is shared
 between arms, so a visual or fusion difference does not arise from refitting a different
-sensor model.\ev{Reused fit identities}{\EvidenceRef{E145}{}}
+sensor model.\ev{Reused fit identities}{\EvidenceRef{E143}{}}
 
 Table~\ref{tab:twoepoch-supplement} gives pooled failure-positive AP for each method at
 both seeds. The intervals resample paired recording clusters with the models held fixed.
@@ -55,7 +55,7 @@ Seed & Method & Frozen & Fine-tuned & Difference [95\% interval]\\\midrule
 \displaynote{The conditional 95\% intervals quantify contrasts between the fitted
 predictors. Variation across training seeds is a separate source of uncertainty.}
 \end{table}
-\ev{Matched two-epoch results}{\EvidenceRef{E062}{}}
+\ev{Matched two-epoch results}{\EvidenceRef{E060}{}}
 
 At seed~42, the small gain in visual AP coincided with lower AP for both fusion methods.
 At the second seed, fine-tuning reduced the point estimate for all three methods. Every
@@ -66,7 +66,7 @@ fitting and the difference between out-of-fold and assessment scores. The availa
 comparisons did not identify a cause for the variation across seeds. Class-conditional
 Brier score and log loss characterize prediction errors on actions the sensor
 misclassified, but cannot determine whether those images contained sufficient visual
-evidence.\ev{Unresolved causal diagnosis}{\EvidenceRef{E062}{}}
+evidence.\ev{Unresolved causal diagnosis}{\EvidenceRef{E060}{}}
 
 \section{The Same-Test 753-Action Follow-up}
 The 753-action cohort is exactly original outer fold~0, not an independent external
@@ -94,7 +94,7 @@ Full CNN100 plus averaging&0.358533\\\hline
 \displaynote{Models were evaluated on identical actions with intact inputs. The
 training, calibration, and stacking procedures differed between generations.}
 \end{table}
-\ev{Matched cohort reconciliation}{\EvidenceRef{E052}{}}
+\ev{Matched cohort reconciliation}{\EvidenceRef{E050}{}}
 
 Fine-tuning improves the hundred-epoch visual recipe relative to its frozen
 hundred-epoch control, but the original frozen recipe has a higher point AP on the same
@@ -126,7 +126,7 @@ corruption. HANDOVER evaluated its baselines without fitting learned fusion beca
 participant-disjoint out-of-fold predictions were unavailable. ViFailback compared the
 original frozen representation and later matched donor conditions. Differences in
 targets, prevalence and grouping limit any comparison of average precision across these
-datasets.\ev{Sensitivity and status inventory}{\EvidenceRef{E108}{}}
+datasets.\ev{Sensitivity and status inventory}{\EvidenceRef{E106}{}}
 
 \section{Saved-Prediction Check of the Core F2 Visual Term}
 The retained saved-prediction check verified 4,530 unique actions, their 509 failure
@@ -166,7 +166,7 @@ omission and .794968 for F2. Fold-dependent score alignment therefore affects po
 metrics without changing within-fold sensor ordering. Setting the visual probability to
 zero is a particular constant reference, not an identified decomposition of pooled
 importance. The reduced map retains jointly fitted parameters; it is not a refitted
-sensor-only comparator.\ev{Saved-prediction verification recorded on 25 November 2026}{\EvidenceRef{E113}{}, \EvidenceRef{E122}{}}
+sensor-only comparator.\ev{Saved-prediction verification recorded on 25 November 2026}{\EvidenceRef{E111}{}, \EvidenceRef{E120}{}}
 
 \section{Historical PHM Ridge Reference and Target Boundary}
 \label{sec:phm-ridge-supplement}
@@ -177,8 +177,8 @@ The target-version study identifies this as the v2 comparison, whose training-me
 reference was 0.6797. The run's saved metric rows verify the reported numbers; they do
 not establish a v3 LOEO Ridge result or complete training-source lineage. The main
 chapter therefore keeps the Ridge recipe supplementary and omits its configuration-only
-alpha grid.\ev{Saved Ridge metrics and target history}{\EvidenceRef{E140}{},
-\EvidenceRef{E023}{}}
+alpha grid.\ev{Saved Ridge metrics and target history}{\EvidenceRef{E138}{},
+\EvidenceRef{E021}{}}
 
 \section{PHM Four-Arm Diagnostic With Preprocessing Exposure}
 \label{sec:phm-fourarm-supplement}
@@ -191,4 +191,4 @@ allowing held-out EXP-B measurements to influence scaling. These values therefor
 not constitute an isolated LOEO comparison and are not combined with the principal
 fold-local result in Table~\ref{tab:phm-loeo}. They do not establish that the sensors
 contain no predictive information.\ev{Reported four-arm values and preprocessing scope}
-{\EvidenceRef{E131}{}, \EvidenceRef{E029}{}}
+{\EvidenceRef{E129}{}, \EvidenceRef{E027}{}}

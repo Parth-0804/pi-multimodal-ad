@@ -19,7 +19,7 @@ insensitive to corruption, so its clean-input error matters. For SQ4, the traini
 comparison asks whether measured sensor inputs improved prediction over a rule that
 ignores them at inference. It cannot establish whether the photographic target measures
 damage. That question requires a physical reference independent of the rule.\ev{PHM
-target and deployment inputs}{\EvidenceRef{E021}{}}
+target and deployment inputs}{\EvidenceRef{E019}{}}
 
 \section{Dataset, Acquisition Structure, and Supervision Challenges}
 The retained population contains EXP-A runs 1--5, EXP-B runs 1--7 and EXP-F runs 1--8:
@@ -37,7 +37,7 @@ This supports joining measurements to a post-run proxy, rather than asserting
 hardware-synchronized image/sensor events or prospective image availability. Evidence
 covers these manifests and inspected implementation, with incomplete independent
 reinspection of raw archive contents.\ev{PHM experiments and acquisition
-sources}{\EvidenceRef{E020}{}}
+sources}{\EvidenceRef{E018}{}}
 
 \subsection{Supervision and Dependence Limits}
 The target depends on acquisition geometry, illumination, texture and image-processing
@@ -54,8 +54,8 @@ representation, not byte-level proof that complete raw archives are identical. B
 nominal runs remain visible in the historical analysis. The small number of independent
 experiments, unequal run lengths and changing acquisition conditions limit broad
 generalization even when train/test identifiers do not overlap.\ev{Organizer-reported
-overlap in EXP-A}{\EvidenceRef{E020}{}}\ev{Derived spectral
-diagnostic}{\EvidenceRef{E037}{}}
+overlap in EXP-A}{\EvidenceRef{E018}{}}\ev{Derived spectral
+diagnostic}{\EvidenceRef{E035}{}}
 
 \section{Preparation, Exploratory History, and Target-Version Lineage}
 Preparation distinguished structural eligibility from scientific validity. Source
@@ -72,7 +72,7 @@ sequence assembly, while aggregation can discard transients. The high-frequency 
 has different representation provenance. Duplicate diagnostics, missingness masks and
 exclusions therefore remain tied to their producing configurations; combining them would
 define a different dataset from that which generated the historical predictions.\ev{PHM
-domain implementation}{\EvidenceRef{E034}{}}
+domain implementation}{\EvidenceRef{E032}{}}
 
 \subsection{Target Definition and Version History}
 The current-end-of-run target is a percentage of a fixed visible-flank region classified
@@ -103,7 +103,7 @@ without a corresponding production artifact. Under v3, a canonical tooth view is
 selected where available, otherwise the earliest camera-sequence view by embedded time.
 Identical numerical constants in two versions can arise from unchanged top-three teeth
 and do not prove identical measurement rules.\ev{Versions of the photographic condition
-proxy}{\EvidenceRef{E023}{}}
+proxy}{\EvidenceRef{E021}{}}
 
 \section{Investigation A: Image-Derived Target Construction and Assessment}
 The visual investigation has three distinct layers: producing a deterministic target,
@@ -115,7 +115,7 @@ supplied supervision. This distinction also applies to the detector trained on h
 pseudo-boxes: its localization metrics are defined relative to those boxes, not
 expert-annotated defects. The separate scalar, detector and multitask routes therefore
 remain different experiments with different outputs and comparison units.\ev{Visual
-prediction experiments}{\EvidenceRef{E025}{}}
+prediction experiments}{\EvidenceRef{E023}{}}
 
 \subsection{Motivation and Target Definition}
 Without organizer-supplied continuous damage labels, an explicit and reproducible
@@ -127,7 +127,7 @@ texture and acquisition artifacts may satisfy the image rule without being physi
 damage. The target can consequently support a study of proxy prediction and measurement
 sensitivity. It cannot by itself support a claim about tooth material loss or
 maintenance necessity.\ev{Candidate measurement
-function}{\EvidenceRef{E035}{measure\_damage\_candidate}}
+function}{\EvidenceRef{E033}{measure\_damage\_candidate}}
 
 \subsection{Image Processing and Aggregation}
 The inspected target code converts RGB to Lab luminance, applies CLAHE, estimates a
@@ -144,8 +144,8 @@ environment and can confound interpretation of the image-regression result. Sepa
 detection and multitask experiments used heuristic pseudo-box supervision. The core
 REASSEMBLE classifier used the ResNet18-vd CNN backbone inside its RT-DETR-R18vd
 checkpoint (Chapter~\ref{ch:reassemble}).\ev{Extraction
-implementation}{\EvidenceRef{E033}{extract\_features}}\ev{Image features and latency
-covariate}{\EvidenceRef{E024}{}}
+implementation}{\EvidenceRef{E031}{extract\_features}}\ev{Image features and latency
+covariate}{\EvidenceRef{E022}{}}
 
 \begin{figure}[htbp]
 \caption{PHM Scalar Regression From Post-Run Photographs}\label{fig:phm-route}
@@ -168,7 +168,7 @@ measurements that establish population-wide target accuracy, calibrated area per
 or a defensible damage/no-damage operating threshold. A prediction cannot independently
 resolve ambiguity in the appearance used to construct its training label. These limits
 constrain subsequent interpretation even if a target-emulation score appears
-favorable.\ev{Photographic proxy and appearance diagnostics}{\EvidenceRef{E022}{}}
+favorable.\ev{Photographic proxy and appearance diagnostics}{\EvidenceRef{E020}{}}
 
 \subsection{Target Scaling and Validation Limits}
 The two reported baseline errors refer to different versions of the photographic target.
@@ -186,14 +186,14 @@ AP. In this separate pseudo-box detector experiment, validation selected the fir
 fine-tuning epoch after four fine-tuning epochs had been completed. The selected
 checkpoint epoch therefore does not give the number of epochs trained. These are v2
 visual diagnostics, not paired v3 sensor-LOEO results.\ev{Separate
-visual diagnostic scores}{\EvidenceRef{E024}{}, \EvidenceRef{E036}{}}
+visual diagnostic scores}{\EvidenceRef{E022}{}, \EvidenceRef{E034}{}}
 
 The blind appearance report records agreement on 30 of 38 determinate images (78.9\%),
 after four unsure exclusions from 42 proxy-selected extremes. The best of twenty
 DINOv2 configurations agreed on 29 of those 38 (76.3\%). One reviewer, selection of
 extremes and reuse of the same judgments for configuration comparison preclude
 population-wide validation or a claim of established method superiority.\ev{Selected
-appearance checks}{\EvidenceRef{E022}{}}
+appearance checks}{\EvidenceRef{E020}{}}
 
 Detector diagnostics report very small attainable recall against dense heuristic boxes
 and a mismatch between predicted-box and pseudo-box scales. Those observations qualify
@@ -204,7 +204,7 @@ summary is explicitly not LOEO and lacks EXP-B predictions. Its assessment popul
 therefore differs from that of the twenty-run sensor LOEO comparison. The retained
 visual work establishes reproducible implementation and consequential supervision
 limitations, rather than verified physical damage detection.\ev{Training-mean errors by
-target version}{\EvidenceRef{E023}{}}\ev{Detector diagnostics}{\EvidenceRef{E036}{}}
+target version}{\EvidenceRef{E021}{}}\ev{Detector diagnostics}{\EvidenceRef{E034}{}}
 
 \section{Investigation B: Sensor-Based Condition Prediction}
 The sensor investigation asks whether run-level inputs available without post-run
@@ -217,7 +217,7 @@ proxy under a particular split. A failed result leaves several possible explanat
 including target noise, acquisition shift, limited independent training support,
 representation loss and optimization limits. The observed comparison alone does not
 identify which explanation dominates.\ev{Sensor and fusion
-implementation}{\EvidenceRef{E032}{}}
+implementation}{\EvidenceRef{E030}{}}
 
 \subsection{Inputs and Preprocessing}
 The retained minute-feature configuration names nine base variables: speed, torque,
@@ -236,9 +236,9 @@ The feature definition is anchored to the sensor-feature implementation and reta
 fusion configuration. The historical directory name suggests a PatchTST baseline, but its
 provenance command invokes \texttt{train\_late\_fusion.py}; that directory name is not
 evidence of a single-encoder run.\ev{Minute-feature implementation and configuration}
-{\EvidenceRef{E126}{}}\ev{Historical directory mismatch}
-{\EvidenceRef{E027}{}}\ev{Patch and mask
-computation}{\EvidenceRef{E031}{patchify}}
+{\EvidenceRef{E124}{}}\ev{Historical directory mismatch}
+{\EvidenceRef{E025}{}}\ev{Patch and mask
+computation}{\EvidenceRef{E029}{patchify}}
 
 \subsection{Reference Predictors and Model Configurations}
 The training-mean constant is essential because the target scale and between-experiment
@@ -259,9 +259,8 @@ sensor-group concatenation. The later four-arm code additionally distinguishes t
 and an empty encoder group, which is excluded. Its process-conditioned fusion derives
 allocation from context features. These comparisons do not supply the unavailable
 inference-time tooth image. Configured epoch caps remain separate from actual fold
-histories.\ev{Regression and Ridge implementation}{\EvidenceRef{E032}{}}\ev{Inputs to
-PHM feature fusion}{\EvidenceRef{E004}{section 12.4}}\ev{Group provenance and
-gate}{\EvidenceRef{E030}{}}
+histories.\ev{Regression and Ridge implementation}{\EvidenceRef{E030}{}}\ev{Group provenance and
+gate}{\EvidenceRef{E028}{}}
 
 \subsection{Training and Evaluation Protocol}
 The historical fixed split trains on EXP-B, validates on EXP-A and assesses EXP-F. It
@@ -278,8 +277,8 @@ of current source do not establish complete historical training-code lineage. Al
 the resolved configuration retains stale v2 text, the pinned target identity and saved
 truths identify v3; this reconciliation is documented in the PHM traceability review.
 Missing historical fold records still limit retrospective verification.\ev{Recorded
-source-lineage gap}{\EvidenceRef{E131}{}, \EvidenceRef{E132}{}}\ev{Principal LOEO
-runner}{\EvidenceRef{E028}{}}\ev{Target provenance}{\EvidenceRef{E023}{}}
+source-lineage gap}{\EvidenceRef{E129}{}, \EvidenceRef{E130}{}}\ev{Principal LOEO
+runner}{\EvidenceRef{E026}{}}\ev{Target provenance}{\EvidenceRef{E021}{}}
 
 \subsection{Results and Uncertainty}
 For the historical fixed split, the selected three-group model achieved MAE 0.6548
@@ -288,7 +287,7 @@ The observed improvement was 0.0800 percentage points, below the declared 0.15-p
 criterion. The report's paired 95\% interval for model-minus-constant MAE,
 $[-0.548,+0.414]$, spans zero. This single fixed-split comparison remains separate
 from the twenty-run LOEO summary below.\ev{Historical fixed-split result}
-{\EvidenceRef{E134}{}, \EvidenceRef{E131}{}}
+{\EvidenceRef{E132}{}, \EvidenceRef{E129}{}}
 
 Table~\ref{tab:phm-loeo} reports the retained twenty-run summary on the provisional
 target scale. Lower MAE and RMSE are preferable; rank correlation addresses ordering
@@ -314,7 +313,7 @@ training mean was $+0.0196$ percentage points across the twenty runs. The mean o
 paired run-bootstrap differences was $+0.0177$ percentage points, with a 95\% interval
 of $[-0.1962,0.2278]$. The interval allows lower error for either predictor. The study
 used no prespecified equivalence margin.\ev{Observed errors and paired
-bootstrap}{\EvidenceRef{E026}{}, \EvidenceRef{E004}{section 12.5}}
+bootstrap}{\EvidenceRef{E024}{}}
 
 \subsection{Interpretation and Limitations}
 The retained learned predictors do not establish an improvement over the constant under
@@ -331,7 +330,7 @@ genuinely different deployment domains remains small. The unresolved target mean
 profile's loss of tooth identity and padding/provenance concerns additionally limit
 interpretation. These qualifications do not erase a negative comparison; they identify
 which hypothesis it actually challenges.\ev{PHM comparison and target
-validity}{\EvidenceRef{E106}{}}
+validity}{\EvidenceRef{E104}{}}
 
 \section{Supplementary Diagnostics and Evaluation Sensitivity}
 \label{sec:phm-diagnostics}
@@ -354,8 +353,8 @@ can demonstrate pipeline capacity without demonstrating deployable information. 
 study-specific records retain these diagnostics with their own target and exposure
 definitions; Appendix~\ref{app:supplementary-results}, Section~\ref{sec:phm-fourarm-supplement},
 retains the four-arm values separately from the principal comparison.\ev{HF
-diagnostic report}{\EvidenceRef{E037}{}}\ev{Four-arm
-implementation}{\EvidenceRef{E029}{}}
+diagnostic report}{\EvidenceRef{E035}{}}\ev{Four-arm
+implementation}{\EvidenceRef{E027}{}}
 
 \section{Synthesis, Limitations, and Motivation for Native-Outcome Paired Studies}
 Neither the single sensor encoder nor the three-group model improved on the training
@@ -370,8 +369,8 @@ against independent damage measurements or expert area annotations. Until then, 
 error estimates quantify agreement with the photographic rule. The study also leaves
 advance warning, remaining useful life and response to natural sensor failure
 unresolved. Differences in targets, prediction units and preprocessing prevent a direct comparison
-across all PHM fusion models.\ev{Photographic target versions}{\EvidenceRef{E023}{}}\ev{PHM experiment
-configurations}{\EvidenceRef{E025}{}}
+across all PHM fusion models.\ev{Photographic target versions}{\EvidenceRef{E021}{}}\ev{PHM experiment
+configurations}{\EvidenceRef{E023}{}}
 
 PHM was undertaken within the architecture programme motivated by robotic welding,
 rather than as a prespecified feasibility stage designed around its eventual negative
@@ -389,4 +388,4 @@ measurement would establish what the proxy represents. The error of the constant
 predictor provides a reference for interpreting model performance under degradation. The
 subsequent study compares combined pipelines with their single-input reference models
 and measures their responses to controlled corruption.\ev{Cross-study
-rationale}{\EvidenceRef{E106}{}}
+rationale}{\EvidenceRef{E104}{}}

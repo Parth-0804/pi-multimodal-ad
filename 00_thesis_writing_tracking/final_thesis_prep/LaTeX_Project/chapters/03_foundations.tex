@@ -122,7 +122,7 @@ image augmentation, and early stopping. Where the record contains only saved fea
 it confirms feature extraction. A claim about classification or fusion also requires a
 completed assessment.
 
-\textit{Implementation records: \EvidenceRef{E064}{}, \EvidenceRef{E065}{}, \EvidenceRef{E033}{}.}
+\textit{Implementation records: \EvidenceRef{E062}{}, \EvidenceRef{E063}{}, \EvidenceRef{E031}{}.}
 
 \section{What the machine sensors contributed}
 
@@ -230,7 +230,7 @@ descriptions of the \textbf{same measurements} work better together. Combining t
 statistical sensor prediction with the camera prediction asks a different question:
 whether a second physical source adds useful information.
 
-\textit{Implementation records: \EvidenceRef{E031}{}, \EvidenceRef{E065}{}.
+\textit{Implementation records: \EvidenceRef{E029}{}, \EvidenceRef{E063}{}.
 Appendix~\ref{app:implementation} gives the model settings.
 Appendix~\ref{app:reproducibility} identifies the components used in each experiment.}
 
@@ -327,8 +327,7 @@ from the joined features. The software class was called \texttt{LateFusionRegres
 but the values being joined were features. All three groups came from sensor or process
 data. The photographs supplied the target for this comparison. Also, joining features
 can increase the number of trainable parameters, so a change in error may reflect both
-the extra information and the larger model. \textit{Implementation record:
-\EvidenceRef{E004}{Section~12.4}.}
+the extra information and the larger model.
 
 Figure~\ref{fig:workflow-phm-feature-fusion} shows this workflow.
 
@@ -408,7 +407,7 @@ fitting subset and passed through a separate learned 128-dimensional projection.
 The concatenated representation was normalised and supplied to a fitted classifier
 that predicted action failure. F3 therefore learned from representations rather than
 from the two branch probabilities.\ev{Executed representation-concatenation model}
-{\EvidenceRef{E048}{}, \EvidenceRef{E066}{}}
+{\EvidenceRef{E046}{}, \EvidenceRef{E064}{}}
 
 \subsection{Context-based gating (F4--F6)}
 \label{sec:ch3-context-gating}
@@ -570,4 +569,4 @@ therefore belongs to the configuration that produced it. Chapter~\ref{ch:methodo
 describes the recording splits, training decisions, and assessment conditions needed to
 read those results correctly.
 
-\textit{Implementation records: \EvidenceRef{E112}{}, \EvidenceRef{E114}{}, \EvidenceRef{E110}{}.}
+\textit{Implementation records: \EvidenceRef{E110}{}, \EvidenceRef{E112}{}, \EvidenceRef{E108}{}.}

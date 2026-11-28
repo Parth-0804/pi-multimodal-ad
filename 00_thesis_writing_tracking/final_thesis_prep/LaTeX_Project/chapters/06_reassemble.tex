@@ -7,7 +7,7 @@ visual information with an additional logistic fitting stage and did not establi
 advantage over equal averaging. The original gates did not establish consistent clean
 or robustness superiority. Later representation and adaptation studies retain their own
 controls and assessment populations; their best results were not combined into one
-model.\ev{Core and follow-up scope}{\EvidenceRef{E044}{}, \EvidenceRef{E040}{}}
+model.\ev{Core and follow-up scope}{\EvidenceRef{E042}{}, \EvidenceRef{E038}{}}
 
 \section{Study Objectives and Research-Question Mapping}
 SQ1 concerns implemented visual and temporal representations relative to engineered
@@ -27,7 +27,7 @@ be useful here without demonstrating prediction before an unsuccessful event. Th
 dataset paper supplies acquisition context; the retained manifests and implementation
 establish this thesis's specific population and task
 \parencite{Sliwowski2025REASSEMBLE}.\ev{Action targets and assessment
-cohort}{\EvidenceRef{E046}{}}
+cohort}{\EvidenceRef{E044}{}}
 
 \section{Dataset, Native Outcomes, and Modality Constraints}
 The inventory contains 149 recordings; the retained common cohort contains 4,530
@@ -44,7 +44,7 @@ verified physical root cause. One recording can contribute many actions, and act
 from a recording share acquisition context. Counting 4,530 actions as independent
 experiments would overstate the amount of independent evidence. Recording identities are
 accordingly used for outer splitting and uncertainty resampling.\ev{Population and class
-counts}{\EvidenceRef{E046}{}}
+counts}{\EvidenceRef{E044}{}}
 
 \subsection{Modality Availability and Grouping Limits}
 The retained modalities are hand-camera images and machine-sensor measurements: three
@@ -58,13 +58,12 @@ Segment-offset and drift checks could not establish a common timing anchor betwe
 action annotations and audio, so the predictive experiment excluded the audio branch.
 Spoken outcomes were also a documented potential source of label leakage; this risk was
 not a demonstrated leakage result. The exclusion therefore does not show that an audio
-model failed to learn.\ev{Audio alignment and documented leakage risk}{\EvidenceRef{E041}{},
-\EvidenceRef{E004}{section 16.4}} Similarly, seventeen object categories do not establish
+model failed to learn.\ev{Audio alignment and documented leakage risk}{\EvidenceRef{E039}{}} Similarly, seventeen object categories do not establish
 seventeen disjoint physical objects. The available
 relationship graph did not support a verified object-instance-disjoint test. The
 recording-disjoint split evaluates transfer between recordings. Generalization to unseen
 objects or sites and hardware-clock synchronization remain untested.\ev{Audio alignment
-and object-group feasibility}{\EvidenceRef{E044}{}}
+and object-group feasibility}{\EvidenceRef{E042}{}}
 
 \section{Cohort Preparation, Alignment, and Evaluation Protocol}
 Preparation established a common cohort before comparing architecture outputs. Required
@@ -76,7 +75,7 @@ unambiguous or that every sensor is physically calibrated.
 
 Eligibility checks and representation choices are distinct: temporal pooling changes the
 view of an accepted action, whereas missing observations can affect eligibility or
-require a missingness policy.\ev{Preparation and common cohort}{\EvidenceRef{E046}{}}
+require a missingness policy.\ev{Preparation and common cohort}{\EvidenceRef{E044}{}}
 
 \subsection{Cohort Construction and Exclusions}
 The core analysis uses exactly 4,530 common eligible actions and retains one outcome per
@@ -91,8 +90,8 @@ is not a newly acquired independent holdout. Its prevalence, approximately 0.102
 differs from the complete cohort's prevalence. Because average precision depends on
 prevalence and population composition, a 753-action AP cannot be ranked directly beside
 a pooled 4,530-action AP as if only architecture had changed.\ev{Core
-cohort}{\EvidenceRef{E046}{}}\ev{Populations used in follow-up
-comparisons}{\EvidenceRef{E058}{}}
+cohort}{\EvidenceRef{E044}{}}\ev{Populations used in follow-up
+comparisons}{\EvidenceRef{E056}{}}
 
 \subsection{Visual--Sensor Correspondence and Action Boundaries}
 Sixteen distinct frames are selected deterministically at approximately uniform
@@ -107,7 +106,7 @@ do not prove sub-frame synchronization from a shared hardware clock. Boundary er
 affect both modalities jointly, and late visual information may reflect the already
 known outcome. The subsequent boundary review and temporal pooling experiment address
 parts of this problem, without converting the task into online warning.\ev{Input
-construction}{\EvidenceRef{E064}{}}\ev{Boundary-aware follow-up}{\EvidenceRef{E042}{}}
+construction}{\EvidenceRef{E062}{}}\ev{Boundary-aware follow-up}{\EvidenceRef{E040}{}}
 
 \begin{figure}[p]
 \caption{Sampled Frames From a Completed REASSEMBLE Insertion}\label{fig:reassemble-example}
@@ -116,7 +115,7 @@ construction}{\EvidenceRef{E064}{}}\ev{Boundary-aware follow-up}{\EvidenceRef{E0
 segment 21 (15.233 s). The saved failure label accompanies this example. Frame selection
 illustrates temporal coverage. Source: Saved data-preparation example.}
 \end{figure}
-\ev{Illustrative frame source}{\EvidenceRef{E061}{}}
+\ev{Illustrative frame source}{\EvidenceRef{E059}{}}
 
 \subsection{Missing, Invalid, and Inconsistent Observations}
 Sensor extraction requires at least 0.89 finite coverage per channel and avoids
@@ -135,8 +134,8 @@ changed from their clean value under at least one audited corruption. The fields
 \texttt{joint\_velocities.constant\_channels} remained zero. This check covers the retained
 visual-noise, blur, frame-dropout, sensor-noise, channel-dropout, temporal-block and
 stuck-force/torque conditions; complete-stream absence is excluded.\ev{Clean quality
-fields and saved corruption descriptors}{\EvidenceRef{E048}{}, \EvidenceRef{E152}{},
-\EvidenceRef{E153}{}}
+fields and saved corruption descriptors}{\EvidenceRef{E046}{}, \EvidenceRef{E150}{},
+\EvidenceRef{E151}{}}
 % Descriptor check: read only names, row_index and quality arrays from 148 visual/*.npz
 % and 148 sensor/*.npz records under implementations/REASSEMBLE/results/runs/
 % missing_degraded_modality_robustness/; each condition covers row indices 0--4529.
@@ -150,7 +149,7 @@ learn how changes in those fields related to branch error. This limits interpret
 the quality inputs but does not establish a causal explanation for the gate results.
 Conversely, the deliberate complete-modality-loss experiments supply a known availability
 mask, which is stronger information than detecting an unnoticed hardware failure.\ev{Sensor
-preparation}{\EvidenceRef{E064}{}}
+preparation}{\EvidenceRef{E062}{}}
 
 \subsection{Human Annotation Review and Its Limits}
 One reviewer completed 64 selected clips. Of 59 determinate judgments, 57 agreed with
@@ -166,7 +165,7 @@ identify ten unique clips requiring adjudication. A single reviewer completed th
 assessment. Inter-rater agreement and adjudicated outcomes are therefore unavailable.
 Labels, folds and model metrics consequently retain their original definitions; the
 review identifies specific uncertainties rather than supplying a replacement ground
-truth.\ev{Single-reviewer action and boundary judgments}{\EvidenceRef{E051}{}}
+truth.\ev{Single-reviewer action and boundary judgments}{\EvidenceRef{E049}{}}
 
 \subsection{Group Definitions and Split Checks}
 Five outer folds hold out whole recordings, with four recording-disjoint inner folds for
@@ -179,8 +178,7 @@ Within each outer training set, recording-held-out branch predictions supplied t
 stacker's OOF bank. Reusing that bank inside stacker validation creates the indirect
 dependency explained in Section~\ref{sec:ch4-assessment}; outer-test recordings remain
 excluded from branch fitting, calibration, stacker training and threshold selection.
-The reported outer scores assess this bank-reuse procedure.\ev{Stacker validation
-dependency}{\EvidenceRef{E004}{section 15.4}}
+The reported outer scores assess this bank-reuse procedure.
 
 \subsection{Metrics, Calibration, and Conditional Uncertainty}
 Failure is positive. Core scores pool the disjoint outer predictions for all 4,530
@@ -197,7 +195,7 @@ assumption, giving a smallest plus-one probability of 0.05. The saved controls g
 0.2307 against null AP 0.1435--0.1784 for vision and 0.2416 against 0.1548--0.1876
 for PatchTST. Each plus-one probability is 0.05. These conditional controls do not rule
 out scene/object shortcuts or replace the paired comparison against action identity.\ev{Metrics and inference
-definitions}{\EvidenceRef{E046}{}}
+definitions}{\EvidenceRef{E044}{}}
 
 \section{Experiment A: Unimodal Representations}
 The unimodal study establishes a reference hierarchy before fusion. Class-prior,
@@ -205,7 +203,7 @@ majority and action-type predictors reveal what can be achieved without detailed
 observations. Engineered sensor statistics are then compared with the frozen visual
 representation and a compact sensor Transformer. Identical retained action identifiers
 and recording groups prevent changes in population from masquerading as representation
-gains.\ev{Unimodal experiment}{\EvidenceRef{E046}{}}
+gains.\ev{Unimodal experiment}{\EvidenceRef{E044}{}}
 
 \subsection{Objective and Comparison Rationale}
 The unimodal comparison included simple predictors that can exploit process or sensor
@@ -219,7 +217,7 @@ models.
 Both neural branches improved AP over the action baseline. Their AUROC differences
 remained unresolved. A later test of incremental predictive value motivated the
 visual--sensor fusion comparison.\ev{Neural baselines and incremental fusion
-comparison}{\EvidenceRef{E047}{}}
+comparison}{\EvidenceRef{E045}{}}
 
 \subsection{Visual Representation Configurations}
 The core visual extractor loads the COCO-pretrained RT-DETR-R18vd checkpoint
@@ -237,7 +235,7 @@ head with 114,945 trainable parameters. Whole-action averaging discards temporal
 Weighted binary cross-entropy, AdamW with learning rate 0.001 and weight decay 0.001,
 batch size 128 and gradient clipping at one are used. Inner selection chooses five or
 ten epochs; outer budgets are 5, 5, 10, 10 and 5.\ev{Executed visual
-computation}{\EvidenceRef{E064}{}}\ev{Head and fitter}{\EvidenceRef{E065}{}}
+computation}{\EvidenceRef{E062}{}}\ev{Head and fitter}{\EvidenceRef{E063}{}}
 
 \subsection{Statistical Sensor and PatchTST Configurations}
 The statistical representation computes ten features per channel: mean, standard
@@ -255,7 +253,7 @@ does not suppress attention in this configuration. Inner selection allows three 
 epochs and chooses six in every outer fold. This is a compact adaptation of the patching
 idea, not a claim to reproduce all settings of the original PatchTST paper
 \parencite{Nie2023PatchTST}.\ev{Sensor classification
-architecture}{\EvidenceRef{E065}{}}
+architecture}{\EvidenceRef{E063}{}}
 
 \subsection{Results and Computational Considerations}
 Table~\ref{tab:reassemble-unimodal} reports pooled assessment scores. The majority
@@ -289,8 +287,8 @@ deterministic segments, sensor arrays in memory and cached compressed video; fus
 times are sequential component sums. They establish a bounded practical cost difference
 rather than cold-start throughput or a real-time deployment guarantee. Counting only
 F2's three learned combination parameters would omit the branch heads and frozen visual
-backbone.\ev{Saved unimodal estimates}{\EvidenceRef{E046}{}}\ev{Bounded component
-timing}{\EvidenceRef{E043}{}}
+backbone.\ev{Saved unimodal estimates}{\EvidenceRef{E044}{}}\ev{Bounded component
+timing}{\EvidenceRef{E041}{}}
 
 \subsection{Interpretation and Implications for Fusion}
 Visual AP exceeds the action reference by 0.0499 $[.0225,.0836]$, and PatchTST exceeds
@@ -309,12 +307,12 @@ visual term's contribution to within-fold ordering is examined below. Attributio
 complete pooled gain remains limited by the absent matched sensor-only second-stage
 control. A separate follow-up tests how the training budget affects PatchTST
 performance.\ev{Paired unimodal and incremental fusion
-comparisons}{\EvidenceRef{E047}{}}
+comparisons}{\EvidenceRef{E045}{}}
 
 \section{Experiment B: Fusion Strategies}
 Six fusion families share the cohort and recording structure: probability averaging,
 stacking, representation concatenation and three context-dependent gates. Their input
-spaces and calibration stages differ.\ev{Fusion experiment}{\EvidenceRef{E048}{}}
+spaces and calibration stages differ.\ev{Fusion experiment}{\EvidenceRef{E046}{}}
 
 \subsection{Objective and Hypotheses}
 The first hypothesis is that the combined visual--sensor pipeline improves held-out
@@ -330,7 +328,7 @@ interpreting adaptive models.
 
 Clean gains do not establish corruption recognition; the subsequent experiment tests
 frozen clean-trained models directly.\ev{Fusion questions and
-controls}{\EvidenceRef{E048}{}}
+controls}{\EvidenceRef{E046}{}}
 
 \subsection{Compared Architectures and Exact Fusion Formulations}
 F1 averages calibrated probabilities: $p=(p_v+p_s)/2$. F2 fits a fixed-$C=1$ L2 logistic stacker,
@@ -349,7 +347,7 @@ thirty-six quality descriptors and availability; F6 receives all forty-two input
 Hidden widths are eight or sixteen. The gates have no final intercept correction or
 post-gate calibrator. Context or quality can encode process content as well as
 reliability; interpreting a learned weight as causal sensor trust is therefore
-unsupported.\ev{Exact implemented fusion links}{\EvidenceRef{E066}{}}
+unsupported.\ev{Exact implemented fusion links}{\EvidenceRef{E064}{}}
 
 \subsection{Training, Calibration, and Evaluation}
 Fusion uses branch prediction banks with recording-excluded row construction and
@@ -366,7 +364,7 @@ probabilities is not equivalent to inserting averaged weights into a sigmoid. Th
 threshold protocol and paired recording bootstrap remain in force. These controls
 improve comparability but do not equalize every architecture's effective capacity,
 objective or calibration opportunity.\ev{Fusion training and nested
-banks}{\EvidenceRef{E048}{}}
+banks}{\EvidenceRef{E046}{}}
 
 \subsection{Predictive Results and Uncertainty}
 F2 has AP 0.4473 and AUROC 0.7950. The paired differences for F2 minus the statistical
@@ -399,7 +397,7 @@ All three original gates have lower AUROC than F2, with intervals excluding zero
 those differences. Their AP differences remain unresolved. The AP difference for F6
 minus F2 was $-0.0059$ $[-.0248,.0137]$. The failure-recall difference for F6 minus F2
 was $-0.0393$ (95\% CI $[-.0649,-.0122]$).\ev{Fusion results and paired
-contrasts}{\EvidenceRef{E048}{}}
+contrasts}{\EvidenceRef{E046}{}}
 
 \subsection{Modality Complementarity and Error Analysis}
 At the frozen hard-decision thresholds, both unimodal branches are correct on 2,347
@@ -414,7 +412,7 @@ an achieved fusion result or a deployable gate. Complementarity provides potenti
 information, while learning which branch to trust from available inputs remains a
 separate problem. These counts describe decisions at fixed thresholds. Paired AP
 comparisons assess the ranking of the same actions across thresholds.\ev{Error-overlap
-analysis}{\EvidenceRef{E047}{}}
+analysis}{\EvidenceRef{E045}{}}
 
 \subsection{Interpretation and Comparison Limits}
 Independent saved-prediction recomputation separates within-fold ordering from
@@ -437,21 +435,21 @@ quantify causal modality importance. AP changes also do not measure calibration.
 folds share training populations; historical recording-bootstrap intervals condition on
 fixed models and omit training and repeated selection uncertainty. These findings do not
 establish population-wide superiority or a resolved advantage over equal
-averaging.\ev{Independent saved-score verification}{\EvidenceRef{E113}{}}
+averaging.\ev{Independent saved-score verification}{\EvidenceRef{E111}{}}
 
 Within the tested representations and budgets, neither intermediate fusion nor the
 original adaptive gates establishes an advantage over the successful static reference.
 This finding is architecture- and protocol-specific. The later anchored model changes
 the link and learns a different function class; its positive exploratory AP result is
 therefore compatible with the original gates' bounded negative evidence.\ev{Original
-REASSEMBLE fusion comparisons}{\EvidenceRef{E044}{}}
+REASSEMBLE fusion comparisons}{\EvidenceRef{E042}{}}
 
 \section{Experiment C: Missing and Degraded Modalities}
 The core robustness study froze the clean-trained statistical sensor and visual
 predictors (U1 and U2), equal averaging (F1), the stacker (F2), and the two gates using
 quality descriptors (F5 and F6). It perturbed one input at a time and also tested known
-loss of a full input stream.\ev{Core robustness study}{\EvidenceRef{E055}{},
-\EvidenceRef{E049}{}}
+loss of a full input stream.\ev{Core robustness study}{\EvidenceRef{E053}{},
+\EvidenceRef{E047}{}}
 
 \subsection{Robustness Questions and Tested Conditions}
 The central question is whether a gate both changes allocation in the expected direction
@@ -465,7 +463,7 @@ which the operator does not receive fault labels and recalibrate at every severi
 Known availability masks in complete-dropout tests are an explicitly different
 information condition. The two sets of results measure responses to different
 information about the fault.\ev{Robustness contrasts and decision
-policy}{\EvidenceRef{E049}{}}
+policy}{\EvidenceRef{E047}{}}
 
 \subsection{Corruption Operators and Severity Definitions}
 Visual operators include pixel Gaussian noise with standard deviations 0.02, 0.05 and
@@ -481,7 +479,7 @@ operator realization protocol. A later augmentation study averages across five
 stochastic test realizations. Its Gaussian-noise estimates therefore refer to a
 different evaluation protocol. None of these operators is direct evidence of
 cross-machine shift, clock drift or physical sensor recalibration.\ev{Operator
-implementation and severities}{\EvidenceRef{E049}{}}
+implementation and severities}{\EvidenceRef{E047}{}}
 
 \subsection{Missingness Policies and Dropout Experiments}
 In the original complete-dropout test, the four evaluated fusion models used the
@@ -498,14 +496,14 @@ weight exactly one and the branches are fixed, its missing-case output is struct
 fixed and supplies no useful gradient for improving the fallback prediction. Dropout
 training cannot make that output better under this architecture. Its clean AP is 0.4377,
 changing ordinary F6 by $-0.0037$ $[-.0085,.0003]$.\ev{Explicit fallback and
-dropout}{\EvidenceRef{E045}{}}
+dropout}{\EvidenceRef{E043}{}}
 
 \subsection{Predictive Performance and Calibration Under Degradation}
 
 Table~\ref{tab:reassemble-corruption} reports every declared operator at its strongest
 severity and the two known single-stream absence cases. All rows use the same core
 cohort and fixed clean models. The accompanying robustness report contains the
-intermediate-severity results.\ev{Intermediate-severity results}{\EvidenceRef{E049}{}}
+intermediate-severity results.\ev{Intermediate-severity results}{\EvidenceRef{E047}{}}
 
 \begin{table}[htbp]
 \caption{REASSEMBLE High-Severity Corruption and Known Absence}
@@ -529,8 +527,8 @@ sensing for visual faults and vision for sensor faults. Known absence routes all
 fusion methods to that survivor. The stochastic realization protocol is the original
 core protocol, distinct from later augmentation studies.}
 \end{table}
-\ev{Saved core robustness estimates and arithmetic checks}{\EvidenceRef{E138}{},
-\EvidenceRef{E141}{}, \EvidenceRef{E055}{}}
+\ev{Saved core robustness estimates and arithmetic checks}{\EvidenceRef{E136}{},
+\EvidenceRef{E139}{}, \EvidenceRef{E053}{}}
 
 Under strongest pixel Gaussian noise, F2 retains AP 0.3963, while F5 and F6 fall to
 0.1288 and 0.1275. The intact sensor baseline remains at AP 0.4294. F2's Brier score
@@ -543,7 +541,7 @@ F5/F6 are 0.1753/0.1788, below intact vision at 0.2307. F2's Brier/ECE rise to
 general gate advantage. These conditions demonstrate that combining an intact and
 corrupted modality can underperform the intact branch. Detection of corruption and
 calibrated uncertainty remain unresolved rather than being supplied automatically by a
-fusion layer.\ev{Core high-severity metrics}{\EvidenceRef{E049}{}}
+fusion layer.\ev{Core high-severity metrics}{\EvidenceRef{E047}{}}
 
 \subsection{Gate Behaviour and Fallback Behaviour}
 No tested original gate/family combination establishes both an appropriate allocation
@@ -556,7 +554,7 @@ Exact missing-modality equality follows programmed fallback. It demonstrates con
 handling of known absence, while corruption recognition and useful recovery remain
 separate capabilities. This is narrower than training an encoder or student to retain
 performance after input loss, as in transferable missing-modality methods
-\citep{P005,P007,P016}.\ev{Gate allocation and fallback audit}{\EvidenceRef{E049}{}}
+\citep{P005,P007,P016}.\ev{Gate allocation and fallback audit}{\EvidenceRef{E047}{}}
 
 \subsection{Interpretation and Untested Conditions}
 The core evidence rejects a broad claim of reliable adaptation for the tested gates. The
@@ -570,7 +568,7 @@ later augmentation study changes training exposure and tests several held-out op
 families, but the same recording population and already observed core faults limit
 claims of independent discovery. An untested condition remains open rather than
 receiving a favorable interpretation from the model's name.\ev{Tested missingness and
-corruption conditions}{\EvidenceRef{E044}{}}
+corruption conditions}{\EvidenceRef{E042}{}}
 
 \section{Controlled Follow-up Investigations}
 \label{sec:reassemble-followups}
@@ -600,9 +598,9 @@ rows use pooled failure AP; the two corruption rows average condition-specific A
 with their own realization protocols. Frames and fitting budgets differ. Resource
 screens and fine-tuning rows describe separate scopes, not a completed common matrix.}
 \end{table}
-\ev{Follow-up controls and scopes}{\EvidenceRef{E038}{}, \EvidenceRef{E039}{},
-\EvidenceRef{E040}{}, \EvidenceRef{E042}{}, \EvidenceRef{E058}{}, \EvidenceRef{E059}{},
-\EvidenceRef{E062}{}}
+\ev{Follow-up controls and scopes}{\EvidenceRef{E036}{}, \EvidenceRef{E037}{},
+\EvidenceRef{E038}{}, \EvidenceRef{E040}{}, \EvidenceRef{E056}{}, \EvidenceRef{E057}{},
+\EvidenceRef{E060}{}}
 
 Three exploratory comparisons on the same cohort yielded higher average precision under
 their respective protocols. Last-quarter visual pooling with static stacking reached
@@ -610,7 +608,7 @@ their respective protocols. Last-quarter visual pooling with static stacking rea
 sensor statistics reached 0.4403. Each had its own control. The temporal-pooling study
 was completed separately from an earlier visual experiment that stopped after partial
 execution. Other follow-ups examined matched corruption exposure and visual
-tuning.\ev{REASSEMBLE follow-up experiments}{\EvidenceRef{E040}{}}
+tuning.\ev{REASSEMBLE follow-up experiments}{\EvidenceRef{E038}{}}
 
 \subsection{Longer Sensor Training and Alternative Sensor Representations}
 The longer-budget experiment retains the PatchTST inputs and architecture, permits up to
@@ -625,7 +623,7 @@ fixed-$C=1$ stacker combining long PatchTST and statistics reaches AP 0.4403, im
 statistics by 0.0110 $[.0054,.0181]$. This combines two representations of the same
 sensor modality. It qualifies the original budget-dependent neural result while
 preserving the strong engineered baseline.\ev{Matched sensor-budget
-experiment}{\EvidenceRef{E040}{}}
+experiment}{\EvidenceRef{E038}{}}
 
 \subsection{Alternative Visual Pooling}
 The boundary-aware experiment exactly reproduces the original whole-segment mean before
@@ -647,7 +645,7 @@ difference $+0.0461$ $[.0260,.0632]$, and AUROC difference $+0.0403$ $[.0291,.05
 This is a meaningful exploratory same-cohort result after representation selection, not
 independent confirmation or warning before the outcome. It was not combined with the
 anchored adaptive gate or the same-sensor hybrid.\ev{Visual pooling definitions and
-paired comparisons}{\EvidenceRef{E042}{}}
+paired comparisons}{\EvidenceRef{E040}{}}
 
 \subsection{Spatial-Encoder and Backbone Comparisons}
 A separate five-fold comparison tests CNN-only against CNN plus the spatial hybrid
@@ -657,7 +655,7 @@ and F2 AP 0.440764; hybrid-encoder visual AP is 0.171915 and F2 AP 0.424979, wit
 sensor AP 0.420926. The hybrid-minus-CNN F2 difference is $-0.015785$
 $[-0.024804,-0.005800]$. Executing more of the detector therefore worsens this
 particular comparison, rather than automatically improving representation
-quality.\ev{Matched spatial-component results}{\EvidenceRef{E039}{}}
+quality.\ev{Matched spatial-component results}{\EvidenceRef{E037}{}}
 
 The descriptors also differ in width: CNN multiscale pooling yields 896 features and the
 spatial hybrid-encoder path 768. Head size, active components and compute change with
@@ -665,7 +663,7 @@ that representation. The result cannot isolate an attention effect, and the atte
 spatial rather than across video time. Neither path executes the object-detection
 decoder. CNN-only extraction, spatial-encoder extraction, final-stage tuning and
 complete detector training remain distinct interventions.\ev{Architectures in the
-spatial-component comparison}{\EvidenceRef{E057}{}}
+spatial-component comparison}{\EvidenceRef{E055}{}}
 
 \subsection{Frozen Versus Fine-Tuned Visual Representations}
 An earlier four-arm comparison used sixteen or thirty-two frames, with frozen CNN
@@ -674,7 +672,7 @@ adapted arms jointly fitted the head and final CNN stage; earlier CNN weights an
 normalization buffers remained fixed. The unequal epoch budgets prevent attributing the
 contrast to adaptation alone. Table~\ref{tab:fourarm-visual-supplement} in
 Appendix~\ref{app:supplementary-results} gives the four results.\ev{Earlier four-arm
-comparison}{\EvidenceRef{E146}{}, \EvidenceRef{E147}{}}
+comparison}{\EvidenceRef{E144}{}, \EvidenceRef{E145}{}}
 
 The subsequent matched diagnostic uses thirty-two frames and two epochs for both arms
 across the full 4,530-action cohort and two seeds. It adds seventy-five fits and reuses
@@ -682,15 +680,15 @@ all twenty-five seed-42 fits from the earlier two-epoch fine-tuned32 arm: four i
 fits and one final fit for each of five outer folds. These reused fits are not an
 independent replication. Epoch matching does not imply compute matching. The follow-up
 sensor reference has pooled AP 0.4208, distinct from the core selected-$C$ baseline's
-0.4294.\ev{Matched comparison and fit lineage}{\EvidenceRef{E062}{},
-\EvidenceRef{E145}{}}
+0.4294.\ev{Matched comparison and fit lineage}{\EvidenceRef{E060}{},
+\EvidenceRef{E143}{}}
 
 For seed 42, visual AP changes from 0.2227 to 0.2306, but the difference 0.0079 has
 interval $[-.0173,.0332]$; F2 changes from 0.4394 to 0.4386. For seed 20261023, visual
 AP changes from 0.2168 to 0.2005, and F2 from 0.4352 to 0.4324. The corresponding paired
 intervals include zero. These results do not identify a unique cause for the absence of
 a fusion gain, such as calibration or out-of-fold mismatch; two seeds also do not fully
-characterize seed variability.\ev{Matched two-epoch diagnosis}{\EvidenceRef{E062}{}}
+characterize seed variability.\ev{Matched two-epoch diagnosis}{\EvidenceRef{E060}{}}
 
 The later twenty-epoch visual cap completes twenty inner and five outer fits for seed
 42. Pooled visual AP is 0.3121, while mean fold AP is 0.3086. The additional fifty fits
@@ -698,7 +696,7 @@ for two more seeds were not evaluated, leaving variability across seeds unmeasur
 for this configuration. Twenty-epoch F2 was not executed because its controller expected the
 larger bank. The retained checkpoint validator's twenty-five-source-epoch requirement
 conflicts with the twenty-epoch donor; that is an eligibility/configuration conflict,
-not evidence of failed training.\ev{Completed twenty-epoch fits}{\EvidenceRef{E059}{}}
+not evidence of failed training.\ev{Completed twenty-epoch fits}{\EvidenceRef{E057}{}}
 
 The hundred-epoch pilot restarts both arms from pretrained weights with fresh heads,
 rather than continuing the twenty-epoch run. Both arms execute one hundred epochs and
@@ -706,7 +704,7 @@ select epochs fourteen (frozen) and forty-seven (full). On the same 753-action
 assessment subset, visual AP is 0.1938/0.2126 and F2 AP 0.3350/0.3491. Full-minus-frozen
 F2 AP is 0.0141 $[-.0008,.0291]$, leaving the difference unresolved. Restricted
 historical F2 is 0.3672 on these same rows; its full-cohort AP is not the relevant
-comparator.\ev{Matched pilot assessment cohorts}{\EvidenceRef{E058}{}}
+comparator.\ev{Matched pilot assessment cohorts}{\EvidenceRef{E056}{}}
 
 \subsection{Adaptive-Fusion Extensions and Matched Controls}
 Anchored adaptation preserves the successful F2 link and learns bounded adjustments:
@@ -728,7 +726,7 @@ standard deviation favors augmented adaptation, 0.2081 versus augmented static 0
 but clean-trained F2 is 0.2246 under this later realization protocol. These selective
 wins do not establish general robustness, and none of the clean noninferiority claims
 passes the specified 0.01 margin.\ev{Anchored and augmented
-controls}{\EvidenceRef{E040}{}}
+controls}{\EvidenceRef{E038}{}}
 
 A later observable-quality pilot uses the selected frozen16 recipe on 753 actions, with
 77 failures in 26 recordings. Its historical static clean AP is 0.307929; the changed
@@ -751,7 +749,7 @@ after pooling repeated versions as independent subjects. Complete absence routes
 heads identically to the survivor, while both absent yields unavailable predictions.
 Quality can encode action content as well as error risk, and the different capacities
 plus absent quality-only/content-matched controls leave the reliability mechanism
-unresolved.\ev{Augmentation-matched quality-interaction results}{\EvidenceRef{E038}{}}
+unresolved.\ev{Augmentation-matched quality-interaction results}{\EvidenceRef{E036}{}}
 
 \subsection{Resource-Constrained Screens and Their Interpretation}
 The hundred-epoch pilot uses mutually disjoint roles: 1,752 training, 419 validation,
@@ -768,7 +766,7 @@ prevent treating these totals as intrinsic model costs. Removed derived caches a
 a cold reproduction differ from historical cached timing. The completed subset screen
 supplies a bounded paired comparison, while five-fold or multi-seed performance requires
 the corresponding predictions.\ev{Measured training and process
-times}{\EvidenceRef{E060}{}}\ev{Sample allocation by fitting role}{\EvidenceRef{E058}{}}
+times}{\EvidenceRef{E058}{}}\ev{Sample allocation by fitting role}{\EvidenceRef{E056}{}}
 
 \section{Synthesis, Remaining Questions, and Bridge to External Datasets}
 F2 improved failure ranking over sensor statistics, while its advantage over equal
@@ -794,9 +792,9 @@ compound selection bias: the choices may reflect that cohort's particular
 characteristics. A joint pipeline would need to be fixed before evaluation on untouched
 recordings. Natural faults and shifts, independently adjudicated labels, new seeds,
 predictions before action completion and uncertainty beyond the fixed fits remain
-open.\ev{Controlled follow-ups and uncertainty}{\EvidenceRef{E038}{},
-\EvidenceRef{E039}{}, \EvidenceRef{E040}{}, \EvidenceRef{E042}{},
-\EvidenceRef{E062}{}, \EvidenceRef{E113}{}}
+open.\ev{Controlled follow-ups and uncertainty}{\EvidenceRef{E036}{},
+\EvidenceRef{E037}{}, \EvidenceRef{E038}{}, \EvidenceRef{E040}{},
+\EvidenceRef{E060}{}, \EvidenceRef{E111}{}}
 
 The next study returns to manufacturing with native cutting-interval labels. MSM tests
 whether the representation and fusion procedures remain useful after dataset-specific

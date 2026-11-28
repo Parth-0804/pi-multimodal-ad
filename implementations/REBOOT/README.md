@@ -19,7 +19,9 @@ Each study's frozen protocol, fit manifests and assessment records determine wha
 
 ## Thesis and evidence
 
-Appendix G research chronology; existing evidence E118. The [V2 decision](results/07_research_decision/REBOOT_RESEARCH_DECISION_V2.md) supersedes the earlier pilot's conditional feasibility finding for the requested supervised comparison: target and independence gates remain unsatisfied. Source/label/timing diagnostics were executed; model training, fusion assessment and robustness evaluation were not. The prepared independent visibility review was pending at that record's snapshot.
+Evidence IDs below follow the researcher-requested 28 November renumbering. The [complete mapping](../../00_thesis_writing_tracking/final_thesis_prep/evidence_publication_20261128/manifest.json) relates them to the prior IDs retained in historical records.
+
+Appendix G research chronology; current evidence E116. The [V2 decision](results/07_research_decision/REBOOT_RESEARCH_DECISION_V2.md) supersedes the earlier pilot's conditional feasibility finding for the requested supervised comparison: target and independence gates remain unsatisfied. Source/label/timing diagnostics were executed; model training, fusion assessment and robustness evaluation were not. The prepared independent visibility review was pending at that record's snapshot.
 
 The [source audit](results/00_dataset_overview/REBOOT_SOURCE_AUDIT.md) and [specification](results/00_dataset_overview/DATASET_SPECIFICATION.json) record release provenance and access, available observations and native annotations. Use the [thesis-to-code map](../../docs/THESIS_CODE_MAP.md) for source and decision links rather than interpreting portable model proposals as completed experiments.
 

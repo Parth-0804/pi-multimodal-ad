@@ -19,7 +19,9 @@ Each study's frozen protocol, fit manifests and assessment records determine wha
 
 ## Thesis and evidence
 
-Chapter 5; existing evidence E020–E037 and added resource entries E124–E133. Start with the [complete investigation-to-code mapping](docs/studies/THESIS_CODE_TRACEABILITY.md), which links target v1/v2/v3, visual regression/detection/multitask paths, fixed-split and principal LOEO sensor fusion, and supplementary or unexecuted work. The principal saved-prediction comparison does not establish improvement over the training-mean reference. Photographs used to define supervision do not make the deployed sensor predictor a visual–sensor model. Preserve E027's output-directory correction and the unresolved fixed-fusion/LOEO source lineage.
+Evidence IDs below follow the researcher-requested 28 November renumbering. The [complete mapping](../../00_thesis_writing_tracking/final_thesis_prep/evidence_publication_20261128/manifest.json) relates them to the prior IDs retained in historical records.
+
+Chapter 5; current evidence E018–E035 and added resource entries E122–E131. Start with the [complete investigation-to-code mapping](docs/studies/THESIS_CODE_TRACEABILITY.md), which links target v1/v2/v3, visual regression/detection/multitask paths, fixed-split and principal LOEO sensor fusion, and supplementary or unexecuted work. The principal saved-prediction comparison does not establish improvement over the training-mean reference. Photographs used to define supervision do not make the deployed sensor predictor a visual–sensor model. Preserve E025's output-directory correction and the unresolved fixed-fusion/LOEO source lineage.
 
 Dataset source/access and expected retained locations are recorded in [dataset description](experiments/dataset_description/README.md) and [raw-data recovery](docs/RAW_DATA_RECOVERY.md); recovery is not authorized by this guide.
 

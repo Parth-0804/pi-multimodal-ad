@@ -28,7 +28,7 @@ encoder\\\bottomrule
 \end{tabular}
 \displaynote{The reported dimensions apply to the implementation paths inspected.}
 \end{table}
-\ev{Executed component map}{\EvidenceRef{E110}{}}
+\ev{Executed component map}{\EvidenceRef{E108}{}}
 
 The PHM scalar-image head receives extraction latency alongside pooled image features.
 The dependence of latency on the computing environment limits attribution of the
@@ -47,8 +47,8 @@ ImageNet mean/standard-deviation normalization is disabled
 (\texttt{do\_normalize=false}), even though the configuration lists mean and standard-deviation
 values. This preprocessing applies to the inspected REASSEMBLE and ViFailback
 paths; the PHM Ultralytics detector uses its separate implementation.\ev{Pinned processor
-and checkpoint identity}{\EvidenceRef{E148}{}, \EvidenceRef{E151}{}}\ev{ViFailback
-processor reuse}{\EvidenceRef{E094}{}, \EvidenceRef{E097}{}}
+and checkpoint identity}{\EvidenceRef{E146}{}, \EvidenceRef{E149}{}}\ev{ViFailback
+processor reuse}{\EvidenceRef{E092}{}, \EvidenceRef{E095}{}}
 
 \section{Temporal Representations}
 The PHM implementation defines a compact channel-independent PatchTST-style regressor
@@ -59,7 +59,7 @@ sorted-profile head answer different target questions. The latter uses a base an
 positive softplus increments to enforce ascending order; this guarantees an
 order-statistic profile but discards tooth identity. The monotonicity does not
 demonstrate that the estimated profile matches actual damage.\ev{PHM temporal
-configuration}{\EvidenceRef{E031}{}}
+configuration}{\EvidenceRef{E029}{}}
 
 The REASSEMBLE temporal branch follows a separate configuration: patch length 32, stride
 sixteen, width 32, two layers, four heads, feed-forward width 64 and dropout 0.1. It
@@ -70,7 +70,7 @@ relevant interface, but that does not establish attention suppression of every m
 token. Missing values are filled under training-only normalization. The source-specific
 mask semantics therefore remain part of the implementation limitation rather than being
 inferred from the model family \citep{Nie2023PatchTST}.\ev{REASSEMBLE temporal
-recipe}{\EvidenceRef{E053}{}}
+recipe}{\EvidenceRef{E051}{}}
 
 \section{Heads, Fitting and Calibration}
 The original visual head is a new 896--128--1 network with ReLU and dropout 0.1,
@@ -79,7 +79,7 @@ candidates are five and ten; temporal candidates are three and six. Both use Ada
 learning rate 0.001, weight decay 0.001 and batch size 128. These candidates constitute
 the recorded selection procedure, not a broad optimizer search. Logistic regression
 separately compares $C\in\{0.1,1,10\}$ under inner-fold selection.\ev{Original branch
-configuration}{\EvidenceRef{E053}{}}
+configuration}{\EvidenceRef{E051}{}}
 
 Branch calibration used an unweighted sigmoid logistic fit to the selected inner
 out-of-fold scores. The outer assessment labels were withheld from calibration. The
@@ -103,7 +103,7 @@ gates instead allocate weights over branch logits. Their candidates have hidden 
 eight or sixteen and forty epochs. Action-only, quality-only and combined contexts
 remain different models, as do a static gate with context held constant and a gate
 exposed to corrupted OOF records.\ev{Fusion and gate
-configurations}{\EvidenceRef{E054}{}}
+configurations}{\EvidenceRef{E052}{}}
 
 With one branch available, the explicitly masked convex-logit gate gives that branch a
 weight of one. The resulting prediction follows from the specified masking rule. When
@@ -115,11 +115,11 @@ probability coefficients by bounded context-dependent factors, with a zero-initi
 adaptive output. It is not the same convex logit gate and need not have the same
 calibration or threshold policy. Appropriate static and exposure-matched controls are
 necessary to identify what, if anything, adaptation adds.\ev{Anchored
-implementation}{\EvidenceRef{E063}{}}
+implementation}{\EvidenceRef{E061}{}}
 
 \section{External Adaptations}
 MSM and HANDOVER use the shared frozen visual backbone with a newly trained head and a
-dataset-specific numerical classifier.\ev{External model register}{\EvidenceRef{E108}{}}
+dataset-specific numerical classifier.\ev{External model register}{\EvidenceRef{E106}{}}
 
 MSM fixes the HGB sensor control at 100 iterations, learning rate 0.1, fifteen maximum
 leaf nodes, minimum leaf size ten and L2 regularization 1.0, with early stopping
@@ -129,8 +129,8 @@ training-only standardization, balanced L2 logistic regression with $C=1$, the L
 solver and at most 2,000 iterations. Original F2 uses the same solver, iteration limit
 and $C$, but is unweighted and fits a new intercept and two coefficients to clean
 group-OOF branch probabilities. The primary evaluation fits no separate calibrator and
-uses a fixed threshold of 0.5.\ev{Fixed MSM model and fusion configuration}{\EvidenceRef{E068}{},
-\EvidenceRef{E149}{}, \EvidenceRef{E150}{}}
+uses a fixed threshold of 0.5.\ev{Fixed MSM model and fusion configuration}{\EvidenceRef{E066}{},
+\EvidenceRef{E147}{}, \EvidenceRef{E148}{}}
 
 ViFailback adds pooling across three camera views. Its matched study compares frozen
 generic and transferred CNN weights with a fresh target head in each case. Scalers,
@@ -139,5 +139,5 @@ where specified. FROZEN20 and DONOR20 provide complete three-seed, three-outer-f
 assessments. FULL20 covers seed~42, outer fold~0 and its three inner fits; FULL100 is a
 single-role pilot alongside FROZEN100 and DONOR100. Missing, degraded and temporally
 shifted input conditions remain unmeasured. Table~\ref{tab:vif-status} gives the exact
-fit counts and assessment scope.\ev{Completed ViFailback comparison scope}{\EvidenceRef{E115}{},
-\EvidenceRef{E116}{}}
+fit counts and assessment scope.\ev{Completed ViFailback comparison scope}{\EvidenceRef{E113}{},
+\EvidenceRef{E114}{}}
