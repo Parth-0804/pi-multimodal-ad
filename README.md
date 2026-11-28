@@ -2,7 +2,7 @@
 
 Master’s thesis research on visual and numerical sensor representations, multimodal fusion, and condition/failure monitoring. Successful, negative, inconclusive and unfinished investigations retain their separate tasks and evaluation limits.
 
-**Academic review:** [working manuscript](00_thesis_writing_tracking/Thesis/LaTeX_Project/README.md) · [preserved 26 November review PDF](00_thesis_writing_tracking/review_submissions/2026-11-26/README.md) · [thesis-to-code map](docs/THESIS_CODE_MAP.md). Abstract and Chapters 1–4 were submitted for review; Chapters 5–8 await their chapter-specific writing review. Submitted snapshots remain separate from the evolving manuscript.
+**Academic review:** [working manuscript](00_thesis_writing_tracking/final_thesis_prep/LaTeX_Project/README.md) · [preserved 26 November review PDF](00_thesis_writing_tracking/review_submissions/2026-11-26/README.md) · [thesis-to-code map](docs/THESIS_CODE_MAP.md). The status recorded on 26 November was that Abstract and Chapters 1–4 had been submitted for review and Chapters 5–8 awaited their chapter-specific writing review. That status predates later source edits; submitted snapshots remain separate from the evolving manuscript.
 
 ## Objective and research journey
 
@@ -12,7 +12,7 @@ The work expanded to gear-condition proxies, robotic action outcomes and milling
 
 ## Methodology
 
-The [literature review](00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/02_literature_review.tex) derives **R1** target validity and modality correspondence; **R2** representation suitability under explicit fitting conditions; **R3** incremental fusion value under comparable conditions; **R4** reliability-aware comparison; and **R5** methodological validity and bounded cross-dataset interpretation.
+The [literature review](00_thesis_writing_tracking/final_thesis_prep/LaTeX_Project/chapters/02_literature_review.tex) derives **R1** target validity and modality correspondence; **R2** representation suitability under explicit fitting conditions; **R3** incremental fusion value under comparable conditions; **R4** reliability-aware comparison; and **R5** methodological validity and bounded cross-dataset interpretation.
 
 Comparisons cover engineered sensor features, temporal encoders, pretrained visual representations, distinct fine-tuning regimes, conventional references, feature fusion and probability/logit fusion. Study-specific grouped partitions, training-side selection/calibration, mandatory out-of-fold gates, saved predictions and uncertainty bound the evidence. Separately fitting an architecture on several datasets is not zero-shot generalization; completed-action classification is not online early warning.
 
@@ -30,7 +30,7 @@ These summaries are REPORTED from the linked study records; independent PHM save
 
 ## Navigation and access
 
-Follow the [thesis-to-code map](docs/THESIS_CODE_MAP.md) from chapter sections to implementation, configuration, evaluation and results. [Appendix F](00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/F_reproducibility.tex) remains the comprehensive evidence register. The [repository map](REPO_MAP.md) locates manuscript history, [scientific verification](00_thesis_writing_tracking/scientific_cross_mapping_20261125/README.md), dataset implementations and cross-study synthesis.
+Follow the [thesis-to-code map](docs/THESIS_CODE_MAP.md) from chapter sections to implementation, configuration, evaluation and results. [Appendix F](00_thesis_writing_tracking/final_thesis_prep/LaTeX_Project/appendices/F_reproducibility.tex) remains the comprehensive evidence register. The [repository map](REPO_MAP.md) locates manuscript history, [scientific verification](00_thesis_writing_tracking/scientific_cross_mapping_20261125/README.md), dataset implementations and cross-study synthesis.
 
 Raw datasets, large checkpoints/caches and copyright-restricted publications are excluded from the proposed review publication; existing tracked assets still require review. [Dataset guides](implementations/README.md) link source/version records, native locations and acquisition requirements; PHM has [recovery instructions](implementations/PHM2026/docs/RAW_DATA_RECOVERY.md). Obtain external resources under their official access terms. Historical paths/endpoints and payload availability require checking. The [consolidation/publication records](00_thesis_writing_tracking/consolidation_20261126/) identify retained hashes, exclusions and pending permissions.
 

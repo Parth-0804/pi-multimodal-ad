@@ -1,5 +1,16 @@
-<!-- Canonical manuscript after approved consolidation, 2026-11-26. -->
-# Authoritative thesis manuscript
+# Historical thesis project
+
+Use [the sole active manuscript](../../final_thesis_prep/LaTeX_Project/main.tex)
+and its [current project guide](../../final_thesis_prep/LaTeX_Project/README.md).
+This directory retains historical figures, bibliographies, build outputs and supporting
+material. Its redundant loose manuscript `.tex` files were removed during the approved
+28 November 2026 cleanup. Recover an earlier file with
+`git show a3c4173990a36351b3ecd68cc30a9c20dffa0ce7:<repository-relative-path>`.
+
+The notes below describe the 26–27 November project and builds. Their former entry
+points, editing instructions and PDF status are historical, not current navigation.
+
+## Project notes recorded on 26–27 November 2026
 
 Updated 26 November 2026 with the author's Abstract and Chapters 1–4, the Chapter 1–2 citation corrections, and the integrated figures and tables. The accompanying delivery package contains the full thesis, the abstract-through-conclusion edition, and `Manav_review_Abstract_Chapters_1-4.pdf`.
 

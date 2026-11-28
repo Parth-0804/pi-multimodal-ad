@@ -1,9 +1,10 @@
 # Thesis revision protocol and source inventory
 
-The sole working manuscript is [../LaTeX_Project](../LaTeX_Project/README.md).
+The sole active manuscript is [final_thesis_prep/LaTeX_Project/main.tex](../../final_thesis_prep/LaTeX_Project/main.tex).
 Read [THESIS_STATE.md](THESIS_STATE.md) for current progress and review status.
-The Abstract and Chapters 1–4 were submitted to Manav on 26 November 2026
-(REPORTED by the researcher); Chapters 5–8 await their individual writing reviews.
+The submission status recorded on 26 November 2026 was: Abstract and Chapters 1–4
+submitted to Manav (REPORTED by the researcher), with Chapters 5–8 awaiting their
+individual writing reviews. This dated status does not describe later source edits.
 The earlier v0.3 pipeline remains a source of editorial safeguards, not a request
 to restart its initial diagnosis or discard the later revisions.
 
@@ -19,11 +20,11 @@ to restart its initial diagnosis or discard the later revisions.
 
 | Source | Identity and use |
 | --- | --- |
-| [Current project](../LaTeX_Project/README.md) | Verified copy of the latest applied revision; full, main-chapter and Manav review entry points share sources. |
+| [Current project](../../final_thesis_prep/LaTeX_Project/README.md) | Sole active source; `main.tex` builds the full thesis. Earlier review roots were removed. |
 | [Submitted review source](../../review_submissions/2026-11-26/README.md) | Preserved 71-page combined PDF from which the submitted extracts were made. |
-| [November 20 baseline source](../../scientific_cross_mapping_20261125/applied_revision_01/baseline/LaTeX_Project/) | All 56 files match the replaced old canonical tree; hashes are in the migration receipt. |
+| [November 20 baseline source](../../scientific_cross_mapping_20261125/applied_revision_01/baseline/LaTeX_Project/) | The consolidation receipt recorded all 56 files matching the then-replaced canonical tree. Supporting assets remain; removed manuscript sources are recoverable from the cleanup checkpoint. |
 | [Original full PDF](../PDFs/DRAFT_Thesis_2026-11-20_FULL.pdf) and [evidence bundle](../Release/Thesis_2026-11-20_v2_LaTeX_and_Evidence.zip) | Historical November 20 release, not the current manuscript. |
-| [Complete applied revision](../../scientific_cross_mapping_20261125/applied_revision_01/) | Retained snapshots, diffs, manifests, checks and build artifacts. |
+| [Historical applied revision](../../scientific_cross_mapping_20261125/applied_revision_01/) | Retained supporting assets, diffs, manifests, checks and build artifacts; removed loose manuscript sources are recoverable from the cleanup checkpoint. |
 | [Thesis-to-code map](../../../docs/THESIS_CODE_MAP.md) | Actual implementation, evaluation and result locations; Appendix F identifiers remain the common index. |
 | [Reference records](../References/literature_review/), [citation index](../References/CITATION_PDFS.csv) and [PDF provenance](../References/PDF_PROVENANCE.csv) | Existing literature audit and source identities; local availability does not imply redistribution permission. |
 

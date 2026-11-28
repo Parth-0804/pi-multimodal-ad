@@ -2,9 +2,10 @@
 
 Prepared on 27 November 2026 from the current working-tree manuscript in
 `00_thesis_writing_tracking/Thesis/LaTeX_Project`, including its uncommitted edits.
-This is the requested preparation copy for a new chat. Existing repository
-navigation still identifies the original project as the canonical manuscript;
-creating this folder does not change that navigation or approve the thesis.
+Since the researcher-authorized cleanup on 28 November 2026, this is the sole active
+manuscript. Use `LaTeX_Project/main.tex`; earlier review/preview roots and redundant
+loose manuscript copies were removed. Figure sources and supporting assets remain.
+Source promotion does not imply thesis approval or a new compiled PDF.
 
 ## Start here
 
@@ -19,6 +20,8 @@ creating this folder does not change that navigation or approve the thesis.
 - [Front-matter update](changes/frontmatter_20261127_01/README.md): supplied title
   page and declaration, acknowledgements, integration diff and build checks.
 - [Source Git status](SOURCE_GIT_STATUS.txt): changes already present before copying.
+- [Source cleanup record](SOURCE_CLEANUP_20261128.json): removed paths and hashes,
+  checkpoint recovery for 423 files, and the separate local archive for 11 ignored files.
 
 `LaTeX_Project/` includes all source and supporting files outside `build/` and
 `chapters_pdfs/`, including editable figures, bibliographies, evidence/literature
@@ -28,10 +31,9 @@ for use. `context/` contains selected dated writing/review records.
 
 The initial copy identities are preserved in `COPY_MANIFEST.json`. The prepared
 `main.tex` now includes the supplied front matter; its before/after identities are
-recorded in the front-matter update. Original source files remain unchanged.
-The copied project README, context notes,
-scripts and evidence indexes retain their original wording and original path
-conventions. For inherited links outside the copied project, use the original
+recorded in the front-matter update. The initial copy left original files unchanged;
+later source edits and cleanup have their own scope. Dated context notes, scripts and
+evidence indexes retain their original path conventions. For inherited links outside the copied project, use the original
 source path in the manifest; the links in this README and the handoff are the
 navigation for this preparation folder. Copied historical instructions and saved
 commands do not authorize new experiments or overwrite current repository policy.
@@ -47,19 +49,18 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error -outdir=build/final_pre
 
 The initial copy task did not compile the thesis. The later front-matter update
 records its own compilation and preview checks in the linked update report. The
-[current compiled PDF](LaTeX_Project/build/frontmatter_20261127_01/main.pdf)
-has 194 pages. Older
-PDFs must not be treated as renderings of the current prepared source. The DRAFT
+[front-matter build recorded on 27 November](LaTeX_Project/build/frontmatter_20261127_01/main.pdf)
+had 194 pages. It predates later source edits and must not be treated as a rendering
+of the current manuscript. The DRAFT
 watermark remains enabled. The supplied title page and declaration retain their
 `xx November 2026` submission/signing placeholders; fill those before submission.
 
 The full edition uses this order: title page, declaration, abstract,
 acknowledgements, contents, lists of figures/tables, then Chapters 1–10.
 The declaration is unnumbered; Roman page numbering starts at the abstract.
-Acknowledgements appear in the contents. The review editions keep their existing
-abstract/chapter scope. This ordering is an editorial choice, not a verified
-university requirement. The current abstract leaves its keywords on a second
-page; this inherited layout issue is recorded for the final editing pass.
+Acknowledgements appear in the contents. This ordering is an editorial choice, not a
+verified university requirement. The 27 November front-matter build placed the keywords
+on a second abstract page; its layout observation is historical until a new build.
 
 ## Repository evidence and boundaries
 
@@ -69,4 +70,5 @@ Use the current [repository instructions](../../AGENTS.md),
 [output policy](../../docs/output_policy.md) and
 [active scope](../../docs/active_scope.md). Experiment artifacts remain in their
 existing locations; no datasets, environments, checkpoints or downloaded
-publications were copied. Nothing was staged, committed or pushed.
+publications were copied in the initial preparation task. Recovery of removed loose
+manuscript files is documented in the [current state](../Thesis/revision_pipeline/THESIS_STATE.md).

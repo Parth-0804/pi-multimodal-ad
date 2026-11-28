@@ -1,9 +1,16 @@
 # New-chat handoff
 
-The complete preparation project is [LaTeX_Project](LaTeX_Project/main.tex).
+The sole active manuscript is [LaTeX_Project/main.tex](LaTeX_Project/main.tex),
+following the researcher-authorized cleanup on 28 November 2026.
+Use branch `main` for subsequent thesis editing after the cleanup merge.
 Its contents were copied from the current working tree, rather than an older
 release, external chapter upload or historical revision snapshot. Original files
-were preserved. The copy manifest identifies the initial source snapshot.
+were preserved at initial copy time. Later cleanup removed redundant loose manuscript
+`.tex` files and review/preview roots while retaining figure sources and support.
+The [source cleanup record](SOURCE_CLEANUP_20261128.json) lists removed paths and
+hashes, checkpoint recovery for 423 files and the separate local archive for 11 ignored
+files. The [current state](../Thesis/revision_pipeline/THESIS_STATE.md) describes recovery;
+the copy manifest identifies the initial source snapshot.
 The subsequent [front-matter update](changes/frontmatter_20261127_01/README.md)
 adds the supplied title/declaration pages and acknowledgements to the prepared
 `main.tex`, retaining its own before/after identities and build record.
@@ -26,9 +33,6 @@ adds the supplied title/declaration pages and acknowledgements to the prepared
 | File | Purpose |
 | --- | --- |
 | [main.tex](LaTeX_Project/main.tex) | Complete thesis. |
-| [review.tex](LaTeX_Project/review.tex) | Abstract and Chapters 1–10. |
-| [manav_review.tex](LaTeX_Project/manav_review.tex) | Abstract and Chapters 1–4 review edition. |
-| [chapter-preview.tex](LaTeX_Project/chapter-preview.tex) | Fast preview with cached citation/reference forms; see reported limitation below. |
 | [Project instructions](LaTeX_Project/AGENTS.md) | Figure style, compilation and preview requirements for future figure edits. |
 | [Evidence index](LaTeX_Project/tables/evidence_source_index.csv) | Existing evidence identities and source navigation. |
 
@@ -75,11 +79,11 @@ The full edition includes the supplied title page and declaration before the
 abstract, and the author's acknowledgements between the abstract and contents.
 The declaration wording and acknowledgement prose are preserved as supplied.
 Submission/signing dates remain `xx November 2026`; the signature line is blank.
-No university-template or declaration-compliance check is implied. Review
-editions remain scoped to the abstract and their selected chapters. The full
-prepared thesis now compiles to 194 pages; PDF pages 1–6 were visually inspected.
-The abstract's keywords occupy a separate page (Roman ii), which remains a
-layout item for the final editing pass. No abstract prose or spacing was changed.
+No university-template or declaration-compliance check is implied. The 27 November
+front-matter build had 194 pages; PDF pages 1–6 were visually inspected in that pass.
+That build predates later source edits and does not validate the current manuscript.
+The abstract's keywords occupied a separate page (Roman ii) in that build. No abstract
+prose or spacing was changed during that front-matter pass.
 
 ## Proposed first completion pass
 
@@ -88,7 +92,7 @@ latest applicable feedback. Check the current title, university template,
 submission date, required declarations and AI disclosure with the researcher.
 Resolve citation and evidence gaps without inventing sources or results. Maintain
 a single working project for the session, then compile and visually inspect the
-full thesis and required review editions after approved writing changes. Preserve
+full thesis after approved writing changes. Preserve
 research scope, negative/incomplete studies and methodological limitations.
 
 These are proposed next steps, not completed thesis review or academic sign-off.
