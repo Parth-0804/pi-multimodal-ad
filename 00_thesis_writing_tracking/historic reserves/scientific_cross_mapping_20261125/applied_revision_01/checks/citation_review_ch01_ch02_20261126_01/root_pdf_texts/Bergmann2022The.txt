@@ -1,0 +1,775 @@
+The MVTec 3D-AD Dataset for Unsupervised 3D Anomaly Detection and
+                          Localization
+
+                     Paul Bergmann1,2                 a
+                                                          , Xin Jin3       b
+                                                                               , David Sattlegger1              c
+                                                                                                                    and Carsten Steger1                 d
+                                                              1 MVTec Software GmbH, Germany
+                                                          2 Technical University of Munich, Germany
+                                                          3 Karlsruhe Institute of Technology, Germany
+
+
+
+
+Keywords:            Anomaly Detection, Dataset, Unsupervised Learning, Visual Inspection, 3D Computer Vision.
+
+Abstract:            We introduce the first comprehensive 3D dataset for the task of unsupervised anomaly detection and localization.
+                     It is inspired by real-world visual inspection scenarios in which a model has to detect various types of defects
+                     on manufactured products, even if it is trained only on anomaly-free data. There are defects that manifest
+                     themselves as anomalies in the geometric structure of an object. These cause significant deviations in a 3D
+                     representation of the data. We employed a high-resolution industrial 3D sensor to acquire depth scans of 10
+                     different object categories. For all object categories, we present a training and validation set, each of which
+                     solely consists of scans of anomaly-free samples. The corresponding test sets contain samples showing various
+                     defects such as scratches, dents, holes, contaminations, or deformations. Precise ground-truth annotations are
+                     provided for every anomalous test sample. An initial benchmark of 3D anomaly detection methods on our
+                     dataset indicates a considerable room for improvement.
+
+
+
+1        INTRODUCTION                                                                      system can detect structures it has not seen during
+                                                                                           training. This problem has attracted significant atten-
+The increased availability and precision of modern 3D                                      tion for color or grayscale images. Curiously, the field
+sensors has led to significant advances in the field of                                    of unsupervised anomaly detection is comparatively
+3D computer vision. The research community has used                                        unexplored in the 3D domain. We believe that a key
+these devices to create datasets for a wide variety of                                     reason for this is the unavailability of suitable datasets.
+real-world problems, such as point cloud registration                                          To fill this gap and spark further interest in the de-
+(Zeng et al., 2017), classification (Wu et al., 2015), 3D                                  velopment of new methods, we introduce a real-world
+semantic segmentation (Chang et al., 2015; Dai et al.,                                     dataset for the task of unsupervised 3D anomaly de-
+2017), 3D object detection (Armeni et al., 2016), and                                      tection and localization. Given a set of exclusively
+rigid pose estimation (Drost et al., 2017; Hodaň et al.,                                  anomaly-free 3D scans of an object, the task is to
+2020). The development of new and improved algo-                                           detect and localize various types of anomalies. Our
+rithms relies on the availability of such high quality                                     dataset is inspired by industrial inspection scenarios.
+datasets.                                                                                  This application has been identified as an important
+    A task of particular importance in many applica-                                       use case for the task of unsupervised anomaly detec-
+tions is to recognize anomalous data that deviates from                                    tion because the nature of all possible defects that may
+what a model has previously observed during training.                                      occur in practice is often unknown. In addition, defec-
+In manufacturing, for example, these kinds of methods                                      tive samples for training can be difficult to acquire and
+can be used to detect defects during inference, while                                      precise labeling of defects is a laborious task. Figure 1
+only being trained on anomaly-free samples. In au-                                         shows two prototypical samples of our new dataset.
+tonomous driving, it is safety critical that an intelligent                                Our main contributions are as follows:
+                                                                                             • We introduce the first comprehensive dataset for
+     a     https://orcid.org/0000-0002-4458-3573                                               unsupervised anomaly detection and localization
+     b     https://orcid.org/0000-0002-2078-8056                                               in three-dimensional data. It consists of 4147 high-
+     c     https://orcid.org/0000-0002-8336-4672                                               resolution 3D point cloud scans from 10 real-world
+     d     https://orcid.org/0000-0003-3426-1703
+
+
+202
+Bergmann, P., Jin, X., Sattlegger, D. and Steger, C.
+The MVTec 3D-AD Dataset for Unsupervised 3D Anomaly Detection and Localization.
+DOI: 10.5220/0010865000003124
+In Proceedings of the 17th International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications (VISIGRAPP 2022) - Volume 5: VISAPP, pages
+202-213
+ISBN: 978-989-758-555-5; ISSN: 2184-4321
+Copyright c 2022 by SCITEPRESS – Science and Technology Publications, Lda. All rights reserved
+                                                The MVTec 3D-AD Dataset for Unsupervised 3D Anomaly Detection and Localization
+
+
+
+
+Figure 1: Two samples representing the category potato of our new dataset. The sample on the left is anomaly-free while the
+one on the right contains a nail stuck through the surface of the potato. We depict the point clouds overlaid with the associated
+color values. For the anomalous sample, we additionally display the annotated ground truth.
+
+    object categories. While the training and validation               The aforementioned datasets have led to the de-
+    sets only contain anomaly-free data, the samples               velopment of numerous methods that are intended to
+    in the test set contain various types of anomalies.            operate on 2D color images. A popular approach
+    Precise ground truth annotations are provided for              (Bergmann et al., 2020; Cohen and Hoshen, 2021;
+    each anomaly.1                                                 Salehi et al., 2021; Wang et al., 2021) is to model the
+ • We evaluate current methods that were specifically              distribution of descriptors extracted from neural net-
+   designed for unsupervised 3D anomaly localiza-                  works pretrained on large-scale datasets like ImageNet
+   tion. Our initial benchmark reveals that existing               (Krizhevsky et al., 2012). Networks that are pretrained
+   methods do not perform well on our dataset and                  in such a way expect RGB images as input. The re-
+   that there is considerable room for future improve-             sulting methods are therefore ill-suited to process 2D
+   ment.                                                           representations of 3D data, such as depth images, and
+                                                                   cannot be easily transferred to 3D anomaly detection.
+                                                                   A different line of work uses generative models such as
+                                                                   convolutional autoencoders (AEs) (Masci et al., 2011)
+2    RELATED WORK                                                  or generative adversarial networks (GANs) (Goodfel-
+                                                                   low et al., 2014) to detect anomalies by evaluating a
+Anomaly Detection in 2D. For two-dimensional im-                   pixelwise reconstruction error. Schlegl et al. (2019)
+age data, numerous synthetic and real-world bench-                 introduce f-AnoGAN, where a GAN is trained on the
+mark datasets exist. They cover various domains,                   anomaly-free training data. In a second step, an en-
+e.g., autonomous driving (Blum et al., 2019), video                coder network is trained to output latent samples that
+anomaly detection (Li et al., 2013; Lu et al., 2013;               reconstruct the respective input images when passed
+Sultani et al., 2018), or industrial inspection scenarios.         to the generator of the GAN. Similarly, methods based
+    Since we propose a new industrial inspection                   on autoencoders (Bergmann et al., 2019b; Park et al.,
+dataset, we focus our summary on existing datasets                 2020) first encode input images with a low dimensional
+from this domain. The task is to detect and localize               latent sample, and then decode that sample to minimize
+defects on manufactured products when only a set of                a pixelwise reconstruction error. For both approaches,
+anomaly-free training images is available. Huang et al.            anomaly scores are computed by a pixelwise compar-
+(2018) present a surface inspection dataset of 1344                ison of an input image with its reconstruction. Since
+images of magnetic tiles. Test images contain various              these methods do not require a domain-specific pre-
+types of anomalies, such as cracks or uneven areas.                training, they can be adapted to other two-dimensional
+Similar datasets exist that focus on the inspection of             representations, such as depth images.
+a single repetitive two-dimensional texture (Carrera
+et al., 2017; Song and Yan, 2013; Wieler and Hahn,
+                                                                   Anomaly Detection in 3D. To date, there exists no
+2007). Bergmann et al. (2019a, 2021) introduce a more
+                                                                   comprehensive 3D dataset designed explicitly for the
+comprehensive dataset that contains a total of 5354 im-
+                                                                   unsupervised detection and localization of anomalies.
+ages showing instances of five texture and ten object
+                                                                   Existing methods for this problem are evaluated on
+categories. The test set contains 73 distinct types of
+                                                                   two medical benchmarks that were originally intro-
+anomalies, such as contaminations or scratches on the
+                                                                   duced for the supervised detection of diseases in brain
+manufactured products.
+                                                                   magnetic resonance (MR) scans. Menze et al. (2015),
+    1 The dataset will be made publicly available at               Bakas et al. (2017), and Baid et al. (2021) present the
+https://www.mvtec.com/company/research/datasets.                   multimodal brain tumor image segmentation bench-
+
+
+                                                                                                                            203
+VISAPP 2022 - 17th International Conference on Computer Vision Theory and Applications
+
+
+
+
+Figure 2: Examples for all 10 dataset categories of the MVTec 3D-AD dataset. For each category, the left column shows an
+anomaly-free point cloud with RGB values projected onto it. The second column shows a close-up view of an anomalous test
+sample. Anomalous points are highlighted in the third column in red. Note that the background planes were removed for better
+visibility.
+
+mark (BRATS). It consists of 65 multi-contrast MR                   erator. During inference, anomaly scores are derived
+scans from glioma patients. Each sample is provided                 for each voxel element by comparing the input voxel
+as a dense voxel grid and tumors were annotated by                  to the reconstructed one. Bengs et al. (2021) present
+radiologists in each image slice of the scan. Similarly,            an autoencoder-based method that also operates on
+Liew et al. (2018) provide the Anatomical Tracings of               voxel grids. A variational autoencoder is trained to
+Lesions After Stroke (ATLAS) dataset. It consists of                reconstruct voxel grids through a low-dimensional la-
+304 MR scans with corresponding ground truth anno-                  tent variable. Anomaly scores are again derived by a
+tations of brain lesions. Both these datasets provide               per-voxel comparison of the input to its reconstruction.
+3D information by stacking multiple grayscale images
+to form a dense voxel grid. Hence, the nature of this
+data is fundamentally different from the one in our                 3     DESCRIPTION OF THE
+dataset that describes the geometric surface of objects.
+    Due to the lack of more diverse 3D datasets for                       DATASET
+unsupervised anomaly detection, there exist only very
+few methods designed for this task. Only recently,                  The MVTec 3D-AD dataset consists of 4147 scans
+Simarro Viana et al. (2021) introduced an extension                 acquired by a high-resolution industrial 3D sensor. For
+of f-AnoGAN to voxel data. As for the 2D case, a                    each of the 10 object categories, a set of anomaly-free
+GAN is trained to generate voxel grids that mimic the               scans is provided for model training and validation.
+training distribution using 3D convolutions. Subse-                 The test set contains both, anomaly-free scans as well
+quently, an encoder network is trained that maps input              as object samples that contain various types of anoma-
+samples to the corresponding latent samples of the gen-             lies, such as scratches, dents, or contaminations. The
+                                                                    defects were devised and fabricated as they would
+
+
+204
+                                             The MVTec 3D-AD Dataset for Unsupervised 3D Anomaly Detection and Localization
+
+
+
+
+Table 1: Statistical overview of the MVTec 3D-AD dataset. For each category, we list the number of training, validation,
+and test images. Test images are split into anomaly-free images and images containing anomalies. We report the number of
+different defect types, the number of annotated regions, and the size of the (x, y, z) images for each category.
+                                         # Test       # Test       # Defect    # Annotated        Image size
+          Category     # Train   # Val
+                                         (good)    (anomalous)       types       regions       (width × height)
+            bagel       244      22        22           88             4           112            800 × 800
+         cable gland    223      23        21           87             4            90            400 × 400
+           carrot       286      29        27          132             5           159            800 × 800
+           cookie        210     22        28          103             4           128            500 × 500
+           dowel         288      34       26          104              4          131            400 × 400
+            foam         236      27       20           80              4          115            900 × 900
+           peach        361      42        26          106             5           131            600 × 600
+           potato       300      33        22           92             4           115            800 × 800
+            rope         298      33       32           69              3           72            900 × 400
+             tire        210      29       25           87              4          95             600 × 800
+            total       2656     294      249          948             41         1148
+
+occur in real-world inspection scenarios.                      corresponding point cloud. In addition, the sensor ac-
+    Five of the object categories in our dataset exhibit       quires complementary RGB values for each (x, y, z)
+considerable natural variations from sample to sam-            pixel. It was statically mounted to view all objects
+ple. These are bagel, carrot, cookie, peach, and potato.       of each individual category from the same angle. We
+Three more objects, foam, rope, and tire, have a stan-         performed a calibration of the internal camera parame-
+dardized appearance but can be easily deformed. The            ters that allows to project 3D points into the respective
+two remaining objects, cable gland and dowel, are              pixel coordinates (Steger et al., 2018). The scene was
+rigid. In principle, inspecting the last two could be          illuminated by an indirect and diffuse light source.
+achieved by comparing an object’s geometry to a CAD                For each dataset category, we specified a fixed rect-
+model. However, unsupervised methods should be                 angular domain and cropped the original (x, y, z) and
+able to detect anomalies on all kinds of objects and           RGB images to reduce the amount of background pix-
+the creation of a CAD model might not always be                els in the samples. The acquisition setup as well as the
+desirable or practical in a real application. An exam-         preprocessing are very similar to real-world applica-
+ple point cloud for each dataset category is shown in          tions where an object is usually located in a defined
+Figure 2. The figure also displays some anomalies              position and the illumination is chosen to best suit the
+together with the corresponding ground truth annota-           task. In addition, our setup enables and simplifies data
+tions. The images of the bagel and the cookie show             augmentation. All objects were recorded on a dark
+cracks in the objects. The surfaces of the cable gland         background and the preprocessing leaves a sufficient
+and the dowel exhibit geometrical deformations. There          margin around the objects to allow for the applica-
+is a hole in the carrot and some contaminations on the         tion of various data augmentation techniques, such
+peach and the rope. Parts of the foam, the potato, and         as crops, translations, or rotations. This enables the
+the tire are cut off. These are prototypical examples of       use of our dataset for the training of data-hungry deep
+the 41 types of anomalies present in our dataset. More         learning methods, as demonstrated by our experiments
+statistics on the dataset are listed in Table 1.               in Section 4.
+                                                                   Figure 3 shows the data provided for the anoma-
+3.1      Data Acquisition and Preprocessing                    lous test sample of the peach displayed in Figure 2.
+                                                               The image is of size 600×600 pixels, cropped from the
+All dataset scans were acquired with a Zivid One+              original sensor scan. The first three images visualize
+Medium,2 an industrial sensor that records high-               the x, y, and z coordinates of the dataset sample, respec-
+resolution 3D scans using structured light. The data           tively. White pixels mark areas where the sensor did
+is provided by the sensor as a three-channel image             not return any 3D information due to, e.g., occlusions,
+with a resolution of 1920×1200 pixels. The channels            reflections, or sensor inaccuracies. The correspond-
+represent the x, y, and z coordinates with respect to          ing RGB and ground truth annotation images are also
+the local camera coordinate frame. The (x, y, z) val-          displayed.
+ues of the image provide a one-to-one mapping to the
+
+   2 https://www.zivid.com/zivid-one-plus-medium-3d-
+camera
+
+
+                                                                                                                      205
+VISAPP 2022 - 17th International Conference on Computer Vision Theory and Applications
+
+
+
+
+Figure 3: Visualization of the provided data for one anomalous test sample of the dataset category peach. In addition to three
+images that encode the 3D coordinates of the object, RGB information as well as a pixel-precise ground-truth image are
+provided.
+
+3.2    Ground-truth Annotations                                     prediction P with each connected component Ck of the
+                                                                    ground truth. The PRO value is computed as
+We provide precise ground-truth annotations for each
+                                                                                               1 K |P ∩Ck |
+anomalous sample in the test set. Anomalies were                                     PRO =       ∑ |Ck | ,                      (1)
+annotated in the 3D point clouds. Since there is a one-                                        K k=1
+to-one mapping of the 3D points to their respective                 where K is the total number of ground truth compo-
+pixel locations in the (x, y, z) image, we make the an-             nents. This process is repeated for multiple thresholds
+notations available as two-dimensional regions. This                and a curve is constructed by plotting the resulting
+procedure allows us to additionally label invalid sensor            PRO values against the corresponding false positive
+pixels and thus annotate anomalies that manifest them-              rates. The final performance measure is computed by
+selves through the absence of points. For example,                  integrating this curve up to a limited false positive rate
+an anomaly might lead to a failure of 3D reconstruc-                and normalizing the resulting area to the interval [0, 1].
+tion and therefore yield invalid pixels in the 3D image.            This is a standard metric for the task of unsupervised
+Furthermore, if an anomaly is visible in the RGB im-                anomaly localization and is particularly useful when
+age and its corresponding color pixels are not already              anomalies vary significantly in size.
+included in the ground truth label, we append these                     We want to stress that, when working with our
+pixels to the annotation.                                           dataset, we strongly discourage to calculate the area
+    An example ground truth mask is shown in Fig-                   under the PRO curve up to high false positive rates.
+ure 3, where a contamination is present on the peach.               We recommend to select the integration limit no larger
+In Figure 2, further annotations are visualized when                than 0.3. This is due to the fact that the anomalous
+projected to the valid 3D points of a scene. The size               regions are very small compared to the size of the
+of the individual connected components of the anoma-                images. At large false positive rates, the amount of
+lies present in the test set varies greatly, from a few             erroneously segmented pixels would be significantly
+hundred to several thousand pixels. Figure 4 visual-
+izes their distribution as a box-and-whisker plot with
+outliers on a logarithmic scale (Tukey, 1977).
+
+3.3    Performance Evaluation
+To assess the anomaly localization performance of a
+method on our dataset, we require it to output a real-
+valued anomaly score for each (x, y, z) pixel of the test
+set. In contrast to only assigning anomaly scores to all
+valid 3D points of the test samples, this allows the de-
+tection of anomalies that manifest themselves through
+invalid sensor pixels or missing 3D structures. These
+anomaly scores are converted to binary predictions                  Figure 4: Size of anomalies for all objects in the dataset visu-
+using a threshold. We then compute the per-region                   alized as a box-and-whisker plot. Defect areas are reported
+overlap (PRO) metric (Bergmann et al., 2021), which                 as the total number of pixels within an annotated connected
+                                                                    component. Anomalies vary greatly in size for each dataset
+is defined as the average relative overlap of the binary            category.
+
+
+206
+                                             The MVTec 3D-AD Dataset for Unsupervised 3D Anomaly Detection and Localization
+
+
+
+
+larger than the number of actually anomalous pixels.           of the bounding box. If only 3D data is processed,
+This would lead to segmentation results that are no            occupied and empty voxels are assigned the values 1
+longer meaningful in practice.                                 and −1, respectively. If RGB information is added,
+    Our dataset can also be used to assess the perfor-         empty voxels are assigned the vector (−1, −1, −1).
+mance of algorithms that make a binary decision for            Occupied voxels are assigned the average RGB value
+each sample if it contains an anomaly or not. In this          of all points that fall inside the same grid cell.
+case, we report the area under the ROC curve as a                  For methods that process depth images, we com-
+standard classification metric.3                               pute the euclidean distance to the camera center for
+                                                               each valid pixel in the original (x, y, z) images. Invalid
+                                                               pixels are assigned a distance of 0. If color informa-
+4     INITIAL BENCHMARK                                        tion is included, the RGB channels are appended to
+                                                               the single-channel depth image. For both, the voxel
+To examine how existing 3D anomaly localization                grids and depth images, the RGB values are scaled to
+methods perform on our new dataset, we conducted an            the interval [0, 1].
+initial benchmark. It is intended to serve as a baseline
+for future methods. Very few methods have been pro-            Methods on Voxel Grids. For all voxel-based meth-
+posed explicitly for this task and all of them operate         ods, we use grids of size 64 × 64 × 64 voxels, as pro-
+on voxel data. This is mainly due to the fact that these       posed by Simarro Viana et al. (2021). To choose the
+methods are originally intended to process MR or CT            latent dimension of the compression-based methods,
+scans that consist of several layers of intensity images.      we performed an ablation study, which is included in
+As representatives from this class of methods, we in-          the Appendix. Anomaly scores are computed by a
+clude Voxel f-AnoGAN (Simarro Viana et al., 2021)              voxel-wise comparison of the input with its reconstruc-
+and our own implementation of a convolutional Voxel            tion.
+AE (Bengs et al., 2021) in our benchmark. Predeces-                 The voxel grids of the samples of our dataset are
+sors of these methods were developed for 2D image              sparsely populated and the majority of voxels is empty.
+data. The main difference between the 2D and 3D                We found that this leads to problems when training
+methods is the use of 2D convolutions on images and            the Voxel AE if each voxel is weighted equally in the
+3D convolutions on voxel data, respectively. There-            reconstruction loss. In this case, the model tends to
+fore, these methods are easily adapted to process depth        simply output an empty voxel grid to minimize the
+images and we include them in our benchmark as well.           reconstruction error. To address this imbalance, we
+In addition to these deep learning methods, we evalu-          introduce a loss weight w ∈ (0, 1) that is computed as
+ate the performance of variation models (Steger et al.,        the fraction of empty voxels in the training set. During
+2018) on voxel data and depth images. They detect              training, the loss at each voxel is then multiplied by w
+anomalies by calculating the pixel- or voxel-wise Ma-          if the voxel is occupied and by (1 − w) otherwise.
+halanobis distance to the training data distribution.               For the Voxel Variation Model, we first compute
+    All evaluated methods can either operate solely on         the mean and standard deviation of the training data
+the 3D data or can additionally process the color infor-       at each voxel. During inference, anomaly scores are
+mation attached to each 3D point. We therefore also            derived by computing the voxel-wise Mahalanobis
+compare the difference in performance when adding              distance of each test sample to the training distribution.
+color information to the models. Detailed information
+on training parameters and model architectures can be          Methods on Depth Images. Our implementations
+found in the Appendix.                                         of Depth f-AnoGAN and the Depth AE both process
+                                                               images at a resolution of 256 × 256 pixels. Input im-
+4.1    Training and Evaluation Setup                           ages are zoomed using nearest neighbor interpolation
+                                                               for depth, and bilinear interpolation for color images.
+Data Representation. To represent dataset samples              Anomaly scores are derived by a per-pixel compari-
+as voxel grids, we first compute a global 3D bound-            son of the input images and their reconstructions. The
+ing box over the entire training set for each dataset          Depth Variation Model processes images with their
+category. Then, a grid of n × n × n voxels is placed           original resolution and computes the mean and stan-
+at the center of the bounding box. The side length of          dard deviation over the entire training set at each image
+the grid is is chosen to be equal to the longest side          pixel. Again, anomaly scores are derived by com-
+    3 Evaluation scripts for the computation of all above      puting the pixel-wise Mahalanobis distance from the
+performance measures will be published together with the
+                                                               training distribution.
+dataset.
+
+
+                                                                                                                      207
+VISAPP 2022 - 17th International Conference on Computer Vision Theory and Applications
+
+
+
+
+Table 2: Anomaly localization results. The area under the PRO curve is reported for an integration limit of 0.3 for each
+evaluated method and dataset category. The best performing methods are highlighted in boldface.
+                                        cable
+                                bagel           carrot   cookie   dowel     foam    peach   potato   rope     tire   mean
+                                        gland
+                          GAN   0.440   0.453   0.825    0.755    0.782     0.378   0.392    0.639   0.775   0.389   0.583
+                  Voxel
+
+
+
+                           AE   0.260   0.341   0.581    0.351    0.502     0.234   0.351    0.658   0.015   0.185   0.348
+       3D Only
+
+
+
+
+                          VM    0.453   0.343   0.521    0.697    0.680     0.284   0.349    0.634   0.616   0.346   0.492
+                          GAN   0.111   0.072   0.212    0.174    0.160     0.128   0.003    0.042   0.446   0.075   0.143
+                  Depth
+
+
+
+
+                           AE   0.147   0.069   0.293    0.217    0.207     0.181   0.164    0.066   0.545   0.142   0.203
+                          VM    0.280   0.374   0.243    0.526    0.485     0.314   0.199    0.388   0.543   0.385   0.374
+                          GAN   0.664   0.620   0.766    0.740    0.783     0.332   0.582    0.790   0.633   0.483   0.639
+                  Voxel
+       3D + RGB
+
+
+
+
+                           AE   0.467   0.750   0.808    0.550    0.765     0.473   0.721    0.918   0.019   0.170   0.564
+                          VM    0.510   0.331   0.413    0.715    0.680     0.279   0.300    0.507   0.611   0.366   0.471
+                          GAN   0.421   0.422   0.778    0.696    0.494     0.252   0.285    0.362   0.402   0.631   0.474
+                  Depth
+
+
+
+
+                           AE   0.432   0.158   0.808    0.491    0.841     0.406   0.262    0.216   0.716   0.478   0.481
+                          VM    0.388   0.321   0.194    0.570    0.408     0.282   0.244    0.349   0.268   0.331   0.335
+
+
+Dataset Augmentation. Since the evaluated meth-                           categories. Here, we focus on the localization perfor-
+ods, except for the Variation Models, require large                       mance of the evaluated methods. Results on sample
+amounts of training data, we use data augmentation to                     level anomaly classification can be found in the Ap-
+increase the size of the training set. For each object                    pendix.
+category, we first estimate the normal vector of the                          The first six rows in Table 2 show the performance
+background plane, which is constant across samples.                       of each method when trained only on the 3D sensor
+We then rotate each dataset sample around this nor-                       data without providing any color information. In this
+mal vector by a certain angle and project the resulting                   case, the Voxel f-AnoGAN performs best on average
+points and corresponding color values into the original                   and on the majority of all dataset categories. It is fol-
+2D image grid using the internal camera parameters.                       lowed by the Voxel VM, which shows the best perfor-
+We augment each training sample 20 times by ran-                          mance on one of the objects. The Voxel AE performs
+domly sampling angles from the interval [−5◦ , 5◦ ].                      worse than the other two voxel-based methods. This
+                                                                          is because it tends to produce blurry and inaccurate
+Computation of Anomaly Maps. All voxel-based                              reconstructions. To get an impression of the recon-
+methods compute an anomaly score for each voxel                           struction quality of the evaluated methods, we show
+element. However, comparing their performance on                          some qualitative examples in the Appendix.
+our dataset requires them to assign an anomaly score to                       On average, each voxel-based method performs
+each pixel in the original (x, y, z) images. We therefore                 better than its depth-based counterpart. Among all
+project the anomaly scores to pixel coordinates using                     depth-based methods, the Depth Variation Model per-
+the internal camera parameters of the 3D sensor. For                      forms best. We found that the Depth AE and Depth f-
+each voxel element, we project all 8 corner points                        AnoGAN produce many false positives in the anomaly
+and compute the convex hull of the resulting projected                    maps around invalid pixels in the input data.
+points. All image pixels within this region are assigned                      Figure 5 shows corresponding qualitative anomaly
+the respective anomaly score of the voxel element. If                     localization results. For visualization purposes, the pre-
+a pixel is assigned multiple anomaly scores, we select                    dicted anomaly scores were projected onto the input
+their maximum.                                                            point clouds. For each dataset sample, the correspond-
+    Methods on depth images already assign a score to                     ing ground truth is visualized in red. While most of
+each pixel. The anomaly maps of Depth f-AnoGAN                            the methods are able to localize some of the defects
+and the Depth AE are zoomed to the original image                         in our dataset, they also yield a large number of false
+size using bilinear interpolation.                                        positive predictions, either on the objects’ surfaces,
+                                                                          around the objects’ edges, or in the background. Due
+4.2    Results                                                            to the reconstruction inaccuracies of the Voxel AE, it
+                                                                          can only detect the larger and more salient anomalies
+Table 2 lists quantitative results for each evaluated                     in our dataset such as the one depicted in Figure 5.
+method for the localization of anomalies. For each                            In addition to evaluating each method on 3D data
+dataset category, we report the normalized area un-                       only, we report the performance of the methods when
+der the PRO curve with an upper integration limit of                      trained with RGB features at each 3D point. The
+0.3. We further report the mean performance over all                      results are listed in the bottom six rows of Table 2.
+
+
+
+208
+                                               The MVTec 3D-AD Dataset for Unsupervised 3D Anomaly Detection and Localization
+
+
+
+
+Figure 5: Qualitative anomaly localization results in which each individual method performed well. The top image visualizes
+the anomaly scores as an overlay to the input point cloud. The bottom image shows the corresponding ground-truth annotation
+in red. The displayed methods were only trained on the 3D data without adding color information.
+
+Adding RGB information improves the performance                  ing to a false positive rate of 1, the Voxel f-AnoGAN
+of all methods except for the Variation Models. Since            and the Voxel VM surpass an AU-PRO of 0.8, which
+the RGB images do not contain invalid pixels, the                would suggest that these methods are close to solv-
+Depth AE and Depth f-AnoGAN benefit most from                    ing the task. However, evaluating at large integration
+the color information. Nevertheless, the voxel-based             limits include binary segmentation masks where the
+methods still outperform their depth-based counter-              number of false positive predictions is extremely high.
+parts. Again, Voxel f-AnoGAN shows the best overall              Since the area of the defects present in our dataset
+performance. For some object categories, however, the            is very small compared to the area of anomaly-free
+Voxel AE performs better than Voxel f-AnoGAN when                pixels, such segmentation results are no longer mean-
+including color information.                                     ingful. We found that the performance of the evaluated
+    As discussed in Section 3.3, it is important to se-          methods is insufficient for practical applications. We
+lect a suitable integration limit to compute the area            therefore chose an integration limit of 0.3 to be able
+under the PRO curve. To illustrate this, Figure 6 shows          to compare their relative performance. In the future,
+the dependence of the performance of each evaluated              we hope that our dataset sparks the development of
+method on the integration limit. All methods show a              methods that achieve high AU-PRO scores at much
+monotonic increase in their AU-PRO. When integrat-               lower integration limits. In actual industrial inspec-
+                                                                 tion scenarios, a false positive rate of 0.3 is hardly
+                                                                 acceptable.
+
+
+                                                                 5     CONCLUSION
+                                                                 We presented a comprehensive 3D dataset for the task
+                                                                 of unsupervised detection and localization of anoma-
+                                                                 lies. The conceptualization and acquisition of the
+                                                                 dataset was inspired by real-world visual inspection
+                                                                 tasks. It consists of over 4000 point clouds depicting
+                                                                 instances of ten different object categories. The data
+                                                                 was acquired using a high-resolution structured light
+Figure 6: Dependence of AU-PRO on the integration limit.
+                                                                 3D sensor. About 1000 samples of the dataset con-
+The results of our benchmark are reported at a limit of 0.3.     tain various types of anomalies and we provide precise
+
+
+                                                                                                                        209
+VISAPP 2022 - 17th International Conference on Computer Vision Theory and Applications
+
+
+
+
+ground truth annotations for all of them.                                IEEE/CVF International Conference on Computer Vi-
+    We performed an initial benchmark of the few ex-                     sion Workshops (ICCVW), pages 2403–2412.
+isting methods showing that there is significant room               Carrera, D., Manganini, F., Boracchi, G., and Lanzarone, E.
+for improvement. In particular, the accuracy of the                      (2017). Defect Detection in SEM Images of Nanofi-
+evaluated methods is insufficient for them to be used                    brous Materials. IEEE Transactions on Industrial In-
+                                                                         formatics, 13(2):551–561.
+in real-world industrial applications. We are convinced
+                                                                    Chang, A. X., Funkhouser, T., Guibas, L., Hanrahan, P.,
+that suitable datasets are a key factor in the develop-                  Huang, Q., Li, Z., Savarese, S., Savva, M., Song, S.,
+ment of new techniques and expect our dataset to spark                   Su, H., Xiao, J., Yi, L., and Yu, F. (2015). ShapeNet:
+the design of better methods in the future.                              An Information-Rich 3D Model Repository. Preprint:
+                                                                         arXiv:1512.03012.
+                                                                    Cohen, N. and Hoshen, Y. (2021). Sub-Image Anomaly De-
+                                                                         tection with Deep Pyramid Correspondences. Preprint:
+REFERENCES                                                               arXiv:2005.02357.
+                                                                    Dai, A., Chang, A. X., Savva, M., Halber, M., Funkhouser,
+Armeni, I., Sener, O., Zamir, A. R., Jiang, H., Brilakis, I.,
+                                                                         T., and Nießner, M. (2017). ScanNet: Richly-
+     Fischer, M., and Savarese, S. (2016). 3D Semantic
+                                                                         Annotated 3D Reconstructions of Indoor Scenes. In
+     Parsing of Large-Scale Indoor Spaces. In IEEE Con-
+                                                                         IEEE Conference on Computer Vision and Pattern
+     ference on Computer Vision and Pattern Recognition
+                                                                         Recognition (CVPR), pages 2432–2443.
+     (CVPR), pages 1534–1543.
+                                                                    Drost, B., Ulrich, M., Bergmann, P., Härtinger, P., and Steger,
+Baid, U. et al. (2021). The RSNA-ASNR-MICCAI
+                                                                         C. (2017). Introducing MVTec ITODD — A Dataset
+     BraTS 2021 Benchmark on Brain Tumor Segmen-
+                                                                         for 3D Object Recognition in Industry. In IEEE Inter-
+     tation and Radiogenomic Classification. Preprint:
+                                                                         national Conference on Computer Vision Workshops
+     arXiv:2107.02314.
+                                                                         (ICCVW), pages 2200–2208.
+Bakas, S., Akbari, H., Sotiras, A., Bilello, M., Rozycki,
+                                                                    Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-
+     M., Kirby, J. S., et al. (2017). Advancing the cancer
+                                                                         Farley, D., Ozair, S., Courville, A., and Bengio, Y.
+     genome atlas glioma MRI collections with expert seg-
+                                                                         (2014). Generative Adversarial Nets. In Advances in
+     mentation labels and radiomic features. Scientific Data,
+                                                                         Neural Information Processing Systems, pages 2672–
+     4(1).
+                                                                         2680.
+Bengs, M., Behrendt, F., Krüger, J., Opfer, R., and Schlaefer,
+                                                                    Hodaň, T., Sundermeyer, M., Drost, B., Labbé, Y., Brach-
+     A. (2021). Three-dimensional deep learning with spa-
+                                                                         mann, E., Michel, F., Rother, C., and Matas, J. (2020).
+     tial erasing for unsupervised anomaly segmentation in
+                                                                         BOP Challenge 2020 on 6D Object Localization. Eu-
+     brain MRI. International Journal of Computer Assisted
+                                                                         ropean Conference on Computer Vision Workshops
+     Radiology and Surgery, 16.
+                                                                         (ECCVW).
+Bergmann, P., Batzner, K., Fauser, M., Sattlegger, D., and
+                                                                    Huang, Y., Qiu, C., Guo, Y., Wang, X., and Yuan, K. (2018).
+     Steger, C. (2021). The MVTec Anomaly Detection
+                                                                         Surface Defect Saliency of Magnetic Tile. In 2018
+     Dataset: A Comprehensive Real-World Dataset for Un-
+                                                                         IEEE 14th International Conference on Automation
+     supervised Anomaly Detection. International Journal
+                                                                         Science and Engineering (CASE), pages 612–617.
+     of Computer Vision, 129(4):1038–1059.
+                                                                    Kingma, D. P. and Ba, J. (2015). Adam: A Method for
+Bergmann, P., Fauser, M., Sattlegger, D., and Steger, C.
+                                                                         Stochastic Optimization. In 3rd International Confer-
+     (2019a). MVTec AD — A Comprehensive Real-World
+                                                                         ence on Learning Representations (ICLR).
+     Dataset for Unsupervised Anomaly Detection. In IEEE
+     Conference on Computer Vision and Pattern Recogni-             Krizhevsky, A., Sutskever, I., and Hinton, G. E. (2012). Ima-
+     tion (CVPR), pages 9584–9592.                                       geNet Classification with Deep Convolutional Neural
+                                                                         Networks. In 25th International Conference on Neu-
+Bergmann, P., Fauser, M., Sattlegger, D., and Steger,
+                                                                         ral Information Processing Systems - Volume 1, pages
+     C. (2020). Uninformed Students: Student-Teacher
+                                                                         1097–1105.
+     Anomaly Detection With Discriminative Latent Em-
+     beddings. In IEEE/CVF Conference on Computer Vi-               Li, W.-X., Mahadevan, V., and Vasconcelos, N. (2013).
+     sion and Pattern Recognition (CVPR), pages 4182–                    Anomaly Detection and Localization in Crowded
+     4191.                                                               Scenes. IEEE Transactions on Pattern Analysis and
+                                                                         Machine Intelligence (TPAMI), 36(1):18–32.
+Bergmann, P., Löwe, S., Fauser, M., Sattlegger, D., and
+     Steger., C. (2019b). Improving Unsupervised Defect             Liew, S.-L., Anglin, J. M., Banks, N. W., et al. (2018). A
+     Segmentation by Applying Structural Similarity to Au-               large, open source dataset of stroke anatomical brain
+     toencoders. In 14th International Joint Conference                  images and manual lesion segmentations. Scientific
+     on Computer Vision, Imaging and Computer Graphics                   data, 5:180011.
+     Theory and Applications - Volume 5: VISAPP, pages              Lu, C., Shi, J., and Jia, J. (2013). Abnormal Event Detec-
+     372–380. INSTICC, SciTePress.                                       tion at 150 FPS in MATLAB. In IEEE International
+Blum, H., Sarlin, P.-E., Nieto, J., Siegwart, R., and Ca-                Conference on Computer Vision, pages 2720–2727.
+     dena, C. (2019). Fishyscapes: A Benchmark for Safe             Masci, J., Meier, U., Cireşan, D., and Schmidhuber, J. (2011).
+     Semantic Segmentation in Autonomous Driving. In                     Stacked Convolutional Auto-Encoders for Hierarchi-
+                                                                         cal Feature Extraction. In Artificial Neural Networks
+
+
+210
+                                               The MVTec 3D-AD Dataset for Unsupervised 3D Anomaly Detection and Localization
+
+
+
+
+     and Machine Learning – ICANN 2011, pages 52–59.             Zeng, A., Song, S., Nießner, M., Fisher, M., Xiao, J., and
+     Springer Berlin Heidelberg.                                     Funkhouser, T. (2017). 3DMatch: Learning Local
+Menze, B. H., Jakab, A., Bauer, S., Kalpathy-Cramer, J.,             Geometric Descriptors from RGB-D Reconstructions.
+     Farahani, K., Kirby, J., et al. (2015). The Multi-              In IEEE Conference on Computer Vision and Pattern
+     modal Brain Tumor Image Segmentation Benchmark                  Recognition (CVPR), pages 199–208.
+     (BRATS). IEEE Transactions on Medical Imaging,
+     34(10):1993–2024.
+Park, H., Noh, J., and Ham, B. (2020). Learning Memory-
+     Guided Normality for Anomaly Detection. In IEEE             APPENDIX
+     Conference on Computer Vision and Pattern Recogni-
+     tion (CVPR), pages 14360–14369.
+Salehi, M., Sadjadi, N., Baselizadeh, S., Rohban, M. H.,
+                                                                 Details on Training Parameters
+     and Rabiee, H. R. (2021). Multiresolution Knowledge
+     Distillation for Anomaly Detection. In IEEE/CVF Con-        In this section, we provide details on training pa-
+     ference on Computer Vision and Pattern Recognition          rameters as well as model architectures for the deep
+     (CVPR), pages 14902–14912.                                  learning-based methods.
+Schlegl, T., Seeböck, P., Waldstein, S., Langs, G., and
+     Schmidt-Erfurth, U. (2019). f-AnoGAN: Fast Unsuper-
+     vised Anomaly Detection with Generative Adversarial         Voxel f-AnoGAN. For the implementation of Voxel
+     Networks. Medical Image Analysis, 54.                       f-AnoGAN, we use the same network architecture as
+Simarro Viana, J., de la Rosa, E., Vande Vyvere, T., Robben,     proposed by Simarro Viana et al. (2021). The GAN
+     D., Sima, D. M., and Investigators, C.-T. P. a. (2021).     and the encoder network are both trained for 50 epochs
+     Unsupervised 3D Brain Anomaly Detection. In Brain-          on the augmented version of our dataset with an initial
+     lesion: Glioma, Multiple Sclerosis, Stroke and Trau-        learning rate of 0.0002 and a batch size of 2 using the
+     matic Brain Injuries, pages 133–142. Springer Interna-      Adam optimizer (Kingma and Ba, 2015). The weight
+     tional Publishing.                                          for the gradient penalty loss of the GAN is set to 10
+Song, K. and Yan, Y. (2013). A noise robust method based         and one generator training iteration is performed for
+     on completed local binary patterns for hot-rolled steel
+     strip surface defects. Applied Surface Science, 285:858–
+                                                                 every 5 iterations of the discriminator training. During
+     864.                                                        the training of the encoder, the “izi” and “ziz” losses
+Steger, C., Ulrich, M., and Wiedemann, C. (2018). Ma-            are equally weighted by choosing a loss weight of 1.
+     chine Vision Algorithms and Applications. Wiley-VCH,
+     Weinheim, 2nd edition.                                      Voxel Autoencoder. The Voxel Autoencoder con-
+Sultani, W., Chen, C., and Shah, M. (2018). Real-World           sists of an encoder and a decoder network. Their archi-
+     Anomaly Detection in Surveillance Videos. In IEEE           tecture is the same as the one of the encoder and the
+     Conference on Computer Vision and Pattern Recogni-
+                                                                 generator in Voxel f-AnoGAN, respectively. We train
+     tion (CVPR), pages 6479–6488.
+                                                                 for 50 epochs on the augmented version of our dataset
+Tukey, J. W. (1977). Exploratory Data Analysis. Addison-
+     Wesley Series in Behavioral Science. Addison-Wesley,        with a batch size of 2 using the Adam optimizer with
+     Reading, MA.                                                an initial learning rate of 0.0001.
+Ulyanov, D., Vedaldi, A., and Lempitsky, V. (2017). Im-
+     proved Texture Networks: Maximizing Quality and             Depth f-AnoGAN. The Depth f-AnoGAN consists
+     Diversity in Feed-Forward Stylization and Texture Syn-      of three sub-networks, i.e., an encoder, a discrimina-
+     thesis. In IEEE Conference on Computer Vision and           tor, and a generator. The architecture of the encoder
+     Pattern Recognition (CVPR), pages 4105–4113.
+                                                                 is given in Table 3. It consists of a stack of 10 con-
+Wang, S., Wu, L., Cui, L., and Shen, Y. (2021). Glancing
+     at the Patch: Anomaly Localization With Global and
+                                                                 volution blocks that compress an input image of size
+     Local Feature Comparison. In IEEE/CVF Conference            256 × 256 pixels and c channels to a d-dimensional
+     on Computer Vision and Pattern Recognition (CVPR),          latent vector. Each convolution block except the last
+     pages 254–263.                                              one is followed by an instance normalization layer
+Wieler, M. and Hahn, T. (2007). Weakly Supervised Learn-         (Ulyanov et al., 2017) and a LeakyReLU with slope
+     ing for Industrial Optical Inspection. 29th Annual          0.05. The architecture of the discriminator is identical
+     Symposium of the German Association for Pattern             to the one of the encoder except that d = 1. The gen-
+     Recognition.                                                erator produces an image of size 256 × 256 pixels and
+Wu, Z., Song, S., Khosla, A., Yu, F., Zhang, L., Tang, X.,       c channels from a latent variable with d dimensions.
+     and Xiao, J. (2015). 3D ShapeNets: A deep repre-
+                                                                 Its architecture is symmetric to the one in Table 3 in
+     sentation for volumetric shapes. In IEEE Conference
+     on Computer Vision and Pattern Recognition (CVPR),          the sense that convolutions are replaced by transposed
+     pages 1912–1920.                                            convolution layers. Both, the GAN and the encoder
+                                                                 network, are trained for 50 epochs using a batch size of
+
+
+                                                                                                                        211
+VISAPP 2022 - 17th International Conference on Computer Vision Theory and Applications
+
+
+
+
+4 and an initial learning rate of 0.0002 using the Adam             for each dataset sample, we compute the maximum
+optimizer. During the training of the encoder, the “izi”            anomaly score of each anomaly map. As performance
+and “ziz” losses are equally weighted by choosing a                 measure, we compute the area under the ROC curve.
+loss weight of 1.                                                   Table 5 lists the results.
+
+Table 3: Encoder architecture of Depth f-AnoGAN and                 Quality of Reconstructions
+Depth AE.
+  Layer       Output Size               Parameters                  For the methods based on AEs or GANs, the anomaly
+                              Kernel Size Stride Padding            detection performance significantly depends on the
+ Image     256 × 256 × c
+ conv1     128 × 128 × 32          4          2        1
+                                                                    quality of their reconstructions. To get an impression
+ conv2      64 × 64 × 32           4          2        1            of the reconstruction quality, Figure 7 shows two ex-
+ conv3      32 × 32 × 32           4          2        1            amples for each evaluated method.
+ conv4      32 × 32 × 32           3          1        1                To visualize the voxel-based methods, voxel grids
+ conv5      16 × 16 × 64           4          2        1
+ conv6      16 × 16 × 64           3          1        1
+                                                                    are converted to point clouds by applying a threshold to
+ conv7       8 × 8 × 128           4          2        1            each cell. A cell is classified as occupied if it contains a
+ conv8       8 × 8 × 64            3          1        1            value of 0.9 or higher. The Voxel AE tends to produce
+ conv9       8 × 8 × 32            3          1        1            blurry reconstructions around the objects’ surfaces.
+ conv10      1× 1× d               8          1        0
+                                                                    The Voxel f-AnoGAN does not have this problem.
+                                                                    However, it sometimes fails to produce parts of the
+Depth Autoencoder. For the encoder and decoder                      input.
+of the Depth AE, we use the same architecture as                        For the depth-based methods, inputs and recon-
+for the encoder and generator of Depth f-AnoGAN,                    structions are visualized as depth images. Darker
+respectively. It is trained for 50 epochs using the Adam            shades of blue indicate points that are further from
+optimizer at a batch size of 32 and an initial learning             the camera center. White points indicate invalid pixels.
+rate of 0.0001.                                                     Both, the Depth f-AnoGAN and the Depth AE show
+                                                                    problems reconstructing noisy areas that exhibit many
+Latent Dimensions of Compression-based                              invalid pixels.
+Methods
+To select suitable latent dimensions for the evaluated
+compression-based methods, we perform an ablation
+study. Their mean performance over all object cat-
+egories is given in Table 4. For the experiments in
+Section 4, we use the respective latent dimension that
+yielded the best mean performance in the ablation
+study.
+
+Table 4: Difference in performance when varying the latent
+dimension of each compression-based method. We list the
+area under the PRO curve up to an integration limit of 0.3.
+The best performing setting is highlighted in boldface.
+                              Latent Dimension
+                             128     512   2048
+                GAN         0.536 0.583 0.555
+      Voxel
+                 AE         0.348 0.269 0.305
+                GAN         0.143 0.137 0.135
+      Depth
+                 AE         0.199 0.203 0.199
+
+Results for Anomaly Classification
+In addition to the anomaly localization results in Ta-
+ble 2, we provide results for the classification of dataset
+samples as either anomalous or anomaly-free. Since
+this requires a method to output a single anomaly score
+
+
+212
+                                                     The MVTec 3D-AD Dataset for Unsupervised 3D Anomaly Detection and Localization
+
+
+
+
+Table 5: Anomaly classification results. We report the area under the ROC curve. The best-performing methods are highlighted
+in boldface.
+                                        cable
+                                bagel           carrot   cookie   dowel   foam    peach   potato    rope     tire   mean
+                                        gland
+                          GAN   0.383   0.623   0.474    0.639    0.564   0.409   0.617    0.427   0.663    0.577   0.538
+                  Voxel
+
+
+
+                           AE   0.693   0.425   0.515    0.790    0.494   0.558   0.537    0.484   0.639    0.583   0.572
+       3D Only
+
+
+
+
+                          VM    0.750   0.747   0.613    0.738    0.823   0.693   0.679    0.652   0.609    0.690   0.699
+                          GAN   0.530   0.376   0.607    0.603    0.497   0.484   0.595    0.489   0.536    0.521   0.524
+                  Depth
+
+
+
+
+                           AE   0.468   0.731   0.497    0.673    0.534   0.417   0.485    0.549   0.564    0.546   0.546
+                          VM    0.510   0.542   0.469    0.576    0.609   0.699   0.450    0.419   0.668    0.520   0.546
+                          GAN   0.680   0.324   0.565    0.399    0.497   0.482   0.566    0.579   0.601    0.482   0.517
+                  Voxel
+       3D + RGB
+
+
+
+
+                           AE   0.510   0.540   0.384    0.693    0.446   0.632   0.550    0.494   0.721    0.413   0.538
+                          VM    0.553   0.772   0.484    0.701    0.751   0.578   0.480    0.466   0.689    0.611   0.609
+                          GAN   0.538   0.372   0.580    0.603    0.430   0.534   0.642    0.601   0.443    0.577   0.532
+                  Depth
+
+
+
+
+                           AE   0.648   0.502   0.650    0.488    0.805   0.522   0.712    0.529   0.540    0.552   0.595
+                          VM    0.513   0.551   0.477    0.581    0.617   0.716   0.450    0.421   0.598    0.623   0.555
+
+
+
+
+Figure 7: Examples of reconstructions for each compression-based method. For voxel-based methods, inputs and reconstructions
+are visualized as point clouds. For depth-based methods, they are shown as depth images.
+
+
+
+
+                                                                                                                              213
+

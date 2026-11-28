@@ -19,7 +19,7 @@ and specified follow-up comparisons. For MSM, the check used the primary assessm
 probabilities for intact inputs and selected perturbations. For the original ViFailback
 experiment it used episode-level branch and fusion probabilities. For HANDOVER, the five
 clean means and seed standard deviations were recalculated from three sets of per-seed
-metrics. The individual trial probabilities were unavailable in the inspected export.
+metrics. The retained export did not include individual trial probabilities.
 The PHM comparison used the original run summary and paired-bootstrap record.
 
 \section{Reconstructing an Evaluation Cohort}
@@ -44,7 +44,7 @@ episodes but use different fitting procedures.
 
 \section{Hashes and Source-State Identity}
 The external-source manifest gives SHA-256 digests for files at their original location
-and for local copies. It also identifies the inspected Git revision. Some reports
+and for local copies. It also identifies the Git revision used for the checks. Some reports
 included uncommitted changes, so the commit identifier alone cannot reconstruct those
 files.
 
@@ -69,7 +69,7 @@ use the study-specific cluster units. In HANDOVER the absence of participant ide
 prevents a participant-cluster interval.
 
 A training replication also depends on the original raw inputs, model and configuration
-versions, software dependencies and either the fitted weights or their initialization
+versions, software dependencies and either the fitted weights or their initialisation
 procedure, depending on the stage being repeated. Where only a summary survives, it is
 possible to check the reported aggregation but not to regenerate individual predictions
 from that summary.
@@ -77,14 +77,14 @@ from that summary.
 \section{Coverage of the Checks}
 The matched two-epoch REASSEMBLE comparison records new and reused fits and selected
 saved-model checks on pixel inputs. Those checks leave the cause of its seed-dependent
-behavior unresolved. In ViFailback, FROZEN20 and DONOR20 provide complete three-seed
+behaviour unresolved. In ViFailback, FROZEN20 and DONOR20 provide complete three-seed
 assessments, FULL20 provides one outer-fold comparison, and the three hundred-epoch
 conditions provide separate single-role pilots. The remaining FULL20 fits and SQ3
 corruption tests have no measured results. The completed records support checking saved
 results within those scopes; they do not constitute independent training replication.\ev{Diagnostic replay
 scope}{\EvidenceRef{E060}{}, \EvidenceRef{E113}{}, \EvidenceRef{E114}{}}
 
-\section{Verification of reported metrics}
+\section{Verification of Reported Metrics}
 The retained verification recalculated failure-positive AP, Brier score and fifteen-bin
 ECE from the retained core REASSEMBLE arrays for clean inputs, all seven strongest
 corruptions and both known-absence conditions. All 32 model rows matched the saved
@@ -108,16 +108,15 @@ entry links directly to that file at a verified GitHub commit. The accompanying 
 index gives source paths, recorded hashes, publication revisions and the sections,
 code routines or samples cited. New entries prefixed \texttt{repo:} in that
 index resolve from the research-repository root. For E142--E152, the register itself
-gives the repository-relative paths; source comments retain their checked SHA-256
-identities. The preserved package contains
+gives the repository-relative paths, and the accompanying provenance records retain
+the checked SHA-256 identities. The preserved package contains
 baseline hashes, the source diff and retained saved-score checks. Its ViFailback check
 verified 1,008 scalar metrics from 168 saved model/cohort vectors and the completed-fit
 records. The paired intervals remain those recorded on 24 November; the saved-score
 check did not repeat their bootstrap calculation.\ev{Saved-score verification recorded on 25 November 2026}{\EvidenceRef{E111}{}, \EvidenceRef{E121}{}}
 
-The original live path indexed by E093 is unavailable; its link identifies the
-archived copy recovered from the preserved thesis evidence package and checked against
-its recorded hash. E152 identifies the retained final snapshot of 24 November 2026,
+E093 links to a hash-checked archived copy recovered from the thesis evidence package;
+the original file location is no longer available. E152 identifies the retained final snapshot of 24 November 2026,
 which includes the FULL100 pilot, 22 completed outer fusion assessments and six pooled
 summaries. These are separate dated versions.
 
@@ -126,6 +125,7 @@ summaries. These are separate dated versions.
 \setlength{\tabcolsep}{3pt}
 \setlength{\LTleft}{0pt}
 \setlength{\LTright}{\fill}
+\captionsetup{hypcap=false}
 \captionof{table}{Project Evidence Files and Repository Links}\label{tab:project-evidence}
 \begin{longtable*}{@{}P{0.075\linewidth}P{0.19\linewidth}P{0.475\linewidth}P{0.21\linewidth}@{}}
 \toprule ID & Study or source & File & Repository link\\\midrule\endfirsthead

@@ -1,0 +1,260 @@
+--- original/tex/01_introduction.tex
++++ reworked/tex/01_introduction.tex
+@@ -13,8 +13,8 @@
+ 
+ \section{Context and Motivation}
+ 
+-Industrial monitoring means tracking the state and behavior of a
+-physical process by analyzing data collected during or after it
++Industrial monitoring means tracking the state and behaviour of a
++physical process by analysing data collected during or after it
+ runs. Industrial and robotic systems produce many types of data,
+ such as visual observations, acoustic signals, force measurements,
+ vibration, and other sensor signals
+@@ -38,7 +38,7 @@
+ The primary architectural challenge extends beyond welding.
+ Industrial monitoring systems require data representations that
+ capture task-relevant information, fusion methods that effectively
+-utilize complementary data from multiple sources, and evaluation
++use complementary data from multiple sources, and evaluation
+ protocols that assess whether predictions remain reliable when some
+ data are missing or of low quality. Therefore, this research
+ investigates multimodal fusion architectures across a range of
+@@ -51,7 +51,7 @@
+ 
+ \section{Problem Statement and Research Gap}
+ 
+-The added value of additional modalities cannot be determined
++The value of adding modalities cannot be determined
+ solely by the predictive performance of the combined model; it is
+ essential to compare the architecture's performance against
+ credible unimodal predictors on identical prediction targets
+@@ -63,9 +63,8 @@
+ counterparts \parencite{Wang2020What}. In one weld penetration study,
+ the image-only, audio-only, and fused models all achieved 100\%
+ accuracy on the reported clean test set
+-\parencite[Tables~1--3]{Hua2026Weld}. There was therefore no demonstrable
+-benefit to the availability of an additional modality in terms
+-of clean data accuracy.
++\parencite[Tables~1--3]{Hua2026Weld}. The additional modality therefore showed no demonstrable
++benefit in terms of clean data accuracy.
+ 
+ Another challenge concerns the reliability of each data type.
+ When an input is missing, fallback mechanisms may be employed.
+@@ -75,8 +74,8 @@
+ does not ensure improved robustness \parencite{Zhang2023QMF,P008}.
+ 
+ The fairness of these comparisons also depends on factors like
+-the prediction target, how the data is aligned over time, training
+-methods, calibration, and whether the test data is independent
++the prediction target, data alignment over time, training
++methods, calibration, and the independence of the test data
+ \parencite{P017,P004,Guo2017Calibration,P008}. Differences in any of
+ these areas can make it hard to know if performance gains are
+ generalizable.
+@@ -170,7 +169,7 @@
+ representations and prediction models, then evaluated alternative
+ fusion strategies and a series of controlled follow-up experiments.
+ 
+-The implemented architectures use pre-trained convolutional visual
++The implemented architectures use pretrained convolutional visual
+ representations, statistical sensor features, and patch-based
+ temporal encoders. Information is combined using feature
+ concatenation, probability averaging, logistic stacking, and
+@@ -208,7 +207,7 @@
+ clean data remain when inputs are degraded.
+ 
+ \item \textbf{Cross-dataset evaluation and methodological assessment:}
+-The research explores re-using fusion methods and transferring
++The research explores reusing fusion methods and transferring
+ supervised representations across different industrial and
+ robotic monitoring tasks. The evaluation highlights the
+ importance of target validity, data alignment, class-specific
+@@ -279,7 +278,7 @@
+ 
+ Robustness evaluation is limited to experiments where inputs
+ were removed or degraded in a controlled way. Studies with
+-external datasets focus on re-using architectures, fitting to
++external datasets focus on reusing architectures, fitting to
+ specific datasets, and selected transfer methods, rather than
+ testing if an unchanged model works in a new domain.
+ 
+--- original/tex/02_literature_review.tex
++++ reworked/tex/02_literature_review.tex
+@@ -9,25 +9,25 @@
+ Industrial monitoring covers tasks such as fault detection, checking a system's physical condition,
+ assessing manufacturing quality, and confirming that a robot has completed its task. The traditional
+ approach uses single sensor readings and engineered features to characterise the system's behaviour.
+-Learned representations take this further by utilising data from images, sound and sensor sequences.
++Learned representations take this further by using data from images, sound and sensor sequences.
+ Multimodal learning examines how information from different modalities can be combined to support a
+ common prediction task \parencite{Baltrusaitis2019Multimodal,Huo2022Multisensor,Thoduka2024Handover}.
+ 
+ The literature touches on several related areas of research: traditional feature engineering, the
+-use of pre-trained representations, modelling over time, feature combination, prediction fusion, and
++use of pretrained representations, modelling over time, feature combination, prediction fusion, and
+ adaptive methods (where the method can adapt to the context). They differ in the information they
+ require, their computational cost, the level of supervision they need, and their sensitivity to
+ input quality.
+ 
+ Industrial and robotic monitoring provides a platform on which to compare these approaches as the
+ process can be monitored via a number of different modalities (cameras, acoustic sensors, machine
+-sensors, etc.). Cameras will obviously provide a view of the visible process, whereas the acoustic
++sensors, etc.). Cameras provide a view of the visible process, whereas the acoustic
+ and machine sensors provide information which is not visible. The benefit of combining data depends
+ heavily on what each modality retains, the specific prediction you're trying to make, and the
+ system's test conditions \parencite{Wang2020What,Hua2026Weld,Goodarzi2023Deep}. Simply increasing the
+ amount of data does not necessarily lead to better predictions.
+ 
+-Work on welding using visual and acoustic data has shown that multimodal integration can improve prediction performance, but also that, in some cases, adding a further modality provides no benefit at all \parencite{P003,Hua2026Weld}. These findings raise a more general architectural question across industrial and robotic monitoring tasks. Under what conditions does a second observation supply information about system condition or task outcome that the strongest single input misses?
++Work on welding using visual and acoustic data has shown that multimodal integration can improve prediction performance, but also that, in some cases, adding another modality provides no benefit at all \parencite{P003,Hua2026Weld}. These findings raise a more general architectural question across industrial and robotic monitoring tasks. Under what conditions does a second observation supply information about system condition or task outcome that the strongest single input misses?
+ 
+ The review examines four questions. Which representations retain the information needed for the prediction? What does combining inputs add? How does that benefit change when an input is missing or degraded? Which assessment conditions make the resulting comparison credible?
+ 
+@@ -39,12 +39,12 @@
+ 
+ A research gap is defined as a comparison that the existing body of scientific evidence does not
+ address for a given target, input set and assessment population. The ability to identify such a gap
+-will, of course, depend on the search strategy and the amount of published literature available.
++depends on the search strategy and the amount of published literature available.
+ 
+ \subsection{Research Themes and Search Questions}
+ 
+ The representation theme concerns what is being observed, what transformations are being applied,
+-and whether the representation retains the information relevant to the task at hand. The fusion
++and whether the representation retains the information relevant to the task. The fusion
+ theme is about whether adding further inputs improves performance on a standard prediction task
+ compared with a set of plausible single-input references.
+ 
+@@ -59,7 +59,7 @@
+ The review clearly distinguishes between two objectives that are often confused. Training with
+ multiple modalities to deploy a single-input model is a privileged training scenario. Combining
+ multiple available inputs at deployment is a multimodal inference problem. Cross-modal distillation
+-and reconstruction link the two objectives but the acquisition assumptions are very different.
++and reconstruction link the two objectives, but the acquisition assumptions are very different.
+ 
+ The taxonomy of \textcite{Baltrusaitis2019Multimodal} is the organising terminology. The industrial claims are then assessed against the original
+ studies rather than being entirely inferred from that survey.
+@@ -154,7 +154,7 @@
+ observations, and acceptable levels of prediction error. These assumptions must be understood prior
+ to comparing representation learning and fusion architectures.
+ 
+-The definition of the prediction target is absolutely crucial, as performance on one industrial task
++The definition of the prediction target is crucial, as performance on one industrial task
+ cannot be considered valid evidence of performance on another.
+ 
+ \subsection{Anomaly Detection, Defect Classification, and Failure Classification}
+@@ -411,13 +411,13 @@
+ features they learn may well contain the local appearance, texture, and object configuration
+ relevant to the downstream prediction task.
+ 
+-PatchCore successfully employs pre-trained, locally aggregated intermediate CNN features together
++PatchCore successfully employs pretrained, locally aggregated intermediate CNN features together
+ with a memory of nominal patches for industrial inspection \parencite[Section~3]{Roth2022Towards}.
+ 
+ This provides evidence for investigating transferred spatial representations, though its
+ nominal-only patch retrieval differs significantly from supervised action classification.
+ 
+-RT-DETR provides another architectural precedent in the form of its multi-scale visual backbone
++RT-DETR provides another architectural precedent in the form of its multiscale visual backbone
+ \parencite[Sections~4.1--4.2]{Zhao2024RTDETR}. Features at several spatial scales would be viable
+ candidates for the prediction target.
+ 
+@@ -462,7 +462,7 @@
+ within its simulated prediction task \parencite{AlDulaimi2019A}.
+ 
+ The literature therefore motivates comparisons that explicitly account for sequence length,
+-observation windows, temporal ordering, normalisation, pre-training, and fitting budget.
++observation windows, temporal ordering, normalisation, pretraining, and fitting budget.
+ 
+ A Temporal Transformer and a compact statistical representation could well be preserving different
+ aspects of the same sensor stream. Looking at their individual and combined performance helps assess
+@@ -893,11 +893,11 @@
+ between model development and model assessment \parencite{P004,P017}.
+ 
+ Out-of-fold stacking provides a mechanism for constructing second-stage prediction inputs without
+-any in-sample predictions. Its validity is of course also dependent on the way in which the
++any in-sample predictions. Its validity also depends on how the
+ underlying fitting, selection and calibration folds are constructed.
+ 
+ Repeatedly selecting follow-up experiments after looking at the assessment results introduces
+-further selection bias, even if the individual model fits would have ruled out their outer test
++further selection bias, even if the individual model fits exclude their outer test
+ labels.
+ 
+ These results motivate the development of assessment protocols that account for the physical origin
+@@ -1036,14 +1036,14 @@
+ conditions. TC-MAF separately reports performance when the 3D input is unavailable \parencite{P026}.
+ 
+ The literature therefore establishes that useful industrial multimodal fusion mechanisms and
+-approaches to dealing with incomplete observations do in fact exist.
++approaches to dealing with incomplete observations exist.
+ 
+ Representation learning offers a number of scientifically sound options for extracting information
+ relevant to the task. Pretrained convolutional features, patch-based temporal representations, and
+ hand-crafted features are all candidates with some supporting evidence under certain learning and
+ evaluation regimes \parencite{Roth2022Towards,Nie2023PatchTST,Horwitz2023Back}.
+ 
+-Their suitability for another industrial prediction target will, of course, depend on several
++Their suitability for another industrial prediction target depends on several
+ factors, including the observations, the supervision, the aggregation, and the compute resources
+ involved.
+ 
+@@ -1070,7 +1070,7 @@
+ 
+ \subsection{Unresolved Questions and Research Gap}
+ 
+-The evidence reviewed also contains significant negative and, indeed, conflicting findings.
++The evidence reviewed also contains significant negative and conflicting findings.
+ 
+ The same clean-test accuracy is observed for the unimodal and fused welding models. HANDOVER
+ performance drops when the gripper state is added. Some alternative multimodal tool-wear models
+--- original/tex/03_foundations.tex
++++ reworked/tex/03_foundations.tex
+@@ -55,7 +55,7 @@
+ to 0.8, about eight in ten of those actions should fail if the model is well calibrated
+ in that range. This chapter distinguishes models that combine probabilities directly
+ from models that first convert them to \textit{log-odds}, using
+-\(\ell(p)=\log[p/(1-p)]\). The software clips probabilities near zero and one so this
++\(\ell(p)=\log[p/(1-p)]\). The software clips probabilities near zero and one, so this
+ calculation remains defined.
+ 
+ \section{What the camera contributed}
+@@ -172,7 +172,7 @@
+ 
+ The original PatchTST model processes each channel separately and shares its learned
+ weights across channels \parencite{Nie2023PatchTST}. This lets it learn from
+-neighbouring measurements without treating every single measurement as a separate token.
++neighbouring measurements without treating every measurement as a separate token.
+ The published model addressed forecasting. In REASSEMBLE, the encoder was trained from
+ scratch to classify the outcome of a completed action.
+ 
+@@ -532,7 +532,7 @@
+ 
+ The main REASSEMBLE comparison used a frozen camera backbone, a statistical sensor
+ model, and fusion rules that combined their predictions. PatchTST remained a separate
+-sensor-only comparison on the same sensor measurements in the core study, and its
++sensor-only comparison on the same sensor measurements in the core study. Its
+ performance under a limited training budget leaves open what longer
+ training might achieve. Appendix~\ref{app:implementation} records the configurations,
+ and Appendix~\ref{app:reproducibility} identifies which prediction paths were actually
+--- original/tex/04_methodology.tex
++++ reworked/tex/04_methodology.tex
+@@ -211,7 +211,7 @@
+ The difficulty was that knowledge of the proposed test material could already have
+ influenced the design. Session overlap also meant that an assessment sample could share
+ recording conditions with a development sample. The foundation scripts therefore left
+-the final test switched off. They provide a record of the data audit. They provide no
++the final test switched off. They document the data audit but provide no
+ final score for the proposed welding fusion model.
+ 
+ According to the researcher’s account in the project records, the supervisor agreed to
+@@ -324,7 +324,7 @@
+ 
+ The REASSEMBLE stacker learned from two numbers for each training action: a camera score
+ and a sensor score. It needed scores like the ones it would receive for an unfamiliar
+-recording. A score from a branch that had already trained on the same recording could
++recording. A score from a branch that had already been trained on the same recording could
+ give the stacker an unrealistically easy example.
+ 
+ The study first set aside the recordings for the outer assessment. Within the remaining

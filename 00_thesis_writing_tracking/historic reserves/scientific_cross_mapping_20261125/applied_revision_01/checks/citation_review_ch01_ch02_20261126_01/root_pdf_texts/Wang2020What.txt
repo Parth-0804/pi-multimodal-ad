@@ -1,0 +1,716 @@
+            What Makes Training Multi-modal Classification Networks Hard?
+
+                                        Weiyao Wang, Du Tran, Matt Feiszli
+                                                 Facebook AI
+                                     {weiyaowang,trandu,mdf}@fb.com
+
+
+                         Abstract                                      Dataset             Multi-modal               V@1       Best Uni      V@1          Drop
+                                                                                           A + RGB                   71.4          RGB       72.6         -1.2
+   Consider end-to-end training of a multi-modal vs. a uni-                                RGB + OF                  71.3          RGB       72.6         -1.3
+                                                                       Kinetics
+                                                                                            A + OF                   58.3           OF       62.1         -3.8
+modal network on a task with multiple input modalities:
+                                                                                           A + RGB + OF              70.0          RGB       72.6         -2.6
+the multi-modal network receives more information, so it
+should match or outperform its uni-modal counterpart. In             Table 1: Uni-modal networks consistently outperform multi-
+our experiments, however, we observe the opposite: the best          modal networks. Best uni-modal networks vs late fusion multi-
+uni-modal network often outperforms the multi-modal net-             modal networks on Kinetics using video top-1 validation accuracy.
+work. This observation is consistent across different combi-         Single stream modalities include video clips (RGB), Optical Flow
+nations of modalities and on different tasks and benchmarks          (OF), and Audio (A). Multi-modal networks use the same archi-
+for video classification.                                            tectures as uni-modal, with late fusion by concatenation at the last
+                                                                     layer before prediction.
+   This paper identifies two main causes for this perfor-
+mance drop: first, multi-modal networks are often prone                        RGB                                                                72.6
+                                                                       late-concat                    71.4
+to overfitting due to their increased capacity. Second, dif-              pre-train                                 71.7
+
+ferent modalities overfit and generalize at different rates, so          early-stop            71.3
+                                                                           dropout                                                                              72.9
+training them jointly with a single optimization strategy is           mid-concat                                                                        72.8
+                                                                           SE-gate                    71.4
+sub-optimal. We address these two problems with a tech-                    NL-gate                                            72
+nique we call Gradient-Blending, which computes an op-                                71                     71.5               72               72.5                  73
+
+                                                                                                                    Top-1 Accuracy on Kinetics
+timal blending of modalities based on their overfitting be-
+haviors. We demonstrate that Gradient Blending outper-               Figure 1: Standard regularizers do not provide a good im-
+forms widely-used baselines for avoiding overfitting and             provement over the best Uni-modal network. Best uni-modal
+achieves state-of-the-art accuracy on various tasks includ-          network (RGB) vs standard approaches on a multi-modal net-
+                                                                     work (RGB+Audio) on Kinetics. Various methods to avoid over-
+ing human action recognition, ego-centric action recogni-
+                                                                     fitting (orange: Pre-training, Early-stopping, and Dropout) do
+tion, and acoustic event detection.
+                                                                     not solve the issue. Different fusion architectures (red: Mid-
+                                                                     concatenation fusion, SE-gate, and NL-gate) also do not help.
+                                                                     Dropout and Mid-concatenation fusion approaches provide small
+1. Introduction                                                      improvements (+0.3% and +0.2%), while other methods degrade
+                                                                     accuracy.
+    Consider a late-fusion multi-modal network, trained end-
+to-end to solve a task. Uni-modal solutions are a strict sub-        multi-modal networks have higher train accuracy and lower
+set of the solutions available to the multi-modal network;           validation accuracy. Late fusion audio-visual (A+RGB)
+a well-optimized multi-modal model should, in theory, al-            network has nearly two times the parameters of a visual net-
+ways outperform the best uni-modal model. However, we                work, and one may suspect that the overfitting is caused by
+show here that current techniques do not always achieve              the increased number of parameters.
+this. In fact, what we observe is contrary to common sense:             There are two ways to approach this problem. First, one
+the best uni-modal model often outperforms the joint model,          can consider solutions such as dropout [43], pre-training, or
+across different modalities (Table 1) and datasets (details in       early stopping to reduce overfitting. On the other hand, one
+section 3). Anecdotally, the performance drop with mul-              may speculate that this is an architectural deficiency. We
+tiple input streams appears to be common and was noted               experiment with mid-level fusion by concatenation [37] and
+in [24, 3, 38, 44]. This (surprising) phenomenon warrants            fusion by gating [31], trying both Squeeze-and-Excitation
+investigation and solution.                                          (SE) [26] gates and Non-Local (NL) [50] gates.
+    Upon inspection, the problem appears to be overfitting:             Remarkably, none of these provide an effective solu-
+
+
+                                                                  112695
+tion. For each method, we record the best audio-visual              RGB+Optical Flow, with the creation of two-stream fusion
+results on Kinetics in Figure 1. Pre-training fails to of-          networks [41, 19, 18, 48, 12], typically using pre-trained
+fer improvements, and early stopping tends to under-fit the         features and focusing on the fusion [27, 19] or aggregation
+RGB stream. Mid-concat and dropout provide only mod-                architectures [56]. In contrast, we focus on joint training of
+est improvements over RGB model. We note that dropout               the entire network. Instead of focusing on the architectural
+and mid-concat (with 37% fewer parameters compared to               problem, we study model optimization: how to jointly learn
+late-concat) make 1.5% and 1.4% improvements over late-             and optimally blend multi-modal signals. With proper opti-
+concat, confirming the overfitting problem with late-concat.        mization, we show audio is useful for video classification.
+We refer to supplementary materials for details.                    Multi-modal networks. Our work is related to previous re-
+   How do we reconcile these experiments with previous              search on multi-modal networks [7] for classifications [41,
+multi-modal successes? Multi-modal networks have suc-               48, 19, 21, 12, 6, 10, 31], which primarily uses pre-training
+cessfully been trained jointly on tasks including sound             in contrast to our joint training. On the other hand, our work
+localization [58], image-audio alignment [5], and audio-            is related to cross-modal tasks [53, 20, 42, 4, 57, 24, 9] and
+visual synchronization [37, 34]. However, these tasks can-          cross-modal self-supervised learning [58, 5, 37, 34]. These
+not be performed with a single modality, so there is no uni-        tasks either take one modality as input and make prediction
+modal baseline and the performance drop found in this pa-           on the other modality (e.g. Visual-Q&A [4, 57, 24], im-
+per does not apply. In other work, joint training is avoided        age captioning [9], sound localization [37, 58] in videos)
+entirely by using pre-trained uni-modal features. Good ex-          or uses cross-modality correspondences as self-supervision
+amples include two-stream networks for video classifica-            (e.g. image-audio correspondence [5], video-audio syn-
+tion [41, 48, 19, 12] and image+text classification [6, 31].        chronization [34]). Instead, we try to address the problem
+These methods do not train multiple modalities jointly, so          of joint training of multi-modal networks for classification.
+they are again not comparable, and their accuracy may               Multi-task learning. Our proposed Gradient-Blending
+likely be sub-optimal due to independent training.                  training scheme is related to previous works in multi-task
+   Our contributions in this paper include:                         learning in using auxiliary loss [33, 16, 30, 13]. These
+  • We empirically demonstrate the significance of overfit-         methods either use uniform/manually tuned weights, or
+     ting in joint training of multi-modal networks, and we         learn the weights as parameters during training (no notion
+     identify two causes for the problem. We show the prob-         of overfitting prior used), while our work re-calibrates su-
+     lem is architecture agnostic: different fusion techniques      pervision signals using a prior OGR.
+     can also suffer the same overfitting problem.
+  • We propose a metric to understand the problem quanti-           2. Multi-modal training via Gradient-Blending
+     tatively: the overfitting-to-generalization ratio (OGR),       2.1. Background
+     with both theoretical and empirical justification.
+  • We propose a new training scheme which minimizes                Uni-modal network. Given train set T = {X1...n , y1...n },
+     OGR via an optimal blend (in a sense we make precise           where Xi is the i-th training example and yi is its true label,
+     below) of multiple supervision signals. This Gradient-         training on a single modality m (e.g. RGB frames, audio,
+     Blending (G-Blend) method gives significant gains in           or optical flows) means minimizing an empirical loss:
+     ablations and achieves state-of-the-art (SoTA) accuracy                             L (C (ϕm (X)) , y)                    (1)
+     on benchmarks including Kinetics, EPIC-Kitchen, and
+     AudioSet by combining audio and visual signals.                where ϕm is normally a deep network with parameter Θm ,
+                                                                    and C is a classifier, typically one or more fully-connected
+We note that G-Blend is task-agnostic, architecture-agnostic
+                                                                    (FC) layers with parameter Θc . For classification problems
+and applicable to other scenarios (e.g. used in [39] to com-
+                                                                    considered here, L is the cross entropy loss. Minimizing
+bine point cloud with RGB for 3D object detection)
+                                                                    Eq. 1 gives a solution Θ∗m and Θ∗c . Fig. 2a shows indepen-
+1.1. Related Work                                                   dent training of two modalities m1 and m2 .
+                                                                    Multi-modal network. We train a late-fusion model on M
+Video classification. Video understanding has been one              different modalities ({mi }k1 ). Each modality is processed
+of the most active research areas in computer vision re-            by a different deep network ϕmi with parameter Θmi , and
+cently. There are two unique features with respect to videos:       their features are fused and passed to a classifier C. For-
+temporal information and multi-modality. Previous works             mally, training is done by minimizing the loss:
+have made significant progress in understanding tempo-
+ral information [27, 45, 49, 40, 47, 54, 17]. However,
+                                                                     Lmulti = L (C (ϕm1 ⊕ ϕm2 ⊕ · · · ⊕ ϕmk ) , y) (2)
+videos are also rich in multiple modalities: RGB frames,            where ⊕ denotes a fusion operation (e.g. concatenation).
+motion vectors (optical flow), and audio. Previous works            Fig. 2b shows an example of a joint training of two modal-
+that exploit the multi-modal natures primarily focus on             ities m1 and m2 . The multi-modal network in Eq. 2 is a
+
+
+                                                                 12696
+                                 L1               L2                        L multi                 w1 L 1   wmulti L multi w2 L 2
+                            a)                                        b)                           c)
+Figure 2: Uni- vs. multi-modal joint training. a) Uni-modal training of two different modalities. b) Naive joint training of two modalities by late fusion.
+c) Joint training of two modalities with weighted blending of supervision signals. Different deep network encoders (white trapezoids) produce features (blue
+or pink rectangles) which are concatenated and passed to a classifier (yellow rounded rectangles).
+
+                                              ℒ % = 4.5/6.7/20 1233                   quite well (difference of train loss and validation loss is very
+                                              ℒ ' = ,-./0 1233
+                                                                                      small for underfitting models; in other words, O is small).
+                                                                                          Therefore, we propose to solve an infinitesimal problem:
+                                                        %      %
+                                                  Δ) = ℒ"*+ − ℒ"
+                                                                                      given several estimates of the gradient, blend them to mini-
+           Loss
+
+
+
+
+                            %
+                      !" = ℒ"    '
+                              − ℒ"                                                    mize an infinitesimal OGR2 . We apply this blend to our op-
+                                                          %
+                                                  !"*+ = ℒ"*+    '
+                                                              − ℒ"*+
+                                                                                      timization process (e.g. SGD with momentum). Each gra-
+                                                    Δ! = !"*+ − !"                    dient step now increases generalization error as little as pos-
+                                                                                      sible per unit gain on the validation loss, minimizing over-
+                                      Epoch
+                                                                                      fitting. In a multi-modal setting, this means we combine
+Figure 3: Overfitting-to-Generalization Ratio. Between any two                        gradient estimates from multiple modalities and minimize
+training checkpoints, we can measure the change in overfitting and                    OGR2 to ensure each gradient step now produces a gain no
+generalization. When ∆V∆O
+                            is small, the network is learning well                    worse than that of the single best modality. As we will see
+and not overfitting much.                                                             in this paper, this L2 problem admits a simple, closed-form
+                                                                                      solution, is easy to implement, and works well in practice.
+super-set of the uni-model network in Eq. 1: for any so-                                  Consider a single parameter update step with estimate ĝ
+lution to Eq. 1 on any modality mi , one can construct an                             for the gradient. As the distance between two checkpoints
+equally-good solution to Eq. 2 by choosing parameters Θc                              is small (in the neighborhood in which a gradient step is
+that mute all modalities other than mi . In practice, this so-                        guaranteed to decrease the train loss), we use the first-order
+lution is not found, and we next explain why.                                         approximations: ∆G ≈ h∇L∗ , ĝi and ∆O ≈ h∇LT −
+                                                                                      L∗ , ĝi. Thus, OGR2 for a single vector ĝ is
+2.2. Generalizing vs. Overfitting
+                                                                                                                                          2
+                                                                                                                       h∇LT − ∇L∗ , ĝi
+                                                                                                                   
+    Overfitting is typically understood as learning patterns                                                 2
+                                                                                                   OGR =                                                (4)
+in a train set that do not generalize to the target distribution.                                                         h∇L∗ , ĝi
+Given model parameters at epoch N , let LTN be the model’s
+average loss over the fixed train set, and L∗N be the “true”                              See supplementary materials for details on OGR.
+loss w.r.t the hypothetical target distribution. (In what fol-                        2.3. Blending of Multiple Supervision Signals by
+lows, L∗ is approximated by a held-out validation loss LV .)                               OGR Minimization
+We define overfitting at epoch N as the gap between LTN
+and L∗N (approximated by ON in fig. 3). The quality of                                   We can obtain multiple estimates of gradient by attach-
+training between two model checkpoints can be measured                                ing classifiers to each modality’s features and to the fused
+by the change in overfitting and generalization (∆O, ∆G in                            features (see fig 2c). Per-modality gradient {ĝi }ki=1 are ob-
+fig. 3). Between checkpoints N and N + n, we can define                               tained by back-propagating through each loss separately (so
+the overfitting-to-generalization-ratio (OGR):                                        per-modality gradients contain many zeros in other parts of
+                                                                                      the network). Our next result allows us to blend them all
+                          ∆ON,n  ON +n − ON                                           into a single vector with better generalization behavior.
+                  OGR ≡         = ∗                                        (3)
+                          ∆GN,n   LN − L∗N +n
+                                                                                      Proposition 1 (Optimal Gradient Blend). Let {vk }M0 be
+   OGR between checkpoints measures the quality of                                    a set of estimates for ∇L∗ whose overfitting  satisfies
+                                                                                      E h∇LT − ∇L∗ , vkP  ih∇LT − ∇L∗ , vj i = 0 for j 6= k.
+                                                                                                                            
+learned information (with cross-entropy loss, it is the ratio
+of bits not generalizable to bits which do generalize). We                            Given the constraint k wk = 1 the optimal weights wk ∈
+propose minimizing OGR during training. However, opti-                                R for the problem
+mizing OGR globally would be very expensive (e.g. vari-                                                  "                        2 #
+                                                                                                            h∇LT − ∇L∗ , k wk vk i
+                                                                                                                         P
+ational methods over the whole optimization trajectory). In                               ∗
+                                                                                        w = arg min E                                      (5)
+                                                                                                               h∇L∗ , k wk vk i
+                                                                                                                     P
+addition, very underfit models, for example, may still score                                      w
+
+
+
+                                                                                  12697
+are given by                                                          joint head mk+1 (Fig. 2c). In practice we can use a subset of
+                            1 h∇L∗ , vk i                             training set T ′ to measure train loss/ accuracy. To compute
+                    wk∗ =                                  (6)
+                            Z   σk2                                   the Gradient-Blending weights when training from N for
+                                                         ∗            n epochs, we provide a Gradient-Blending weight estima-
+where σk2 ≡ E[h∇LT − ∇L∗ , vk i2 ] and Z = k h∇L           ,vk i
+                                               P
+                                                        2σk2          tion in Algorithm 1. We propose two versions of gradient-
+is a normalizing constant.                                            blending:
+                                                                        1. Offline Gradient-Blending is a simple version of
+    Assumption E h∇LT − ∇L∗ , vk ih∇LT − ∇L∗ , vj i =
+                                                            
+                                                                            gradient-blending. We compute weights only once,
+0 will be false when two models’ overfitting is very cor-                   and use a fixed set of weights to train entire epoch.
+related. However, if this is the case then very little can                  This is very easy to implement. See Algorithm 2.
+be gained by blending their gradients. In informal exper-               2. Online Gradient-Blending is the full version. We
+iments we have indeed observed that    these cross terms                   re-compute weights regularly (e.g. every n epochs –
+are often small relative to the E h∇LT − ∇L∗ , vk i2 .
+                                                              
+                                                                            called a super-epoch), and train the model with new
+This is likely due to complementary information across                      weights for a super-epoch. See Algorithm 3.
+modalities, and we speculate that this happens naturally as           Empirically, offline performs remarkably well. We compare
+joint training tries to learn complementary features across           the two in section 3, with online giving additional gains.
+neurons. Please see supplementary materials for proof of
+Proposition 1, including formulas for the correlated case.             Algorithm 1: G-B Weight Estimation: GB Estimate
+    Proposition 1 may be compared with well-known re-                      input: ϕN , Model checkpoint at epoch N
+sults for blending multiple estimators; e.g. for the mean, a                       n, # of epochs
+minimum-variance estimator is obtained by blending uncor-                  Result: A set of optimal weights with for k + 1 losses.
+related estimators with weights inversely proportional to the              for i = 1, ..., k + 1 do
+individual variances (see e.g. [1]). Proposition 1 is similar,                 Initialize uni-modal/ naive multi-modal network
+where variance is replaced by O2 and weights are inversely                       ϕN
+                                                                                  mi from corresponding parameters in ϕ ;
+                                                                                                                         N
+proportional to the individual O2 (now with a numerator G).                             N
+                                                                               Train ϕmi for n epochs on T , resulting model
+                                                                                 ϕN +n
+                                                                                  mi ;
+2.4. Use of OGR and Gradient-Blending in practice
+                                                                               Compute amount of overfitting Oi = ON,n ,
+   We adapt a multi-task architecture to construct an ap-                        generalization Gi = GN,n according to Eq.3
+proximate solution to the optimization above (fig 2c).                           using V and T ′ for modality mi ;
+   Optimal blending by loss re-weighting At each back-                     end
+propagation step, the per-modality gradient for mi is ∇Li ,                Compute a set of loss {wi∗ }k+1     1 Gi
+                                                                                                        i=1 = Z O i 2 ;
+and the gradient from the fused loss is given by Eq. 2 (de-
+note as ∇Lk+1 ). Taking the gradient of the blended loss
+                                                                       Algorithm 2: Offline Gradient-Blending
+                                k+1
+                     Lblend =
+                                X
+                                      wi Li                (7)             input: ϕ0 , Initialized model
+                                i=1
+                                                                                   N , # of epochs
+                                                                           Result: Trained multi-head model ϕN
+                                      Pk+1
+thus produces the blended gradient i=1 wi ∇Li . For ap-                    Compute per-modality weights
+propriate choices of wi this yields a convenient way to im-                 {wi }ki=1 = GB Estimate(ϕ0 , N ) ;
+plement gradient blending. Intuitively, loss reweighting re-               Train ϕ0 with {wi }ki=1 for N epochs to get ϕN ;
+calibrates the learning schedule to balance the generaliza-
+tion/overfitting rate of different modalities.
+                                                                       Algorithm 3: Online Gradient-Blending
+   Measuring OGR in practice. In practice, ∇L∗ is not
+available. To measure OGR, we hold out a subset V of                       input: ϕ0 , Initialized model
+the training set to approximate the true distribution (i.e.                       N , # of epochs
+LV ≈ L∗ ). We find it is equally effective to replace the                         n, super-epoch length
+loss measure by an accuracy metric to compute G and O                      for i = 0, ..., N
+                                                                                           n − 1 do
+and estimate optimal weights from Gradient-Blending. To                        Current epoch Ni = i ∗ n ;
+reduce computation costs, we note that weights estimation                      Compute per-modality weights
+can be done on a small subset of data, without perturbing                        {wi }ki=1 = GB Estimate(ϕNi , Ni + n) ;
+the weights too much (see supplementary materials).                            Train ϕNi with {wi }ki=1 for n epochs to ϕNi +n ;
+   Gradient-Blending algorithms take inputs of training                    end
+data T , validation set V, k input modalities {mi }ki=1 and a
+
+
+                                                                   12698
+3. Ablation Experiments                                                             Method           Clip    V@1       V@5
+                                                                                Naive Training       61.8    71.7      89.6
+3.1. Experimental setup                                                           RGB Only           63.5    72.6      90.1
+                                                                                Offline G-Blend      65.9    74.7      91.5
+Datasets. We use three video datasets for ablations: Kinet-
+                                                                                Online G-Blend       66.9    75.8      91.9
+ics, mini-Sports, and mini-AudioSet. Kinetics is a standard
+benchmark for action recognition with 260k videos [28] of           Table 2: Both offline and online Gradient-Blending outperform Naive
+400 human action classes. We use the train split (240k)             late fusion and RGB only. Offline G-Blend is lightly less accurate com-
+                                                                    pared with the online version, but much simpler to implement.
+for training and the validation split (20k) for testing. Mini-
+Sports is a subset of Sports-1M [27], a large-scale clas-
+sification dataset with 1.1M videos of 487 different fine-          3.3. Gradient-Blending is an effective regularizer
+grained sports. We uniformly sampled 240k videos from                   In this ablation, we first compare the performance of on-
+train split and 20k videos from the test split. Mini-               line and offline versions of G-Blend. Then we show that
+AudioSet is a subset of AudioSet [22], a multi-label dataset        G-Blend works with different types of optimizers, includ-
+consisting of 2M videos labeled by 527 acoustic events. Au-         ing ones with adaptive learning rates. Next, we show G-
+dioSet is very class-unbalanced, so we remove tiny classes          Blend improves the performance on different multi-modal
+and subsample the rest (see supplementary). The balanced            problems (different combinations of modalities), different
+mini-AudioSet has 418 classes with 243k videos.                     model architectures and different tasks.
+Input preprocessing & augmentation. We consider three               Online G-Blend Works. We begin with the complete ver-
+modalities: RGB, optical flow and audio. For RGB and                sion of G-Blend, online G-Blend. We use an initial super-
+flow, we use input clips of 16×224×224 as input. We fol-            epoch size of 10 (for warmup), and a super-epoch size
+low [46] for visual pre-processing and augmentation. For            of 5 thereafter. On Kinetics with RGB-audio setting, on-
+audio, we use log-Mel with 100 temporal frames by 40 Mel            line Gradient-Blending surpasses both uni-modal and naive
+filters. Audio and visual are temporally aligned.                   multi-modal baselines, by 3.2% and 4.1% respectively. The
+Backbone architecture. We use ResNet3D [47] as our vi-              weights for online are in fig. 5a. In general, weights tend
+sual backbone for RGB and flow and ResNet [25] as our               to be stable at first with slightly more focused on visual;
+audio model, both with 50 layers. For fusion, we use a two-         then we see a transition at epoch 15 where the model does
+FC-layer network on concatenated features from visual and           “pre-training” on visual trunk; at epoch 20 A/V trunk got all
+audio backbones, followed by one prediction layer.                  weights to sync the learning from visual trunk. After that,
+Training and testing.          We train our models with             weights gradually stabilize again with a strong focus on vi-
+synchronous distributed SGD on GPU clusters using                   sual learning. We believe that, in general, patterns learned
+Caffe2 [11], with setup as [47]. We hold out a small por-           by neural network are different at different stage of training
+tion of training data for weight estimate (8% for Kinetics          (e.g.[36]), thus the overfitting / generalization behavior also
+and mini-Sports, 13% for mini-AudioSet). The final video            changes during training; this leads to different weights at
+prediction is made by using center crops of 10 uniformly-           different stages of the training.
+sampled clips and averaging the 10 predictions.                         Moreover, we observe that G-Blend always outperforms
+                                                                    naive training in the online setting (Fig. 5b). With the same
+3.2. Overfitting Problems in Naive Joint Training
+                                                                    initialization (model snapshots at epoch 0,10,15,...,40), we
+    We first compare naive audio-RGB joint training with            compare the performance of G-Blend model and naive
+unimodal audio-only and RGB-only training. Fig. 4 plots             training after a super-epoch (at epoch 10,15,20,...,45), and
+the training curves on Kinetics (left) and mini-Sports              G-Blend models always outperform naive training. This
+(right). On both datasets, the audio model overfits the most        shows that G-Blend always provides more generalizable
+and video overfits least. The naive joint audio-RGB model           training information, empirically proving proposition 1.
+has lower training error and higher validation error com-           Additionally, it shows the relevance of minimizing OGR, as
+pared with the video-only model; i.e. naive audio-RGB               using weights that minimize OGR improves performance
+joint training increases overfitting, explaining the accuracy       of the model. For fair comparison, we fix the main trunk
+drop compared to video alone.                                       and finetune the classifier for both Naive A/V and G-Blend
+    We extend the analysis and confirm severe overfitting           as we want to evaluate the quality of their backbones. At
+on other multi-modal problems. We consider all 4 pos-               epoch 25, the gain is small since G-Blend puts almost all
+sible combinations of the three modalities (audio, RGB,             weights on A/V head, making it virtually indistinguishable
+and optical flow). In every case, the validation accuracy of        from naive training for that super-epoch.
+naive joint training is significantly worse than the best sin-      Offline G-Blend Also Works. Although online G-Blend
+gle stream model (Table 1), and training accuracy is almost         gives significant gains and addresses overfitting well, it is
+always higher (see supplementary materials).                        more complicated to implement, and somewhat slower due
+
+
+                                                                 12699
+                                                                                                              Kinetics Learning Curve                                                                           Mini-Sports Learning Curve
+                                                                                             1                                                                                                   1
+
+
+                                                                                            0.9
+                                                                                                                                                                                                0.9
+
+                                                                                            0.8
+                                                                                                                                                                                                0.8
+                                                      A-Train                               0.7
+
+
+
+
+                                                                                Error (%)
+
+
+
+
+                                                                                                                                                                                    Error (%)
+                                                      A-Val
+                                                                                            0.6                                                                                                 0.7
+                                                      V-Train
+                                                      V-Val                                 0.5                                                                                                 0.6
+                                                      AV-Train
+                                                                                            0.4
+                                                      AV-Val                                                                                                                                    0.5
+                                                                                            0.3
+
+                                                                                                                                                                                                0.4
+                                                                                            0.2
+
+
+                                                                                            0.1                                                                                                 0.3
+                                                                                                  0     5     10    15        20        25        30        35        40   45                         0     5     10   15   20   25   30   35   40   45
+
+                                                                                                                              Epoch                                                                                         Epoch
+
+Figure 4: Severe overfitting of naive audio-video models on Kinetics and mini-Sports. The learning curves (error-rate) of audio model (A), video model
+(V), and the naive joint audio-video (AV) model on Kinetics (left) and mini-Sports (right). Solid lines plot validation error while dashed lines show train
+error. The audio-video model overfits more than visual model and is inferior to the video-only model on validation loss.
+                        Online G-Blend Weights                                                         Online G-Blend: Per-Step Comparison
+          1                                                                           0.8                                                                                                                 Optimizer           Method            Clip      V@1    V@5
+                                                          A                                             Naive A/V
+         0.8
+                                                          V
+                                                          AV                         0.75               G-Blend                                                                                                               Visual            60.0      68.9   88.4
+                                                                                                                                                                                                          AdaGrad            Naive AV           56.4      65.2   86.5
+                                                                    Top-1 Accuracy
+
+
+
+
+                                                                                      0.7
+         0.6
+                                                                                                                                                                                                                             G-Blend            62.1      71.3   89.8
+Weight
+
+
+
+
+                                                                                     0.65
+         0.4                                                                                                                                                                                                                  Visual            60.1      69.3   88.7
+                                                                                      0.6
+                                                                                                                                                                                                          Adam               Naive AV           57.9      66.4   86.8
+         0.2
+                                                                                     0.55
+                                                                                                                                                                                                                             G-Blend            63.0      72.1   90.5
+          0                                                                           0.5
+               0   5   10   15   20   25   30   35   40        45                                 10     15    20        25        30        35        40        45
+                                 Epoch                                                                                    Epoch                                                 Table 3: G-Blend on different optimizers. We compare G-Blend with
+                                                                                                                                                                                Visual only and Naive AV on two additional optimizers: AdaGrad, and
+                 (a)                               (b)
+                                                                                                                                                                                Adam. G-Blend consistently outperforms Visual-Only and Naive AV base-
+Figure 5: Online G-Blend. (a) Online G-Blend weights for each head.                                                                                                             lines on all three optimizers.
+(b) Online G-Blend outperforms naive training on each super-epoch.
+For each super-epoch (5 epochs), we use the same snapshot of the model                                                                                                          Table 4 presents comparison of our method with naive joint
+learned by G-Blend, and compare the performance of the models trained
+by G-Blend and naive at the next 5 epochs. G-Blend always outperforms                                                                                                           training and best single stream model. We observe signif-
+naive training. This proves that G-Blend always learn more generalize                                                                                                           icant gains of G-Blend compared to both baselines on all
+information at a per-step level.                                                                                                                                                multi-modal problems. It is worth noting that G-Blend is
+                                                                                                                                                                                generic enough to work for more than two modalities.
+to the extra weight computations. As we will now see, Of-
+fline G-Blend can be easily adopted and works remarkably                                                                                                                        Different Architectures. We conduct experiments on mid-
+well in practice. On the same audio-RGB setting on Kinet-                                                                                                                       fusion strategy [37], which suffers less overfitting and out-
+ics, offline G-Blend also outperforms uni-modal baseline                                                                                                                        performs visual baseline (Figure 1). On audio-visual set-
+and naive joint training by a large margin, 2.1% and 3.0%                                                                                                                       ting, Gradient-Blending gives 0.8% improvement (top-1
+respectively (Table 2), and is only slightly worse than online                                                                                                                  from 72.8% to 73.6%). On a different fusion architecture
+(-1.1%). Based on such observation, we opt to use offline G-                                                                                                                    with Low-Rank Multi-Modal Fusion (LMF) [35], Gradient-
+Blend in the rest of the ablations, demonstrating its perfor-                                                                                                                   Blending gives 4.2% improvement (top-1 from 69.3% to
+mance across different scenarios. We speculate the online                                                                                                                       73.5%). This suggests Gradiend-Blending can be adopted
+version will be particularly useful for some cases not cov-                                                                                                                     to other fusion strategies besides late-fusion and other fu-
+ered here, for example a fast-learning low-capacity model                                                                                                                       sion architectures besides concatenation.
+(perhaps using some frozen pre-trained features), paired                                                                                                                        Different Tasks/Benchmarks. We pick the problem of
+with a high-capacity model trained from scratch.                                                                                                                                joint audio-RGB model training, and go deeper to compare
+Adaptive Optimizers. Section 2.2 introduced G-Blend in                                                                                                                          Gradient-Blending with other regularization methods on
+an infinitesimal setting: blending different gradient estima-                                                                                                                   different tasks and benchmarks: action recognition (Kinet-
+tion at a single optimization step and assumes same learning                                                                                                                    ics), sport classification (mini-Sports), and acoustic event
+rate for each gradient estimator. This is true for many pop-                                                                                                                    detection (mini-AudioSet). We include three baselines:
+ular SGD-based algorithms, such as SGD with Momentum.                                                                                                                           adding dropout at concatenation layer [43], pre-training sin-
+However, the assumption may not be rigorous with adaptive                                                                                                                       gle stream backbones then finetuning the fusion model, and
+optimization methods that dynamically adjust learning rate                                                                                                                      blending the supervision signals with equal weights (which
+for each parameter, such as Adam [32] and AdaGrad [15].                                                                                                                         is equivalent to naive training with two auxiliary losses).
+We empirically show that offline Gradient-Blending (Algo-                                                                                                                       Auxiliary losses are popularly used in multi-task learning,
+rithm 2) also works with different optimizers. Since SGD                                                                                                                        and we extend it as a baseline for multi-modal training.
+gives the best accuracy among the three optimizers, we opt                                                                                                                          As presented in Table 5, Gradient-Blending outperforms
+to use SGD for all of our other experiments.                                                                                                                                    all baselines by significant margins on both Kinetics and
+Different Modalities. On Kinetics, we study all combi-                                                                                                                          mini-Sports. On mini-AudioSet, G-Blend improves all
+nations of three modalities: RGB, optical flow, and audio.                                                                                                                      baselines on mAP, and is slightly worse on mAUC com-
+
+
+                                                                                                                                                                           12700
+  Modal                 RGB + A                            RGB + OF                               OF + A                           RGB + OF + A
+  Weights     [RGB,A,Join]=[0.630,0.014,0.356]   [RGB,OF,Join]=[0.309,0.495,0.196]      [OF,A,Join]=[0.827,0.011,0.162]   [RGB,OF,A,Join]=[0.33,0.53,0.01,0.13]
+  Metric       Clip       V@1         V@5          Clip       V@1        V@5            Clip        V@1         V@5        Clip       V@1         V@5
+   Uni         63.5       72.6        90.1         63.5       72.6       90.1           49.2        62.1        82.6       63.5       72.6        90.1
+  Naive        61.8       71.4        89.3         62.2       71.3       89.6           46.2        58.3        79.9       61.0       70.0        88.7
+  G-Blend      65.9       74.7        91.5         64.3       73.1       90.8           54.4        66.3        86.0       66.1       74.9        91.8
+Table 4: Gradient-Blending (G-Blend) works on different multi-modal problems. Comparison between G-Blend with naive late fusion and single best
+modality on Kinetics. On all 4 combinations of different modalities, G-Blend outperforms both naive late fusion network and best uni-modal network by
+large margins, and it also works for cases with more than two modalities. G-Blend results are averaged over three runs with different initialization. Variances
+are small and are provided in supplementary
+
+pared to auxiliary loss baseline. The reason is that the                             on Kinetics, EPIC-Kitchen [14], and AudioSet. EPIC-
+weights learned by Gradient-Blending are very similar to                             Kitchen is a multi-class egocentric dataset with 28K train-
+equal weights. The failures of auxiliary loss on Kinetics and                        ing videos associated with 352 noun and 125 verb classes.
+mini-Sports demonstrates that the weights used in G-Blend                            For ablations, following [8], we construct a validation set of
+are indeed important. We note that for mini-AudioSet, even                           unseen kitchen environments. G-Blend is trained with RGB
+though the naively trained multi-modal baseline is better                            and audio input. For Kinetics and EPIC-Kitchen, we use ip-
+than uni-modal baseline, Gradient-Blending still improves                            CSN [46] for visual backbone with 32 frames and ResNet
+by finding more generalized information. We also experi-                             for audio backbone, both with 152 layers. For AudioSet,
+ment with other less obvious multi-task techniques such as                           we use R(2+1)D for visual [47] with 16 frames and ResNet
+treating the weights as learnable parameters [30]. However,                          for audio, both with 101 layers. We use the same training
+this approach converges to a similar result as naive joint                           setup in section 3. For EPIC-Kitchen, we follow the same
+training. This happens because it lacks of overfitting prior,                        audio feature extractions as [29]; the visual backbone is pre-
+and thus the learnable weights were biased towards the head                          trained on IG-65M [23]. We use the same evaluation setup
+that has the lowest training loss which is audio-RGB.                                as section 3 for AudioSet and EPIC-Kitchen. For Kinetics,
+                                                                                     we follow the 30-crop evaluation setup as [50]. Our main
+                                                                                     purposes in these experiments are: 1) to confirm the bene-
+                                                                                     fit of Gradient-Blending on high-capacity models; and 2) to
+                                                                                     compare G-Blend with state-of-the-art methods on different
+                                                                                     large-scale benchmarks.
+                                                                                     Results. Table 6 presents results of G-Blend and com-
+                                                                                     pares them with current state-of-the-art methods on Kinet-
+                                                                                     ics. First, G-Blend provides an 1.3% improvement over
+                                                                                     RGB model (the best uni-modal network) with the same
+                                                                                     backbone architecture ip-CSN-152 [46] when both models
+                                                                                     are trained from scratch. This confirms that the benefits
+Figure 6: Top-Bottom 10 classes based on improvement of G-Blend to                   of G-Blend still hold with high capacity model. Second,
+RGB model. The improved classes are indeed audio-relevant, while those               G-Blend outperforms state-of-the-arts multi-modal base-
+have performance drop are not very audio semantically-related.
+                                                                                     line Shift-Attention Network [10] by 1.4% while using less
+   Fig. 6 presents top and bottom 10 classes on Kinet-                               modalities (not using optical flow) and no pre-training. It is
+ics where G-Blend makes the most and least improve-                                  on-par with SlowFast [17] while being 2x faster. G-Blend,
+ments compared with RGB-only. We observe that im-                                    when fine-tuned from Sports-1M on visual and AudioSet on
+proved classes usually have a strong audio-correlation, such                         audio, outperforms SlowFast Network and SlowFast aug-
+as clapping and laughing. For texting, although audio-only                           mented by Non-Local [50] by 1.5% and 0.6% respectively,
+has nearly 0 accuracy, when combined with RGB using G-                               while being 2x faster than both. Using weakly-supervised
+Blend, there are still significant improvements. On bottom-                          pre-training by IG-65M [23] on visual, G-Blend gives un-
+10 classes, we indeed find that audio does not seem to be                            paralleled 83.3% top-1 accuracy and 96.0% top-5 accuracy.
+very semantically relevant (e.g. unloading truck). See sup-
+                                                                                        We also note that there are many competitive methods re-
+plementary materials for more qualitative analysis.
+                                                                                     porting results on Kinetics, due to the space limit, we select
+4. Comparison with State-of-the-Art                                                  only a few representative methods for comparison includ-
+                                                                                     ing Shift-Attention [10], SlowFast [17], and ip-CSN [46].
+   In this section, we train our multi-modal networks                                Shift-Attention and SlowFast are the methods with the best
+with deeper backbone architectures using offline Gradient-                           published accuracy using multi-modal and uni-modal input,
+Blending and compare them with state-of-the-art methods                              respectively. ip-CSN is used as the visual backbone of G-
+
+
+                                                                              12701
+     Dataset                         Kinetics                                          mini-Sports                               mini-AudioSet
+     Weights                [RGB,A,Join]=[0.63,0.01,0.36]                      [RGB,A,Join]=[0.65,0.06,0.29]                [RGB,A,Join]=[0.38,0.24,0.38]
+     Method                Clip        V@1            V@5                     Clip        V@1            V@5                  mAP              mAUC
+   Audio only              13.9        19.7           33.6                    14.7        22.1           35.6                 29.1              90.4
+    RGB only               63.5        72.6           90.1                    48.5        62.7           84.8                 22.1              86.1
+   Pre-Training            61.9        71.7           89.6                    48.3        61.3           84.9                 37.4              91.7
+      Naive                61.8        71.7           89.3                    47.1        60.2           83.3                 36.5              92.2
+     Dropout               63.8        72.9           90.6                    47.4        61.4           84.3                 36.7              92.3
+  Auxiliary Loss           60.5        70.8           88.6                    48.9        62.1           84.0                 37.7              92.3
+     G-Blend               65.9        74.7           91.5                    49.7        62.8           85.5                 37.8              92.2
+Table 5: G-Blend outperforms all baseline methods on different benchmarks and tasks. Comparison of G-blend with different regularization baselines
+as well as uni-modal networks on Kinetics, mini-Sports, and mini-AudioSet. G-Blend consistently outperforms other methods, except for being comparable
+with using auxiliary loss on mini-AudioSet due to the similarity of learned weights of G-Blend and equal weights.
+
+     Backbone             Pre-train    V@1        V@5      GFLOPs                         method                 noun             verb             action
+   Shift-Attn Net [10]   ImageNet      77.7       93.2        NA                                             V@1     V@5     V@1       V@5     V@1      V@5
+     SlowFast [17]         None        78.9       93.5      213×30                                              Validation Set
+   SlowFast+NL [17]        None        79.8       93.9      234×30                 Visual:ip-CSN-152 [46]    36.4    58.9    56.6      84.1    24.9     42.5
+                                                                                       Naive A/V:152         34.8    56.7    57.4      83.3    23.7     41.2
+    ip-CSN-152 [46]        None        77.8       92.8     108.8×30
+                                                                                       G-Blend(ours)         36.1    58.5    59.2      84.5    25.6     43.5
+    G-Blend(ours)          None        79.1       93.9     110.1×30
+                                                                                                            Test Unseen Kitchen (S2)
+    ip-CSN-152 [46]      Sports1M      79.2       93.8     108.8×30
+                                                                                       Leaderboard [2]        38.1    63.8    60.0     82.0    27.4     45.2
+    G-Blend(ours)        Sports1M      80.4       94.8     110.1×30                    Baidu-UTS [51]         34.1    62.4    59.7     82.7    25.1     46.0
+    ip-CSN-152 [46]       IG-65M       82.5       95.3     108.8×30                    TBN Single [29]        27.9    53.8    52.7     79.9    19.1     36.5
+    G-Blend(ours)         IG-65M       83.3       96.0     110.1×30                   TBN Ensemble [29]       30.4    55.7    54.5     81.2    21.0     39.4
+                                                                                      Visual:ip-CSN-152       35.8    59.6    56.2     80.9    25.1     41.2
+Table 6: Comparison with state-of-the-art methods on Kinetics. G-
+                                                                                        G-Blend(ours)         36.7    60.3    58.3     81.3    26.6     43.6
+Blend used audio and RGB as input modalities; for pre-trained models on
+Sports1M and IG-65M, G-Blend initializes audio network by pre-training                                       Test Seen Kitchen (S1)
+on AudioSet. G-Blend outperforms current state-of-the-art multi-modal             Baidu-UTS(leaderboard)      52.3    76.7    69.8     91.0    41.4     63.6
+method (Shift-Attention Network) despite the fact that it uses fewer modal-             TBN Single            46.0    71.3    64.8     90.7    34.8     56.7
+ities (G-Blend does not use Optical Flow). G-Blend also gives a good im-              TBN Ensemble            47.9    72.8    66.1     91.2    36.7     58.6
+provement over RGB model (the best uni-modal network) when using the                Visual:ip-CSN-152         45.1    68.4    64.5     88.1    34.4     52.7
+same backbone, and it achieves the state-of-the-arts.                                 G-Blend(ours)           48.5    71.4    66.7     88.9    37.1     56.2
+                    Method                mAP       mAUC                         Table 8: Comparison with state-of-the-art methods on EPIC-Kitchen.
+              Multi-level Attn. [55]      0.360     0.970                        G-Blend achieves 2nd place on seen kitchen challenge and 4th place on un-
+                 TAL-Net [52]             0.362     0.965                        seen, despite using fewer modalities, fewer backbones, and single model in
+                Audio:R2D-101             0.324     0.961                        contrast to model ensembles compared to published results on leaderboard.
+              Visual:R(2+1)D-101          0.188     0.918
+                                                                                 place on seen kitchen. Comparing to published results, G-
+                Naive A/V:101             0.402     0.973
+                                                                                 Blend uses less modalities (not using optical flow as TBN
+              G-Blend (ours):101          0.418     0.975
+                                                                                 Ensemble [29]), less backbones (Baidu-UTS [51] uses three
+Table 7: Comparison with state-of-the-art methods on AudioSet. G-                3D-CNNs plus two detection models), and a single model
+Blend outperforms the state-of-the-art methods by a large margin.
+                                                                                 (TBN Ensemble [29] uses ensemble of five models).
+Blend thus serves as a direct baseline.
+    Table 7 presents G-Blend results on AudioSet. Since Au-
+                                                                                 5. Discussion
+dioSet is very large (2M), we use mini-AudioSet to estimate                          In uni-modal networks, diagnosing and correcting over-
+weights. G-Blend outperforms two state-of-the-art Multi-                         fitting typically involves manual inspection of learning
+level Attention Network[55] and TAL-Net[52] by 5.8% and                          curves. Here we have shown that for multi-modal networks
+5.5 % on mAP respectively, although the first one uses                           it is essential to measure and correct overfitting in a princi-
+strong features (pre-trained on YouTube100M) and the sec-                        pled way, and we put forth a useful and practical measure of
+ond uses 100 clips per video, while G-Blend uses only 10.                        overfitting. Our proposed method, Gradient-Blending, uses
+    Table 8 presents G-Blend results and compare with pub-                       this measure to obtain significant improvements over base-
+lished SoTA results and leaderboard on the EPIC-Kitchens                         lines, and either outperforms or is comparable with state-
+Action Recognition challenge. On validation set, G-Blend                         of-the-art methods on multiple tasks and benchmarks. The
+outperforms naive A/V baseline on noun, verb and action; it                      method potentially applies broadly to end-to-end training
+is on par with visual baseline on noun and outperforms vi-                       of ensemble models, and we look forward to extending G-
+sual baseline on verb and action. Currently, G-Blend ranks                       Blend to other fields where calibrating multiple losses is
+the 2nd place on unseen kitchen in the challenge and 4th                         needed, such as multi-task.
+
+
+                                                                              12702
+References                                                         [14] D. Damen, H. Doughty, G. M. Farinella, S. Fidler,
+                                                                        A. Furnari, E. Kazakos, D. Moltisanti, J. Munro,
+ [1] Combining correlated unbiased estimators of                        T. Perrett, W. Price, and M. Wray. Scaling egocentric
+     the mean of a normal distribution.  https:                         vision: The epic-kitchens dataset. In ECCV, 2018. 7
+     //projecteuclid.org/download/pdf_1/
+                                                                   [15] J. Duchi, E. Hazan, and Y. Singer. Adaptive subgra-
+     euclid.lnms/1196285392. 4
+                                                                        dient methods for online learning and stochastic opti-
+ [2] Epic-kitchens action recognition.             https:               mization. J. Mach. Learn. Res., 12:2121–2159, July
+     //competitions.codalab.org/                                        2011. 6
+     competitions/20115.        Accessed:          2019-11-
+                                                                   [16] D. Eigen and R. Fergus. Predicting depth, surface nor-
+     13. 8
+                                                                        mals and semantic labels with a common multi-scale
+ [3] H. Alamri, V. Cartillier, A. Das, J. Wang, A. Cherian,             convolutional architecture. ICCV, 2015. 2
+     I. Essa, D. B. amd Tim K. Marks, C. Hori, P. Ander-           [17] C. Feichtenhofer, H. Fan, J. Malik, and K. He. Slow-
+     son, S. Lee, and D. Parikh. Audio-visual scene-aware               fast networks for video recognition. In ICCV, 2019. 2,
+     dialog. In CVPR, 2019. 1                                           7, 8
+ [4] S. Antol, A. Agrawal, J. Lu, M. Mitchell, D. Batra,           [18] C. Feichtenhofer, A. Pinz, and R. P. Wildes. Spa-
+     C. L. Zitnick, and D. Parikh. VQA: Visual Question                 tiotemporal residual networks for video action recog-
+     Answering. In ICCV, 2015. 2                                        nition. In NIPS, 2016. 2
+ [5] R. Arandjelovi and A. Zisserman. Look, listen and             [19] C. Feichtenhofer, A. Pinz, and A. Zisserman. Con-
+     learn. In ICCV, 2017. 2                                            volutional two-stream network fusion for video action
+ [6] J. Arevalo, T. Solorio, M. M. y Gmez, and F. A. Gon-               recognition. In CVPR, 2016. 2
+     zlez. Gated multimodal units for information fusion.          [20] A. Frome, G. S. Corrado, J. Shlens, S. Bengio,
+     In ICLR Workshop, 2017. 2                                          J. Dean, M. A. Ranzato, and T. Mikolov. Devise: A
+ [7] T. Baltruvsaitis, C. Ahuja, and L.-P. Morency. Mul-                deep visual-semantic embedding model. In C. J. C.
+     timodal machine learning: A survey and taxonomy.                   Burges, L. Bottou, M. Welling, Z. Ghahramani, and
+     IEEE Transactions on Pattern Analysis and Machine                  K. Q. Weinberger, editors, NIPS 26, pages 2121–2129.
+     Intelligence, 41:423–443, 2018. 2                                  Curran Associates, Inc., 2013. 2
+                                                                   [21] A. Fukui, D. H. Park, D. Yang, A. Rohrbach, T. Dar-
+ [8] F. Baradel, N. Neverova, C. Wolf, J. Mille, and
+                                                                        rell, and M. Rohrbach. Multimodal compact bilin-
+     G. Mori. Object level visual reasoning in videos. In
+                                                                        ear pooling for visual question answering and visual
+     ECCV, 2018. 7
+                                                                        grounding. In EMNLP, 2016. 2
+ [9] R. Bernardi, R. Cakici, D. Elliott, A. Erdem, E. Er-          [22] J. F. Gemmeke, D. P. W. Ellis, D. Freedman,
+     dem, N. Ikizler-Cinbis, F. Keller, A. Muscat, and                  A. Jansen, W. Lawrence, R. C. Moore, M. Plakal, and
+     B. Plank. Automatic description generation from im-                M. Ritter. Audio set: An ontology and human-labeled
+     ages: A survey of models, datasets, and evaluation                 dataset for audio events. In Proc. IEEE ICASSP 2017,
+     measures. J. Artif. Int. Res., 55(1):409–442, Jan. 2016.           New Orleans, LA, 2017. 5
+     2
+                                                                   [23] D. Ghadiyaram, M. Feiszli, D. Tran, X. Yan, H. Wang,
+[10] Y. Bian, C. Gan, X. Liu, F. Li, X. Long, Y. Li,                    and D. K. Mahajan. Large-scale weakly-supervised
+     H. Qi, J. Zhou, S. Wen, and Y. Lin. Revisiting the                 pre-training for video action recognition. In CVPR,
+     effectiveness of off-the-shelf temporal modeling ap-               2019. 7
+     proaches for large-scale video classification. CoRR,          [24] Y. Goyal, T. Khot, D. Summers-Stay, D. Batra, and
+     abs/1708.03805, 2017. 2, 7, 8                                      D. Parikh. Making the V in VQA matter: Elevating
+[11] Caffe2-Team. Caffe2: A new lightweight, modular,                   the role of image understanding in Visual Question
+     and scalable deep learning framework. https://                     Answering. In CVPR, 2017. 1, 2
+     caffe2.ai/. 5                                                 [25] K. He, X. Zhang, S. Ren, and J. Sun. Deep residual
+[12] J. Carreira and A. Zisserman. Quo vadis, action recog-             learning for image recognition. In CVPR, 2016. 5
+     nition? a new model and the kinetics dataset. In              [26] J. Hu, L. Shen, and G. Sun. Squeeze-and-excitation
+     CVPR, 2017. 2                                                      networks. In CVPR, 2018. 1
+[13] Z. Chen, V. Badrinarayanan, C.-Y. Lee, and A. Rabi-           [27] A. Karpathy, G. Toderici, S. Shetty, T. Leung, R. Suk-
+     novich. Gradnorm: Gradient normalization for adap-                 thankar, and L. Fei-Fei. Large-scale video classifica-
+     tive loss balancing in deep multitask networks. In                 tion with convolutional neural networks. In CVPR,
+     ICML, 2018. 2                                                      2014. 2, 5
+
+
+                                                                12703
+[28] W. Kay, J. Carreira, K. Simonyan, B. Zhang,                       Proceedings of the 26th International Conference on
+     C. Hillier, S. Vijayanarasimhan, F. Viola, T. Green,              Neural Information Processing Systems - Volume 1,
+     T. Back, P. Natsev, M. Suleyman, and A. Zisser-                   NIPS’13, pages 935–943, USA, 2013. Curran Asso-
+     man. The kinetics human action video dataset. CoRR,               ciates Inc. 2
+     abs/1705.06950, 2017. 5                                      [43] N. Srivastava, G. Hinton, A. Krizhevsky, I. Sutskever,
+[29] E. Kazakos, A. Nagrani, A. Zisserman, and D. Damen.               and R. Salakhutdinov. Dropout: A simple way to pre-
+     Epic-fusion: Audio-visual temporal binding for ego-               vent neural networks from overfitting. J. Mach. Learn.
+     centric action recognition. In ICCV, 2019. 7, 8                   Res., 15(1):1929–1958, Jan. 2014. 1, 6
+[30] A. Kendall, Y. Gal, and R. Cipolla. Multi-task learning      [44] J. Thomason, D. Gordan, and Y. Bisk. Shifting the
+     using uncertainty to weigh losses for scene geometry              baseline: Single modality performance on visual nav-
+     and semantics. In CVPR, 2018. 2, 7                                igation & qa. In NAACL, 11 2018. 1
+[31] D. Kiela, E. Grave, A. Joulin, and T. Mikolov. Effi-         [45] D. Tran, L. Bourdev, R. Fergus, L. Torresani, and
+     cient large-scale multi-modal classification. In AAAI,            M. Paluri. Learning spatiotemporal features with 3d
+     2018. 1, 2                                                        convolutional networks. In ICCV, 2015. 2
+[32] D. Kingma and J. Ba. Adam: A method for stochastic           [46] D. Tran, H. Wang, L. Torresani, and M. Feiszli.
+     optimization. International Conference on Learning                Video classification with channel-separated convolu-
+     Representations, 12 2014. 6                                       tional networks. In ICCV, 2019. 5, 7, 8
+[33] I. Kokkinos. Ubernet: Training a ‘universal’ con-            [47] D. Tran, H. Wang, L. Torresani, J. Ray, Y. LeCun, and
+     volutional neural network for low-, mid-, and high-               M. Paluri. A closer look at spatiotemporal convolu-
+     level vision using diverse datasets and limited mem-              tions for action recognition. In CVPR, 2018. 2, 5, 7
+     ory. CVPR, 2017. 2                                           [48] L. Wang, Y. Xiong, Z. Wang, Y. Qiao, D. Lin, X. Tang,
+[34] B. Korbar, D. Tran, and L. Torresani. Coopera-                    and L. V. Gool. Temporal segment networks: Towards
+     tive learning of audio and video models from self-                good practices for deep action recognition. In ECCV,
+     supervised synchronization. In NeurIPS, 2018. 2                   2016. 2
+[35] Z. Liu, Y. Shen, V. Lakshminarasimhan, P. Liang,             [49] X. Wang, A. Farhadi, and A. Gupta. Actions ˜ trans-
+     A. Zadeh, and L.-P. Morency. Efficient low-rank mul-              formations. In CVPR, 2016. 2
+     timodal fusion with modality-specific factors. pages         [50] X. Wang, R. Girshick, A. Gupta, and K. He. Non-local
+     2247–2256, 01 2018. 6                                             neural networks. In CVPR, 2018. 1, 7
+[36] P. Nakkiran, G. Kaplun, D. Kalimeris, T. Yang, B. L.         [51] X. Wang, Y. Wu, L. Zhu, and Y. Yang. Baidu-uts sub-
+     Edelman, F. Zhang, and B. Barak. Sgd on neural net-               mission to the epic-kitchens action recognition chal-
+     works learns functions of increasing complexity. In               lenge 2019. arXiv preprint arXiv:1906.09383, 2019.
+     NeurIPS, 2019. 5                                                  8
+[37] A. Owens and A. A. Efros. Audio-visual scene analy-          [52] Y. Wang, J. Li, and F. Metze. A comparison of five
+     sis with self-supervised multisensory features. In The            multiple instance learning pooling functions for sound
+     European Conference on Computer Vision (ECCV),                    event detection with weak labeling. arXiv preprint
+     September 2018. 1, 2, 6                                           arXiv:1810.09050, 2018. 8
+[38] A. Poliak, J. Naradowsky, A. Haldar, R. Rudinger, and        [53] J. Weston, S. Bengio, and N. Usunier. Wsabie: Scaling
+     B. Durme. Hypothesis only baselines in natural lan-               up to large vocabulary image annotation. In Proceed-
+     guage inference. pages 180–191, 01 2018. 1                        ings of the Twenty-Second International Joint Confer-
+[39] C. R. Qi, X. Chen, O. Litany, and L. J. Guibas.                   ence on Artificial Intelligence - Volume Volume Three,
+     Imvotenet: Boosting 3d object detection in point                  IJCAI’11, pages 2764–2770. AAAI Press, 2011. 2
+     clouds with image votes. In CVPR, 2020. 2                    [54] S. Xie, C. Sun, J. Huang, Z. Tu, and K. Murphy. Re-
+[40] Z. Qiu, T. Yao, , and T. Mei. Learning spatio-temporal            thinking spatiotemporal feature learning for video un-
+     representation with pseudo-3d residual networks. In               derstanding. In ECCV, 2018. 2
+     ICCV, 2017. 2                                                [55] C. Yu, K. S. Barsim, Q. Kong, and B. Yang.
+[41] K. Simonyan and A. Zisserman. Two-stream convo-                   Multi-level attention model for weakly supervised au-
+     lutional networks for action recognition in videos. In            dio classification. arXiv preprint arXiv:1803.02353,
+     NIPS, 2014. 2                                                     2018. 8
+[42] R. Socher, M. Ganjoo, C. D. Manning, and A. Y. Ng.           [56] J. Yue-Hei Ng, M. Hausknecht, S. Vijayanarasimhan,
+     Zero-shot learning through cross-modal transfer. In               O. Vinyals, R. Monga, and G. Toderici. Beyond short
+
+
+                                                               12704
+     snippets: Deep networks for video classification. In
+     Proceedings of the IEEE conference on computer vi-
+     sion and pattern recognition, pages 4694–4702, 2015.
+     2
+[57] P. Zhang, Y. Goyal, D. Summers-Stay, D. Batra, and
+     D. Parikh. Yin and Yang: Balancing and answering
+     binary visual questions. In CVPR, 2016. 2
+[58] H. Zhao, C. Gan, A. Rouditchenko, C. Vondrick,
+     J. McDermott, and A. Torralba. The sound of pixels.
+     In ECCV, 2018. 2
+
+
+
+
+                                                            12705
+

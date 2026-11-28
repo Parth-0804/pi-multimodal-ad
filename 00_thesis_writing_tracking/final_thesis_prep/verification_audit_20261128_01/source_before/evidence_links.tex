@@ -1,0 +1,115 @@
+% The register is read in the preamble so each URL can be entered literally.
+% Keep each EvidenceFile declaration on its own line. A URL may contain a
+% percent-encoded path, an underscore, a query string, or a line fragment.
+\ExplSyntaxOn
+\prop_new:N \g_thesis_evidence_urls_prop
+\prop_new:N \g_thesis_evidence_names_prop
+\seq_new:N \g_thesis_evidence_rows_seq
+\seq_new:N \l_thesis_evidence_note_seq
+\NewDocumentCommand{\EvidenceFile}{m m m v}
+  {
+    \prop_if_in:NnTF \g_thesis_evidence_urls_prop {#1}
+      { \PackageError{thesis-evidence}{Duplicate~file~ID~#1}{} }
+      {
+        \tl_set:Nx \l_tmpa_tl { \tl_trim_spaces:n {#4} }
+        \tl_if_empty:NF \l_tmpa_tl
+          {
+            % Match the complete HTTPS GitHub origin and an owner/repository.
+            % Reject lookalike hosts, credentials, ports and embedded whitespace.
+            \exp_args:NnV \regex_match:nnF
+              { \A [Hh][Tt][Tt][Pp][Ss] :// [Gg][Ii][Tt][Hh][Uu][Bb][.][Cc][Oo][Mm]/
+                [^/\s?\x{23}]+ / [^/\s?\x{23}]+ (?: [/?\x{23}] [^\s]* )? \Z }
+              \l_tmpa_tl
+              {
+                \PackageWarningNoLine{thesis-evidence}{Ignoring~non-GitHub~or~invalid~URL~for~#1}
+                \tl_clear:N \l_tmpa_tl
+              }
+          }
+        \prop_gput:NnV \g_thesis_evidence_urls_prop {#1} \l_tmpa_tl
+        \prop_gput:Nnn \g_thesis_evidence_names_prop {#1} {#3}
+        \seq_gput_right:Nn \g_thesis_evidence_rows_seq
+          { \EvidenceTableRow{#1}{#2}{#3} }
+      }
+  }
+\NewDocumentCommand{\EvidenceExternal}{m}
+  {
+    \prop_get:NnNTF \g_thesis_evidence_urls_prop {#1} \l_tmpa_tl
+      {
+        \tl_if_empty:NTF \l_tmpa_tl
+          { Link~unavailable }
+          { \exp_args:NV \href \l_tmpa_tl {Link~here} }
+      }
+      { \PackageError{thesis-evidence}{Unknown~file~ID~#1}{} }
+  }
+\NewDocumentCommand{\EvidenceDestination}{m}
+  {
+    \prop_get:NnNTF \g_thesis_evidence_urls_prop {#1} \l_tmpa_tl
+      {
+        \tl_if_empty:NTF \l_tmpa_tl
+          { \hyperlink{evidence-#1}{#1} }
+          { \bool_if:NTF \g_thesis_evidence_footnotes_bool
+              { \exp_args:NV \href \l_tmpa_tl {#1} }
+              { \hyperlink{evidence-#1}{#1} } }
+      }
+      { \PackageError{thesis-evidence}{Unknown~file~ID~#1}{} }
+  }
+\NewDocumentCommand{\PrintEvidenceRows}{}
+  { \seq_use:Nn \g_thesis_evidence_rows_seq {} }
+% Publication URLs may be recorded without changing reviewed chapter layout.
+% Existing \ev calls are opt-in; \ev* renders one explicitly reviewed note.
+\bool_new:N \g_thesis_evidence_footnotes_bool
+\NewDocumentCommand{\EnableEvidenceFootnotes}{}
+  { \bool_gset_true:N \g_thesis_evidence_footnotes_bool }
+\NewDocumentCommand{\DisableEvidenceFootnotes}{}
+  { \bool_gset_false:N \g_thesis_evidence_footnotes_bool }
+\cs_new_protected:Npn \thesis_evidence_note_link:nnn #1#2#3
+  {
+    \prop_get:NnN \g_thesis_evidence_urls_prop {#1} \l_tmpa_tl
+    \prop_get:NnN \g_thesis_evidence_names_prop {#1} \l_tmpb_tl
+    \tl_if_blank:nTF {#2}
+      { \exp_args:NV \href \l_tmpa_tl { \exp_args:NV \nolinkurl \l_tmpb_tl } }
+      { \exp_args:NV \href \l_tmpa_tl {#2} }
+    ~[\hyperlink{evidence-#1}{#1}]
+    \tl_if_blank:nF {#3} {~(#3)}
+  }
+\cs_new_protected:Npn \thesis_evidence_collect:nnn #1#2#3
+  {
+    \prop_get:NnNTF \g_thesis_evidence_urls_prop {#1} \l_tmpa_tl
+      {
+        \tl_if_empty:NF \l_tmpa_tl
+          {
+            \seq_if_in:NnF \l_thesis_evidence_note_seq
+              { \thesis_evidence_note_link:nnn {#1}{#2}{#3} }
+              { \seq_put_right:Nn \l_thesis_evidence_note_seq
+                  { \thesis_evidence_note_link:nnn {#1}{#2}{#3} } }
+          }
+      }
+      { \PackageError{thesis-evidence}{Unknown~file~ID~#1}{} }
+  }
+\cs_new_protected:Npn \thesis_evidence_render_note:nn #1#2
+  {
+    \group_begin:
+      \seq_clear:N \l_thesis_evidence_note_seq
+      % Old \EvidenceRef{ID}{pinpoint} remains valid; role is optional.
+      \RenewDocumentCommand{\EvidenceRef}{O{} m m}
+        { \thesis_evidence_collect:nnn {##2}{##1}{##3} }
+      \clist_map_inline:nn {#2} {##1}
+      \seq_if_empty:NF \l_thesis_evidence_note_seq
+        { \footnote{\raggedright #1:~\seq_use:Nn \l_thesis_evidence_note_seq {;~}} }
+    \group_end:
+  }
+\NewDocumentCommand{\ev}{s m m}
+  {
+    \IfBooleanTF{#1}
+      { \thesis_evidence_render_note:nn {#2}{#3} }
+      { \bool_if:NT \g_thesis_evidence_footnotes_bool
+          { \thesis_evidence_render_note:nn {#2}{#3} } }
+  }
+\ExplSyntaxOff
+\newcommand{\EvidenceTableRow}[3]{%
+  \hypertarget{evidence-#1}{#1} & #2 & \nolinkurl{#3} & \EvidenceExternal{#1}\\}
+\NewDocumentCommand{\EvidenceRef}{O{} m m}{%
+  \if\relax\detokenize{#1}\relax\else#1~\fi
+  \EvidenceDestination{#2}%
+  \if\relax\detokenize{#3}\relax\else\space(#3)\fi}
+\input{tables/evidence_register.tex}

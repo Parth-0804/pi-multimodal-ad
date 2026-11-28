@@ -10,23 +10,22 @@ interpretation.\ev{Original scope and scientific chronology}{\EvidenceRef{E002}{
 
 The alignment record dated 25 October 2026 retained the original main research question
 and four subquestions after a narrower quality-based fusion focus had been proposed. It
-placed quality-conditioned robustness within SQ3. The record preserved
-researcher-reported supervisor agreement to the PHM--REASSEMBLE transition without
-independently verifying that agreement or establishing approval of a final title or
-manuscript.\ev{Research-question alignment decision}{\EvidenceRef{E001}{}}
+placed quality-conditioned robustness within SQ3. In that record, I reported my supervisor's agreement to the PHM--REASSEMBLE transition.
+The documentation contains my account, without separate confirmation, and concerns the
+dataset transition rather than approval of a final title or manuscript.\ev{Research-question alignment decision}{\EvidenceRef{E001}{}}
 
 \section{From the Welding Motivation to Two Task-Specific Studies}
 The PHM study began with image exploration and developed a continuous gear-condition
 proxy. The September v3 target used one deterministic view per tooth, teeth 5--28 and a
 top-three run aggregate. The earlier maximum-over-views targets and fixed image split
-addressed different prediction settings. The available records do not establish the
-initial reason for selecting PHM. Concerns about the validity of the proxy emerged
+addressed different prediction settings. The initial reason for selecting PHM is not documented in my surviving notes. Concerns about the validity of the proxy emerged
 through its construction and evaluation.\ev{PHM target
 chronology}{\EvidenceRef{E021}{}}
 
-Re-examination of Intel Welding found intended-condition categories rather than
-independently verified defects, class-dependent modality availability, recipe/category
-confounding and 216 sessions crossing the supplied split. A proposed 32-session holdout
+Intel Welding provides intended-condition categories without expert post-weld validation
+\parencite{Stemmer2024Welding,IntelWeldingHF2024}. Re-examination found class-dependent
+modality availability, recipe/category confounding and 216 sessions crossing the supplied
+split. A proposed 32-session holdout
 had already appeared in a whole-population context audit. That exposure invalidates an
 untouched-test claim without proving that every model trained on those labels. The
 foundation review stopped before new model training; it supplies feasibility evidence,
@@ -36,11 +35,13 @@ for comparative evaluation; unresolved waveform timing and spoken outcome leakag
 prevented an acoustic predictor.\ev{Welding and assembly
 eligibility}{\EvidenceRef{E118}{}}
 
-The September PADERBORN validation is retained as a bounded investigation, not an
-additional principal case study. Severity was fixed per bearing. The requested
-condition-only comparison favored the vibration predictor over the constant, whereas the
-stricter bearing-and-condition contrast was inconclusive: MAE difference $-.1184$ [95\%
-interval $-.2978$, .0589]. The report promoted the stricter protocol as primary without
+PADERBORN is a bearing dataset distributed through Paderborn University's KAt DataCenter
+\parencite{Lessmeier2016Paderborn,PaderbornKAtDataCenter}. The September validation is
+retained as a bounded investigation, not an additional principal case study. Severity was
+fixed per bearing. The requested
+condition-only comparison favoured the vibration predictor over the constant, whereas the
+stricter bearing-and-condition contrast was inconclusive: MAE difference $-0.1184$ [95\%
+interval $-0.2978$, 0.0589]. The report promoted the stricter protocol as primary without
 resolving that protocol fork. Recoverable bearing identity makes a shortcut plausible,
 not proven as the sole mechanism. Gate~3 distillation was not run; withholding current
 as privileged information was a study choice, not absence of current from the
@@ -50,13 +51,13 @@ dataset.\ev{PADERBORN protocol fork and stopping boundary}{\EvidenceRef{E115}{}}
 September follow-ups examined longer sensor training, a same-sensor hybrid, anchored
 adaptive coefficients, matched augmentation and boundary-aware visual pooling. These
 include positive exploratory results, but they did not execute a combined system
-containing every favorable choice. The discontinued temporal-model work is distinct from
+containing every favourable choice. The discontinued temporal-model work is distinct from
 completed pooling experiments.
 
 The October experiments examined a spatial hybrid encoder, fine-tuning with unequal
 training budgets, a matched two-epoch comparison and noise/quality interactions on
 selected folds. GPU availability limited the 100-epoch comparison to one previously
-inspected assessment fold. The later F2 fit also used a different set of training
+examined assessment fold. The later F2 fit also used a different set of training
 predictions from the original experiment. The results therefore describe a follow-up on
 that fold.
 
@@ -74,12 +75,15 @@ for learned fusion. These stopping and continuation decisions concern different
 requirements.\ev{Milling identity and external eligibility}{\EvidenceRef{E119}{},
 \EvidenceRef{E106}{}}
 
-REBOOT remained a feasibility investigation. The 28 October decision admitted no
+REBOOT \parencite{OforiAmpofo2026REBOOT} remained a feasibility investigation. The
+28 October decision admitted no
 normal/abnormal windows or supervised groups under the requested protocol despite 60
 annotated cylinder-install episodes. Visual review was pending; no CNN extraction,
-training or performance estimate followed. The wider screening excluded RoboFAC for lack
-of real numerical counterparts, retained FAILURE only as a proposed RGB--audio pilot
-addressing a different input question, and removed CRIA at the researcher's request.
+training or performance estimate followed. The wider screening excluded RoboFAC
+\parencite{Lu2025RoboFAC,RoboFACHF2025} because paired numerical recordings were
+unavailable for the real-robot episodes in the release examined, retained FAILURE
+\parencite{Inceoglu2021FINONet} only as a proposed RGB--audio pilot addressing a different
+input question, and excluded CRIA \parencite{Qiao2026MAIA} from further screening at my request.
 Screening outcomes are not model results.\ev{REBOOT and screened
 alternatives}{\EvidenceRef{E116}{}, \EvidenceRef{E117}{}}
 
@@ -87,6 +91,6 @@ ViFailback progressed from cohort and telemetry checks to original frozen evalua
 matched frozen/donor representation studies and bounded target-CNN adaptation. The 24
 November closure records 79 of 111 planned fits complete. FULL20 has one seed and one
 outer fold with all three required inner fits; FULL100 is a separate pilot. Their paired
-adaptation effects remain inconclusive. The researcher stopped the remaining 32 FULL20
+adaptation effects remain inconclusive. I stopped the remaining 32 FULL20
 fits, and corruption evaluation remained unexecuted.\ev{ViFailback completion scope and researcher stop}{\EvidenceRef{E113}{}, \EvidenceRef{E114}{}}
 

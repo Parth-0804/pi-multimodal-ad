@@ -3,27 +3,24 @@
 
 ViFailback extends the robotic studies to complete episodes on held-out manipulation
 tasks and to learned-representation transfer from REASSEMBLE. The completed frozen and
-donor comparisons favored logistic sensing over F2, while donor effects varied across
+donor comparisons favoured logistic sensing over F2, while donor effects varied across
 target seeds. Target-CNN adaptation has only bounded single-fold evidence, with
 inconclusive matched effects. The study contributes clean-input representation, fusion
 and metric analyses; its planned corruption evaluation was not executed.
 
 \section{Motivation and Comparison Scope}
 Three cameras and robot observations provide a different test of the relation between
-visual representations and completed manipulation outcomes \citep{Zeng2026ViFailback}.
+visual representations and completed manipulation outcomes \parencite{Zeng2026ViFailback}.
 The study asks whether the original fusion procedure adds value on task-disjoint
 episodes, and whether a REASSEMBLE-learned CNN helps after fitting a new target head.
 
 The primary replication contrasts original frozen vision, logistic sensing, averaging
 and F2. HGB supplied a stronger numerical reference, while camera ablations and donor
-transfer tested visual representations. The 30 October 2026 priority note reframed the primary comparison after frozen-branch
-outer predictions were available; it explicitly describes a reporting clarification,
-not prospective preregistration. The 29 October report snapshot already contained
-original frozen three-view and high-camera results, logistic/HGB sensor references,
-averaging, F2 and clean gate comparisons. Thus the weak visual ranking and the original
-fusion-versus-sensor direction were available before this clarification. The exact
-sequence of human inspection is not independently established. The note retained the
-cohort, splits, recipes and budgets; it did not create a fresh confirmatory holdout.\ev{Dated
+transfer tested visual representations. I clarified the primary reporting comparison after the original frozen-branch,
+sensor and fusion results were available. This was a retrospective clarification,
+not prospective preregistration. The precise order in which those results were
+examined was not documented. The cohort, splits, recipes and budgets remained fixed;
+the clarification did not create a fresh confirmatory holdout.\ev{Dated
 priority clarification and preceding snapshot}{\EvidenceRef{E140}{}, \EvidenceRef{E141}{}}
 
 All reported comparisons concern intact inputs. Table~\ref{tab:vif-status} distinguishes
@@ -35,7 +32,11 @@ the separate hundred-epoch pilots.\ev{Comparison scope}{\EvidenceRef{E100}{},
 The native source contains 5,202 episodes with 4,545 failure and 657 no-failure
 annotations across 100 canonical tasks and 109 source directories. The evaluation pins
 both the original release and its converted LeRobot representation
-\citep{ViFailbackHF2025}. Matching version identities matters because the paper, source
+\parencite{ViFailbackHF2025,ViFailbackLeRobotHF}.\footnote{The pinned original revision
+is \nolinkurl{21df46c2585c52e5a62df5f4b946bae6cbc6fed7}; the LeRobot revision is
+\nolinkurl{619791b94f61667333fe179d471051e0bca0e06f}. Both commits are dated
+28 August 2026.}
+Matching version identities matters because the paper, source
 directory layout, converted observations and admitted model cohort describe different
 levels of the evidence.
 
@@ -50,7 +51,7 @@ The final cohort contains 4,382 episodes, including 3,753 failures and 629 succe
 across 99 canonical tasks. Failure is the positive class, giving prevalence 0.856458. An
 episode contributes one target, although it supplies 48 sampled RGB images. The task is
 retrospective prediction of native whole-episode annotations. It is not frame-level
-failure localization, verification of a task's final mechanical success independently of
+failure localisation, verification of a task's final mechanical success independently of
 annotation, or advance warning before a failure occurs.\ev{Native and final ViFailback
 labels}{\EvidenceRef{E085}{}}
 
@@ -65,9 +66,9 @@ disjoint would overstate the excluded population.
 The records distinguish exact trajectory/video duplication and invalid telemetry from
 low visual quality and uncertain semantics. Duplication and invalid observations can
 invalidate the input contract; visual difficulty does not justify excluding examples
-after inspecting correctness. Coordinate task~55 remains quarantined rather than
-receiving a guessed sign correction. Agreement of converted 25~Hz observations does not
-independently certify original hardware synchronization. Canonical task separation also
+after inspecting correctness. Task~55 remains quarantined because the validity of its telemetry coordinates is
+unresolved; no guessed sign correction is applied. Agreement of converted 25~Hz observations does not
+independently certify original hardware synchronisation. Canonical task separation also
 leaves operator/session identity and semantic similarity between tasks unresolved,
 limiting the independence claim to the grouping actually checked.\ev{Cohort validity and
 remaining dependence}{\EvidenceRef{E091}{}}
@@ -78,7 +79,7 @@ sixteen temporal positions and 48 images, not 48 distinct timestamps. The image
 processor follows the shared RGB preprocessing specified in
 Appendix~\ref{app:implementation}, Section~\ref{sec:rtdetr-preprocessing}.
 Equal camera and temporal means remove order information from
-the episode embedding. A fixed crop shown in an example is context visualization, not a
+the episode embedding. A fixed crop shown in an example is context visualisation, not a
 detected object or validated failure location.
 
 The sensor adapter retains fourteen position, twelve nonplaceholder velocity and two
@@ -86,20 +87,23 @@ gripper-effort fields. Ten statistics per channel produce 280 values. These obse
 are not calibrated wrench or force/torque measurements. Labels, failure categories,
 action commands, keyframes and task/source identifiers do not enter ordinary model
 features. Per-episode feature calculation is separated from population fitting:
-standardizers use T only, and calibration uses disjoint C examples.
+the protocol separates gradient-fitting (T), checkpoint-selection (V), calibration (C)
+and assessment (A) task groups. Standardisers use T only, and calibration uses the
+disjoint C examples.
 
-The twenty-example visual pilot was selected for observability and balance. Nineteen
-decided observations agreed with native labels; B02 remained uncertain. This is a
-bounded project examination, not an independent human-rated prevalence sample or a
-held-out classifier benchmark. The additional automated consistency checks are also not
-a signed second-human review. Technical decoding and a successful native-label join do
+The twenty-example AI-assisted visual screen was selected for observability and
+balance. Nineteen decided observations agreed with native labels; the blinded example
+B02, a marker-drawing task, remained uncertain because the drawing stroke could not be
+judged confidently at the sampled positions. This was neither an independent human-rated
+prevalence sample nor a held-out classifier benchmark. Automated consistency checks
+did not add an independent human assessment. Technical decoding and a successful native-label join do
 not resolve every episode's semantic meaning.\ev{ViFailback
 preprocessing}{\EvidenceRef{E086}{}}\ev{Scope of independent
 checks}{\EvidenceRef{E090}{}}
 
 \section{Models, Transfer/Adaptation Regimes, and Evaluation Protocol}
 The original visual branch loaded the ResNet18-vd CNN backbone inside the pretrained
-RT-DETR-R18vd checkpoint \citep{Zhao2024RTDETR}. The extractor stopped at the CNN
+RT-DETR-R18vd checkpoint \parencite{Zhao2024RTDETR}. The extractor stopped at the CNN
 feature maps, before the hybrid Transformer encoder, detection decoder, and box heads.
 Spatial means of three maps with 128, 256, and 512 channels yielded 896 features per
 image. The branch averaged these features across frames and cameras and fitted a new
@@ -116,15 +120,15 @@ reported as a gain over the strongest available unimodal method.
 HGB uses 200 iterations, learning rate 0.05, L2 penalty 0.1 and minimum leaf size
 twenty; leaves 7, 15 and 31 are selected on V macro AP, followed by C-only calibration.
 Its search is real candidate selection, unlike the fixed MSM recipe or a claim that
-every parameter was optimized. It remains secondary and does not change the prespecified
-F2 input after its favorable assessment.
+every parameter was optimised. It remains secondary and does not change the prespecified
+F2 input after its favourable assessment.
 
 \ev{Exploratory HGB recipe}{\EvidenceRef{E092}{}}
 
 The donor arms transferred compatible CNN tensors from a completed source checkpoint and
 fitted a fresh ViFailback head, scaler, calibrator and fusion model. The FROZEN and
 DONOR conditions held the CNN weights fixed. The FULL conditions train the executed CNN
-convolutions and normalization affine terms while holding running moments fixed; their
+convolutions and normalisation affine terms while holding running moments fixed; their
 completed coverage is stated below. This is CNN adaptation, not training the detector
 encoder, decoder or detection heads. The completed DONOR comparison therefore measures
 supervised target-head fitting on a transferred frozen representation.\ev{Matched model
@@ -190,8 +194,9 @@ comparisons used intact inputs.}
 
 \subsection{Unimodal References and Original Fusion}
 The original frozen visual head completed all 36 planned fits, as did its
-high-camera-only control. The logistic sensor branch is deterministic under the fixed
-partitions. S1 and S3 denote the same fitted recipe. HGB supplies a stronger numerical
+high-camera-only control. V1 denotes the original frozen three-view visual branch.
+The logistic sensor branch is deterministic under the fixed
+partitions. HGB supplies a stronger numerical
 comparison. Table~\ref{tab:vif-bothclass} gives the pooled seed-42 scores from the
 thesis experiment. Reporting average precision for each outcome makes the disparity
 between failure and success ranking visible.
@@ -200,15 +205,24 @@ between failure and success ranking visible.
 \caption{ViFailback Prediction Performance by Outcome Class}\label{tab:vif-bothclass}
 \centering\small
 
-\begin{tabular}{lrrrr}\hline Model&Failure AP&Success AP&Macro AP&AUROC\\\hline
+\begin{tabular}{lrrrr}\toprule Model&Failure AP&Success AP&Macro AP&AUROC\\\midrule
 Frozen visual V1&0.853052&0.137260&0.495156&0.479402\\
 Logistic sensor&0.954370&0.343577&0.648974&0.784370\\
 Sensor HGB&0.970510&0.429530&0.700020&0.853756\\
 Equal averaging (F1)&0.931760&0.289037&0.610399&0.716501\\
-Original F2&0.945168&0.312405&0.628787&0.752701\\\hline
+Original F2&0.945168&0.312405&0.628787&0.752701\\\bottomrule
 \end{tabular}
 \displaynote{Scores pool the original seed-42 results separately for each class.}
 \end{table}
+
+Figure~\ref{fig:vifailback-results} contrasts failure AP with success AP and their macro average. Failure-positive AP alone obscures the weaker ranking of the minority success class.
+
+\begin{figure}[htbp]
+\caption{ViFailback Performance for Both Outcome Classes}\label{fig:vifailback-results}
+\centering
+\includegraphics[width=\linewidth]{figures/results_20261128_01/vector/vifailback_results.pdf}
+\displaynote{Original seed-42 scores pool 4,382 held-out episodes: 3,753 failures and 629 successes across 99 tasks. Macro AP is the mean of the two class-specific AP values. No uncertainty interval is shown; the display does not establish equivalence or a paired difference between models.}
+\end{figure}
 \ev{Original both-class scores}{\EvidenceRef{E087}{}}
 
 \begin{table}[htbp]
@@ -246,7 +260,7 @@ improve weak visual prediction, but adding the visual branch does not improve th
 strongest component used in F2.
 
 \subsection{Matched Frozen Versus REASSEMBLE-Donor Transfer}
-The later matched twenty-epoch comparison also favored the numerical reference.
+The later matched twenty-epoch comparison also favoured the numerical reference.
 Table~\ref{tab:vif-matched} lists every seed's pooled score after all three outer
 assessments complete. Despite small fold-specific differences around logistic sensing,
 FROZEN20's pooled F2 scores are lower by 0.019694, 0.021935 and 0.024419. Saved
@@ -258,13 +272,13 @@ representation will damage fusion.
 \caption{ViFailback Performance in the Matched Comparison}\label{tab:vif-matched}
 \centering\small
 
-\begin{tabular}{lrrrr}\hline Arm&Seed&Visual&F2&Sensor LR\\\hline
+\begin{tabular}{lrrrr}\toprule Arm&Seed&Visual&F2&Sensor LR\\\midrule
 FROZEN20&42&0.507865&0.629280&0.648974\\
 FROZEN20&123&0.495229&0.627039&0.648974\\
 FROZEN20&20261023&0.487612&0.624555&0.648974\\
 DONOR20&42&0.491368&0.627750&0.648974\\
 DONOR20&123&0.489011&0.637852&0.648974\\
-DONOR20&20261023&0.492185&0.630936&0.648974\\\hline
+DONOR20&20261023&0.492185&0.630936&0.648974\\\bottomrule
 \end{tabular}
 \displaynote{Macro average precision was calculated from pooled predictions over three outer folds.}
 \end{table}
@@ -275,7 +289,7 @@ Following donor feature extraction, DONOR20 completed 36 target-head fits. Its s
 completed 100 epochs and selected epoch~47; 115 compatible CNN tensors are loaded,
 without source head, scaler, calibrator or F2 coefficients. This establishes an executed
 learned-representation transfer experiment with fresh target supervision. The fixed
-donor is one source-training realization; three target seeds do not replicate donor
+donor is one source-training realisation; three target seeds do not replicate donor
 selection or training.
 
 It does not establish a consistent predictive advantage. Relative to FROZEN20, donor
@@ -295,9 +309,9 @@ pilot updated the target CNN.\ev{Donor identity and pilot fit
 provenance}{\EvidenceRef{E096}{}, \EvidenceRef{E097}{}, \EvidenceRef{E098}{}}
 
 \subsection{Partial Target-CNN Adaptation}
-On the same 1,107 outer-fold-0 episodes, FULL20 achieved visual macro AP .492370 and F2
-.697858; FULL100 achieved .544332 and .699260. The corresponding sensor LR and HGB
-references were .707996 and .757878. Table~\ref{tab:vif-adaptation} reports the paired
+On the same 1,107 outer-fold-0 episodes, FULL20 achieved visual macro AP 0.492370 and F2
+0.697858; FULL100 achieved 0.544332 and 0.699260. The corresponding sensor LR and HGB
+references were 0.707996 and 0.757878. Table~\ref{tab:vif-adaptation} reports the paired
 differences against each arm's own frozen control. Neither visual nor F2 contrast
 resolves improvement or deterioration; an interval including zero does not establish
 equivalence. The twenty-epoch meta bank contains 3,275 inner-OOF episodes, whereas the
@@ -309,9 +323,9 @@ cannot isolate training duration.
 \centering\small
 \begin{tabularx}{\linewidth}{@{}lYY@{}}\toprule
 Contrast & Visual macro-AP difference & F2 macro-AP difference\\\midrule
-FULL20 $-$ FROZEN20 & $+.004946$ [$-.027460$, $+.040927$] & $-.009260$ [$-.026854$, $+.005016$]\\
-FULL100 $-$ FROZEN100 & $-.006662$ [$-.027982$, $+.027078$] & $+.005040$ [$-.019473$,
-$+.029255$]\\\bottomrule
+FULL20 $-$ FROZEN20 & $+0.004946$ [$-0.027460$, $+0.040927$] & $-0.009260$ [$-0.026854$, $+0.005016$]\\
+FULL100 $-$ FROZEN100 & $-0.006662$ [$-0.027982$, $+0.027078$] & $+0.005040$ [$-0.019473$,
+$+0.029255$]\\\bottomrule
 \end{tabularx}
 \displaynote{Seed 42, outer fold 0 only. Paired 95\% intervals resample canonical tasks,
 conditional on fixed models; they omit refitting, selection and unverified
@@ -319,7 +333,7 @@ session/operator dependence. Twenty- and hundred-epoch fusion-fitting protocols 
 \end{table}
 \ev{Completed adaptation results and recorded independent arithmetic}{\EvidenceRef{E113}{}}
 
-\subsection{Calibration, Threshold Behavior, and Corruption Limits}
+\subsection{Calibration, Threshold Behaviour, and Corruption Limits}
 In outer fold~0, FROZEN20 seed~42 F2 had macro AP 0.7071 and Brier score 0.1539,
 yet balanced accuracy was 0.5 at threshold 0.5. Ranking and probability metrics thus
 need not imply useful decisions at the fixed operating threshold; tuning it on these
@@ -339,27 +353,27 @@ three hundred-epoch pilots, have positive reported slopes.
 \label{tab:vif-calibration}\centering\small
 \begin{tabular}{llrrr}\toprule
 Arm & Seed & Slope $a$ & Raw macro AP & Calibrated macro AP\\\midrule
-FROZEN20 & 42 & -0.0335 & 0.5179 & 0.4874\\
-FROZEN20 & 123 & -0.0592 & 0.5332 & 0.4743\\
-FROZEN20 & 20261023 & -0.0442 & 0.5228 & 0.4834\\
-FULL20 & 42 & -0.1219 & 0.5133 & 0.4924\\
-DONOR20 & 42 & -0.0567 & 0.5498 & 0.4632\\
-DONOR20 & 123 & -0.0532 & 0.5395 & 0.4702\\
-DONOR20 & 20261023 & -0.0641 & 0.5447 & 0.4664\\
+FROZEN20 & 42 & $-0.0335$ & 0.5179 & 0.4874\\
+FROZEN20 & 123 & $-0.0592$ & 0.5332 & 0.4743\\
+FROZEN20 & 20261023 & $-0.0442$ & 0.5228 & 0.4834\\
+FULL20 & 42 & $-0.1219$ & 0.5133 & 0.4924\\
+DONOR20 & 42 & $-0.0567$ & 0.5498 & 0.4632\\
+DONOR20 & 123 & $-0.0532$ & 0.5395 & 0.4702\\
+DONOR20 & 20261023 & $-0.0641$ & 0.5447 & 0.4664\\
 \bottomrule\end{tabular}
 \displaynote{The same 1,107 outer episodes per row; raw AP uses the uncalibrated
 failure scores, not a new model fit. Values are retained report results. Individual
-calibrator and keyed prediction files were unavailable in the inspected evidence. The
-check verified the equation and correspondence with retained reports, without numerically
-reconstructing each fitted map.}
+calibrator and keyed prediction files were unavailable for a new reconstruction.
+The equation and reported values were checked, but each fitted map was not
+numerically reconstructed.}
 \end{table}
 \ev{Raw/calibrated ranking and F2 input definition}{\EvidenceRef{E137}{}}
 
-The inspected training path saves calibrated \texttt{probability} values, and the F2
-path consumes that column in both the inner meta bank and outer assessment. This is
+The training implementation saves calibrated probabilities, and F2
+uses those values in both the inner meta bank and outer assessment. This is
 consistent with the report that FROZEN20/DONOR20 F2 used calibrated visual inputs,
-rather than raw-score controls; the missing per-fit artifacts prevent a new verification
-of execution for every fit. The outer-fold report does not establish the signs of every
+rather than raw-score controls. Missing per-fit artefacts limit independent
+reconstruction of that input for every fit. The outer-fold report does not establish the signs of every
 inner-fit or sensor calibrator. Negative visual slopes describe an inverse relationship
 fitted on C; they do not identify whether weak representation, calibration-sample
 variation or another mechanism caused it. With different maps across folds, even

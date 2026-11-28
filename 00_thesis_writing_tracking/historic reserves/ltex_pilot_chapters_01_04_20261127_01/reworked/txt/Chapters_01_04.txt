@@ -1,0 +1,1224 @@
+Introduction
+
+Context and Motivation
+
+Industrial monitoring means tracking the state and behaviour of a physical process by analysing data collected during or after it runs. Industrial and robotic systems produce many types of data, such as visual observations, acoustic signals, force measurements, vibration, and other sensor signals (Huo et al., 2022; Thoduka et al., 2024b). Each data type shows a different aspect of the process and may respond differently to changes in operation.
+
+Multimodal learning enables the integration of these diverse data types, particularly when each source provides complementary or unique information. However, adding data sources does not inherently improve predictions (W. Wang et al., 2020). The benefit depends on the information each modality retains, the relevance of the data to the prediction task, and the methods used for data integration.
+
+Robotic welding was the starting point for this research. A camera can observe the weld pool, while acoustic and machine sensor measurements give information about other parts of the welding process. Previous studies have explored combining visual and acoustic data for weld assessment (Fan et al., 2026; Hua et al., 2026).
+
+The primary architectural challenge extends beyond welding. Industrial monitoring systems require data representations that capture task-relevant information, fusion methods that effectively use complementary data from multiple sources, and evaluation protocols that assess whether predictions remain reliable when some data are missing or of low quality. Therefore, this research investigates multimodal fusion architectures across a range of industrial and robotic monitoring tasks.
+
+Problem Statement and Research Gap
+
+The value of adding modalities cannot be determined solely by the predictive performance of the combined model; it is essential to compare the architecture's performance against credible unimodal predictors on identical prediction targets and assessment observations.
+
+Prior work has shown that multimodal integration can improve prediction, but it also identifies circumstances in which a jointly trained multimodal model will perform worse than its unimodal counterparts (W. Wang et al., 2020). In one weld penetration study, the image-only, audio-only, and fused models all achieved 100% accuracy on the reported clean test set (Hua et al., 2026, Tables 1–3). The additional modality therefore showed no demonstrable benefit in terms of clean data accuracy.
+
+Another challenge concerns the reliability of each data type. When an input is missing, fallback mechanisms may be employed. If an input is present but degraded, evidence is required to demonstrate altered reliability. While adaptive fusion can adjust the contribution of each input, modifying these weights alone does not ensure improved robustness (Q. Zhang et al., 2023; Ovadia et al., 2019).
+
+The fairness of these comparisons also depends on factors like the prediction target, data alignment over time, training methods, calibration, and the independence of the test data (Kapoor & Narayanan, 2023; Varma & Simon, 2006; Guo et al., 2017; Ovadia et al., 2019). Differences in any of these areas can make it hard to know if performance gains are generalizable.
+
+This thesis addresses this gap by investigating the added predictive value and robustness of multimodal fusion under fair, task-specific experimental conditions. It investigates how the selection of data representation, complementary information, and fusion method interact, and whether observed benefits in one context are transferable to other industrial and robotic monitoring tasks.
+
+Chapter 2 reviews existing research to lay out the scientific background and highlight the unresolved comparisons that define this research gap.
+
+Research Questions and Objectives
+
+The main goal of this thesis is to study how to design and evaluate process-aware multimodal AI systems for reliable industrial monitoring and anomaly detection. It examines how using specific data representations and different fusion methods affects prediction, robustness, and practical usefulness.
+
+The first version of the exposé set out this main research question:
+
+How can a process-aware multimodal AI architecture be designed and evaluated for robust industrial anomaly detection using robotic welding data as a case study?
+
+Four subquestions address the main architectural and methodological aspects of this study.
+
+SQ1. Which lightweight or pretrained Transformer-based representation components are suitable for visual, audio, and sensor time-series data in a multimodal industrial anomaly detection pipeline?
+
+SQ2. How do unimodal baselines, simple concatenation fusion, modular late fusion, and process-aware gated cross-modal fusion compare in terms of predictive performance?
+
+SQ3. Can a gated cross-modal fusion architecture improve robustness when one or more modalities are missing, degraded, or unreliable?
+
+SQ4. How can multimodal architecture performance be evaluated beyond accuracy, including robustness, interpretability, modularity, and practical usability?
+
+These considerations result in four research objectives: evaluating the suitability of specific data representations, investigating various fusion strategies, testing robustness to input degradation, and assessing the appropriateness of selected evaluation methods for multimodal monitoring systems. Broader architectural questions persist, despite changes in the original application scope.
+
+Methodology Overview and Contributions
+
+This research integrates a critical literature review with empirical investigations of multimodal representation and fusion architectures. The review encompassed 94 full texts, screened and assessed in two stages, with emphasis on architectural approaches, unimodal baselines, fusion methods, evaluation protocols, and strategies for handling unreliable inputs.
+
+Dataset selection also considered modality correspondence, annotation suitability, assessment independence, and computational viability. The empirical component compared modality-specific representations and prediction models, then evaluated alternative fusion strategies and a series of controlled follow-up experiments.
+
+The implemented architectures use pretrained convolutional visual representations, statistical sensor features, and patch-based temporal encoders. Information is combined using feature concatenation, probability averaging, logistic stacking, and context-conditioned weighting.
+
+Evaluation covers predictive performance, calibration, grouped assessment, uncertainty, and how the system behaves when inputs are missing or degraded, depending on the dataset and protocol. Tests on external datasets check if the chosen fusion methods and data representations work for different prediction tasks.
+
+The principal contributions of this thesis are:
+
+* Comparative evaluation of multimodal representations: This includes empirical tests of pretrained visual features, statistical sensor representations, and patch-based temporal encoders. The study compares training budgets, feature combinations, and the compatibility of different representations. It assesses each representation's performance individually and in combination.
+
+* Comparative evaluation of fusion architectures: Feature-level, prediction-level, and process-aware fusion architectures are implemented and evaluated against unimodal reference models. These comparisons establish the conditional predictive gain from information fusion and distinguish this gain from the effects of additional fitting and calibration to the extent permitted by the experimental controls.
+
+* Assessment of multimodal robustness: The experiments test how fusion behaves when some data is missing or degraded, comparing fallback methods to adaptive input weighting. The study checks if the benefits seen with clean data remain when inputs are degraded.
+
+* Cross-dataset evaluation and methodological assessment: The research explores reusing fusion methods and transferring supervised representations across different industrial and robotic monitoring tasks. The evaluation highlights the importance of target validity, data alignment, class-specific performance, grouped assessment, and uncertainty when comparing architectures across datasets.
+
+Implementation records, literature comparison tables, and experimental artifacts all provide clear support for these contributions.
+
+Scope and Delimitations
+
+The original research plan focused on robotic welding as the main application for process-aware multimodal architectures. PHM gear monitoring work was already in progress when a renewed audit of the Intel Welding dataset found that some data sessions crossed the provided partitions and that some proposed test recordings had already been examined during development. This meant an independent confirmatory evaluation was not possible on that assessment population.
+
+The empirical work then shifted to related industrial and robotic monitoring tasks, while keeping the original architectural research questions the same.
+
+PHM2026 focused on building condition targets and sensor-based prediction. REASSEMBLE was the main experimental setting for comparing visual and sensor data, fusion methods, and how systems handle degraded inputs. MSM, ViFailback, and HANDOVER added studies on milling, robotic manipulation, and human–robot interaction. More details on dataset feasibility and protocols are in Appendix G.
+
+The predictive experiments focus on visual and machine sensor data. Audio remains relevant to the original research goals and literature review, but acoustic prediction was not completed. In REASSEMBLE, the correspondence between action annotations and acoustic data remained unresolved, and spoken outcomes could have revealed the prediction labels, introducing a risk of label leakage. An acoustic prediction branch was therefore not included.
+
+In this thesis, process-aware fusion means adjusting how predictions are combined based on the process context and available quality information. Although the registered title mentions physics-informed, the architectures do not use explicit differential equations or conservation law constraints.
+
+The empirical work focuses on estimating conditions and classifying outcomes within set observation periods. Classifying completed actions and manipulation episodes does not, by itself, provide prospective anomaly detection or early warning.
+
+Robustness evaluation is limited to experiments where inputs were removed or degraded in a controlled way. Studies with external datasets focus on reusing architectures, fitting to specific datasets, and selected transfer methods, rather than testing if an unchanged model works in a new domain.
+
+Therefore, the conclusions only apply to the architectures, prediction targets, and evaluation conditions studied. Independent welding validation, predictive audio integration, prospective monitoring, and further operational validation are beyond the completed empirical scope of this work.
+
+Structure of the Thesis
+
+Chapter 2 is the literature review, setting out the scientific basis, existing architectural approaches, and remaining research questions in the area of multimodal industrial monitoring.
+
+Chapter 3 covers the technical underpinnings of the investigated representation models, the prediction components, and the fusion mechanisms.
+
+Chapter 4 opens with the five research requirements and maps them to the empirical studies in Section 4.1. It then covers dataset qualification, experimental design, and evaluation procedures.
+
+Chapter 5 looks at condition-target construction and prediction using PHM2026. Chapter 6 is the main REASSEMBLE chapter, covering representation comparisons, multimodal fusion, robustness experiments, and controlled architectural follow-up investigations.
+
+Chapter 7 provides the completed external manufacturing comparison on MSM, including target/grouping sensitivities and controlled robustness. Chapter 8 examines task-disjoint ViFailback episodes and learned-representation transfer, with bounded target-CNN adaptation and unexecuted corruption tests. Appendix H retains HANDOVER's unimodal and fixed-average evidence; missing participant identities prevented the required participant-safe OOF fitting of learned fusion.
+
+Chapter 9 brings the empirical findings together with the relevant literature, answers the research sub-questions, and looks at the scientific implications across the datasets considered.
+
+Chapter 10 covers the supported contributions, the remaining research questions and the priorities for future work.
+
+The other appendices contain the literature appraisal, dataset documentation, implementation details, experimental analysis, research timeline, and reproducibility records.
+
+
+Critical Literature Review
+
+Multimodal Learning in Industrial and Robotic Monitoring
+
+Industrial monitoring covers tasks such as fault detection, checking a system's physical condition, assessing manufacturing quality, and confirming that a robot has completed its task. The traditional approach uses single sensor readings and engineered features to characterise the system's behaviour. Learned representations take this further by using data from images, sound and sensor sequences. Multimodal learning examines how information from different modalities can be combined to support a common prediction task (Baltrušaitis et al., 2019; Huo et al., 2022; Thoduka et al., 2024b).
+
+The literature touches on several related areas of research: traditional feature engineering, the use of pretrained representations, modelling over time, feature combination, prediction fusion, and adaptive methods (where the method can adapt to the context). They differ in the information they require, their computational cost, the level of supervision they need, and their sensitivity to input quality.
+
+Industrial and robotic monitoring provides a platform on which to compare these approaches as the process can be monitored via a number of different modalities (cameras, acoustic sensors, machine sensors, etc.). Cameras provide a view of the visible process, whereas the acoustic and machine sensors provide information which is not visible. The benefit of combining data depends heavily on what each modality retains, the specific prediction you're trying to make, and the system's test conditions (W. Wang et al., 2020; Hua et al., 2026; Goodarzi et al., 2023). Simply increasing the amount of data does not necessarily lead to better predictions.
+
+Work on welding using visual and acoustic data has shown that multimodal integration can improve prediction performance, but also that, in some cases, adding another modality provides no benefit at all (Fan et al., 2026; Hua et al., 2026). These findings raise a more general architectural question across industrial and robotic monitoring tasks. Under what conditions does a second observation supply information about system condition or task outcome that the strongest single input misses?
+
+The review examines four questions. Which representations retain the information needed for the prediction? What does combining inputs add? How does that benefit change when an input is missing or degraded? Which assessment conditions make the resulting comparison credible?
+
+Review Scope and Search Methodology
+
+The review examines industrial fusion claims through the methodologies, comparison tables, and experimental results of the papers. It focuses on the link between the proposed architecture, the available physical observations, the prediction target, and the assessment protocol.
+
+A research gap is defined as a comparison that the existing body of scientific evidence does not address for a given target, input set and assessment population. The ability to identify such a gap depends on the search strategy and the amount of published literature available.
+
+Research Themes and Search Questions
+
+The representation theme concerns what is being observed, what transformations are being applied, and whether the representation retains the information relevant to the task. The fusion theme is about whether adding further inputs improves performance on a standard prediction task compared with a set of plausible single-input references.
+
+The robustness theme looks at which absence, corruption, and distribution-change regimes were assessed. The evaluation theme looks at assessment independence, thresholds, uncertainty, resource measurement and reproducibility.
+
+These themes intentionally include negative and inconclusive findings. Comparisons where an additional modality yields minimal or no benefit can provide valuable insights into representation suitability, redundancy, and the limitations of the evaluated fusion procedure.
+
+The review clearly distinguishes between two objectives that are often confused. Training with multiple modalities to deploy a single-input model is a privileged training scenario. Combining multiple available inputs at deployment is a multimodal inference problem. Cross-modal distillation and reconstruction link the two objectives, but the acquisition assumptions are very different.
+
+The taxonomy of Baltrušaitis et al. (2019) is the organising terminology. The industrial claims are then assessed against the original studies rather than being entirely inferred from that survey.
+
+Sources, Search Terms, and Search Period
+
+The literature review was carried out as part of the project. The initial search was focused on the period 2016 to 2026 with a selection of earlier methodological papers also included. Of the 120 papers identified, 39 met the inclusion criteria and 37 were fully appraised.
+
+A subsequent expansion identified 57 distinct full-text files after duplicate removal and version verification. The comparison register comprises 94 unique work records, representing a curated selection rather than an estimate of the entire research field.
+
+Searches were conducted pairing industrial monitoring and manufacturing terms with fusion, stage, attention, missing inputs, noise and domain shift. Dataset searches included MVTec AD, MVTec 3D-AD, Eyecandies, bearing datasets and machine sound benchmarks.
+
+Publisher and repository searches facilitated publication retrieval. Crossref supplied metadata for identity verification (Crossref, 2020), while OpenAlex supported citation tracing (Priem et al., 2022). Zotero was employed to link bibliographic records with PDFs and appraisal notes (Corporation for Digital Scholarship, 2026).
+
+Appendix A differentiates the initial screening population from the subsequent full-text appraisal. The seminal stacked generalisation paper by Ting & Witten (1999) was included to support the discussion of prediction-level fusion methodology, representing a separate addition to the historical full-text appraisal count.
+
+Inclusion and Exclusion Criteria
+
+Direct industrial work focuses on faults, physical condition, manufacturing quality, inspection, and the outcome of a robotic task. Dataset papers and legitimate unimodal methods are also relevant, as fusion depends on a well-defined prediction target and a suitable reference.
+
+Transferable work is explicitly identified. Work on multimodal optimisation failure modes, missing-input mechanisms, uncertainty weighting, and evaluation theory can all be valuable in designing industrial architectures, even if they do not amount to industrial validation (W. Wang et al., 2020; M. Ma et al., 2022; S. Lee et al., 2026; Bengio & Grandvalet, 2004).
+
+A publication may be included in the register as background or as a methodological contribution. Simulated robot regression, RGB-geometry inspection, physical camera-telemetry monitoring and single-camera feature-level fusion are different experimental settings (Altinses & Schwung, 2023; Deng et al., 2026; Thoduka et al., 2024b; Z. Zhang et al., 2024).
+
+Inaccessible evidence is not taken to be irrelevant, and missing reporting does not establish that a particular operation was not performed. The language used by the individual authors is interpreted in the context of the actual acquisition and evaluation procedure to determine whether the study yields multimodal observations, inference-time robustness evidence, or an equivalent unimodal reference.
+
+Evidence Extraction and Critical Appraisal
+
+Each appraisal records the source identity and version inspected, the prediction target and unit, the physical inputs, the transformations, the fusion method, the comparison models, the partitioning, the training access, and the reliability interventions.
+
+Experimental results are linked to pages, tables and figures. Where possible, decisive PDF tables have been checked, as text extraction may obscure input columns, numerical values, or footnotes.
+
+The appraisal records both controlled and varying factors. A common assessment cohort supports comparisons between fitted pipelines. To isolate fusion's contribution, however, differences in encoders, supervision, augmentation, and model capacity must also be considered.
+
+Input subset models, complete inference-time absence, corrupted present data and target domain adaptation are all recorded separately.
+
+The comparison matrix in Appendix A contains the work-level evidence. The compact classification codes are interpreted alongside the relevant protocol descriptions and source locators.
+
+Limitations of the Review
+
+The papers reviewed are by no means exhaustive and are not statistically independent. Several inspection studies use the same MVTec 3D-AD or Eyecandies dataset, so improvements on those benchmarks are not necessarily indicative of improvements on independent industrial installations. The preprints are also version-specific, and some publication details are still provisional.
+
+When relatively few studies examine a particular condition, the body of evidence is such that any conclusions about that condition are necessarily weak.
+
+The main MVTec 3D-AD table gives 249 normal and 948 anomalous test samples (total 1197) (Bergmann et al., 2022, Table 1). The welding penetration paper reports inconsistent acquisition and training numbers (Hua et al., 2026, pp. 6708, 6711), and the light inspection paper reports different NwfDD values in its main table and its ablation table (Z. Zhang et al., 2024, Tables IV, VI–VII).
+
+These inconsistencies reduce the precision of the comparisons. The studies remain useful when their methods and reported findings are interpreted within clearly stated limits.
+
+Industrial Monitoring Tasks and Supervision
+
+Different monitoring tasks rely on different assumptions about training data, available observations, and acceptable levels of prediction error. These assumptions must be understood prior to comparing representation learning and fusion architectures.
+
+The definition of the prediction target is crucial, as performance on one industrial task cannot be considered valid evidence of performance on another.
+
+Anomaly Detection, Defect Classification, and Failure Classification
+
+Normal-only anomaly detection learns a reference for nominal observations. Supervised defect classification, by contrast, uses labelled fault or quality classes. MVTec AD and MVTec 3D-AD are examples of the normal-only approach, whereas welding penetration recognition is an example of supervised classification (Bergmann et al., 2019; Bergmann et al., 2022; Hua et al., 2026).
+
+HANDOVER defines five completed-interaction outcome classes: success, no approach, no grasp, no release and object drop (Thoduka et al., 2024b). A task failure in the operational domain doesn't necessarily mean that some physical damage has occurred or that we can identify the root cause of that damage.
+
+Supervision is thus an important aspect of the evaluation. The weakly supervised inspection study brings the MVTec data back in, as training requires image-level anomalous labels, which of course changes the normal-only setting (Z. Zhang et al., 2024, p. 6659).
+
+ZSG-IAD trains on reports and masks before evaluating on held-out categories or datasets. The zero-shot terminology refers to that assessment boundary rather than to the complete absence of anomaly supervised training (Q. Chen et al., 2026, pp. 6, 8–9).
+
+These differences establish the need to compare architectures against their respective target definitions and under their respective supervision conditions.
+
+Condition Estimation and Regression
+
+Continuous prediction calls for attention to measurement units, reference observations, and the horizon at which the target is defined. Remaining useful life is a very different prediction problem from instantaneous defect probability.
+
+Al-Dulaimi et al. (2019) look at a hybrid CNN-LSTM on simulated C-MAPSS trajectories using RMSE and an asymmetric prognostic score. Both branches of their model process the same set of selected telemetry channels. The study therefore provides evidence of complementary representations of the sensor data rather than any physical camera/sensor complementarity.
+
+The synthetic robot benchmarks of Altinses and Schwung (2025) examine cross-modal prediction, reconstruction, and downstream regression. They show the importance of relationships between representations, though errors on different reconstructed outputs do not necessarily tell you which modality is more useful for a given common prediction task.
+
+This issue is particularly relevant to proxy supervision. A model may accurately predict a derived condition index, yet the relationship between that index and actual physical deterioration may remain uncertain. A defensible regression comparison must therefore define the target construction, measurement scale, fitted pre-processing, and common assessment observations before interpreting numerical improvement as indicative of enhanced condition monitoring.
+
+Dataset-Provided Labels, Derived Targets, and Proxy Supervision
+
+Reference labels have very different evidential roles. Post-build CT provides flaw localisation for the voxel-level monitoring study by Petrich et al. (2021). Microscopy and density assessments are used to define quality classes in J. Li et al. (2022). Operando X-ray imaging is used to define process-state labels in Pandiyan et al. (2022).
+
+These studies show how an independent instrument can establish or validate a prediction target without necessarily being available at the time of model inference. It is vital to distinguish between supervision and predictive inputs when describing the information available to a monitoring architecture.
+
+For derived labels, predictive performance must be distinguished from independent physical validation. If the target is computed from the same measurements supplied to the model, then a low prediction error may reflect the model recovering that calculation rather than identifying an independent physical state.
+
+At the regional level, a single quality label may be assigned to many adjacent observations. Their spatial or temporal dependence affects the choice of an appropriate assessment unit.
+
+Native dataset annotations, independent reference measurements and analytical proxies support different conclusions about physical state and operational outcome.
+
+Retrospective Assessment and Online Monitoring
+
+The observation horizon is what determines when the model's forecast becomes available. A predictor assessed after the full observation period has elapsed is effectively given a retrospective assessment unless its inputs are restricted to an earlier decision time.
+
+HANDOVER is very clear that its baselines classify outcomes post-trial, with causal online prediction still being work in progress (Thoduka et al., 2024b, p. 7, Section VI). A post-pass photo, a layer summary and the completed action all provide different information horizons from prospective monitoring (X. Zhang et al., 2026; Petrich et al., 2021).
+
+Retrospective classification is still useful for assessing representations and fusion techniques, though its use in an operational context differs from that of an early warning system.
+
+Computational delay must also be distinguished from observation time. DMAW uses 20 frames at 37 fps and reports a much shorter forward-pass latency. As a result, approximately half a second of observation is distinct from computational delay (Fan et al., 2026, pp. 6–7).
+
+Similarly, simply varying the input duration of a CNN–LSTM does not, by itself, mean that a warning can be generated before a defect occurs (Pandiyan et al., 2022). Active monitoring requires a defined information cut-off, acquisition delay and end-to-end prediction workload.
+
+Figure 2.1 separates the observation horizon from the computation that follows it.
+
+Prediction Availability for the Same Action. Completed-action classification observes the action through completion before computing a prediction. The early-warning row is hypothetical: observations after its decision cutoff are unavailable to that prediction. Interval lengths are schematic.
+
+Multimodal Data in Industrial Applications
+
+Complementarity is determined by the additional task-relevant information provided by an observation or representation, rather than by differences in tensor shape or the number of acquisition sources.
+
+Different representations of the same physical quantity can contain complementary information. Likewise, physically distinct sensors can provide redundant or only very weakly relevant information for a given prediction target.
+
+The review therefore distinguishes between physical acquisition channels and derived representations and considers ordinary pairing separately from cases requiring stronger correspondence, such as cross-modal reconstruction or monitoring of a localised process.
+
+Visual and Video Observations
+
+RGB images, thermal images, process videos and geometric observations all have different acquisition assumptions. Depth, depth-derived point clouds, and estimated surface normals can all be multiple views of the same geometric source.
+
+GPAD combines RGB-depth features with point cloud priors (M. Li et al., 2026, pp. 4–7). This is an example of integration across representations that do not necessarily require three separate physical acquisition sources.
+
+RGB-geometry benchmarks describe appearance and shape rather than controller dynamics or motor current (Bergmann et al., 2022; Bonfiglioli et al., 2023).
+
+Physical camera-plus-measurement precedents include thermal imaging with vibration, welding images with sound, tool images with acoustic emission, and robot video with force/torque and gripper state (Huo et al., 2022; Hua et al., 2026; X. Zhang et al., 2026; Thoduka et al., 2024b).
+
+Their prediction units range from static inspection through to process windows and full trials. In the tool wear study, the camera is used post-cutting pass, with the preceding acoustic emission capturing the active cutting (X. Zhang et al., 2026, pp. 19–22).
+
+The representation of visual observations also influences the information available. Both pooled frame features and video Transformers process multiple images, but they differ in how they treat temporal relationships.
+
+These distinctions between them lead us to explicitly consider visual acquisition, observation windows, and aggregation within multimodal monitoring architectures.
+
+Sensor Time Series and Process Measurements
+
+Machine measurements can vary enormously in their physical origin and in their semantic meaning. An accelerometer measures vibration, a pressure sensor measures fluid behaviour, and controller logs can contain commands, estimates, or tracking errors rather than a direct measure of a physical quantity.
+
+The harmonic-drive study combines high-frequency vibration with servo information, whereas PGMTKD transfers pressure-vibration teacher knowledge to a pressure-only student (Yang et al., 2024; C. Li et al., 2025).
+
+Both papers address incomplete information, but their sensor availability and deployment reasons differ.
+
+Representations can also inflate the apparent number of modalities without including any new measurements. Kullu and Cinar (2022) combine current and vibration using both raw and STFT representations. Wan et al. (2024) derive statistical 'vibration' features from two acoustic sensors without acquiring an accelerometer channel at all. C. Wang et al. (2025) combine source domain features with the decisions from the vibration data.
+
+These studies are useful as architectural comparators, as they examine different information representations. Their results should, of course, be treated as distinct from comparisons that incorporate additional physical acquisition sources.
+
+An acquisition inventory and a description of the retained representations are required prior to attributing any predictive gain to modality diversity.
+
+Audio Observations
+
+Audio can pick up machine/process events that are only very weakly visible. The relationship to fault state depends heavily on background conditions, mic location, and sync.
+
+MIMII deliberately incorporates factory background recordings at a range of signal-to-noise ratios. Its fan baseline AUC drops from .94 at +6 dB to .70 at -6 dB (Purohit et al., 2019, Table 3).
+
+ToyADMOS provides miniature machine recordings and an explicit noise-mixing protocol, making it a useful reference for acoustic monitoring (Koizumi et al., 2019).
+
+In process monitoring, airborne acoustic signals can be paired with either a melt pool camera or a photodiode. Signal-to-image encoding in the study by J. Li et al. (2022) is an acoustic-optical-signal experiment, and Xie et al. (2025) use actual camera images.
+
+DCASE2020 Task2 provides audio-only baselines under an evaluation protocol that differs from that of later domain shift challenges (Koizumi et al., 2020).
+
+Together, these studies motivate acoustic representations as candidates for industrial multimodal monitoring. Their utility will depend on the availability of appropriate recordings, well-defined targets, and correspondence with other observations.
+
+Synchronisation, Correspondence, and Modality Availability
+
+Fusion requires observations that refer to a compatible event, region or time interval. Predicting one modality from another or combining aligned spatial discrepancy maps requires stronger correspondence.
+
+RGB-point cloud feature mapping uses registered benchmark geometry. Process monitoring may instead require time synchronisation and projection onto a common spatial grid (Costanzino et al., 2024; Petrich et al., 2021).
+
+In the inspected author manuscript, the digital twin study maps sensor features and prediction outputs to robot TCP positions. These positions provide spatial registration; they are not among the 27 listed sensor features (L. Chen et al., 2023).
+
+Modality availability has several levels. A file can exist without having a usable paired observation for a given prediction unit. A file can have a successfully paired observation which is still degraded.
+
+The acoustic-photodiode study explicitly lacks modality registration, which limits claims about correspondence between its two encoded streams (J. Li et al., 2022).
+
+For camera and machine sensor monitoring, we can have an explicit pairing rule that picks up unmatched events even if both underlying files are present. Modality completeness should therefore be assessed on a prediction-unit basis rather than inferred from the presence or absence of the files.
+
+Representation Learning for Industrial Monitoring
+
+The choice of representation depends on what an industrial prediction task requires.
+
+The literature reviewed supports both engineered and learned representations. Which is more appropriate will depend on the level of supervision, the level of preprocessing, the level of independent sample support, the information required, and the resources available for model fitting.
+
+Engineered Features and Conventional Machine Learning
+
+Engineered summaries impose a constraint on the information that a predictor can use. Measures of location, spread, amplitude, and trend can describe an operating state without requiring a high-capacity sequence model to be estimated from a small number of independent observations.
+
+The literature is replete with evidence of compact representations. Hand-crafted local geometry is competitive in 3D inspection, and a hydraulic CNN paper reports 1.7% error for its best single sensor versus 20.5% error for all seventeen sensors (Horwitz & Hoshen, 2023; Goodarzi et al., 2023).
+
+These results highlight the necessity for robust conventional references and careful selection of predictive information.
+
+Industrial vision also offers lightweight alternatives. The weakly supervised inspection network uses a single camera, internal anomaly-aware features, and a compact CNN. Reported computational cost is 2.33 million parameters and 5.65 ms per image (Z. Zhang et al., 2024, Table V).
+
+The study provides some relevant evidence on representation efficiency, but the anomalous training labels and modified MVTec supervision differ significantly from normal-only inspection.
+
+Conventional and learned representations should be compared using the same prediction target, assessment observations, and appropriately fitted preprocessing, rather than ranked solely by model family.
+
+Pretrained Visual Representations
+
+Pretrained visual representations provide a strong scientific explanation for transferring knowledge learned from large image collections to industrial applications with far less supervision. The features they learn may well contain the local appearance, texture, and object configuration relevant to the downstream prediction task.
+
+PatchCore successfully employs pretrained, locally aggregated intermediate CNN features together with a memory of nominal patches for industrial inspection (Roth et al., 2022, Section 3).
+
+This provides evidence for investigating transferred spatial representations, though its nominal-only patch retrieval differs significantly from supervised action classification.
+
+RT-DETR provides another architectural precedent in the form of its multiscale visual backbone (Y. Zhao et al., 2024, Sections 4.1–4.2). Features at several spatial scales would be viable candidates for the prediction target.
+
+Its published detection accuracy and computational performance pertain to the complete detection architecture rather than the downstream classification performance of the extracted CNN features.
+
+Asymmetric student-teacher and cross-modal mapping methods also provide further evidence for task-specific use of the learned visual representations (Rudolph et al., 2023; Costanzino et al., 2024).
+
+Vision-language inspection introduces semantic information as another potential source of representation value. DSE-AD combines historical and current rail images with normal and abnormal position prompts and assesses pixel localisation on a further rail domain (Lei & Qi, 2025).
+
+Its pair-reference and prompt assumptions differ significantly from those of isolated image classification.
+
+Together, these studies point to pretrained visual features as plausible candidates, while also highlighting the need to assess their actual information content, trainable parameters, and observation horizon in the downstream monitoring task.
+
+Temporal and Time-Series Representations
+
+Temporal representation learning provides an opportunity to retain sequence information that would otherwise be lost in engineered summaries.
+
+PatchTST addresses this through patch-based time-series representations and shared modelling across channels (Nie et al., 2023, Sections 3.1–3.2).
+
+On the Weather dataset at a forecasting horizon of 96, the patch-plus-channel independent model obtains an MSE of .152, compared with .164 without patching (Nie et al., 2023, Table 7).
+
+This provides positive evidence for patch-based representation learning in the forecasting setting under consideration. However, the relevance to industrial classification warrants separate investigation, as the prediction target, normalisation, supervision, and aggregation differ.
+
+Video representation learning looks at another temporal structure. TimeSformer and Video Swin model the spatial and temporal relations between video frames (Bertasius et al., 2021; Liu et al., 2021).
+
+These approaches provide an alternative to simply averaging independently encoded frames. The industrial CNN-LSTM remaining useful life study also shows the importance of observation length within its simulated prediction task (Al-Dulaimi et al., 2019).
+
+The literature therefore motivates comparisons that explicitly account for sequence length, observation windows, temporal ordering, normalisation, pretraining, and fitting budget.
+
+A Temporal Transformer and a compact statistical representation could well be preserving different aspects of the same sensor stream. Looking at their individual and combined performance helps assess whether the additional representation contains useful information for the task at hand.
+
+Audio Representations
+
+Acoustic representations include MFCCs, log-mel spectra, wavelet maps, GASF transforms and learned features.
+
+The Welding Penetration Network uses VMD and GASF; DMAW uses Transformer representations adapted to the welding observations (Hua et al., 2026; Fan et al., 2026).
+
+These are alternative forms of acoustic representation. An image-shaped acoustic representation is still one derived from sound rather than being an independently acquired camera stream.
+
+The Audio Spectrogram Transformer is a pretrained candidate for acoustic representation learning (Y. Gong et al., 2021). The results on the general audio benchmark are sufficiently promising to warrant industrial investigation. However, the appropriateness of such representations will depend heavily on the particular acoustic environment and the specific prediction task.
+
+MIMII and ToyADMOS both go some way to establishing the importance of background composition and noise environment (Purohit et al., 2019; Koizumi et al., 2019).
+
+Together, these studies lead one to consider recording quality, normalisation, and consistent observation intervals when looking at audio representations.
+
+Frozen Representations, Fine-Tuning, and Computational Restrictions
+
+Freezing an encoder, fitting a small prediction head and then adapting the entire network all consume different amounts of statistical and computing resources.
+
+Benchmark methods based on pretrained features show that you can get useful representations without going through the entire original representation-learning process on the industrial dataset (Roth et al., 2022; Costanzino et al., 2024).
+
+The computational cost of pretraining is still part of the representation's provenance even if it's external to the downstream experiment.
+
+Frozen feature extraction can therefore enable comparisons under a constrained fitting budget. Fine-tuning provides a very different opportunity in that it allows you to adapt the representations to the particular target observations. Which of the two is ultimately more effective can only be determined by empirical comparison, rather than by assuming one approach is in principle better than the other.
+
+Distillation also makes a further distinction between training and deployment. The PGMTKD multimodal teachers are used to enrich a pressure-only student. The gated acoustic-vibration study reports a distilled LightGBM student, though the nature of the teacher features and the timing of the inputs remain ambiguous (C. Li et al., 2025; Huang & Tong, 2026).
+
+Resource comparisons should therefore account for feature extraction, preprocessing, trainable components, and any teachers required during inference, rather than just the final prediction model.
+
+These results motivate comparisons of representation and fitting procedures under plausible computing budgets.
+
+Multimodal Fusion Strategies
+
+Fusion strategies can be broken down according to where the information is fused. Early integration fuses raw observations or raw features. Intermediate integration fuses the learned representations. Prediction-level fusion fuses the outputs (e.g., class probability estimates, anomaly scores). Hybrid architectures use more than one level of integration.
+
+These provide an operational taxonomy for comparing the studies reviewed. Adaptive reweighting refers to whether the combination varies according to the observation or its context and can therefore operate at different fusion levels.
+
+Terminology from the source papers is kept where appropriate, and comparisons are based on the actual location and mechanism of information exchange.
+
+Unimodal References and Incremental Modality Value
+
+The strongest credible single-input predictor provides the reference for measuring the incremental value of fusion.
+
+DMAW fuses the image and audio Transformer representations to classify the four welding states. The reported accuracy is 96.1% with fusion, 90.2% for the image model and 84.4% for the audio model (Fan et al., 2026, Table III).
+
+This supports a predictive benefit from the assessed multimodal pipeline. The grouping of the assessment windows by welding run is still not resolved in the evaluation.
+
+In contrast, the weld penetration study reports 100% clean test accuracy for its image-only, audio-only, and fused models (Hua et al., 2026, Tables 1–3).
+
+The additional modality therefore provides no measurable gain in accuracy under that comparison.
+
+A similar distinction is made in the case of robotic monitoring. The HANDOVER study reports 69.1% accuracy for video plus force/torque and 67.9% when gripper state is added to the I3D-D family (Thoduka et al., 2024b, Table III).
+
+These are five-class outcome accuracies averaged over five training runs. Within that comparison, adding an observation reduced predictive performance.
+
+The tool wear study reports an MAE of 6.6183 for their proposed model, 8.3002 for the visual ResNet50 and 60.5118 for the acoustic reference. All the other multimodal architectures evaluated have errors in excess of 45 (X. Zhang et al., 2026, Table 1).
+
+The strong visual reference makes the improvement scientifically informative, though the architectural differences mean you cannot attribute all of it to fusion.
+
+Transferable results on the difficulties of multimodal optimisation and on industrial all-channel losses underline the need to establish incremental gains against a strong admissible reference (W. Wang et al., 2020; Goodarzi et al., 2023).
+
+Collectively, these studies support investigating the value of conditional fusion, rather than assuming that including additional modalities will necessarily improve prediction.
+
+Feature Concatenation
+
+Feature concatenation combines the representations with no explicit mechanism for adaptive allocation and is therefore a key reference point for any more sophisticated form of integration.
+
+Effectiveness depends on feature scale, dimensionality, regularisation, and the quality of the constituent representations.
+
+M3DM's direct concatenation ablation is worse than its point cloud reference, while the full hybrid system outperforms both individual inputs (Y. Wang et al., 2023, Table 4).
+
+MADFlow also provides a further protocol-specific comparison between alignment and concatenation (Y. Li et al., 2025).
+
+CFA provides transferable evidence from forecasting. For DLinear on the Energy dataset, the first concatenation gives an MSE of .670, compared with .263 without text and .243 with constrained fusion (S. Lee et al., 2026, Table 4).
+
+The constrained fusion method also performs worse in a number of the evaluated scenarios, which again suggests that the benefits of an integration mechanism are highly task-dependent.
+
+Manufacturing fusion can similarly improve one architecture at the expense of the other under the same broad prediction task (J. Li et al., 2022, Table 3).
+
+These results establish concatenation as a valid comparator. It should be appropriately normalised and fitted, rather than implemented as an artificially weak baseline against which more complex methods are compared.
+
+Prediction-Level and Late Fusion
+
+Prediction-level fusion involves fusing the outputs of modality-specific predictors via techniques such as averaging, stacking, or evidence aggregation. This is a classification of where the fusion occurs; the individual predictors could be trained independently or as part of a wider training regime.
+
+Thermal-vibration diagnosis provides direct evidence of physical camera-sensor prediction-level fusion. They use separate CNN softmax outputs with weighted Dempster-Shafer aggregation and report a clean 100% diagnostic rate, compared with 99.06% for IRT and 96.32% for vibration (Huo et al., 2022, Table VII).
+
+The weights were fixed, and the sample-level cross-validation did not establish independence between physical runs.
+
+HANDOVER compares late outputs with intermediate sensor integration in the RGB and optical flow branches (Thoduka et al., 2024b, pp. 5–7).
+
+Cross-modal feature mapping and CPIR combine discrepancy maps, which need not be probabilities (Costanzino et al., 2024; Shangguan et al., 2025).
+
+Some papers also use the term 'late fusion' to describe representation-level integration prior to classification (W. Wang et al., 2020). That underlines the importance of knowing what information you are actually fusing.
+
+Stacked generalisation provides a scientific basis for learning a second-stage combination from cross-validated predictions. Probability outputs contain predictive information beyond the hard class labels so that a second-stage learner can estimate the joint utility of the outputs (Ting & Witten, 1999, Sections 2–3).
+
+Ting and Witten fitted a linear least-squares combiner to the class probabilities. A test of such a combination needs predictions for observations held outside the fitting of its component models (Ting & Witten, 1999, Sections 2–3).
+
+Gated and Context-Conditioned Fusion
+
+Adaptive fusion is scientifically justified when the utility of the individual inputs varies from observation to observation.
+
+Gated Multimodal Units do provide evidence of transferable conditional representation integration. The architecture fuses visual and textual information and achieves a macro F-score of .541, compared with .521 for the concatenation baseline in the movie-genre classification task (Arevalo et al., 2017, Section 3.1, Table 2).
+
+The gate in that study operates on learned representations before classification.
+
+Adaptive integration has also been looked at in an industrial context. DMAW achieved 96.1% accuracy, compared with 90.5% for summation and 92.6% for its gate comparator (Fan et al., 2026, Table V).
+
+TC-MAF provides another approach whereby the auxiliary RGB evidence is bounded around a multimodal anchor using normal training dispersion and local disagreement (Deng et al., 2026, pp. 3–5).
+
+These architectures illustrate various approaches to controlling information contribution.
+
+An important evaluation dimension is what governs the allocation. GCCF-AD is described as dynamic fusion, but the formulation they report is a learned scalar with no explicit sample-quality input (An et al., 2026, p. 149226, Equation 8).
+
+PGMTKD uses training losses to assign teacher contributions, and task loss balancing focuses on optimisation rather than any direct measure of input quality at deployment (C. Li et al., 2025; X. Zhang et al., 2026).
+
+GAF-Net uses progressive feature feedback, and trustworthy fusion employs evidence-based aggregation (Huang & Tong, 2026; Ying et al., 2025).
+
+The scientific distinction is what contributions can vary, what information determines that variation, and whether that variation improves predictive performance relative to a fixed combination.
+
+Process-conditioned weighting provides an additional way to incorporate pertinent context, without requiring explicit physical law-constrained modelling.
+
+Comparability and Fairness of Fusion Evaluations
+
+A shared dataset name does not in itself constitute a matched experimental comparison.
+
+Cohort construction, supervision, observation windows, pretraining, feature dimensionality, augmentation, and selection exposure could all contribute to differences between architectures.
+
+The tool wear study alters the architectural components as part of the fusion, and the incomplete federated imagery study alters the client data access as well as the combining mechanism (X. Zhang et al., 2026; X. Zhao et al., 2026).
+
+These are comparative assessments of fitted pipelines. Their interpretation differs from an experiment intended to isolate attention, modality contribution, or quality conditioning.
+
+Comparisons using the same evidence sources can support a narrower attribution. TC-MAF retains the same evidence sources, comparing bounded fusion against static averaging, weighted scores, rank fusion, and a learned gate (Deng et al., 2026, Table 3).
+
+On the flip side, the disagreement-aware study uses a locally released code baseline that performs worse than the published M3DM result (J. Xu et al., 2026, Table 4).
+
+Distilled predictors can also access training information that is not available to standard unimodal models (C. Li et al., 2025).
+
+These settings remain scientifically valuable, provided that the information and fitting conditions are clearly specified. Pipeline performance, incremental modality value, and the isolated effect of a fusion operator represent distinct evaluation questions.
+
+Reliability and Robustness
+
+The reliability of a multimodal architecture depends on both the prediction setting and the type of intervention acting on its inputs.
+
+Missing channels, corrupted measurements, asynchronous observations and changes in operating conditions all represent different reliability issues. The evidence reviewed is therefore grouped by the particular condition under consideration rather than assigned to a single general robustness category.
+
+Missing Modalities
+
+Planned single-input deployment differs from an unannounced loss of an input in a model that normally expects complete observations.
+
+In the initial appraisal, four of the 37 works examined planned missing-input inference and one examined simulated dropout (five of 37, or 13.5%, Table A.1). These counts describe different ways in which an input can be absent.
+
+PGMTKD's pressure-only student and incomplete RGB-geometry methods do provide evidence for reduced input inference. ModDrop and the missing-modality Transformers add further transferable mechanisms and counterexamples (C. Li et al., 2025; Sui et al., 2026; Neverova et al., 2015; M. Ma et al., 2022).
+
+The effectiveness of these mechanisms will, of course, depend on the training conditions and the specific missing-input patterns they have been assessed on.
+
+TC-MAF explicitly evaluates unavailable 3D input. I-AUROC drops from .9788 to .9330 and P-AUPRO from .9901 to .9586 (Deng et al., 2026, Table 3).
+
+This provides a quantified example of performance under a given missing modality condition.
+
+Federated substation monitoring varies the proportion of incomplete clients to 80% (X. Zhao et al., 2026, Figure 8).
+
+Its training and client-availability setting differs from an arbitrary inference-time camera failure.
+
+ZSG-IAD reports input subset comparisons without fully defining the shared checkpoint and training exposure (Q. Chen et al., 2026). Missing training images in the hot rolling regime constitute another availability regime (L. Ma et al., 2025).
+
+These studies collectively indicate the need to explicitly specify available modalities during both training and inference (i.e., availability masks), the policy for replacement or fallback, and the system's response when all required inputs are absent.
+
+Noise and Partial Degradation
+
+Physical monitoring studies do provide evidence of a number of controlled degradation mechanisms. Thermal-vibration diagnosis examines Gaussian noise and vibration bias/stuck faults, while welding penetration recognition examines artificial interference. Acoustic-thermal and acoustic-vibration studies look at other noise settings (Huo et al., 2022; Hua et al., 2026; Ying et al., 2025; Huang & Tong, 2026).
+
+These interventions vary in the observations affected, the degree of corruption and the extent to which the model is exposed to degradation.
+
+At -2 dB, noisy IR thermography gives 95.26%, which jumps to 97.6% when combined with fault-free vibration. Noisy vibration alone gives 36.86%, jumping to 94.2% when combined with fault-free IR thermography (Huo et al., 2022, Table VIII).
+
+The comparison shows the value of a fault-free companion modality when another observation is synthetically corrupted.
+
+The welding penetration study reports a fused accuracy of 93.33% under its interference condition (Hua et al., 2026, Table 3).
+
+The corresponding corrupted unimodal comparisons are required in order to assess the incremental benefit of fusion in the interference condition. The reported intervention also leaves some uncertainty about the corruption operator, magnitude, and exposure matching.
+
+Synthetic signal-to-noise interventions provide some controlled experimental evidence, but the conclusions are specific to the observations affected and the severities tested. Natural simultaneous degradation and ordinary defective objects are quite different phenomena.
+
+These distinctions lead directly to a comparison of predictions from degraded input against those from static fusion and single-input predictors under the same reliability condition.
+
+Temporal Misalignment and Distribution Shift
+
+Temporal misalignment and distribution shift both affect multimodal prediction, albeit in different ways.
+
+A clock offset can break correspondence between observations, whereas a distribution shift can change the conditions under which the learned representation or predictor is evaluated.
+
+Registration studies have established the importance of alignment in multimodal monitoring. OmniFuser's repeated within-pass images provide a way to construct paired observations rather than directly test a synchronisation failure (Petrich et al., 2021; L. Chen et al., 2023; Z. Wang et al., 2025).
+
+The literature also contains examples of evaluation under changed acquisition conditions. HANDOVER trains on one robot and evaluates on a different robot (Thoduka et al., 2024b, Table V), and there's a rail localisation study that evaluates a Subway-trained model on high-speed rail (Lei & Qi, 2025, Table III).
+
+Target-adaptive methods, target-validated condition studies and independent build experiments are all different forms of access to the assessment domain (C. Wang et al., 2025; Chu et al., 2024; Huang & Tong, 2026; Bevans et al., 2023).
+
+Rebuilding normal memories on Eyecandies using fixed fusion hyperparameters is evidence of recipe transfer, rather than deploying an unaltered model to an untouched target installation (Deng et al., 2026; J. Xu et al., 2026).
+
+Architecture reuse, representation transfer, temporal offset tolerance, and unchanged-model generalisation each require distinct evaluation protocols.
+
+Quality-Aware and Uncertainty-Aware Fusion
+
+Quality-aware fusion is driven by the idea that the predictive utility of an input may vary with its quality. Signal quality, model confidence, calibrated probability and evidence consistency are all different beasts, though.
+
+QMF furnishes a theoretical basis for studying sample-dependent weighting via generalisation upper bounds under stated relationships between uncertainty and loss, assuming a common training and test distribution (Q. Zhang et al., 2023, Sections 3.1–3.2).
+
+The transferable UDML experiments train on controlled Gaussian corruption intensities and recognise that sample difficulty can be confused with modality corruption (Wei et al., 2026, pp. 4–5, 9).
+
+These results lead us to ask whether the quality information we have available helps us identify when a particular observation is no longer useful.
+
+QMF reports an NYU scene classification accuracy of 70.09% on clean inputs, compared to 70.30% for concatenation. At corruption intensity ten, it reports 55.60% compared to 51.99% for late fusion (Q. Zhang et al., 2023, Table 1).
+
+These non-industrial RGB-depth comparisons do show a regime-specific advantage under corruption. The clean and corrupted comparisons quoted use different reference methods, so they should not be read as a clean-versus-corrupted trade-off against the same reference method.
+
+The effect of the adaptation mechanisms also differs across prediction endpoints. The disagreement add-on increases the local MVTec image AUROC from .779 to .800 and, at the same time, reduces the Eyecandies image AUROC from .810 to .794, even though the pixel metrics have improved (J. Xu et al., 2026, Tables 4–5).
+
+TC-MAF uses normal-training dispersion and local disagreement to control the contribution of auxiliary evidence (Deng et al., 2026).
+
+Collectively, these findings establish a scientific basis for reducing reliance on a stream when the observable context is expected to indicate errors. They also underscore the need to assess the relationship between available quality indicators and actual predictive reliability.
+
+QMF's theoretical justification does not validate the use of arbitrary quality proxies, and clean calibration can actually degrade after a distribution shift (Q. Zhang et al., 2023; Ovadia et al., 2019).
+
+For quality-conditioned weighting, the relevant comparison is with a static model given the same training exposure to corruption. Performance on clean observations also matters.
+
+Modality Dropout, Augmentation, and Fallback Mechanisms
+
+Different robustness mechanisms deal with different aspects of input availability.
+
+Training-time modality dropout exposes the model to certain absence patterns. Imputation produces substitute observations, and deterministic fallbacks route the prediction to an available unimodal component.
+
+These approaches can generate similar outputs under certain conditions without relying on the same learned recovery mechanism.
+
+Fuzzy regularisation works by introducing failures via partial corruption and by replacing the entire input with a constant or noise. The evaluation is of Gazebo pose regression using random sample splits of overlapping windows (Altinses & Schwung, 2023, pp. 3–5).
+
+The investigation provides evidence for controlled input regularisation, with independent physical deployment outage performance remaining unaddressed.
+
+OmniFuser describes dropout and masking without any quantified outage table (Z. Wang et al., 2025, p. 10).
+
+Generated replacement observations can also have a negative impact on performance. Replacing the clean depth with CycleGAN output worsens the synthetic robot benchmark's MSE (from 2.1745 × 10^-3 to 13.472 × 10^-3) (Altinses & Schwung, 2025, Table 7).
+
+These results motivate individual evaluation of learned recovery, training exposure, and explicit fallback policies. Static controls, with equivalent degradation exposure and predictions from the surviving input, provide a useful baseline for assessing adaptive robustness.
+
+Evaluation Beyond Accuracy
+
+The practical value of a monitoring architecture will depend entirely on how its predictions are evaluated, chosen, and interpreted.
+
+Accuracy in prediction can be affected by class distribution, assessment grouping and decision thresholds. A single aggregate score therefore only provides one facet of the evidence needed to assess the performance of a multimodal industrial monitoring system.
+
+The evaluation questions concern assessment independence, discrimination, calibration, uncertainty, interpretability, computational viability and reproducibility.
+
+Grouped Evaluation and Leakage Prevention
+
+The independent assessment unit may be a weld, a tool, a participant, a recording, a machine or a build.
+
+Randomly partitioned observations can end up with shared acquisition contextual information or raw samples. The fuzzy-regularisation study forms 20-step windows with a stride of one and then randomly divides the resulting examples (Altinses & Schwung, 2023, pp. 4–5).
+
+Its assessment therefore doesn't establish performance on unseen trajectories.
+
+Weld run grouping is still unresolved in the closest welding studies (Fan et al., 2026; Hua et al., 2026). These examples do show a potential dependence between the observations but do not establish any particular level of leakage.
+
+The HANDOVER authors report an explicit participant-disjoint official split (Thoduka et al., 2024b).
+
+Normalisation, feature selection and model parameter optimisation all require an appropriate split between model development and model assessment (Varma & Simon, 2006; Kapoor & Narayanan, 2023).
+
+Out-of-fold stacking provides a mechanism for constructing second-stage prediction inputs without any in-sample predictions. Its validity also depends on how the underlying fitting, selection and calibration folds are constructed.
+
+Repeatedly selecting follow-up experiments after looking at the assessment results introduces further selection bias, even if the individual model fits exclude their outer test labels.
+
+These results motivate the development of assessment protocols that account for the physical origin and dependence of observations throughout the modelling process.
+
+Discrimination, Calibration, and Decision Thresholds
+
+Ranking, probability quality and thresholded decisions are three different aspects of a predictor.
+
+AUROC measures discrimination across thresholds rather than performance at a single operational false alarm rate or the quality of the predicted probabilities.
+
+MVTec AD shows that useful ranking can exist alongside fairly poor thresholded localisation. The strict FPR metrics highlight a different aspect of detection performance (Bergmann et al., 2019; Costanzino et al., 2024; Cheng et al., 2025).
+
+The rail vision-language study reports pixel-level metrics and optimal threshold F1 (Lei & Qi, 2025, p. 7). These metrics address a completely different evaluation problem than image-level alarm accuracy at a threshold chosen from the training or validation set.
+
+In manufacturing, Petrich et al. (2021) report an accuracy of .9921 and a precision of .2487 on an imbalanced layer, which is a clear example of the impact of class distribution and threshold selection.
+
+Validation-fitted calibration can improve in-distribution probability quality, while dataset shift can damage confidence estimates (Guo et al., 2017; Ovadia et al., 2019).
+
+Proper scoring rules (negative log-likelihood, Brier score, etc.) provide a basis for assessing probability forecasts (Gneiting & Raftery, 2007). Their interpretation differs from that of discrimination or thresholded classification.
+
+A generated confidence field or evidence mass cannot replace probability evaluation. Metrics should align with the prediction target and class distribution, and operational thresholds should be selected using admissible training or validation observations.
+
+Uncertainty and Statistical Comparisons
+
+Seed variation, acquisition group sampling and model selection uncertainty are all different sources of variation.
+
+HANDOVER's reported standard deviations are for five training runs on a fixed test set, whereas a group bootstrap of saved predictions samples assessment units conditional on the fitted models (Thoduka et al., 2024b).
+
+These approaches capture different facets of uncertainty and do not necessarily encompass all the variation expected from retraining or deployment in a different domain.
+
+Cross-validation folds share training observations. Under the assumptions stated, the classic variance result shows that no universally unbiased estimator of cross-validation variance exists; ignoring covariance can substantially underestimate uncertainty (Bengio & Grandvalet, 2004, pp. 1096–1098, 1102–1104). Conditional uncertainty intervals can still be useful when the estimand and dependence assumptions are stated explicitly.
+
+Small fusion effects, ambiguous repetition counts and conflicting descriptions of significance all warrant the same level of caution (Gu et al., 2024; J. Xu et al., 2025).
+
+Paired performance differences on common assessment observations provide a much more direct comparison than unrelated score intervals. An interval which contains zero doesn't demonstrate equivalence, and a positive point estimate doesn't establish practical importance without an appropriate criterion.
+
+Interpretability and Its Limits
+
+Prediction scores, coefficients, gate traces and spatial maps can all tell you something regarding how the model is behaving.
+
+The attention debate has both counterexamples to faithful explanation and evidence that the learned attention weights do, in fact, contain useful information. This leads to the conclusion that interpretability should be evaluated on a task-specific basis rather than drawing general conclusions from the terminology of the architecture itself (Wiegreffe & Pinter, 2019).
+
+ZSG-IAD measures schema validity, language consistency and coarse-to-final-mask overlap (Q. Chen et al., 2026). These provide evidence of various forms of self-consistency.
+
+Their interpretation differs from both independent physical defect causation and calibrated confidence.
+
+HANDOVER leaves the use of human action prediction as a means of explanation as a future area of research (Thoduka et al., 2024b).
+
+Describing which signals a model used leaves two further questions open: whether they explain the physical cause and whether the explanation helps an operator make a decision.
+
+Process context should be distinguished from the explicit physical equation constraints (e.g., PGMTKD's pressure model; C. Li et al., 2025).
+
+Modularity, Reproducibility, and Computational Cost
+
+Modular architectures enable you to swap in and out individual representations and prediction components and compare them. Their value for scientific investigation comes from the fact that you can identify which component is different between conditions.
+
+Modularity does not establish predictive robustness or an advantage over a matched end-to-end architecture.
+
+An identified version, accessible source code, executable processing and independently reproduced results all provide various levels of reproducibility assurance (Pineau et al., 2021).
+
+The difference between local and published M3DM results remains unresolved. It motivates checks of dependencies, valid point filtering, checkpoints, and scoring conventions (J. Xu et al., 2026).
+
+Computational comparisons of course also require a common measurement boundary. The CPIR paper reports lower FPS than CFM, which is a clear performance vs speed trade-off (Shangguan et al., 2025).
+
+The reported 5.65 ms for the lightweight image network doesn't include the independent sensor branch or acquisition delay (Z. Zhang et al., 2024, Table V).
+
+TimeSformer's compute requirements depend on the ImageNet pretraining and the workload it is evaluated on (Bertasius et al., 2021).
+
+Hardware, batch size, caching, synchronisation and the processing stages included all determine which computational measurements can be compared.
+
+These results indicate the necessity for explicit resource accounting and reproducibility documentation. Prospective deployment and operator usability remain open questions for validating a successful offline forward pass.
+
+Critical Synthesis and Research Gap
+
+The reviewed literature shows that multimodal observations and learned representations can benefit industrial and robotic monitoring. Their value, however, depends on the prediction task, the information each representation contains, and the conditions under which the integration method is evaluated.
+
+The previous sections have identified four related scientific questions: which representations are appropriate for a given target, whether combining their predictions is valuable, whether that value is maintained as observation quality degrades, and how the experimental assessments should be conducted.
+
+Findings Supported Across the Reviewed Studies
+
+There are tangible observations that can be used to improve the performance of a task-specific monitoring pipeline. DMAW, thermal-vibration diagnosis, HANDOVER and tool wear prediction are all good examples under their respective assessment protocols (Fan et al., 2026; Huo et al., 2022; Thoduka et al., 2024b; X. Zhang et al., 2026).
+
+Controlled evidence integration can also improve RGB–geometry inspection under intact-input conditions. TC-MAF separately reports performance when the 3D input is unavailable (Deng et al., 2026).
+
+The literature therefore establishes that useful industrial multimodal fusion mechanisms and approaches to dealing with incomplete observations exist.
+
+Representation learning offers a number of scientifically sound options for extracting information relevant to the task. Pretrained convolutional features, patch-based temporal representations, and hand-crafted features are all candidates with some supporting evidence under certain learning and evaluation regimes (Roth et al., 2022; Nie et al., 2023; Horwitz & Hoshen, 2023).
+
+Their suitability for another industrial prediction target depends on several factors, including the observations, the supervision, the aggregation, and the compute resources involved.
+
+Static and learned fusion mechanisms both offer different avenues for exploiting complementary information. Stacked generalisation motivates learning combinations of the outputs of individual predictors. In contrast, gated representation learning and quality-aware fusion justify context-dependent allocation (Ting & Witten, 1999; Arevalo et al., 2017; Q. Zhang et al., 2023).
+
+A further well-established distinction concerns input reliability. Planned single-input deployment, complete inference-time absence, controlled corruption, and target domain adaptation all address different issues (C. Li et al., 2025; Altinses & Schwung, 2023; X. Zhao et al., 2026).
+
+The consistent finding across the reviewed studies is a conditional benefit under specific tasks and evaluation regimes, rather than universal superiority of any single representation or fusion architecture.
+
+Figure 2.2 distinguishes a recorded direct test from the use or discussion of a topic. Training strategy illustrates this distinction: 60 of the 94 appraisals described or used the training strategy without a recorded direct test, while 28 (29.8%) recorded a direct test. These counts describe the depth documented in the appraisals; low frequency alone does not establish research priority.
+
+Figure 2.2. Depth of investigation recorded in the 94 literature appraisals
+
+Topic | Direct test recorded | Used or discussed only | No treatment recorded | Unclear from appraisal
+
+Adding an input | 46 | 15 | 30 | 3
+
+Choice of fusion rule | 37 | 28 | 29 | 0
+
+Training strategy | 28 | 60 | 4 | 2
+
+Corrupted inputs at test | 21 | 22 | 50 | 1
+
+Input representation | 15 | 67 | 7 | 5
+
+Missing inputs at inference | 11 | 15 | 68 | 0
+
+Transfer across settings | 11 | 30 | 52 | 1
+
+Note. Each topic uses all 94 appraisals as its denominator. A paper can contribute to several topics. A direct test requires a recorded comparison or intervention. “No treatment recorded” describes what the author's appraisal documents; it does not establish that the paper omitted the topic. The four categories record the depth documented in the appraisals.
+
+Unresolved Questions and Research Gap
+
+The evidence reviewed also contains significant negative and conflicting findings.
+
+The same clean-test accuracy is observed for the unimodal and fused welding models. HANDOVER performance drops when the gripper state is added. Some alternative multimodal tool-wear models perform worse than the visual reference, although the proposed model improves on it. The Eyecandies image scores also go down. All of this calls into question the notion of an unqualified fusion benefit (Hua et al., 2026; Thoduka et al., 2024b; X. Zhang et al., 2026; J. Xu et al., 2026).
+
+Category-specific geometry losses, poor hydraulic channel combinations, and the difficulties of multimodal optimisation all reinforce this conclusion (Horwitz & Hoshen, 2023; Bonfiglioli et al., 2023; Goodarzi et al., 2023; W. Wang et al., 2020).
+
+Several mechanisms could account for these results: redundancy, inappropriate representations, optimisation difficulties, noise, supervision and limited independent sample support. The studies do not point to a single underlying explanation.
+
+An important unresolved issue is the distinction between a representation's standalone strength and its complementary predictive value. A representation that is weak in isolation may still provide information useful for another predictor. Conversely, a strong additional representation does not guarantee that a fusion mechanism can effectively utilise that information.
+
+Reliability introduces a related source of uncertainty. Adaptive weighting is justified when the available context can identify changes in unimodal prediction reliability (Q. Zhang et al., 2023; Wei et al., 2026). The value of conditioning information, its relationship to branch errors, and its comparison with exposure-matched static alternatives must be investigated on a task-specific basis.
+
+External evaluation adds another boundary. Re-using a procedure with a new dataset-specific fitting, re-using the learned representation weights and then evaluating an unaltered predictor in a different domain are all different experimental questions. You cannot just take the results of one and treat them as equivalent evidence of generalisation.
+
+Final Summary of the Literature Review
+
+The 94 appraised works support a conditional benefit from multimodal monitoring. In four-state welding classification, combining image and audio raised accuracy from 90.2% for the stronger single input to 96.1%. In weld-penetration classification, both individual inputs and their combination reached 100% on the clean test set (Fan et al., 2026; Hua et al., 2026). In human–robot handover, adding gripper state to video and force/torque reduced five-class accuracy (Thoduka et al., 2024b). Taken together, these comparisons locate the architectural question more precisely: for a given target and observation window, when does a second input retain complementary information, and when does a learned fusion rule use it more effectively than a strong single predictor or a fixed combination under the same fitting and reliability conditions?
+
+Table 2.1. Findings, limits and follow-up questions from the literature review
+
+Adding an input
+
+Published finding and its limit: Image and audio fusion gained 5.9 percentage points over image alone in four-state welding classification. In weld penetration, each single input tied fusion on the clean test. Adding gripper state reduced accuracy in handover (Fan et al., 2026; Hua et al., 2026; Thoduka et al., 2024b). Each contrast applies to its own outcome, inputs and assessment cases.
+
+Follow-up question: Does a second input improve on the strongest single input when both are tested on the same held-out runs?
+
+Choice of fusion rule
+
+Published finding and its limit: An RGB–3D inspection study compared a static mean with a learned gate using complete inputs (Deng et al., 2026). A gated unit outperformed concatenation on a movie-genre task. Some alternative multimodal tool-wear pipelines were weaker than the visual reference, although the proposed model improved on it (Arevalo et al., 2017; X. Zhang et al., 2026). Differences in encoders or fitting can change the ranking. The genre result has no direct industrial validation.
+
+Follow-up question: Under which faults does a learned rule outperform a static rule after both receive the same exposure during training?
+
+Training strategy
+
+Published finding and its limit: Both models had 1.02% error on clean digits. With two quadrants missing, modality-dropout training reduced error from 35.91% to 7.19% (Neverova et al., 2015). This controlled digit comparison tests exposure to specified absence patterns, not performance under industrial outages.
+
+Follow-up question: How much of a gain under corruption comes from training exposure, and how much from the fusion rule?
+
+Corrupted inputs at test
+
+Published finding and its limit: One bearing study compared fusion rules at 0 dB. Another reported the proposed model's accuracy when one input was degraded (Huang & Tong, 2026; Sun et al., 2026). Their corruption conditions and controls differ; the proposed model's corrupted accuracy alone does not establish incremental fusion benefit.
+
+Follow-up question: At the same fault severity, does fusion outperform both the intact input and a static combination?
+
+Input representation
+
+Published finding and its limit: Hand-crafted geometry can support 3D inspection, temporal patches retain useful information for forecasting, and learned video features address action recognition (Horwitz & Hoshen, 2023; Liu et al., 2022; Nie et al., 2023). The tasks and supervision differ. These studies do not rank the representations on the same target.
+
+Follow-up question: Which encoding adds complementary information when the target, observation window and fitting budget are fixed?
+
+Missing inputs at inference
+
+Published finding and its limit: A pressure-only student was trained for single-input deployment; modality-resilient inspection and RGB–geometry inspection also examine incomplete inputs (Deng et al., 2026; C. Li et al., 2025; J. Xu et al., 2025). A planned input restriction leaves performance under sudden loss or partial corruption open. Simulated dropout and inference-time absence require distinct assessment conditions.
+
+Follow-up question: Does a policy trained for a known missing stream also cope with an unexpected outage during operation?
+
+Transfer across settings
+
+Published finding and its limit: Handover was tested across robots. A bearing study used target-domain validation during transfer (Huang & Tong, 2026; Thoduka et al., 2024b). Inspection methods were reapplied to Eyecandies with target-specific normal memories (Deng et al., 2026; J. Xu et al., 2026). Rebuilding those memories uses target data. Performance of an unchanged predictor at a new installation remains a separate question.
+
+Follow-up question: How much fusion benefit persists on a new machine or site when access to target data is controlled?
+
+How credible is the estimate?
+
+Published finding and its limit: Participant-disjoint assessment tests performance on held-out people. Selection and calibration also affect what a reported score measures (Guo et al., 2017; Thoduka et al., 2024b; Varma & Simon, 2006). Independence depends on the physical grouping. Accuracy alone gives neither failure ranking nor probability quality.
+
+Follow-up question: Does the apparent benefit persist with appropriate grouping, training-side selection and calibration, and assessment of ranking and probability quality?
+
+
+Technical Foundations and Possible Models
+
+In the failed insertion shown in Chapter 6, the first camera frame carried the same weight as the last. From that recording, the visual model took 16 frames and averaged their features into a single description of the action. Reading the frames in reverse order would have given exactly the same description. For an insertion, this matters. A change near the point of contact may be visible in only a few frames, and averaging over the whole action can reduce its influence.
+
+The robot also recorded force, torque, and movement during the insertion. These measurements offered a second view of the same event. The main REASSEMBLE experiment first made a prediction from the camera and another from the sensors. It then tested whether combining the two helped identify failed actions. The recorded failure label made that comparison possible, even though the physical cause of this particular failure was unknown.
+
+PHM raised a different question. There, the aim was to predict a numerical indicator of gear condition from machine measurements. Photographs taken after a run supplied the target for the main sensor study. A photograph used to define what a model should predict has a different role from a camera frame supplied to a model when it makes a prediction. That distinction affects what can be claimed from the fusion experiments in Chapters 5 and 6.
+
+What the models predicted
+
+In REASSEMBLE, each completed action had one recorded outcome: success or failure. The 16 frames from the insertion therefore belonged to one prediction. Treating them as 16 separate test cases would count the same outcome 16 times. A recording could also contain several actions carried out under similar conditions. For this reason, the evaluation kept actions from the same recording together when separating training and assessment data.
+
+Failure was the positive outcome in REASSEMBLE, ViFailback, and HANDOVER. In MSM, the positive outcome was an abnormal cutting interval under the label definition used in that study. PHM used regression because its target was a number. A low error in PHM meant that a prediction was close to the indicator derived from the photographs. Establishing how closely that indicator measured actual tooth damage would require an independent physical measurement.
+
+HANDOVER supplies supporting unimodal and fixed-average results in Appendix H. Its missing participant-to-trial mapping prevented the mandatory participant-safe OOF construction for learned fusion, so the presence of paired modalities alone did not make a fitted stacker eligible.
+
+For the REASSEMBLE insertion, let p_v be the failure probability estimated from video and p_s the probability estimated from sensors. Both estimates refer to the same action. Their values can differ because the models receive different measurements and learn different relationships from the training data.
+
+A classification model produces a score. A sigmoid function turns that score into a value between zero and one. Whether the value is a good probability estimate is a separate issue. For example, if a model gives many actions a failure probability close to 0.8, about eight in ten of those actions should fail if the model is well calibrated in that range. This chapter distinguishes models that combine probabilities directly from models that first convert them to log-odds, using ℓ(p)=log[p/(1-p)]. The software clips probabilities near zero and one, so this calculation remains defined.
+
+What the camera contributed
+
+The REASSEMBLE visual model began with a detector trained to find objects in images. RT-DETR has a convolutional backbone that extracts image features at several scales. Its hybrid encoder combines information across those scales. A decoder and detection heads then use the features to predict object classes and bounding boxes (Y. Zhao et al., 2024). For the insertion study, the available label described whether the action succeeded. There was no target box marking the place where it failed.
+
+The main experiment used the ResNet18-vd backbone from the PekingU/rtdetr_r18vd checkpoint. Its weights stayed fixed. Each hand-camera frame was resized to 640 × 640 pixels, and its pixel values were divided by 255. The recorded procedure used no further scaling with the ImageNet mean and standard deviation.
+
+For each frame, the backbone returned three feature maps. A feature map records how strongly an image feature responds at different positions. The model took the average response across each map channel and joined the results. This gave 896 numbers per frame. Averaging those numbers across the 16 selected frames produced 896 numbers for the completed action. A separately trained classification head used them to estimate the probability of failure. The detector’s hybrid encoder, decoder, and bounding-box heads were bypassed in this experiment.
+
+Two details of the insertion disappear during those averages. The first is the exact position of a feature in the image. The second is when that feature appeared. For example, one feature might respond strongly in a frame near contact and weakly in the other frames. Its average could be the same as a moderate response spread across several frames. The resulting 896 values would not tell the prediction head which pattern had occurred.
+
+This limitation led to a specific comparison in Chapter 6. The main model averaged frames across the whole action. A later experiment pooled features from the last four of the sixteen sampled frames, giving the final part of the movement its own representation. Both models answered a question about a completed action. Testing an early warning would require an earlier decision time and would exclude every frame recorded after it.
+
+Previous studies give reasons to compare these choices. Pretrained convolutional features have been useful in industrial inspection (Roth et al., 2022), and the Vision Transformer study showed that the amount of pretraining data affects the comparison between convolution and attention (Dosovitskiy et al., 2021). Video Swin keeps local information across both space and time, with a computing cost that depends on the clips and image crops used (Liu et al., 2021). TimeSformer reported an advantage for separate spatial and temporal attention on Kinetics-400 and Something-Something V2 (Bertasius et al., 2021, Table 1). The question for REASSEMBLE was narrower: with the available recordings and training time, did retaining a selected part of the action help predict its outcome?
+
+PHM also used a model from the RT-DETR family, but its implementation followed a different route. The software ran a frozen RT-DETR-L detector and collected three intermediate feature maps during its prediction process. Pooling these maps produced 768 image features. The software added the time taken to extract them, so the regression head received 769 inputs. Any interpretation of this image experiment must account for that timing value as well as the photograph.
+
+Keeping an encoder frozen also allowed its features to be saved and reused across training splits. Later experiments investigated what changed when the visual features themselves were allowed to adapt. In ViFailback, the study distinguished a generic model pretrained on COCO, a model previously trained with REASSEMBLE labels, and the completed stages of training on the target task. These models had different training histories. Comparing their epoch counts alone would miss differences in batch size, learning rate, image augmentation, and early stopping. Where the record contains only saved features, it confirms feature extraction. A claim about classification or fusion also requires a completed assessment.
+
+What the machine sensors contributed
+
+During a REASSEMBLE action, the robot recorded 22 channels: three force channels, three torque channels, two gripper channels, seven joint-effort channels, and seven joint-velocity channels. A brief change in force and a gradual rise in force can have the same average. The sensor study therefore compared two ways of reading the same measurements. One described the action with a small set of statistics. The other learned from short, overlapping parts of the signal.
+
+For the statistical model, each channel supplied ten values: the mean, standard deviation, median, minimum, maximum, lower and upper quartiles, range, root-mean-square amplitude, and slope over action progress. Together, the 22 channels produced 220 features per action. For a force channel, the maximum retained the highest value in the resampled force channel. The range described the distance between its lowest and highest values. The slope described whether force generally rose or fell as the action progressed. None of these values, on its own, identified the moment when the highest force occurred.
+
+These simple features were a serious comparison for the learned model. They captured useful properties of the robot’s movement, and their compact size made them a practical reference with the available training data. Other industrial work has likewise shown that carefully chosen features can compete with learned representations, including in 3D anomaly detection (Horwitz & Hoshen, 2023).
+
+The second sensor model used PatchTST. To prepare its input, each completed action was represented by 512 positions from start to finish on each of the 22 channels. Position 256 was therefore near the middle of the action, whether that action lasted a few seconds or much longer. The spacing was measured in action progress. Two neighbouring positions did not necessarily represent the same number of milliseconds in different actions. This matters if the signal is later interpreted in terms of physical vibration frequencies.
+
+Figure 3.1 shows how overlapping sensor patches become tokens.
+
+How overlapping sensor patches become tokens
+
+Note. One schematic REASSEMBLE sensor channel is shown from an action resampled to 512 positions across 22 channels. Patches 1–32 and 17–48 share positions 17–32; their starts are 16 positions apart. Each patch becomes a separate Transformer input, called a token.
+
+The original PatchTST model processes each channel separately and shares its learned weights across channels (Nie et al., 2023). This lets it learn from neighbouring measurements without treating every measurement as a separate token. The published model addressed forecasting. In REASSEMBLE, the encoder was trained from scratch to classify the outcome of a completed action.
+
+The REASSEMBLE model used a patch width of 32, a stride of 16, a hidden width of 32, two Transformer layers, four attention heads, and a feed-forward width of 64. With no padding, 512 positions give 31 patches. The number actually processed depends on how the software handles the end of the sequence. After encoding, the model averaged the patch features, joined the channel representations, and projected the result to 128 values. The inputs had already been standardised before entering the model, so internal scaling was switched off. The software also received a mask identifying observed values. The effect of a missing value depends on where the model actually applies that mask.
+
+PHM used a separate patch-based model for minute-level sequences of different lengths. Its default patches were 16 positions wide and started eight positions apart. A patch was accepted if it contained at least one valid position. The model then used a mask when pooling the outputs. The length of the sequences in a batch may affect the PHM patch grid. Its effect on the reported results has not been measured. An optional output head predicted a sorted profile through positive increments. Once the values were sorted, the output could describe the profile, but an individual value could no longer be assigned to a particular tooth.
+
+Other time-series studies help put the comparison in context. TS2Vec found that replacing its convolutional encoder with a Transformer did not consistently improve classification (Yue et al., 2022). MOMENT studied a different training history: its Transformer learned from several datasets by reconstructing hidden parts of a series (Goswami et al., 2024). The PatchTST results in this thesis apply to the training data and budget used here. They leave open what a pretrained time-series encoder might achieve.
+
+What reached each prediction head
+
+Experiment | Input to the prediction head | What the model predicted
+
+PHM image model | 768 pooled image features and one extraction-time value | A numerical target
+
+PHM temporal model | Features from variable-length sequences of minute-level measurements | A single value or an optional sorted profile
+
+REASSEMBLE visual model | 896 features averaged across 16 hand-camera frames | Success or failure of the completed action
+
+REASSEMBLE statistical sensor model | 220 summary values from 22 channels | The sensor probability used by the main fusion models
+
+REASSEMBLE PatchTST model | 128 learned features from the same 22 channels | A separate sensor-only prediction in the main comparison
+
+The last two rows in Table 3.1 are important for interpreting the experiments. Combining sensor statistics with PatchTST features tests whether two descriptions of the same measurements work better together. Combining the statistical sensor prediction with the camera prediction asks a different question: whether a second physical source adds useful information.
+
+Appendix C gives the model settings. Appendix F identifies the components used in each experiment.
+
+What counted as a fair comparison
+
+In REASSEMBLE, an insertion and a placement did not carry the same risk of failure. The retained data contained 243 failures in 1,156 insertions and 22 failures in 1,088 placements (Chapter 6). A predictor that knew only the action type could therefore assign a higher failure score to an insertion before using a single frame or force reading. This is why an action-only reference matters. It measures how much can already be predicted from the task the robot was asked to perform.
+
+PHM needed a different reference. For a held-out gear run, the constant model returned the mean target value from the training runs. A sensor model had to improve on that estimate to show that its readings helped predict the photographic target. The training mean has a specific mathematical property: among constant predictions, it gives the smallest squared error on the training data. The median has the corresponding property for absolute error. The main PHM experiment used the mean.
+
+Reference predictions used to judge the models
+
+Reference | What the comparison asks
+
+Training mean | Do PHM measurements predict the gear-condition proxy better than the same fixed value for every run?
+
+Class frequency or action context | How much can already be predicted from the training failure rate or the type of action?
+
+Ridge or logistic regression | What can a regularised model learn from compact features? Ridge predicts a number. Logistic regression predicts a binary outcome.
+
+Single-input neural head | How well does the camera or temporal sensor model perform on its own on the assessment cases?
+
+Histogram gradient boosting | Does the result also hold against a nonlinear sensor predictor built from decision trees?
+
+The main REASSEMBLE sensor predictor used logistic regression on the 220 statistics. It learned a coefficient for each feature and an intercept. The study selected its regularisation setting from 0.1, 1, and 10 within the training partitions. The F2 fusion model also used logistic regression, but its regularisation setting was fixed at 1. Only the sensor model selected among those three values.
+
+The visual head and the PatchTST classifier used class-weighted binary cross-entropy. This allowed failures and successes to carry different weights during fitting. The original context gates used the unweighted form of the loss. The visual head had 114,945 trainable parameters above the frozen backbone. The PatchTST sensor model had 109,505, including 90,369 in its projection and classifier. Although the totals were close, the visual backbone had already been pretrained, whereas the temporal encoder had to learn from the study data.
+
+ViFailback and MSM also used histogram gradient boosting as a sensor reference. This method combines decision trees and can learn relationships that a linear model misses. ViFailback selected a candidate through its validation procedure. The MSM result came from its own controller-feature protocol. Appendix C records the settings for each study.
+
+How the models combined their inputs
+
+For the REASSEMBLE insertion, the main fusion models received just two numbers from the prediction branches: the calibrated camera probability p_v and the calibrated sensor probability p_s. By this point, the camera branch had already averaged the frames, and the sensor branch had already reduced the signals to 220 statistics. A fusion model could change how much it used each prediction. It could not go back to a particular frame or inspect the force reading at the moment of contact.
+
+Figure 3.2 shows the inputs to the REASSEMBLE stacker and context gates.
+
+Inputs to the REASSEMBLE stacker and context gates
+
+Note. The 16 camera frames produced one calibrated prediction. Logistic regression on the 220 sensor statistics produced the other. F2 used the two probabilities directly. F4–F6 converted them to log-odds and combined them using context. PatchTST was evaluated separately as a sensor-only model.
+
+Feature concatenation in PHM
+
+PHM combined information at an earlier stage. Its fused_all_three model joined learned features from three groups: process context, root-mean-square vibration measurements, and condition indicators. One regression head then predicted the target from the joined features. The software class was called LateFusionRegressor, but the values being joined were features. All three groups came from sensor or process data. The photographs supplied the target for this comparison. Also, joining features can increase the number of trainable parameters, so a change in error may reflect both the extra information and the larger model. Figure 3.3 shows this workflow.
+
+PHM feature-concatenation workflow
+
+Note. The inputs are engineered machine features. Post-run photographs define the condition-proxy target.
+
+Equal averaging (F1)
+
+The simplest REASSEMBLE fusion rule, F1, took the arithmetic mean of p_v and p_s. An increase of 0.1 in either branch raised the combined probability by 0.05. The rule learned no combination weights. The branch models and their calibration still had to be fitted on training data, and the calibration of their average still needed to be checked.
+
+Figure 3.4 shows this workflow.
+
+Equal-averaging workflow (F1)
+
+Logistic stacking (F2)
+
+F2 learned a fixed combination from training predictions. It fitted an intercept b, a camera coefficient α_v, and a sensor coefficient α_s:
+
+p_F2=sigmoid(b+α_v p_v+α_s p_s).
+
+The two coefficients can have different sizes or signs. Within each fitted model, the same coefficients apply to every action. Their values describe how F2 used the two branch scores. They cannot identify which physical event caused an insertion to fail.
+
+Figure 3.5 shows this workflow.
+
+Logistic-stacking workflow (F2)
+
+Note. The coefficients and intercept are fixed within each fitted model. Separate assessment folds use separately fitted models.
+
+Training F2 required care because its inputs were themselves model predictions. Following the principle of stacked generalisation, the study used predictions for training actions made by branches that had excluded the corresponding recording during fitting (Ting & Witten, 1999). These out-of-fold predictions formed the prediction bank for the stacker. The outer assessment recordings stayed outside the fitting process.
+
+One dependence remained inside the training data. F2 reused the prediction bank for its internal validation. A branch that produced a stacker-training score could therefore have learned from recordings later used for stacker validation. Chapter 4 illustrates where this occurred. This detail matters because using evaluation information to select a model can make its reported performance look too favourable (Varma & Simon, 2006). The check must cover the whole procedure, including preprocessing, calibration, and the construction of the prediction bank (Kapoor & Narayanan, 2023).
+
+Context-based gating (F4–F6)
+
+A fixed stacker applies the same rule to an insertion and a placement. The context gates tested whether the rule should change from one action to the next. F4 received four action indicators and two input-availability flags. F5 received 36 measures of input quality and the two flags. F6 received all 42 values. For the recorded insertion, F4 could use the fact that the robot was inserting a part. F5 instead had access to the measured properties of the inputs.
+
+For an input m, the gate used context u to produce a score q_m(u). The flag a_m was one when the input was available and zero when it was missing. The gate calculated a weight w_m for each available branch and combined the branch log-odds:
+
+w_m(u,a)= (a_m exp(q_m(u)))/(∑_(j) a_j exp(q_j(u))),
+
+p_G=sigmoid(∑_(m) w_m(u,a) ℓ(p_m)).
+
+When both inputs were present, their weights added up to one. The original gates had no free final intercept or further calibration step. F2, by comparison, learned an intercept and operated directly on probabilities. A performance difference between F2 and a gate could therefore have several causes. To isolate the value of changing the weights, the comparison also had to account for the score transformation, the training loss, and the opportunity for recalibration.
+
+Figure 3.6 shows this workflow.
+
+Context-based gating workflow (F4–F6)
+
+Earlier fusion methods made other choices about where the inputs could interact. Gated Multimodal Units combined internal feature representations (Arevalo et al., 2017). Multimodal attention bottlenecks allowed information to pass through shared intermediate tokens (Nagrani et al., 2021). The REASSEMBLE gates had a narrower task: they weighted two action-level predictions.
+
+Anchored adjustment and missing-input fallback
+
+A later experiment began with the fitted F2 stacker and asked whether a small adjustment for each action could improve it. It kept F2’s intercept and branch coefficients. A second network used context to multiply each coefficient by an adjustment:
+
+p_A=sigmoid[ b+∑_(m) α_m{1+tanh(h_m(u))}p_m ].
+
+Here h_m(u) is the adjustment-network output for branch m. Its final layer started at zero, so the model initially reproduced F2 exactly. For a finite output, the multiplier lies between zero and two. The original coefficient keeps its sign. A control model used a constant adjustment, which made it possible to test whether changing the adjustment between actions added value.
+
+Figure 3.7 shows this workflow.
+
+Anchored-adjustment workflow
+
+Note. Both inputs were available in the clean comparison. Known input loss used the separate fallback described below.
+
+There are theoretical conditions under which adaptive weighting can help (Q. Zhang et al., 2023). In practice, a quality measure must contain information about when a branch prediction becomes less useful. An observed property of a force signal, the confidence of the sensor model, and the accuracy of that confidence are three different quantities. Calibration can also become worse when test conditions change (Ovadia et al., 2019). A later quality-interaction experiment therefore compared prediction heads with matched exposure to altered inputs during training. It was a separate study from the original gate comparison.
+
+The difference between a damaged signal and a missing signal is particularly clear in REASSEMBLE. In one controlled test, six force and torque channels were fixed at their training medians. The sensor input was still present. Its summaries and quality measures were calculated again from the altered signals, and the fusion model still had to decide how to use the sensor prediction. In a declared sensor outage, the evaluator already knew the branch was missing. It returned the camera probability and used the camera branch’s own decision threshold. If the camera alone was missing, it used the sensor branch in the same way. If both were missing, it rejected the input.
+
+With a declared outage, methods that return the same surviving prediction necessarily give the same result for that action. Handling this case shows that the fallback rule works as specified. Recognising that six present channels have stopped carrying useful information is a harder test. Research on ModDrop, EmbraceNet, and missing-input Transformers gives further examples of training for incomplete inputs (Neverova et al., 2015; Choi & Lee, 2019; M. Ma et al., 2022).
+
+Where the inputs met in each fusion method
+
+Method | Information available at the point of fusion | What was learned
+
+PHM feature concatenation | Features from three sensor-derived groups | A prediction head fitted to the joined features
+
+REASSEMBLE F1 | Two calibrated probabilities | The combination rule was fixed at equal weights.
+
+REASSEMBLE F2 | The same two probabilities | One intercept and two coefficients shared across actions
+
+REASSEMBLE F4–F6 | Two branch logits, context, and availability flags | Weights that could change from one action to the next
+
+Anchored adjustment | Branch probabilities and context | Changes to the fitted F2 coefficients for each observation
+
+What the experiments can establish
+
+The main REASSEMBLE comparison used a frozen camera backbone, a statistical sensor model, and fusion rules that combined their predictions. PatchTST remained a separate sensor-only comparison on the same sensor measurements in the core study. Its performance under a limited training budget leaves open what longer training might achieve. Appendix C records the configurations, and Appendix F identifies which prediction paths were actually run.
+
+The original research question also included sound. An Audio Spectrogram Transformer was a possible way to represent it (Y. Gong et al., 2021). Action-level audio prediction requires reliable alignment between the sound and the labelled action. Chapter 6 explains the decision to exclude audio from the predictive experiment. Its value for these actions remains open.
+
+The recorded insertion illustrates the boundary of the chapter’s claims. The model had access to the whole action, so it could use visual evidence near the end. The sensor model had access to the same action through force and movement measurements, but the summaries it received had already lost much of the order of those measurements. The fusion experiment could test whether combining those two predictions helped rank failed actions on held-out recordings. It could not determine the physical cause of that insertion failure or the earliest time at which the robot could have detected it.
+
+The later experiments changed individual parts of that setup. Pooling the last four sampled frames changed which frames contributed to the camera prediction. Longer temporal training changed the opportunity given to the sensor model. Anchored adjustment changed the fusion rule. The thesis did not run all three changes together. Each result therefore belongs to the configuration that produced it. Chapter 4 describes the recording splits, training decisions, and assessment conditions needed to read those results correctly.
+
+
+Research Design and Shared Methodology
+
+Of the 4,530 completed robot actions in REASSEMBLE, 509 ended in failure. A model that predicted success every time would therefore be correct on almost 89% of the actions. It would also miss every failure. For this study, a more useful question was whether the model gave higher failure scores to the actions that actually failed. To test what the camera added, the camera–sensor model and the sensor-only model had to predict the outcomes of the same actions, with the same recordings held out for assessment.
+
+The PHM gear study needed a different test. There, the model predicted a number derived from a photograph taken after a gear run. Its error could be measured in percentage points against that photographic target. The same error could not tell us how closely the prediction matched physical tooth damage, because the study had no independent measurement of that damage.
+
+These two cases explain the main design choice in this thesis. Each comparison starts with the physical event, the target attached to it, and the information available when the model makes its prediction. The choice of data split and performance measure follows from those decisions.
+
+Research design and research questions
+
+The welding studies in Chapter 2 give different answers about the value of a second input. Figure 4.1 shows how those comparisons led to five questions for reading the empirical evidence. The requirements organize the historical evidence; they do not imply that every experiment was prospectively designed around this framework.
+
+From welding evidence to requirements for testing fusion
+
+Note. DMAW reported 96.1% accuracy for fusion and 90.2% for its strongest single input (Fan et al., 2026). In weld penetration, both single-input models and fusion reached 100% on the clean test set (Hua et al., 2026). The reported contrasts are within each study.
+
+R1. What is predicted, and when? A camera can supply a predictor or a reference measured after the event. For each study, we identify the physical event, which observations describe that event, when each was available, and how the target was obtained. In PHM, post-run photographs supply a proxy for gear condition. In REASSEMBLE, the camera and sensors are predictors paired with a recorded action outcome. A readable image or aligned timestamp alone does not establish target validity or physical correspondence.
+
+R2. What does each representation retain (SQ1)? Published results for engineered features, pretrained visual features and temporal patches concern different targets and fitting conditions (Horwitz & Hoshen, 2023; Roth et al., 2022; Nie et al., 2023). We compare individual branches on the same target and observation window, recording their training histories and fitting budgets. A branch's standalone score leaves open whether it contributes information to another predictor.
+
+R3. What does fusion add (SQ2)? The clean welding tie and the loss after adding gripper state in handover make the strongest single input an essential comparator (Hua et al., 2026; Thoduka et al., 2024b). On the 4,530 eligible REASSEMBLE actions, we compare camera and sensor predictions, fixed averaging and fitted combinations with the same recordings held out. The feature-level model F3 projects a 128-dimensional visual representation and 220 sensor statistics to two 128-dimensional vectors and concatenates them. This is distinct from combining two representations of the sensor stream. Matched opportunities for fitting and recalibration are needed to isolate the contribution of an additional input. Chapter 6 gives the fitting and calibration differences that limit attribution to the fusion rule alone.
+
+R4. Which reliability condition is being tested (SQ3)? Knowing an input is absent calls for a different response from receiving a degraded but apparently available signal (Deng et al., 2026; Q. Zhang et al., 2023). We identify the affected input and what the model knows about its condition. In the matched REASSEMBLE comparison, static and adaptive models receive comparable corruption exposure during fitting. Both are assessed on clean and corrupted cases. Timing changes and transfer to another domain are separate tests.
+
+R5. How dependable is the comparison (SQ4)? Selection on related observations can inflate performance estimates (Varma & Simon, 2006; Kapoor & Narayanan, 2023). The assessment unit follows the acquisition process, such as a gear experiment, recording, or manipulation task. Ranking, probability calibration and uncertainty answer different questions about failure prediction. Fitting and inference costs also need a stated measurement boundary. Across datasets, we distinguish refitting a procedure, transferring representation weights and testing an unchanged predictor. Table 4.1 identifies which comparisons the available data support; investigating a requirement does not mean that every condition needed for a strong claim was satisfied.
+
+The published tasks help define the boundaries of the five investigations. Post-build CT can supply an independent physical reference in manufacturing (Petrich et al., 2021); PHM instead uses periodic photographs and a sensor-only deployment specification (Prognostics and Health Management Society, 2026). Milling studies of wear and cutting force (Z. Wang et al., 2025, Tables IV–V; X. Zhang et al., 2026, Table 1) motivate the value of additional observations, while MSM asks whether video adds information about abnormal cutting beyond machine telemetry (Kim et al., 2026). REASSEMBLE's published segmentation and visual condition-check benchmarks (Sliwowski et al., 2025) differ from the completed-action failure target here. Published handover trials establish a five-class outcome benchmark (Thoduka et al., 2024b); the supplementary thesis study instead compares binary failure predictions and their fixed average. ViFailback's published visual-symbol diagnosis and corrective-action task (Zeng et al., 2026, Tables 2–4) differs from the binary episode-outcome comparison here: the latter tests generic and transferred visual features against robot state. These differences determine the targets and controls; they do not establish a common cross-dataset leaderboard.
+
+Inputs and assessment limits of the five thesis studies
+
+Study | Predictor inputs | Scope and assessment limits
+
+PHM (Ch. 5) | Machine sensors | R1–R3, R5. Sensor-group comparison against a photographic proxy; target validity and modality correspondence limit the claim. Camera outages are outside the sensor-only prediction task.
+
+REASSEMBLE (Ch. 6) | Video and machine sensors | R1–R5. Principal study of representation and fusion comparisons, including adaptive versus static weighting under matched corruption exposure on completed actions.
+
+MSM (Ch. 7) | Video and machine telemetry | R1–R5. Primary completed external manufacturing comparison: locally fitted branches and fusion, six target/grouping sensitivities, and controlled corruption. Assessment covers laboratory cutting intervals.
+
+ViFailback (Ch. 8) | Video features and robot state | R1–R3, R5. Task-disjoint assessment and transfer of a specified REASSEMBLE-learned visual representation. Target-CNN adaptation was partial; the corruption stress test (R4) was unexecuted.
+
+HANDOVER (App. H) | Video and force–torque measurements | R1–R5 with unimodal predictors and fixed averaging. The authors report a participant-disjoint test split. Missing participant-to-trial identities prevent independent verification and participant-safe OOF fitting of learned fusion.
+
+Note. The R codes indicate which requirements a study investigated. Each conclusion applies to that study's target and assessment population. The challenge specification and dataset papers document the original acquisition and tasks (Prognostics and Health Management Society, 2026; Sliwowski et al., 2025; Kim et al., 2026; Zeng et al., 2026; Thoduka et al., 2024b).
+
+The work was exploratory. For example, the first REASSEMBLE results helped determine which sensor representation entered the main fusion comparison. Later tests examined longer training, different camera frames, and changes to the fusion rule. These experiments answer questions raised by the earlier work. They share part of its history and, in several cases, its assessment recordings.
+
+Figure 4.2 shows the path from the welding proposal to these studies.
+
+From the welding proposal to the five empirical studies
+
+Note. The original proposal concerned welding. Checks on the available recordings limited the planned independent test. PHM, already under way at the renewed welding audit, provided a study of target construction and sensor prediction, while REASSEMBLE provided the main comparison of camera–sensor fusion. MSM, ViFailback, and HANDOVER tested related methods on their own targets. Each result in the figure refers to a comparison within that study.
+
+Dataset selection and order of the studies
+
+A dataset needed more than a video folder and a sensor file. The study needed to identify the event both files described, the outcome assigned to that event, and the group to which it belonged. It also needed enough usable observations of the relevant outcomes to train and assess the proposed models. A dataset could support one part of the research even when another part remained out of reach.
+
+HANDOVER is one example. The published trial split made it possible to fit individual predictors and assess their fixed average on the official test trials. Fitting a more complex combination would also have required suitable groups inside the training data. The available records did not link participants to trials in enough detail to construct those groups. The study therefore kept the comparison that the data supported.
+
+The welding proposal came first. PHM was already under way when a renewed audit of Intel Welding identified further limits on the planned test. REASSEMBLE later became the main setting for comparing visual features, sensor features, and fusion methods. Follow-up studies addressed questions that emerged during this work. The October research record retained the original four research questions after a narrower study of quality-based fusion had been considered. Appendix G records the chronology, including the PADERBORN and REBOOT feasibility investigations.
+
+Why Intel Welding could not provide the planned independent test
+
+The Intel Welding audit checked whether files could be read, how they were timed, which acquisition session they came from, and whether observations were duplicated. Two findings affected the proposed test. Some recordings assigned to assessment had already been examined during earlier development work on context. In addition, parts of the same acquisition session appeared in different supplied partitions.
+
+Prior examination did not mean that every test observation had been used to fit a model. The difficulty was that knowledge of the proposed test material could already have influenced the design. Session overlap also meant that an assessment sample could share recording conditions with a development sample. The foundation scripts therefore left the final test switched off. They document the data audit but provide no final score for the proposed welding fusion model.
+
+According to the researcher’s account in the project records, the supervisor agreed to continue the architectural work on PHM and REASSEMBLE. Those studies could answer questions about representations, fusion, and evaluation. An independent answer about weld quality still requires fresh welding observations, a suitable weld-quality reference, and a set of welding sessions reserved for the final assessment.
+
+Checking the data before fitting a model
+
+Each study used a sample list, called a manifest. For each prediction, it recorded the target, the source files, the observation window, the available inputs, and the group used for assessment. Where a sample was excluded, the records retained the reason. Keeping this information made it possible to check later whether two models had actually been tested on the same cases.
+
+For video, preparation included reading the file, counting usable frames, checking image dimensions, and finding the part of the recording that covered the event. A frame can pass all these checks while showing little about why an action failed. Technical checks establish that an image can enter the model. The recorded outcome and the visible evidence still need separate consideration.
+
+Sensor preparation included checking channel order, units, timestamps, repeated entries, and missing values. MSM illustrates why a readable clip is insufficient: choosing the wrong timing offset pairs a cutting label with a different visual interval. Chapter 7 gives the VMX9 correction and the accepted alignment support.
+
+In ViFailback, duplicate or invalid telemetry records and unreadable video affected which episodes could enter the comparison. Removing an episode also removes its outcome from the assessed population. If difficult failures are more likely to have unusable recordings, the remaining test can become easier. The studies therefore retained counts before and after exclusion where the records allowed. An excluded observation kept its original label.
+
+Targets, prediction units, and decision time
+
+For PHM, the principal prediction unit was a gear run. An image-processing rule applied to post-run photographs measured the area that met the rule’s selection criteria. This value served as a proxy: a quantity available for study when a direct measurement of the condition of interest was unavailable. The main sensor model tried to predict this photographic value from machine measurements. Its error describes agreement with that target. Claims about actual damage, damage to a particular tooth, or remaining useful life would need their own physical reference.
+
+The robotic studies had recorded outcomes. REASSEMBLE predicted whether a completed assembly action had succeeded. ViFailback predicted the outcome of a complete manipulation episode. HANDOVER used a binary outcome for a human–robot trial. In MSM, the target was abnormal cutting during a labelled milling interval. The main MSM analysis used its stated mapping of the original labels. Other mappings were examined separately because changing the meaning of “abnormal” also changes the task.
+
+The end of the observation window matters in each case. A hand-camera frame taken near the end of an insertion can show part of the outcome. A sensor average over a whole milling interval includes the final measurements from that interval. Both can be useful for reviewing a completed event. To test an early warning, the study would need an earlier decision time, a rule allowing only data already available at that time, and a measure of how much warning the prediction gave. A short model runtime cannot recover time already spent waiting for the observation window to finish.
+
+Some inputs also carry information about the experiment itself. In the separate PHM image-regression experiment, extraction time was one of the inputs alongside the image features. In REASSEMBLE, action type carried information because insertion and placement had different failure rates. A gate that changes its weights between these actions may have learned a difference in task difficulty. To claim that it detected a damaged sensor, its behaviour must also be tested under a known change in sensor quality.
+
+Keeping development and assessment data separate
+
+The correct group to hold out depended on how the observations were collected. PHM held out complete gear experiments. REASSEMBLE kept all actions from one recording together. ViFailback held out manipulation tasks. MSM examined both experiment-based and date-based groups. A milling machine or tool could appear on more than one date, so a test on a held-out date answers a narrower question than a test in a new factory.
+
+HANDOVER used the published official partitions. The dataset publication describes the test participants as separate from the training participants. The available participant-to-trial records were insufficient to reconstruct that separation independently or to make new participant-level folds within training. This is why the official comparison remained usable while the planned learned stacker had to be left out.
+
+Preprocessing and model selection
+
+Information can enter a model before the final training step. Consider sensor scaling. A model may express each reading as a distance from the average training value. If that average includes the held-out experiment, the test measurements have already influenced the values given to the model. The same issue applies when filling gaps, selecting features, tuning a model, adjusting probabilities, or choosing a decision threshold. These steps need to use the development data allowed for that split (Kapoor & Narayanan, 2023). Reusing evaluation results to select a configuration can make its reported performance look too favourable (Varma & Simon, 2006).
+
+The separate PHM four-arm diagnostic illustrates this risk; Section 5.6 distinguishes its shared normalizer from the fold-local preprocessing of the principal sensor comparison.
+
+A frozen image encoder presents a different case. If its weights were learned from an external dataset and its feature extraction uses no target labels or statistics from the assessment population, the fixed image features can be saved in advance. Later steps that learn from those features still have to respect the training split.
+
+Training the REASSEMBLE stacker
+
+The REASSEMBLE stacker learned from two numbers for each training action: a camera score and a sensor score. It needed scores like the ones it would receive for an unfamiliar recording. A score from a branch that had already been trained on the same recording could give the stacker an unrealistically easy example.
+
+The study first set aside the recordings for the outer assessment. Within the remaining recordings, the camera and sensor models were fitted on some groups and used to predict actions from other groups. Repeating this process produced a bank of out-of-fold predictions. For each row in the bank, the model that produced the prediction had excluded that row’s recording. These scores supported training-side calibration, model selection, and fusion fitting according to the procedure being tested (Ting & Witten, 1999).
+
+One detail limits how independently the stacker itself was validated. Its internal validation used the same prediction bank. A branch that produced a score for a stacker-training row could have learned from a recording later used to validate the stacker. This dependence occurred inside the outer training population. The outer assessment recordings stayed outside fitting and entered only when the selected system was scored.
+
+Figure 4.3 shows the development and assessment paths.
+
+Recording flow for one REASSEMBLE outer split
+
+Note. The development lane shows how grouped inner folds supplied the camera and sensor scores used to fit the stacker. Its internal validation reused that bank. The assessment lane shows where the held-out recordings first entered the procedure: at final scoring.
+
+Checking which actions entered each comparison
+
+Assessment identities take precedence over shorthand metadata. The REASSEMBLE follow-ups include a previously examined 753-action subset from 26 recordings; Section 6.7 and Appendix D retain the reconciliation and study-specific controls. Sharing assessment cases permits paired comparisons, but does not make an exploratory follow-up a fresh external test.
+
+Fitting models, adjusting probabilities, and choosing thresholds
+
+Fitting a model, choosing a model, adjusting its probabilities, and choosing a decision threshold were separate steps. In REASSEMBLE, for example, training the sensor predictor determined how its features contributed to its score. Selecting its regularisation setting determined which fitted version went forward. A calibrator then used training-side predictions and outcomes to adjust the probabilities. Finally, a threshold converted each probability into a success or failure decision.
+
+The main REASSEMBLE branch calibrators used sigmoid functions fitted to selected inner out-of-fold scores. Calibration can improve the meaning of a probability estimate, but the improvement needs to be checked on assessment data (Guo et al., 2017). The F2 stacker then fitted a logistic combination of the two branch probabilities with its own intercept. There was no further calibration step after F2. The original context gates combined branch log-odds using weights that added up to one. They had neither a free final intercept nor a separate calibrator after the gate.
+
+This difference matters when interpreting the gain from fusion. Suppose a sensor-only adjustment raises some probabilities while keeping all actions within one fold in the same order. The ranking within that fold stays the same. A second fold, however, has its own fitted adjustment. When the two lists are joined, a failure in the second fold can move above a success in the first. The pooled ranking can therefore change even though the order within each fold stays fixed.
+
+In the main REASSEMBLE comparison, F2 improved pooled failure ranking over the original statistical sensor predictor. F2 received both a camera score and an extra fitted step for combining scores. A sensor-only model given the same opportunity for second-stage fitting would help separate those effects. The original comparison had no independently refitted control of that kind. Chapter 6 examines the saved predictions to see what the fitted terms contributed. The complete gain cannot be assigned to the camera alone.
+
+For binary decisions, the recorded procedure examined thresholds from 0.01 to 0.99 using permitted training-side predictions and a stated objective, such as balanced accuracy. A score at or above the selected threshold counted as positive. This produced a reproducible decision for the experiment. A factory alarm would need additional information about the cost of a missed failure, a false alarm, or an unnecessary stop.
+
+Measuring performance and uncertainty
+
+What the reported scores mean
+
+In PHM, mean absolute error gives the average size of the difference between a predicted value and the photographic target. Root mean squared error gives greater weight to larger errors. Both retain the target’s units. The coefficient of determination, R^2, compares prediction error with the variation in the observed targets. It can become negative, and it can change sharply when a held-out group contains little target variation. Tooth-level and run-level errors were therefore reported at their own levels.
+
+For REASSEMBLE failure classification, precision asks how many predicted failures were actual failures. Recall asks how many of the actual failures were found. Lowering the decision threshold may find more failures while also raising more false alarms. Specificity measures how often successful cases were correctly recognised. Balanced accuracy gives equal weight to recall for the two classes, while the F1 score combines precision and recall for the designated positive class.
+
+The main ranking measure was average precision (AP). It gives a model credit for placing positive cases high on its list across different thresholds. The study used average_precision_score, which weights each precision value by the corresponding increase in recall. Calculating the area under a precision–recall curve by the trapezoidal rule is a different measure. AUROC also measures ranking, but a precision–recall analysis is particularly useful when the event of interest is uncommon (Saito & Rehmsmeier, 2015).
+
+The failure rates in REASSEMBLE and ViFailback show why the positive class must be named. In REASSEMBLE, roughly 11% of the actions failed. A model that gave every action the same score would have failure AP of about 0.11. In ViFailback, more than 85% of the eligible episodes failed. The same constant-score rule would already have failure AP above 0.85, despite being unable to distinguish any two episodes. For ViFailback, the study therefore reported AP for failure, AP for success, and the mean of these two values. When both classes are present, that mean is 0.5 for a constant-score model. MSM used abnormal cutting as its positive class. These scores answer different questions across the three datasets.
+
+Ranking also leaves open whether the probabilities are useful. The Brier score measures the average squared difference between the predicted probability and the recorded binary outcome (Gneiting & Raftery, 2007). Expected calibration error groups predictions into probability ranges and compares the scores with the observed outcome frequencies in those ranges. Its value depends partly on how the ranges are chosen and how many cases fall in each. A model can rank failures well and still assign probabilities that are too high. Its probability estimates can also become less reliable when operating conditions change (Ovadia et al., 2019).
+
+Combining results and estimating uncertainty
+
+For its principal comparison, REASSEMBLE brought together the predictions for all held-out recordings and calculated failure AP once. Calculating AP separately in each fold and averaging the five results would answer a different question, because cases from different folds would never be ranked against one another. MSM calculated pooled abnormal-cutting AP for each training seed and then averaged across seeds. Changing a seed measures variation from fitting a model again. It does not create another independently recorded milling interval.
+
+To compare two REASSEMBLE models, the analysis kept their predictions paired. If a recording was selected for a calculation, both models contributed predictions for the same actions in that recording. The core comparison repeated this 2,000 times, sampling whole recordings with replacement and recalculating the difference in performance. This is a recording-level bootstrap.
+
+A PHM report used 10,000 bootstrap samples drawn at the level of the gear run. The data still came from only 20 runs across three gear experiments. Runs from the same experiment could share conditions. More bootstrap draws make the numerical estimate more stable, but they cannot supply more independent gear experiments. The MSM date-based intervals had a similar limit: only five acquisition dates were available.
+
+The intervals describe variation in the saved predictions under the chosen way of resampling. They do not cover every change that might occur after retraining the models or moving to a new installation. The intervals also leave out uncertainty from model selection and repeated use of the assessment data. Cross-validation folds can also share training observations, which limits what their spread tells us about uncertainty (Bengio & Grandvalet, 2004). Where an interval for a performance difference included zero, the data left the direction of the advantage unresolved. Showing that two methods perform closely enough for practical use would require a separate criterion for how small a difference counts as acceptable.
+
+Testing missing and damaged inputs
+
+What the model knew about the fault
+
+A missing sensor and a faulty sensor can lead to different decisions. In the REASSEMBLE absence test, the evaluator knew when a whole branch was unavailable. When the sensor branch was missing, it returned the camera probability and used the camera branch’s decision threshold. When only the sensors remained, it used their probability and threshold. If both inputs were absent, it rejected the case. Fusion methods that returned the same surviving prediction naturally obtained the same result under this rule.
+
+A damaged signal presented a harder problem. In one REASSEMBLE test, six force and torque channels were fixed at their training medians. The sensor branch still received numbers and could still make a prediction. Its statistics and quality measures had to be calculated again from the changed signal. Giving the gate quality measures from the original clean signal would have described a different input from the one the predictor actually received.
+
+For each controlled disturbance, the important details were what changed, where the change was applied, how strong it was, and which observations were assessed. Blurring the camera frames before feature extraction tests a different fault from altering a saved feature vector. For random noise, the number of noise samples and the randomisation procedure also affect the result. HANDOVER, for example, included controlled sensor noise, visual blur, and known loss of an input. ViFailback’s planned corruption evaluation remained unfinished.
+
+Giving competing models the same exposure
+
+A gate trained with noisy signals has already seen a problem that a model trained only on clean signals has never faced. If the gate performs better under noise, the training examples may explain part of the gain. Later REASSEMBLE comparisons therefore gave static and adaptive models comparable exposure to corruption during fitting. This addressed one important difference while leaving others, such as model size and calibration, to be considered. The idea that changing weights can help rests on how well the available information identifies an unreliable input (Q. Zhang et al., 2023).
+
+The evaluation considered both the score under damage and the change from the clean score. A model can lose less from its starting point yet still finish below a stronger model. When only the sensors were damaged, the intact camera also provided a useful reference: combining inputs was of limited value if it produced a worse prediction than using that camera alone. The tests support conclusions about the stated faults and their severity. Questions about gradual clock drift, several natural faults at once, or operation in a new factory remain open.
+
+Records, software, and checks on the results
+
+A reported score can be checked at several levels. With saved predictions and outcome labels, it is possible to check the sample identities and calculate the score again. Running the fitted model on its inputs also checks whether it produces the same predictions. Training the model again requires the training data, software, settings, and selection procedure. Each step examines a different part of the evidence (Pineau et al., 2021).
+
+The main REASSEMBLE visual branch loaded RT-DETR-R18vd through Hugging Face Transformers and took its ResNet18-vd convolutional backbone. The same library supplied the PatchTST sensor encoder, which was trained from scratch (Wolf et al., 2020). The neural models used PyTorch, with AdamW for the relevant fitting steps (Paszke et al., 2019). Scikit-learn supplied grouped stratified splits, logistic regression, and evaluation functions (Pedregosa et al., 2011). The separate PHM image model used the Ultralytics RT-DETR-L prediction procedure to collect intermediate image features (Ultralytics, 2023).
+
+The manuscript’s source record identifies repository commit e32ec43aef69cc58adff0ea91e508308041598c5. File hashes identify selected source files and reports, including some material held outside that commit. Appendix F links the experiments to the available evidence. Appendix G records when the work took place. Where an original script or setting was unavailable, the remaining records limit how much of the run can be checked independently.
+
+The experimental reporting period extended through 24 November 2026. For ViFailback, it included the completed frozen and transferred-feature comparisons, the one-fold FULL20 target-backbone comparison, and the FULL100 pilot. The remaining target-CNN configurations and the corruption assessment were unfinished at that point.
+
+On 25 November 2026, selected results were checked again from saved predictions. For REASSEMBLE F2, the checks covered sample identities, fold assignments, branch scores, fitted coefficients, and ranking measures. For ViFailback, they covered the available assessment predictions, reported metrics, and records of which stages had finished. These checks establish what could be recovered from the saved outputs. They did not repeat the original neural training or test the models on newly collected observations.
+
+Computing resources and the scope of the findings
+
+The project used HFU server resources. The later ViFailback study recorded a single NVIDIA Tesla T4 with 16 GiB of device memory. Reusing frozen camera features and compact sensor statistics made repeated fitting practical. Dataset acquisition and preparation also required resources: MSM used a bounded download plan for selected laboratory files, while REASSEMBLE later released approximately 66.9 GiB of derived caches, retaining source videos, checkpoints, predictions, and recovery metadata. Rebuilding those caches adds work to a fresh run.
+
+ViFailback logged about 303.8 elapsed hours across two GPU controller processes, including decoding, validation, and checkpointing; this was neither GPU kernel time nor total thesis compute. Completing its remaining FULL20 matrix was estimated to require another 43 GPU days on the single T4, with 47 days allowed for variation and overhead. This forecast of additional work informed the decision to stop further CNN fitting. It is a resource estimate, not a model-performance result.
+
+The implementation contribution includes acquiring usable observations, maintaining aligned sample lists, reusing features, and preserving evidence within these limits. Scientific findings still depend on the completed comparisons. Limited resources do not establish why a model performed poorly, and an unassessed configuration has no measured result. Head-only timings exclude frame reading and feature extraction. Timing the whole model after a completed action still excludes the time spent waiting for that action to finish. An operational warning claim would need to include acquisition, synchronisation, preprocessing and inference up to the moment a decision becomes available. Chapters 6 and 8 report study-specific training coverage and timing boundaries.
+
+The clearest findings come from comparisons in which the competing models saw the same assessment cases and the difference between them can be stated precisely. The 753-action REASSEMBLE follow-up can show how a change affected those previously studied actions. A fresh test of the resulting design would require the target, decision time, recording groups, models, fault conditions and main performance measure to be fixed before opening new assessment data.

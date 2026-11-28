@@ -1,0 +1,1368 @@
+                                                                                                                                                                                           1
+
+
+
+
+                                                                     Multimodal Machine Learning:
+                                                                       A Survey and Taxonomy
+                                                                      Tadas Baltrušaitis, Chaitanya Ahuja, and Louis-Philippe Morency
+
+                                              Abstract—Our experience of the world is multimodal - we see objects, hear sounds, feel texture, smell odors, and taste flavors.
+                                              Modality refers to the way in which something happens or is experienced and a research problem is characterized as multimodal when
+                                              it includes multiple such modalities. In order for Artificial Intelligence to make progress in understanding the world around us, it needs
+                                              to be able to interpret such multimodal signals together. Multimodal machine learning aims to build models that can process and relate
+                                              information from multiple modalities. It is a vibrant multi-disciplinary field of increasing importance and with extraordinary potential.
+                                              Instead of focusing on specific multimodal applications, this paper surveys the recent advances in multimodal machine learning itself
+arXiv:1705.09406v2 [cs.LG] 1 Aug 2017
+
+
+
+
+                                              and presents them in a common taxonomy. We go beyond the typical early and late fusion categorization and identify broader
+                                              challenges that are faced by multimodal machine learning, namely: representation, translation, alignment, fusion, and co-learning. This
+                                              new taxonomy will enable researchers to better understand the state of the field and identify directions for future research.
+
+                                              Index Terms—Multimodal, machine learning, introductory, survey.
+
+                                                                                                                       F
+
+                                        1    I NTRODUCTION
+
+
+                                        T    HE world surrounding us involves multiple modalities
+                                             — we see objects, hear sounds, feel texture, smell odors,
+                                        and so on. In general terms, a modality refers to the way in
+                                                                                                                           tackled in order to progress the field. Our taxonomy goes
+                                                                                                                           beyond the typical early and late fusion split, and consists
+                                                                                                                           of the five following challenges:
+                                        which something happens or is experienced. Most people                             1) Representation A first fundamental challenge is learning
+                                        associate the word modality with the sensory modalities                               how to represent and summarize multimodal data in a
+                                        which represent our primary channels of communication                                 way that exploits the complementarity and redundancy
+                                        and sensation, such as vision or touch. A research problem                            of multiple modalities. The heterogeneity of multimodal
+                                        or dataset is therefore characterized as multimodal when it                           data makes it challenging to construct such representa-
+                                        includes multiple such modalities. In this paper we focus                             tions. For example, language is often symbolic while au-
+                                        primarily, but not exclusively, on three modalities: natural                          dio and visual modalities will be represented as signals.
+                                        language which can be both written or spoken; visual signals                       2) Translation A second challenge addresses how to trans-
+                                        which are often represented with images or videos; and vocal                          late (map) data from one modality to another. Not only
+                                        signals which encode sounds and para-verbal information                               is the data heterogeneous, but the relationship between
+                                        such as prosody and vocal expressions.                                                modalities is often open-ended or subjective. For exam-
+                                            In order for Artificial Intelligence to make progress in                          ple, there exist a number of correct ways to describe an
+                                        understanding the world around us, it needs to be able                                image and and one perfect translation may not exist.
+                                        to interpret and reason about multimodal messages. Multi-                          3) Alignment A third challenge is to identify the direct rela-
+                                        modal machine learning aims to build models that can process                          tions between (sub)elements from two or more different
+                                        and relate information from multiple modalities. From early                           modalities. For example, we may want to align the steps
+                                        research on audio-visual speech recognition to the recent                             in a recipe to a video showing the dish being made.
+                                        explosion of interest in language and vision models, multi-                           To tackle this challenge we need to measure similarity
+                                        modal machine learning is a vibrant multi-disciplinary field                          between different modalities and deal with possible long-
+                                        of increasing importance and with extraordinary potential.                            range dependencies and ambiguities.
+                                            The research field of Multimodal Machine Learning                              4) Fusion A fourth challenge is to join information from
+                                        brings some unique challenges for computational re-                                   two or more modalities to perform a prediction. For
+                                        searchers given the heterogeneity of the data. Learning from                          example, for audio-visual speech recognition, the visual
+                                        multimodal sources offers the possibility of capturing cor-                           description of the lip motion is fused with the speech
+                                        respondences between modalities and gaining an in-depth                               signal to predict spoken words. The information coming
+                                        understanding of natural phenomena. In this paper we iden-                            from different modalities may have varying predictive
+                                        tify and explore five core technical challenges (and related                          power and noise topology, with possibly missing data in
+                                        sub-challenges) surrounding multimodal machine learning.                              at least one of the modalities.
+                                        They are central to the multimodal setting and need to be                          5) Co-learning A fifth challenge is to transfer knowledge
+                                                                                                                              between modalities, their representation, and their pre-
+                                        •   T. Baltrušaitis, C. Ahuja and L-P. Morency are with the Language                 dictive models. This is exemplified by algorithms of co-
+                                            Technologies Institute, at Carnegie Mellon University, Pittsburgh, Penn-          training, conceptual grounding, and zero shot learning.
+                                            sylvania                                                                          Co-learning explores how knowledge learning from one
+                                            E-mail: tbaltrus, cahuja, morency@cs.cmu.edu
+                                                                                                                              modality can help a computational model trained on a
+                                                                                                                                  2
+
+Table 1: A summary of applications enabled by multimodal machine learning. For each application area we identify the
+core technical challenges that need to be addressed in order to tackle it.
+                                                                                C HALLENGES
+            A PPLICATIONS                      R EPRESENTATION       T RANSLATION    A LIGNMENT   F USION   C O - LEARNING
+            Speech recognition and synthesis
+             Audio-visual speech recognition
+             (Visual) speech synthesis
+            Event detection
+             Action classification
+             Multimedia event detection
+            Emotion and affect
+             Recognition
+             Synthesis
+            Media description
+             Image description
+             Video description
+             Visual question-answering
+             Media summarization
+            Multimedia retrieval
+             Cross modal retrieval
+             Cross modal hashing
+
+
+
+   different modality. This challenge is particularly relevant        other words, the captured interactions between modalities
+   when one of the modalities has limited resources (e.g.,            were supplementary rather than complementary. The same
+   annotated data).                                                   information was captured in both, improving the robustness
+For each of these five challenges, we defines taxonomic               of the multimodal models but not improving the speech
+classes and sub-classes to help structure the recent work             recognition performance in noiseless scenarios.
+in this emerging research field of multimodal machine                     A second important category of multimodal applications
+learning. We start with a discussion of main applications             comes from the field of multimedia content indexing and
+of multimodal machine learning (Section 2) followed by a              retrieval [11], [188]. With the advance of personal comput-
+discussion on the recent developments on all of the five core         ers and the internet, the quantity of digitized multime-
+technical challenges facing multimodal machine learning:              dia content has increased dramatically [2]. While earlier
+representation (Section 3), translation (Section 4), alignment        approaches for indexing and searching these multimedia
+(Section 5), fusion (Section 6), and co-learning (Section 7).         videos were keyword-based [188], new research problems
+We conclude with a discussion in Section 8.                           emerged when trying to search the visual and multimodal
+                                                                      content directly. This led to new research topics in multi-
+                                                                      media content analysis such as automatic shot-boundary
+2   A PPLICATIONS : A HISTORICAL PERSPECTIVE                          detection [123] and video summarization [53]. These re-
+Multimodal machine learning enables a wide range of                   search projects were supported by the TrecVid initiative
+applications: from audio-visual speech recognition to im-             from the National Institute of Standards and Technologies
+age captioning. In this section we present a brief history            which introduced many high-quality datasets, including the
+of multimodal applications, from its beginnings in audio-             multimedia event detection (MED) tasks started in 2011 [1].
+visual speech recognition to a recently renewed interest in               A third category of applications was established in
+language and vision applications.                                     the early 2000s around the emerging field of multimodal
+    One of the earliest examples of multimodal research is            interaction with the goal of understanding human multi-
+audio-visual speech recognition (AVSR) [243]. It was moti-            modal behaviors during social interactions. One of the first
+vated by the McGurk effect [138] — an interaction between             landmark datasets collected in this field is the AMI Meet-
+hearing and vision during speech perception. When human               ing Corpus which contains more than 100 hours of video
+subjects heard the syllable /ba-ba/ while watching the lips           recordings of meetings, all fully transcribed and annotated
+of a person saying /ga-ga/, they perceived a third sound:             [33]. Another important dataset is the SEMAINE corpus
+/da-da/. These results motivated many researchers from the            which allowed to study interpersonal dynamics between
+speech community to extend their approaches with visual               speakers and listeners [139]. This dataset formed the basis
+information. Given the prominence of hidden Markov mod-               of the first audio-visual emotion challenge (AVEC) orga-
+els (HMMs) in the speech community at the time [95], it is            nized in 2011 [179]. The fields of emotion recognition and
+without surprise that many of the early models for AVSR               affective computing bloomed in the early 2010s thanks to
+were based on various HMM extensions [24], [25]. While                strong technical advances in automatic face detection, facial
+research into AVSR is not as common these days, it has seen           landmark detection, and facial expression recognition [46].
+renewed interest from the deep learning community [151].              The AVEC challenge continued annually afterward with the
+    While the original vision of AVSR was to improve                  later instantiation including healthcare applications such
+speech recognition performance (e.g., word error rate) in             as automatic assessment of depression and anxiety [208].
+all contexts, the experimental results showed that the main           A great summary of recent progress in multimodal affect
+advantage of visual information was when the speech signal            recognition was published by D’Mello et al. [50]. Their meta-
+was noisy (i.e., low signal-to-noise ratio) [75], [151], [243]. In    analysis revealed that a majority of recent work on mul-
+                                                                                                                                3
+
+timodal affect recognition show improvement when using             such as Mel-frequency cepstral coefficients (MFCC) have
+more than one modality, but this improvement is reduced            been superseded by data-driven deep neural networks in
+when recognizing naturally-occurring emotions.                     speech recognition [79] and recurrent neural networks for
+    Most recently, a new category of multimodal applica-           para-linguistic analysis [207]. In natural language process-
+tions emerged with an emphasis on language and vision:             ing, the textual features initially relied on counting word
+media description. One of the most representative applica-         occurrences in documents, but have been replaced data-
+tions is image captioning where the task is to generate a text     driven word embeddings that exploit the word context
+description of the input image [83]. This is motivated by          [141]. While there has been a huge amount of work on
+the ability of such systems to help the visually impaired in       unimodal representation, up until recently most multimodal
+their daily tasks [20]. The main challenges media description      representations involved simple concatenation of unimodal
+is evaluation: how to evaluate the quality of the predicted        ones [50], but this has been rapidly changing.
+descriptions. The task of visual question-answering (VQA)              To help understand the breadth of work, we propose
+was recently proposed to address some of the evaluation            two categories of multimodal representation: joint and coor-
+challenges [9], where the goal is to answer a specific ques-       dinated. Joint representations combine the unimodal signals
+tion about the image.                                              into the same representation space, while coordinated repre-
+    In order to bring some of the mentioned applications           sentations process unimodal signals separately, but enforce
+to the real world we need to address a number of tech-             certain similarity constraints on them to bring them to what
+nical challenges facing multimodal machine learning. We            we term a coordinated space. An illustration of different
+summarize the relevant technical challenges for the above          multimodal representation types can be seen in Figure 1.
+mentioned application areas in Table 1. One of the most im-            Mathematically, the joint representation is expressed as:
+portant challenges is multimodal representation, the focus
+of our next section.
+                                                                                       xm = f (x1 , . . . , xn ),             (1)
+                                                                   where the multimodal representation xm is computed using
+                                                                   function f (e.g., a deep neural network, restricted Boltz-
+3   M ULTIMODAL R EPRESENTATIONS
+                                                                   mann machine, or a recurrent neural network) that relies
+Representing raw data in a format that a computational             on unimodal representations x1 , . . . xn . While coordinated
+model can work with has always been a big challenge in             representation is as follows:
+machine learning. Following the work of Bengio et al. [18]
+we use the term feature and representation interchangeably,                               f (x1 ) ∼ g(x2 ),                   (2)
+with each referring to a vector or tensor representation of an     where each modality has a corresponding projection func-
+entity, be it an image, audio sample, individual word, or a        tion (f and g above) that maps it into a coordinated multi-
+sentence. A multimodal representation is a representation of       modal space. While the projection into the multimodal space
+data using information from multiple such entities. Repre-         is independent for each modality, but the resulting space is
+senting multiple modalities poses many difficulties: how to        coordinated between them (indicated as ∼). Examples of
+combine the data from heterogeneous sources; how to deal           such coordination include minimizing cosine distance [61],
+with different levels of noise; and how to deal with missing       maximizing correlation [7], and enforcing a partial order
+data. The ability to represent data in a meaningful way is         [212] between the resulting spaces.
+crucial to multimodal problems, and forms the backbone of
+any model.
+    Good representations are important for the performance         3.1   Joint Representations
+of machine learning models, as evidenced behind the recent         We start our discussion with joint representations that
+leaps in performance of speech recognition [79] and visual         project unimodal representations together into a multimodal
+object classification [109] systems. Bengio et al. [18] identify   space (Equation 1). Joint representations are mostly (but
+a number of properties for good representations: smooth-           not exclusively) used in tasks where multimodal data is
+ness, temporal and spatial coherence, sparsity, and natural        present both during training and inference steps. The sim-
+clustering amongst others. Srivastava and Salakhutdinov            plest example of a joint representation is a concatenation of
+[198] identify additional desirable properties for multi-          individual modality features (also referred to as early fusion
+modal representations: similarity in the representation space      [50]). In this section we discuss more advanced methods
+should reflect the similarity of the corresponding concepts,       for creating joint representations starting with neural net-
+the representation should be easy to obtain even in the            works, followed by graphical models and recurrent neural
+absence of some modalities, and finally, it should be possible     networks (representative works can be seen in Table 2).
+to fill-in missing modalities given the observed ones.             Neural networks have become a very popular method for
+    The development of unimodal representations has been           unimodal data representation [18]. They are used to repre-
+extensively studied [5], [18], [122]. In the past decade there     sent visual, acoustic, and textual data, and are increasingly
+has been a shift from hand-designed for specific applications      used in the multimodal domain [151], [156], [217]. In this
+to data-driven. For example, one of the most famous image          section we describe how neural networks can be used to
+descriptors in the early 2000s, the scale invariant feature        construct a joint multimodal representation, how to train
+transform (SIFT) was hand designed [127], but currently            them, and what advantages they offer.
+most visual descriptions are learned from data using neural            In general, neural networks are made up of successive
+architectures such as convolutional neural networks (CNN)          building blocks of inner products followed by non-linear
+[109]. Similarly, in the audio domain, acoustic features           activation functions. In order to use a neural network as
+                                                                                                                                 4
+
+
+
+
+                         (a) Joint representation                                   (b) Coordinated representations
+
+Figure 1: Structure of joint and coordinated representations. Joint representations are projected to the same space using all
+of the modalities as input. Coordinated representations, on the other hand, exist in their own space, but are coordinated
+through a similarity (e.g. Euclidean distance) or structure constraint (e.g. partial order).
+
+
+a way to represent data, it is first trained to perform a          construct representations through the use of latent random
+specific task (e.g., recognizing objects in images). Due to the    variables [18]. In this section we describe how probabilistic
+multilayer nature of deep neural networks each successive          graphical models are used to represent unimodal and mul-
+layer is hypothesized to represent the data in a more abstract     timodal data.
+way [18], hence it is common to use the final or penultimate           The most popular approaches for graphical-model based
+neural layers as a form of data representation. To construct       representation are deep Boltzmann machines (DBM) [176],
+a multimodal representation using neural networks each             that stack restricted Boltzmann machines (RBM) [81] as
+modality starts with several individual neural layers fol-         building blocks. Similar to neural networks, each successive
+lowed by a hidden layer that projects the modalities into          layer of a DBM is expected to represent the data at a higher
+a joint space [9], [145], [156], [227]. The joint multimodal       level of abstraction. The appeal of DBMs comes from the
+representation is then be passed through multiple hidden           fact that they do not need supervised data for training [176].
+layers itself or used directly for prediction. Such models         As they are graphical models the representation of data is
+can be trained end-to-end — learning both to represent the         probabilistic, however it is possible to convert them to a
+data and to perform a particular task. This results in a close     deterministic neural network — but this loses the generative
+relationship between multimodal representation learning            aspect of the model [176].
+and multimodal fusion when using neural networks.                      Work by Srivastava and Salakhutdinov [197] introduced
+    As neural networks require a lot of labeled training data,     multimodal deep belief networks as a multimodal represen-
+it is common to pre-train such representations using an            tation. Kim et al. [104] used a deep belief network for each
+autoencoder on unsupervised data [80]. The model pro-              modality and then combined them into joint representation
+posed by Ngiam et al. [151] extended the idea of using             for audiovisual emotion recognition. Huang and Kingsbury
+autoencoders to the multimodal domain. They used stacked           [86] used a similar model for AVSR, and Wu et al. [225] for
+denoising autoencoders to represent each modality individ-         audio and skeleton joint based gesture recognition.
+ually and then fused them into a multimodal representation             Multimodal deep belief networks have been extended to
+using another autoencoder layer. Similarly, Silberer and           multimodal DBMs by Srivastava and Salakhutdinov [198].
+Lapata [184] proposed to use a multimodal autoencoder              Multimodal DBMs are capable of learning joint represen-
+for the task of semantic concept grounding (see Section            tations from multiple modalities by merging two or more
+7.2). In addition to using a reconstruction loss to train the      undirected graphs using a binary layer of hidden units on
+representation they introduce a term into the loss function        top of them. They allow for the low level representations of
+that uses the representation to predict object labels. It is       each modality to influence each other after the joint training
+also common to fine-tune the resulting representation on           due to the undirected nature of the model.
+a particular task at hand as the representation constructed            Ouyang et al. [156] explore the use of multimodal DBMs
+using an autoencoder is generic and not necessarily optimal        for the task of human pose estimation from multi-view data.
+for a specific task [217].                                         They demonstrate that integrating the data at a later stage —
+    The major advantage of neural network based joint rep-         after unimodal data underwent nonlinear transformations
+resentations comes from their often superior performance           — was beneficial for the model. Similarly, Suk et al. [199] use
+and the ability to pre-train the representations in an unsu-       multimodal DBM representation to perform Alzheimer’s
+pervised manner. The performance gain is, however, depen-          disease classification from positron emission tomography
+dent on the amount of data available for training. One of          and magnetic resonance imaging data.
+the disadvantages comes from the model not being able to               One of the big advantages of using multimodal DBMs
+handle missing data naturally — although there are ways            for learning multimodal representations is their generative
+to alleviate this issue [151], [217]. Finally, deep networks are   nature, which allows for an easy way to deal with missing
+often difficult to train [69], but the field is making progress    data — even if a whole modality is missing, the model
+in better training techniques [196].                               has a natural way to cope. It can also be used to generate
+Probabilistic graphical models are another popular way to          samples of one modality in the presence of the other one, or
+                                                                                                                                   5
+
+Table 2: A summary of multimodal representation tech-                 Similarity models minimize the distance between modal-
+niques. We identify three subtypes of joint representations           ities in the coordinated space. For example such models
+(Section 3.1) and two subtypes of coordinated ones (Section           encourage the representation of the word dog and an image
+3.2). For modalities + indicates the modalities combined.             of a dog to have a smaller distance between them than
+  R EPRESENTATION           M ODALITIES           R EFERENCE          distance between the word dog and an image of a car [61].
+  Joint                                                               One of the earliest examples of such a representation comes
+     Neural networks       Images + Audio       [145], [151], [227]   from the work by Weston et al. [221], [222] on the WSABIE
+                            Images + Text              [184]          (web scale annotation by image embedding) model, where
+      Graphical models      Images + Text              [198]          a coordinated space was constructed for images and their
+                           Images + Audio              [104]
+      Sequential            Audio + Video           [96], [152]       annotations. WSABIE constructs a simple linear map from
+                            Images + Text              [166]          image and textual features such that corresponding anno-
+  Coordinated                                                         tation and image representation would have a higher inner
+    Similarity             Images + Text            [61], [105]       product (smaller cosine distance) between them than non-
+                            Video + Text           [159], [231]       corresponding ones.
+      Structured           Images + Text        [32], [212], [248]
+                         Audio + Articulatory          [220]              More recently, neural networks have become a popular
+                                                                      way to construct coordinated representations, due to their
+                                                                      ability to learn representations. Their advantage lies in the
+both modalities from the representation. Similar to autoen-           fact that they can jointly learn coordinated representations
+coders the representation can be trained in an unsupervised           in an end-to-end manner. An example of such coordinated
+manner enabling the use of unlabeled data. The major                  representation is DeViSE — a deep visual-semantic embed-
+disadvantage of DBMs is the difficulty of training them —             ding [61]. DeViSE uses a similar inner product and ranking
+high computational cost, and the need to use approximate              loss function to WSABIE but uses more complex image
+variational training methods [198].                                   and word embeddings. Kiros et al. [105] extended this to
+Sequential Representation. So far we have discussed mod-              sentence and image coordinated representation by using an
+els that can represent fixed length data, however, we often           LSTM model and a pairwise ranking loss to coordinate the
+need to represent varying length sequences such as sen-               feature space. Socher et al. [191] tackle the same task, but
+tences, videos, or audio streams. In this section we describe         extend the language model to a dependency tree RNN to
+models that can be used to represent such sequences.                  incorporate compositional semantics. A similar model was
+    Recurrent neural networks (RNNs), and their variants              also proposed by Pan et al. [159], but using videos instead
+such as long-short term memory (LSTMs) networks [82],                 of images. Xu et al. [231] also constructed a coordinated
+have recently gained popularity due to their success in               space between videos and sentences using a hsubject, verb,
+sequence modeling across various tasks [12], [213]. So far            objecti compositional language model and a deep video
+RNNs have mostly been used to represent unimodal se-                  model. This representation was then used for the task of
+quences of words, audio, or images, with most success in the          cross-modal retrieval and video description.
+language domain. Similar to traditional neural networks,                  While the above models enforced similarity between
+the hidden state of an RNN can be seen as a representation            representations, structured coordinated space models go
+of the data, i.e., the hidden state of RNN at timestep t              beyond that and enforce additional constraints between the
+can be seen as the summarization of the sequence up to                modality representations. The type of structure enforced is
+that timestep. This is especially apparent in RNN encoder-            often based on the application, with different constraints for
+decoder frameworks where the task of an encoder is to                 hashing, cross-modal retrieval, and image captioning.
+represent a sequence in the hidden state of an RNN in such                Structured coordinated spaces are commonly used in
+a way that a decoder could reconstruct it [12].                       cross-modal hashing — compression of high dimensional
+    The use of RNN representations has not been limited               data into compact binary codes with similar binary codes
+to the unimodal domain. An early use of constructing a                for similar objects [218]. The idea of cross-modal hashing
+multimodal representation using RNNs comes from work                  is to create such codes for cross-modal retrieval [27], [93],
+by Cosi et al. [43] on AVSR. They have also been used for             [113]. Hashing enforces certain constraints on the result-
+representing audio-visual data for affect recognition [37],           ing multimodal space: 1) it has to be an N -dimensional
+[152] and to represent multi-view data such as different              Hamming space — a binary representation with controllable
+visual cues for human behavior analysis [166].                        number of bits; 2) the same object from different modalities
+                                                                      has to have a similar hash code; 3) the space has to be
+                                                                      similarity-preserving. Learning how to represent the data
+3.2    Coordinated Representations                                    as a hash function attempts to enforce all of these three
+An alternative to a joint multimodal representation is a coor-        requirements [27], [113]. For example, Jiang and Li [92]
+dinated representation. Instead of projecting the modalities          introduced a method to learn such common binary space
+together into a joint space, we learn separate representations        between sentence descriptions and corresponding images
+for each modality but coordinate them through a constraint.           using end-to-end trainable deep learning techniques. While
+We start our discussion with coordinated representations              Cao et al. [32] extended the approach with a more complex
+that enforce similarity between representations, moving on            LSTM sentence representation and introduced an outlier
+to coordinated representations that enforce more structure            insensitive bit-wise margin loss and a relevance feedback
+on the resulting space (representative works of different             based semantic similarity constraint. Similarly, Wang et al.
+coordinated representations can be seen in Table 2).                  [219] constructed a coordinated space in which images (and
+                                                                                                                                         6
+
+sentences) with similar meanings are closer to each other.       Table 3: Taxonomy of multimodal translation research. For
+    Another example of a structured coordinated represen-        each class and sub-class, we include example tasks with
+tation comes from order-embeddings of images and lan-            references. Our taxonomy also includes the directionality of
+guage [212], [249]. The model proposed by Vendrov et al.         the translation: unidirectional (⇒) and bidirectional (⇔).
+[212] enforces a dissimilarity metric that is asymmetric and                                TASKS          D IR .    R EFERENCES
+implements the notion of partial order in the multimodal             Example-based
+space. The idea is to capture a partial order of the language         Retrieval        Image captioning     ⇒           [56], [155]
+and image representations — enforcing a hierarchy on the                                Media retrieval     ⇔          [191], [231]
+space; for example image of “a woman walking her dog“ →                                  Visual speech      ⇒               [26]
+                                                                                       Image captioning     ⇔            [98], [99]
+text “woman walking her dog” → text “woman walking”.                 Combination       Image captioning     ⇒       [74], [114], [119]
+A similar model using denotation graphs was also proposed            Generative
+by Young et al. [238] where denotation graphs are used to            Grammar based     Video description    ⇒           [14], [204]
+induce a partial ordering. Lastly, Zhang et al. present how                            Image description    ⇒       [51], [121], [142]
+exploiting structured representations of text and images can         Encoder-decoder   Image captioning     ⇒          [105], [134]
+                                                                                       Video description    ⇒          [213], [241]
+create concept taxonomies in an unsupervised manner [249].                                Text to image     ⇒          [132], [171]
+    A special case of a structured coordinated space is one          Continuous         Sounds synthesis    ⇒          [157], [209]
+based on canonical correlation analysis (CCA) [84]. CCA                                  Visual speech      ⇒        [6], [47], [203]
+computes a linear projection which maximizes the correla-
+tion between two random variables (in our case modalities)
+and enforces orthogonality of the new space. CCA models          more than two modalities, coordinated spaces have, so far,
+have been used extensively for cross-modal retrieval [76],       been mostly limited to two modalities.
+[106], [169] and audiovisual signal analysis [177], [187].
+Extensions to CCA attempt to construct a correlation max-
+imizing nonlinear projection [7], [116]. Kernel canonical        4     T RANSLATION
+correlation analysis (KCCA) [116] uses reproducing kernel        A big part of multimodal machine learning is concerned
+Hilbert spaces for projection. However, as the approach is       with translating (mapping) from one modality to another.
+nonparametric it scales poorly with the size of the training     Given an entity in one modality the task is to generate the
+set and has issues with very large real-world datasets. Deep     same entity in a different modality. For example given an
+canonical correlation analysis (DCCA) [7] was introduced as      image we might want to generate a sentence describing it or
+an alternative to KCCA and addresses the scalability issue,      given a textual description generate an image matching it.
+it was also shown to lead to better correlated representation    Multimodal translation is a long studied problem, with early
+space. Similar correspondence autoencoder [58] and deep          work in speech synthesis [88], visual speech generation [136]
+correspondence RBMs [57] have also been proposed for             video description [107], and cross-modal retrieval [169].
+cross-modal retrieval.                                               More recently, multimodal translation has seen renewed
+    CCA, KCCA, and DCCA are unsupervised techniques              interest due to combined efforts of the computer vision and
+and only optimize the correlation over the representations,      natural language processing (NLP) communities [19] and
+thus mostly capturing what is shared across the modal-           recent availability of large multimodal datasets [38], [205].
+ities. Deep canonically correlated autoencoders [220] also       A particularly popular problem is visual scene description,
+include an autoencoder based data reconstruction term.           also known as image [214] and video captioning [213],
+This encourages the representation to also capture modal-        which acts as a great test bed for a number of computer
+ity specific information. Semantic correlation maximization      vision and NLP problems. To solve it, we not only need
+method [248] also encourages semantic relevance, while           to fully understand the visual scene and to identify its
+retaining correlation maximization and orthogonality of the      salient parts, but also to produce grammatically correct and
+resulting space — this leads to a combination of CCA and         comprehensive yet concise sentences describing it.
+cross-modal hashing techniques.                                      While the approaches to multimodal translation are very
+                                                                 broad and are often modality specific, they share a number
+                                                                 of unifying factors. We categorize them into two types —
+3.3   Discussion                                                 example-based, and generative. Example-based models use a
+In this section we identified two major types of multimodal      dictionary when translating between the modalities. Genera-
+representations — joint and coordinated. Joint representa-       tive models, on the other hand, construct a model that is able
+tions project multimodal data into a common space and            to produce a translation. This distinction is similar to the one
+are best suited for situations when all of the modalities        between non-parametric and parametric machine learning
+are present during inference. They have been extensively         approaches and is illustrated in Figure 2, with representative
+used for AVSR, affect, and multimodal gesture recognition.       examples summarized in Table 3.
+Coordinated representations, on the other hand, project each         Generative models are arguably more challenging to
+modality into a separate but coordinated space, making           build as they require the ability to generate signals or
+them suitable for applications where only one modality is        sequences of symbols (e.g., sentences). This is difficult for
+present at test time, such as: multimodal retrieval and trans-   any modality — visual, acoustic, or verbal, especially when
+lation (Section 4), grounding (Section 7.2), and zero shot       temporally and structurally consistent sequences need to be
+learning (Section 7.2). Finally, while joint representations     generated. This led to many of the early multimodal transla-
+have been used in situations to construct representations of     tion systems relying on example-based translation. However,
+                                                                                                                               7
+
+
+
+
+                     (a) Example-based                                              (b) Generative
+
+Figure 2: Overview of example-based and generative multimodal translation. The former retrieves the best translation from
+a dictionary, while the latter first trains a translation model on the dictionary and then uses that model for translation.
+
+
+this has been changing with the advent of deep learning         Farhadi et al. [56]. They map both sentences and images
+models that are capable of generating images [171], [210],      to a space of hobject, action, scenei, retrieval of relevant
+sounds [157], [209], and text [12].                             caption to an image is then performed in that space. In
+                                                                contrast to hand-crafting a representation, Socher et al. [191]
+                                                                learn a coordinated representation of sentences and CNN
+4.1   Example-based                                             visual features (see Section 3.2 for description of coordinated
+Example-based algorithms are restricted by their training       spaces). They use the model for both translating from text
+data — dictionary (see Figure 2a). We identify two types        to images and from images to text. Similarly, Xu et al. [231]
+of such algorithms: retrieval based, and combination based.     used a coordinated space of videos and their descriptions
+Retrieval-based models directly use the retrieved translation   for cross-modal retrieval. Jiang and Li [93] and Cao et
+without modifying it, while combination-based models rely       al. [32] use cross-modal hashing to perform multimodal
+on more complex rules to create translations based on a         translation from images to sentences and back, while Ho-
+number of retrieved instances.                                  dosh et al. [83] use a multimodal KCCA space for image-
+Retrieval-based models are arguably the simplest form of        sentence retrieval. Instead of aligning images and sentences
+multimodal translation. They rely on finding the closest        globally in a common space, Karpathy et al. [99] propose
+sample in the dictionary and using that as the translated       a multimodal similarity metric that internally aligns image
+result. The retrieval can be done in unimodal space or inter-   fragments (visual objects) together with sentence fragments
+mediate semantic space.                                         (dependency tree relations).
+    Given a source modality instance to be translated, uni-         Retrieval approaches in semantic space tend to perform
+modal retrieval finds the closest instances in the dictionary   better than their unimodal counterparts as they are retriev-
+in the space of the source — for example, visual feature        ing examples in a more meaningful space that reflects both
+space for images. Such approaches have been used for visual     modalities and that is often optimized for retrieval. Fur-
+speech synthesis, by retrieving the closest matching visual     thermore, they allow for bi-directional translation, which is
+example of the desired phoneme [26]. They have also been        not straightforward with unimodal methods. However, they
+used in concatenative text-to-speech systems [88]. More         require manual construction or learning of such a semantic
+recently, Ordonez et al. [155] used unimodal retrieval to       space, which often relies on the existence of large training
+generate image descriptions by using global image features      dictionaries (datasets of paired samples).
+to retrieve caption candidates [155]. Yagcioglu et al. [232]    Combination-based models take the retrieval based ap-
+used a CNN-based image representation to retrieve visu-         proaches one step further. Instead of just retrieving exam-
+ally similar images using adaptive neighborhood selection.      ples from the dictionary, they combine them in a meaningful
+Devlin et al. [49] demonstrated that a simple k -nearest        way to construct a better translation. Combination based
+neighbor retrieval with consensus caption selection achieves    media description approaches are motivated by the fact that
+competitive translation results when compared to more           sentence descriptions of images share a common and simple
+complex generative approaches. The advantage of such            structure that could be exploited. Most often the rules for
+unimodal retrieval approaches is that they only require the     combinations are hand crafted or based on heuristics.
+representation of a single modality through which we are            Kuznetsova et al. [114] first retrieve phrases that describe
+performing retrieval. However, they often require an extra      visually similar images and then combine them to generate
+processing step such as re-ranking of retrieved translations    novel descriptions of the query image by using Integer
+[135], [155], [232]. This indicates a major problem with this   Linear Programming with a number of hand crafted rules.
+approach — similarity in unimodal space does not always         Gupta et al. [74] first find k images most similar to the
+imply a good translation.                                       source image, and then use the phrases extracted from their
+    An alternative is to use an intermediate semantic space     captions to generate a target sentence. Lebret et al. [119]
+for similarity comparison during retrieval. An early ex-        use a CNN-based image representation to infer phrases that
+ample of a hand crafted semantic space is one used by           describe it. The predicted phrases are then combined using
+                                                                                                                                 8
+
+a trigram constrained language model.                             a restricted grammar suitable for the task. Guadarrama et al.
+    A big problem facing example-based approaches for             [73] predict hsubject, verb, objecti triplets describing a video
+translation is that the model is the entire dictionary — mak-     using semantic hierarchies that use more general words in
+ing the model large and inference slow (although, optimiza-       case of uncertainty. Together with a language model their
+tions such as hashing alleviate this problem). Another issue      approach allows for translation of verbs and nouns not seen
+facing example-based translation is that it is unrealistic to     in the dictionary.
+expect that a single comprehensive and accurate translation           To describe images, Yao et al. [235] propose to use an
+relevant to the source example will always exist in the dic-      and-or graph-based model together with domain-specific
+tionary — unless the task is simple or the dictionary is very     lexicalized grammar rules, targeted visual representation
+large. This is partly addressed by combination models that        scheme, and a hierarchical knowledge ontology. Li et al.
+are able to construct more complex structures. However,           [121] first detect objects, visual attributes, and spatial re-
+they are only able to perform translation in one direction,       lationships between objects. They then use an n-gram lan-
+while semantic space retrieval-based models are able to           guage model on the visually extracted phrases to generate
+perform it both ways.                                             hsubject, preposition, objecti style sentences. Mitchell et al.
+                                                                  [142] use a more sophisticated tree-based language model
+                                                                  to generate syntactic trees instead of filling in templates,
+4.2   Generative approaches
+                                                                  leading to more diverse descriptions. A majority of ap-
+Generative approaches to multimodal translation construct         proaches represent the whole image jointly as a bag of
+models that can perform multimodal translation given a            visual objects without capturing their spatial and semantic
+unimodal source instance. It is a challenging problem as it       relationships. To address this, Elliott et al. [51] propose to
+requires the ability to both understand the source modality       explicitly model proximity relationships of objects for image
+and to generate the target sequence or signal. As discussed       description generation.
+in the following section, this also makes such methods much           Some grammar-based approaches rely on graphical
+more difficult to evaluate, due to large space of possible        models to generate the target modality. An example includes
+correct answers.                                                  BabyTalk [112], which given an image generates hobject,
+    In this survey we focus on the generation of three modal-     preposition, objecti triplets, that are used together with a
+ities: language, vision, and sound. Language generation has       conditional random field to construct the sentences. Yang
+been explored for a long time [170], with a lot of recent         et al. [233] predict a set of hnoun, verb, scene, prepositioni
+attention for tasks such as image and video description [19].     candidates using visual features extracted from an image
+Speech and sound generation has also seen a lot of work           and combine them into a sentence using a statistical lan-
+with a number of historical [88] and modern approaches            guage model and hidden Markov model style inference.
+[157], [209]. Photo-realistic image generation has been less      A similar approach has been proposed by Thomason et
+explored, and is still in early stages [132], [171], however,     al. [204], where a factor graph model is used for video
+there have been a number of attempts at generating abstract       description of the form hsubject, verb, object, placei. The
+scenes [253], computer graphics [45], and talking heads [6].      factor model exploits language statistics to deal with noisy
+    We identify three broad categories of generative mod-         visual representations. Going the other way Zitnick et al.
+els: grammar-based, encoder-decoder, and continuous generation    [253] propose to use conditional random fields to generate
+models. Grammar based models simplify the task by re-             abstract visual scenes based on language triplets extracted
+stricting the target domain by using a grammar, e.g., by gen-     from sentences.
+erating restricted sentences based on a hsubject, object, verbi       An advantage of grammar-based methods is that they
+template. Encoder-decoder models first encode the source          are more likely to generate syntactically (in case of lan-
+modality to a latent representation which is then used by         guage) or logically correct target instances as they use
+a decoder to generate the target modality. Continuous gen-        predefined templates and restricted grammars. However,
+eration models generate the target modality continuously          this limits them to producing formulaic rather than creative
+based on a stream of source modality inputs and are most          translations. Furthermore, grammar-based methods rely on
+suited for translating between temporal sequences — such          complex pipelines for concept detection, with each concept
+as text-to-speech.                                                requiring a separate model and a separate training dataset.
+Grammar-based models rely on a pre-defined grammar for            Encoder-decoder models based on end-to-end trained neu-
+generating a particular modality. They start by detecting         ral networks are currently some of the most popular tech-
+high level concepts from the source modality, such as objects     niques for multimodal translation. The main idea behind
+in images and actions from videos. These detections are then      the model is to first encode a source modality into a vectorial
+incorporated together with a generation procedure based on        representation and then to use a decoder module to generate
+a pre-defined grammar to result in a target modality.             the target modality, all this in a single pass pipeline. Al-
+    Kojima et al. [107] proposed a system to describe human       though, first used for machine translation [97], such models
+behavior in a video using the detected position of the            have been successfully used for image captioning [134],
+person’s head and hands and rule based natural language           [214], and video description [174], [213]. So far, encoder-
+generation that incorporates a hierarchy of concepts and          decoder models have been mostly used to generate text, but
+actions. Barbu et al. [14] proposed a video description           they can also be used to generate images [132], [171], and
+model that generates sentences of the form: who did what          continuos generation of speech and sound [157], [209].
+to whom and where and how they did it. The system was                 The first step of the encoder-decoder model is to encode
+based on handcrafted object and event classifiers and used        the source object, this is done in modality specific way.
+                                                                                                                                   9
+
+Popular models to encode acoustic signals include RNNs              variable model for audio-based visual speech synthesis. The
+[35] and DBNs [79]. Most of the work on encoding words              model creates a shared latent space between audio and vi-
+sentences uses distributional semantics [141] and variants          sual features that can be used to generate one space from the
+of RNNs [12]. Images are most often encoded using convo-            other, while enforcing temporal consistency of visual speech
+lutional neural networks (CNN) [109], [185]. While learned          at different timesteps. Hidden Markov models (HMM) have
+CNN representations are common for encoding images, this            also been used for visual speech generation [203] and text-
+is not the case for videos where hand-crafted features are          to-speech [245] tasks. They have also been extended to use
+still commonly used [174], [204]. While it is possible to use       cluster adaptive training to allow for training on multiple
+unimodal representations to encode the source modality, it          speakers, languages, and emotions allowing for more con-
+has been shown that using a coordinated space (see Section          trol when generating speech signal [244] or visual speech
+3.2) leads to better results [105], [159], [231].                   parameters [6].
+     Decoding is most often performed by an RNN or an                   Encoder-decoder models have recently become popular
+LSTM using the encoded representation as the initial hidden         for sequence to sequence modeling. Owens et al. [157] used
+state [54], [132], [214], [215]. A number of extensions have        an LSTM to generate sounds resulting from drumsticks
+been proposed to traditional LSTM models to aid in the task         based on video. While their model is capable of generat-
+of translation. A guide vector could be used to tightly couple      ing sounds by predicting a cochleogram from CNN visual
+the solutions in the image input [91]. Venugopalan et al.           features, they found that retrieving a closest audio sample
+[213] demonstrate that it is beneficial to pre-train a decoder      based on the predicted cochleogram led to best results. Di-
+LSTM for image captioning before fine-tuning it to video            rectly modeling the raw audio signal for speech and music
+description. Rohrbach et al. [174] explore the use of various       generation has been proposed by van den Oord et al. [209].
+LSTM architectures (single layer, multilayer, factored) and         The authors propose using hierarchical fully convolutional
+a number of training and regularization techniques for the          neural networks, which show a large improvement over
+task of video description.                                          previous state-of-the-art for the task of speech synthesis.
+     A problem facing translation generation using an RNN           RNNs have also been used for speech to text translation
+is that the model has to generate a description from a              (speech recognition) [72]. More recently encoder-decoder
+single vectorial representation of the image, sentence, or          based continuous approach was shown to be good at pre-
+video. This becomes especially difficult when generating            dicting letters from a speech signal represented as a filter
+long sequences as these models tend to forget the initial           bank spectra [35] — allowing for more accurate recognition
+input. This has been partly addressed by neural attention           of rare and out of vocabulary words. Collobert et al. [42]
+models (see Section 5.2) that allow the network to focus on         demonstrate how to use a raw audio signal directly for
+certain parts of an image [230], sentence [12], or video [236]      speech recognition, eliminating the need for audio features.
+during generation.                                                      A lot of earlier work used graphical models for mul-
+     Generative attention-based RNNs have also been used            timodal translation between continuous signals. However,
+for the task of generating images from sentences [132], while       these methods are being replaced by neural network
+the results are still far from photo-realistic they show a lot of   encoder-decoder based techniques. Especially as they have
+promise. More recently, a large amount of progress has been         recently been shown to be able to represent and generate
+made in generating images using generative adversarial              complex visual and acoustic signals.
+networks [71], which have been used as an alternative to
+RNNs for image generation from text [171].
+     While neural network based encoder-decoder systems             4.3   Model evaluation and discussion
+have been very successful they still face a number of issues.       A major challenge facing multimodal translation methods
+Devlin et al. [49] suggest that it is possible that the network     is that they are very difficult to evaluate. While some tasks
+is memorizing the training data rather than learning how to         such as speech recognition have a single correct translation,
+understand the visual scene and generate it. This is based          tasks such as speech synthesis and media description do not.
+on the observation that k -nearest neighbor models perform          Sometimes, as in language translation, multiple answers are
+very similarly to those based on generation. Furthermore,           correct and deciding which translation is better is often
+such models often require large quantities of data for train-       subjective. Fortunately, there are a number of approximate
+ing.                                                                automatic metrics that aid in model evaluation.
+Continuous generation models are intended for sequence                  Often the ideal way to evaluate a subjective task is
+translation and produce outputs at every timestep in an             through human judgment. That is by having a group of
+online manner. These models are useful when translating             people evaluating each translation. This can be done on a
+from a sequence to a sequence such as text to speech, speech        Likert scale where each translation is evaluated on a certain
+to text, and video to text. A number of different techniques        dimension: naturalness and mean opinion score for speech
+have been proposed for such modeling — graphical models,            synthesis [209], [244], realism for visual speech synthesis [6],
+continuous encoder-decoder approaches, and various other            [203], and grammatical and semantic correctness, relevance,
+regression or classification techniques. The extra difficulty       order, and detail for media description [38], [112], [142],
+that needs to be tackled by these models is the requirement         [213]. Another option is to perform preference studies where
+of temporal consistency between modalities.                         two (or more) translations are presented to the participant
+     A lot of early work on sequence to sequence transla-           for preference comparison [203], [244]. However, while user
+tion used graphical or latent variable models. Deena and            studies will result in evaluation closest to human judgments
+Galata [47] proposed to use a shared Gaussian process latent        they are time consuming and costly. Furthermore, they re-
+                                                                                                                                        10
+
+quire care when constructing and conducting them to avoid           Table 4: Summary of our taxonomy for the multimodal
+fluency, age, gender and culture biases.                            alignment challenge. For each sub-class of our taxonomy,
+    While human studies are a gold standard for evaluation,         we include reference citations and modalities aligned.
+a number of automatic alternatives have been proposed for                 A LIGNMENT            M ODALITIES         R EFERENCE
+the task of media description: BLEU [160], ROUGE [124],                   Explicit
+Meteor [48], and CIDEr [211]. These metrics are directly                   Unsupervised         Video + Text      [131], [201], [202]
+taken from (or are based on) work in machine translation                                       Video + Audio      [154], [206], [251]
+and compute a score that measures the similarity between                   Supervised           Video + Text          [23], [252]
+                                                                                                Image + Text      [108], [133], [161]
+the generated and ground truth text. However, the use of
+                                                                          Implicit
+them has faced a lot of criticism. Elliott and Keller [52]                 Graphical models   Audio/Text + Text      [186], [216]
+showed that sentence-level unigram BLEU is only weakly                     Neural networks      Image + Text      [98], [228], [230]
+correlated with human judgments. Huang et al. [87] demon-                                       Video + Text         [236], [241]
+strated that the correlation between human judgments and
+BLEU and Meteor is very low for visual story telling task.
+Furthermore, the ordering of approaches based on human              based on text description can include an alignment step
+judgments did not match that of the ordering using au-              between words and image regions [99]. An overview of such
+tomatic metrics on the MS COCO challenge [38] — with                approaches can be seen in Table 4 and is presented in more
+a large number of algorithms outperforming humans on all            detail in the following sections.
+the metrics. Finally, the metrics only work well when a
+number of reference translations is high [211], which is
+often unavailable, especially for current video description         5.1    Explicit alignment
+datasets [205]                                                      We categorize papers as performing explicit alignment if
+    These criticisms have led to Hodosh et al. [83] proposing       their main modeling objective is alignment between sub-
+to use retrieval as a proxy for image captioning evaluation,        components of instances from two or more modalities. A
+which they argue better reflects human judgments. Instead           very important part of explicit alignment is the similarity
+of generating captions, a retrieval based system ranks the          metric. Most approaches rely on measuring similarity be-
+available captions based on their fit to the image, and is          tween sub-components in different modalities as a basic
+then evaluated by assessing if the correct captions are given       building block. These similarities can be defined manually
+a high rank. As a number of caption generation models are           or learned from data.
+generative they can be used directly to assess the likelihood           We identify two types of algorithms that tackle ex-
+of a caption given an image and are being adapted by im-            plicit alignment — unsupervised and (weakly) supervised. The
+age captioning community [99], [105]. Such retrieval based          first type operates with no direct alignment labels (i.e., la-
+evaluation metrics have also been adopted by the video              beled correspondences) between instances from the different
+captioning community [175].                                         modalities. The second type has access to such (sometimes
+    Visual question-answering (VQA) [130] task was pro-             weak) labels.
+posed partly due to the issues facing evaluation of image           Unsupervised multimodal alignment tackles modality
+captioning. VQA is a task where given an image and a ques-          alignment without requiring any direct alignment labels.
+tion about its content the system has to answer it. Evaluating      Most of the approaches are inspired from early work
+such systems is easier due to the presence of a correct answer.     on alignment for statistical machine translation [28] and
+However, it still faces issues such as ambiguity of certain         genome sequences [3], [111]. To make the task easier the
+questions and answers and question bias.                            approaches assume certain constrains on alignment, such as
+    We believe that addressing the evaluation issue will            temporal ordering of sequence or an existence of a similarity
+be crucial for further success of multimodal translation            metric between the modalities.
+systems. This will allow not only for better comparison be-             Dynamic time warping (DTW) [3], [111] is a dynamic
+tween approaches, but also for better objectives to optimize.       programming approach that has been extensively used to
+                                                                    align multi-view time series. DTW measures the similarity
+                                                                    between two sequences and finds an optimal match between
+5   A LIGNMENT                                                      them by time warping (inserting frames). It requires the
+We define multimodal alignment as finding relationships             timesteps in the two sequences to be comparable and re-
+and correspondences between sub-components of instances             quires a similarity measure between them. DTW can be used
+from two or more modalities. For example, given an image            directly for multimodal alignment by hand-crafting similar-
+and a caption we want to find the areas of the image cor-           ity metrics between modalities; for example Anguera et al.
+responding to the caption’s words or phrases [98]. Another          [8] use a manually defined similarity between graphemes
+example is, given a movie, aligning it to the script or the         and phonemes; and Tapaswi et al. [201] define a similarity
+book chapters it was based on [252].                                between visual scenes and sentences based on appearance
+    We categorize multimodal alignment into two types –             of same characters [201] to align TV shows and plot syn-
+implicit and explicit. In explicit alignment, we are explicitly     opses. DTW-like dynamic programming approaches have
+interested in aligning sub-components between modalities,           also been used for multimodal alignment of text to speech
+e.g., aligning recipe steps with the corresponding instruc-         [77] and video [202].
+tional video [131]. Implicit alignment is used as an interme-           As the original DTW formulation requires a pre-defined
+diate (often latent) step for another task, e.g., image retrieval   similarity metric between modalities, it was extended using
+                                                                                                                                11
+
+canonical correlation analysis (CCA) to map the modali-           image regions and their descriptions.
+ties to a coordinated space. This allows for both aligning
+(through DTW) and learning the mapping (through CCA)
+                                                                  5.2   Implicit alignment
+between different modality streams jointly and in an unsu-
+pervised manner [180], [250], [251]. While CCA based DTW          In contrast to explicit alignment, implicit alignment is used
+models are able to find multimodal data alignment under           as an intermediate (often latent) step for another task. This
+a linear transformation, they are not able to model non-          allows for better performance in a number of tasks including
+linear relationships. This has been addressed by the deep         speech recognition, machine translation, media description,
+canonical time warping approach [206], which can be seen          and visual question-answering. Such models do not explic-
+as a generalization of deep CCA and DTW.                          itly align data and do not rely on supervised alignment
+    Various graphical models have also been popular for           examples, but learn how to latently align the data during
+multimodal sequence alignment in an unsupervised man-             model training. We identify two types of implicit alignment
+ner. Early work by Yu and Ballard [239] used a generative         models: earlier work based on graphical models, and more
+graphical model to align visual objects in images with            modern neural network methods.
+spoken words. A similar approach was taken by Cour et al.         Graphical models have seen some early work used to better
+[44] to align movie shots and scenes to the corresponding         align words between languages for machine translation
+screenplay. Malmaud et al. [131] used a factored HMM to           [216] and alignment of speech phonemes with their tran-
+align recipes to cooking videos, while Noulas et al. [154]        scriptions [186]. However, they require manual construction
+used a dynamic Bayesian network to align speakers to              of a mapping between the modalities, for example a gener-
+videos. Naim et al. [147] matched sentences with corre-           ative phone model that maps phonemes to acoustic features
+sponding video frames using a hierarchical HMM model              [186]. Constructing such models requires training data or
+to align sentences with frames and a modified IBM [28]            human expertise to define them manually.
+algorithm for word and object alignment [15]. This model          Neural networks Translation (Section 4) is an example of
+was then extended to use latent conditional random fields         a modeling task that can often be improved if alignment is
+for alignments [146] and to incorporate verb alignment to         performed as a latent intermediate step. As we mentioned
+actions in addition to nouns and objects [195].                   before, neural networks are popular ways to address this
+    Both DTW and graphical model approaches for align-            translation problem, using either an encoder-decoder model
+ment allow for restrictions on alignment, e.g. temporal           or through cross-modal retrieval. When translation is per-
+consistency, no large jumps in time, and monotonicity. While      formed without implicit alignment, it ends up putting a lot
+DTW extensions allow for learning both the similarity met-        of weight on the encoder module to be able to properly
+ric and alignment jointly, graphical model based approaches       summarize the whole image, sentence or a video with a
+require expert knowledge for construction [44], [239].            single vectorial representation.
+Supervised alignment methods rely on labeled aligned in-              A very popular way to address this is through attention
+stances. They are used to train similarity measures that are      [12], which allows the decoder to focus on sub-components
+used for aligning modalities.                                     of the source instance. This is in contrast with encoding all
+    A number of supervised sequence alignment techniques          source sub-components together, as is performed in a con-
+take inspiration from unsupervised ones. Bojanowski et al.        ventional encoder-decoder model. An attention module will
+[22], [23] proposed a method similar to canonical time warp-      tell the decoder to look more at targeted sub-components of
+ing, but have also extended it to take advantage of exist-        the source to be translated — areas of an image [230], words
+ing (weak) supervisory alignment data for model training.         of a sentence [12], segments of an audio sequence [35], [39],
+Plummer et al. [161] used CCA to find a coordinated space         frames and regions in a video [236], [241], and even parts
+between image regions and phrases for alignment. Gebru et         of an instruction [140]. For example, in image captioning in-
+al. [65] trained a Gaussian mixture model and performed           stead of encoding an entire image using a CNN, an attention
+semi-supervised clustering together with an unsupervised          mechanism will allow the decoder (typically an RNN) to
+latent-variable graphical model to align speakers in an audio     focus on particular parts of the image when generating each
+channel with their locations in a video. Kong et al. [108]        successive word [230]. The attention module which learns
+trained a Markov random field to align objects in 3D scenes       what part of the image to focus on is typically a shallow
+to nouns and pronouns in text descriptions.                       neural network and is trained end-to-end together with a
+    Deep learning based approaches are becoming popular           target task (e.g., translation).
+for explicit alignment (specifically for measuring similarity)        Attention models have also been successfully applied
+due to very recent availability of aligned datasets in the lan-   to question answering tasks, as they allow for aligning the
+guage and vision communities [133], [161]. Zhu et al. [252]       words in a question with sub-components of an information
+aligned books with their corresponding movies/scripts by          source such as a piece of text [228], an image [62], or a video
+training a CNN to measure similarities between scenes and         sequence [246]. This both allows for better performance in
+text. Mao et al. [133] used an LSTM language model and a          question answering and leads to better model interpretabil-
+CNN visual one to evaluate the quality of a match between         ity [4]. In particular, different types of attention models have
+a referring expression and an object in an image. Yu et al.       been proposed to address this problem, including hierar-
+[242] extended this model to include relative appearance          chical [128], stacked [234], and episodic memory attention
+and context information that allows to better disambiguate        [228].
+between objects of the same type. Finally, Hu et al. [85] used        Another neural alternative for aligning images with cap-
+an LSTM based scoring function to find similarities between       tions for cross-modal retrieval was proposed by Karpathy
+                                                                                                                                      12
+
+et al. [98], [99]. Their proposed model aligns sentence frag-     Table 5: A summary of our taxonomy of multimodal fusion
+ments to image regions by using a dot product similarity          approaches. O UT — output type (class — classification or
+measure between image region and word representations.            reg — regression), T EMP — is temporal modeling possible.
+While it does not use attention, it extracts a latent alignment    F USION TYPE       O UT    T EMP      TASK          R EFERENCE
+between modalities through a similarity measure that is            Model-agnostic
+learned indirectly by training a retrieval model.                    Early            class    no     Emotion rec.          [34]
+                                                                     Late              reg     yes    Emotion rec.         [168]
+                                                                     Hybrid           class    no       MED                [117]
+5.3   Discussion                                                   Model-based
+Multimodal alignment faces a number of difficulties: 1) there       Kernel-based      class    no     Object class.       [31], [66]
+                                                                                      class    no     Emotion rec.    [36], [90], [182]
+are few datasets with explicitly annotated alignments; 2) it        Graphical         class    yes      AVSR                 [75]
+is difficult to design similarity metrics between modalities;       models             reg     yes    Emotion rec.           [13]
+3) there may exist multiple possible alignments and not all                           class    no     Media class.           [93]
+elements in one modality have correspondences in another.           Neural            class    yes    Emotion rec.       [96], [224]
+                                                                    networks          class    no       AVSR                [151]
+Earlier work on multimodal alignment focused on aligning                               reg     yes    Emotion rec.           [37]
+multimodal sequences in an unsupervised manner using
+graphical models and dynamic programming techniques. It
+relied on hand-defined measures of similarity between the         stages, with the goal of predicting outcome measures. In
+modalities or learnt them in an unsupervised manner. With         recent work, the line between multimodal representation
+recent availability of labeled training data supervised learn-    and fusion has been blurred for models such as deep neural
+ing of similarities between modalities has become possible.       networks where representation learning is interlaced with
+However, unsupervised techniques of learning to jointly           classification or regression objectives. As we will describe in
+align and translate or fuse data have also become popular.        this section, this line is clearer for other approaches such as
+                                                                  graphical models and kernel-based methods.
+                                                                      We classify multimodal fusion into two main categories:
+6     F USION                                                     model-agnostic approaches (Section 6.1) that are not di-
+Multimodal fusion is one of the original topics in mul-           rectly dependent on a specific machine learning method;
+timodal machine learning, with previous surveys empha-            and model-based (Section 6.2) approaches that explicitly ad-
+sizing early, late and hybrid fusion approaches [50], [247].      dress fusion in their construction — such as kernel-based
+In technical terms, multimodal fusion is the concept of           approaches, graphical models, and neural networks. An
+integrating information from multiple modalities with the         overview of such approaches can be seen in Table 5.
+goal of predicting an outcome measure: a class (e.g., happy
+vs. sad) through classification, or a continuous value (e.g.,
+positivity of sentiment) through regression. It is one of the     6.1   Model-agnostic approaches
+most researched aspects of multimodal machine learning            Historically, the vast majority of multimodal fusion has
+with work dating to 25 years ago [243].                           been done using model-agnostic approaches [50]. Such ap-
+    The interest in multimodal fusion arises from three main      proaches can be split into early (i.e., feature-based), late (i.e.,
+benefits it can provide. First, having access to multiple         decision-based) and hybrid fusion [11]. Early fusion inte-
+modalities that observe the same phenomenon may allow             grates features immediately after they are extracted (often
+for more robust predictions. This has been especially ex-         by simply concatenating their representations). Late fusion
+plored and exploited by the AVSR community [163]. Second,         on the other hand performs integration after each of the
+having access to multiple modalities might allow us to            modalities has made a decision (e.g., classification or regres-
+capture complementary information — something that is             sion). Finally, hybrid fusion combines outputs from early
+not visible in individual modalities on their own. Third,         fusion and individual unimodal predictors. An advantage of
+a multimodal system can still operate when one of the             model agnostic approaches is that they can be implemented
+modalities is missing, for example recognizing emotions           using almost any unimodal classifiers or regressors.
+from the visual signal when the person is not speaking [50].          Early fusion could be seen as an initial attempt by mul-
+    Multimodal fusion has a very broad range of appli-            timodal researchers to perform multimodal representation
+cations, including audio-visual speech recognition (AVSR)         learning — as it can learn to exploit the correlation and
+[163], multimodal emotion recognition [192], medical image        interactions between low level features of each modality.
+analysis [89], and multimedia event detection [117]. There        Furthermore it only requires the training of a single model,
+are a number of reviews on the subject [11], [163], [188],        making the training pipeline easier compared to late and
+[247]. Most of them concentrate on multimodal fusion for          hybrid fusion.
+a particular task, such as multimedia analysis, information           In contrast, late fusion uses unimodal decision values
+retrieval or emotion recognition. In contrast, we concentrate     and fuses them using a fusion mechanism such as averaging
+on the machine learning approaches themselves and the             [181], voting schemes [144], weighting based on channel
+technical challenges associated with these approaches.            noise [163] and signal variance [53], or a learned model
+    While some prior work used the term multimodal fu-            [68], [168]. It allows for the use of different models for each
+sion to include all multimodal algorithms, in this survey         modality as different predictors can model each individual
+paper we classify approaches as fusion category when the          modality better, allowing for more flexibility. Furthermore,
+multimodal integration is performed at the later prediction       it makes it easier to make predictions when one or more of
+                                                                                                                              13
+
+the modalities is missing and even allows for training when      images by combining visual and textual information of
+no parallel data is available. However, late fusion ignores      image description [60]. CRF models have been extended to
+the low level interaction between the modalities.                model latent states using hidden conditional random fields
+    Hybrid fusion attempts to exploit the advantages of both     [165] and have been applied to multimodal meeting seg-
+of the above described methods in a common framework. It         mentation [173]. Other multimodal uses of latent variable
+has been used successfully for multimodal speaker identifi-      discriminative graphical models include multi-view hidden
+cation [226] and multimedia event detection (MED) [117].         CRF [194] and latent variable models [193]. More recently
+                                                                 Jiang et al. [93] have shown the benefits of multimodal
+6.2   Model-based approaches                                     hidden conditional random fields for the task of multimedia
+While model-agnostic approaches are easy to implement            classification. While most graphical models are aimed at
+using unimodal machine learning methods, they end up             classification, CRF models have been extended to a continu-
+using techniques that are not designed to cope with mul-         ous version for regression [164] and applied in multimodal
+timodal data. In this section we describe three categories       settings [13] for audio visual emotion recognition.
+of approaches that are designed to perform multimodal                The benefit of graphical models is their ability to easily
+fusion: kernel-based methods, graphical models, and neural       exploit spatial and temporal structure of the data, making
+networks.                                                        them especially popular for temporal modeling tasks, such
+Multiple kernel learning (MKL) methods are an extension          as AVSR and multimodal affect recognition. They also allow
+to kernel support vector machines (SVM) that allow for the       to build in human expert knowledge into the models. and
+use of different kernels for different modalities/views of the   often lead to interpretable models.
+data [70]. As kernels can be seen as similarity functions be-    Neural Networks have been used extensively for the task
+tween data points, modality-specific kernels in MKL allows       of multimodal fusion [151]. The earliest examples of using
+for better fusion of heterogeneous data.                         neural networks for multi-modal fusion come from work
+    MKL approaches have been an especially popular               on AVSR [163]. Nowadays they are being used to fuse
+method for fusing visual descriptors for object detection        information for visual and media question answering [63],
+[31], [66] and only recently have been overtaken by deep         [130], [229], gesture recognition [150], affect analysis [96],
+learning methods for the task [109]. They have also seen         [153], and video description generation [94]. While the
+use for multimodal affect recognition [36], [90], [182], mul-    modalities used, architectures, and optimization techniques
+timodal sentiment analysis [162], and multimedia event           might differ, the general idea of fusing information in joint
+detection (MED) [237]. Furthermore, McFee and Lanckriet          hidden layer of a neural network remains the same.
+[137] proposed to use MKL to perform musical artist simi-            Neural networks have also been used for fusing tempo-
+larity ranking from acoustic, semantic and social view data.     ral multimodal information through the use of RNNs and
+Finally, Liu et al. [125] used MKL for multimodal fusion in      LSTMs. One of the earlier such applications used a bidi-
+Alzheimer’s disease classification. Their broad applicability    rectional LSTM was used to perform audio-visual emotion
+demonstrates the strength of such approaches in various          classification [224]. More recently, Wöllmer et al. [223] used
+domains and across different modalities.                         LSTM models for continuous multimodal emotion recog-
+    Besides flexibility in kernel selection, an advantage of     nition, demonstrating its advantage over graphical models
+MKL is the fact that the loss function is convex, allowing for   and SVMs. Similarly, Nicolaou et al. [152] used LSTMs
+model training using standard optimization packages and          for continuous emotion prediction. Their proposed method
+global optimum solutions [70]. Furthermore, MKL can be           used an LSTM to fuse the results from a modality specific
+used to both perform regression and classification. One of       (audio and facial expression) LSTMs.
+the main disadvantages of MKL is the reliance on training            Approaching modality fusion through recurrent neural
+data (support vectors) during test time, leading to slow         networks has been used in various image captioning tasks,
+inference and a large memory footprint.                          example models include: neural image captioning [214]
+Graphical models are another family of popular methods           where a CNN image representation is decoded using an
+for multimodal fusion. In this section we overview work          LSTM language model, gLSTM [91] which incorporates the
+done on multimodal fusion using shallow graphical models.        image data together with sentence decoding at every time
+A description of deep graphical models such as deep belief       step fusing the visual and sentence data in a joint repre-
+networks can be found in Section 3.1.                            sentation. A more recent example is the multi-view LSTM
+    Majority of graphical models can be classified into two      (MV-LSTM) model proposed by Rajagopalan et al. [166].
+main categories: generative — modeling joint probability;        MV-LSTM model allows for flexible fusion of modalities in
+or discriminative — modeling conditional probability [200].      the LSTM framework by explicitly modeling the modality-
+Some of the earliest approaches to use graphical models for      specific and cross-modality interactions over time.
+multimodal fusion include generative models such as cou-             A big advantage of deep neural network approaches in
+pled [149] and factorial hidden Markov models [67] along-        data fusion is their capacity to learn from large amount of
+side dynamic Bayesian networks [64]. A more recently-            data. Secondly, recent neural architectures allow for end-to-
+proposed multi-stream HMM method proposes dynamic                end training of both the multimodal representation compo-
+weighting of modalities for AVSR [75].                           nent and the fusion component. Finally, they show good
+    Arguably, generative models lost popularity to discrimi-     performance when compared to non neural network based
+native ones such as conditional random fields (CRF) [115]        system and are able to learn complex decision boundaries
+which sacrifice the modeling of joint probability for pre-       that other approaches struggle with.
+dictive power. A CRF model was used to better segment                The major disadvantage of neural network approaches
+                                                                                                                                 14
+
+is their lack of interpretability. It is difficult to tell what the
+prediction relies on, and which modalities or features play
+an important role. Furthermore, neural networks require
+large training datasets to be successful.
+
+6.3   Discussion
+Multimodal fusion has been a widely researched topic with
+a large number of approaches proposed to tackle it, includ-
+ing model agnostic methods, graphical models, multiple                  (a) Parallel     (b) Non-parallel          (c) Hybrid
+kernel learning, and various types of neural networks. Each
+                                                                      Figure 3: Types of data parallelism used in co-learning:
+approach has its own strengths and weaknesses, with some
+                                                                      parallel — modalities are from the same dataset and there
+more suited for smaller datasets and others performing bet-
+                                                                      is a direct correspondence between instances; non-parallel
+ter in noisy environments. Most recently, neural networks
+                                                                      — modalities are from different datasets and do not have
+have become a very popular way to tackle multimodal fu-
+                                                                      overlapping instances, but overlap in general categories or
+sion, however graphical models and multiple kernel learn-
+                                                                      concepts; hybrid — the instances or concepts are bridged by
+ing are still being used, especially in tasks with limited
+                                                                      a third modality or a dataset.
+training data or where model interpretability is important.
+    Despite these advances multimodal fusion still faces the
+following challenges: 1) signals might not be temporally              Co-training is the process of creating more labeled training
+aligned (possibly dense continuous signal and a sparse                samples when we have few labeled samples in a multimodal
+event); 2) it is difficult to build models that exploit supple-       problem [21]. The basic algorithm builds weak classifiers in
+mentary and not only complementary information; 3) each               each modality to bootstrap each other with labels for the
+modality might exhibit different types and different levels           unlabeled data. It has been shown to discover more training
+of noise at different points in time.                                 samples for web-page classification based on the web-page
+                                                                      itself and hyper-links leading in the seminal work of Blum
+7     C O - LEARNING                                                  and Mitchell [21]. By definition this task requires parallel
+                                                                      data as it relies on the overlap of multimodal samples.
+The final multimodal challenge in our taxonomy is co-                     Co-training has been used for statistical parsing [178]
+learning — aiding the modeling of a (resource poor) modal-            to build better visual detectors [120] and for audio-visual
+ity by exploiting knowledge from another (resource rich)              speech recognition [40]. It has also been extended to deal
+modality. It is particularly relevant when one of the modali-         with disagreement between modalities, by filtering out
+ties has limited resources — lack of annotated data, noisy            unreliable samples [41]. While co-training is a powerful
+input, and unreliable labels. We call this challenge co-              method for generating more labeled data, it can also lead
+learning as most often the helper modality is used only               to biased training samples resulting in overfitting.
+during model training and is not used during test time.               Transfer learning is another way to exploit co-learning with
+We identify three types of co-learning approaches based on            parallel data. Multimodal representation learning (Section
+their training resources: parallel, non-parallel, and hybrid.         3.1) approaches such as multimodal deep Boltzmann ma-
+Parallel-data approaches require training datasets where the          chines [198] and multimodal autoencoders [151] transfer
+observations from one modality are directly linked to the ob-         information from representation of one modality to that of
+servations from other modalities. In other words, when the            another. This not only leads to multimodal representations,
+multimodal observations are from the same instances, such             but also to better unimodal ones, with only one modality
+as in an audio-visual speech dataset where the video and              being used during test time [151] .
+speech samples are from the same speaker. In contrast, non-               Moon et al. [143] show how to transfer information from
+parallel data approaches do not require direct links between          a speech recognition neural network (based on audio) to
+observations from different modalities. These approaches              a lip-reading one (based on images), leading to a better
+usually achieve co-learning by using overlap in terms of              visual representation, and a model that can be used for
+categories. For example, in zero shot learning when the con-          lip-reading without need for audio information during test
+ventional visual object recognition dataset is expanded with          time. Similarly, Arora and Livescu [10] build better acoustic
+a second text-only dataset from Wikipedia to improve the              features using CCA on acoustic and articulatory (location of
+generalization of visual object recognition. In the hybrid data       lips, tongue and jaw) data. They use articulatory data only
+setting the modalities are bridged through a shared modality          during CCA construction and use only the resulting acoustic
+or a dataset. An overview of methods in co-learning can be            (unimodal) representation during test time.
+seen in Table 6 and summary of data parallelism in Figure 3.
+                                                                      7.2   Non-parallel data
+7.1   Parallel data                                                   Methods that rely on non-parallel data do not require the
+In parallel data co-learning both modalities share a set of in-       modalities to have shared instances, but only shared cat-
+stances — audio recordings with the corresponding videos,             egories or concepts. Non-parallel co-learning approaches
+images and their sentence descriptions. This allows for two           can help when learning representations, allow for better
+types of algorithms to exploit that data to better model the          semantic concept understanding and even perform unseen
+modalities: co-training and representation learning.                  object recognition.
+                                                                                                                               15
+
+Table 6: A summary of co-learning taxonomy, based on data         sentations have also been useful for measuring conceptual
+parallelism. Parallel data — multiple modalities can see the      similarity and relatedness — identifying how semantically
+same instance. Non-parallel data — unimodal instances are         or conceptually related two words are [30], [101], [183] or
+independent of each other. Hybrid data — the modalities           actions [172]. Furthermore, concepts can be grounded not
+are pivoted through a shared modality or dataset.                 only using visual signals, but also acoustic ones, leading
+    D ATA PARALLELISM              TASK             R EFERENCE    to better performance especially on words with auditory
+    Parallel                                                      associations [103], or even olfactory signals [102] for words
+       Co-training                Mixture           [21], [110]   with smell associations. Finally, there is a lot of overlap
+       Transfer learning           AVSR                [151]      between multimodal alignment and conceptual grounding,
+                                Lip reading            [143]      as aligning visual scenes to their descriptions leads to better
+    Non-parallel                                                  textual or visual representations [108], [161], [172], [240].
+      Transfer learning     Visual classification       [61]
+                            Action recognition         [129]          Conceptual grounding has been found to be an effective
+       Concept grounding      Metaphor class.          [181]      way to improve performance on a number of tasks. It
+                              Word similarity          [103]      also shows that language and vision (or audio) are com-
+       Zero shot learning      Image class.         [61], [190]   plementary sources of information and combining them in
+                              Thought class.           [158]
+                                                                  multimodal models often improves performance. However,
+    Hybrid data
+      Bridging              MT and image ret.         [167]       one has to be careful as grounding does not always lead to
+                             Transliteration          [148]       better performance [102], [103], and only makes sense when
+                                                                  grounding has relevance for the task — such as grounding
+                                                                  using images for visually-related concepts.
+Transfer learning is also possible on non-parallel data and       Zero shot learning (ZSL) refers to recognizing a concept
+allows to learn better representations through transferring       without having explicitly seen any examples of it. For ex-
+information from a representation built using a data rich or      ample classifying a cat in an image without ever having
+clean modality to a data scarce or noisy modality. This type      seen (labeled) images of cats. This is an important problem
+of trasnfer learning is often achieved by using coordinated       to address as in a number of tasks such as visual object clas-
+multimodal representations (see Section 3.2). For example,        sification: it is prohibitively expensive to provide training
+Frome et al. [61] used text to improve visual representations     examples for every imaginable object of interest.
+for image classification by coordinating CNN visual features          There are two main types of ZSL — unimodal and
+with word2vec textual ones [141] trained on separate large        multimodal. The unimodal ZSL looks at component parts
+datasets. Visual representations trained in such a way result     or attributes of the object, such as phonemes to recognize
+in more meaningful errors — mistaking objects for ones            an unheard word or visual attributes such as color, size, and
+of similar category [61]. Mahasseni and Todorovic [129]           shape to predict an unseen visual class [55]. The multimodal
+demonstrated how to regularize a color video based LSTM           ZSL recognizes the objects in the primary modality through
+using an autoencoder LSTM trained on 3D skeleton data by          the help of the secondary one — in which the object has been
+enforcing similarities between their hidden states. Such an       seen. The multimodal version of ZSL is a problem facing
+approach is able to improve the original LSTM and lead to         non-parallel data by definition as the overlap of seen classes
+state-of-the-art performance in action recognition.               is different between the modalities.
+Conceptual grounding refers to learning semantic mean-                Socher et al. [190] map image features to a conceptual
+ings or concepts not purely based on language but also on         word space and are able to classify between seen and unseen
+additional modalities such as vision, sound, or even smell        concepts. The unseen concepts can be then assigned to a
+[16]. While the majority of concept learning approaches           word that is close to the visual representation — this is
+are purely language-based, representations of meaning in          enabled by the semantic space being trained on a separate
+humans are not merely a product of our linguistic exposure,       dataset that has seen more concepts. Instead of learning a
+but are also grounded through our sensorimotor experience         mapping from visual to concept space Frome et al. [61] learn
+and perceptual system [17], [126]. Human semantic knowl-          a coordinated multimodal representation between concepts
+edge relies heavily on perceptual information [126] and           and images that allows for ZSL. Palatucci et al. [158] per-
+many concepts are grounded in the perceptual system and           form prediction of words people are thinking of based on
+are not purely symbolic [17]. This implies that learning          functional magnetic resonance images, they show how it
+semantic meaning purely from textual information might            is possible to predict unseen words through the use of an
+not be optimal, and motivates the use of visual or acoustic       intermediate semantic space. Lazaridou et al. [118] present
+cues to ground our linguistic representations.                    a fast mapping method for ZSL by mapping extracted
+    Starting from work by Feng and Lapata [59], grounding         visual feature vectors to text-based vectors through a neural
+is usually performed by finding a common latent space             network.
+between the representations [59], [183] (in case of parallel
+datasets) or by learning unimodal representations sepa-           7.3   Hybrid data
+rately and then concatenating them to lead to a multimodal        In the hybrid data setting two non-parallel modalities are
+one [29], [101], [172], [181] (in case of non-parallel data).     bridged by a shared modality or a dataset (see Figure
+Once a multimodal representation is constructed it can be         3c). The most notable example is the Bridge Correlational
+used on purely linguistic tasks. Shutova et al. [181] and         Neural Network [167], which uses a pivot modality to learn
+Bruni et al. [29] used grounded representations for better        coordinated multimodal representations in presence of non-
+classification of metaphors and literal language. Such repre-     parallel data. For example, in the case of multilingual image
+                                                                                                                                                 16
+
+captioning, the image modality would always be paired                     [9]    S. Antol, A. Agrawal, J. Lu, M. Mitchell, D. Batra,
+with at least one caption in any language. Such methods                          C. Lawrence Zitnick, and D. Parikh, “VQA: Visual question
+                                                                                 answering,” in ICCV, 2015.
+have also been used to bridge languages that might not have               [10]   R. Arora and K. Livescu, “Multi-view CCA-based acoustic fea-
+parallel corpora but have access to a shared pivot language,                     tures for phonetic recognition across speakers and domains,”
+such as for machine translation [148], [167] and document                        ICASSP, pp. 7135–7139, 2013.
+transliteration [100].                                                    [11]   P. K. Atrey, M. A. Hossain, A. El Saddik, and M. S. Kankanhalli,
+                                                                                 “Multimodal fusion for multimedia analysis: A survey,” 2010.
+    Instead of using a separate modality for bridging, some               [12]   D. Bahdanau, K. Cho, and Y. Bengio, “Neural Machine Transla-
+methods rely on existence of large datasets from a similar or                    tion By Jointly Learning To Align and Translate,” ICLR, 2014.
+related task to lead to better performance in a task that only            [13]   T. Baltrušaitis, N. Banda, and P. Robinson, “Dimensional Affect
+contains limited annotated data. Socher and Fei-Fei [189] use                    Recognition using Continuous Conditional Random Fields,” in
+                                                                                 IEEE FG, 2013.
+the existence of large text corpora in order to guide image               [14]   A. Barbu, A. Bridge, Z. Burchill, D. Coroian, S. Dickinson, S. Fi-
+segmentation. While Hendricks et al. [78] use separately                         dler, A. Michaux, S. Mussman, S. Narayanaswamy, D. Salvi,
+trained visual model and a language model to lead to a                           L. Schmidt, J. Shangguan, J. M. Siskind, J. Waggoner, S. Wang,
+                                                                                 J. Wei, Y. Yin, and Z. Zhang, “Video In Sentences Out,” in Proc. of
+better image and video description system, for which only                        the Conference on Uncertainty in Artificial Intelligence, 2012.
+limited data is available.                                                [15]   K. Barnard, P. Duygulu, D. Forsyth, N. de Freitas, D. M. Blei, and
+                                                                                 M. I. Jordan, “Matching Words and Pictures,” JMLR, 2003.
+                                                                          [16]   M. Baroni, “Grounding Distributional Semantics in the Visual
+7.4   Discussion                                                                 World Grounding Distributional Semantics in the Visual World,”
+                                                                                 Language and Linguistics Compass, 2016.
+Multimodal co-learning allows for one modality to influ-                  [17]   L. W. Barsalou, “Grounded cognition,” Annual review of psychol-
+ence the training of another, exploiting the complementary                       ogy, 2008.
+information across modalities. It is important to note that               [18]   Y. Bengio, A. Courville, and P. Vincent, “Representation learning:
+                                                                                 A review and new perspectives,” TPAMI, 2013.
+co-learning is task independent and could be used to cre-                 [19]   R. Bernardi, R. Cakici, D. Elliott, A. Erdem, E. Erdem, N. Ikizler-
+ate better fusion, translation, and alignment models. This                       Cinbis, F. Keller, A. Muscat, and B. Plank, “Automatic Descrip-
+challenge is exemplified by algorithms such as co-training,                      tion Generation from Images: A Survey of Models, Datasets, and
+multimodal representation learning, conceptual grounding,                        Evaluation Measures,” JAIR, 2016.
+                                                                          [20]   J. P. Bigham, C. Jayant, H. Ji, G. Little, A. Miller, R. C. Miller,
+and zero shot learning (ZSL) and has found many applica-                         R. Miller, A. Tatarowicz, B. White, S. White, and T. Yeh, “VizWiz:
+tions in visual classification, action recognition, audio-visual                 Nearly Real-Time Answers to Vvisual Questions,” in UIST, 2010.
+speech recognition, and semantic similarity estimation.                   [21]   A. Blum and T. Mitchell, “Combining labeled and unlabeled data
+                                                                                 with co-training,” Computational learning theory, 1998.
+                                                                          [22]   P. Bojanowski, R. Lajugie, F. Bach, I. Laptev, J. Ponce, C. Schmid,
+                                                                                 and J. Sivic, “Weakly supervised action labeling in videos under
+8     C ONCLUSION                                                                ordering constraints,” in ECCV, 2014.
+As part of this survey, we introduced a taxonomy of multi-                [23]   P. Bojanowski, R. Lajugie, E. Grave, F. Bach, I. Laptev, J. Ponce,
+                                                                                 and C. Schmid, “Weakly-Supervised Alignment of Video With
+modal machine learning: representation, translation, fusion,                     Text,” in ICCV, 2015.
+alignment, and co-learning. Some of them such as fusion                   [24]   H. Bourlard and S. Dupont, “A mew ASR approach based on
+have been studied for a long time, but more recent interest                      independent processing and recombination of partial frequency
+                                                                                 bands,” in International Conference on Spoken Language, 1996.
+in representation and translation have led to a large number
+                                                                          [25]   M. Brand, N. Oliver, and A. Pentland, “Coupled hidden Markov
+of new multimodal algorithms and exciting multimodal                             models for complex action recognition,” CVPR, 1997.
+applications.                                                             [26]   C. Bregler, M. Covell, and M. Slaney, “Video rewrite: Driving
+    We believe that our taxonomy will help to catalog future                     visual speech with audio,” in SIGGRAPH, 1997.
+                                                                          [27]   M. M. Bronstein, A. M. Bronstein, F. Michel, and N. Paragios,
+research papers and also better understand the remaining                         “Data Fusion through Cross-modality Metric Learning using
+unresolved problems facing multimodal machine learning.                          Similarity-Sensitive Hashing,” in CVPR, 2010.
+                                                                          [28]   P. F. Brown, S. A. D. Pietra, V. J. D. Pietra, and R. L. Mercer,
+                                                                                 “The mathematics of statistical machine translation: Parameter
+R EFERENCES                                                                      estimation,” Computational linguistics, pp. 263–311, 1993.
+                                                                          [29]   E. Bruni, G. Boleda, M. Baroni, and N.-K. Tran, “Distributional
+[1]   “TRECVID Multimedia Event Detection 2011 Evaluation,”                      Semantics in Technicolor,” in ACL, 2012.
+      https://www.nist.gov/multimodal-information-group/                  [30]   E. Bruni, N. K. Tran, and M. Baroni, “Multimodal Distributional
+      trecvid-multimedia-event-detection-2011-evaluation, accessed:              Semantics,” JAIR, 2014.
+      2017-01-21.                                                         [31]   S. S. Bucak, R. Jin, and A. K. Jain, “Multiple Kernel Learning for
+[2]   “YouTube statistics,” https://www.youtube.com/yt/press/                    Visual Object Recognition: A Review,” TPAMI, 2014.
+      statistics.html (accessed Sept. 2016), accessed: 2016-09-30.        [32]   Y. Cao, M. Long, J. Wang, Q. Yang, and P. S. Yu, “Deep Visual-
+[3]   Dynamic Time Warping.         Berlin, Heidelberg: Springer Berlin          Semantic Hashing for Cross-Modal Retrieval,” in KDD, 2016.
+      Heidelberg, 2007, pp. 69–84.                                        [33]   J. Carletta, S. Ashby, S. Bourban, M. Flynn, M. Guillemot, T. Hain,
+[4]   A. Agrawal, D. Batra, and D. Parikh, “Analyzing the Behavior of            J. Kadlec, V. Karaiskos, W. Kraaij, M. Kronenthal, G. Lathoud,
+      Visual Question Answering Models,” in EMNLP, 2016.                         M. Lincoln, A. Lisowska, I. McCowan, W. Post, D. Reidsma, and
+[5]   C. N. Anagnostopoulos, T. Iliou, and I. Giannoukos, “Features              P. Wellner, “The AMI Meeting Corpus: A Pre-Announcement,” in
+      and classifiers for emotion recognition from speech: a survey              Int. Conf. on Methods and Techniques in Behavioral Research, 2005.
+      from 2000 to 2011,” Artificial Intelligence Review, 2012.           [34]   G. Castellano, L. Kessous, and G. Caridakis, “Emotion recogni-
+[6]   R. Anderson, B. Stenger, V. Wan, and R. Cipolla, “Expressive               tion through multiple modalities: Face, body gesture, speech,”
+      visual text-to-speech using active appearance models,” in CVPR,            LNCS, 2008.
+      2013.                                                               [35]   W. Chan, N. Jaitly, Q. Le, and O. Vinyals, “Listen, Attend, and
+[7]   G. Andrew, R. Arora, J. Bilmes, and K. Livescu, “Deep canonical            Spell: a Neural Network for Large Vocabulary Conversational
+      correlation analysis,” in ICML, 2013.                                      Speech Recognition,” in ICASSP, 2016.
+[8]   X. Anguera, J. Luque, and C. Gracia, “Audio-to-text alignment       [36]   J. Chen, Z. Chen, Z. Chi, and H. Fu, “Emotion Recognition in the
+      for speech recognition with very limited resources.” in INTER-             Wild with Feature Fusion and Multiple Kernel Learning,” ICMI,
+      SPEECH, 2014.                                                              2014.
+                                                                                                                                                    17
+
+[37]   S. Chen and Q. Jin, “Multi-modal Dimensional Emotion Recogni-       [66]   P. Gehler and S. Nowozin, “On Feature Combination for Multi-
+       tion Using Recurrent Neural Networks,” in Proceedings of the 5th           class Object Classification,” in ICCV, 2009.
+       International Workshop on Audio/Visual Emotion Challenge, 2015.     [67]   Z. Ghahramani and M. I. Jordan, “Factorial hidden Markov
+[38]   X. Chen, H. Fang, T.-Y. Lin, R. Vedantam, S. Gupta, P. Dollar,             models,” Machine Learning, 1997.
+       and L. Zitnick, “Microsoft COCO Captions: Data Collection and       [68]   M. Glodek, S. Tschechne, G. Layher, M. Schels, T. Brosch,
+       Evaluation Server,” 2015.                                                  S. Scherer, M. Kächele, M. Schmidt, H. Neumann, G. Palm, and
+[39]   J. K. Chorowski, D. Bahdanau, D. Serdyuk, K. Cho, and Y. Bengio,           F. Schwenker, “Multiple classifier systems for the classification of
+       “Attention-based models for speech recognition,” in NIPS, 2015.            audio-visual emotional states,” LNCS, 2011.
+[40]   C. M. Christoudias, K. Saenko, L.-P. Morency, and T. Darrell,       [69]   X. Glorot and Y. Bengio, “Understanding the difficulty of training
+       “Co-Adaptation of audio-visual speech and gesture classifiers,”            deep feedforward neural networks,” in International Conference on
+       in ICMI, 2006.                                                             Artificial Intelligence and Statistics, 2010.
+[41]   C. M. Christoudias, R. Urtasun, and T. Darrell, “Multi-view         [70]   M. Gönen and E. Alpaydın, “Multiple Kernel Learning Algo-
+       learning in the presence of view disagreement,” in UAI, 2008.              rithms,” JMLR, 2011.
+[42]   R. Collobert, C. Puhrsch, and G. Synnaeve, “Wav2Letter: an End-     [71]   I. J. Goodfellow, J. Pouget-Abadie, M. Mirza, B. Xu, D. Warde-
+       to-End ConvNet-based Speech Recognition System,” 2016.                     Farley, S. Ozair, A. Courville, and Y. Bengio, “Generative adver-
+[43]   P. Cosi, E. Caldognetto, K. Vagges, G. Mian, M. Contolini, C. per          sarial nets,” in NIPS, 2014.
+       Le Ricerche, and C. di Fonetica, “Bimodal recognition experi-       [72]   A. Graves, A.-r. Mohamed, and G. Hinton, “Speech recognition
+       ments with recurrent neural networks,” in ICASSP, 1994.                    with deep recurrent neural networks,” in ICASSP, 2013.
+[44]   T. Cour, C. Jordan, E. Miltsakaki, and B. Taskar, “Movie / Script   [73]   S. Guadarrama, N. Krishnamoorthy, G. Malkarnenkar, S. Venu-
+       : Alignment and Parsing of Video and Text Transcription,” in               gopalan, R. Mooney, T. Darrell, and K. Saenko, “Youtube2text:
+       ECCV, 2008, pp. 1–14.                                                      Recognizing and describing arbitrary activities using semantic
+[45]   B. Coyne and R. Sproat, “WordsEye: an automatic text-to-scene              hierarchies and zero-shot recognition,” ICCV, 2013.
+       conversion system,” in SIGGRAPH, 2001.                              [74]   A. Gupta, Y. Verma, and C. V. Jawahar, “Choosing Linguistics
+[46]   F. De la Torre and J. F. Cohn, “Facial Expression Analysis,” in            over Vision to Describe Images,” in AAAI, 2012.
+       Guide to Visual Analysis of Humans: Looking at People, 2011.        [75]   M. Gurban, J.-P. Thiran, T. Drugman, and T. Dutoit, “Dynamic
+[47]   S. Deena and A. Galata, “Speech-Driven Facial Animation Using              Modality Weighting for Multi-stream HMMs in Audio-Visual
+       a Shared Gaussian Process Latent Variable Model,” in Advances              Speech Recognition,” in ICMI, 2008.
+       in Visual Computing, 2009.                                          [76]   D. R. Hardoon, S. Szedmak, and J. Shawe-taylor, “Canonical
+[48]   M. Denkowski and A. Lavie, “Meteor Universal: Language Spe-                correlation analysis; An overview with application to learning
+       cific Translation Evaluation for Any Target Language,” in EACL,            methods,” Tech. Rep., 2003.
+       2014.                                                               [77]   A. Haubold and J. R. Kender, “Alignment of speech to highly
+[49]   J. Devlin, H. Cheng, H. Fang, S. Gupta, L. Deng, X. He, G. Zweig,          imperfect text transcriptions,” in ICME, 2007.
+       and M. Mitchell, “Language Models for Image Captioning: The         [78]   L. A. Hendricks, S. Venugopalan, M. Rohrbach, R. Mooney,
+       Quirks and What Works,” ACL, 2015.                                         K. Saenko, and T. Darrell, in CVPR, 2016.
+[50]   S. K. D’mello and J. Kory, “A Review and Meta-Analysis of           [79]   G. Hinton, L. Deng, D. Yu, G. Dahl, A.-r. Mohamed, N. Jaitly,
+       Multimodal Affect Detection Systems,” ACM Computing Surveys,               A. Senior, V. Vanhoucke, P. Nguyen, T. Sainath, and B. Kings-
+       2015.                                                                      bury, “Deep Neural Networks for Acoustic Modeling in Speech
+[51]   D. Elliott and F. Keller, “Image Description using Visual Depen-           Recognition,” IEEE Signal Processing Magazine, 2012.
+       dency Representations,” in EMNLP, no. October, 2013.                [80]   G. Hinton and R. S. Zemel, “Autoencoders, minimum description
+[52]   ——, “Comparing Automatic Evaluation Measures for Image                     length and Helmoltz free energy,” in NIPS, 1993.
+       Description,” in ACL, 2014.                                         [81]   G. E. Hinton, S. Osindero, and Y.-W. Teh, “A Fast Learning
+[53]   G. Evangelopoulos, A. Zlatintsi, A. Potamianos, P. Maragos,                Algorithm for Deep Belief Nets,” Neural Computation, 2006.
+       K. Rapantzikos, G. Skoumas, and Y. Avrithis, “Multimodal            [82]   S. Hochreiter and J. Schmidhuber, “Long short-term memory,”
+       saliency and fusion for movie summarization based on aural,                Neural computation, 1997.
+       visual, and textual attention,” IEEE Trans. Multimedia, 2013.       [83]   M. Hodosh, P. Young, and J. Hockenmaier, “Framing image de-
+[54]   Y. Fan, Y. Qian, F. Xie, and F. K. Soong, “TTS synthesis with              scription as a ranking task: Data, models and evaluation metrics,”
+       bidirectional LSTM based Recurrent Neural Networks,” in IN-                JAIR, 2013.
+       TERSPEECH, 2014.                                                    [84]   H. Hotelling, “Relations Between Two Sets of Variates,”
+[55]   A. Farhadi, I. Endres, D. Hoiem, and D. Forsyth, “Describing               Biometrika, 1936.
+       objects by their attributes,” in CVPR, 2009.                        [85]   R. Hu, H. Xu, M. Rohrbach, J. Feng, K. Saenko, and T. Darrell,
+[56]   A. Farhadi, M. Hejrati, M. A. Sadeghi, P. Young, C. Rashtchian,            “Natural Language Object Retrieval,” in CVPR, 2016.
+       J. Hockenmaier, and D. Forsyth, “Every picture tells a story:       [86]   J. Huang and B. Kingsbury, “Audio-Visual Deep Learning for
+       Generating sentences from images,” LNCS, 2010.                             Noise Robust Speech Recognition,” in ICASSP, 2013.
+[57]   F. Feng, R. Li, and X. Wang, “Deep correspondence restricted        [87]   T.-H. K. Huang, F. Ferraro, N. Mostafazadeh, I. Misra,
+       Boltzmann machine for cross-modal retrieval,” Neurocomputing,              A. Agrawal, J. Devlin, R. Girshick, X. He, P. Kohli, D. Batra et al.,
+       2015.                                                                      “Visual storytelling.” NAACL, 2016.
+[58]   F. Feng, X. Wang, and R. Li, “Cross-modal Retrieval with Corre-     [88]   A. Hunt and A. W. Black, “Unit selection in a concatenative
+       spondence Autoencoder,” in ACMMM, 2014.                                    speech synthesis system using a large speech database,” ICASSP,
+[59]   Y. Feng and M. Lapata, “Visual Information in Semantic Repre-              1996.
+       sentation,” in NAACL, 2010.                                         [89]   A. P. James and B. V. Dasarathy, “Medical image fusion : A survey
+[60]   S. Fidler, A. Sharma, and R. Urtasun, “A Sentence is Worth a               of the state of the art,” Information Fusion, vol. 19, 2014.
+       Thousand Pixels Holistic CRF model,” in CVPR, 2013.                 [90]   N. Jaques, S. Taylor, A. Sano, and R. Picard, “Multi-task , Multi-
+[61]   A. Frome, G. Corrado, and J. Shlens, “DeViSE: A deep visual-               Kernel Learning for Estimating Individual Wellbeing,” in Multi-
+       semantic embedding model,” NIPS, 2013.                                     modal Machine Learning Workshop in conjunction with NIPS, 2015.
+[62]   A. Fukui, D. H. Park, D. Yang, A. Rohrbach, T. Darrell, and         [91]   X. Jia, E. Gavves, B. Fernando, and T. Tuytelaars, “Guiding the
+       M. Rohrbach, “Multimodal Compact Bilinear Pooling for Visual               Long-Short Term Memory Model for Image Caption Generation,”
+       Question Answering and Visual Grounding,” in EMNLP, 2016.                  ICCV, 2015.
+[63]   H. Gao, J. Mao, J. Zhou, Z. Huang, L. Wang, and W. Xu, “Are         [92]   Q.-y. Jiang and W.-j. Li, “Deep Cross-Modal Hashing,” in CVPR,
+       you talking to a machine? dataset and methods for multilingual             2017.
+       image question answering,” NIPS, 2015.                              [93]   X. Jiang, F. Wu, Y. Zhang, S. Tang, W. Lu, and Y. Zhuang,
+[64]   A. Garg, V. Pavlovic, and J. M. Rehg, “Boosted learning in                 “The classification of multi-modal data with hidden conditional
+       dynamic bayesian networks for multimodal speaker detection,”               random field,” Pattern Recognition Letters, 2015.
+       Proceedings of the IEEE, 2003.                                      [94]   Q. Jin and J. Liang, “Video Description Generation using Audio
+[65]   I. D. Gebru, S. Ba, X. Li, and R. Horaud, “Audio-visual speaker            and Visual Cues,” in ICMR, 2016.
+       diarization based on spatiotemporal bayesian fusion,” TPAMI,        [95]   B. H. Juang and L. R. Rabiner, “Hidden Markov Models for
+       2017.                                                                      Speech Recognition,” Technometrics, 1991.
+                                                                                                                                                  18
+
+[96]  S. E. Kahou, X. Bouthillier, P. Lamblin, C. Gulchere, V. Michalski,   [125] F. Liu, L. Zhou, C. Shen, and J. Yin, “Multiple kernel learning
+      K. Konda, J. Sebastien, P. Froumenty, Y. Dauphin, N. Boulanger-             in the primal for multimodal Alzheimer’s disease classification,”
+      Lewandowski, R. C. Ferrari, M. Mirza, D. Warde-Farley,                      IEEE Journal of Biomedical and Health Informatics, 2014.
+      A. Courville, P. Vincent, R. Memisevic, C. Pal, and Y. Bengio,        [126] M. M. Louwerse, “Symbol interdependency in symbolic and
+      “EmoNets: Multimodal deep learning approaches for emotion                   embodied cognition,” Topics in Cognitive Science, 2011.
+      recognition in video,” Journal on Multimodal User Interfaces, 2015.   [127] D. G. Lowe, “Distinctive image features from scale-invariant
+[97] N. Kalchbrenner and P. Blunsom, “Recurrent Continuous Trans-                 keypoints,” IJCV, 2004.
+      lation Models,” in EMNLP, 2013.                                       [128] J. Lu, J. Yang, D. Batra, and D. Parikh, “Hierarchical Co-Attention
+[98] A. Karpathy and L. Fei-Fei, “Deep visual-semantic alignments for             for Visual Question Answering,” in NIPS, 2016.
+      generating image descriptions,” in CVPR, 2015.                        [129] B. Mahasseni and S. Todorovic, “Regularizing Long Short Term
+[99] A. Karpathy, A. Joulin, and L. Fei-Fei, “Deep fragment embed-                Memory with 3D Human-Skeleton Sequences for Action Recog-
+      dings for bidirectional image sentence mapping,” in NIPS, 2014.             nition,” in CVPR, 2016.
+[100] M. M. Khapra, A. Kumaran, and P. Bhattacharyya, “Everybody            [130] M. Malinowski, M. Rohrbach, and M. Fritz, “Ask your neurons:
+      loves a rich cousin: An empirical study of transliteration through          A neural-based approach to answering questions about images,”
+      bridge languages,” in NAACL, 2010.                                          in ICCV, 2015.
+[101] D. Kiela and L. Bottou, “Learning Image Embeddings using              [131] J. Malmaud, J. Huang, V. Rathod, N. Johnston, A. Rabinovich,
+      Convolutional Neural Networks for Improved Multi-Modal Se-                  and K. Murphy, “What’s cookin’? interpreting cooking videos
+      mantics,” EMNLP, 2014.                                                      using text, speech and vision,” NAACL, 2015.
+[102] D. Kiela, L. Bulat, and S. Clark, “Grounding Semantics in Olfac-      [132] E. Mansimov, E. Parisotto, J. L. Ba, and R. Salakhutdinov, “Gen-
+      tory Perception,” in ACL, 2015.                                             erating Images from Captions with Attention,” in ICLR, 2016.
+[103] D. Kiela and S. Clark, “Multi- and Cross-Modal Semantics Be-          [133] J. Mao, J. Huang, A. Toshev, O. Camburu, A. Yuille, and K. Mur-
+      yond Vision: Grounding in Auditory Perception,” EMNLP, 2015.                phy, “Generation and Comprehension of Unambiguous Object
+[104] Y. Kim, H. Lee, and E. M. Provost, “Deep Learning for Robust                Descriptions,” in CVPR, 2016.
+      Feature Generation in Audiovisual Emotion Recognition,” in            [134] J. Mao, W. Xu, Y. Yang, J. Wang, Z. Huang, and A. Yuille,
+      ICASSP, 2013.                                                               “Deep Captioning with multimodal recurrent neural networks
+[105] R. Kiros, R. Salakhutdinov, and R. S. Zemel, “Unifying Visual-              (m-RNN),” ICLR, 2015.
+      Semantic Embeddings with Multimodal Neural Language Mod-              [135] R. Mason and E. Charniak, “Nonparametric Method for Data-
+      els,” 2014.                                                                 driven Image Captioning,” in ACL, 2014.
+[106] B. Klein, G. Lev, G. Sadeh, and L. Wolf, “Fisher Vectors Derived      [136] T. Masuko, T. Kobayashi, M. Tamura, J. Masubuchi, and
+      from Hybrid Gaussian-Laplacian Mixture Models for Image An-                 K. Tokuda, “Text-to-Visual Speech Synthesis Based on Parameter
+      notation,” in CVPR, 2015.                                                   Generation from HMM,” in ICASSP, 1998.
+[107] A. Kojima, T. Tamura, and K. Fukunaga, “Natural language              [137] B. McFee and G. R. G. Lanckriet, “Learning Multi-modal Similar-
+      description of human activities from video images based on                  ity,” JMLR, 2011.
+      concept hierarchy of actions,” IJCV, 2002.                            [138] H. McGurk and J. Macdonald, “Hearing lips and seeing voices.”
+[108] C. Kong, D. Lin, M. Bansal, R. Urtasun, and S. Fidler, “What are            Nature, 1976.
+      you talking about? Text-to-Image Coreference,” in CVPR, 2014.         [139] G. McKeown, M. F. Valstar, R. Cowie, and M. Pantic, “The SE-
+[109] A. Krizhevsky, I. Sutskever, and G. E. Hinton, “ImageNet Classi-            MAINE corpus of emotionally coloured character interactions,”
+      fication with Deep Convolutional Neural Networks,” NIPS, 2012.              in IEEE International Conference on Multimedia and Expo, 2010.
+                                                                            [140] H. Mei, M. Bansal, and M. R. Walter, “Listen, attend, and
+[110] M. A. Krogel and T. Scheffer, “Multi-relational learning, text
+                                                                                  walk: Neural mapping of navigational instructions to action
+      mining, and semi-supervised learning for functional genomics,”
+                                                                                  sequences,” AAAI, 2016.
+      Machine Learning, 2004.
+                                                                            [141] T. Mikolov, I. Sutskever, K. Chen, G. S. Corrado, and J. Dean,
+[111] J. B. Kruskal, “An Overview of Sequence Comparison: Time
+                                                                                  “Distributed representations of words and phrases and their
+      Warps, String Edits, and Macromolecules,” Society for Industrial
+                                                                                  compositionality,” in NIPS, 2013.
+      and Applied Mathematics Review, vol. 25, no. 2, pp. 201–237, 1983.
+                                                                            [142] M. Mitchell, J. Dodge, A. Goyal, K. Yamaguchi, K. Stratos,
+[112] G. Kulkarni, V. Premraj, V. Ordonez, S. Dhar, S. Li, Y. Choi, A. C.
+                                                                                  A. Mensch, A. Berg, X. Han, T. Berg, and O. Health, “Midge: Gen-
+      Berg, and T. L. Berg, “BabyTalk: Understanding and generating
+                                                                                  erating Image Descriptions From Computer Vision Detections,”
+      simple image descriptions,” TPAMI, 2013.
+                                                                                  in EACL, 2012.
+[113] S. Kumar and R. Udupa, “Learning hash functions for cross-view        [143] S. Moon, S. Kim, and H. Wang, “Multimodal Transfer Deep
+      similarity search,” in IJCAI, 2011.                                         Learning for Audio-Visual Recognition,” NIPS Workshops, 2015.
+[114] P. Kuznetsova, V. Ordonez, A. C. Berg, T. L. Berg, and Y. Choi,       [144] E. Morvant, A. Habrard, and S. Ayache, “Majority vote of diverse
+      “Collective generation of natural image descriptions,” in ACL,              classifiers for late fusion,” LNCS, 2014.
+      2012.                                                                 [145] Y. Mroueh, E. Marcheret, and V. Goel, “Deep multimodal learning
+[115] J. D. Lafferty, A. McCallum, and F. C. N. Pereira, “Conditional             for Audio-Visual Speech Recognition,” in ICASSP, 2015.
+      Random Fields : Probabilistic Models for Segmenting and Label-        [146] I. Naim, Y. Song, Q. Liu, L. Huang, H. Kautz, J. Luo, and
+      ing Sequence Data,” in ICML, 2001.                                          D. Gildea, “Discriminative unsupervised alignment of natural
+[116] P. L. Lai and C. Fyfe, “Kernel and nonlinear canonical correlation          language instructions with corresponding video segments,” in
+      analysis,” International Journal of Neural Systems, 2000.                   NAACL, 2015.
+[117] Z. Z. Lan, L. Bao, S. I. Yu, W. Liu, and A. G. Hauptmann, “Mul-       [147] I. Naim, Y. C. Song, Q. Liu, H. Kautz, J. Luo, and D. Gildea, “Un-
+      timedia classification and event detection using double fusion,”            supervised Alignment of Natural Language Instructions with
+      Multimedia Tools and Applications, 2014.                                    Video Segments,” in AAAI, 2014.
+[118] A. Lazaridou, E. Bruni, and M. Baroni, “Is this a wampimuk?           [148] P. Nakov and H. T. Ng, “Improving statistical machine trans-
+      Cross-modal mapping between distributional semantics and the                lation for a resource-poor language using related resource-rich
+      visual world,” in ACL, 2014.                                                languages,” JAIR, 2012.
+[119] R. Lebret, P. O. Pinheiro, and R. Collobert, “Phrase-based Image      [149] A. V. Nefian, L. Liang, X. Pi, L. Xiaoxiang, C. Mao, and K. Mur-
+      Captioning,” ICML, 2015.                                                    phy, “A coupled HMM for audio-visual speech recognition,”
+[120] A. Levin, P. Viola, and Y. Freund, “Unsupervised improvement                Interspeech, vol. 2, 2002.
+      of visual detectors using cotraining,” in ICCV, 2003.                 [150] N. Neverova, C. Wolf, G. Taylor, and F. Nebout, “ModDrop:
+[121] S. Li, G. Kulkarni, T. Berg, A. Berg, and Y. Choi, “Composing               Adaptive multi-modal gesture recognition,” IEEE TPAMI, 2016.
+      simple image descriptions using web-scale n-grams,” in CoNLL,         [151] J. Ngiam, A. Khosla, M. Kim, J. Nam, H. Lee, and A. Y. Ng,
+      2011.                                                                       “Multimodal Deep Learning,” ICML, 2011.
+[122] Y. Li, S. Wang, Q. Tian, and X. Ding, “A survey of recent advances    [152] M. A. Nicolaou, H. Gunes, and M. Pantic, “Continuous Predic-
+      in visual feature detection,” Neurocomputing, 2015.                         tion of Spontaneous Affect from Multiple Cues and Modalities in
+[123] R. W. Lienhart, “Comparison of automatic shot boundary detec-               Valence – Arousal Space,” IEEE TAC, 2011.
+      tion algorithms,” Proceedings of SPIE, 1998.                          [153] B. Nojavanasghari, D. Gopinath, J. Koushik, T. Baltrušaitis, and
+[124] C.-Y. Lin and E. Hovy, “Automatic Evaluation of Summaries                   L.-P. Morency, “Deep multimodal fusion for persuasiveness pre-
+      Using N-gram Co-Occurrence Statistics,” NAACL, 2003.                        diction,” in ICMI, 2016.
+                                                                                                                                                           19
+
+[154] A. Noulas, G. Englebienne, and B. J. Kröse, “Multimodal Speaker               [183] C. Silberer and M. Lapata, “Grounded Models of Semantic Rep-
+      diarization,” IEEE TPAMI, 2012.                                                      resentation,” in EMNLP, 2012.
+[155] V. Ordonez, G. Kulkarni, and T. L. Berg, “Im2text: Describing                  [184] ——, “Learning Grounded Meaning Representations with Au-
+      images using 1 million captioned photographs,” in NIPS, 2011.                        toencoders,” in ACL, 2014.
+[156] W. Ouyang, X. Chu, and X. Wang, “Multi-source Deep Learning                    [185] K. Simonyan and A. Zisserman, “Very Deep Convolutional Net-
+      for Human Pose Estimation,” in CVPR, 2014.                                           works for Large-Scale Image Recognition,” in ICLR, 2015.
+[157] A. Owens, P. Isola, J. McDermott, A. Torralba, E. H. Adelson, and              [186] K. Sjölander, “An HMM-based system for automatic segmenta-
+      W. T. Freeman, “Visually Indicated Sounds,” in CVPR, 2016.                           tion and alignment of speech,” in Proceedings of Fonetik, 2003.
+[158] M. Palatucci, G. E. Hinton, D. Pomerleau, and T. M. Mitchell,                  [187] M. Slaney and M. Covell, “FaceSync: A linear operator for mea-
+      “Zero-Shot Learning with Semantic Output Codes,” in NIPS,                            suring synchronization of video facial images and audio tracks,”
+      2009.                                                                                in NIPS, 2000.
+[159] Y. Pan, T. Mei, T. Yao, H. Li, and Y. Rui, “Jointly Modeling                   [188] C. G. M. Snoek and M. Worring, “Multimodal video indexing: A
+      Embedding and Translation to Bridge Video and Language,” in                          review of the state-of-the-art,” Multimedia Tools and Applications,
+      CVPR, 2016.                                                                          2005.
+[160] K. Papineni, S. Roukos, T. Ward, and W.-j. Zhu, “BLEU: a Method                [189] R. Socher and L. Fei-Fei, “Connecting modalities: Semi-
+      for Automatic Evaluation of Machine Translation,” ACL, 2002.                         supervised segmentation and annotation of images using un-
+[161] B. A. Plummer, L. Wang, C. M. Cervantes, J. C. Caicedo, J. Hock-                     aligned text corpora,” in CVPR, 2010.
+      enmaier, and S. Lazebnik, “Flickr30k Entities: Collecting Region-              [190] R. Socher, M. Ganjoo, C. D. Manning, and A. Y. Ng, “Zero-shot
+      to-Phrase Correspondences for Richer Image-to-Sentence Mod-                          learning through cross-modal transfer,” in NIPS, 2013.
+      els,” in ICCV, 2015.                                                           [191] R. Socher, A. Karpathy, Q. V. Le, C. D. Manning, and A. Y. Ng,
+[162] S. Poria, E. Cambria, and A. Gelbukh, “Deep Convolutional                            “Grounded Compositional Semantics for Finding and Describing
+      Neural Network Textual Features and Multiple Kernel Learning                         Images with Sentences,” TACL, 2014.
+      for Utterance-level Multimodal Sentiment Analysis,” EMNLP,                     [192] M. Soleymani, M. Pantic, and T. Pun, “Multimodal emotion
+      2015.                                                                                recognition in response to videos,” TAC, 2012.
+[163] G. Potamianos, C. Neti, G. Gravier, A. Garg, and A. W. Senior,                 [193] Y. Song, L.-P. Morency, and R. Davis, “Multi-view latent variable
+      “Recent advances in the automatic recognition of audio-visual                        discriminative models for action recognition,” in CVPR, 2012.
+      speech,” Proceedings of the IEEE, 2003.                                        [194] ——, “Multimodal Human Behavior Analysis: Learning Correla-
+[164] T. Qin, T.-y. Liu, X.-d. Zhang, D.-s. Wang, and H. Li, “Global                       tion and Interaction Across Modalities,” in ICMI, 2012.
+      Ranking Using Continuous Conditional Random Fields,” in                        [195] Y. C. Song, I. Naim, A. A. Mamun, K. Kulkarni, P. Singla, J. Luo,
+      NIPS, 2008.                                                                          D. Gildea, and H. Kautz, “Unsupervised Alignment of Actions in
+[165] A. Quattoni, S. Wang, L.-P. Morency, M. Collins, and T. Darrell,                     Video with Text Descriptions,” in IJCAI, 2016.
+      “Hidden conditional random fields.” IEEE TPAMI, vol. 29, 2007.                 [196] N. Srivastava, G. E. Hinton, A. Krizhevsky, I. Sutskever, and
+[166] S. S. Rajagopalan, L.-P. Morency, T. Baltrušaitis, and R. Goecke,                   R. Salakhutdinov, “Dropout : A Simple Way to Prevent Neural
+      “Extending Long Short-Term Memory for Multi-View Structured                          Networks from Overfitting,” JMLR, 2014.
+      Learning,” ECCV, 2016.                                                         [197] N. Srivastava and R. Salakhutdinov, “Learning Representations
+[167] J. Rajendran, M. M. Khapra, S. Chandar, and B. Ravindran,                            for Multimodal Data with Deep Belief Nets,” in ICML, 2012.
+      “Bridge Correlational Neural Networks for Multilingual Multi-                  [198] N. Srivastava and R. R. Salakhutdinov, “Multimodal Learning
+      modal Representation Learning,” in NAACL, 2015.                                      with Deep Boltzmann Machines,” in NIPS, 2012.
+[168] G. A. Ramirez, T. Baltrušaitis, and L.-P. Morency, “Modeling                  [199] H. I. Suk, S.-W. Lee, and D. Shen, “Hierarchical feature represen-
+      Latent Discriminative Dynamic of Multi-Dimensional Affective                         tation and multimodal fusion with deep learning for AD/MCI
+      Signals,” in ACII workshops, 2011.                                                   diagnosis,” NeuroImage, 2014.
+[169] N. Rasiwasia, J. Costa Pereira, E. Coviello, G. Doyle, G. R.                   [200] C. Sutton and A. McCallum, “Introduction to Conditional Ran-
+      Lanckriet, R. Levy, and N. Vasconcelos, “A new approach to                           dom Fields for Relational Learning,” in Introduction to Statistical
+      cross-modal multimedia retrieval,” in ACMMM, 2010.                                   Relational Learning. MIT Press, 2006.
+[170] A. Ratnaparkhi, “Trainable methods for surface natural language                [201] M. Tapaswi, M. Bäuml, and R. Stiefelhagen, “Aligning plot syn-
+      generation,” in NAACL, 2000.                                                         opses to videos for story-based retrieval,” IJMIR, 2015.
+[171] S. Reed, Z. Akata, X. Yan, L. Logeswaran, H. Lee, and B. Schiele,              [202] ——, “Book2Movie: Aligning video scenes with book chapters,”
+      “Generative Adversarial Text to Image Synthesis,” in ICML, 2016.                     in CVPR, 2015.
+[172] M. Regneri, M. Rohrbach, D. Wetzel, S. Thater, B. Schiele, and                 [203] S. L. Taylor, M. Mahler, B.-j. Theobald, and I. Matthews, “Dy-
+      M. Pinkal, “Grounding Action Descriptions in Videos,” TACL,                          namic units of visual speech,” in SIGGRAPH, 2012.
+      2013.                                                                          [204] J. Thomason, S. Venugopalan, S. Guadarrama, K. Saenko, and
+[173] S. Reiter, B. Schuller, and G. Rigoll, “Hidden Conditional Random                    R. Mooney, “Integrating Language and Vision to Generate Nat-
+      Fields for Meeting Segmentation,” ICME, 2007.                                        ural Language Descriptions of Videos in the Wild,” in COLING,
+[174] A. Rohrbach, M. Rohrbach, and B. Schiele, “The long-short story                      2014.
+      of movie description,” in Pattern Recognition, 2015.                           [205] A. Torabi, C. Pal, H. Larochelle, and A. Courville, “Using De-
+[175] A. Rohrbach, A. Torabi, M. Rohrbach, N. Tandon, C. Pal,                              scriptive Video Services to Create a Large Data Source for Video
+      H. Larochelle, A. Courville, and B. Schiele, “Movie description,”                    Annotation Research,” 2015.
+      International Journal of Computer Vision, 2017.                                [206] G. Trigeorgis, M. A. Nicolaou, S. Zafeiriou, and B. W. Schuller,
+[176] R. Salakhutdinov and G. E. Hinton, “Deep Boltzmann Machines,”                        “Deep canonical time warping.”
+      in International conference on artificial intelligence and statistics, 2009.   [207] G. Trigeorgis, F. Ringeval, R. Brueckner, E. Marchi, M. A. Nico-
+[177] M. E. Sargin, Y. Yemez, E. Erzin, and A. M. Tekalp, “Audiovisual                     laou, B. Schuller, and S. Zafeiriou, “Adieu features? End-to-end
+      synchronization and fusion using canonical correlation analysis,”                    speech emotion recognition using a deep convolutional recurrent
+      IEEE Trans. Multimedia, 2007.                                                        network,” in ICASSP, 2016.
+[178] A. Sarkar, “Applying Co-Training methods to statistical parsing,”              [208] M. Valstar, B. Schuller, K. Smith, F. Eyben, B. Jiang, S. Bilakhia,
+      in ACL, 2001.                                                                        S. Schnieder, R. Cowie, and M. Pantic, “AVEC 2013 – The Contin-
+[179] B. Schuller, M. F. Valstar, F. Eyben, G. McKeown, R. Cowie, and                      uous Audio / Visual Emotion and Depression Recognition Chal-
+      M. Pantic, “AVEC 2011 – The First International Audio / Visual                       lenge,” in ACM International Workshop on Audio/Visual Emotion
+      Emotion Challenge,” in ACII, 2011.                                                   Challenge, 2013.
+[180] S. Shariat and V. Pavlovic, “Isotonic CCA for sequence alignment               [209] A. van den Oord, S. Dieleman, H. Zen, K. Simonyan, O. Vinyals,
+      and activity recognition,” in ICCV, 2011.                                            A. Graves, N. Kalchbrenner, A. Senior, and K. Kavukcuoglu,
+[181] E. Shutova, D. Kelia, and J. Maillard, “Black Holes and White                        “WaveNet: A Generative Model for Raw Audio,” 2016.
+      Rabbits : Metaphor Identification with Visual Features,” NAACL,                [210] A. van den Oord, N. Kalchbrenner, and K. Kavukcuoglu, “Pixel
+      2016.                                                                                Recurrent Neural Networks,” ICML, 2016.
+[182] K. Sikka, K. Dykstra, S. Sathyanarayana, G. Littlewort, and                    [211] R. Vedantam, C. L. Zitnick, and D. Parikh, “CIDEr: Consensus-
+      M. Bartlett, “Multiple Kernel Learning for Emotion Recognition                       based Image Description Evaluation Ramakrishna Vedantam,” in
+      in the Wild,” ICMI, 2013.                                                            CVPR, 2015.
+                                                                                                                                                       20
+
+[212] I. Vendrov, R. Kiros, S. Fidler, and R. Urtasun, “Order-             [243] B. P. Yuhas, M. H. Goldstein, and T. J. Sejnowski, “Integration
+      Embeddings of Images and Language,” in ICLR, 2016.                         of Acoustic and Visual Speech Signals Using Neural Networks,”
+[213] S. Venugopalan, H. Xu, J. Donahue, M. Rohrbach, R. Mooney, and             IEEE Communications Magazine, 1989.
+      K. Saenko, “Translating Videos to Natural Language Using Deep        [244] H. Zen, N. Braunschweiler, S. Buchholz, M. J. F. Gales,
+      Recurrent Neural Networks,” NAACL, 2015.                                   S. Krstulovi, and J. Latorre, “Statistical Parametric Speech Syn-
+[214] O. Vinyals, A. Toshev, S. Bengio, and D. Erhan, “Show and Tell:            thesis Based on Speaker and Language Factorization,” IEEE
+      A Neural Image Caption Generator,” in ICML, 2014.                          Transactions on Audio, Speech & Language Processing, 2012.
+[215] ——, “Show and tell: A neural image caption generator,” in            [245] H. Zen, K. Tokuda, and A. W. Black, “Statistical parametric
+      CVPR, 2015.                                                                speech synthesis,” Speech Communication, vol. 51, 2009.
+[216] S. Vogel, H. Ney, and C. Tillmann, “HMM-based word alignment         [246] K.-H. Zeng, T.-H. Chen, C.-Y. Chuang, Y.-H. Liao, J. C. Niebles,
+      in statistical translation,” in Computational Linguistics, 1996.           and M. Sun, “Leveraging Video Descriptions to Learn Video
+[217] D. Wang, P. Cui, M. Ou, and W. Zhu, “Deep Multimodal Hashing               Question Answering,” in AAAI, 2017.
+      with Orthogonal Regularization,” in IJCAI, 2015.                     [247] Z. Zeng, M. Pantic, G. I. Roisman, and T. S. Huang, “A Survey
+[218] J. Wang, H. T. Shen, J. Song, and J. Ji, “Hashing for Similarity           of Affect Recognition Methods: Audio, Visual, and Spontaneous
+      Search: A Survey,” 2014.                                                   Expressions,” IEEE TPAMI, 2009.
+[219] L. Wang, Y. Li, and S. Lazebnik, “Learning Deep Structure-           [248] D. Zhang and W.-J. Li, “Large-Scale Supervised Multimodal
+      Preserving Image-Text Embeddings,” in CVPR, 2016.                          Hashing with Semantic Correlation Maximization,” in AAAI,
+[220] W. Wang, R. Arora, K. Livescu, and J. Bilmes, “On deep multi-              2014.
+      view representation learning,” in ICML, 2015.                        [249] H. Zhang, Z. Hu, Y. Deng, M. Sachan, Z. Yan, and E. P. Xing,
+[221] J. Weston, S. Bengio, and N. Usunier, “Web Scale Image Anno-               “Learning Concept Taxonomies from Multi-modal Data,” in ACL,
+      tation: Learning to Rank with Joint Word-Image Embeddings                  2016.
+      Image Annotation,” ECML, 2010.                                       [250] F. Zhou and F. De la Torre, “Generalized time warping for multi-
+[222] ——, “WSABIE: Scaling up to large vocabulary image annota-                  modal alignment of human motion,” in CVPR, 2012.
+      tion,” in IJCAI, 2011.                                               [251] F. Zhou and F. Torre, “Canonical time warping for alignment of
+[223] M. Wöllmer, M. Kaiser, F. Eyben, B. Schuller, and G. Rigoll,              human behavior,” in NIPS, 2009.
+      “LSTM-Modeling of continuous emotions in an audiovisual af-          [252] Y. Zhu, R. Kiros, R. Zemel, R. Salakhutdinov, R. Urtasun, A. Tor-
+      fect recognition framework,” IMAVIS, 2013.                                 ralba, and S. Fidler, “Aligning Books and Movies: Towards
+[224] M. Wöllmer, A. Metallinou, F. Eyben, B. Schuller, and                     Story-like Visual Explanations by Watching Movies and Reading
+      S. Narayanan, “Context-Sensitive Multimodal Emotion Recogni-               Books,” in ICCV, 2015.
+      tion from Speech and Facial Expression using Bidirectional LSTM      [253] C. L. Zitnick and D. Parikh, “Bringing semantics into focus using
+      Modeling,” INTERSPEECH, 2010.                                              visual abstraction,” in CVPR, 2013.
+[225] D. Wu and L. Shao, “Multimodal Dynamic Networks for Gesture
+      Recognition,” in ACMMM, 2014.                                                                   Tadas Baltrušaitis is a post-doctoral asso-
+[226] Z. Wu, L. Cai, and H. Meng, “Multi-level Fusion of Audio and Vi-                                ciate at the Language Technologies Institute,
+      sual Features for Speaker Identification,” Advances in Biometrics,                              Carnegie Mellon University. His primary re-
+      2005.                                                                                           search interests lie in the automatic understand-
+[227] Z. Wu, Y.-G. Jiang, J. Wang, J. Pu, and X. Xue, “Exploring Inter-                               ing of non-verbal human behaviour, computer
+      feature and Inter-class Relationships with Deep Neural Networks                                 vision, and multimodal machine learning. In par-
+      for Video Classification,” in ACMMM, 2014.                                                      ticular, he is interested in the application of such
+[228] C. Xiong, S. Merity, and R. Socher, “Dynamic memory networks                                    technologies to healthcare settings, with a par-
+      for visual and textual question answering,” ICML, 2016.                                         ticular focus on mental health. Before joining
+[229] H. Xu and K. Saenko, “Ask, attend and answer: Exploring                                         CMU, he was a post-doctoral researcher at the
+      question-guided spatial attention for visual question answering,”                               University of Cambridge, where he also received
+      ECCV, 2016.                                                          his Ph.D and Bachelor’s degrees in Computer Science. His Ph.D re-
+[230] K. Xu, J. Ba, R. Kiros, A. Courville, R. Salakhutdinov, R. Zemel,    search focused on automatic facial expression analysis in especially
+      and Y. Bengio, “Show, attend and tell: Neural image caption          difficult real world settings.
+      generation with visual attention,” ICML, 2015.
+[231] R. Xu, C. Xiong, W. Chen, and J. J. Corso, “Jointly modeling deep
+      video and compositional text to bridge vision and language in a                               Chaitanya Ahuja is a doctoral candidate in Lan-
+      unified framework,” in AAAI, 2015.                                                            guage Technologies Institute in the School of
+[232] S. Yagcioglu, E. Erdem, A. Erdem, and R. Cakici, “A Distributed                               Computer Science at Carnegie Mellon Univer-
+      Representation Based Query Expansion Approach for Image                                       sity. His interests range in various topics in nat-
+      Captioning,” in ACL, 2015.                                                                    ural language, computer vision, computational
+[233] Y. Yang, C. L. Teo, H. Daume, and Y. Aloimonos, “Corpus-Guided                                music and machine learning. Before starting with
+      Sentence Generation of Natural Images,” in EMNLP, 2011.                                       graduate school, Chaitanya completed his Bach-
+[234] Z. Yang, X. He, J. Gao, L. Deng, and A. Smola, “Stacked Attention                             elor’s at Indian Institute of Technology, Kanpur.
+      Networks for Image Question Answering,” in CVPR, 2016.
+[235] B. Z. Yao, X. Yang, L. Lin, M. W. Lee, and S. C. Zhu, “I2T: Image
+      parsing to text description,” Proceedings of the IEEE, 2010.
+[236] L. Yao, A. Torabi, K. Cho, N. Ballas, C. Pal, H. Larochelle,                                 Louis-Philippe Morency is an Assistant Pro-
+      and A. Courville, “Describing videos by exploiting temporal                                  fessor in the Language Technology Institute at
+      structure,” in CVPR, 2015.                                                                   Carnegie Mellon University where he leads the
+[237] Y.-r. Yeh, T.-c. Lin, Y.-y. Chung, and Y.-c. F. Wang, “A Novel                               Multimodal Communication and Machine Learn-
+      Multiple Kernel Learning Framework for Heterogeneous Feature                                 ing Laboratory (MultiComp Lab). He was for-
+      Fusion and Variable Selection,” IEEE Trans. Multimedia, 2012.                                merly research assistant professor in the Com-
+[238] M. H. P. Young, A. Lai, and J. Hockenmaier, “From image                                      puter Sciences Department at University of
+      descriptions to visual denotations: New similarity metrics for                               Southern California and research scientist at
+      semantic inference over event descriptions,” TACL, 2014.                                     USC Institute for Creative Technologies. Prof.
+[239] C. Yu and D. Ballard, “On the Integration of Grounding Language                              Morency received his Ph.D. and Master degrees
+      and Lear ning Objects,” in AAAI, 2004.                                                       from MIT Computer Science and Artificial Intelli-
+[240] H. Yu and J. M. Siskind, “Grounded Language Learning from            gence Laboratory. His research focuses on building the computational
+      Video Described with Sentences,” in ACL, 2013.                       foundations to enable computers with the abilities to analyze, recog-
+[241] H. Yu, J. Wang, Z. Huang, Y. Yang, and W. Xu, “Video paragraph       nize and predict subtle human communicative behaviors during social
+      captioning using hierarchical recurrent neural networks,” CVPR,      interactions. He is currently chair of the advisory committee for ACM
+      2016.                                                                International Conference on Multimodal Interaction and associate editor
+[242] L. Yu, P. Poirson, S. Yang, A. C. Berg, and T. L. Berg, “Modeling    at IEEE Transactions on Affective Computing.
+      Context in Referring Expressions,” in ECCV, 2016.
+

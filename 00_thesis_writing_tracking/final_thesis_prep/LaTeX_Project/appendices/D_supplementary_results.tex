@@ -64,22 +64,23 @@ interval includes zero, so the direction of an adaptation effect remains uncerta
 The diagnostic compared training duration, complementary errors, branch calibration, F2
 fitting and the difference between out-of-fold and assessment scores. The available
 comparisons did not identify a cause for the variation across seeds. Class-conditional
-Brier score and log loss characterize prediction errors on actions the sensor
+Brier score and log loss characterise prediction errors on actions the sensor
 misclassified, but cannot determine whether those images contained sufficient visual
 evidence.\ev{Unresolved causal diagnosis}{\EvidenceRef{E060}{}}
 
-\section{The Same-Test 753-Action Follow-up}
+\section{The Same-Test 753-Action Follow-Up}
 The 753-action cohort is exactly original outer fold~0, not an independent external
 dataset. It contains 77 failures from 26 recordings within the full 4,530-action,
 148-recording cohort. The correspondence is established through native recording/segment
 identities, timestamps and labels, with older sample hashes retained as aliases. Failure
 prevalence is therefore different from that of the pooled five-fold assessment.
+C20 denotes the twenty-epoch full-CNN condition.
 
 \begin{table}[htbp]
 \caption{Prediction Performance on the Same 753 Held-Out Actions}\label{tab:753-supplement}
 \centering\small
 
-\begin{tabular}{lr}\hline Model/recipe&AP\\\hline
+\begin{tabular}{lr}\toprule Model/recipe&AP\\\midrule
 Original frozen visual&0.232805\\
 C20 full-CNN outer refit, seed42&0.215321\\
 Frozen CNN100&0.193776\\
@@ -89,7 +90,7 @@ Original F2 restricted to fold0&0.367155\\
 Frozen CNN100 plus F2&0.334977\\
 Full CNN100 plus F2&0.349094\\
 Frozen CNN100 plus averaging&0.348007\\
-Full CNN100 plus averaging&0.358533\\\hline
+Full CNN100 plus averaging&0.358533\\\bottomrule
 \end{tabular}
 \displaynote{Models were evaluated on identical actions with intact inputs. The
 training, calibration, and stacking procedures differed between generations.}
@@ -115,8 +116,8 @@ the static sensor and 0.447299 for F2. The C20 full-CNN model achieved pooled AP
 0.312127. The hundred-epoch follow-up assessed only 753 of those actions and produced no
 predictions for the other 3,777.
 
-Several apparent comparisons reuse identical predictions. The M3 sensor row contains the
-original sensor vector, and the hundred-epoch fusion study uses the standalone visual
+Several apparent comparisons reuse identical predictions. The static-sensor comparison reuses the
+original sensor predictions, and the hundred-epoch fusion study uses the standalone visual
 outputs. Native recording and segment keys assign the 753 outer assessment actions to 26
 recordings. The 28-recording list in the selected-fit metadata refers to the inner
 prediction bank.
@@ -130,12 +131,12 @@ datasets.\ev{Sensitivity and status inventory}{\EvidenceRef{E106}{}}
 
 \section{Saved-Prediction Check of the Core F2 Visual Term}
 The retained saved-prediction check verified 4,530 unique actions, their 509 failure
-labels, fold assignments and separation of the 148 recording groups. Section~1B's
-held-out branch columns matched Section~2's reused inputs; the sensor column also
-matched the separately saved statistical control. The original Section~1 visual
-prediction file was unavailable in the inspected workspace, so the check did not replay
-that file or reproduce training. The inspected fitting source and saved metadata order
-the columns as visual, then sensor.
+labels, fold assignments and separation of the 148 recording groups. The incremental-fusion experiment
+and the subsequent fusion-method comparison used identical held-out branch scores;
+the sensor scores also matched the separately saved statistical control. The original
+unimodal visual prediction file was unavailable for this check, so its identity could
+not be rechecked directly. The saved-prediction calculation did not reproduce training.
+The fitting implementation and metadata place the visual column before the sensor column.
 
 All visual coefficients are positive (3.099--4.063), as are all sensor coefficients
 (6.218--6.709). Reconstructing F2 from them differs from the saved probabilities by at
@@ -149,11 +150,11 @@ full-model changes.
 \centering\small
 \begin{tabular}{rrrrrr}\toprule
 Fold & Actions & Failures & Recordings & $\Delta$AP & $\Delta$AUROC\\\midrule
-0 & 753 & 77 & 26 & $+.039451$ & $+.020691$\\
-1 & 964 & 109 & 31 & $+.014616$ & $+.011674$\\
-2 & 1,037 & 125 & 32 & $+.011329$ & $+.024430$\\
-3 & 906 & 99 & 29 & $-.004689$ & $+.002891$\\
-4 & 870 & 99 & 30 & $+.036423$ & $+.020045$\\\bottomrule
+0 & 753 & 77 & 26 & $+0.039451$ & $+0.020691$\\
+1 & 964 & 109 & 31 & $+0.014616$ & $+0.011674$\\
+2 & 1,037 & 125 & 32 & $+0.011329$ & $+0.024430$\\
+3 & 906 & 99 & 29 & $-0.004689$ & $+0.002891$\\
+4 & 870 & 99 & 30 & $+0.036423$ & $+0.020045$\\\bottomrule
 \end{tabular}
 \displaynote{Failure-positive metrics on saved outer predictions. Folds share training
 data and are not independent experimental replications. No new training or interval
@@ -161,8 +162,8 @@ estimation was performed.}
 \end{table}
 Fold~3 has 3,051 corrected and 2,820 damaged positive--negative pairs. Its positive
 AUROC change and negative AP change are consistent because AP weights retrieval
-positions differently. Pooled AUROC is .779325 for sensors, .777037 after arithmetic
-omission and .794968 for F2. Fold-dependent score alignment therefore affects pooled
+positions differently. Pooled AUROC is 0.779325 for sensors, 0.777037 after arithmetic
+omission and 0.794968 for F2. Fold-dependent score alignment therefore affects pooled
 metrics without changing within-fold sensor ordering. Setting the visual probability to
 zero is a particular constant reference, not an identified decomposition of pooled
 importance. The reduced map retains jointly fitted parameters; it is not a refitted

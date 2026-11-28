@@ -1,0 +1,197 @@
+{
+  "scope": "Existing saved results; no training, inference or new uncertainty estimation.",
+  "sources": {
+    "phm": {
+      "path": "implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/loeo_summary.csv",
+      "sha256": "387bad00da06600723ce97acb96285e25a8aab18d513b2f613f23e407a7e670f"
+    },
+    "reassemble": {
+      "path": "implementations/REASSEMBLE/results/artifacts/reports/SECTION_2_FUSION_HANDOFF.md",
+      "sha256": "fdad704292c5b66c7f5f51826a041810ed3d7182aae44ec9c66f07f4a484f086"
+    },
+    "msm": {
+      "path": "implementations/MSM/results/06_evaluation_results/metrics/clean_seed_summary.csv",
+      "sha256": "c66c7bdccf9ac8b29cc2831d3185226eea0ed29973d1f72ee9751578f63cd7b1"
+    },
+    "vifailback": {
+      "path": "implementations/VIFAILBACK/10_final_research_reports/06_UNIMODAL_BASELINE_RESULTS.md",
+      "sha256": "ad60e7a0d6ee5deac23517880507fcf69af212c88e1eac6d0f6dbd5f61347833"
+    }
+  },
+  "data": {
+    "phm": [
+      {
+        "label": "Training-mean constant",
+        "role": "baseline",
+        "mean": "0.8041562656268664",
+        "low": "0.5768670948301519",
+        "high": "1.036024249986334"
+      },
+      {
+        "label": "Single encoder",
+        "role": "sensor",
+        "mean": "0.9414550857205523",
+        "low": "0.6754331663779581",
+        "high": "1.2264327550741583"
+      },
+      {
+        "label": "Three-group fusion",
+        "role": "fusion",
+        "mean": "0.8237856498447172",
+        "low": "0.5527117311990568",
+        "high": "1.1014949376499086"
+      }
+    ],
+    "reassemble": [
+      {
+        "label": "Frozen vision",
+        "role": "vision",
+        "mean": "0.2307",
+        "low": "0.1983",
+        "high": "0.2701"
+      },
+      {
+        "label": "Statistical sensors",
+        "role": "sensor",
+        "mean": "0.4294",
+        "low": "0.3801",
+        "high": "0.4828"
+      },
+      {
+        "label": "F1: probability mean",
+        "role": "fusion",
+        "mean": "0.4457",
+        "low": "0.3949",
+        "high": "0.4989"
+      },
+      {
+        "label": "F2: logistic stacker",
+        "role": "fusion",
+        "mean": "0.4473",
+        "low": "0.3968",
+        "high": "0.5019"
+      },
+      {
+        "label": "F3: representation fusion",
+        "role": "fusion",
+        "mean": "0.4122",
+        "low": "0.3593",
+        "high": "0.4672"
+      },
+      {
+        "label": "F4: action gate",
+        "role": "fusion",
+        "mean": "0.4437",
+        "low": "0.3935",
+        "high": "0.4974"
+      },
+      {
+        "label": "F5: quality gate",
+        "role": "fusion",
+        "mean": "0.4445",
+        "low": "0.3957",
+        "high": "0.4958"
+      },
+      {
+        "label": "F6: combined gate",
+        "role": "fusion",
+        "mean": "0.4414",
+        "low": "0.3935",
+        "high": "0.4937"
+      }
+    ],
+    "msm": [
+      {
+        "label": "Frozen vision",
+        "role": "vision",
+        "mean": "0.29890082128328205",
+        "sd": "0.01085263859430467"
+      },
+      {
+        "label": "Sensor logistic regression",
+        "role": "sensor",
+        "mean": "0.8286159038447517",
+        "sd": "0.0"
+      },
+      {
+        "label": "Sensor HGB",
+        "role": "sensor",
+        "mean": "0.9012994485030507",
+        "sd": "0.0"
+      },
+      {
+        "label": "Equal averaging",
+        "role": "fusion",
+        "mean": "0.735594058424291",
+        "sd": "0.015941694923660536"
+      },
+      {
+        "label": "F2",
+        "role": "fusion",
+        "mean": "0.7568786476633792",
+        "sd": "0.011081594297968502"
+      },
+      {
+        "label": "F2-aug",
+        "role": "fusion",
+        "mean": "0.7601695279497706",
+        "sd": "0.009782715750339413"
+      },
+      {
+        "label": "QG-clean",
+        "role": "fusion",
+        "mean": "0.837418330931952",
+        "sd": "0.013389330969395645"
+      },
+      {
+        "label": "QG-aug",
+        "role": "fusion",
+        "mean": "0.8265208828861524",
+        "sd": "0.016168154655082333"
+      }
+    ],
+    "vifailback": [
+      {
+        "label": "Frozen vision V1",
+        "role": "vision",
+        "failure": "0.853052",
+        "success": "0.137260",
+        "macro": "0.495156"
+      },
+      {
+        "label": "Sensor logistic regression",
+        "role": "sensor",
+        "failure": "0.954370",
+        "success": "0.343577",
+        "macro": "0.648974"
+      },
+      {
+        "label": "Sensor HGB",
+        "role": "sensor",
+        "failure": "0.970510",
+        "success": "0.429530",
+        "macro": "0.700020"
+      },
+      {
+        "label": "Equal averaging",
+        "role": "fusion",
+        "failure": "0.931760",
+        "success": "0.289037",
+        "macro": "0.610399"
+      },
+      {
+        "label": "Original F2",
+        "role": "fusion",
+        "failure": "0.945168",
+        "success": "0.312405",
+        "macro": "0.628787"
+      }
+    ]
+  },
+  "uncertainty": {
+    "phm": "Retained run-cluster 95% intervals; fixed fitted models.",
+    "reassemble": "Retained recording-cluster 95% intervals; fixed fitted models; individual-score intervals.",
+    "msm": "Plus/minus sample SD across three fixed seeds, not a confidence interval.",
+    "vifailback": "Seed42 pooled class-specific and macro AP; no uncertainty bars."
+  }
+}

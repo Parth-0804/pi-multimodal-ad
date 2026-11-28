@@ -1,0 +1,590 @@
+                     This CVPR workshop paper is the Open Access version, provided by the Computer Vision Foundation.
+                                      Except for this watermark, it is identical to the accepted version;
+                                the final published version of the proceedings is available on IEEE Xplore.
+
+
+
+
+                               Back to the Feature:
+    Classical 3D Features are (Almost) All You Need for 3D Anomaly Detection
+
+                                      Eliahu Horwitz, Yedid Hoshen
+                               School of Computer Science and Engineering
+                                The Hebrew University of Jerusalem, Israel
+                            http://www.vision.huji.ac.il/3d_ads/
+                       {eliahu.horwitz, yedid.hoshen}@mail.huji.ac.il
+
+
+
+
+Figure 1. Color and 3D - better together: Objects can be anomalous in both shape and texture. Some shape anomalies are easily detected
+as sharp deformations in the 3D shape (marked in red, two leftmost objects - cookie and potato). In such cases, color is ineffective; the
+anomalies cannot be detected in top-row views1 . Conversely, 3D information often cannot identify texture anomalies e.g., deformation in
+cable gland, color of foam (two rightmost objects). These anomalies are easily detected in the 2D color images
+
+                          Abstract                                     role in the performance. We uncover a simple 3D-only
+                                                                       method that beats all recent approaches while not using
+    Despite significant advances in image anomaly detection            deep learning, external pre-training datasets, or color in-
+and segmentation, few methods use 3D information. We uti-              formation. As the 3D-only method cannot detect color and
+lize a recently introduced 3D anomaly detection dataset to             texture anomalies, we combine it with color-based features,
+evaluate whether or not using 3D information is a lost op-             significantly outperforming previous state-of-the-art. Our
+portunity. First, we present a surprising finding: standard            method, dubbed BTF (Back to the Feature) achieves pixel-
+color-only methods outperform all current methods that                 wise ROCAUC: 99.3% and PRO: 96.4% on MVTec 3D-AD.
+are explicitly designed to exploit 3D information. This is
+counter-intuitive as even a simple inspection of the dataset
+shows that color-only methods are insufficient for images              1. Introduction
+containing geometric anomalies. This motivates the ques-
+tion: how can anomaly detection methods effectively use                   Although 3D understanding is fundamental to com-
+3D information? We investigate a range of shape represen-              puter vision, it has typically not been considered by im-
+tations including hand-crafted and deep-learning-based;                age anomaly detection and segmentation approaches, prob-
+we demonstrate that rotation invariance plays the leading              ably because of the lack of suitable datasets. To encour-
+
+
+
+                                                                    2968
+age research into 3D anomaly detection and segmentation                             • Identifying that current 2D representations signifi-
+(AD&S), the MVTec 3D-AD [6] dataset was recently intro-                               cantly outperform 3D representations on 3D data.
+duced alongside several baseline methods for 3D AD&S.
+                                                                                    • Discovering that rotation invariant representations are
+However, despite the existence of a 3D AD&S dataset, the
+                                                                                      key for 3D AD&S.
+role of 3D information, as opposed to color-only, is still un-
+clear. We conduct a careful study seeking answers to several                        • Proposing BTF, a method that combines handcrafted
+questions:                                                                            3D representations (FPFH) with a deep, color-based
+                                                                                      method (PatchCore), outperforming the state-of-the-
+  1. Do current 3D AD&S methods truly outperform state-
+                                                                                      art by a wide margin.
+     of-the-art 2D methods on 3D data?
+  2. Is 3D information potentially useful for AD&S?                            2. Related Work
+  3. What are the key properties of successful 3D AD&S                            Anomaly detection and segmentation. Anomaly de-
+     representations?                                                          tection methods have been researched for several decades,
+                                                                               most approaches are based either on density estimation or
+  4. Are there complementary benefits from using 3D                            out-of-domain generalization ideas. Classical approaches
+     shape and color modalities?                                               include: k-Nearest-Neighbors (kNN) [15], KDE [24],
+                                                                               GMM [18], PCA [23], one class SVM (OCSVM) [39], and
+   As very few previous image AD&S methods have used
+                                                                               isolation forests [26]. With the advent of deep learning,
+3D information, we conducted a preliminary investigation
+                                                                               these methods were extended with deep representations in-
+of baseline methods on the MVTec-3D dataset. Perhaps
+                                                                               cluding: DAGMM [44] extending PCA, and DeepSVDD
+surprisingly, color-only methods (e.g. PatchCore [33]) out-
+                                                                               [34] extending OCSVM. A novel line of work extends
+perform all current 3D AD&S methods by a wide margin.
+                                                                               self-supervised approaches to anomaly detection, including
+Next, we ask whether 3D information is potentially use-
+                                                                               Golan and El-Yaniv [19], and Hendrycks et al. [22] that
+ful for AD&S. Encouragingly, we find that several types
+                                                                               extend RotNet [17] and CSI [41] who extend contrastive
+of anomalies go undetected when using color-only infor-
+                                                                               methods [10, 20, 21]. We follow another line of works that
+mation (see Fig. 1 leftmost two, top row). In the bottom
+                                                                               assumes the availability of pre-trained representations and
+row, we present another view of the same objects, rendered
+                                                                               combines them with a kNN scoring function. Such works
+using the 3D point cloud, where the anomalies are easily
+                                                                               include Perera and Patel [28], and PANDA [31]. These
+detected1 .
+                                                                               works have been extended to anomaly segmentation includ-
+   Having shown that 3D information is often needed for
+                                                                               ing SPADE [11], PADIM [13] and PatchCore [33]. Very
+AD&S, our goal is to identify effective 3D representations
+                                                                               recent works have used more advanced density estimation
+for AD&S. We investigate a broad range of hand-crafted
+                                                                               models on the extracted representation, an example is Fast-
+and deep representations and find that rotation invariance is
+                                                                               Flow [43]. Other approaches for anomaly segmentation in-
+key for 3D AD&S. Our surprising result: a classical, hand-
+                                                                               clude Student-Teacher autoencoder approaches [5] as well
+crafted 3D point cloud descriptor outperforms all other cur-
+                                                                               as self-supervised methods that synthesize anomalies such
+rent methods, including learning-based representations.
+                                                                               as CutPaste [25] and NSA [38].
+   Notwithstanding the previous results, it is clear that color
+                                                                                  Anomaly detection and segmentation with 3D infor-
+information is helpful. E.g., we present some examples
+                                                                               mation. In contrast to the large amount of research on
+from MVTec 3D-AD where the anomaly is much clearer
+                                                                               2D anomaly detection approaches, 3D anomaly detection
+in the color than in the shape (Fig. 1, rightmost two ex-
+                                                                               has not been extensively researched. In medical imaging
+amples). This motivates our final approach, BTF (Back to
+                                                                               research, work was performed to adapt anomaly detection
+the Feature) which combines 3D and color to achieve the
+                                                                               methods to voxel data. Simarro et al. [40] extend f-Anogan
+best-recorded result on the MVTec 3D-AD dataset by a very
+                                                                               [36, 37] to 3D. Bengs et al. [3] presented a 3D autoencoder
+wide margin (99.3% Pixel-wise ROCAUC, 96.4% PRO, and
+                                                                               approach for medical voxel data. Voxel data is significantly
+87.3% Image ROCAUC).
+                                                                               different from point cloud 3D data. Bergmann et al. [6] rec-
+   Our main contributions in this paper are:
+                                                                               ognized that a dataset for anomaly segmentation in 3D point
+   • Conducting a thorough analysis of the important and                       cloud data is missing and introduced MVTec 3D-AD [6].
+     unexplored field of anomaly detection and segmenta-                       We expect this to be a critical contribution to the develop-
+     tion for images with color and 3D information.                            ment of 3D anomaly detection and segmentation. Concur-
+   1 Note that the black back-plane of the images was removed for visu-
+                                                                               rently to our work, Bergmann and Sattlegger [7] introduced
+alization purposes. In some cases, this removal is only possible given the
+                                                                               a 3D point cloud based approach dubbed 3D − ST128 for
+3D information (e.g. We cannot tell apart the hole from the chocolate by       anomaly detection, we include this work in our investiga-
+looking only at the color image, 3D information is needed).                    tion.
+
+
+
+                                                                             2969
+         3D Input                    2D View                         GT                       RGB iNet                    Depth iNet
+
+
+
+
+           Raw                          HoG                         SIFT                        FPFH                         BTF
+
+Figure 2. Anomaly Heatmaps (Pixel-wise): The distance heatmaps are shown for each method. The PRO and P-ROC metrics use these
+distances for the final score. Blue colors indicate large distances (i.e., more anomalous) while red colors are smaller distances (i.e., less
+anomalous). Anomalies are indicated in red. “iNet“ indicates ImageNet pre-trained features
+
+
+3. Problem Definition                                                     plicity, such approaches are very accurate, require no train-
+                                                                          ing, and can be significantly sped up.
+3.1. Setting
+                                                                          3.2. 3D Representations
+    We assume a set of input training samples x1 , x2 ..xN
+that are all normal. At test time, we are given a test sample                 Although RGB images are the default modality, they
+y. The goal of anomaly detection is to learn a sample-level               lack explicit 3D information. Other representations con-
+scoring function σd , such that σd (y) > 0 for anomalous                  tain direct 3D information e.g., depth maps, organized point
+samples and σd (y) ≤ 0 for normal ones. The goal of                       clouds, unorganized point clouds, and voxels. Both orga-
+anomaly segmentation is to learn a pixel-level scoring func-              nized and unorganized point clouds represent the XYZ lo-
+tion σs , which satisfies σs (y, i) > 0 if pixel i of sample y            cation of points in 3D space. However, Organized point
+is anomalous, and σs (y, i) ≤ 0 if it is normal.                          clouds retain spatial relation and can thus be treated as im-
+    Many current state-of-the-art methods (e.g. SPADE [11],               ages, allowing the use of RGB-based methods (e.g. CNN).
+PatchCore [33]) follow the following stages: i) Extracting                Unorganized point clouds, in contrast, do not retain spa-
+representation of local regions ii) Estimating the probability            tial relation and thus require specific methods and models.
+density of normal local regions. For example, PatchCore                   Finally, voxels are derived from point clouds and can be
+and SPADE perform the density estimation by the nearest-                  thought of as a 3D extension of pixels. For brevity we use
+neighbor distance to the normal training dataset.                         the term “pixel“ throughout the paper, however, depending
+    Representation. We first compute a representation of                  on the context, it may refer to any of the above representa-
+each local region that may consist of one or more pix-                    tions.
+els. The representation of region j of image x is denoted
+ϕ(x, j). In this paper we focus on the representation stage,
+                                                                          3.3. Benchmark
+particularly, our goal is to find learned or handcrafted rep-                Our investigation uses the recently published MVTec
+resentations for 3D AD&S.                                                 3D Anomaly Detection dataset [6]. It contains over 4000
+    Anomaly scoring. Given the representations for every                  high-resolution 3D scans of industrially manufactured prod-
+local region j of every training image x, we can train a                  ucts across 10 categories. Each sample is represented by
+model σs (y, j) which computes the likelihood of a new                    an organized point cloud and a corresponding RGB im-
+representation ϕ(y, j ′ ). Although some approaches train                 age with a one-to-one mapping between the pixels in the
+parametric models for the density of the representations,                 point cloud and those in the RGB image. Five of the
+non-parametric approaches are much simpler and require                    classes in the dataset exhibit natural variations (bagel, car-
+no training. Specifically, we use the k-Nearest-Neighbor                  rot, cookie, peach, and potato). The classes cable gland
+distance of representation ϕ(y, j ′ ) to the set of all training          and dowel are of rigid bodies, while the classes foam, rope,
+representations S = {ϕ(x, j) ∀x ∀j}. Despite their sim-                   and tire are “man-made“ but deformable. Bergmann et al.
+
+
+
+                                                                      2970
+Table 1. MVTec Baselines vs. 2D RGB: Average metrics across
+all classes, best performing MVTec 3D-AD methods are shown
+
+     Voxel          Voxel + RGB                                       Point Cloud                         RGB
+     GAN               GAN                                            3D − ST128                        PatchCore
+ PRO I-ROC PRO                         I-ROC                      PRO I-ROC PRO I-ROC
+ 0.583 0.537 0.639                      0.517                    0.833                             -   0.876 0.785
+
+
+
+                                                                                                                       Figure 3. 3D-Aware Preprocessing: A nuisance artifact in the
+[6] introduced three baselines for the dataset: GAN-based,
+                                                                                                                       fabric
+Autoencoder-based (AE), and Variation Model (VM) - a
+simple baseline based on per-pixel mean and standard de-
+viation. These models operate either on the depth images                                                               Net10 [42] for pre-training their teacher model. We present
+or in voxel space with additional variants that operate on                                                             the results in Tab. 1. Surprisingly, PatchCore, which does
+3D+RGB information.                                                                                                    not use 3D information, outperforms all previous methods.
+3.4. Evaluation Metrics                                                                                                   Conclusion. Currently, state-of-the-art methods for
+                                                                                                                       image AD&S that use only color information, outperform
+    We use several evaluation metrics. Image-level anomaly                                                             3D AD&S methods that use 3D or 3D + color information.
+detection is measured using image-level ROCAUC [9] (de-
+noted I-ROC). Two pixel-level metrics are used for anomaly
+segmentation: i) pixel-wise ROCAUC, an extension of the                                                                4.2. Is 3D information potentially useful for AD&S?
+standard ROCAUC for the pixel level which simply treats
+each pixel in the dataset as a sample and computes the RO-                                                                 Provided the results of Sec. 4.1, we are faced with a
+CAUC over all pixels in the dataset (denoted P-ROC). ii)                                                               second question: “Is 3D information potentially useful for
+The PRO [4] metric, defined as the average relative overlap                                                            AD&S?“. Below we present two cases in which 3D infor-
+of the binary prediction P with each ground truth connected                                                            mation is indeed useful for AD&S.
+component Ck where K denotes the number of ground truth                                                                    Ambiguous geometry. Frequently, we are unable to deter-
+components. The final metric is computed by integrating                                                                mine the underlying geometry of an object by only looking
+this curve up to some false positive rate and normalizing                                                              at the color information of the object. In such cases, 3D in-
+                                                                                                                       formation may reveal the true geometry. We present several
+                                                                                                                       examples of such cases in the left half of Fig. 1-top row,
+                  \mathrm {PRO} = \frac {1}{K} \sum _{k=1}^{K} \frac {|P \cap C_{k}|}{|C_{k}|},                        the anomaly in each object cannot be detected from color
+                                                                                                                       information only. In the bottom row, using the 3D informa-
+   Following common practice, unless otherwise stated, we                                                              tion, we present another view of the same objects where the
+use the integration limit of 0.3.                                                                                      anomalies are easily detected. In the case of the cookie1 ,
+                                                                                                                       looking at the color-only image, the hole blends in with the
+4. An Empirical Investigation of 3D AD&S                                                                               rest of the chocolate chips, making it hard to visually iden-
+                                                                                                                       tify the image as anomalous. Using the 3D information, we
+4.1. Do current 3D methods beat 2D methods?                                                                            visualize the cookie from a different angle, making it easy
+   We begin our investigation by evaluating if current 3D                                                              to spot the anomaly. Looking at the image of the potato, it
+AD&S methods are actually better than the SoTA 2D meth-                                                                is hard to infer the geometry of the dent from shadow and
+ods when applied on 3D data. To represent 3D methods,                                                                  texture. However, viewing the potato from different angles
+we test two approaches: i) Voxel GAN [6], a generative                                                                 (by using the 3D information), the different texture reveals
+method proposed as a baseline for 3D AD&S. While it has                                                                the dent.
+several variants, we use the best performing ones, which                                                                   Background variation. Curated datasets usually con-
+are “Voxel“ and “Voxel + RGB“. ii) 3D-ST [8], a concur-                                                                tain synthetic conditions such as centered objects and clean
+rent method that uses a point cloud student-teacher model                                                              backgrounds, but the reality is seldom so simple. Many
+to learn 3D representations. We use PatchCore [33] to                                                                  methods mistakenly classify cluttered image backgrounds
+represent color-based image AD&S methods. Importantly,                                                                 as anomalous. Although background segmentation is not
+PatchCore uses features that were pre-trained on the Ima-                                                              trivial, it is far easier when the 3D information is provided.
+geNet [14] dataset, which has been shown to be highly ef-                                                              We found cases in the MVTec-3D datasets where back-
+fective for image AD&S. In contrast, 3D-ST used Model-                                                                 grounds nuisance artifacts triggered false-positive alerts.
+
+
+
+                                                                                                                     2971
+Table 2. Summary of Our Findings: Average metrics across all classes, “iNet“ indicates ImageNet pre-trained, PC indicates point cloud
+
+               Modality     RGB Depth Depth Depth Depth Depth PC PC + RGB PC  RGB + PC
+               Method       iNet iNet NSA Raw HoG SIFT FPFH PointNeXt SpinNet   BTF
+               PRO          0.876 0.586 0.572 0.191 0.614 0.866 0.924                0.380       0.654       0.964
+               I-ROC        0.785 0.637 0.696 0.528 0.560 0.714 0.753                0.587       0.524       0.865
+               P-ROC        0.966 0.821 0.817 0.548 0.845 0.954 0.980                0.687       0.873       0.993
+
+
+
+We demonstrate such a case in Fig. 3, the background fabric          ant to small translations. On the other hand, HoG is not
+contains “wave“ like patterns which are hard to detect given         invariant to global rotations, a much-desired property for
+the dark background color.                                           3D representations. Additionally, the small context of HoG
+   Conclusion. 3D information is often required to identify          makes it invariant to local geometric changes. This is coun-
+anomalies, even when color is available.                             terproductive to our goal of detecting anomalies - usually
+                                                                     manifested as local geometric changes.
+4.3. What are the key properties of successful 3D                    Dense Scale-Invariant Feature Transform (D-SIFT). In con-
+     AD&S representations?                                           trast to HoG, SIFT [27] is rotation, scale, and shift-invariant
+   Having shown that 3D information is under-utilized                as it is rotated to align the most dominant direction to the
+by current methods, and having established the necessity             base orientation. This reduces the rotation ambiguity al-
+of 3D information for image AD&S, we now seek to                     lowing matches between rotated images.
+answer a third question: “What are the key properties of             Results. HoG significantly boosts pixel-level accuracy,
+successful 3D AD&S representations?“. We distinguish                 achieving better results than raw and learning-based fea-
+among several categories.                                            tures. These strong results are obtained despite HoG not be-
+                                                                     ing specifically designed for 3D information. Finally, the D-
+Learning-based representations designed for images.                  SIFT descriptor is able to surpass all previous depth-based
+We adapt the two most popular learning-based image                   results (including learning-based ones) on all three metrics.
+AD&S paradigms to 3D data: i) ImageNet pre-trained fea-              3D rotation-Invariant Representations.               Rotation-
+tures ii) Self-supervised methods.                                   invariant features were very effective on depth maps. We
+Depth-only ImageNet features. Motivated by the impres-               now ask if rotation-invariant 3D features can do better?
+sive results of ImageNet pre-trained features on color im-           Fast Point Feature Histograms (FPFH) [35]. The method
+ages (Sec. 4.1), we apply PatchCore on depth images.                 first computes the k-Nearest-Neighboring points to the re-
+NSA. A different class of learning-based methods ap-                 gion center point. It then computes a histogram-based rep-
+proaches AD&S from a generative perspective. CutPaste                resentation as a function of the surface normals and vector
+and NSA [25,38] are recent works that try to mimic anoma-            distance to the nearest neighbors. We choose this as the
+lies by pasting image patches at different image locations.          representative due to its time-tested excellent performance.
+Specifically, NSA uses Poisson blending [29] to make these           Point-cloud specific learning-based representations.
+augmentations appear more natural.                                   PointNeXt [30]. A U-Net [32] architecture in which the en-
+Results. ImageNet pre-trained features significantly outper-         coder hierarchically abstracts the point cloud features while
+form NSA on depth images (Tab. 2). Both approaches un-               the decoder gradually interpolates the abstracted features.
+derperform PatchCore applied to color images.                        SpinNet [1]. A rotation invariant, learning-based represen-
+Handcrafted Image Representations. Depth patterns are                tation learning method. A transformation and voxelization
+often much simpler than color patterns. We hypothesize               phase make the model rotation invariant.
+that a simple, handcrafted descriptor should suffice. The            Results. Compared to most methods mentioned above,
+following depth representations do not require external data         PointNeXt falls short. SpinNet performs better than Point-
+or training.                                                         NeXt (another indicator of the importance of the rotation
+Raw Depth Values. Here, we test perhaps the simplest pos-            invariance), yet fails to surpass the proposed rotation in-
+sible representation, the raw depth values of a patch.               variant, handcrafted methods. See Tab. 3, Fig. 5, and the
+Histogram of Oriented Gradients (HoG). HoG [12] con-                 supplementary materials (SM) for the results.
+siders image gradients and uses histograms to capture the            Conclusion. FPFH outperforms all methods that use color,
+distribution of gradient orientations in a patch. This is po-        depth, or both (Tab. 2). The results show that strong, hand-
+tentially more powerful than raw values as the descriptor            crafted, rotation-invariant 3D representations are extremely
+encodes the spatial structure of the data while being invari-        effective for AD&S when 3D information is available. Fur-
+
+
+
+                                                                  2972
+Table 3. Detailed PRO Results: Top half are current state-of-the-art, bottom half are methods investigated by us. Many of our methods
+outperform all current methods by a wide margin. “iNet“ indicates ImageNet pre-trained
+
+                                             Cable
+                    Method           Bagel           Carrot   Cookie   Dowel    Foam    Peach    Potato    Rope     Tire    Mean
+                                             Gland
+                    Voxel GAN        0.440   0.453   0.825    0.755    0.782    0.378   0.392     0.639   0.775    0.389    0.583
+                             + RGB   0.664   0.620   0.766    0.740    0.783    0.332   0.582     0.790   0.633    0.483    0.639
+                    Voxel AE         0.260   0.341   0.581    0.351    0.502    0.234   0.351     0.658   0.015    0.185    0.348
+                             + RGB   0.467   0.750   0.808    0.550    0.765    0.473   0.721     0.918   0.019    0.170    0.564
+ Previous Methods
+
+
+
+
+                    Voxel VM         0.453   0.343   0.521    0.697    0.680    0.284   0.349     0.634   0.616    0.346    0.492
+                             + RGB   0.510   0.331   0.413    0.715    0.680    0.279   0.300     0.507   0.611    0.366    0.471
+                    Depth GAN        0.111   0.072   0.212    0.174    0.160    0.128   0.003     0.042   0.446    0.075    0.143
+                            + RGB    0.421   0.422   0.778    0.696    0.494    0.252   0.285     0.362   0.402    0.631    0.474
+                    Depth AE         0.147   0.069   0.293    0.217    0.207    0.181   0.164     0.066   0.545    0.142    0.203
+                            + RGB    0.432   0.158   0.808    0.491    0.841    0.406   0.262     0.216   0.716    0.478    0.481
+                    Depth VM         0.280   0.374   0.243    0.526    0.485    0.314   0.199     0.388   0.543    0.385    0.374
+                            + RGB    0.388   0.321   0.194    0.570    0.408    0.282   0.244     0.349   0.268    0.331    0.335
+                    3D − ST128       0.950   0.483   0.986    0.921    0.905    0.632   0.945     0.988   0.976    0.542    0.833
+                    RGB iNet         0.898   0.948   0.927    0.872    0.927    0.555   0.902     0.931   0.903    0.899    0.876
+                    Depth iNet       0.701   0.544   0.791    0.835    0.531    0.100   0.800     0.549   0.827    0.185    0.586
+                    NSA              0.724   0.228   0.716    0.856    0.320    0.432   0.712     0.655   0.818    0.258    0.572
+ Our Findings
+
+
+
+
+                    Raw              0.040   0.047   0.433    0.080    0.283    0.099   0.035     0.168   0.631    0.093    0.191
+                    HoG              0.518   0.609   0.857    0.342    0.667    0.340   0.476     0.893   0.700    0.739    0.614
+                    SIFT             0.894   0.722   0.963    0.871    0.926    0.613   0.870     0.973   0.958    0.873    0.866
+                    FPFH             0.972   0.849   0.981    0.939    0.963    0.693   0.975     0.981   0.980    0.949    0.928
+                    PointNext        0.425   0.294   0.365    0.772    0.227    0.151   0.408     0.101   0.771    0.295    0.380
+                    SpinNet          0.635   0.316   0.922    0.780    0.870    0.380   0.585     0.699   0.955    0.400    0.654
+                    BTF              0.976   0.967   0.979    0.974    0.971    0.884   0.976     0.981   0.959    0.971    0.964
+
+
+
+thermore, as anomalies are usually local and “fine-grained“,             sentations are extracted using the ImageNet-based method
+using only a small subset of points (as required by many                 discussed in Sec. 4.1 and 3D representations are extracted
+deep-learning-based methods) reduces performance.                        using FPFH as discussed in Sec. 4.3. We concatenate these
+                                                                         two representations, forming a color + 3D representation
+4.4. Are there complimentary benefits from using                         which we dub BTF (Back to the Feature).
+      both 3D and color modalities?
+   While the best depth-only representation outperformed                 Results. Compared with the previous best method of com-
+existing color-only representations, we hypothesize that                 bining 3D and RGB (“Voxel GAN + RGB“), our BTF im-
+combining them might achieve the best of both worlds. In                 proves the PRO (i.e. anomaly segmentation) metric by
+some cases, geometry alone does not suffice for detecting                32.5% and I-ROC (i.e. anomaly detection) by 33.6%. Com-
+anomalies. Two examples are fine textures and color-based                pared to using only 3D information, our BTF improves on
+anomalies. The “cable gland“ in Fig. 1-right is slightly                 FPFH by 3.6% PRO and 12% I-ROC. Moreover, it achieves
+scraped. While this anomalous texture is clearly observed                a score of 99.3% on P-ROC, a 1.3% improvement over
+in the color image, it is virtually impossible to detect with            FPFH (Tab. 3, Fig. 5). Other color and 3D combinations
+the current resolution of the 3D information. This is even               and extended results are found in the SM.
+more apparent in the foam example, wherein the anomaly is
+manifested as a change in color. As our exclusive focus on
+3D fails to account for certain anomalies, it is necessary to            Conclusion. By combining color and 3D information, our
+combine 3D and color information.                                        BTF representation makes use of complementary attributes
+   BTF - A Combined color + 3D Approach. We take a                       from both modalities, achieving the best results to date on
+combined color + 3D approach. To this end, color repre-                  the MVTec 3D-AD dataset.
+
+
+
+                                                                       2973
+        3D Input                    2D View                       GT                         RGB iNet                      Depth iNet
+
+
+
+
+           Raw                        HoG                         SIFT                         FPFH                            BTF
+
+Figure 4. Most Distant Patch (I-ROC): The patch with the largest kNN distance is shown in red for each representation. Anomaly indicated
+by a red square in the 2D view, “iNet“ indicates ImageNet pre-trained
+
+
+                                                                       age downsampling) using nearest-neighbor interpolation,
+                                                                       the color images are downsampled using bicubic interpo-
+                                                                       lation. For unorganized point clouds, we reshape the orga-
+                                                                       nized point cloud from n×m×3 into n·m×3. We use the Z
+                                                                       channel of the organized point cloud as our depth map. We
+                                                                       extract 28 · 28 = 784 patches (features) from each sample,
+                                                                       the feature dimension varies based on the representations
+                                                                       used. When the representation is extracted at a different
+                                                                       resolution, we use average pooling to match 28 · 28 = 784.
+                                                                       For nonsquare classes (i.e. rope and tire), we pad the color
+                                                                       and 3D images with zeros. For PointNeXt, we use the
+                                                                       PointNeXt-XL architecture pre-trained on S3DIS [2] with
+                                                                       a segmentation objective. We report the results on area1 as
+                                                                       it performs best. For further details see SM.
+                                                                       Establishing a 3D-based preprocessing protocol. Prepro-
+                                                                       cessing is sometimes required for removing nuisance arti-
+                                                                       facts. To handle such cases we developed a simple pre-
+                                                                       processing method. We first remove the background plane
+                                                                       by applying RANSAC [16] on the point cloud data. Once
+                                                                       removed, we discard outliers and areas far from the plane
+                                                                       by applying a connected-components-based algorithm (for
+                                                                       implementation details see the SM). This preprocessing
+                                                                       phase left the results of color-only methods mostly unaf-
+Figure 5. Summary I-ROCAUC Results: Our proposed BTF (top,             fected. More interestingly, it drastically improved results
+dashed line) outperforms all 21 other methods (bottom, candle          for the depth-based methods, while for 3D-based methods
+chart). For the numbers, see SM                                        (i.e. FPFH) it slightly decreases results. We postulate this
+                                                                       is caused by the difference in how depth and 3D methods
+                                                                       handle missing sensor information2 . For point clouds, these
+                                                                       missing values are all located at the origin (since their value
+4.5. Implementation Details
+                                                                       is 0) and are easily ignored (since they are not in the spatial
+   Unless otherwise stated, the original point clouds and                  2 3D sensing methods are prone to sampling noise and missing informa-
+color images are downsampled to 224 × 224. For point                   tion (e.g. occlusions). In MVTec 3D-AD it is common to have very noisy
+clouds, we downsample the organized point cloud (i.e. im-              backgrounds, these areas are replaced by zeros by the dataset designers.
+
+
+
+
+                                                                   2974
+Input
+GT
+Output
+
+
+
+
+              Figure 6. Additional results of our method (BTF): All anomalies are correctly segmented (marked in red)
+
+
+context of other points). In contrast, for depth images, these
+values are in the spatial context of other points and are thus
+taken into account. Removing these planes creates a sim-
+ilar situation to that of the point clouds and hence benefits
+depth-based methods. When using the preprocessed data,
+even the simplest feature (i.e. Raw) outperforms the origi-
+nal baselines [6], results are shown in Fig. 7.
+
+4.6. Limitations.
+Our proposed method BTF has several limitations:
+Feature fusion. Both cable gland and foam perform poorly
+for all depth-based methods (Tab. 3 and SM). While the
+anomalies in these classes are easier to detect by using color
+than by using 3D (see Fig. 1), we expected the fusion of
+both modalities to improve performance. Unfortunately, for
+these classes, the fused features underperformed the color-
+only method. Future work should address this issue.                 Figure 7. Preprocessing: Top: PRO vs. I-ROC. Bottom: Prepro-
+Image-level accuracy. While BTF establishes a new state-            cessed MVTec Baselines vs. Raw (PRO), average metrics across
+of-the-art on all metrics, the image level detection accuracy       all classes are reported
+is far from perfect. It reaches an I-ROC of 86.5%, a large
+improvement compared to past methods, but still a rela-
+tively low score. Since we use PatchCore as the backbone
+for most of our experiments, the I-ROC score is determined
+by the image patch that is most distant from all training
+patches. We expect that better metrics can be devised for           MVTec 3D-AD dataset. We conducted an extensive in-
+3D data; investigating them is left for future work.                vestigation of 3D representations and found that rotation-
+                                                                    invariant representations achieves the best performance on
+5. Conclusion                                                       3D anomaly detection. We proposed BTF, a combination of
+                                                                    3D and color features that set a new state-of-the-art. As our
+   Our study was motivated by the outperformance of                 method is simple, we expect it to serve as a strong baseline
+color-only approaches over all existing 3D methods on the           for future work.
+
+
+
+                                                                 2975
+References                                                                    database. In 2009 IEEE conference on computer vision and
+                                                                              pattern recognition, pages 248–255. Ieee, 2009. 4
+ [1] Sheng Ao, Qingyong Hu, Bo Yang, Andrew Markham,                     [15] Eleazar Eskin, Andrew Arnold, Michael Prerau, Leonid
+     and Yulan Guo. Spinnet: Learning a general surface de-                   Portnoy, and Sal Stolfo. A geometric framework for unsu-
+     scriptor for 3d point cloud registration. In Proceedings of              pervised anomaly detection. In Applications of data mining
+     the IEEE/CVF Conference on Computer Vision and Pattern                   in computer security, pages 77–101. Springer, 2002. 2
+     Recognition, 2021. 5
+                                                                         [16] Martin A Fischler and Robert C Bolles. Random sample
+ [2] Iro Armeni, Ozan Sener, Amir R. Zamir, Helen Jiang, Ioan-                consensus: a paradigm for model fitting with applications to
+     nis Brilakis, Martin Fischer, and Silvio Savarese. 3d seman-             image analysis and automated cartography. Communications
+     tic parsing of large-scale indoor spaces. In Proceedings of the          of the ACM, 24(6):381–395, 1981. 7
+     IEEE Conference on Computer Vision and Pattern Recogni-             [17] Spyros Gidaris, Praveer Singh, and Nikos Komodakis. Un-
+     tion (CVPR), June 2016. 7                                                supervised representation learning by predicting image rota-
+ [3] Marcel Bengs, Finn Behrendt, Julia Krüger, Roland Opfer,                tions. arXiv preprint arXiv:1803.07728, 2018. 2
+     and Alexander Schlaefer. Three-dimensional deep learning            [18] Michael Glodek, Martin Schels, and Friedhelm Schwenker.
+     with spatial erasing for unsupervised anomaly segmentation               Ensemble gaussian mixture models for probability density
+     in brain mri. International journal of computer assisted ra-             estimation. Computational Statistics, 28(1):127–138, 2013.
+     diology and surgery, 16(9):1413–1423, 2021. 2                            2
+ [4] Paul Bergmann, Michael Fauser, David Sattlegger, and                [19] Izhak Golan and Ran El-Yaniv. Deep anomaly detection us-
+     Carsten Steger. Mvtec ad–a comprehensive real-world                      ing geometric transformations. In NeurIPS, 2018. 2
+     dataset for unsupervised anomaly detection. In Proceedings          [20] Kaiming He, Haoqi Fan, Yuxin Wu, Saining Xie, and Ross
+     of the IEEE/CVF conference on computer vision and pattern                Girshick. Momentum contrast for unsupervised visual repre-
+     recognition, pages 9592–9600, 2019. 4                                    sentation learning. arXiv preprint arXiv:1911.05722, 2019.
+ [5] Paul Bergmann, Michael Fauser, David Sattlegger, and                     2
+     Carsten Steger. Uninformed students: Student-teacher                [21] Kaiming He, Haoqi Fan, Yuxin Wu, Saining Xie, and Ross
+     anomaly detection with discriminative latent embeddings. In              Girshick. Momentum contrast for unsupervised visual rep-
+     Proceedings of the IEEE/CVF Conference on Computer Vi-                   resentation learning. In Proceedings of the IEEE/CVF Con-
+     sion and Pattern Recognition, pages 4183–4192, 2020. 2                   ference on Computer Vision and Pattern Recognition, pages
+ [6] Paul Bergmann, Xin Jin, David Sattlegger, and Carsten Ste-               9729–9738, 2020. 2
+     ger. The mvtec 3d-ad dataset for unsupervised 3d anomaly            [22] Dan Hendrycks, Mantas Mazeika, Saurav Kadavath, and
+     detection and localization. arXiv preprint arXiv:2112.09045,             Dawn Song. Using self-supervised learning can improve
+     2021. 2, 3, 4, 8                                                         model robustness and uncertainty. In NeurIPS, 2019. 2
+ [7] Paul Bergmann and David Sattlegger. Anomaly detection               [23] Ian Jolliffe. Principal component analysis. Springer, 2011.
+     in 3d point clouds using deep geometric descriptors. arXiv               2
+     preprint arXiv:2202.11660, 2022. 2                                  [24] Longin Jan Latecki, Aleksandar Lazarevic, and Dragoljub
+ [8] Paul Bergmann and David Sattlegger. Anomaly detection                    Pokrajac. Outlier detection with kernel density functions.
+     in 3d point clouds using deep geometric descriptors. arXiv               In International Workshop on Machine Learning and Data
+     preprint arXiv:2202.11660, 2022. 4                                       Mining in Pattern Recognition, pages 61–75. Springer, 2007.
+ [9] Andrew P Bradley. The use of the area under the roc curve                2
+     in the evaluation of machine learning algorithms. Pattern           [25] Chun-Liang Li, Kihyuk Sohn, Jinsung Yoon, and Tomas
+     recognition, 30(7):1145–1159, 1997. 4                                    Pfister. Cutpaste: Self-supervised learning for anomaly de-
+[10] Ting Chen, Simon Kornblith, Mohammad Norouzi, and Ge-                    tection and localization. In Proceedings of the IEEE/CVF
+     offrey Hinton. A simple framework for contrastive learning               Conference on Computer Vision and Pattern Recognition,
+     of visual representations. arXiv preprint arXiv:2002.05709,              pages 9664–9674, 2021. 2, 5
+     2020. 2                                                             [26] Fei Tony Liu, Kai Ming Ting, and Zhi-Hua Zhou. Isolation
+[11] Niv Cohen and Yedid Hoshen. Sub-image anomaly detec-                     forest. In 2008 Eighth IEEE International Conference on
+     tion with deep pyramid correspondences. arXiv preprint                   Data Mining, pages 413–422. IEEE, 2008. 2
+     arXiv:2005.02357, 2020. 2, 3                                        [27] David G Lowe. Distinctive image features from scale-
+[12] Navneet Dalal and Bill Triggs. Histograms of oriented gra-               invariant keypoints. International journal of computer vi-
+     dients for human detection. In 2005 IEEE computer soci-                  sion, 60(2):91–110, 2004. 5
+     ety conference on computer vision and pattern recognition           [28] Pramuditha Perera and Vishal M Patel. Learning deep fea-
+     (CVPR’05), volume 1, pages 886–893. Ieee, 2005. 5                        tures for one-class classification. IEEE Transactions on Im-
+[13] Thomas Defard, Aleksandr Setkov, Angelique Loesch, and                   age Processing, 28(11):5450–5463, 2019. 2
+     Romaric Audigier. Padim: a patch distribution modeling              [29] Patrick Pérez, Michel Gangnet, and Andrew Blake. Poisson
+     framework for anomaly detection and localization. In Inter-              image editing. SIGGRAPH, 2003. 5
+     national Conference on Pattern Recognition, pages 475–489.          [30] Guocheng Qian, Yuchen Li, Houwen Peng, Jinjie Mai,
+     Springer, 2021. 2                                                        Hasan Hammoud, Mohamed Elhoseiny, and Bernard
+[14] Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li,                   Ghanem. Pointnext: Revisiting pointnet++ with improved
+     and Li Fei-Fei. Imagenet: A large-scale hierarchical image               training and scaling strategies. arXiv:2206.04670, 2022. 5
+
+
+
+
+                                                                       2976
+[31] Tal Reiss, Niv Cohen, Liron Bergman, and Yedid Hoshen.                 coding gaussian mixture model for unsupervised anomaly
+     Panda: Adapting pretrained features for anomaly detection              detection. ICLR, 2018. 2
+     and segmentation. In Proceedings of the IEEE/CVF Con-
+     ference on Computer Vision and Pattern Recognition, pages
+     2806–2814, 2021. 2
+[32] Olaf Ronneberger, Philipp Fischer, and Thomas Brox. U-
+     net: Convolutional networks for biomedical image segmen-
+     tation. In International Conference on Medical image com-
+     puting and computer-assisted intervention, pages 234–241.
+     Springer, 2015. 5
+[33] Karsten Roth, Latha Pemula, Joaquin Zepeda, Bernhard
+     Schölkopf, Thomas Brox, and Peter Gehler. Towards to-
+     tal recall in industrial anomaly detection. arXiv preprint
+     arXiv:2106.08265, 2021. 2, 3, 4
+[34] Lukas Ruff, Nico Gornitz, Lucas Deecke, Shoaib Ahmed
+     Siddiqui, Robert Vandermeulen, Alexander Binder, Em-
+     manuel Müller, and Marius Kloft. Deep one-class classifi-
+     cation. In ICML, 2018. 2
+[35] Radu Bogdan Rusu, Nico Blodow, and Michael Beetz. Fast
+     point feature histograms (fpfh) for 3d registration. In 2009
+     IEEE International Conference on Robotics and Automation,
+     pages 3212–3217, 2009. 5
+[36] Thomas Schlegl, Philipp Seeböck, Sebastian M Waldstein,
+     Georg Langs, and Ursula Schmidt-Erfurth. f-anogan: Fast
+     unsupervised anomaly detection with generative adversarial
+     networks. Medical image analysis, 54:30–44, 2019. 2
+[37] Thomas Schlegl, Philipp Seeböck, Sebastian M Waldstein,
+     Ursula Schmidt-Erfurth, and Georg Langs. Unsupervised
+     anomaly detection with generative adversarial networks to
+     guide marker discovery. In International Conference on In-
+     formation Processing in Medical Imaging, 2017. 2
+[38] Hannah M Schlüter, Jeremy Tan, Benjamin Hou, and Bern-
+     hard Kainz. Self-supervised out-of-distribution detection and
+     localization with natural synthetic anomalies (nsa). arXiv
+     preprint arXiv:2109.15222, 2021. 2, 5
+[39] Bernhard Scholkopf, Robert C Williamson, Alex J Smola,
+     John Shawe-Taylor, and John C Platt. Support vector method
+     for novelty detection. In NIPS, 2000. 2
+[40] Jaime Simarro Viana, Ezequiel de la Rosa, Thijs Vande Vy-
+     vere, David Robben, Diana M Sima, et al. Unsupervised 3d
+     brain anomaly detection. In International MICCAI Brainle-
+     sion Workshop, pages 133–142. Springer, 2020. 2
+[41] Jihoon Tack, Sangwoo Mo, Jongheon Jeong, and Jin-
+     woo Shin. Csi: Novelty detection via contrastive learn-
+     ing on distributionally shifted instances. arXiv preprint
+     arXiv:2007.08176, 2020. 2
+[42] Zhirong Wu, Shuran Song, Aditya Khosla, Fisher Yu, Lin-
+     guang Zhang, Xiaoou Tang, and Jianxiong Xiao. 3d
+     shapenets: A deep representation for volumetric shapes. In
+     Proceedings of the IEEE conference on computer vision and
+     pattern recognition, pages 1912–1920, 2015. 4
+[43] Jiawei Yu, Ye Zheng, Xiang Wang, Wei Li, Yushuang Wu,
+     Rui Zhao, and Liwei Wu. Fastflow: Unsupervised anomaly
+     detection and localization via 2d normalizing flows. arXiv
+     preprint arXiv:2111.07677, 2021. 2
+[44] Bo Zong, Qi Song, Martin Renqiang Min, Wei Cheng, Cris-
+     tian Lumezanu, Daeki Cho, and Haifeng Chen. Deep autoen-
+
+
+
+
+                                                                     2977
+

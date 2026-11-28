@@ -18,7 +18,7 @@ tested transfer of REASSEMBLE-trained CNN weights. None is a zero-shot cross-dat
 test. Extending these findings to welding requires welds reserved for assessment and an
 independently measured quality outcome.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \caption{Interpretation of the Results Within Each Study}\label{tab:cross-study}
 \centering\small
 \begin{tabularx}{\textwidth}{P{27mm}YYY}
@@ -45,28 +45,28 @@ unavailable\\\bottomrule
 \section{Representation Suitability --- Answer to SQ1}
 In PHM, the image-regression experiment extracted detector features during a full
 prediction pass. In the principal sensor experiment, post-run photographs instead
-supplied the continuous target. A patch-based Transformer encoded sequences summarizing
+supplied the continuous target. A patch-based Transformer encoded sequences summarising
 speed, torque, temperature, vibration and condition indicators. For SQ1, the regression
 error measures how well this representation predicts the photographic proxy. Assessing
-physical tooth damage would require a separate reference (Chapter~5).
+physical tooth damage would require a separate reference (Chapter~\ref{ch:phm}).
 
 Across 4,530 completed REASSEMBLE actions, sensor statistics achieved pooled failure AP
-.429, against .242 for the initial scratch-trained PatchTST and .231 for frozen
+0.429, against 0.242 for the initial scratch-trained PatchTST and 0.231 for frozen
 RT-DETR-R18vd CNN features with mean pooling (Table~\ref{tab:reassemble-unimodal}). In
-the matched budget follow-up, longer PatchTST training raised AP from .2557 to .2853, an
-increment of .0297 (95\% CI [.0122, .0451]); it remained below statistics. Combining the
-two sensor representations reached .4403, an increment of .0110 [.0054, .0181] over
+the matched budget follow-up, longer PatchTST training raised AP from 0.2557 to 0.2853, an
+increment of 0.0297 (95\% CI [0.0122, 0.0451]); it remained below statistics. Combining the
+two sensor representations reached 0.4403, an increment of 0.0110 [0.0054, 0.0181] over
 statistics. Thus, the temporal representation was weaker alone yet useful in
 combination. This result concerns representations of the same sensors, not two sensing
 modalities.
 
-Last-quarter pooling increased visual AP by .0885 [.0424, .1293] with unchanged head
-size; its simultaneous lower bound over the five pooling contrasts was .0301. Greater
+Last-quarter pooling increased visual AP by 0.0885 [0.0424, 0.1293] with unchanged head
+size; its simultaneous lower bound over the five pooling contrasts was 0.0301. Greater
 visibility of outcome cues near completion and reduced dilution are competing
 explanations, rather than isolated mechanisms. The rule still averages frames and does
 not demonstrate learned temporal order or early warning. Matched two-epoch adaptation
 gave opposite visual effects across two seeds, with intervals spanning zero; the
-hundred-epoch one-fold F2 increment was .0141 [$-.0008$, .0291]
+hundred-epoch one-fold F2 increment was 0.0141 [$-0.0008$, 0.0291]
 (Appendix~\ref{app:supplementary-results}). These results distinguish budget,
 aggregation and adaptation, without testing their best-performing choices jointly.
 
@@ -80,7 +80,7 @@ representations and protocol sensitivity}{\EvidenceRef{E133}{}, \EvidenceRef{E07
 Weak visual performance could reflect limited
 visibility of the event or how the frozen encoder represented it. The study did not
 isolate these explanations (Table~\ref{tab:msm-clean}). ViFailback pooled three camera
-views per episode and summarized 28 robot-observation channels. Transferring a visual
+views per episode and summarised 28 robot-observation channels. Transferring a visual
 encoder trained on REASSEMBLE produced mixed changes across target-training seeds
 relative to generic frozen features (Table~\ref{tab:vif-matched}). A newly fitted head
 could use the transferred features, but their predictive advantage varied across seeds.
@@ -88,7 +88,7 @@ could use the transferred features, but their predictive advantage varied across
 HANDOVER provided a further test of representation on a shared observation window.
 Sixteen video frames and 36 force--torque statistics described the same portion of each
 trial. The wrench was measured on one robot and estimated from joint torques on the
-other. Mean failure AP was .772 for vision and .824 for logistic sensing on the official
+other. Mean failure AP was 0.772 for vision and 0.824 for logistic sensing on the official
 test trials (Table~\ref{tab:handover-clean}). Across the five studies, compact sensor
 summaries provided strong references, and frozen convolutional features supplied a
 reusable visual input whose value depended on the task and time window. Published
@@ -103,10 +103,10 @@ of 0.824 percentage points on the photographic proxy, compared with 0.804 for th
 training mean when entire experiments were held out. The paired interval allowed either
 model to have lower error (Table~\ref{tab:phm-loeo}). This comparison addresses
 sensor-feature fusion under SQ2. A separate four-arm study included an affine
-combination and a context gate. Its normalizer was fitted before the evaluation split
+combination and a context gate. Its normaliser was fitted before the evaluation split
 loop, which compromises the isolation of held-out observations within that diagnostic.
 The principal leave-one-experiment-out comparison used a separate training-only
-normalizer.
+normaliser.
 
 Across 4,530 actions from 148 recordings assessed in five outer folds, logistic sensing
 achieved failure AP 0.4294, equal probability averaging 0.4457 and logistic stacking
@@ -118,9 +118,9 @@ models.\ev{Paired core fusion contrasts}{\EvidenceRef{E045}{}, \EvidenceRef{E046
 The saved-score audit identifies a narrower visual contribution directly: all sensor
 coefficients are positive, and removing the visual term preserves sensor AP and AUROC
 within each fold. Restoring it improves AUROC in five of five folds and AP in four, with
-AP differences from $-.00469$ to $+.03945$. Those changes cannot arise from a strictly
+AP differences from $-0.00469$ to $+0.03945$. Those changes cannot arise from a strictly
 increasing transformation of the same sensor scores. Fold-specific transformations
-nevertheless alter pooled ranking: reduced-score AP is .43092 versus sensor AP .42939.
+nevertheless alter pooled ranking: reduced-score AP is 0.43092 versus sensor AP 0.42939.
 The missing refitted sensor-only second-stage control therefore limits attribution of
 the complete pooled increment, without negating the within-fold evidence. This is
 conditional usefulness in the evaluated models, not causal modality importance or a
@@ -128,8 +128,8 @@ population-wide information claim.\ev{F2 arithmetic and scope}{\EvidenceRef{E111
 
 On MSM, mean abnormal-cutting AP over three seeds was 0.7569 for stacking and 0.8286 for
 its logistic sensor component. The paired stacking-minus-logistic difference was
-$-0.0717$. Its 95\% interval was $[-0.1605,+0.0031]$ when resampling 45 experiment-folder
-clusters and $[-0.1004,-0.0515]$ when resampling five calendar-date clusters. Both
+$-0.0717$. Its 95\% interval was $[-0.1605, +0.0031]$ when resampling 45 experiment-folder
+clusters and $[-0.1004, -0.0515]$ when resampling five calendar-date clusters. Both
 calculations use the same predictions and fitted models; changing the resampling unit
 changes the uncertainty estimate. The folder interval includes zero, whereas the date
 interval excludes it. Logistic sensing had higher observed AP in all six target/grouping
@@ -147,12 +147,12 @@ protocols.\ev{Original and matched ViFailback comparisons}{\EvidenceRef{E087}{},
 \EvidenceRef{E137}{}, \EvidenceRef{E113}{}}
 
 In HANDOVER, averaging the two branch
-predictions gave mean failure AP of .803 on 151 official test trials, below the sensor
-component at .824. The missing participant-to-trial mapping prevented construction of
+predictions gave mean failure AP of 0.803 on 151 official test trials, below the sensor
+component at 0.824. The missing participant-to-trial mapping prevented construction of
 the participant-disjoint predictions required to fit the planned stacker. HANDOVER
 therefore supplies a measured comparison for averaging and an open question for learned
 fusion. Across these tasks, the clearest gain occurred for simple prediction fusion in
-assembly. The two other stacking studies and the handover averaging study each favored
+assembly. The two other stacking studies and the handover averaging study each favoured
 their constituent sensor model on the primary ranking metric.
 
 \begin{figure}[htbp]
@@ -161,27 +161,15 @@ their constituent sensor model on the primary ranking metric.
 \centering
 \begingroup
 \singlespacing
-% Native TikZ and the shared thesis styles are loaded by thesis-formatting.tex.
-% Exact saved contrasts, not differences reconstructed from rounded chapter scores:
-% E045: implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/assessment/results.json
-%       fusion_minus_sensor/AUPRC: observed estimate and paired recording-cluster CI.
-% E046: implementations/REASSEMBLE/results/runs/fusion_method_comparison/assessment/review_comparisons.json
-%       paired/F1-F2/AUPRC: negate estimate and swap negated endpoints for F2-F1.
-%       Saved status: post-hoc descriptive review contrast.
-% MSM: implementations/MSM/results/06_evaluation_results/metrics/paired_group_bootstrap_95ci.csv
-%      initialization=P; protocol=primary__group_id; comparison=F2 minus sensor_logistic;
-%      grouping=group_id (45 clusters) or calendar_date_group (5 clusters).
-% Later Appendix F register pass: the MSM CSV has no individual evidence ID.
-% Coordinates retain saved precision; reader-visible values are rounded to four decimals.
 \newcommand{\DiscussionInterval}[6]{%
-  \pgfmathsetmacro{\DiscussionLowX}{.335+.315*(#2-(\DiscussionMin))/(\DiscussionMax-(\DiscussionMin))}%
-  \pgfmathsetmacro{\DiscussionMidX}{.335+.315*(#3-(\DiscussionMin))/(\DiscussionMax-(\DiscussionMin))}%
-  \pgfmathsetmacro{\DiscussionHighX}{.335+.315*(#4-(\DiscussionMin))/(\DiscussionMax-(\DiscussionMin))}%
+  \pgfmathsetmacro{\DiscussionLowX}{0.335+0.315*(#2-(\DiscussionMin))/(\DiscussionMax-(\DiscussionMin))}%
+  \pgfmathsetmacro{\DiscussionMidX}{0.335+0.315*(#3-(\DiscussionMin))/(\DiscussionMax-(\DiscussionMin))}%
+  \pgfmathsetmacro{\DiscussionHighX}{0.335+0.315*(#4-(\DiscussionMin))/(\DiscussionMax-(\DiscussionMin))}%
   \draw[ThesisFusion,line width=1.4bp]
     (\DiscussionLowX,#1) -- (\DiscussionHighX,#1);
-  \draw[ThesisFusion,line width=.8bp]
-    (\DiscussionLowX,{#1-.08}) -- (\DiscussionLowX,{#1+.08})
-    (\DiscussionHighX,{#1-.08}) -- (\DiscussionHighX,{#1+.08});
+  \draw[ThesisFusion,line width=0.8bp]
+    (\DiscussionLowX,{#1-0.08}) -- (\DiscussionLowX,{#1+0.08})
+    (\DiscussionHighX,{#1-0.08}) -- (\DiscussionHighX,{#1+0.08});
   \fill[ThesisFusion] (\DiscussionMidX,#1) circle[radius=2bp];
   \node[thesis label,anchor=west,align=left,text width=.31\linewidth]
     at (0,#1) {#5};
@@ -200,11 +188,11 @@ their constituent sensor model on the primary ranking metric.
   \draw[ThesisBaseline,dashed,line width=.8bp]
     (\DiscussionZeroX,-.82) -- (\DiscussionZeroX,-2.65);
   \DiscussionInterval{-1.15}{0.008602699847244887}{0.017906682072462488}{0.02828427953738722}
-    {Stacking minus\\logistic sensing}{+0.0179\;[+0.0086,+0.0283]}
+    {Stacking minus\\logistic sensing}{+0.0179\;[+0.0086, +0.0283]}
   \DiscussionInterval{-2.10}{-0.00760723963705266}{0.0015562388046241327}{0.011164884547778807}
-    {Stacking minus\\equal averaging}{+0.0016\;[-0.0076,+0.0112]}
+    {Stacking minus\\equal averaging}{+0.0016\;[-0.0076, +0.0112]}
   \draw[ThesisBaseline,line width=.8bp] (.335,-2.65) -- (.65,-2.65);
-  \foreach \tick in {-0.01,0,0.01,0.02,0.03} {
+  \foreach \tick in {-0.01,0,0.01, 0.02,0.03} {
     \pgfmathsetmacro{\DiscussionTickX}{.335+.315*(\tick-(\DiscussionMin))/(\DiscussionMax-(\DiscussionMin))}
     \draw[ThesisBaseline,line width=.8bp] (\DiscussionTickX,-2.65) -- ++(0,-.06);
     \node[thesis annotation,anchor=north] at (\DiscussionTickX,-2.78)
@@ -224,11 +212,11 @@ their constituent sensor model on the primary ranking metric.
   \draw[ThesisBaseline,dashed,line width=.8bp]
     (\DiscussionZeroX,-4.82) -- (\DiscussionZeroX,-6.70);
   \DiscussionInterval{-5.20}{-0.160548187905734}{-0.0717372561813725}{0.0030517730680831184}
-    {45-folder resampling}{-0.0717\;[-0.1605,+0.0031]}
+    {45-folder resampling}{-0.0717\;[-0.1605, +0.0031]}
   \DiscussionInterval{-6.15}{-0.10035640918292588}{-0.0717372561813725}{-0.05147683794042868}
-    {5-date resampling}{-0.0717\;[-0.1004,-0.0515]}
+    {5-date resampling}{-0.0717\;[-0.1004, -0.0515]}
   \draw[ThesisBaseline,line width=.8bp] (.335,-6.70) -- (.65,-6.70);
-  \foreach \tick in {-0.16,-0.12,-0.08,-0.04,0} {
+  \foreach \tick in {-0.16, -0.12,-0.08, -0.04,0} {
     \pgfmathsetmacro{\DiscussionTickX}{.335+.315*(\tick-(\DiscussionMin))/(\DiscussionMax-(\DiscussionMin))}
     \draw[ThesisBaseline,line width=.8bp] (\DiscussionTickX,-6.70) -- ++(0,-.06);
     \node[thesis annotation,anchor=north] at (\DiscussionTickX,-6.83)
@@ -237,12 +225,12 @@ their constituent sensor model on the primary ranking metric.
   \node[thesis label] at (.4925,-7.27) {AP difference};
 \end{tikzpicture}
 \endgroup
-\displaynote{Positive differences favor stacking. REASSEMBLE uses 4,530 actions from
+\displaynote{Positive differences favour stacking. REASSEMBLE uses 4,530 actions from
 148 recordings and paired recording-cluster intervals; the stacking--averaging contrast
-is descriptive and post hoc (\EvidenceRef{E045}{}, \EvidenceRef{E046}{section N}).
+is descriptive and post hoc.
 MSM uses means of three seed-specific pooled APs. Its two rows are alternative
 uncertainty estimates for one model comparison, using identical predictions and fitted
-models; their source is \nolinkurl{paired_group_bootstrap_95ci.csv}.
+models.
 Intervals condition on the saved fits and omit refitting and selection uncertainty.
 Each panel has its own labelled AP-difference scale.}
 \end{figure}
@@ -262,45 +250,34 @@ experiment.
 In REASSEMBLE, known complete loss of a stream routed the prediction to the surviving
 branch. Every fusion rule using that policy inherited the survivor's score. When both
 streams remained present and the sensor stream received Gaussian noise at one training
-standard deviation, stacking gave AP of .222 and the quality-only and combined gates
-gave .175 and .179, respectively. Intact vision alone achieved .231. Responding to noise
+standard deviation, stacking gave AP of 0.222 and the quality-only and combined gates
+gave 0.175 and 0.179, respectively. Intact vision alone achieved 0.231. Responding to noise
 by changing a weight therefore did not ensure a better failure ranking. The result
 pertains to this corruption and severity.
 
-Sixteen quality descriptors were constant on clean data. In the audited degraded-input
-records, fourteen differed from their clean values under at least one prescribed
+Sixteen quality descriptors were constant on clean data. Under the evaluated input corruptions, fourteen differed from their clean values under at least one prescribed
 corruption; the joint-effort and joint-velocity constant-channel counts remained zero.
 Clean fitting therefore offered no variation in these fields from which to learn how
 their changes related to branch error. This limitation does not establish the cause of
 a particular gate's failure.\ev{Clean quality fields and core corruption conditions}
 {\EvidenceRef{E046}{}, \EvidenceRef{E047}{}}
-% Fourteen-change count: preceding read-only feature audit, not a new training result.
-% implementations/REASSEMBLE/results/runs/fusion_method_comparison/implementation.json
-% implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/visual/*.npz
-% implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/sensor/*.npz
-% Read quality/names members in 148 archives per modality, same 4,530 actions.
-% Audited: pixel noise .02/.05/.10; blur 1/2/4; removal of 2/5/8 frames;
-% sensor noise .1/.5/1 SD; removal of 2/7/11 channels; temporal blocks .1/.3/.5;
-% six stuck force/torque channels. Complete-absence descriptor values not audited.
-% Fourteen changed from clean in at least one condition, not necessarily within it.
-% joint_efforts.constant_channels and joint_velocities.constant_channels stayed zero.
 
-The anchored adjustment raises clean REASSEMBLE AP from .4473 to .4683: an increment of
-.0210 (95\% CI [.0015, .0419]) over its static anchor and .0226 [.0036, .0432] over a
+The anchored adjustment raises clean REASSEMBLE AP from 0.4473 to 0.4683: an increment of
+0.0210 (95\% CI [0.0015, 0.0419]) over its static anchor and 0.0226 [0.0036, 0.0432] over a
 constant-adjustment control. The latter narrows the explanation beyond another fixed
 coefficient change, although capacity differs and context need not measure reliability.
 Under matched corruption exposure, the mean adaptive increment over six conditions is
-.0097 [$-.0034$, .0228]. The separate exposure-matched quality-interaction pilot gives
-.0030 [$-.0267$, .0322]. Both primary robustness effects and their clean-performance
+0.0097 [$-0.0034$, 0.0228]. The separate exposure-matched quality-interaction pilot gives
+0.0030 [$-0.0267$, 0.0322]. Both primary robustness effects and their clean-performance
 requirements remain unresolved. Matching exposure removes one source of unfairness, not
-differences in capacity or optimization. These studies establish a particular clean gain
+differences in capacity or optimisation. These studies establish a particular clean gain
 without demonstrating consistent recognition of degraded but present inputs.\ev{Distinct
 adaptive investigations}{\EvidenceRef{E038}{}}
 
-In MSM, the strongest sensor noise reduced stacking to .207 AP. The augmentation-trained
-gate reached .299, approximately the score of intact vision alone. Under the strongest
-image blur, the same gate reached .683, below stacking at .771 and intact logistic
-sensing at .829. In HANDOVER, the strongest blur left averaging at .779 versus .824 for
+In MSM, the strongest sensor noise reduced stacking to 0.207 AP. The augmentation-trained
+gate reached 0.299, approximately the score of intact vision alone. Under the strongest
+image blur, the same gate reached 0.683, below stacking at 0.771 and intact logistic
+sensing at 0.829. In HANDOVER, the strongest blur left averaging at 0.779 versus 0.824 for
 intact logistic sensing. Known complete loss used an explicit fallback. The participant
 grouping requirement prevented evaluation of a learned gate there
 (Appendix~\ref{app:handover}).
@@ -310,7 +287,7 @@ above the quality gate on pooled macro AP at each of the three seeds. Adding qua
 descriptors therefore did not improve this measured clean comparison. This experiment
 is separate from the matched CNN study, which included no quality gate. ViFailback
 corruption performance was unmeasured; the clean comparison cannot establish whether
-either gate recognized degraded inputs.\ev{Original gate control and matched-study
+either gate recognised degraded inputs.\ev{Original gate control and matched-study
 scope}{\EvidenceRef{E088}{}, \EvidenceRef{E137}{}}
 
 REASSEMBLE, MSM, and HANDOVER implemented a fallback to the surviving predictor when a
@@ -325,7 +302,7 @@ failures remains open.
 The PHM error measures agreement with image-derived candidate area in percentage points
 per run. For SQ4, interpreting that agreement as physical damage requires an independent
 measurement. Twenty nominal runs came from three gear experiments. Holding out a whole
-experiment tests whether the predictor generalizes beyond runs from experiments
+experiment tests whether the predictor generalises beyond runs from experiments
 represented during fitting. Uncertainty estimated from saved run predictions remains
 conditional on the fitted models.
 
@@ -355,30 +332,24 @@ the fitted probability mapping as the cause of the lower Brier score.\ev{Matched
 seed-42 scores and fitting definitions}{\EvidenceRef{E074}{}, \EvidenceRef{E134}{},
 \EvidenceRef{E066}{}, \EvidenceRef{E075}{}}
 
-In ViFailback, failure prevalence exceeded 85\%. At seed 42, stacking achieved failure AP of .945 and
-success AP of .312, yielding macro-AP of .629 (Table~\ref{tab:vif-bothclass}). Reporting
+In ViFailback, failure prevalence exceeded 85\%. At seed 42, stacking achieved failure AP of 0.945 and
+success AP of 0.312, yielding macro-AP of 0.629 (Table~\ref{tab:vif-bothclass}). Reporting
 both classes exposed a weakness that the majority-class score concealed. Task-cluster
-intervals characterize variation over the assessed tasks conditional on the fitted
+intervals characterise variation over the assessed tasks conditional on the fitted
 models. Session and operator dependence remain additional sources of uncertainty.
 
 In the matched ViFailback study, the retained per-fit reports identify seven negative
 visual sigmoid slopes in the available outer-fold-0 final fits: all FROZEN20 and DONOR20
 seeds and FULL20 seed~42. Under the reported sigmoid equation, these slopes reverse the
-visual ranking within the corresponding outer-fold-0 assessments. The inspected
-implementation supplies calibrated branch probabilities to both equal averaging F1 and
+visual ranking within the corresponding outer-fold-0 assessments. The fusion implementation supplies calibrated branch probabilities to both equal averaging F1 and
 stacking F2. The effect on F2 remains unresolved because a matched stacker refit using
 uncalibrated branch scores was unavailable. Chapter~\ref{ch:vifailback} gives the
 coefficients and raw/calibrated scores; the retained summaries do not establish every
 original or inner-fit slope.\ev{Reported calibration maps and inspected fusion inputs}
 {\EvidenceRef{E137}{}}
-% Implementation, not independent per-fit execution reconstruction:
-% implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/training.py
-% _postfit calibrates on C and writes probability.
-% implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/fusion_evaluation.py
-% evaluate_one reads probability/S3_probability for both F1=(pv+ps)/2 and F2.
 
-In HANDOVER, 110 of the 151 test trials were failures. At a threshold of .5, a
-training-prior predictor labelled every trial a failure, achieving failure-class F1 score of .843
+In HANDOVER, 110 of the 151 test trials were failures. At a threshold of 0.5, a
+training-prior predictor labelled every trial a failure, achieving failure-class F1 score of 0.843
 and zero specificity for successes. The official split remained usable for evaluating
 fixed baselines, while unavailable participant identifiers prevented participant-level
 uncertainty estimates for their contrasts. These examples support reporting prediction
@@ -391,58 +362,58 @@ observation and a usability study.
 \section{Agreement and Disagreement With Previous Research}
 Pretrained spatial features are reasonable candidates because PatchCore demonstrates
 useful industrial inspection from intermediate CNN features, while RT-DETR learns a
-multiscale hierarchy for detection \citep{Roth2022Towards,Zhao2024RTDETR}. Their
+multiscale hierarchy for detection \parencite{Roth2022Towards,Zhao2024RTDETR}. Their
 positive findings do not imply that every downstream component helps. The matched
-REASSEMBLE spatial-encoder comparison favored CNN-based F2 over the hybrid
-representation by .0158 AP (95\% CI [.0058, .0248]). Different feature widths and head
+REASSEMBLE spatial-encoder comparison favoured CNN-based F2 over the hybrid
+representation by 0.0158 AP (95\% CI [0.0058, 0.0248]). Different feature widths and head
 sizes prevent attribution solely to attention. This limits transfer of the detector's
 architectural conclusions to action outcomes; it does not contradict its detection
 benchmark.
 
-PatchTST's favorable forecasting ablation supports local patch tokens and channel-shared
-temporal encoding \citep{Nie2023PatchTST}. Our longer-budget result confirms that
-optimization duration affected the scratch classifier, yet statistics remained stronger.
+PatchTST's favourable forecasting ablation supports local patch tokens and channel-shared
+temporal encoding \parencite{Nie2023PatchTST}. Our longer-budget result confirms that
+optimisation duration affected the scratch classifier, yet statistics remained stronger.
 Their successful same-sensor combination supports complementary predictive use rather
 than replacement by the higher-scoring representation. Classical geometry's
 competitiveness in inspection is consistent with taking compact, task-relevant summaries
-seriously \citep{Horwitz2023Back}; it does not establish why these particular robot
+seriously \parencite{Horwitz2023Back}; it does not establish why these particular robot
 statistics work. Likewise, TimeSformer's divided spatial--temporal attention motivates
-examining temporal organization \citep{P034}. The boundary-pooling gain supports
+examining temporal organisation \parencite{P034}. The boundary-pooling gain supports
 sensitivity to aggregation, but uses an order-invariant mean within a selected interval
 and does not test that learned-attention mechanism.
 
 The positive REASSEMBLE F2 contrast and negative external contrasts agree with a
 conditional view of fusion. Welding's image-only, audio-only and fused penetration
-classifiers all reached 100\% clean accuracy \citep[Tables~1--3]{Hua2026Weld}. Published
+classifiers all reached 100\% clean accuracy \parencite[Tables~1--3]{Hua2026Weld}. Published
 HANDOVER five-class accuracy fell from 69.1\% with video and force/torque to 67.9\%
-after adding gripper state \citep[Table~III]{Thoduka2024Handover}; our binary,
+after adding gripper state \parencite[Table~III]{Thoduka2024Handover}; our binary,
 differently fitted AP comparison is not a replication. Other settings do show gains:
 acoustic--thermal gearbox monitoring reports 99.54\% against 90.54\% for thermal alone
-under a random within-condition split \citep[Table~2]{Ying2025Trustworthy}. Such results
+under a random within-condition split \parencite[Table~2]{Ying2025Trustworthy}. Such results
 disagree with an unconditional prediction of a gain here, not with the bounded negative
-findings in MSM or ViFailback. W.~Wang et al.\ identify unequal overfitting and
-optimization difficulties in jointly trained multimodal networks \citep{Wang2020What}.
+findings in MSM or ViFailback. \textcite{Wang2020What} identify unequal overfitting and
+optimisation difficulties in jointly trained multimodal networks.
 They supply plausible competing mechanisms, not a demonstrated cause of losses in our
 separately fitted branches and stacker.
 
 Stacking's use of cross-validated probability outputs motivates a small learned combiner
-\citep{Ting1999Issues}. Our within-fold audit establishes beneficial visual ordering
+\parencite{Ting1999Issues}. Our within-fold audit establishes beneficial visual ordering
 changes in the saved F2, while its pooled advantage over averaging remains unresolved.
 This distinguishes complementary predictions from evidence that learning the combiner is
 necessary. It also explains why the coefficients cannot be read as causal modality
 percentages.
 
 Adaptive weighting has a positive precedent: QMF links useful uncertainty weighting to a
-generalization bound and reports gains under specified RGB--depth corruption
-\citep{Zhang2023QMF}. Our anchored clean gain supports a particular context-dependent
+generalisation bound and reports gains under specified RGB--depth corruption
+\parencite{Zhang2023QMF}. Our anchored clean gain supports a particular context-dependent
 adjustment, whereas its matched-exposure robustness benefit remains unresolved
 (Section~\ref{sec:discussion-robustness}). This is neither a replication
 nor a refutation of QMF: the quality variables, links, training procedures and targets
 differ. It identifies what does not transfer automatically from its result. Lower clean
 recall and higher ECE after anchored adjustment further show that improved AP is not
 calibrated reliability. This agrees with evidence that clean calibration need not
-survive shift \citep{P008}. Missing-input and simulated-robot studies address other
-access regimes \citep{P026,Altinses2023Fuzzy}; shared fallback cannot establish adaptive
+survive shift \parencite{P008}. Missing-input and simulated-robot studies address other
+access regimes \parencite{P026,Altinses2023Fuzzy}; shared fallback cannot establish adaptive
 fault recognition.
 
 \section{Lessons Across Datasets and Limits of Comparison}
@@ -465,7 +436,7 @@ admitted cutting window. The target can remain negative despite a defective tool
 not the robotic failure endpoint. Strong sensor performance, including HGB, supports
 informativeness of this processed telemetry for that mapping. Weak frozen vision may
 reflect visibility, alignment error or representation mismatch; none is isolated.
-Estimated alignment is not hardware synchronization. Sensitivity analyses vary label
+Estimated alignment is not hardware synchronisation. Sensitivity analyses vary label
 treatment and grouping, and the paired uncertainty depends on which acquisition groups
 are resampled (Section~\ref{sec:discussion-fusion}).
 
@@ -495,7 +466,7 @@ these bounded comparisons within the literature synthesis.
 \begin{figure}[htbp]
 \caption{Literature Comparisons and Experimental Coverage}\label{fig:gap-coverage}
 \centering\includegraphics[width=\textwidth]{figures/gap_coverage.png}
-\displaynote{The middle column summarizes prior research. The right column gives the
+\displaynote{The middle column summarises prior research. The right column gives the
 corresponding experimental findings and limits.}
 \end{figure}
 
@@ -522,7 +493,9 @@ evidence and separate hundred-epoch pilots; the adaptation contrasts remain
 inconclusive. Whether the fine-tuning effect persists across the remaining task folds
 and seeds is unknown, and corruption performance was unmeasured. The recorded forecast
 was 43 additional GPU-days for the remaining FULL20 fits, with 47 days allowed including
-variation and overhead; its derivation was unavailable. This forecast covered
+variation and overhead. The central estimate scales the measured fitting rate by the
+remaining split-specific workload. It is an estimated future runtime, not elapsed
+GPU time or a confidence interval. This forecast covered
 fine-tuning only (Section~\ref{sec:ch4-boundaries}).\ev{Completed adaptation scope and
 recorded forecast}{\EvidenceRef{E113}{}, \EvidenceRef{E114}{}}
 The literature synthesis covers the full texts available to a single reviewer.
@@ -540,7 +513,7 @@ useful. Evaluating each stream on the same held-out units establishes what it ca
 predict alone. Equal averaging and a fitted static combination then provide references
 for testing whether context-dependent weights add value. When an instrument declares an
 outage, the remaining predictor supplies a natural reference. When faulty values still
-appear plausible, the relevant test is whether the gate recognizes situations in which
+appear plausible, the relevant test is whether the gate recognises situations in which
 trusting that stream would worsen the prediction.
 
 A prospective return to welding could reserve whole welding sessions, collect an

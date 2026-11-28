@@ -15,7 +15,7 @@ The subsequent appraisal covered 59 PDF files. Two pairs were byte-identical, le
 showed that these represented \ExpandedPDFCount{} additional works, bringing the total
 appraised to \ReviewWorkCount{}. This historical total includes empirical industrial
 studies, transferable methods, statistical and representation methods, dataset
-descriptions and contextual studies. \citet{Ting1999Issues} informed the stacking methodology and is cited separately from
+descriptions and contextual studies. \textcite{Ting1999Issues} informed the stacking methodology and is cited separately from
 the \ReviewWorkCount{} works included in the full-text appraisal.
 
 The search log for this screening round records more than 15 distinct queries. Several
@@ -45,7 +45,7 @@ experiments.\ev{Extraction and identity records}{\EvidenceRef{E005}{},
 \section{Comparison Matrix and Denominators}
 Table~\ref{tab:literature-matrix} gives the codes for the initial 37 studies.
 Table~\ref{tab:expanded-register} identifies the contribution and principal limitation
-of each of the 57 additional works. The accompanying matrix gives the missing-input,
+of each of the \ExpandedPDFCount{} additional works. The accompanying matrix gives the missing-input,
 noise and shift tests for individual studies, together with source locations.\ev{Full
 expanded comparison register}{\EvidenceRef{E011}{}, \EvidenceRef{E013}{}}
 
@@ -53,7 +53,7 @@ Within-protocol input variants do not guarantee equal capacity, pretraining, cal
 or selection budget. Planned single-input deployment, missing training images, generated
 substitution, stochastic dropout and unexpected inference outage are different
 conditions. Ordinary defective objects, natural geometric gaps and fixed noisy data are
-not automatically controlled corruption experiments. The codes describe this inspected
+not automatically controlled corruption experiments. The codes describe this reviewed
 evidence and cannot estimate field-wide prevalence.
 
 \input{tables/literature_matrix.tex}
@@ -63,8 +63,8 @@ evidence and cannot estimate field-wide prevalence.
 \section{Benchmark Identity and Assessment Populations}
 The MVTec 3D-AD dataset paper lists 249 anomaly-free and 948 anomalous test samples, a
 total of 1,197. It reports 2,656 training and 294 validation samples separately
-\citep[Table~1, PDF p.~4]{Bergmann2022The}. UCF reports the same test count
-\citep{Cheng2025Multimodal}, whereas some other method descriptions give 1,137. The
+\parencite[Table~1, PDF p.~4]{Bergmann2022The}. UCF reports the same test count
+\parencite{Cheng2025Multimodal}, whereas some other method descriptions give 1,137. The
 discrepancy leaves the samples underlying those comparisons uncertain. The review uses
 the published scores, whose comparability also depends on preprocessing, masks and
 metric definitions.

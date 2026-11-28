@@ -19,16 +19,20 @@ REASSEMBLE visual branch & Sixteen RGB frames pooled to an 896-dimensional actio
 descriptor & Frozen ResNet18-vd CNN backbone inside RT-DETR-R18vd, followed by a trained
 binary head\\
 REASSEMBLE numerical statistics & 22 channels, ten statistics each: 220 features &
-Training-only standardization and logistic regression\\
-REASSEMBLE temporal branch & 512 progress positions by 22 channels & Scratch-initialized
+Training-only standardisation and logistic regression\\
+REASSEMBLE temporal branch & 512 progress positions by 22 channels & Scratch-initialised
 compact PatchTST and fitted projection/head\\
 External numerical adapters & MSM: 90; HANDOVER: 36; ViFailback: 280 statistics &
 Dataset-specific input construction; not an unchanged raw-sequence temporal
 encoder\\\bottomrule
 \end{tabular}
-\displaynote{The reported dimensions apply to the implementation paths inspected.}
+\displaynote{The reported dimensions apply to the listed implementation paths.}
 \end{table}
 \ev{Executed component map}{\EvidenceRef{E108}{}}
+
+The REASSEMBLE extractor accesses the CNN through
+\nolinkurl{wrapper.model.backbone.model}; the detector encoder, decoder and box heads
+are bypassed.
 
 The PHM scalar-image head receives extraction latency alongside pooled image features.
 The dependence of latency on the computing environment limits attribution of the
@@ -36,16 +40,16 @@ regressor's performance to image content. The target measures candidate area in
 photographs. Earlier target versions selected the maximum across views, while the
 retained version uses a fixed view for each tooth. The top-three run summary aggregates
 the tooth values. Independent physical defect masks were unavailable to validate
-localization.
+localisation.
 
-\paragraph{Shared RGB preprocessing.}
+\subsection{Shared RGB Preprocessing}
 \label{sec:rtdetr-preprocessing}
 For the \texttt{PekingU/rtdetr\_r18vd} checkpoint at revision
 \nolinkurl{ac77a11ff0170a41b771c03264987f8ce2b0d753}, the retained processor uses
 bilinear resizing to $640\times640$ and RGB rescaling by $1/255$.
-ImageNet mean/standard-deviation normalization is disabled
+ImageNet mean/standard-deviation normalisation is disabled
 (\texttt{do\_normalize=false}), even though the configuration lists mean and standard-deviation
-values. This preprocessing applies to the inspected REASSEMBLE and ViFailback
+values. This preprocessing applies to the specified REASSEMBLE and ViFailback
 paths; the PHM Ultralytics detector uses its separate implementation.\ev{Pinned processor
 and checkpoint identity}{\EvidenceRef{E146}{}, \EvidenceRef{E149}{}}\ev{ViFailback
 processor reuse}{\EvidenceRef{E092}{}, \EvidenceRef{E095}{}}
@@ -65,11 +69,11 @@ The REASSEMBLE temporal branch follows a separate configuration: patch length 32
 sixteen, width 32, two layers, four heads, feed-forward width 64 and dropout 0.1. It
 begins without pretrained temporal weights. Mean patch pooling and channel concatenation
 feed a 128-dimensional projection and binary head, yielding 109,505 parameters in the
-inspected implementation. Observed-value masks are retained and passed through the
-relevant interface, but that does not establish attention suppression of every missing
-token. Missing values are filled under training-only normalization. The source-specific
-mask semantics therefore remain part of the implementation limitation rather than being
-inferred from the model family \citep{Nie2023PatchTST}.\ev{REASSEMBLE temporal
+configured implementation. With internal scaling and input masking disabled, the observed-value mask does not
+suppress missing tokens in attention. The encoder processes 31 patches per channel;
+residual missing values are filled using training-only normalisation before encoding.
+These are properties of the configured implementation, not guarantees implied by the
+model family \parencite{Nie2023PatchTST}.\ev{REASSEMBLE temporal
 recipe}{\EvidenceRef{E051}{}}
 
 \section{Heads, Fitting and Calibration}
@@ -77,13 +81,13 @@ The original visual head is a new 896--128--1 network with ReLU and dropout 0.1,
 containing 114,945 trainable parameters above a frozen backbone. Original visual epoch
 candidates are five and ten; temporal candidates are three and six. Both use AdamW with
 learning rate 0.001, weight decay 0.001 and batch size 128. These candidates constitute
-the recorded selection procedure, not a broad optimizer search. Logistic regression
+the recorded selection procedure, not a broad optimiser search. Logistic regression
 separately compares $C\in\{0.1,1,10\}$ under inner-fold selection.\ev{Original branch
 configuration}{\EvidenceRef{E051}{}}
 
 Branch calibration used an unweighted sigmoid logistic fit to the selected inner
 out-of-fold scores. The outer assessment labels were withheld from calibration. The
-original procedure selected a threshold between 0.01 and 0.99 by maximizing inner
+original procedure selected a threshold between 0.01 and 0.99 by maximising inner
 out-of-fold balanced accuracy, resolving ties toward 0.5. Later studies used a fixed
 threshold of 0.5. Comparisons between those procedures therefore combine the effects of
 model and threshold changes.
@@ -97,7 +101,7 @@ coefficients depend on score scaling and are not causal percentages of modality
 importance.
 
 Feature fusion F3 combines a 128-dimensional visual projection with the 220 statistical
-numerical features through separate projections, normalization and a fitted classifier.
+numerical features through separate projections, normalisation and a fitted classifier.
 Its recorded candidates use hidden widths 32 or 64 and ten or twenty epochs. Context
 gates instead allocate weights over branch logits. Their candidates have hidden width
 eight or sixteen and forty epochs. Action-only, quality-only and combined contexts
@@ -111,7 +115,7 @@ both branches are absent, some implementations reject the input and the external
 evaluation records abstention and coverage.
 
 The later anchored adjustment is another distinct mechanism. It modifies frozen F2
-probability coefficients by bounded context-dependent factors, with a zero-initialized
+probability coefficients by bounded context-dependent factors, with a zero-initialised
 adaptive output. It is not the same convex logit gate and need not have the same
 calibration or threshold policy. Appropriate static and exposure-matched controls are
 necessary to identify what, if anything, adaptation adds.\ev{Anchored
@@ -122,10 +126,10 @@ MSM and HANDOVER use the shared frozen visual backbone with a newly trained head
 dataset-specific numerical classifier.\ev{External model register}{\EvidenceRef{E106}{}}
 
 MSM fixes the HGB sensor control at 100 iterations, learning rate 0.1, fifteen maximum
-leaf nodes, minimum leaf size ten and L2 regularization 1.0, with early stopping
+leaf nodes, minimum leaf size ten and L2 regularisation 1.0, with early stopping
 disabled. Training-only inverse-class-frequency sample weights balance its loss; these
 settings were not selected by a hyperparameter search. The logistic sensor branch uses
-training-only standardization, balanced L2 logistic regression with $C=1$, the L-BFGS
+training-only standardisation, balanced L2 logistic regression with $C=1$, the L-BFGS
 solver and at most 2,000 iterations. Original F2 uses the same solver, iteration limit
 and $C$, but is unweighted and fits a new intercept and two coefficients to clean
 group-OOF branch probabilities. The primary evaluation fits no separate calibrator and

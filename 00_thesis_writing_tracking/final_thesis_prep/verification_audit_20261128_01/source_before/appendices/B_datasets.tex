@@ -1,0 +1,85 @@
+\chapter{Dataset Inventories, Exclusions, and Target Definitions}
+\label{app:datasets}
+
+\section{Registry Conventions}
+
+Table~\ref{tab:dataset-registry} distinguishes the number of observations in each
+published release from the number eligible for a particular experiment. Eligibility
+depended on the target, the required inputs and the temporal correspondence between
+them. The counts refer to the dataset versions used in the reported experiments.
+
+\small
+\begin{longtable}{@{}P{.17\textwidth}P{.25\textwidth}P{.25\textwidth}P{.23\textwidth}@{}}
+\caption{Prediction Targets, Units, and Eligible Populations}\label{tab:dataset-registry}\\
+\toprule Dataset & Target and unit & Admitted population & Qualification \\
+\midrule\endfirsthead
+\toprule Dataset & Target and unit & Admitted population & Qualification \\
+\midrule\endhead
+PHM & Provisional image-derived candidate-area regression; tooth/run values and
+aggregated run target & v3: 20 run records, 24 teeth per run, 480 tooth/run values
+across EXP-A/B/F & Image reference is privileged/offline; only three experiment groups
+support the retained LOEO setting \\
+REASSEMBLE & Completed high-level action failure; failure positive & 4530 actions, 509
+failures, 148 recordings & Hand camera plus five sensor streams; 149 recordings in raw
+inventory \\
+MSM & Native label 1 versus labels 0/2; cutting interval & 1895 intervals: 336 positive,
+1559 negative & 2512 native intervals; 617 technical exclusions; 45 nominal experiment
+groups \\
+ViFailback & Native whole-episode outcome, with failure positive & 4,382 episodes across
+99 tasks (3,753 failures and 629 successes) & 5,202 native episodes, with 820 excluded
+or quarantined after reconciliation \\
+HANDOVER & Handover failure; failure positive & 587 eligible trials: 335 train, 101
+validation, 151 test & 589 native trials; two training exclusions; test 110 failure/41
+success \\
+Intel welding & Original industrial-monitoring setting & No independent weld-quality
+fusion evaluation & Feasibility-gate exclusion; not a trained-model performance result
+\\
+\bottomrule
+\end{longtable}
+
+
+\section{Target Lineage and Pairing}
+
+The PHM target \nolinkurl{phm2026_image_damage_v3} uses one deterministically selected
+view for each of teeth 5--28 and aggregates the three highest tooth values for each run.
+This gives a provisional image-derived proxy for physical deterioration. Earlier targets
+used different image geometry, view aggregation and tooth sets, which limits comparison
+of their errors. Sorting tooth values removes positional identity, so the profile
+describes their distribution within a run. The fixed image split and the
+leave-one-experiment-out sensor evaluation assess different populations.\ev{PHM target
+lineage and model mapping}{\EvidenceRef{E021}{}, \EvidenceRef{E108}{}}
+
+The REASSEMBLE release reports 4,551 demonstrations. The analysis included 4,530
+completed pick, insert, remove and place actions after applying the primary-action and
+input-completeness criteria. Of these, 509 were failures. Each action supplied 22 scalar
+sensor channels and a descriptor from 16 hand-camera frames. The core experiment
+excluded audio because the correspondence between annotation times and waveform times
+could not be independently established.\ev{REASSEMBLE cohort and
+gates}{\EvidenceRef{E042}{}, \EvidenceRef{E039}{}}
+
+\section{External Cohorts and Exclusions}
+
+MSM's primary target is intervention-worthy abnormal behaviour, native label 1, against
+labels 0 and 2. Label 2 describes stable cutting with a defective tool, rather than
+simply belonging to the same semantic class as label 1. A sensitivity excluding 125
+label 2 intervals gives 1770 observations. The 45 nominal experiment groups, seven
+machine/date proxies and five calendar dates are not interchangeable grouping
+identities; the date-level evidence has very few independent clusters. Technical
+exclusions establish a usable cohort, not a claim that the excluded intervals were
+uninformative.\ev{MSM admitted cohort and target semantics}{\EvidenceRef{E073}{},
+\EvidenceRef{E072}{}, \EvidenceRef{E067}{}}
+
+ViFailback contains 5,202 native episodes, with 4,545 failures and 657 successes. Two
+camera-quality exclusions reduced a provisional cohort of 4,384 episodes to 4,382. The
+820 excluded or quarantined episodes count each episode once even when several exclusion
+reasons apply. The historical and later matched CNN conditions assess the same 4,382
+episodes under different fitting procedures. Repeated seeds and outer folds reuse these
+episodes.\ev{External dataset reconciliation and current result
+boundaries}{\EvidenceRef{E106}{}, \EvidenceRef{E107}{}}
+
+The HANDOVER study included 587 of 589 native trials. In two training trials the nearest
+wrench observation exceeded the 0.1~s alignment limit. The 151 test trials contain 110
+failures and 41 successes. The higher failure prevalence than in REASSEMBLE affects
+comparisons of failure-class average precision. Eligibility depended on the native
+partition and availability of both modalities. Participant-level independence could not
+be verified for individual trials.

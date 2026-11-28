@@ -1,0 +1,752 @@
+     Asymmetric Student-Teacher Networks for Industrial Anomaly Detection
+
+           Marco Rudolph1               Tom Wehrbein1              Bodo Rosenhahn1                 Bastian Wandt2
+           1                                                                2
+               L3S / Leibniz University Hannover, Germany                       Linköping University, Sweden
+                                             rudolph@tnt.uni-hannover.de
+
+
+                                                                        RGB              3D            GT            PRED.
+                         Abstract
+    Industrial defect detection is commonly addressed with
+anomaly detection (AD) methods where no or only incom-
+plete data of potentially occurring defects is available. This
+work discovers previously unknown problems of student-
+teacher approaches for AD and proposes a solution, where
+two neural networks are trained to produce the same output
+for the defect-free training examples. The core assumption
+of student-teacher networks is that the distance between the
+outputs of both networks is larger for anomalies since they
+are absent in training. However, previous methods suffer
+from the similarity of student and teacher architecture, such
+that the distance is undesirably small for anomalies. For
+this reason, we propose asymmetric student-teacher net-
+works (AST). We train a normalizing flow for density es-
+timation as a teacher and a conventional feed-forward net-
+work as a student to trigger large distances for anomalies:
+The bijectivity of the normalizing flow enforces a divergence
+of teacher outputs for anomalies compared to normal data.
+Outside the training distribution the student cannot imitate
+this divergence due to its fundamentally different architec-
+ture. Our AST network compensates for wrongly estimated            Figure 1. Qualitative results on MVTec 3D-AD [8]. The two left
+likelihoods by a normalizing flow, which was alternatively         columns show the input, the third the ground truth and the fourth
+used for anomaly detection in previous work. We show that          our anomaly detection. Images are masked by foreground extrac-
+our method produces state-of-the-art results on the two cur-       tion. Our method is able to successfully combine RGB and 3D
+rently most relevant defect detection datasets MVTec AD            data to detect defects even if only present in one data domain.
+and MVTec 3D-AD regarding image-level anomaly detec-
+tion on RGB and 3D data.                                           Instead, it is assumed that only data of a normal class of
+                                                                   defect-free examples is available in training which is termed
+                                                                   as semi-supervised anomaly detection. This work and oth-
+1. Introduction                                                    ers [9, 22, 36, 38, 39] specialize for industrial anomaly de-
+    To ensure product quality and safety standards in indus-       tection. This domain differs in contrast to others that normal
+trial manufacturing processes, products are traditionally in-      examples are similar to each other and to defective prod-
+spected by humans, which is expensive and unreliable in            ucts. In this work, we not only show the effectiveness of
+practice. For this reason, image-based methods for auto-           our method for common RGB images but also on 3D data
+matic inspection have been developed recently using ad-            and their combination as shown in Figure 1.
+vances in deep learning [9, 18, 29, 38, 39]. Since there are          Several approaches try to solve the problem by so-called
+no or only very few negative examples, i.e. erroneous prod-        student-teacher networks [5, 7, 19, 51, 53]. First, the
+ucts, available, especially at the beginning of production,        teacher is trained on a pretext task to learn a semantic em-
+and new errors occur repeatedly during the process, tradi-         bedding. In a second step, the student is trained to match the
+tional supervised algorithms cannot be applied to this task.       output of the teacher. The motivation is that the student can
+
+
+
+                                                                 2592
+          symmetric student-teacher pair
+                                                                               likelihood training which is equivalent to a density esti-
+                                                                 teacher
+                                                                 student       mation [15]. This optimization itself is used in previous
+output
+
+
+
+
+                                                                 normal        work [22, 38, 39] for anomaly detection by utilizing the
+                                                                 anomalous
+                                                                               likelihoods as an anomaly score: A low likelihood of be-
+                         input                                                 ing normal should be an indicator of anomalies. However,
+         asymmetric student-teacher pair                                       Le and Dinh [28] have shown that even perfect density es-
+                                                                               timators cannot guarantee anomaly detection. For example,
+
+
+
+
+                                                 anomaly score
+                                                                 teacher       just reparameterizing the data would change the likelihoods
+                                                                 student
+output
+
+
+
+
+                                                                 normal        of samples. Furthermore, unstable training leads to mises-
+                                                                 anomalous
+                                                                               timated likelihoods. We show that our student-teacher dis-
+                         input                                                 tance is a better measure for anomaly detection compared
+                                                                               to the obtained likelihoods by the teacher. The advantage
+Figure 2. Toy example with mini-MLPs: The students were opti-
+                                                                               to using a normalizing flow itself for anomaly detection is
+mized to match the outputs in the grey area. While the symmet-
+ric student-teacher pair (top) generalizes unintentionally and maps
+                                                                               that a possible misestimation in likelihood can be compen-
+anomalous data very similarly, the distance between student and                sated for: If a low likelihood of being normal is incorrectly
+teacher outputs can be used for anomaly detection in the asym-                 assigned to normal data, this output can be predicted by the
+metric student-teacher pair (bottom).                                          student, thus still resulting in a small anomaly score. If a
+                                                                               high likelihood of being normal is incorrectly assigned to
+only match the outputs of the teacher on normal data since                     anomalous data, this output cannot be predicted by the stu-
+it is trained only on normal data. The distance between                        dent, again resulting in a high anomaly score. In this way,
+the outputs of student and teacher is used as an indicator                     we combine the benefits of student-teacher networks and
+of an anomaly at test-time. It is assumed that this distance                   density estimation with normalizing flows. We further en-
+is larger for defective examples compared to defect-free ex-                   hance the detection by a positional encoding and by mask-
+amples. However, this is not necessarily the case in pre-                      ing the foreground using 3D images.
+vious work, since we discovered that both teacher and stu-                        Our contributions are summarized as follows:
+dent are conventional (i. e. non-injective) neural networks                         • Our method avoids the undesired generalization from
+with similar architecture. A student with similar architec-                           teacher to student by having highly asymmetric net-
+ture tends to undesired generalization, such that it extrapo-                         works as a student-teacher pair.
+lates similar outputs as the teacher for inputs that are out of                     • We improve student-teacher networks by incorporat-
+the training distribution, which, in turn, gives an undesired                         ing a bijective normalizing flow as a teacher.
+low anomaly score. This effect is shown in Figure 2 us-
+                                                                                    • Our AST outperforms the density estimation capability
+ing an explanatory experiment with one-dimensional data:
+                                                                                      of the teacher by utilizing student-teacher distances.
+If the same neural network with one hidden layer is used for
+student and teacher, the outputs are still similar for anoma-                       • Code is available on GitHub1 .
+lous data in the yellow area of the upper plot. In contrast,
+the outputs for anomalies diverge if an MLP with 3 hidden                      2. Related Work
+layers is used as the student.                                                 2.1. Student-Teacher Networks
+    In general, it is not guaranteed that an out-of-distribution
+input will cause a sufficiently large change in both out-                         Originally, the motivation for having a student network
+puts due to the missing injectivity of common neural net-                      that learns to regress the output of a teacher network was to
+works. In contrast to normalizing flows, conventional net-                     distill knowledge and save model parameters [23, 31, 48].
+works have no guarantee to provide out-of-distribution out-                    In this case, a student with clearly fewer parameters com-
+puts for out-of-distribution inputs. These problems moti-                      pared to the teacher almost matches the performance. Some
+vate us to use an asymmetric student-teacher pair (AST):                       previous work exploits the student-teacher idea for anomaly
+A bijective normalizing flow [34] acts as a teacher while                      detection by using the distance between their outputs: The
+a conventional sequential model acts as a student. In this                     larger the distance, the more likely the sample is anoma-
+way, the teacher guarantees to be sensitive to changes in                      lous. Bergmann et al. [7] propose an ensemble of students
+the input caused by anomalies. Furthermore, the usage of                       which are trained to regress the output of a teacher for im-
+different architectures and thus of different sets of learn-                   age patches. This teacher is either a distilled version of an
+able functions enforces the effect of distant outputs for out-                 ImageNet-pre-trained network or trained via metric learn-
+of-distribution samples. As a pretext task for the teacher,                    ing. The anomaly score is composed of the student uncer-
+we optimize to transform the distribution of image features                    tainty, measured by the variance of the ensemble, and the
+and/or depth maps to a normal distribution via maximum                              1 https://github.com/marco-rudolph/ast
+
+
+
+
+                                                                             2593
+regression error. Wang et al. [51] extend the student task by       other generative models than normalizing flows as autoen-
+regressing a feature pyramid rather than a single output of         coders [9, 18, 20, 37, 55, 57] or GANs [1, 11, 42]. This
+a pre-trained network. Bergmann and Sattlegger [5] adapt            is motivated by the inability of these models to generate
+the student-teacher concept to point clouds. Local geomet-          anomalous data. Usually, the reconstruction error is used
+ric descriptors are learned in a self-supervised manner to          for anomaly scoring. Since the magnitude of this error
+train the teacher. Xiao et al. [53] let teachers learn to clas-     depends highly on the size and structure of the anomaly,
+sify applied image transformations. The anomaly score is a          these methods underperform in the industrial inspection set-
+weighted sum of the regression error and the class score en-        ting. The disadvantage of these methods is that the synthetic
+tropy of an ensemble of students. By contrast, our method           anomalies cannot imitate many real anomalies.
+requires only one student and the regression error as the           Anomaly Synthesization
+only criterion to detect anomalies. All of the existing work        Some work reformulates semi-supervised anomaly detec-
+is based on identical and conventional (non-injective) net-         tion as a supervised problem by synthetically generating
+works for student and teacher, which causes undesired gen-          anomalies. Either parts of training images [29, 43, 46] or
+eralization of the student as explained in Section 1.               random images [54] are patched into normal images. Syn-
+                                                                    thetic masks are created to train a supervised segmentation.
+2.2. Density Estimation                                             Traditional Approaches
+    Anomaly detection can be viewed from a statistical per-         In addition to deep-learning-based approaches, there are
+spective: By estimating the density of normal samples,              also classical approaches for anomaly detection. The one-
+anomalies are identified through a low likelihood. The con-         class SVM [45] is a max-margin method optimizing a func-
+cept of density estimation for anomaly detection can be sim-        tion that assigns a higher value to high-density regions than
+ply realized by assuming a multivariate normal distribution.        to low-density regions. Isolation forests [30] are based on
+For example, the Mahalanobis distance of pre-extracted fea-         decision trees, where a sample is considered anomalous
+tures can be applied as an anomaly score [12, 35] which             if it can be separated from the rest of the data by a few
+is equivalent to computing the negative log likelihood of a         constraints. Local Outlier Factor [10] compares the den-
+multivariate Gaussian. However, this method is very inflex-         sity of a point with that of its neighbors. A comparatively
+ible to the training distributions, since the assumption of a       low density of a point identifies anomalies. Traditional ap-
+Gaussian distribution is a strong simplification.                   proaches usually fail in visual anomaly detection due to
+    To this end, many works try to estimate the density more        the high dimensionality and complexity of the data. This
+flexibly with a Normalizing Flow (NF) [14, 22, 38, 39, 41,          can be circumvented by combining them with other tech-
+44]. Normalizing Flows are a family of generative mod-              niques: For example, the distance to the nearest neighbor,
+els that map bijectively by construction [3, 15, 34, 52] as         as first proposed by Amer and Goldstein [2], is used as an
+opposed to conventional neural networks. This property              anomaly score after features are extracted by a pre-trained
+enables exact density estimation in contrast to other gen-          network [32, 36]. Alternatively point cloud features [24] or
+erative models like GANs [21] or VAEs [27]. Rudolph et              density-based clustering [16, 17] can be used to characterize
+al. [38] make use of this concept by modeling the density           a points neighborhood and label it accordingly. However,
+of multi-scale feature vectors obtained by pre-trained net-         the runtime is linearly related to the dataset size.
+works. Subsequently, they extend this to multi-scale feature
+maps instead of vectors to avoid information loss caused            3. Method
+by averaging [39]. To handle differently sized feature maps            Our goal is to train two models, a student model fs and a
+so-called cross-convolutions are integrated. A similar ap-          teacher model ft , such that the student learns to regress the
+proach by Gudovskiy et al. [22] computes a density on fea-          teacher outputs on defect-free image data only. The train-
+ture maps with a conditional normalizing flow, where like-          ing process is divided into two phases: First, the teacher
+lihoods are estimated on the level of local positions which         model is optimized to transform the training distribution pX
+act as a condition for the NF.                                      to a normal distribution N (0, I) bijectively with a normal-
+    A common problem of normalizing flows is unstable               izing flow. Second, the student is optimized to match the
+training, which has a tradeoff on the flexibility of density        teacher outputs by minimizing the distance between fs (x)
+estimation [4]. However, even the ground truth density es-          and ft (x) of training samples x ∈ X. We apply the distance
+timation does not provide perfect anomaly detection, since          for anomaly scoring at test-time, which is further described
+the density strongly depends on the parameterization [28].          in Section 3.2.
+                                                                       We follow [7, 22, 39] and use extracted features obtained
+2.3. Other Approaches
+                                                                    by a pre-trained network on ImageNet [13] instead of RGB
+Generative Models                                                   images as direct input for our models. Such networks have
+Many approaches try to tackle anomaly detection based on            been shown to be universal feature extractors whose outputs
+
+
+
+                                                                  2594
+                                                                                                                 image features         positional
+
+
+
+
+                                  concat
+                  feature                    NF                                                                   and/or depth          encoding
+                 extractor                 teacher
+                                              cond.
+                                                                                                                          x                   c
+ RGB image      optional                   pos. enc.
+                                                                                                                          ⸱
+                                                          dist.                                                                                         channel concat.
+                   pixel
+
+
+
+
+                                  concat
+                                                          loss
+                                           student
+                 unshuffle
+                                                                                                                                                  Conv2D(nfeat→nhidden)
+                                                                                                fixed permutation
+                 foreground                                     negative log                                                                          LeakyReLU
+                  extractor                            mask   likelihood loss
+ depth image
+                                                                                       x1
+                                                                                                even channel split
+                                                                                                                         x2
+                                                                                                                                                                ⸱
+                                                                                                                                              Conv2D(nhidden→nhidden)
+Figure 3. Overview of our pipeline: Teacher and student receive                                                                     ⸱
+image features and/or depth maps as input which is conditioned by                      ⸱ ⸱          s1          e()       ⸱
+                                                                                                                                                   BatchNorm
+                                                                                                                                                   LeakyReLU
+a positional encoding. First, the teacher represented by a normal-                     ⸱            t1                    +
+izing flow is optimized to reduce the negative log likelihood loss                                                                                Conv2D(nfeat→nhidden)
+that may be masked by a foreground map from 3D. Second, the                            ⸱            e()         s2         ⸱        ⸱                 BatchNorm
+                                                                                       +                        t2                                    LeakyReLU
+                                                                                                                         y2⸱
+student is trained to match the teacher outputs by minimizing the
+                                                                                       y1
+(masked) distance between them.                                                                                                                                 +
+                                                                                                 channel concat.                                                            ⨯nst_blocks
+carry relevant semantics for industrial anomaly detection.                                          ft(x)
+                                                                                                                ⨯ncoupling_blocks                 Conv2D(nhidden→nfeat)
+   In addition to RGB data, our approach is easily extend-
+                                                                                                            ⸱                                                       fs(x)
+able to multimodal inputs including 3D data. If 3D data                                     t
+                                                                                         L (neg. log likelihood)                                    s
+                                                                                                                                                  L (distance loss)
+is available, we concatenate depth maps to these features
+                                                                                  Figure 4. Model architecture of teacher (left side) and student
+along the channels. Since the feature maps are reduced in
+                                                                                  (right side). While the teacher is a Real-NVP-based [15] condi-
+height and width compared to the depth map resolution by
+                                                                                  tional normalizing flow [4], the student is a conventional convolu-
+a factor d, we apply pixel-unshuffling [56] by grouping a                         tional neural network.
+depth image patch of d × d pixels as one pixel with d2 chan-
+nels to match the dimensions of the feature maps.
+   Any 3D data that may be present is used to extract the                         feature maps with nfeat features of size w × h. Within these
+foreground. This is straightforward and reasonable when-                          blocks, the channels of the input x are split evenly along the
+ever the background is static or planar, which is the case                        channels into the parts x1 and x2 after randomly choosing
+for almost all real applications. Pixels that are in the back-                    a permutation that remains fixed. These parts are each con-
+ground are ignored when optimizing the teacher and stu-                           catenated with a positional encoding c as a static condition.
+dent by masking the distance and negative log likelihood                          Both are used to compute scaling and shift parameters for
+loss, which are introduced in Sections 3.1 and 3.2. If not                        an affine transformation of the counterpart by having sub-
+3D data is available, the whole image is considered as fore-                      networks si and ti for each part:
+ground. Details of the foreground extraction are given in                                                 y2 = x2 ⊙ es1 ([x1 ,c]) + t1 ([x1 , c])
+Section 4.2.1.                                                                                                                                                                     (1)
+   Similar to [22], we use a sinusoidal positional encod-                                                 y1 = x1 ⊙ es2 ([x2 ,c]) + t2 ([x2 , c]),
+ing [50] for the spatial dimensions of the input maps as
+                                                                                  where ⊙ is the element-wise product and [·, ·] denotes con-
+a condition for the normalizing flow ft . In this way, the
+                                                                                  catenation. The output of one coupling block is the con-
+occurrence of a feature is related to its position to detect
+                                                                                  catenation of y1 and y2 along the channels. Note that the
+anomalies such as misplaced objects. An overview of our
+                                                                                  number of dimensions of input and output does not change
+pipeline is given in Figure 3.
+                                                                                  due to invertibility.
+                                                                                     To stabilize training, we apply alpha-clamping of scalar
+3.1. Teacher
+                                                                                  coefficients as in [4] and the gamma-trick as in [39]. Using
+    Similar to [22, 38, 39], we train a normalizing flow based                    the change-of-variable formula with z as our final output
+on Real-NVP [15] to transform the training distribution
+to a normal distribution N (0, I). In contrast to previous                                                                                        ∂z
+                                                                                                                pX (x) = pZ (z) det                         ,                      (2)
+work, we do not use the outputs to compute likelihoods and                                                                                        ∂x
+thereby obtain anomaly scores directly. Instead, we inter-                        we minimize the negative log likelihood with pZ as the nor-
+pret this training as a pretext task to create targets for our                    mal distribution N (0, I) by optimizing the mean of
+student network.
+                                                                                                                                          2
+    The normalizing flow consists of multiple subsequent                                                                            ∥zij ∥2           ∂zij
+affine coupling blocks. Let the input x ∈ Rw×h×nfeat be                                 Ltij = − log pX (xij ) =                            − log det                              (3)
+                                                                                                                                      2               ∂xij
+
+
+
+                                                                                2595
+       Dataset                   MVTec AD    MVTec 3D-AD             10 object and 5 texture categories. The total of 73 defect
+       Alias                     (MVT2D)      (MVT3D)
+       RGB images                    ✓           ✓
+                                                                     types in the test set appear, for example, in the form of dis-
+       3D scans                       ×          ✓                   placements, cracks or scratches in various sizes and shapes.
+       #categories                   15          10                  The images have a side length of 700 to 1024 pixels.
+       image side length          700-1024     400-800                  MVTec 3D-AD, to which we refer to as MVT3D, is a
+       #train samples per cat.     60-320      210-300
+       #test samples per cat.      42-160      100-159               very recent 3D dataset containing 2D RGB images paired
+       #defect types per cat.        1-7         3-5                 with 3D scans for 10 categories. These categories include
+              Table 1. Overview of the used datasets.                deformable and non-deformable objects, partially with nat-
+                                                                     ural variations (e.g. peach and carrot). In addition to the de-
+over all (foreground) pixels at pixel position (i, j).               fect types in MVT2D there are also defects that are only rec-
+                                                                     ognizable from the depth map, such as indentations. On the
+3.2. Student
+                                                                     other hand, there are anomalies such as discoloration that
+    As opposed to the teacher, the student is a conventional         can only be perceived from the RGB data. The RGB im-
+feed-forward network that does not map injectively or sur-           ages have a resolution of 400 to 800 pixels per side, paired
+jectively. We propose a simple fully convolutional network           with rasterized 3D point clouds at the same resolution.
+with residual blocks which is shown in Figure 4. Each
+residual block consists of two sequences of 3 × 3 convo-             4.2. Implementation Details
+lutional layers, batch normalization [25] and leaky ReLU             4.2.1   Image Preprocessing
+activations. We add convolutions as the first and last layer
+to increase and decrease the feature dimensions.                     Following [12, 39], we use the layer 36 output of
+    Similarly to the teacher, the student takes image features       EfficientNet-B5 [47] pre-trained on ImageNet [13] as a fea-
+as input which are concatenated with 3D data if available.           ture extractor. This feature extractor is not trained during
+In addition, the positional encoding c is concatenated. The          training of the student and teacher networks. The images
+output dimensions match the teacher to enable pixel-wise             are resized to a resolution of 768 × 768 pixels resulting in
+distance computation. We minimize the squared ℓ2 -distance           feature maps of size 24 × 24 with 304 channels.
+between student outputs fs (x) and the teacher outputs ft (x)
+on training samples x ∈ X, given the training set X, at a
+                                                                     4.2.2   3D Preprocessing
+pixel position (i, j) of the output:
+                                               2
+                                                                     We discard the x and y coordinates due to the low infor-
+                  Lsij = ∥fs (x)ij − ft (x)ij ∥2 .          (4)      mative content and use only the depth component z in cen-
+Averaging Lsij over all (foreground) pixels gives us the final       timeters. Missing depth values are repeatedly filled by us-
+loss. The distance Ls is also used in testing to obtain an           ing the average value of valid pixels from an 8-connected
+anomaly score on image level: Ignoring the anomaly scores            neighborhood for 3 iterations. We model the background as
+of background pixels, we aggregate the pixel distances of            a 2D plane by interpolating the depth of the 4 corner pix-
+one sample by computing either the maximum or the mean               els. A pixel is assumed as foreground if its depth is further
+over the pixels.                                                     than 7mm distant from the background plane. As an in-
+                                                                     put to our models, we first resize the masks to 192 × 192
+4. Experiments                                                       pixels via bilinear downsampling and then perform pixel-
+                                                                     unshuffling [56] with d = 8 as described in Section 3 to
+4.1. Datasets                                                        match the feature map resolution. In order to detect anoma-
+   To demonstrate the benefits of our method on a wide               lies at the edge of the object and fill holes of missing values,
+range of industrial inspection scenarios, we evaluate with           the foreground mask is dilated using a square structural ele-
+a diverse set of 25 scenarios in total, including natural ob-        ment of size 8. We subtract the mean foreground depth from
+jects, industrial components and textures in 2D and 3D. Ta-          each depth map and set its background pixels to 0. The bi-
+ble 1 shows an overview of the used benchmark datasets               nary foreground mask M with ones as foreground and zeros
+MVTec AD [6] and MVTec 3D-AD [8]. For both datasets,                 as background is downsampled to feature map resolution to
+the training set only contains defect-free data and the test set     mask the loss for student and teacher. This is done by a bi-
+contains defect-free and defective examples. In addition to          linear interpolation f↓ followed by a binarization where all
+image-level labels, the datasets also provide pixel-level an-        entries greater than zero are assumed as foreground to mask
+notations about defective regions which we use to evaluate           the loss at position (i, j):
+the segmentation of defects.                                                                (
+   MVTec AD, which will be called MVT2D in the follow-                                          Lij   if f↓ (M )ij > 0
+                                                                               Lmasked
+                                                                                ij     =                               .         (5)
+ing, is a high-resolution 2D RGB image dataset containing                                       0     else
+
+
+
+                                                                   2596
+                    Category     ARNet   DRÆM    GAN    Rippel   PatchCore   DifferNet     PaDiM    CFlow   CS-Flow    Uninf.     STFPM*       AST
+                                  [18]    [54]    [1]    [35]       [36]       [38]         [12]     [22]     [39]    Stud. [7]     [51]      (ours)
+                    Grid          88.3    99.9   70.8    93.7       98.2       84.0           -      99.6    99.0       98.1        100     99.1 ± 0.2
+                    Leather       86.2    100    84.2    100        100        97.1           -      100     99.9       94.7        100     100 ± 0.0
+        Textures
+
+
+
+
+                    Tile          73.5    99.6   79.4    100        98.7       99.4           -      99.9     100       94.7        95.5    100 ± 0.0
+                    Carpet        70.6    97.8   69.9    99.6       98.7       92.9           -      98.7     100       99.9        98.9    97.5 ± 0.4
+                    Wood          92.3    99.1   83.4    99.2       98.8       99.8           -      99.1     100       99.1        99.2    100 ± 0.0
+                    Avg. Text.    82.2    99.3   77.5    98.5       98.3       94.6         99.0     99.5    99.8       97.3        98.7   99.3 ± 0.08
+                    Bottle        94.1    99.2   89.2    99.0       100        99.0           -      100     99.8       99.0        100     100 ± 0.0
+                    Capsule       68.1    98.5   73.2    96.3       98.1       86.9           -      97.7    97.1       92.5        88.0    99.7 ± 0.1
+                    Pill          78.6    98.9   74.3    91.4       96.6       88.8           -      96.8    98.6       92.2        93.8    99.1 ± 0.1
+                    Transistor    84.3    93.1   79.2    98.2       100        91.1           -      95.2    99.3       79.4        93.7    99.3 ± 0.1
+     Objects
+
+
+
+
+                    Zipper        87.6    100    74.5    98.8       99.4       95.1           -      98.5    99.7       94.4        93.6    99.1 ± 0.1
+                    Cable         83.2    91.8   75.7    99.1       99.5       95.9           -      97.6    99.1       78.7        92.3    98.5 ± 0.2
+                    Hazelnut      85.5    100    78.5    100        100        99.3           -      100     99.6       99.1        100     100 ± 0.0
+                    Metal Nut     66.7    98.7   70.0    97.4       100        96.1           -      99.3    99.1       89.1        100     98.5 ± 0.2
+                    Screw         100     93.9   74.6    94.5       98.1       96.3           -      91.9    97.6       86.0        88.2   99.7 ± 0.1
+                    Toothbrush    100     100    65.3    94.1       100        98.6           -      99.7    91.9       100         87.8    96.6 ± 0.1
+                    Avg. Obj.     84.8    97.4   75.5    96.9       99.2       94.7         97.2     97.7    98.2       91.0        93.7   99.1 ± 0.03
+                    Average       83.9    98.0   76.2    97.5       99.1       94.7         97.9     98.3    98.7       93.2        95.4   99.2 ± 0.04
+
+Table 2. AUROC in % for detecting defects of all categories of MVT2D [6] on image-level grouped into textures and objects. We report the
+mean and standard deviation over 5 runs for our method. Best results are in bold. Beside the average value, detailed results of PaDiM [12]
+were not provided by the authors. The numbers of STFPM* [51] were obtained by a reimplementation.
+
+
+4.2.3              Teacher                                                               positive rate for varying thresholds of the anomaly score.
+                                                                                         Thus, it is independent of the choice of a threshold and in-
+For the normalizing flow architecture of the teacher, we use                             variant to the class balance in the test set. For measuring
+4 coupling blocks which are conditioned on a positional en-                              the segmentation of anomalies at pixel-level, we compute
+coding with 32 channels. Each pair of internal subnetworks                               the AUROC on pixel level given the ground truth masks in
+si and ti is designed as one shallow convolutional network                               the datasets.
+ri with one hidden layer whose output is split into the scale
+and shift components. Inside ri we use ReLU-Activations                                  4.4. Results
+and a hidden channel size of 1024 for MVT2D and 64 for
+MVT3D. We choose the alpha-clamping parameter α = 3                                      4.4.1     Detection
+for MVT2D and α = 1.9 for MVT3D. The teacher net-                                        Table 2 shows the AUROC of our method and previous
+works are trained for 240 epochs for MVT2D and 72 epochs                                 work for detecting anomalies on the 15 classes of MVT2D
+for MVT3D, respectively, with the Adam optimizer [26],                                   as well as the averages for textures, objects and all classes.
+using author-given momentum parameters β1 = 0.9 and                                      We set a new state-of-the-art performance on the mean de-
+β2 = 0.999, a learning rate of 2 · 10−4 and a weight decay                               tection AUROC over all classes, improving it slightly to
+of 10−5 .                                                                                99.2%. This is mainly due to the good performance on
+                                                                                         the more challenging objects, where we outperform pre-
+4.2.4              Student                                                               vious work by a comparatively large margin of 0.9%, ex-
+                                                                                         cept for PatchCore [36]. The detection of anomalies on tex-
+For the student networks, we use nst blocks = 4 resid-                                   tures, which CS-Flow [39] has already almost solved with a
+ual convolutional blocks as described in Section 3.2. The                                mean AUROC of 99.8%, still works very reliably at 99.3%.
+Leaky-ReLU-activations use a slope of 0.2 for negative val-                              Especially compared to the two student-teacher approaches
+ues. We choose a hidden channel size of nhidden = 1024                                   [7, 51], a significant improvement of 6% and 3.6% respec-
+for the residual block. Likewise, we take over the number                                tively is archieved. Moreover, our student-teacher distances
+of epochs and optimizer parameters from the teacher. The                                 show to be a better indicator of anomalies compared to
+scores at feature map resolution are aggregated for evalua-                              the likelihoods of current state-of-the-art density estimators
+tion at image level by the maximum distance if a foreground                              [22, 39] which, like our teacher, are based on normalizing
+mask is available, and the average distance otherwise (RGB                               flows.
+only).                                                                                      Even though MVT2D has established itself as a stan-
+                                                                                         dard benchmark in the past, this dataset (especially the tex-
+4.3. Evaluation Metrics
+                                                                                         tures) is easily solvable for recent methods, and differences
+   As common for anomaly detection, we evaluate the per-                                 are mainly in the sub-percent range, which is only a mi-
+formance of our method on image-level by calculating the                                 nor difference in terms of the comparatively small size of
+area under receiver operating characteristics (AUROC). The                               the dataset. In the following, we focus on the newer, more
+ROC measures the true positive rate dependent on the false                               challenging MVT3D dataset where the normal data shows
+
+
+
+                                                                                  2597
+                                                  Cable
+             Method                  Bagel                      Carrot      Cookie       Dowel         Foam         Peach        Potato       Rope          Tire        Mean
+                                                  Gland
+             Voxel GAN [8]            38.3         62.3          47.4         63.9         56.4         40.9         61.7         42.7         66.3         57.7         53.7
+             Voxel AE [8]             69.3         42.5          51.5         79.0         49.4         55.8         53.7         48.4         63.9         58.3         57.1
+             Voxel VM [8]             75.0         74.7          61.3         73.8         82.3         69.3         67.9         65.2         60.9         69.0         69.9
+             Depth GAN [8]            53.0         37.6          60.7         60.3         49.7         48.4         59.5         48.9         53.6         52.1         52.3
+  3D
+
+
+
+
+             Depth AE [8]             46.8         73.1          49.7         67.3         53.4         41.7         48.5         54.9         56.4         54.6         54.6
+             Depth VM [8]             51.0         54.2          46.9         57.6         60.9         69.9         45.0         41.9         66.8         52.0         54.6
+             1-NN (FPFH) [24]         82.5         55.1          95.2         79.7         88.3         58.2         75.8         88.9         92.9         65.3         78.2
+             3D-ST128 [5]            86.2         48.4          83.2         89.4         84.8         66.3         76.3         68.7         95.8         48.6         74.8
+             AST (ours)            88.1 ± 2.0   57.6 ± 6.9    96.5 ± 1.0   95.7 ± 0.6   67.9 ± 1.1   79.7 ± 1.2   99.0 ± 0.9   91.5 ± 2.1   95.6 ± 0.7   61.1 ± 3.4   83.3 ± 0.8
+             PatchCore [36]           87.6         88.0          79.1         68.2         91.2         70.1         69.5         61.8         84.1         70.2         77.0
+             DifferNet [38]          85.9         70.3          64.3         43.5         79.7         79.0         78.7         64.3         71.5         59.0         69.6
+  RGB
+
+
+
+
+             PADiM [12]*              97.5         77.5          69.8         58.2         95.9         66.3         85.8         53.5         83.2         76.0         76.4
+             CS-Flow [39]            94.1         93.0          82.7         79.5         99.0         88.6         73.1         47.1         98.6         74.5         83.0
+             STFPM [51]*              93.0         84.7          89.0         57.5         94.7         76.6         71.0         59.8         96.5         70.1         79.3
+             AST (ours)            94.7 ± 0.7   92.8 ± 1.2    85.1 ± 1.2   82.5 ± 0.8   98.1 ± 0.4   95.1 ± 0.6   89.5 ± 1.1   61.3 ± 2.4   99.2 ± 0.2   82.1 ± 0.9   88.0 ± 0.6
+             Voxel GAN [8]            68.0         32.4          56.5         39.9        49.7          48.2         56.6         57.9        60.1          48.2         51.7
+             Voxel AE [8]             51.0         54.0          38.4         69.3        44.6          63.2         55.0         49.4        72.1          41.3         53.8
+             Voxel VM [8]             55.3         77.2          48.4         70.1        75.1          57.8         48.0         46.6        68.9          61.1         60.9
+  3D + RGB
+
+
+
+
+             Depth GAN [8]            53.8         37.2          58.0         60.3        43.0          53.4         64.2         60.1        44.3          57.7         53.2
+             Depth AE [8]             64.8         50.2          65.0         48.8        80.5          52.2         71.2         52.9        54.0          55.2         59.5
+             Depth VM [8]             51.3         55.1          47.7         58.1        61.7          71.6         45.0         42.1        59.8          62.3         55.5
+             PatchCore+FPFH [24]      91.8         74.8          96.7         88.3        93.2          58.2         89.6         91.2        92.1          88.6         86.5
+             AST (ours)            98.3 ± 0.4   87.3 ±3.3     97.6 ± 0.5   97.1 ± 0.3   93.2±2.1     88.5 ± 1.4   97.4± 1.4    98.1 ± 1.2   100 ± 0.0    79.7 ± 1.0   93.7± 0.2
+
+
+Table 3. AUROC in % for detecting defects of all categories of MVT3D [8] on image-level for 3D data, RGB data and the combination
+of both. We report the mean and standard deviation over 5 runs for our method. Best results per data domain are in bold. Numbers of
+listed methods followed by a  are non-published results obtained by the corresponding authors on request. A * indicates that we used a
+reimplementation. The numbers from PatchCore are taken from [24].
+
+             Method                      MVT2D               MVT3D (RGB+3D)                      amples can be found in the supplemental material. Despite
+             AE-SSIM [9]                    87.0                    -
+             PatchCore [36]                 98.4                    -
+                                                                                                 the low resolution, the regions of the anomaly can still be
+             PatchCore+FPFH [24]             -                     99.2                          localized well for practical purposes. Table 4 reports the
+             AST (ours)                 95.0 ± 0.03            97.6 ± 0.02                       pixel-AUROC of our method and previous work.
+Table 4. Anomaly segmentation results measured by the mean                                          For the class peach in the RGB+3D setting, the top of
+pixel-AUROC over all classes and its standard deviation over 5                                   Figure 5 compares the distribution of student-teacher dis-
+runs. Despite image-level detection is the focus of this work, our                               tances for anomalous and normal regions. The distribution
+method is able to localize defects for practical purposes with an                                of anomalous samples shows a clear shift towards larger dis-
+AUROC of 95% or 97.6%.                                                                           tances. At the bottom of Figure 5, the outputs of student and
+                                                                                                 teacher as well as our the distance of corresponding pairs
+more variance and anomalies only partly occur in one of the                                      representing our anomaly score are visualized by a random
+two data modalities, RGB and 3D.                                                                 orthographic 2D projection. Note that visualizations made
+   The results for individual classes of MVT3D grouped by                                        by techniques such as t-SNE [49] or PCA [33] are not mean-
+data modality are given in Table 3. We are able to outper-                                       ingful here, since the teacher outputs (and therefore most
+form all previous methods for all data modalities regard-                                        of the student outputs) follow an isotropic standard normal
+ing the average of all classes by a large margin of 5.1%                                         distribution. Therefore, different random projections barely
+for 3D, 5% for RGB and 7.2% for the combination. Fac-                                            differ qualitatively.
+ing the individual classes and data domains, we set a new
+state-of-the-art in 21 of 30 cases. Note that this data set                                      4.4.2     Ablation Studies
+is much more challenging when comparing the best results
+from previous work (99.1% for MVT2D vs. 86.5% AUROC                                              We demonstrate the effectiveness of our contributions and
+for MVT3D). Nevertheless, we detect defects in 7 out of 10                                       design decisions with several ablation studies. Table 5
+cases for RGB+3D at an AUROC of at least 93%, which                                              compares the performance of variants of students with the
+demonstrates the robustness of our method. In contrast, the                                      teacher, which can be used as a density estimator itself for
+nearest-neighbor approach PatchCore [36], which provides                                         anomaly detection by using its likelihoods, given by Eq. 2,
+comparable performance to us on MVT2D, struggles with                                            as anomaly score. In comparison, a symmetric student-
+the increased demands of the dataset and is outperformed by                                      teacher pair worsens the results by 1 to 2%, excepting the
+11% on RGB. The same applies for the 3D extension [24]                                           RGB case. However, the performance is already improved
+using FPFH [40] despite using a foreground mask as well.                                         for RGB and 3D+RGB by creating the asymmetry with a
+Figure 1 shows qualitative results for the RGB+3D case                                           deeper version of the student than the teacher by doubling
+given both inputs and ground truth annotations. More ex-                                         the number of coupling blocks to 8. This effect is further
+
+
+
+                                                                                            2598
+                        Histogram of student-teacher distances                                   Method                  3D    RGB       3D+RGB
+                    1.75                                    normal                               Teacher only           82.2   69.8        90.9
+                    1.50                                    anomaly                              NF student (symm.)     81.8   76.0        88.9
+                                                                                                 NF student (deeper)    81.8   76.7        92.7
+                    1.25                                                                         AST (ours)             83.3   88.0        93.7
+                    1.00
+          density
+
+
+
+
+                    0.75                                                         Table 5. Comparison of average detection performance in AUROC
+                                                                                 percentage on MVT3D of teacher and student-teacher in a sym-
+                    0.50
+                                                                                 metric and asymmetric setting. Our proposed asymmetric student-
+                    0.25                                                         teacher pair outperforms all baselines in all cases.
+                    0.00
+                           5     6      7       8       9     10
+                                log(student-teacher distance)                         nst blocks      AUROC [%] ↑       #Params. [M] ↓      inf. time [ms] ↓
+                    non-defects                            anomalies                       1             92.8                26.0                  3.4
+                                    student           student                              2             93.3                44.8                  6.1
+  4                                 teacher   4       teacher                              4             93.7                82.6                  10.4
+                                                                                           8             93.7               151.1                  19.8
+  2                                           2                                           12             93.8               233.6                  29.4
+                                                                                       teacher           90.9                 3.8                  4.5
+  0                                           0
+                                                                                 Table 6. Tradeoff between performance and computational effort
+  2                                           2
+                                                                                 on 3D+RGB data of MVT3D. The inference time was measured
+                                                                                 with a NVIDIA RTX 1080 Ti.
+  4                                           4
+      4             2      0    2      4          4         2   0      2   4             input        pos. enc.        mask       teacher          AST
+                                                                                                         ✗              ✓           78.4           81.9
+Figure 5. Top: Histogram of our AST distances for normal
+                                                                                          3D             ✓              ✗           59.4           67.2
+and anomalous regions of the class peach in MVT3D. Bottom:                                               ✓              ✓           82.2           83.3
+Random orthographic projections of student and teacher outputs                                           ✗              ✗           69.3           87.8
+grouped in non-defective (left plot) anomalous regions (right plot)                      RGB             ✓              ✗           69.8           88.0
+for the class peach. The plotted student-teacher distance repre-                                         ✓              ✓           n. a.          n. a.
+senting the anomaly score is clearly higher for anomalous regions                                        ✗              ✓           90.9           93.8
+since the student is not able to match the teacher outputs, as it was                 3D+RGB             ✓              ✗           66.2           84.0
+                                                                                                         ✓              ✓           90.9           93.7
+only trained on non-defective regions.
+                                                                                 Table 7. Impact of the positional encoding and the foreground
+enhanced if the architecture of the NF-teacher is replaced                       mask on the detection performance of student and teacher on
+by a conventional feedforward network as we suggest. We                          MVT3D. Numbers are given in AUROC percentage. Since masks
+also vary the depth of our student network and analyzed                          are obtained from 3D data, there is no mask for RGB.
+its relation to performance, model size and inference time
+in Table 6. With an increasing number of residual blocks
+                                                                                 background scores are eliminated.
+nst blocks , we observe an increasing performance which is
+almost saturated after 4 blocks. Since the remaining poten-
+tial in detection performance is not in relation to the lin-
+                                                                                 5. Conclusion
+early increasing additional computational effort per block,                         We discovered the generalization problem of previous
+we suggest to choose 4 blocks to have a good trade-off.                          student teacher pairs for AD and introduced an alternative
+    In Table 7 we investigate the impact of the positional en-                   student-teacher method that prevents this issue by using a
+coding and the foreground mask. For MVT3D, positional                            highly different architecture for student and teacher. We
+encoding improves the detection by 1.4% of our AST-pair                          were able to compensate for skewed likelihoods of a nor-
+when trained with 3D data as the only input. Even though                         malizing flow-based teacher, which was used directly for
+the effect is not present when combining both data modal-                        detection in previous work, by the additional use of a stu-
+ities, we consider it generally reasonable to use the posi-                      dent. Future work could extend the approach to more data
+tional encoding, considering that the integration with just                      domains and improve the localization resolution.
+32 additional channels does not significantly increase the
+computational effort.                                                            Acknowledgements. This work was supported by the Fed-
+    Foreground extraction in order to mask the loss for train-                   eral Ministry of Education and Research (BMBF), Germany under
+ing and anomaly score for testing is also highly effective.                      the project LeibnizKILabor (grant no. 01DD20003), the Center
+Since the majority of the image area often consists of back-                     for Digital Innovations (ZDIN) and the Deutsche Forschungsge-
+ground, the teacher has to spend a large part of the distri-                     meinschaft (DFG) under Germany’s Excellence Strategy within
+bution on the background. Masking allows the teacher and                         the Cluster of Excellence PhoenixD (EXC 2122).
+student to focus on the essential structures. Moreover, noisy
+
+
+
+                                                                               2599
+References                                                                    database. In 2009 IEEE conference on computer vision and
+                                                                              pattern recognition, pages 248–255. Ieee, 2009.
+ [1] Samet Akcay, Amir Atapour-Abarghouei, and Toby P.
+                                                                         [14] Madson LD Dias, César Lincoln C Mattos, Ticiana LC da
+     Breckon. Ganomaly: Semi-supervised anomaly detection
+                                                                              Silva, José Antônio F de Macedo, and Wellington CP Silva.
+     via adversarial training. In Computer Vision – ACCV 2018,
+                                                                              Anomaly detection in trajectory data with normalizing flows.
+     pages 622–637, Cham, 2019. Springer International Publish-
+                                                                              arXiv preprint arXiv:2004.05958, 2020.
+     ing.
+                                                                         [15] Laurent Dinh, Jascha Sohl-Dickstein, and Samy Bengio.
+ [2] Mennatallah Amer and Markus Goldstein. Nearest-neighbor                  Density estimation using real nvp. ICLR 2017, 2016.
+     and clustering based anomaly detection algorithms for rapid-
+                                                                         [16] Alexander Dockhorn, Christian Braune, and Rudolf Kruse.
+     miner. In Proc. of the 3rd RapidMiner Community Meeting
+                                                                              An alternating optimization approach based on hierarchical
+     and Conference (RCOMM 2012), pages 1–12, 2012.
+                                                                              adaptations of dbscan. In 2015 IEEE Symposium Series on
+ [3] Lynton Ardizzone, Jakob Kruse, Sebastian Wirkert, Daniel                 Computational Intelligence (SSCI), number 2, pages 749–
+     Rahner, Eric W Pellegrini, Ralf S Klessen, Lena Maier-Hein,              755, 2015.
+     Carsten Rother, and Ullrich Köthe. Analyzing inverse prob-
+                                                                         [17] Alexander Dockhorn, Christian Braune, and Rudolf Kruse.
+     lems with invertible neural networks. In ICLR, 2019.
+                                                                              Variable density based clustering. In 2016 IEEE Sympo-
+ [4] Lynton Ardizzone, Carsten Lüth, Jakob Kruse, Carsten                    sium Series on Computational Intelligence (SSCI), pages 1–
+     Rother, and Ullrich Köthe. Guided image generation                      8, Dec. 2016.
+     with conditional invertible neural networks. arXiv preprint         [18] Ye Fei, Chaoqin Huang, Cao Jinkun, Maosen Li, Ya Zhang,
+     arXiv:1907.02392, 2019.                                                  and Cewu Lu. Attribute restoration framework for anomaly
+ [5] Paul Bergmann, Kilian Batzner, Michael Fauser, David Sat-                detection. IEEE Transactions on Multimedia, 2020.
+     tlegger, and Carsten Steger. Beyond dents and scratches:            [19] Mariana-Iuliana Georgescu, Antonio Barbalau, Radu Tu-
+     Logical constraints in unsupervised anomaly detection and                dor Ionescu, Fahad Shahbaz Khan, Marius Popescu, and
+     localization. Int. J. Comput. Vis., 130(4):947–969, 2022.                Mubarak Shah. Anomaly detection in video via self-
+ [6] Paul Bergmann, Michael Fauser, David Sattlegger, and                     supervised and multi-task learning. In Proceedings of the
+     Carsten Steger. Mvtec ad–a comprehensive real-world                      IEEE/CVF Conference on Computer Vision and Pattern
+     dataset for unsupervised anomaly detection. In Proceed-                  Recognition, pages 12742–12752, 2021.
+     ings of the IEEE Conference on Computer Vision and Pattern          [20] Dong Gong, Lingqiao Liu, Vuong Le, Budhaditya Saha,
+     Recognition, pages 9592–9600, 2019.                                      Moussa Reda Mansour, Svetha Venkatesh, and Anton
+ [7] Paul Bergmann, Michael Fauser, David Sattlegger, and                     van den Hengel. Memorizing normality to detect anomaly:
+     Carsten Steger. Uninformed students: Student-teacher                     Memory-augmented deep autoencoder for unsupervised
+     anomaly detection with discriminative latent embeddings. In              anomaly detection. In Proceedings of the IEEE International
+     Proceedings of the IEEE/CVF Conference on Computer Vi-                   Conference on Computer Vision, pages 1705–1714, 2019.
+     sion and Pattern Recognition, pages 4183–4192, 2020.                [21] Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing
+ [8] Paul Bergmann, Xin Jin, David Sattlegger, and Carsten Ste-               Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and
+     ger. The mvtec 3d-ad dataset for unsupervised 3d anomaly                 Yoshua Bengio. Generative adversarial nets. In Advances
+     detection and localization. 17th International Conference on             in neural information processing systems, pages 2672–2680,
+     Computer Vision Theory and Applications, 2022.                           2014.
+ [9] Paul Bergmann, Sindy Löwe, Michael Fauser, David Sattleg-          [22] Denis Gudovskiy, Shun Ishizaka, and Kazuki Kozuka.
+     ger, and C. Steger. Improving unsupervised defect segmen-                Cflow-ad: Real-time unsupervised anomaly detection with
+     tation by applying structural similarity to autoencoders. In             localization via conditional normalizing flows. In Proceed-
+     VISIGRAPP, 2019.                                                         ings of the IEEE/CVF Winter Conference on Applications of
+[10] Markus M Breunig, Hans-Peter Kriegel, Raymond T Ng, and                  Computer Vision, pages 98–107, 2022.
+     Jörg Sander. Lof: identifying density-based local outliers. In     [23] Geoffrey Hinton, Oriol Vinyals, Jeff Dean, et al. Distill-
+     Proceedings of the 2000 ACM SIGMOD international con-                    ing the knowledge in a neural network. arXiv preprint
+     ference on Management of data, pages 93–104, 2000.                       arXiv:1503.02531, 2(7), 2015.
+[11] Haoqing Cheng, Heng Liu, Fei Gao, and Zhuo Chen. Adgan:             [24] Eliahu Horwitz and Yedid Hoshen. An empirical investi-
+     A scalable gan-based architecture for image anomaly de-                  gation of 3d anomaly detection and segmentation. arXiv
+     tection. In 2020 IEEE 4th Information Technology, Net-                   preprint arXiv:2203.05550, 2022.
+     working, Electronic and Automation Control Conference (IT-          [25] Sergey Ioffe and Christian Szegedy. Batch normalization:
+     NEC), volume 1, pages 987–993. IEEE, 2020.                               Accelerating deep network training by reducing internal co-
+[12] Thomas Defard, Aleksandr Setkov, Angelique Loesch, and                   variate shift. In International conference on machine learn-
+     Romaric Audigier. Padim: a patch distribution modeling                   ing, pages 448–456. PMLR, 2015.
+     framework for anomaly detection and localization. In pat-           [26] Diederik P Kingma and Jimmy Ba. Adam: A method
+     tern Recognition, ICPR International Workshops and Chal-                 for stochastic optimization. In International Conference on
+     lenges, 2021.                                                            Learning Representations (ICLR), 2015.
+[13] Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li,              [27] Diederik P. Kingma and Max Welling. Auto-encoding vari-
+     and Li Fei-Fei. Imagenet: A large-scale hierarchical image               ational bayes. CoRR, abs/1312.6114, 2013.
+
+
+
+
+                                                                       2600
+[28] Charline Le Lan and Laurent Dinh. Perfect density models                unsupervised anomaly detection with generative adversarial
+     cannot guarantee anomaly detection. Entropy, 23(12):1690,               networks. Medical image analysis, 54:30–44, 2019.
+     2021.                                                              [43] Hannah M Schlüter, Jeremy Tan, Benjamin Hou, and Bern-
+[29] Chun-Liang Li, Kihyuk Sohn, Jinsung Yoon, and Tomas                     hard Kainz. Self-supervised out-of-distribution detection and
+     Pfister. Cutpaste: Self-supervised learning for anomaly de-             localization with natural synthetic anomalies (nsa). arXiv
+     tection and localization. In Proceedings of the IEEE/CVF                preprint arXiv:2109.15222, 2021.
+     Conference on Computer Vision and Pattern Recognition,             [44] Maximilian Schmidt and Marko Simic. Normalizing flows
+     pages 9664–9674, 2021.                                                  for novelty detection in industrial time series data. arXiv
+[30] Fei Tony Liu, Kai Ming Ting, and Zhi-Hua Zhou. Isolation                preprint arXiv:1906.06904, 2019.
+     forest. In 2008 eighth ieee international conference on data
+                                                                        [45] Bernhard Schölkopf, Robert C Williamson, Alex Smola,
+     mining, pages 413–422. IEEE, 2008.
+                                                                             John Shawe-Taylor, and John Platt. Support vector method
+[31] Seyed Iman Mirzadeh, Mehrdad Farajtabar, Ang Li, Nir
+                                                                             for novelty detection. Advances in neural information pro-
+     Levine, Akihiro Matsukawa, and Hassan Ghasemzadeh. Im-
+                                                                             cessing systems, 12, 1999.
+     proved knowledge distillation via teacher assistant. In Pro-
+     ceedings of the AAAI Conference on Artificial Intelligence,        [46] Jouwon Song, Kyeongbo Kong, Ye-In Park, Seong-Gyun
+     volume 34, pages 5191–5198, 2020.                                       Kim, and Suk-Ju Kang. Anoseg: Anomaly segmenta-
+                                                                             tion network using self-supervised learning. arXiv preprint
+[32] Tiago Nazare, Rodrigo de Mello, and Moacir Ponti. Are pre-
+                                                                             arXiv:2110.03396, 2021.
+     trained cnns good feature extractors for anomaly detection
+     in surveillance videos? arXiv preprint arXiv:1811.08495,           [47] Mingxing Tan and Quoc Le. Efficientnet: Rethinking model
+     2018.                                                                   scaling for convolutional neural networks. In International
+[33] Karl Pearson. Liii. on lines and planes of closest fit to sys-          Conference on Machine Learning, pages 6105–6114. PMLR,
+     tems of points in space. The London, Edinburgh, and Dublin              2019.
+     philosophical magazine and journal of science, 2(11):559–          [48] Yonglong Tian, Dilip Krishnan, and Phillip Isola.
+     572, 1901.                                                              Contrastive representation distillation.      arXiv preprint
+[34] Danilo Rezende and Shakir Mohamed. Variational inference                arXiv:1910.10699, 2019.
+     with normalizing flows. In International Conference on Ma-         [49] Laurens Van der Maaten and Geoffrey Hinton. Visualiz-
+     chine Learning, pages 1530–1538. PMLR, 2015.                            ing data using t-sne. Journal of machine learning research,
+[35] Oliver Rippel, Patrick Mertens, and Dorit Merhof. Modeling              9(11), 2008.
+     the distribution of normal data in pre-trained deep features       [50] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszko-
+     for anomaly detection. arXiv preprint arXiv:2005.14140,                 reit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia
+     2020.                                                                   Polosukhin. Attention is all you need. Advances in neural
+[36] Karsten Roth, Latha Pemula, Joaquin Zepeda, Bernhard                    information processing systems, 30, 2017.
+     Schölkopf, Thomas Brox, and Peter Gehler. Towards to-             [51] Guodong Wang, Shumin Han, Errui Ding, and Di Huang.
+     tal recall in industrial anomaly detection. In Proceedings of           Student-teacher feature pyramid matching for anomaly de-
+     the IEEE/CVF Conference on Computer Vision and Pattern                  tection. arXiv preprint arXiv:2103.04257, 2021.
+     Recognition, pages 14318–14328, 2022.
+                                                                        [52] Tom Wehrbein, Marco Rudolph, Bodo Rosenhahn, and Bas-
+[37] Marco Rudolph, Bastian Wandt, and Bodo Rosenhahn.
+                                                                             tian Wandt. Probabilistic monocular 3d human pose estima-
+     Structuring autoencoders. In Proceedings of the IEEE Inter-
+                                                                             tion with normalizing flows. Proceedings of the IEEE Inter-
+     national Conference on Computer Vision Workshops, 2019.
+                                                                             national Conference on Computer Vision, 2021.
+[38] Marco Rudolph, Bastian Wandt, and Bodo Rosenhahn. Same
+     same but differnet: Semi-supervised defect detection with          [53] Qinfeng Xiao, Jing Wang, Youfang Lin, Wenbo Gongsa,
+     normalizing flows. In Proceedings of the IEEE/CVF Win-                  Ganghui Hu, Menggang Li, and Fang Wang. Unsupervised
+     ter Conference on Applications of Computer Vision, pages                anomaly detection with distillated teacher-student network
+     1907–1916, 2021.                                                        ensemble. Entropy, 23(2):201, 2021.
+[39] Marco Rudolph, Tom Wehrbein, Bodo Rosenhahn, and Bas-              [54] Vitjan Zavrtanik, Matej Kristan, and Danijel Skočaj. Draem-
+     tian Wandt. Fully convolutional cross-scale-flows for image-            a discriminatively trained reconstruction embedding for sur-
+     based defect detection. In Proceedings of the IEEE/CVF                  face anomaly detection. In Proceedings of the IEEE/CVF
+     Winter Conference on Applications of Computer Vision,                   International Conference on Computer Vision, pages 8330–
+     pages 1088–1097, 2022.                                                  8339, 2021.
+[40] Radu Bogdan Rusu, Nico Blodow, and Michael Beetz. Fast             [55] Shuangfei Zhai, Yu Cheng, Weining Lu, and Zhongfei
+     point feature histograms (fpfh) for 3d registration. In 2009            Zhang. Deep structured energy based models for anomaly
+     IEEE international conference on robotics and automation,               detection. In Proceedings of the 33rd International Con-
+     pages 3212–3217. IEEE, 2009.                                            ference on International Conference on Machine Learning-
+[41] Artem Ryzhikov, Maxim Borisyak, Andrey Ustyuzhanin,                     Volume 48, pages 1100–1109, 2016.
+     and Denis Derkach. Normalizing flows for deep anomaly              [56] Kai Zhang, Wangmeng Zuo, and Lei Zhang. Ffdnet: Toward
+     detection. arXiv preprint arXiv:1912.09323, 2019.                       a fast and flexible solution for cnn-based image denoising.
+[42] Thomas Schlegl, Philipp Seeböck, Sebastian M Waldstein,                IEEE Transactions on Image Processing, 27(9):4608–4622,
+     Georg Langs, and Ursula Schmidt-Erfurth. f-anogan: Fast                 2018.
+
+
+
+
+                                                                      2601
+[57] Chong Zhou and Randy C Paffenroth. Anomaly detection
+     with robust deep autoencoders. In Proceedings of the 23rd
+     ACM SIGKDD international conference on knowledge dis-
+     covery and data mining, pages 665–674, 2017.
+
+
+
+
+                                                                 2602
+

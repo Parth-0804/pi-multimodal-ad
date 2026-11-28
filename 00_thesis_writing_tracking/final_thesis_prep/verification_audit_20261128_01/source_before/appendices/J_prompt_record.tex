@@ -1,0 +1,79 @@
+\chapter{Implementation and Results Audit Prompts}
+\label{app:prompt-record}
+
+\section{Implementation and Experimentation}
+The following example is a reconstructed paraphrase of the implementation tasks
+described in the retained records, not a verbatim transcript. It describes intended
+work; configurations and run results establish which experiments were completed.
+
+\begingroup\singlespacing\footnotesize
+\begin{verbatim}
+can you check what is already there in the project first?
+go through the code and the previous results before changing anything.
+i want to compare the individual models and the fusion methods.
+check the datasets and what the labels actually mean.
+check if the video and sensor inputs belong to the same sample.
+make sure samples from the same group dont end up on both sides of the split.
+keep the experiment settings fixed before checking the test results.
+use the same evaluation setup for the models being compared in each study.
+check how the predictions for training the fusion model are generated.
+keep the assessment samples separate from training and model selection.
+run the planned experiments only if the required checks pass.
+keep the existing results and save the new work separately.
+save the configs, seeds, predictions and the training details.
+if something fails, keep the failed attempt and explain what happened.
+also check the planned missing or degraded modality conditions.
+report when fusion helps, when it does not, and when the result is unclear.
+dont change the experiment just to get a better score.
+keep the folders clear so i can follow what was done later.
+\end{verbatim}
+\endgroup
+
+\section{Fetching and Checking Results}
+The following example is a reconstructed paraphrase of requests to retrieve and check
+saved experimental results, not a verbatim transcript.
+
+\begingroup\singlespacing\footnotesize
+\begin{verbatim}
+can you fetch the saved results from the experiments?
+i need the csv files, figures, matrices and the technical results for my thesis.
+first check which files are actually available.
+keep the results connected to the correct experiment and configuration.
+check the sample ids and labels before comparing the predictions.
+check the reported numbers from the saved predictions where possible.
+keep results from different tasks and datasets clearly identified.
+explain what the individual models and fusion methods actually did.
+show the comparison tables and figures that support the conclusions.
+include the failures and the results where there was no clear improvement.
+mention if a result is incomplete or if the required file is missing.
+explain the limitations in simple words so i can use them in the thesis.
+\end{verbatim}
+\endgroup
+
+\section{Archiving and Version Control of Experimental Outputs}
+\label{sec:results-archiving}
+AI assistance also supported planning for local archiving and Git version control of
+experimental outputs. The available records establish planning rather than verified
+transfer or upload.
+
+\section{Provenance}
+The examples paraphrase tasks described in retained requests and audit records. The
+original implementation chats were unavailable, so the precise wording and authorship of
+individual lines cannot be verified. They should not be read as complete session
+transcripts.
+
+\section{Targeted Scientific Revision}
+Codex assisted with strengthening the architectural justification, comparing the
+findings with the literature, clarifying dataset-specific interpretations, and retaining
+effect sizes, uncertainty and relevant investigation history. The revision used existing
+evidence and preserved the distinction between completed, inconclusive and unexecuted
+studies. It did not involve new model training.
+
+\section{Evidence checks and revision of the empirical chapters}
+A review supplied by the author guided Codex-assisted checks of the empirical chapters
+against available saved results and implementation records. The work covered study
+roles, quantitative results, chapter structure, evidence tables, cross-references and
+duplication. Codex assisted with revising the LaTeX text and checking saved evidence
+without new model training or inference. The resulting account distinguishes directly
+inspected records, findings available only in retained reports, and evidence that
+remained unavailable.

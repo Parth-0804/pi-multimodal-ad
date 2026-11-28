@@ -1,0 +1,444 @@
+        Detection and Classification of Acoustic Scenes and Events 2019                                              25–26 October 2019, New York, NY, USA
+
+
+
+
+                             MIMII DATASET: SOUND DATASET FOR
+              MALFUNCTIONING INDUSTRIAL MACHINE INVESTIGATION AND INSPECTION
+
+                                           Harsh Purohit, Ryo Tanabe, Kenji Ichige, Takashi Endo,
+                                             Yuki Nikaido, Kaori Suefusa, and Yohei Kawaguchi
+
+                                             Research and Development Group, Hitachi, Ltd.
+                                      1-280, Higashi-koigakubo, Kokubunji, Tokyo 185-8601, Japan
+                                    {harsh pramodbhai.purohit.yf, yohei.kawaguchi.xk}@hitachi.com
+
+
+                                     ABSTRACT                                          public dataset which contains different types of machine sounds in
+                                                                                       real factory environments.
+        Factory machinery is prone to failure or breakdown, resulting in sig-
+                                                                                            In this paper, we introduce a new dataset of machine sounds
+        nificant expenses for companies. Hence, there is a rising interest in
+                                                                                       in normal and anomalous operating conditions in real factory envi-
+        machine monitoring using different sensors including microphones.
+                                                                                       ronments. We include the sound of four machine types: (i) valves,
+        In scientific community, the emergence of public datasets has been
+                                                                                       (ii) pumps, (iii) fans, and (iv) slide rails. For each type of machine,
+        promoting the advancement in acoustic detection and classification
+                                                                                       we consider seven kinds of product models. We assume that the
+        of scenes and events, but there are no public datasets that focus on
+                                                                                       main task is to find an anomalous condition of the machine during a
+        the sound of industrial machines under normal and anomalous op-
+                                                                                       10-second sound segment in an unsupervised learning situation. In
+        erating conditions in real factory environments. In this paper, we
+                                                                                       other words, only normal machine sounds can be used in the train-
+        present a new dataset of industrial machine sounds which we call a
+                                                                                       ing phase, and one has to correctly distinguish between a normal
+        sound dataset for malfunctioning industrial machine investigation
+                                                                                       machine sound and an abnormal machine sound in the test phase.
+        and inspection (MIMII dataset). Normal and anomalous sounds
+                                                                                       The main contributions of this paper can be summarized as follows:
+        were recorded for different types of industrial machines, i.e. valves,
+                                                                                       (1) We created an open dataset for malfunctioning industrial ma-
+        pumps, fans and slide rails. To resemble the real-life scenario, var-
+                                                                                       chine investigation and inspection (MIMII), first of its kind. (We
+        ious anomalous sounds have been recorded, for instance, contami-
+                                                                                       will release this dataset by the workshop.) This dataset contains a
+        nation, leakage, rotating unbalance, rail damage, etc. The purpose
+                                                                                       total of 26,092 sound files for normal conditions of four different
+        of releasing the MIMII dataset is to help the machine-learning and
+                                                                                       machine types. It also contains real-life anomalous sound files for
+        signal-processing community to advance the development of auto-
+                                                                                       each category of the machines. (2) Using our developed dataset,
+        mated facility maintenance.
+                                                                                       we have explored an autoencoder-based model for each type of ma-
+             Index Terms— Machine sound dataset, Acoustic scene classi-                chine with various noise conditions. These results can be taken as
+        fication, Anomaly detection, Unsupervised anomalous sound detec-               a benchmark to improve the accuracy of anomaly detection in the
+        tion                                                                           MIMII dataset.
+                                                                                            The rest of the paper is organized as follows. In Section 2, we
+                               1. INTRODUCTION                                         describe the recording environment and the setup. The details of
+                                                                                       the dataset content are given in Section 3. The autoencoder-based
+        The increasing demand for automatic machine inspection is at-                  detection benchmark and results are discussed in Section 4. Section
+        tributable to the need for a better quality of factory equipment main-         5 concludes the paper.
+        tenance. The discovery of malfunctioning machine parts mainly
+        depends on the experience of field engineers. However, shortage of                    2. RECORDING ENVIRONMENT AND SETUP
+        field experts due to the increased number of requests for inspection
+        has become an important problem in the industry. Therefore, an                 The dataset was collected using TAMAGO-03 microphone, manu-
+        efficient and affordable solution to this problem is highly desirable.         factured by System In Frontier Inc [21]. It is a circular microphone
+             In the past decade, industrial Internet of Things (IoT) and data-         array which consists of eight distinct microphones; the details of
+        driven techniques have been revolutionizing the manufacturing in-              the microphone array are shown in Figure 1. By using the mi-
+        dustry, and different approaches have been undertaken for moni-                crophone array, not only single-channel-based approaches but also
+        toring the state of machinery; for example, vibration sensor-based             multi-channel-based ones can be evaluated. The microphone array
+        approaches [1–4], temperature sensor-based approaches [5], pres-               was kept at a distance of 50 cm from the machine (10 cm in case
+        sure sensor-based approaches [6], etc. Another approach is to de-              of valves); 10-second sound segments were recorded. The dataset
+        tect anomalies from sound by using technologies for acoustic scene             contains eight separate channels for each segment. Figure 2 depicts
+        classification and event detection [7–13]. A remarkable advance-               the recording setup with the direction and distance for each kind of
+        ment has been made in classification of acoustic scenes and detec-             machine. It should be noted that each machine sound was recorded
+        tion of acoustic events, and there are many promising state-of-the-            in separate session. In running condition, the sound of the machine
+        art studies [14–16]. We know that the emergence of numerous open               was recorded as 16-bit audio signals sampled at 16 kHz in a rever-
+        benchmark dataset [17–20] is essential for the advancement of the              berant environment. Apart from the target machine sound, back-
+        research field. However, to the best of our knowledge, there is no             ground noise in multiple real factories was continuously recorded
+
+
+
+
+                                                                                 209
+
+https://doi.org/10.33682/m76f-d618
+Detection and Classification of Acoustic Scenes and Events 2019                                          25–26 October 2019, New York, NY, USA
+
+
+
+                                        ηϯ
+              DŝĐƌŽƉŚŽŶĞ
+              ĞůĞŵĞŶƚ                                   ηϮ
+                                                                                            Table 1: MIMII dataset content details
+                           ηϰ                                                                            Segments           Segments
+                                                                                      Machine type/
+                                                   ϰϱĚĞŐ͘                                              for normal for anomalous
+                                                                                      model ID
+                ηϱ                                           ηϭ                                           condition         condition
+                                ŝĂŵĞƚĞƌсϲϴŵŵ                                            00                  991                119
+                                                                                            01                  869                120
+                                                                                            02                  708                120
+
+
+
+
+                                                                                    Valve
+                     ηϲ                                                                     03                  963                120
+                                                        ηϴ                                  04                1000                 120
+                                                                                            05                  999                400
+                                       ηϳ
+                                                                                            06                  992                120
+                                                                                            00                1006                 143
+                Figure 1: Circular microphone array
+                                                                                            01                1003                 116
+                                                                                            02                1005                 111
+
+
+
+
+                                                                                    Pump
+                                                                                            03                  706                113
+                                                                                            04                  702                100
+to mix it with the target machine sound for simulating real envi-
+                                                                                            05                1008                 248
+ronments. For recording the background noise, we used the same
+                                                                                            06                1036                 102
+microphone array as for the target machine sound.
+                                                                                            00                1011                 407
+                                                                                            01                1034                 407
+                     3. DATASET CONTENT                                                     02                1016                 359
+
+
+
+                                                                                    Fan
+                                                                                            03                1012                 358
+The MIMII dataset contains the sound of four different types of ma-                         04                1033                 348
+chines: valves, pumps, fans, and slide rails. The valves are solenoid                       05                1109                 349
+valves that are repeatedly opened and closed. The pumps are water                           06                1015                 361
+pumps, which drained water from a pool and discharged water to                              00                1068                 356
+the pool continuously. The fans represent industrial fans, which are                        01                1068                 178
+used to provide a continuous flow or gas of air in factories. The                           02
+                                                                                    Slide rail
+
+
+                                                                                                              1068                 267
+slide rails in this paper represent linear slide systems, which consist                     03                1068                 178
+of a moving platform and a stage base. The types of the sounds pro-                         04                  534                178
+duced by the machines are stationary and non-stationary, have dif-                          05                  534                178
+ferent features, and different degrees of difficulty. Figure 3 depicts                      06                  534                 89
+a power spectrogram of the sound of all four types of machines,                       Total                  26092                6065
+clearly showing that each machine has its unique sound character-
+istics.
+     The list of sound files for each machine type is reported in the
+Table 1. Each type of machines consists of seven individual ma-
+chines. Individual machines may be of a different product model.
+We know that large datasets incorporating real-life complexity are
+needed to effectively train the models, so we recorded a total of
+                                                                                   Table 2: List of operations and anomalous conditions
+26,092 normal sound segments for all individual machines. In addi-
+tion to this, different real-life anomalous scenarios have been con-                                                       Examples of
+                                                                                Machine
+sidered for each kind of machine, for instance, contamination, leak-                                Operations              anomalous
+                                                                                type
+age, rotating unbalance, rail damage, etc. Various running condi-                                                           conditions
+tions are listed in Table 2. The number of sound segments for each                                                          More than
+                                                                                                Open/close repeat
+anomalous sound for each different type of machine is small be-                 Valve                                      two kinds of
+                                                                                              with different timing
+cause we regard the main target of our dataset as an unsupervised                                                         contamination
+learning scenario and regard the anomalous segments as a part of                                  Suction from/               Leakage,
+test data.                                                                      Pump               discharge to          contamination,
+     As explained in Section 2, the background noise recorded in                                   a water pool           clogging, etc.
+multiple real factories was mixed with the target machine sound.                                                           Unbalanced,
+Eight channels are considered separately during mixing the original             Fan                Normal work           voltage change,
+sounds with the noise. For a certain signal-to-noise ratio (SNR) γ                                                        clogging, etc.
+dB, the noise-mixed data of each machine model was made by the                                                             Rail damage,
+                                                                                                  Slide repeat at
+following steps:                                                                Slide rail                                   loose belt,
+                                                                                                 different speeds
+                                                                                                                          no grease, etc.
+   1. The average power over all segments of the machine models,
+      a, was calculated.
+   2. For each segment i from the machine model,
+
+
+
+
+                                                                          210
+Detection and Classification of Acoustic Scenes and Events 2019                                                      25–26 October 2019, New York, NY, USA
+
+
+
+                                                                                      and F C(64, Output, none) where F C(a, b, f ) means a fully-
+                                         WƵŵƉ
+                                                                                      connected layer with a input neurons, b output neurons, and acti-
+                                                                                      vation function f . The ReLUs are Rectified Linear Units [25]. The
+                                                                                      network is trained with Adam [26] optimization technique for 50
+                                                                                      epochs.
+                                                                                            For each machine type and model ID, all the segments were
+                                            ϱϬϬŵŵ                                    split into a training dataset and a test dataset. All the anomalous
+                                                                                      segments were regarded as the test dataset, the same number of
+                      DŝĐƌŽƉŚŽŶĞĂƌƌĂǇ                                                normal segments were randomly selected and regarded as the test
+                                            ϵϬĚĞŐ͘                                   dataset, and all the rest normal segments were regarded as the train-
+                                                                                      ing dataset. By using the training dataset consisting only of normal
+                              ϭϴϬĚĞŐ͘            ϬĚĞŐ͘                              ones, different autoencoders were trained for each machine type and
+     &ĂŶ                                                          sĂůǀĞ
+                     ϱϬϬŵŵ                            ϭϬϬŵŵ                         model ID. Anomaly detection was performed for each segment by
+                                                                                      thresholding the reconstruction error averaged over 10 seconds, and
+                                            ϮϳϬĚĞŐ͘                                  the area under the curve (AUC) values were calculated for the test
+                                                                                      dataset for each machine type and model ID. In addition to this, we
+                                                                                      also considered different levels of SNR (with factory noise) in the
+                                            ϱϬϬŵŵ                                    experiment, for example, 6 dB, 0 dB, and -6 dB.
+                                                                                            Table 3 shows the AUCs averaged over three training runs with
+                                                                                      independent initializations. In Table 3, It is clear that the AUCs for
+                                                                                      valves are lower than the other machines. Sound signals of valves
+                                                                                      are non-stationary, in particular, impulsive and sparse in time, and
+                                         ^ůŝĚĞ                                       the reconstruction error averaged over time tends to be small. So,
+                                          ƌĂŝů                                        it is difficult to detect anomalies for valves. In contrast, it is easier
+                                                                                      to detect anomalies for fans than the other machines because sound
+                                                                                      signals of fans are stationary. Moreover, for some machine models,
+   Figure 2: Schematic experimental setup for dataset recording                       the AUC decreases rapidly as the noise level increases. These re-
+                                                                                      sults indicate that it is important to solve the degradation caused by
+                                                                                      non-stationarity and noise for unsupervised anomalous sound de-
+                                                                                      tection.
+           (a) a background-noise segment j is randomly selected,
+               and its power bj is tuned so that γ = 10 log10 (a/bj ).
+           (b) The noise-mixed data is calculated by adding                                      5. CONCLUSION AND PERSPECTIVES
+               the target-machine segment i and the power-tuned
+               background-noise segment j.                                            In this paper, we introduced the MIMII dataset, a real-world dataset
+                                                                                      for investigating the malfunctioning behavior of the industrial ma-
+                                                                                      chines. We collected 26,092 sound segments of normal condi-
+                         4. EXPERIMENT                                                tion and 6,065 sound segments of anomalous condition and mixed
+                                                                                      the background noise recorded in multiple real factories with the
+An example of benchmarking is shown in this section. Our main                         machine-sound segments for simulating real environments. In ad-
+goal is to detect anomalous sounds in an unsupervised learning                        dition, using the MIMII dataset, we showed an example of evalu-
+scenario as discussed in Section 1, and several studies have suc-                     ation for autoencoder-based unsupervised anomalous sound detec-
+cessfully used autoencoders for unsupervised anomaly detection                        tion. We observed that non-stationary machine sound signals and
+[12, 22–24], so an autoencoder-based unsupervised anomaly detec-                      noise are the key issues for developing the unsupervised anomaly
+tor was evaluated.                                                                    detector. These results can be taken as a benchmark to improve the
+     We consider log-Mel spectrogram as an input feature. To cal-                     accuracy of anomaly detection in the MIMII dataset.
+culate the Mel spectrogram, we consider a frame size of 1024, a                            We will release this dataset by the workshop. To the best of our
+hop size of 512 and a mel filter banks of 64 in our experiment. Five                  knowledge, this dataset is the first of its kind to address the problem
+frames have been combined to initiate our 320 dimensional input                       of detecting anomalous conditions in industrial machinery through
+feature vector x. The parameters of the encoder and decoder neu-                      machine sounds. As benchmarking is an important aspect in data
+ral networks (i.e. θ = (θe , θd )) are trained to minimize the loss                   driven methods, we strongly believe that our MIMII dataset will be
+function given as follows:                                                            very useful to the research community. We are releasing this data to
+                                                                                      accelerate research in the area of audio event detection, specifically
+              LAE (θe , θd ) = ∥x − D(E(x | θe ) | θd )∥22                (1)         for machine sounds. This dataset can be used for other use cases,
+                                                                                      for example, to restrict the training on specific number of machine
+Our basic assumption is that this trained model will give high re-                    models and then test on the remaining machine models. This study
+construction error for anomalous machine sounds. The autoencoder                      will be useful for measuring the domain adaptation capability of the
+network structure for the experiment is summarized as follows:                        different methods applied on machines from different manufactures.
+The encoder network (E(·)) comprises F C(Input, 64, ReLU );                           If the community finds interest in our dataset and validates its usage,
+F C(64, 64, ReLU ); and F C(64, 8, ReLU ), and the decoder net-                       we will improve the current version with the additional meta-data
+work (D(·)) incorporates F C(8, 64, ReLU ); F C(64, 64, ReLU )                        related to different anomalies.
+
+
+
+
+                                                                                211
+Detection and Classification of Acoustic Scenes and Events 2019                                                                      25–26 October 2019, New York, NY, USA
+
+
+
+                    8000                                                                                 8000
+
+
+
+
+                                                                                        Frequency [Hz]
+   Frequency [Hz]
+
+
+                    6000                                                                                 6000
+
+                    4000                                                                                 4000
+
+                    2000                                                                                 2000
+
+                      0                                                                                    0
+                                        2            4        6           8                                              2           4           6          8
+                                                     Time [s]
+                                        (a) Valve (machine ID: 00)                                                                   Time [s]
+                                                                                                                         (b) Pump (machine  ID: 00)
+                    8000                                                                                 8000
+   Frequency [Hz]
+
+
+
+
+                                                                                        Frequency [Hz]
+                    6000                                                                                 6000
+
+                    4000                                                                                 4000
+
+                    2000                                                                                 2000
+
+                      0                                                                                    0
+                                        2            4          6         8                                              2           4           6          8
+                                                        Time [s]
+                                            (c) Fan (machine ID: 00)                                                                    Time [s] ID: 00)
+                                                                                                                       (d) Slide rail (machine
+
+                                                  Figure 3: Examples of power spectrograms on a normal condition at 6 dB SNR.
+
+
+
+                                                                                                                               6. REFERENCES
+                                Table 3: AUCs for all machines                                           [1] M. Yu, D. Wang, and M. Luo, “Model-based prognosis for
+                             Machine type/        Input SNR                                                  hybrid systems with mode-dependent degradation behaviors,”
+                             model ID       6 dB 0 dB -6 dB                                                  IEEE Transactions on Industrial Electronics, vol. 61, no. 1,
+                                 00         0.68 0.55          0.62                                          pp. 546–554, 2013.
+                                 01         0.77 0.71          0.61
+                                 02         0.66 0.59          0.57                                      [2] T. Ishibashi, A. Yoshida, and T. Kawai, “Modelling of asym-
+                           Valve
+
+
+
+
+                                 03         0.70 0.65          0.44                                          metric rotor and cracked shaft,” in Proceedings of the 2nd
+                                 04         0.64 0.65          0.50                                          Japanese Modelica Conference, no. 148, 2019, pp. 180–186.
+                                 05         0.52 0.48          0.44                                      [3] E. P. Carden and P. Fanning, “Vibration based condition mon-
+                                 06         0.70 0.66          0.53                                          itoring: A review,” Structural health monitoring, vol. 3, no. 4,
+                                 Avg.       0.67 0.61          0.53                                          pp. 355–377, 2004.
+                                 00         0.84 0.65          0.58
+                                 01         0.98 0.90          0.73                                      [4] G. S. Galloway, V. M. Catterson, T. Fay, A. Robb, and
+                                 02         0.45 0.46          0.52                                          C. Love, “Diagnosis of tidal turbine vibration data through
+                           Pump
+
+
+
+
+                                 03         0.79 0.81          0.75                                          deep neural networks,” in Proceedings of the 3rd European
+                                 04         0.99 0.95          0.93                                          Conference of the Prognostics and Health Management Soci-
+                                 05         0.66 0.66          0.64                                          ety, 2016.
+                                 06         0.94 0.76          0.61                                      [5] G. Lodewijks, W. Li, Y. Pang, and X. Jiang, “An application of
+                                 Avg.       0.81 0.74          0.68                                          the IoT in belt conveyor systems,” in Proceedings of the Inter-
+                                 00         0.75 0.63          0.57                                          national Conference on Internet and Distributed Computing
+                                 01         0.97 0.90          0.70                                          Systems (IDCS), 2016, pp. 340–351.
+                                 02         0.99 0.83          0.68
+                                                                                                         [6] R. F. Salikhov, Y. P. Makushev, G. N. Musagitova, L. U.
+                           Fan
+
+
+
+
+                                 03         1.00 0.89          0.70
+                                                                                                             Volkova, and R. S. Suleymanov, “Diagnosis of fuel equipment
+                                 04         0.92 0.75          0.57
+                                                                                                             of diesel engines in oil-and-gas machinery and facilities,” AIP
+                                 05         0.95 0.90          0.83
+                                                                                                             Conference Proceedings, vol. 2141, no. 1, p. 050009, 2019.
+                                 06         0.99 0.97          0.83
+                                 Avg.       0.94 0.84          0.70                                      [7] Y. Koizumi, S. Murata, N. Harada, S. Saito, and H. Uematsu,
+                                 00         0.99 0.99          0.93                                          “SNIPER: Few-shot learning for anomaly detection to min-
+                                 01         0.94 0.90          0.83                                          imize false-negative rate with ensured true-positive rate,” in
+                                 02                                                                          Proceedings of the IEEE International Conference on Acous-
+                           Slide rail
+
+
+
+
+                                            0.93 0.79          0.74
+                                 03         0.99 0.85          0.71                                          tics, Speech and Signal Processing (ICASSP), 2019, pp. 915–
+                                 04         0.88 0.78          0.61                                          919.
+                                 05         0.84 0.70          0.60                                      [8] Y. Kawachi, Y. Koizumi, S. Murata, and N. Harada, “A two-
+                                 06         0.71 0.56          0.52                                          class hyper-spherical autoencoder for supervised anomaly de-
+                                 Avg.       0.90 0.80          0.70                                          tection,” in Proceedings of the IEEE International Conference
+                                                                                                             on Acoustics, Speech and Signal Processing (ICASSP), 2019,
+                                                                                                             pp. 3047–3051.
+
+
+
+
+                                                                                     212
+Detection and Classification of Acoustic Scenes and Events 2019                                         25–26 October 2019, New York, NY, USA
+
+
+
+ [9] M. Yamaguchi, Y. Koizumi, and N. Harada, “AdaFlow:                     [20] Y. Koizumi, S. Saito, H. Uematsu, N. Harada, and K. Imoto,
+     Domain-adaptive density estimator with application to                       “ToyADMOS: A dataset of miniature-machine operating
+     anomaly detection and unpaired cross-domain translation,” in                sounds for anomalous sound detection,” in Proceedings of the
+     Proceedings of the IEEE International Conference on Acous-                  Workshop on Applications of Signal Processing to Audio and
+     tics, Speech and Signal Processing (ICASSP), 2019, pp. 3647–                Acoustics (WASPAA), 2019, to appear.
+     3651.                                                                  [21] System In Frontier Inc. (http://www.sifi.co.jp/system/
+[10] Y. Kawaguchi, R. Tanabe, T. Endo, K. Ichige, and K. Hamada,                 modules/pico/index.php?content id=39&ml lang=en).
+     “Anomaly detection based on an ensemble of dereverbera-                [22] T. Tagawa, Y. Tadokoro, and T. Yairi, “Structured denoising
+     tion and anomalous sound extraction,” in Proceedings of the                 autoencoder for fault detection and analysis,” in Proceedings
+     IEEE International Conference on Acoustics, Speech and Sig-                 of the Asian Conference on Machine Learning (ACML), 2015,
+     nal Processing (ICASSP), 2019, pp. 865–869.                                 pp. 96–111.
+[11] Y. Koizumi, S. Saito, H. Uematsu, Y. Kawachi, and N. Harada,           [23] E. Marchi, F. Vesperini, F. Eyben, S. Squartini, and
+     “Unsupervised detection of anomalous sound based on deep                    B. Schuller, “A novel approach for automatic acoustic novelty
+     learning and the Neyman–Pearson lemma,” IEEE/ACM Trans-                     detection using a denoising autoencoder with bidirectional
+     actions on Audio, Speech, and Language Processing, vol. 27,                 LSTM neural networks,” in Proceedings of the IEEE Interna-
+     no. 1, pp. 212–224, 2018.                                                   tional Conference on Acoustics, Speech and Signal Processing
+[12] Y. Kawaguchi and T. Endo, “How can we detect anomalies                      (ICASSP), 2015, pp. 1996–2000.
+     from subsampled audio signals?” in Proceedings of the IEEE             [24] D. Oh and I. Yun, “Residual error based anomaly detection
+     27th International Workshop on Machine Learning for Signal                  using auto-encoder in SMD machine sound,” Sensors, vol. 18,
+     Processing (MLSP), 2017, pp. 1–6.                                           no. 5, p. 1308, 2018.
+[13] Y. Kawaguchi, “Anomaly detection based on feature recon-               [25] K. Jarrett, K. Kavukcuoglu, M. Ranzato, and Y. LeCun, “What
+     struction from subsampled audio signals,” in Proceedings                    is the best multi-stage architecture for object recognition?”
+     of the European Signal Processing Conference (EUSIPCO),                     in Proceedings of the 12th IEEE International Conference on
+     2018, pp. 2524–2528.                                                        Computer Vision (ICCV), 2009, pp. 2146–2153.
+[14] A. Mesaros, T. Heittola, E. Benetos, P. Foster, M. Lagrange,           [26] D. P. Kingma and J. Ba, “Adam: A method for stochastic op-
+     T. Virtanen, and M. D. Plumbley, “Detection and classification              timization,” arXiv preprint arXiv:1412.6980, 2014.
+     of acoustic scenes and events: Outcome of the DCASE 2016
+     Challenge,” IEEE/ACM Transactions on Audio, Speech and
+     Language Processing, vol. 26, no. 2, pp. 379–393, 2018.
+[15] S. S. R. Phaye, E. Benetos, and Y. Wang, “SubSpectralNet–
+     using sub-spectrogram based convolutional neural networks
+     for acoustic scene classification,” in Proceedings of the IEEE
+     International Conference on Acoustics, Speech and Signal
+     Processing (ICASSP), 2019, pp. 825–829.
+[16] Z. Podwinska, I. Sobieraj, B. M. Fazenda, W. J. Davies, and
+     M. D. Plumbley, “Acoustic event detection from weakly la-
+     beled data using auditory salience,” in Proceedings of the
+     IEEE International Conference on Acoustics, Speech and Sig-
+     nal Processing (ICASSP), 2019, pp. 41–45.
+[17] J. F. Gemmeke, D. P. W. Ellis, D. Freedman, A. Jansen,
+     W. Lawrence, R. C. Moore, M. Plakal, and M. Ritter, “Au-
+     dio Set: An ontology and human-labeled dataset for audio
+     events,” in Proceedings of the IEEE International Conference
+     on Acoustics, Speech and Signal Processing (ICASSP), 2017,
+     pp. 776–780.
+[18] E. Fonseca, J. Pons, X. Favory, F. Font, D. Bogdanov, A. Fer-
+     raro, S. Oramas, A. Porter, and X. Serra, “Freesound datasets:
+     A platform for the creation of open audio datasets,” in Pro-
+     ceedings of the International Society for Music Information
+     Retrieval Conference (ISMIR), 2017, pp. 486–493.
+[19] G. Dekkers, S. Lauwereins, B. Thoen, M. W. Adhana,
+     H. Brouckxon, B. V. den Bergh, T. van Waterschoot, B. Van-
+     rumste, M. Verhelst, and P. Karsmakers, “The SINS database
+     for detection of daily activities in a home environment using
+     an acoustic sensor network,” in Proceedings of the Workshop
+     on Detection and Classification of Acoustic Scenes and Events
+     (DCASE), 2017, pp. 32–36.
+
+
+
+
+                                                                      213
+

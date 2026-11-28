@@ -5,7 +5,7 @@ Of the 4,530 completed robot actions in REASSEMBLE, 509 ended in failure. A mode
 predicted success every time would therefore be correct on almost 89\% of the actions.
 It would also miss every failure. For this study, a more useful question was whether the
 model gave higher failure scores to the actions that actually failed. To test what the
-camera added, the camera–sensor model and the sensor-only model had to predict the
+camera added, the camera--sensor model and the sensor-only model had to predict the
 outcomes of the same actions, with the same recordings held out for assessment.
 
 The PHM gear study needed a different test. There, the model predicted a number derived
@@ -19,15 +19,15 @@ with the physical event, the target attached to it, and the information availabl
 the model makes its prediction. The choice of data split and performance measure follows
 from those decisions.
 
-\section{Research design and research questions}
+\section{Research Design and Research Questions}
 \label{sec:ch4-design}
 \label{sec:literature-study-gaps}
 
 The welding studies in Chapter~\ref{ch:literature} give different answers about the
 value of a second input. Figure~\ref{fig:fusion-research-gap} shows how those
-comparisons led to five questions for reading the empirical evidence. The
-requirements organize the historical evidence; they do not imply that every
-experiment was prospectively designed around this framework.
+comparisons led to five questions for reading the empirical evidence. I use these
+requirements to interpret the completed studies. They were developed across the research
+process rather than fixed before every experiment.
 
 \begin{figure}[htbp]
   \centering
@@ -41,7 +41,7 @@ experiment was prospectively designed around this framework.
     \parencite{Hua2026Weld}. The reported contrasts are within each study.}
 \end{figure}
 
-\textbf{R1. What is predicted, and when?} A camera can supply a predictor or a
+R1. What is predicted, and when? A camera can supply a predictor or a
 reference measured after the event. For each study, we identify the physical event,
 which observations describe that event, when each was available, and how the target
 was obtained. In PHM, post-run photographs supply a proxy for gear condition. In
@@ -49,7 +49,7 @@ REASSEMBLE, the camera and sensors are predictors paired with a recorded action
 outcome. A readable image or aligned timestamp alone does not establish target
 validity or physical correspondence.
 
-\textbf{R2. What does each representation retain (SQ1)?} Published results for
+R2. What does each representation retain (SQ1)? Published results for
 engineered features, pretrained visual features and temporal patches concern
 different targets and fitting conditions
 \parencite{Horwitz2023Back,Roth2022Towards,Nie2023PatchTST}. We compare individual
@@ -57,7 +57,7 @@ branches on the same target and observation window, recording their training
 histories and fitting budgets. A branch's standalone score leaves open whether it
 contributes information to another predictor.
 
-\textbf{R3. What does fusion add (SQ2)?} The clean welding tie and the loss after
+R3. What does fusion add (SQ2)? The clean welding tie and the loss after
 adding gripper state in handover make the strongest single input an essential
 comparator \parencite{Hua2026Weld,Thoduka2024Handover}. On the 4,530 eligible
 REASSEMBLE actions, we compare camera and sensor predictions, fixed averaging and
@@ -69,7 +69,7 @@ recalibration are needed to isolate the contribution of an additional input.
 Chapter~\ref{ch:reassemble} gives the fitting and calibration differences that
 limit attribution to the fusion rule alone.
 
-\textbf{R4. Which reliability condition is being tested (SQ3)?} Knowing an input is
+R4. Which reliability condition is being tested (SQ3)? Knowing an input is
 absent calls for a different response from receiving a degraded but apparently
 available signal \parencite{P026,Zhang2023QMF}. We identify the affected input and
 what the model knows about its condition. In the matched REASSEMBLE comparison,
@@ -77,7 +77,7 @@ static and adaptive models receive comparable corruption exposure during fitting
 Both are assessed on clean and corrupted cases. Timing changes and transfer to
 another domain are separate tests.
 
-\textbf{R5. How dependable is the comparison (SQ4)?} Selection on related
+R5. How dependable is the comparison (SQ4)? Selection on related
 observations can inflate performance estimates \parencite{P004,P017}. The
 assessment unit follows the acquisition process, such as a gear experiment,
 recording, or manipulation task. Ranking, probability calibration and uncertainty
@@ -116,7 +116,7 @@ common cross-dataset leaderboard.
   \renewcommand{\arraystretch}{1.28}
   \begin{tabularx}{\linewidth}{@{}P{.22\linewidth} P{.23\linewidth} Y@{}}
     \toprule
-    \textbf{Study} & \textbf{Predictor inputs} & \textbf{Scope and assessment limits}\\
+    Study & Predictor inputs & Scope and assessment limits\\
     \midrule
     PHM (Ch.~\ref{ch:phm})
       & Machine sensors
@@ -171,12 +171,12 @@ Figure~\ref{fig:research-workflow} shows the path from the welding proposal to t
 \displaynote{The original proposal concerned welding. Checks on the available recordings
 limited the planned independent test. PHM, already under way at the renewed welding
 audit, provided a study of target construction and sensor prediction, while REASSEMBLE
-provided the main comparison of camera–sensor fusion. MSM, ViFailback, and HANDOVER
+provided the main comparison of camera--sensor fusion. MSM, ViFailback, and HANDOVER
 tested related methods on their own targets. Each result in the figure refers to a
 comparison within that study.}
 \end{figure}
 
-\section{Dataset selection and order of the studies}
+\section{Dataset Selection and Order of the Studies}
 \label{sec:ch4-selection}
 
 A dataset needed more than a video folder and a sensor file. The study needed to
@@ -198,13 +198,14 @@ studies addressed questions that emerged during this work. Appendix~\ref{app:chr
 records the chronology,
 including the PADERBORN and REBOOT feasibility investigations.
 
-\section{Why Intel Welding could not provide the planned independent test}
+\section{Why Intel Welding Could Not Provide the Planned Independent Test}
 \label{sec:ch4-welding}
 
 The Intel Welding audit checked whether files could be read, how they were timed, which
 acquisition session they came from, and whether observations were duplicated. Three
-limitations affected the proposed test. The labels described intended welding conditions
-rather than independently verified physical defects. Some recordings assigned to assessment had already
+limitations affected the proposed test. The labels described intended welding conditions;
+the welding expert did not validate or label the welds after welding
+\parencite{Stemmer2024Welding,IntelWeldingHF2024}. Some recordings assigned to assessment had already
 been examined during earlier development work on context. In addition, parts of the same
 acquisition session appeared in different supplied partitions.
 
@@ -222,11 +223,10 @@ representations and fusion. An independent answer about
 weld quality still requires fresh welding observations, a suitable weld-quality
 reference, and a set of welding sessions reserved for the final assessment.
 
-\noindent\textit{Implementation and decision records:}
-\EvidenceRef{E017}{inspect\_sample, audit\_split, main}, \EvidenceRef{E016}{},
-\EvidenceRef{E118}{}.
+\ev{Implementation and decision records}{\EvidenceRef{E017}{inspect\_sample, audit\_split, main}, \EvidenceRef{E016}{},
+\EvidenceRef{E118}{}}
 
-\section{Checking the data before fitting a model}
+\section{Checking the Data Before Fitting a Model}
 \label{sec:ch4-admission}
 
 Each study used a sample list, called a \emph{manifest}. For each prediction, it
@@ -244,7 +244,7 @@ evidence still need separate consideration.
 Sensor preparation included checking channel order, units, timestamps, repeated entries,
 and missing values. MSM illustrates why a readable clip is insufficient: choosing the
 wrong timing offset pairs a cutting label with a different visual interval.
-Chapter~\ref{ch:msm} gives the VMX9 correction and the accepted alignment support.
+Chapter~\ref{ch:msm} gives the correction for VMX9, an MSM source recording, and the accepted alignment support.
 
 In ViFailback, duplicate or invalid telemetry records and unreadable video affected
 which episodes could enter the comparison. Removing an episode also removes its outcome
@@ -253,11 +253,11 @@ recordings, the remaining test can become easier. The studies therefore retained
 before and after exclusion where the records allowed. An excluded observation kept its
 original label.
 
-\section{Targets, prediction units, and decision time}
+\section{Targets, Prediction Units, and Decision Time}
 \label{sec:ch4-targets}
 
 For PHM, the principal prediction unit was a gear run. An image-processing rule applied
-to post-run photographs measured the area that met the rule’s selection criteria. This
+to post-run photographs measured the area that met the rule's selection criteria. This
 value served as a \emph{proxy}: a quantity available for study when a direct measurement
 of the condition of interest was unavailable. The main sensor model tried to predict
 this photographic value from machine measurements. Its error describes agreement with
@@ -266,10 +266,10 @@ useful life would need their own physical reference.
 
 The robotic studies had recorded outcomes. REASSEMBLE predicted whether a completed
 assembly action had succeeded. ViFailback predicted the outcome of a complete
-manipulation episode. HANDOVER used a binary outcome for a human–robot trial. In MSM,
+manipulation episode. HANDOVER used a binary outcome for a human--robot trial. In MSM,
 the target was abnormal cutting during a labelled milling interval. The main MSM
 analysis used its stated mapping of the original labels. Other mappings were examined
-separately because changing the meaning of “abnormal” also changes the task.
+separately because changing the meaning of ``abnormal'' also changes the task.
 
 The end of the observation window matters in each case. A hand-camera frame taken near
 the end of an insertion can show part of the outcome. A sensor average over a whole
@@ -286,7 +286,7 @@ had different failure rates. A gate that changes its weights between these actio
 have learned a difference in task difficulty. To claim that it detected a damaged
 sensor, its behaviour must also be tested under a known change in sensor quality.
 
-\section{Keeping development and assessment data separate}
+\section{Keeping Development and Assessment Data Separate}
 \label{sec:ch4-assessment}
 
 The correct group to hold out depended on how the observations were collected. PHM held
@@ -302,7 +302,7 @@ independently or to make new participant-level folds within training. This is wh
 official comparison remained usable while the planned learned stacker had to be left
 out.
 
-\subsection{Preprocessing and model selection}
+\subsection{Preprocessing and Model Selection}
 
 Information can enter a model before the final training step. Consider sensor scaling. A
 model may express each reading as a distance from the average training value. If that
@@ -314,7 +314,7 @@ Reusing evaluation results to select a configuration can make its reported perfo
 look too favourable \parencite{P004}.
 
 The separate PHM four-arm diagnostic illustrates this risk;
-Section~\ref{sec:phm-diagnostics} distinguishes its shared normalizer from the
+Section~\ref{sec:phm-diagnostics} distinguishes its shared normaliser from the
 fold-local preprocessing of the principal sensor comparison.
 
 A frozen image encoder presents a different case. If its weights were learned from an
@@ -322,7 +322,7 @@ external dataset and its feature extraction uses no target labels or statistics 
 assessment population, the fixed image features can be saved in advance. Later steps
 that \emph{learn} from those features still have to respect the training split.
 
-\subsection{Training the REASSEMBLE stacker}
+\subsection{Training the REASSEMBLE Stacker}
 
 The REASSEMBLE stacker learned from two numbers for each training action: a camera score
 and a sensor score. It needed scores like the ones it would receive for an unfamiliar
@@ -333,20 +333,20 @@ The study first set aside the recordings for the outer assessment. Within the re
 recordings, the camera and sensor models were fitted on some groups and used to predict
 actions from other groups. Repeating this process produced a bank of \emph{out-of-fold
 predictions}. For each row in the bank, the model that produced the prediction had
-excluded that row’s recording. These scores supported training-side calibration, model
+excluded that row's recording. These scores supported training-side calibration, model
 selection, and fusion fitting according to the procedure being tested
 \parencite{Ting1999Issues}.
 
 One detail limits how independently the stacker itself was validated. Its internal
 validation used the same prediction bank. A branch that produced a score for a
 stacker-training row could have learned from a recording later used to validate the
-stacker. This dependence occurred \textbf{inside the outer training population}. The
+stacker. This dependence occurred inside the outer training population. The
 outer assessment recordings stayed outside fitting and entered only when the selected
 system was scored.
 
 Figure~\ref{fig:stacker-recording-flow} shows the development and assessment paths.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \caption{Recording flow for one REASSEMBLE outer split}
 \label{fig:stacker-recording-flow}
@@ -357,7 +357,7 @@ assessment lane shows where the held-out recordings first entered the procedure:
 final scoring.}
 \end{figure}
 
-\subsection{Checking which actions entered each comparison}
+\subsection{Checking Which Actions Entered Each Comparison}
 
 Assessment identities take precedence over shorthand metadata. The REASSEMBLE
 follow-ups include a previously examined 753-action subset from 26 recordings;
@@ -365,7 +365,7 @@ Section~\ref{sec:reassemble-followups} and Appendix~\ref{app:supplementary-resul
 retain the reconciliation and study-specific controls. Sharing assessment cases permits
 paired comparisons, but does not make an exploratory follow-up a fresh external test.
 
-\section{Fitting models, adjusting probabilities, and choosing thresholds}
+\section{Fitting Models, Adjusting Probabilities, and Choosing Thresholds}
 \label{sec:ch4-fitting}
 
 Fitting a model, choosing a model, adjusting its probabilities, and choosing a decision
@@ -387,7 +387,7 @@ This difference matters when interpreting the gain from fusion. Suppose a sensor
 adjustment raises some probabilities while keeping all actions within one fold in the
 same order. The ranking within that fold stays the same. A second fold, however, has its
 own fitted adjustment. When the two lists are joined, a failure in the second fold can
-move above a success in the first. The \textbf{pooled} ranking can therefore change even
+move above a success in the first. The pooled ranking can therefore change even
 though the order within each fold stays fixed.
 
 In the main REASSEMBLE comparison, F2 improved pooled failure ranking over the original
@@ -403,14 +403,14 @@ score at or above the selected threshold counted as positive. This produced a
 reproducible decision for the experiment. A factory alarm would need additional
 information about the cost of a missed failure, a false alarm, or an unnecessary stop.
 
-\section{Measuring performance and uncertainty}
+\section{Measuring Performance and Uncertainty}
 \label{sec:ch4-metrics}
 
-\subsection{What the reported scores mean}
+\subsection{What the Reported Scores Mean}
 
-In PHM, \textbf{mean absolute error} gives the average size of the difference between a
-predicted value and the photographic target. \textbf{Root mean squared error} gives
-greater weight to larger errors. Both retain the target’s units. The coefficient of
+In PHM, mean absolute error gives the average size of the difference between a
+predicted value and the photographic target. Root mean squared error gives
+greater weight to larger errors. Both retain the target's units. The coefficient of
 determination, \(R^2\), compares prediction error with the variation in the observed
 targets. It can become negative, and it can change sharply when a held-out group
 contains little target variation. Tooth-level and run-level errors were therefore
@@ -423,12 +423,12 @@ alarms. Specificity measures how often successful cases were correctly recognise
 Balanced accuracy gives equal weight to recall for the two classes, while the F1 score
 combines precision and recall for the designated positive class.
 
-The main ranking measure was \textbf{average precision (AP)}. It gives a model credit
+The main ranking measure was average precision (AP). It gives a model credit
 for placing positive cases high on its list across different thresholds. The study used
 \texttt{average\_precision\_score}, which weights each precision value by the
-corresponding increase in recall. Calculating the area under a precision–recall curve by
+corresponding increase in recall. Calculating the area under a precision--recall curve by
 the trapezoidal rule is a different measure. AUROC also measures ranking, but a
-precision–recall analysis is particularly useful when the event of interest is uncommon
+precision--recall analysis is particularly useful when the event of interest is uncommon
 \parencite{Saito2015PrecisionRecall}.
 
 The failure rates in REASSEMBLE and ViFailback show why the positive class must be
@@ -441,16 +441,16 @@ values. When both classes are present, that mean is 0.5 for a constant-score mod
 used abnormal cutting as its positive class. These scores answer different questions
 across the three datasets.
 
-Ranking also leaves open whether the probabilities are useful. The \textbf{Brier score}
+Ranking also leaves open whether the probabilities are useful. The Brier score
 measures the average squared difference between the predicted probability and the
-recorded binary outcome \parencite{P055}. \textbf{Expected calibration error} groups
+recorded binary outcome \parencite{P055}. Expected calibration error groups
 predictions into probability ranges and compares the scores with the observed outcome
 frequencies in those ranges. Its value depends partly on how the ranges are chosen and
 how many cases fall in each. A model can rank failures well and still assign
 probabilities that are too high. Its probability estimates can also become less reliable
 when operating conditions change \parencite{P008}.
 
-\subsection{Combining results and estimating uncertainty}
+\subsection{Combining Results and Estimating Uncertainty}
 
 For its principal comparison, REASSEMBLE brought together the predictions for all
 held-out recordings and calculated failure AP once. Calculating AP separately in each
@@ -462,12 +462,12 @@ independently recorded milling interval.
 
 To compare two REASSEMBLE models, the analysis kept their predictions paired. If a
 recording was selected for a calculation, both models contributed predictions for the
-same actions in that recording. The core comparison repeated this \textbf{2,000 times},
+same actions in that recording. The core comparison repeated this 2,000 times,
 sampling whole recordings with replacement and recalculating the difference in
 performance. This is a recording-level \emph{bootstrap}.
 
 A PHM report used 10,000 bootstrap samples drawn at the level of the gear run. The data
-still came from only \textbf{20 runs across three gear experiments}. Runs from the same
+still came from only 20 runs across three gear experiments. Runs from the same
 experiment could share conditions. More bootstrap draws make the numerical estimate more
 stable, but they cannot supply more independent gear experiments. The MSM date-based
 intervals had a similar limit: only five acquisition dates were available.
@@ -482,14 +482,14 @@ included zero, the data left the direction of the advantage unresolved. Showing 
 methods perform closely enough for practical use would require a separate criterion for
 how small a difference counts as acceptable.
 
-\section{Testing missing and damaged inputs}
+\section{Testing Missing and Damaged Inputs}
 \label{sec:ch4-robustness}
 
-\subsection{What the model knew about the fault}
+\subsection{What the Model Knew About the Fault}
 
 A missing sensor and a faulty sensor can lead to different decisions. In the REASSEMBLE
 absence test, the evaluator knew when a whole branch was unavailable. When the sensor
-branch was missing, it returned the camera probability and used the camera branch’s
+branch was missing, it returned the camera probability and used the camera branch's
 decision threshold. When only the sensors remained, it used their probability and
 threshold. If both inputs were absent, it rejected the case. Fusion methods that
 returned the same surviving prediction naturally obtained the same result under this
@@ -510,7 +510,7 @@ randomisation procedure also affect the result. HANDOVER, for example, included
 controlled sensor noise, visual blur, and known loss of an input. ViFailback did not assess performance under missing,
 degraded or temporally shifted inputs.
 
-\subsection{Giving competing models the same exposure}
+\subsection{Giving Competing Models the Same Exposure}
 
 A gate trained with noisy signals has already seen a problem that a model trained only
 on clean signals has never faced. If the gate performs better under noise, the training
@@ -528,7 +528,7 @@ using that camera alone. The tests support conclusions about the stated faults a
 severity. Questions about gradual clock drift, several natural faults at once, or
 operation in a new factory remain open.
 
-\section{Records, software, and checks on the results}
+\section{Records, Software, and Checks on the Results}
 \label{sec:ch4-reproducibility}
 
 A reported score can be checked at several levels. With saved predictions and outcome
@@ -547,13 +547,12 @@ regression, and evaluation functions \parencite{Pedregosa2011ScikitLearn}. The s
 PHM image model used the Ultralytics RT-DETR-L prediction procedure to collect
 intermediate image features \parencite{UltralyticsRTDETR}.
 
-The manuscript’s source record identifies repository commit
+The source version documented for this thesis includes repository commit
 \texttt{e32ec43aef69cc58adff0ea91e508308041598c5}. File hashes identify selected source
 files and reports, including some material held outside that commit.
 Appendix~\ref{app:reproducibility} links the experiments to the available evidence.
-Appendix~\ref{app:chronology} records when the work took place. Where an original script
-or setting was unavailable, the remaining records limit how much of the run can be
-checked independently.
+Appendix~\ref{app:chronology} records when the work took place. Unavailable original scripts or settings limit independent reconstruction of some
+historical runs.
 
 Saved-prediction checks covered the core REASSEMBLE F2 comparison and the available
 ViFailback assessments. For REASSEMBLE, they checked sample identities, fold assignments,
@@ -564,12 +563,13 @@ individual prediction or fitting records limit independent reconstruction. These
 did not repeat neural training or assess newly collected observations.
 Table~\ref{tab:vif-status} records the coverage of the ViFailback comparisons.
 
-\noindent\textit{Implementation records:} \EvidenceRef{E062}{}, \EvidenceRef{E063}{},
-\EvidenceRef{E065}{}, \EvidenceRef{E044}{}, \EvidenceRef{E031}{}. \textit{Provenance records:} \EvidenceRef{E109}{},
+\ev{Implementation records}{\EvidenceRef{E062}{}, \EvidenceRef{E063}{},
+\EvidenceRef{E065}{}, \EvidenceRef{E044}{}, \EvidenceRef{E031}{}}
+\ev{Provenance records}{\EvidenceRef{E109}{},
 \EvidenceRef{E107}{}, \EvidenceRef{E113}{}, \EvidenceRef{E114}{}, \EvidenceRef{E111}{},
-\EvidenceRef{E121}{}.
+\EvidenceRef{E121}{}}
 
-\section{Computing resources and the scope of the findings}
+\section{Computing Resources and the Scope of the Findings}
 \label{sec:ch4-boundaries}
 
 The project used HFU server resources. The later ViFailback study recorded a single
@@ -582,7 +582,7 @@ adds work to a fresh run.
 
 ViFailback logged about 303.8 elapsed hours across two GPU controller processes,
 including decoding, validation, and checkpointing; this was neither GPU kernel time nor
-total thesis compute. Completing its remaining \texttt{FULL20} matrix was estimated to
+total thesis compute. Completing the remaining twenty-epoch full-CNN fine-tuning matrix (\texttt{FULL20}) was estimated to
 require another 43 GPU days on the single T4, with 47 days allowed for variation and
 overhead. This forecast of additional work informed the decision to stop further CNN
 fitting. It is a resource estimate, not a model-performance result.
@@ -604,9 +604,3 @@ The 753-action REASSEMBLE follow-up can show how a change affected those previou
 studied actions. A fresh test of the resulting design would require the target,
 decision time, recording groups, models, fault conditions and main performance
 measure to be fixed before opening new assessment data.
-
-% Resource provenance (read-only records; HFU server use supplied by the researcher):
-% implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/final_evidence/14_final_research_reports/11_GPU_RUNTIME_AND_STORAGE.md
-% E113: implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/completed_scope_analysis/RESULT_ANALYSIS.md (43-day central estimate; 47-day planning allowance, not a confidence interval).
-% implementations/REASSEMBLE/docs/maintenance/REASSEMBLE_CACHE_RETENTION.md
-% implementations/MSM/experiments/legacy/PILOT_FINDINGS/05_FULL_LABORATORY_FEASIBILITY/MSM_FULL_LAB_COHORT_AUDIT.md

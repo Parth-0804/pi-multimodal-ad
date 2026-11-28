@@ -1,0 +1,400 @@
+                                                    This paper has been accepted to the 2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA 2019)
+
+
+
+
+                                                  ToyADMOS: A DATASET OF MINIATURE-MACHINE OPERATING SOUNDS FOR
+                                                                   ANOMALOUS SOUND DETECTION
+
+                                                    Yuma Koizumi1 , Shoichiro Saito1 , Hisashi Uematsu1 , Noboru Harada1 and Keisuke Imoto2
+
+                                                                              1: NTT Media Intelligence Laboratories, Tokyo, Japan
+                                                                                    2: Ritsumeikan University, Shiga, Japan
+
+
+                                                                      ABSTRACT                                         anomalous sounds being difficult to collect. Thus, surveillance
+arXiv:1908.03299v1 [eess.AS] 9 Aug 2019
+
+
+
+
+                                          This paper introduces a new dataset called “ToyADMOS” designed               tasks, such as gunshot detection, are trained and evaluated on
+                                          for anomaly detection in machine operating sounds (ADMOS). To                small-scale datasets [23, 24]. Machine-condition inspection and
+                                          the best our knowledge, no large-scale datasets are available for            fault-diagnosis tasks hardly have even small datasets. Thus, an
+                                          ADMOS, although large-scale datasets have contributed to recent              ADS system has been evaluated by using a synthetic anomalous
+                                          advancements in acoustic signal processing. This is because anoma-           sound dataset [1] instead of collecting anomalous sounds by delib-
+                                          lous sound data are difficult to collect. To build a large-scale dataset     erately damaging expensive machinery. To fairly evaluate systems
+                                          for ADMOS, we collected anomalous operating sounds of minia-                 for anomaly detection in machine operating sound (ADMOS), we
+                                          ture machines (toys) by deliberately damaging them. The released             believe that a freely available dataset is necessary.
+                                          dataset consists of three sub-datasets for machine-condition inspec-              This paper introduces a new dataset called “ToyADMOS” de-
+                                          tion, fault diagnosis of machines with geometrically fixed tasks, and        signed for training and testing ADMOS systems. We collected nor-
+                                          fault diagnosis of machines with moving tasks. Each sub-dataset              mal and anomalous operating sounds of miniature machines by de-
+                                          includes over 180 hours of normal machine-operating sounds and               liberately damaging their components. Since miniature machines
+                                          over 4,000 samples of anomalous sounds collected with four mi-               can be installed in an acoustic laboratory, recording conditions can
+                                          crophones at a 48-kHz sampling rate. The dataset is freely avail-            be controlled. With this advantage, we designed the ToyADMOS
+                                          able for download at https://github.com/YumaKoizumi/                         dataset to be used for not only basic unsupervised-ADMOS [1] but
+                                          ToyADMOS-dataset.                                                            also multiple advanced tasks such as domain adaptation [15], noise
+                                                                                                                       reduction [25], data augmentation, and few-shot learning of anoma-
+                                              Index Terms— Anomaly detection in sounds, machine operat-
+                                                                                                                       lous sounds [9]. The ToyADMOS dataset has the following charac-
+                                          ing sounds, product inspection, dataset.
+                                                                                                                       teristics:
+
+                                                                 1. INTRODUCTION                                        • It is designed for three ADMOS tasks: product inspection (toy
+                                                                                                                          car), fault diagnosis for a fixed machine (toy conveyor), and
+                                          Since anomalies might indicate faults or malicious activities,                  fault diagnosis for a moving machine (toy train).
+                                          prompt detection of anomalies may prevent such problems. Micro-               • Machine-operating sounds and environmental noise are indi-
+                                          phones have been used as sensors to detect anomalies, referred to as            vidually recorded for simulating various noise levels.
+                                          anomaly detection in sounds (ADS) [1] or acoustic condition mon-              • All sounds are recorded with four microphones for testing
+                                          itoring [2], in many applications such as audio surveillance [3–6],             noise reduction [25] and/or data-augmentation techniques
+                                          machine-condition inspection, and fault diagnosis [7–9]. A recent               such as mix-up.
+                                          advancement in this area is the use of deep learning [10–15]: an au-
+                                          toencoder (AE) [10–12], variational AE [13, 14], and/or flow-based            • In each task, multiple machines of the same class are used;
+                                          model [15] are used to calculate the anomaly score.                             each machine belongs to the same class of toys but has a dif-
+                                               A large-scale dataset is essential for successfully training and           ferent detailed structure (cf. Sec 3 and supplemental document
+                                          fairly evaluating a deep neural network (DNN)-based system.                     available on the dataset web-page). Since the collected oper-
+                                          Therefore, the existence of freely available large-scale datasets               ating sounds have variations depending on individual differ-
+                                          often accelerates related research in this domain. For example, the             ences, the dataset can be used for testing domain-adaptation
+                                          accuracy of computer-vision tasks has rapidly increased thanks to               techniques to absorb individual differences and/or changes in
+                                          large-scale datasets such as ImageNet [16]. Large-scale datasets                noise level [15].
+                                          have also contributed to recent advancements in speech and acous-             • Each anomalous sound was recorded several times for testing
+                                          tic signal processing such as the Wall Street Journal (WSJ0) speech             few-shot learning-based ADMOS for obtaining the character-
+                                          corpus [17] for automatic speech recognition and the VCTK cor-                  istics of anomalous sounds from only a few samples [9].
+                                          pus [18] for text-to-speech synthesis. In audio-event detection and           • The released dataset consists of over 180 hours of normal
+                                          scene-classification tasks, two large-scale datasets, AudioSet [19]             machine-operating sounds and over 4,000 samples of anoma-
+                                          and the Freesound dataset [20], have been published and used in                 lous sounds collected with four microphones at a 48-kHz
+                                          several tasks of the Detection and Classification of Acoustic Scenes            sampling rate for each task.
+                                          and Events (DCASE) challenge [21, 22].
+                                               Unfortunately, to the best of our knowledge, no large-scale             This dataset is freely available for download at https://github.
+                                          datasets are freely available for ADS. One reason is anomalous               com/YumaKoizumi/ToyADMOS-dataset and the license
+                                          sounds occur far more rarely than normal sounds, resulting in                and some use of the dataset are also available on the webpage.
+           This paper has been accepted to the 2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA 2019)
+
+
+
+               (a) Toy car                (b) Inspection device    (c) Toy conveyor Motor             (d) Rail and microphone arrangement
+                                                                      Tail
+                                                                     pulley                                                      Ch. 3
+                                                                                                       Ch. 2
+                                                                                            Tension
+                                                                                             pulley
+                              Shaft
+                                                                                                                                            Ch. 4
+                             Motor                                                  Microphone
+                                                                                       ch. 1                   Bullet train
+                                                                                                               (HO-scale)
+
+                             Gears
+                                                                                                           Ch. 1
+
+
+
+                                                     Figure 1: Images of toys, parts, and microphone arrangement
+
+
+(a) IND type         Start         Stop             10 sec
+                                                                                       Environmental noise: Environmental noise for simulating a fac-
+                                                                                             tory environment. Noise samples were collected at several
+                                                                                             locations in an actual factory, such as collision, drilling,
+                                                                   …
+
+    Cut        Cut           Cut          Cut         Cut                                    pumping, and airbrushing. These sounds were emitted from
+                                                    10 min
+                                                                                             four loudspeakers at the corners of each recording room.
+(b) CNT type
+                                                                                       Four omnidirectional microphones (SHURE SM11-CN) were used
+                                                                                       for collecting these sounds. All sounds were stored as multiple wav-
+                                                                  …
+
+
+
+
+                                                                                       files categorized into two types: individual (IND) and continuous
+    Cut        Cut           Cut          Cut         Cut
+                                                                                       (CNT). The differences between IND and CNT are shown in Fig.
+                                                                                       2. IND wav-files contain the operating sounds of the entire oper-
+Figure 2: Differences in recording and data processing between in-                     ation (i.e. consisting a starting of a toy to stopping it) in a single
+dividual (IND) and continuous (CNT) wav-files                                          wav-file, and each wav-file is approximately 10 sec long. CNT
+                       2. DATASET OVERVIEW                                             wav-files contain only a some of the operating sounds in a single
+                                                                                       wave-file; operating sound is recorded continuously and is cut ev-
+The ToyADMOS dataset consists of three sub-datasets for three                          ery 10 min. A normal sound consists of both IND- and CNT-files,
+types of ADMOS tasks. A different toy is used for each task. The                       anomalous sound consists of IND-files, and environmental noise
+name and overview of each sub-dataset are as follows:                                  consists of CNT-files. IND and CNT are assumed to be mainly
+                                                                                       used for training and evaluation, respectively. This is because of the
+Toy car: Designed for product-inspection task. A toy car runs on                       difficulty in collecting IND data in real environments. CNT data
+      an inspection device. Sound data are collected with four mi-                     can be collected just by recording the operating sound of a working
+      crophones arranged close to the inspection device, as shown                      machine, whereas IND-type data collection requires the machine
+      in Figs. 1 (a) and (b), and Fig. 3 (a).                                          to be started/stopped many times. Thus, IND data collection has a
+Toy conveyor: Designed for fault diagnosis of a fixed machine. A                       much higher cost than CND data collection, resulting in real-world
+      toy conveyor is fixed on a desk, and sound data are collected                    systems often being trained with CNT datasets.
+      with four microphones. One is fixed on the body of the con-                           The main advantage of the ToyADMOS dataset over other
+      veyor, and the other three are placed on the desk, as shown                      datasets [19, 20] is that it was built under controlled conditions.
+      in Fig. 1 (c) and Fig. 3 (b).                                                    An unsupervised approach is often adopted for ADMOS sys-
+                                                                                       tems [10–15] because it is difficult to build an extensive set of
+Toy train: Designed for fault diagnosis of a moving machine. A                         anomalous sounds in the real world. Therefore, a DNN is trained
+      toy train runs on a railway track. Sound data are collected                      by using only given normal sound and anomalous sound is defined
+      with four microphones surrounding the track, as shown in                         as “unknown” sounds, in contrast to supervised DCASE challenge
+      Fig. 1 (d) and Fig. 3 (c).                                                       tasks [21, 22] for detecting “defined” anomalous sounds such as
+To collect various normal/anomalous sounds depending on individ-                       gunshots [4]. This definition results in misdetection caused by both
+ual differences, operating sounds are recorded using three or four                     a rare normal sound and the difference between the recording con-
+models for each type of toy; these models belong to the same class                     dition in training/test dataset. Thus, to analyze system performance
+of toys but have different detailed structures. In the ToyADMOS                        and/or the cause of misdetection, all normal sounds in dataset need
+dataset, we use “case” as the identifier of each machine. The details                  to be collected under the same condition, like as the ToyADMOS
+are given in Sec 3.                                                                    dataset.
+    Each sub-dataset consists of three types of sound data: normal,                         The limitation of the ToyADMOS dataset is that toy sounds and
+anomalous, and environmental. Their definitions are as follows:                        real machine sounds do not necessarily match exactly. One of the
+                                                                                       determining factors of machine sounds is the size of the machine.
+Normal sound: Operating sound when the target machine operates
+                                                                                       Therefore, the details of the spectral shape of a toy and a real ma-
+     normally in accordance with its specifications.
+                                                                                       chine sound often differ, even though the time-frequency structure is
+Anomalous sound: Operating sound when the target machine is                            similar. Thus, we need to reconsider the pre-processing parameters
+    made to operate anomalously by deliberately damaging its                           evaluated with the ToyADMOS dataset, such as filterbank parame-
+    components or adding extraneous objects.                                           ters, before using it with a real-world ADMOS system.
+         This paper has been accepted to the 2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA 2019)
+
+
+
+                   (a) Recording conditions (toy car)                                       (b) Recording conditions (toy conveyor)                            (c) Recording conditions (toy train)
+                                   4.1m                                                                     4.0m                                                               4.1m
+                                                                                                                                 Desk
+                                                        Desk
+
+                                                                 4     3                                                                 4   3
+                                                                                                                                                                                 1
+                                                                 3cm                                      0.75m                          3cm
+
+
+
+
+                                                          50cm
+
+
+
+
+                                                                                                                                 50cm
+                                   0.6m
+                                                                                                           Desk                              2
+
+
+
+
+                                                                                     4.6m
+
+
+
+
+                                                                                                                    1.5m
+                                                                       1                         1.6m                                                                                     5cm
+                                   Desk
+
+
+
+
+                                                                                                                                                        6.5m
+            6.5m
+
+
+
+
+                                            0.9m
+                      1.75m                                                                                                             1        10cm
+                                                                 Car             2                                                                                     4                    2
+                                                                           5cm                                                          Conveyor
+
+
+
+
+                                                                                                          1.0m
+                                                                                                                                                                                 3
+                                   2.8m
+
+
+
+
+                                                                                              : Loudspeaker      # : Microphone ch. #
+
+
+
+
+                                                           Figure 3: Setup-positions of all equipment (top view)
+
+
+                    3. DETAILS OF SUB-DATASETS                                                                manufacturers but had different sizes, were used as “cases” of toy
+                                                                                                              conveyors; thus, the number of cases was three. Each wav-file of
+3.1. Toy-car sub-dataset                                                                                      IND normal and anomalous sounds was 10 sec long, and 1,800
+                                                                                                              IND samples were recorded in each case and channel. Thus, the
+We assumed a product inspection task and taken up the task of de-                                             total number of hours of IND normal sounds is 60. At least 124
+tecting anomalous sounds from the running sound of a toy car on                                               CNT samples were recorded in each case, and the total number of
+an inspection device, as shown in Fig. 1 (b). A toy car called “mini                                          hours of CNT normal sounds is 120. Anomalous sounds were gen-
+4WD”, the four tires of which are driven by a small motor through                                             erated by deliberately damaging the tension pulley, trail pulley, and
+gears and a shaft, was used as a miniature car machine, as shown                                              belt and excessively lowering/raising the voltage, as shown in Ta-
+in Fig. 1 (a). The motor and a stabilized power supply were con-                                              ble 2. In total, 355 samples of anomalous sounds were recorded
+nected, and running sounds on an inspection device were recorded                                              with these combinations (60 patterns). Since the first microphone
+with four microphones. The inspection device, microphones, and                                                was placed on the conveyor, the microphones were positioned dif-
+loudspeakers in the recording room were arranged as shown in Fig.                                             ferently in each case. Thus, 12 hours of environmental noise were
+3 (a).                                                                                                        recorded in all cases.
+     Each “case” of the toy car was designed as the combination of
+two types of motors and bearings; thus, the number of cases was
+four. Each wav-file of IND normal and anomalous sounds was 11                                                 3.3. Toy-train sub-dataset
+sec long, and 1,350 IND samples were recorded in each case and
+channel. The total number of hours of IND normal sounds is 66.                                                We assumed the use of fault diagnosis of a moving machine task,
+Approximately 150 CNT samples were recorded in each case and                                                  which detects anomalous sounds from the running sound of a toy
+channel. Note that to reduce the motor load, a 10-min break was                                               train. That is, to detect anomalous sounds, we need to combine
+given per 10-min operation of the motor. Thus, the total number of                                            the observations of four channels. We used HO-scale (large) and
+hours of CNT normal sounds is 135, which is half the total length of                                          N-scale (small) model railways, which are precisely detailed minia-
+CNT-files. Anomalous sounds were generated by deliberately dam-                                               ture models of railways, as shown in Fig. 1 (d). Sound data were
+aging the shaft, gears, tires, and voltage, as shown in Table 2. In                                           collected with four microphones surrounding the railway track. The
+total, 250 samples of anomalous sounds were recorded with these                                               microphones and loudspeakers in the recording room were arranged
+combinations (53 patterns) in each case and channel. Since the mi-                                            as shown in Fig. 3 (c). Note that since the sizes of the HO- and N-
+crophones were positioned the same in all cases, 12 hours of envi-                                            scale railways differed, the positions of microphones also differed.
+ronmental noise were recorded only once.                                                                      The microphone arrangements shown in Figs. 1 (d) and 3 (c) are
+                                                                                                              for the HO-scale railway. We removed the HO-scale railway and
+                                                                                                              moved the microphones close to the N-scale railway when record-
+3.2. Toy-conveyor sub-dataset
+                                                                                                              ing N-scale machine sounds.
+We assumed a fault diagnosis task of a fixed machine task in which                                                 Each “case” of a toy train is designed as a combination of two
+anomalous sound are detected from the operating sound of a toy                                                types of trains (commuter and a bullet) and scales (HO-scale and
+conveyor fixed on a desk. We used a conveyor that transports a                                                N-scale); thus, the number of cases was four. Each wav-file of IND
+small tin toy car by driving a belt using a small built-in small, as                                          normal and anomalous sounds was 11 sec long, and 1,350 IND sam-
+shown in Fig. 1 (c, upper). The channel 1 microphone was placed                                               ples were recorded in each case and channel. The total number of
+on the body of the conveyor, and the other microphones were placed                                            hours of IND normal sounds is 66. Seventy-four CNT samples were
+on the desk, as shown in Fig. 1 (c, lower). The desk, microphones,                                            recorded in each case and channel; thus, the total number of hours
+and loudspeakers in the recording room were arranged as shown in                                              of CNT normal sounds is 197. Anomalous sounds were generated
+Fig. 3 (b).                                                                                                   by deliberately damaging the first/last carriage and straight/curved
+    Three types of conveyors, which were produced by the same                                                 railway track, as shown in Table 2. In total, 270 samples of anoma-
+            This paper has been accepted to the 2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA 2019)
+
+
+
+
+                                           Table 1: Sound data contained in ToyADMOS dataset
+                                                                             Toy car       Toy conveyor                        Toy train
+            # of IND normal sounds per case and channel                  1,350 samples     1,800 samples                    1,350 samples
+            Total hours                                                     66 hours          60 hours                         66 hours
+            # of CNT normal sounds per case and channel                  ≈ 150 samples at least 124 samples                   74 samples
+            Total hours                                                     135 hours        120 hours                         197 hours
+            # of IND anomalous sounds per case and channel               ≈ 250 samples      355 samples                      270 samples
+            # of CNT environmental noise samples per case and channel      72 samples       72 samples                        72 samples
+            Total hours                                                     48 hours         144 hours                         96 hours
+
+                                            Table 2: List of deliberately damaged parts and their conditions
+                   Toy car                                      Toy conveyor                                       Toy train
+    Parts              Condition                    Parts                  Condition                     Parts                 Condition
+   Shaft        - Bent                        Tension pulley - Excessive tension                 First Carriage          - Chipped wheel axle
+   Gears        - Deformed                    Tail pulley         - Excessive tension            Last Carriage           - Chipped wheel axle
+                - Melted                                          - Removed
+   Tires        - Coiled (plastic ribbon)     Belt                - Attached metallic object 1 Straight railway track - Broken
+                - Coiled (steel ribbon)                           - Attached metallic object 2                           - Obstructing stone
+                                                                  - Attached metallic object 3                           - Disjointed
+   Voltage      - Over voltage                Voltage             - Over voltage                 Curved railway track    - Broken
+                - Under voltage                                   - Under voltage                                        - Obstructing stone
+                                                                                                                         - Disjointed
+
+
+lous sounds were recorded with these combinations (54 patterns).               anomaly score of normal training samples. We fix the learning rate
+Since the microphones were positioned differently in the HO- and               for the initial 100 epochs and decreased it linearly between 100–200
+N-scale cases, 12 hours of environmental noise were recorded for               epochs down to 1/100, where we start with a learning rate of 10−4 .
+each case.                                                                     We always concluded the training after 200 epochs.
+                                                                                    We calculated the anomaly scores on each time frame of all
+                                                                               test wav-files. If the anomaly score exceeded the threshold even for
+              4. EVALUATION AND BENCHMARK                                      one frame, the wav-file was determined to be anomalous. This sys-
+                                                                               tem gave the area under the receiver operating characteristic curves
+To give a usage and a sense of the usefulness of the ToyADMOS                  of 0.874, 0.981, and 0.843 for the toy-car, toy-conveyor, and toy-
+dataset, we tested a simple baseline system on three sub-datasets.             train sub-datasets, respectively. By analyzing false-negative de-
+The set of Python codes for training, test, and generating the train-          tections (i.e. overlooking), we found the system frequently over-
+ing/test data are available for download at the same address of the            looked “over-voltage” sounds in the toy-car sub-dataset and anoma-
+ToyADMOS dataset.                                                              lous sounds of “curved railway track” in the toy-train sub-dataset.
+     We tested a simple unsupervised-ADS task using each sub-                  The details of the spectral shape of the normal sounds and over-
+dataset of case 1 on channel 1. Note that, to simplify the experi-             voltage sounds were slightly different; however, there was almost
+ment, we mixed the observations of channels 1–4 in the toy-train               no change in the amplitude of these sounds. Moreover, the dam-
+sub-dataset and used as a single channel observation. Randomly se-             aged point of the curved railway was far from all four microphones;
+lected 1,000 samples of IND normal sound samples were used for                 therefore, the amplitude of the overlooked anomalous sounds was
+training, and the other IND normal and IND anomalous sound sam-                small. These results indicate one research direction in ADMOS us-
+ples were used for evaluation. We built both training/test datasets            ing the ToyADMOS dataset: detecting anomalous sounds whose
+by mixing randomly cropped environmental noise. To control the                 time-frequency structure does not change much from the normal
+signal-to-noise ratio, we multiplied 3.16 (+10 dB) by the waveforms            sounds.
+of target sounds in the toy-car and toy-conveyor sub-datasets and
+by the waveforms of noise sounds in the toy-train sub-dataset. All                                     5. CONCLUSIONS
+sounds were downsampled to a sampling rate of 16 kHz.
+     We used a simple AE as a normal model, and its network archi-             We introduced a new dataset called “ToyADMOS” designed for use
+tecture was almost the same used in [12]. Each encoder/decoder of              in anomaly detection in machine operating sounds (ADMOS). To
+the AE has one input fully connected neural network (FCN) layer,               build a large-scale dataset for ADMOS use, we collected anoma-
+four hidden FCN layers, and one output FCN layer. Each hidden                  lous operating sounds of miniature machines (toys) by deliberately
+layer has 512 hidden units, and the dimensions of the encoder out-             damaging them. The ToyADMOS dataset and some tutorial Python
+put are 128. The rectified linear unit is used after each FCN layer            codes are freely available on the Web, and we hope this dataset can
+except the output layer of the decoder. The input vector was a 64-             contribute to advancing research into anomaly detection in sounds.
+dimensional log-mel-amplitude spectrum, and their before/after 10                  Acknowledgements: The authors thank Minato Kanazawa at
+time-frames were concatenated to account for previous and future               NTT TechnoCross Corporation for his technical assistance in the
+frames. The reconstruction error of the AE was used as the anomaly             data collection process.
+score, and the parameters of the AE were trained to minimize the
+         This paper has been accepted to the 2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA 2019)
+
+
+
+                       6. REFERENCES                                        [13] Y. Kawachi, Y. Koizumi, and N. Harada, “Complementary Set
+                                                                                 Variational Autoencoder for Supervised Anomaly Detection,”
+ [1] Y. Koizumi, S. Saito, H. Uematsu, Y. Kawachi, and N. Harada,                in Proc. of International Conference on Acoustics, Speech,
+     “Unsupervised Detection of Anomalous Sound based on                         and Signal Processing (ICASSP), pp.2366–2370, 2018.
+     Deep Learning and the Neyman-Pearson Lemma,” IEEE/ACM                  [14] Y. Kawachi, Y. Koizumi, S. Murata, and N. Harada, “A Two-
+     Transactions on Audio Speech and Language Processing,                       Class Hyper-Spherical Autoencoder for Supervised Anomaly
+     pp.212–224, 2019.                                                           Detection,” in Proc. of International Conference on Acous-
+ [2] S. Heinicke, A. K. Kalan, O. J. J. Wagner, R. Mundry,                       tics, Speech, and Signal Processing (ICASSP), pp.3047–3051,
+     H. Lukashevich, and H. S. Kühl, “Assessing the Performance                 2019.
+     of a Semi-Automated Acoustic Monitoring System for Pri-                [15] M. Yamaguchi, Y. Koizumi, and N. Harada, “AdaFlow:
+     mates,” Methods in Ecology and Evolution pp.753–763, 2015.                  Domain-Adaptive Density Estimator with Application to
+ [3] C. Clavel, T. Ehrette, and G. Richard “Events Detection for an              Anomaly Detection and Unpaired Cross-Domain Transition,”
+     Audio-Based Surveillance System,” in Proc. of IEEE Interna-                 in Proc. of International Conference on Acoustics, Speech,
+     tional Conference on Multimedia and Expo (ICME), pp.1306–                   and Signal Processing (ICASSP), pp.3647–3651, 2019.
+     1309, 2005.                                                            [16] J. Deng, W. Dong, R. Socher, L. J. Li, K. Li and L. Fei-Fei,
+ [4] G. Valenzise, L. Gerosa, M. Tagliasacchi, F. Antonacci, and                 “ImageNet: A Large-Scale Hierarchical Image Database,” in
+     A. Sarti, “Scream and Gunshot Detection and Localization for                Proc. of IEEE Conference on Computer Vision and Pattern
+     Audio-Surveillance Systems,” in Proc. of IEEE International                 Recognition (CVPR), pp.248–255, 2009.
+     Conference on Advanced Video and Signal-based Surveillance             [17] J. Garofalo, D. Graff, D. Paul, and D. Pallett, “CSR-I (WSJ0)
+     (AVSS), pp.21–26, 2007.                                                     Complete,” Linguistic Data Consortium, Philadelphia, 2007.
+ [5] S. Ntalampiras, I. Potamitis, and N. Fakotakis “Proba-                 [18] C. Veaux, J. Yamagishi, and K. MacDonald, “CSTR VCTK
+     bilistic Novelty Detection for Acoustic Surveillance Under                  corpus: English multi-speaker corpus for CSTR voice
+     Real-World Conditions,” IEEE Transactions on Multimedia,                    cloning toolkit,” University of Edinburgh. The Centre for
+     pp.713–719, 2011.                                                           Speech Technology Research (CSTR) http://dx.doi.
+ [6] P. Foggia, N. Petkov, A. Saggese, N. Strisciuglio, and                      org/10.7488/ds/1994, 2012.
+     M. Vento, “Audio Surveillance of Roads: A System for De-               [19] J. F. Gemmeke, D. P. W. Ellis, D. Freedman, A. Jansen,
+     tecting Anomalous Sounds,” IEEE Transactions on Intelligent                 W. Lawrence, R. C. Moore, M. Plakal, and M. Ritter, “Audio
+     Transportation Systems, pp.279–288, 2016.                                   set: an ontology and human-labeled dataset for audio events,”
+ [7] A. Yamashita, T. Hara, and T. Kaneko, “Inspection of Visi-                  in Proc. of International Conference on Acoustics, Speech,
+     ble and Invisible Features of Objects with Image and Sound                  and Signal Processing (ICASSP), pp.776–780, 2017.
+     Signal Processing,” in Proc. of IEEE/RSJ International Con-            [20] E. Fonseca, J. Pons, X. Favory, F. Font, D. Bogdanov, A. Fer-
+     ference on Intelligent Robots and Systems, (IROS), pp.3837–                 raro, S. Oramas, A. Porter, and X. Serra, “Freesound datasets:
+     3842, 2006.                                                                 a platform for the creation of open audio datasets,” in Proc. of
+ [8] Y. Koizumi, S. Saito, H. Uematsu, and N. Harada, “Optimiz-                  the 18th International Society for Music Information Retrieval
+     ing Acoustic Feature Extractor for Anomalous Sound Detec-                   Conference (ISMIR 2017), pp.486–493, 2017.
+     tion Based on Neyman-Pearson Lemma,” in Proc. of Euro-                 [21] A. Mesaros, T. Heittola, A. Diment, B. Elizalde, A. Shah,
+     pean Signal Processing Conference (EUSIPCO), pp.698–702,                    E. Vincent, B. Raj, and T. Virtanen, “DCASE 2017 Challenge
+     2017.                                                                       Setup: Tasks, Datasets and Baseline system,” in Proc. of De-
+ [9] Y. Koizumi, S. Murata, N. Harada, S. Saito, and H. Uematsu,                 tection and Classification of Acoustic Scenes and Events chal-
+     “SNIPER: Few-shot Learning for Anomaly Detection to Min-                    lenge (DCASE), 2017.
+     imize False-Negative Rate with Ensured True-Positive Rate,”            [22] A. Mesaros, T. Heittola, E. Benetos, P. Foster, M. Lagrange,
+     in Proc. of International Conference on Acoustics, Speech,                  T. Virtanen, and M. D. Plumbley, “Detection and Classifica-
+     and Signal Processing (ICASSP), pp.915–919, 2019.                           tion of Acoustic Scenes and Events: Outcome of the DCASE
+[10] E. Marchi, F. Vesperini, F. Eyben, S. Squartini, and                        2016 Challenge,” IEEE/ACM Transactions on Audio Speech
+     B. Schuller, “A Novel Approach for Automatic Acoustic Nov-                  and Language Processing, pp.379–393, 2018.
+     elty Detection using a Denoising Autoencoder with Bidirec-             [23] H. Lim, J. Park and Y. Han, “Rare Sound Event Detection
+     tional LSTM Neural Networks,” in Proc. of International                     Using 1D Convolutional Recurrent Neural Networks,” in Tech.
+     Conference on Acoustics, Speech, and Signal Processing                      Report of Detection and Classification of Acoustic Scenes and
+     (ICASSP), pp.1996–2000, 2015.                                               Events challenge (DCASE Challenge), 2017.
+[11] Y. Kawaguchi, and T. Endo, “How can we detect anomalies                [24] E. Cakir and T. Virtanen, “Convolutional Recurrent Neural
+     from subsampled audio signals?,” in Proc. of IEEE Interna-                  Networks for Rare Sound Event Detection,” in Tech. Report
+     tional Workshop on Machine Learning for Signal Processing                   of Detection and Classification of Acoustic Scenes and Events
+     (MLSP), pp.1–6, 2017.                                                       challenge (DCASE Challenge), 2017.
+[12] Y. Koizumi, S. Saito, M. Yamaguchi, S. Murata and                      [25] Y. Kawaguchi, R. Tanabe, T. Endo, K. Ichige and K. Hamada,
+     N. Harada, “Batch Uniformization for Minimizing Maxi-                       “Anomaly Detection based on an Ensemble of Dereverbera-
+     mum Anomaly Score of DNN-based Anomaly Detection in                         tion and Anomalous Sound Extraction,” in Proc. of Interna-
+     Sounds” in Proc. of IEEE Workshop on Applications of Signal                 tional Conference on Acoustics, Speech, and Signal Process-
+     Processing to Audio and Acoustics (WASPAA), 2019.                           ing (ICASSP), pp.865–869, 2019.
+         This paper has been accepted to the 2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA 2019)
+
+
+
+[26] S. J. Reddi, C. Oztireli, S. Kale, and S. Kumar, “On the Con-
+     vergence of Adam and Beyond,” in Proc. of International
+     Conference on Learning Representations, (ICLR), 2018.
+

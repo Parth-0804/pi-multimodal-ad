@@ -1,0 +1,1041 @@
+                Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+
+                         Qingyang Zhang 1 Haitao Wu 1 Changqing Zhang 1 2 Qinghua Hu 1 2
+                                    Huazhu Fu 3 Joey Tianyi Zhou 3 4 Xi Peng 5
+
+
+                          Abstract                                       medical diagnosis and treatment (Qiu et al., 2022; Acosta
+                                                                         et al., 2022). Intuitively, fusing information from different
+     The inherent challenge of multimodal fusion is to                   modalities offers the possibility of exploring cross-modal
+     precisely capture the cross-modal correlation and                   correlation and gaining better performance. However, con-
+     flexibly conduct cross-modal interaction. To fully                  ventional fusion methods have largely overlooked the un-
+     release the value of each modality and mitigate                     reliable quality of multimodal data. In real-world settings,
+     the influence of low-quality multimodal data, dy-                   the quality of different modalities usually varies due to un-
+     namic multimodal fusion emerges as a promising                      expected environmental issues. Some recent studies have
+     learning paradigm. Despite its widespread use,                      shown both empirically and theoretically that multimodal
+     theoretical justifications in this field are still no-              fusion may fail on low-quality multimodal data, e.g., imbal-
+     tably lacking. Can we design a provably robust                      anced (Wang et al., 2020; Peng et al., 2022; Huang et al.,
+     multimodal fusion method? This paper provides                       2022), noisy or even corrupted (Huang et al., 2021b) multi-
+     theoretical understandings to answer this question                  modal data. Empirically, it is recognized that multimodal
+     under a most popular multimodal fusion frame-                       models cannot always outperform unimodal models espe-
+     work from the generalization perspective. We                        cially in a high noise (Scheunders & De Backer, 2007;
+     proceed to reveal that several uncertainty estima-                  Eitel et al., 2015; Silva et al., 2022) or imbalanced modality
+     tion solutions are naturally available to achieve                   quality (Wu et al., 2022; Peng et al., 2022) regime. Theo-
+     robust multimodal fusion. Then a novel multi-                       retically, the previous study proves that the advantages of
+     modal fusion framework termed Quality-aware                         multimodal learning may vanish under the setting of lim-
+     Multimodal Fusion (QMF) is proposed, which                          ited data volume (Huang et al., 2021a) which implies the
+     can improve the performance in terms of classifi-                   exploitation of cross-modal relationship is not a free lunch.
+     cation accuracy and model robustness. Extensive                     To fully release the value of each modality and mitigate
+     experimental results on multiple benchmarks can                     the influence of low-quality multimodal data, introducing
+     support our findings.                                               dynamic fusion mechanism emerges as a promising way to
+                                                                         obtain reliable predictions. As a concrete example, previ-
+                                                                         ous work (Guan et al., 2019) proposes a dynamic weight-
+1. Introduction                                                          ing mechanism to depict illumination condition of scenes.
+                                                                         By introducing dynamics, they can integrate reliable cues
+Our perception of the world is based on multiple modalities,             from multi-spectral data for around-the-clock applications
+e.g., touch, sight, hearing, smell and taste. With the devel-            (e.g., pedestrian detection in security surveillance and au-
+opment of sensory technology, we can easily collect diverse              tonomous driving). Dynamic fusion has been used in diverse
+forms of data for analysis. For example, multi-sensor in                 real-world multimodal applications, including multimodal
+autonomous driving and wearable electrical devices (Xiao                 classification (Han et al., 2021; Geng et al., 2021; Han et al.,
+et al., 2020; Wen et al., 2022), or various examinations in              2022b), regression (Ma et al., 2021), object detection (Li
+   1
+     College of Intelligence and Computing, Tianjin University,          et al., 2022a; Zhang et al., 2019; Chen et al., 2022b) and
+Tianjin, China 2 Tianjin Key Lab of Machine Learning, Tianjin Uni-       semantic segmentation (Tian et al., 2020). While dynamic
+versity, Tianjin, China 3 Institute of High Performance Computing        multimodal fusion shows excellent power in practice, theo-
+(IHPC), Agency for Science, Technology and Research (A*STAR),            retical understanding is notably lack in this field with the fol-
+Singapore 4 Centre for Frontier AI Research (CFAR), Agency for
+Science, Technology and Research (A*STAR), Singapore 5 College           lowing fundamental open problem: Can we realize reliable
+of Computer Science, Sichuan University, Chengdu, China. Corre-          multimodal fusion in practice with theoretical guarantee?
+spondence to: Changqing Zhang <zhangchangqing@tju.edu.cn>.
+                                                                         This paper tries to shed light upon the theoretical advantage
+Proceedings of the 40 th International Conference on Machine             and criterion of robust multimodal fusion. Following pre-
+Learning, Honolulu, Hawaii, USA. PMLR 202, 2023. Copyright               vious works in multimodal learning theory (Huang et al.,
+2023 by the author(s).
+
+                                                                     1
+                                  Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+
+
+
+Figure 1. Visualization of accuracy gap between multimodal learning methods (e.g., late fusion, align-based fusion, MMTM) and single-
+modal learning methods using the best modality on noisy multimodal data. Noted that the performance existing multimodal fusion
+methods degrade significantly of compared with their best unimodal counterparts in a high noise regime, while the proposed QMF
+consistently outperforms unimodal methods on low-quality data.
+
+
+2021b; Wang et al., 2020), the framework we study is also              to integrate modality-wise features into a joint representa-
+abstracted from decision-level multimodal fusion, which is             tion for downstream multimodal learning tasks. Multimodal
+one of the most fundamental research topics in multimodal              fusion can be classified into early fusion, intermediate fu-
+learning (Baltrušaitis et al., 2018). In particular, we devise a       sion and late fusion. Although studies in neuroscience and
+novel Quality-aware Multimodal Fusion (QMF) framework                  machine learning suggest that intermediate fusion could
+for multimodal learning. Key to our framework, we leverage             benefit representation learning (Schroeder & Foxe, 2005;
+energy-based uncertainty to characterize the quality of each           Macaluso, 2006), late fusion is still the most widely used
+modality. Our contributions can be summarised as follows:              method for multimodal learning due to its interpretation
+   • This paper provides a rigorous theoretical framework              and practical simplicity. By introducing modality-level dy-
+     to understand the advantage and criterion of robust mul-          namics based on various strategies, dynamic fusion practi-
+     timodal fusionas shown in Figure 2. Firstly, we charac-           cally improves overall performance. As a concrete example,
+     terize the generalization error bound of decision-level           the previous work (Guan et al., 2019) proposes a dynamic
+     multimodal fusion methods from a Rademacher com-                  weighting mechanism to depict illumination conditions of
+     plexity perspective. Then, we identify under what con-            scenes. By introducing dynamics, they can integrate reliable
+     ditions dynamic fusion outperforms static, i.e., when             cues from multi-spectral data for around-the-clock applica-
+     the fusion weights of multimodal fusion is negatively             tions (e.g., pedestrian detection in security surveillance and
+     correlates to the unimodal generalization errors, dy-             autonomous driving). Combining with additional dynamic
+     namic fusion methods provably outperform static.                  mechanism (e.g., a simple weighting strategy or Dempster-
+                                                                       Shafer Evidence Theory (Shafer, 1976)), recent uncertainty-
+   • Under the theoretical analysis, we proceed to reveal
+                                                                       based multimodal fusion methods show remarkable advan-
+     that the generalization ability of dynamic fusion coin-
+                                                                       tages in various tasks, including clustering (Geng et al.,
+     cides with the performance of uncertainty estimation.
+                                                                       2021), classification (Han et al., 2021; 2022b; Tellamekala
+     This directly implies a principle to design and evaluate
+                                                                       et al., 2022; Subedar et al., 2019; Chen et al., 2022a), re-
+     new dynamic fusion algorithms.
+                                                                       gression (Ma et al., 2021), object detection (Zhang et al.,
+   • Directly motivated by the above analysis, we pro-                 2019; Li et al., 2022b) and semantic segmentation (Tian
+     pose a novel dynamic multimodal fusion method                     et al., 2020; Chang et al., 2022).
+     termed Quality-aware Multimodal Fusion (QMF),
+     which serves as a realization for provably better gener-          2.2. Uncertainty Estimation
+     alization ability. As shown in Figure 1, extensive ex-
+     periments on commonly used benchmarks are carried                 Multimodal machine learning has achieved great success
+     out to empirically validate the theoretical observations.         in various real-world application. However, the reliabil-
+                                                                       ity of current fusion methods is still notably unexplored,
+2. Related works                                                       which limits their application in safety-critic field (e.g.,
+                                                                       financial risk, medical diagnosis). The motivation of un-
+2.1. Multimodal Fusion                                                 certainty estimation is to indicate whether the predictions
+                                                                       given by machine learning models are prone to be wrong.
+Multimodal fusion is one of the most original and funda-
+                                                                       Many uncertainty estimation methods have been proposed
+mental topics in multimodal learning, which typically aims
+
+                                                                   2
+                                     Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+
+
+
+Figure 2. Left: The generalization error upper bound of multimodal fusion method f can be characterized by its performance on each
+modality in terms of empirical loss, model complexity and uncertainty awareness. Right: Dynamic vs Static multimodal fusion hypothesis
+space, where the latter is a subset of the former. fstatic , fdynamic are the hypothesises of static and dynamic fusion methods respectively and
+f ∗ is the true mapping. Informally, closer to the true mapping leads to less error. Under some certain conditions, dynamic multimodal
+fusion methods (e.g., the proposed QMF) can be well regularized and thus provably achieve better generalization ability.
+
+
+in the past decades, including Bayesian neural networks                    3.1. Preliminaries
+(BNNs) (Denker & LeCun, 1990; Mackay, 1992; Neal,
+                                                                           We initialize by introducing the necessary notations for our
+2012) and its varieties (Gal & Ghahramani, 2016; Han et al.,
+                                                                           theoretical frameworks. Considering a learning task on
+2022a), deep ensembles (Lakshminarayanan et al., 2017;
+                                                                           the data (x, y) ∈ X × Y, where x = {x(1) , · · · , x(M ) }
+Havasi et al., 2021), predictive confidence (Hendrycks &
+                                                                           has M modalities and y ∈ Y denotes the data label. The
+Gimpel, 2017), Dempster-Shafer thoery (Han et al., 2021)
+                                                                           multimodal training data is defined as Dtrain = {xi , yi }Ni=1 .
+and energy score (Liu et al., 2020). Predictive confidence
+                                                                           Specifically, we use X , Y and Z to denote the input space,
+expects the predicted class probability to be consistent with
+                                                                           target space and latent space. Similar to the previous work
+the empirical accuracy, which is usually referred in clas-
+                                                                           in multimodal learning theory (Huang et al., 2021a), we
+sification tasks. Dempster-Shafer theory (DST) is a gen-
+                                                                           define h : X 7→ Z is a multimodal fusion mapping from
+eralization of Bayesian theory to subjective probabilities
+                                                                           the input space to the latent space, and g : Z 7→ Y is a task
+and a general framework for modeling epistemic uncer-
+                                                                           mapping. Our goal is to learn a reliable multimodal model
+tainty. Energy score emerges as a promising way to cap-
+                                                                           f = g ◦ h(x) performing well on the unknown multimodal
+ture Out-of-Distribution (OOD) uncertainty, which arises
+                                                                           test dataset Dtest . Dtrain and Dtest are both drawn from joint
+when a machine learning model encounters an input that
+                                                                           distribution D over X × Y. Here f = g ◦ h(x) represents
+differs from its training data, and thus the output from the
+                                                                           the composite function of h and g.
+model is unreliable. A plethora of recent researches have
+studied the issue of OOD uncertainty (Ming et al., 2022;
+Chen et al., 2021; Meinke & Hein, 2019; Hendrycks et al.,                  3.2. When and How Dynamic Multimodal Fusion Help
+2019). In this paper, we investigate predictive confidence,                For simplicity, we provide analysis of ensemble-like late
+the Dempster-Shafer theory and energy score due to their                   fusion strategy using logistic loss function in two-class clas-
+theoretical interpretability and effectiveness.                            sification setting. Our analysis follows this roadmap: (1)
+                                                                           we first characterize the generalization error bound of dy-
+3. Theory                                                                  namic late fusion using Rademacher complexity (Bartlett
+                                                                           & Mendelson, 2002) and then separate the bound into three
+In this section, we first clarify the basic notations and the              components (Theorem 1); (2) base on above separation, we
+formal definition of multimodal fusion used in Section 3.1.                further prove that dynamic fusion achieves better general-
+Then we provide main theoretical results in Section 3.2                    ization ability under certain conditions (Theorem 2). We
+to rigorously demonstrate when and how dynamic fusion                      initiate our analysis with the basic setting as follows.
+methods work from the perspective of generalization abil-
+ity (Bartlett & Mendelson, 2002). Due to space constraints,                Basic setting. Under a M input modalities and two-class
+we defer the full details to Appendix A and only present a                 classification scenario, we define f m as the unimodal clas-
+brief summary of the proofs.                                               sifier on modality x(m) . The final prediction of late fusion
+                                                                           multimodal method is calculated by weighting decisions
+
+
+                                                                       3
+                                         Provable Dynamic Fusion for Low-Quality Multimodal Data
+                                      PM
+from different modalities: f (x) = m=1 wm · f m (x(m) ),                             duces to
+where f (x) denotes the final prediction. In contrast to static                                                 M
+                                                                                                                X
+late fusion, the weights in dynamic multimodal fusion are                             GError(fstatic ) ≤               m
+                                                                                                                      wstatic Ê(f m )
+generated dynamically and vary for different samples. For                                                       m=1
+                                                         m
+clarity, we use subscript to distinguish them, i.e., wstatic                                                    |        {z           }
+                                                                                                            Term-L (average empirical loss)
+refers to the ensemble weight of modality m in static late                                                   M
+                                                                                                                                              r
+               m
+fusion and wdynamic    refers to the weight in dynamic fu-                                                   X
+                                                                                                                     m                            ln(1/δ)
+                     m                         m                                                        +           wstatic Rm (f m ) +M                  .
+sion. Specifically, wstatic is a constant and wdynamic (·) is a                                             m=1
+                                                                                                                                                    2N
+function of the input sample x. The generalization error of                                                 |           {z           }
+                                                                                                            Term-C (average complexity)
+two-class multimodal classifier f is defined as:
+                                                                                                                                                         (3)
+
+            GError(f ) = E(x,y)∼D [ℓ(f (x), y)],                          (1)        So when summation of Term-L , Term-C is invariant or
+                                                                                     smaller in dynamic fusion and Term-Cov ≤ 0, we can en-
+                                                                                     sure that dynamic fusion provably outperforms static fusion.
+where D is the unknown joint distribution, and ℓ is logis-                           This theorem is formally presented as
+tic loss function. For convenience, we simplify unimodal
+                                                                                     Theorem 2. Let O(GError(fdynamic )), O(GError(fstatic ))
+classifier loss ℓ(f m (xm ), y) as lm and omit the inputs in
+                                                                                     be the upper bound of generalization error of multimodal
+the following analysis. Now we present our first main result
+                                                                                     classifier using dynamic and static fusion strategy respec-
+regarding multi-modal fusion.
+                                                                                     tively. Ê(f m ) is the unimodal empirical errors of f m
+Theorem 1 (Generalization Bound of Multimodal Fusion).                               on Dtrain defined in Theorem 1. Then for any hypothesis
+Let Dtrain = {xi , yi }N
+                       i=1 be a training dataset of N samples,                       fdynamic , fstatic in H : X → {−1, 1} and 1 > δ > 0, it holds
+Ê(f m ) is the unimodal empirical errors of f m on Dtrain .                         that
+Then for any hypothesis f in H (i.e., H : X → {−1, 1},
+                                                                                                O(GError(fdynamic )) ≤ O(GError(fstatic ))               (4)
+f ∈ H) and 1 > δ > 0, with probability at least 1 − δ, it
+holds that                                                                           with probability at least 1 − δ, if we have
+
+                 M                                M                                                          m            m
+                 X                                X                                                       E(wdynamic ) = wstatic                         (5)
+GError(f ) ≤           E(wm )Ê(f m ) +                      E(wm )Rm (f m )
+                 m=1                              m=1
+                 |          {z             }      |              {z             }    and
+                                                                                                            m
+               Term-L (average empirical loss)     Term-C (average complexity)
+                                                                                                         r(wdynamic , ℓ(f m )) ≤ 0                       (6)
+                              M
+                                                                 r
+                              X                                       ln(1/δ)
+                          +          Cov(wm , lm ) + M                        ,      for all input modalities, where r is the Pearson correlation
+                                                                        2N
+                             m=1
+                             |            {z             }                           coefficient which measures the correlation between fusion
+                                                                                                m
+                                 Term-Cov (covariance)                               weights wdynamic and unimodal loss ℓm .
+                                                                          (2)
+                                                                                     Remark. Theoretically, optimizing over the same function
+                                                                                     class efficiently results in the same empirical loss. Suppose
+where E(wm ) is the expectations of fusion weights on                                for each modality m, the unimodal classifier f m we used in
+joint distribution D, Rm (f m ) is Rademacher complexity,                            dynamic and static fusion are of the same architecture, then
+Cov(wm , ℓm ) is the covariance between fusion weight and                            the intrinsic complexity of unimodal classifier Rm (f m ) and
+loss.                                                                                empirical risk Ê(f m ) can be invariant. Thus in this case, it
+                                                                                     holds that
+Intuitively, Theorem 1 demonstrates that the generalization
+error of multimodal classifier is bounded by the weighted                                   M                                  M
+average performances of all the unimodal classifiers in terms
+                                                                                            X                                  X
+                                                                                                     m
+                                                                                                  E(wdynamic )Ê(f m ) ≤              m
+                                                                                                                                     wstatic Ê(f m ),   (7)
+of empirical loss, model complexity and the covariance be-                                  m=1                               m=1
+tween fusion weight and unimodal loss. Having established
+the general error bound, our next goal is to verify when dy-                         and
+namic multimodal late fusion indeed achieves tighter bound                                 M
+                                                                                           X                                  M
+                                                                                                                              X
+                                                                                                  m
+than that of static late fusion. Informally, in Eq. 1, Term-Cov                                E(wdynamic )Rm (f m ) ≤              m
+                                                                                                                                   wstatic Rm (f m ),    (8)
+measures the joint variability of wm and ℓm . Remember                                  m=1                                  m=1
+                                      m
+that in static multimodal fusion wstatic   is a constant, which
+means Term-Cov = 0 for any static fusion methods. Thus                               if Eq. 5 is satisfied for any modality m. According to The-
+the generalization error bound of static fusion methods re-                          orem 2, it is easy to derive the conclusion that the main
+
+                                                                                 4
+                                  Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+challenge of achieving reliable dynamic multimodal fusion            Once we obtain the fusion weights, we can perform
+                           m
+is to learn a reasonable wdynamic (x) for each modality that         uncertainty-aware weighting fusion in decision-level ac-
+satisfies Eq. 5 and Eq. 6.                                           cording to the following rule
+                                                                                               M
+4. Method
+                                                                                               X
+                                                                                     f (x) =         wm (x) · f m (x),                    (11)
+                                                                                               m=1
+Now we proceed to answer "How to realize robust dy-
+namic fusion?". In this section, we theoretically identify           where f m (x) defined in Section 3.2 denotes unimodal pre-
+the connection between dynamic multimodal fusion and                 diction on modality m.
+uncertainty estimation. Then, a unified dynamic multimodal
+fusion framework termed Quality-aware Multimodal Fusion              4.2. Enhance Correlation by Additional Regularization
+(QMF) is proposed. We next show how to realize this frame-
+work in decision-level late fusion and classification tasks to       With the above analysis, the core challenges of robust dy-
+support our findings.                                                namic multimodal fusion present in Section. 3.2 have been
+                                                                     reduced to obtain an effective uncertainty estimator in As-
+4.1. Coincidence with Uncertainty Estimation                         sumption 1. In our implementation, we leverage energy
+                                                                     score (Liu et al., 2020), which is a widely accepted met-
+Firstly, we focus on how to satisfy Eq. 6. As we discuss in          ric in the literature of uncertainty learning. Energy score 1
+Section 2.2, the common motivation of various uncertainty            bridges the gap between the Helmholtz free energy of a
+estimation methods is to provide an indicator of whether             given data point and its density. For multimodal data, the
+the predictions given by models are prone to be wrong.               density functions of different modalities can be estimated
+This motivation is inherently close to obtaining weights that        by the corresponding energy function:
+satisfy Eq. 6. We formulate this claim with the following
+assumption                                                              log p(x(m) ) = −Energy(x; f m )/T m − log Z m ,                   (12)
+
+                                                                     where x(m) is the m-th input modality and f m is the uni-
+  Assumption 1. Given an effective uncertainty estima-
+                                                                     modal classification model. Energy(·) is the energy func-
+  tor um : X → R on modality m, the estimated uncer-
+                                                                     tion and Z m is an intractable constant for all xm . The
+  tainty um (x) is positively correlated with its modal-
+                                                                     above equation suggests that −Energy(x(m) ; f m ) is linearly
+  specific loss ℓm (x): r(um , ℓm (x)) ≥ 0, where r is the
+                                                                     aligned with density p(x(m) ). The energy score for the m-th
+  Pearson correlation coefficient.
+                                                                     modality of input x can be calculated as
+                                                                                                         K
+                                                                                                                 m      (m)
+                                                                                                                              )/T m
+                                                                                                         X
+This insight offers opportunity to explore novel dynamic                 Energy(x(m) ) = −T m · log            efk (x                 ,   (13)
+fusion methods provably outperform conventional static                                                     k
+fusion methods. Similar to previous dynamic fusion meth-
+ods (Blundell et al., 2015; Zhang et al., 2019; Han et al.,          where fkm (x(m) ) is the output logits of classifier f m corre-
+2022b), we deploy modal-level weighting strategy to intro-           sponding to the k-th class label and T m is a temperature
+duce dynamics.                                                       parameter. Intuitively, more uniformly distributed predic-
+                                                                     tion leads to higher estimated uncertainty.
+Uncertainty-aware weighting. The uncertainty-aware fu-
+sion weighting wm : X → R is a function that linearly and            However, it has been shown experimentally that the uncer-
+negatively relates to the corresponding uncertainty                  tainty estimated in this way without additional regulariza-
+                                                                     tion is not well enough to satisfy our Assumption 1. To
+               wm (x) = αm um (x) + β m ,                  (9)       address this, we propose a sampling-based regularization
+where αm < 0, β m ≥ 0 are modal-specific hyper-                      technology to enhance the original method in terms of corre-
+parameters. um (x) is the uncertainty of modality m. By              lation. The most simple and straightforward way to improve
+tuning hyper-parameters αm , β m , we can ensure dynamic             the correlation between estimated uncertainty and respec-
+fusion weights satisfied Eq. 5 and 6 simultaneously. This            tive loss is to leverage the sample-wise loss during training
+lemma is formally presented as                                       stage as supervision information. However, due to the over-
+                                                                     parameterization phenomenon of deep neural networks, the
+Lemma 1 (Satisfiability). With Assumption 1, for any
+                                                                        1
+wm                                m                                       While another line of previous works usually incorporate an
+ static ∈ R, there always exist β   ∈ R such that
+                                                                     auxiliary outlier dataset (e.g., random noised out-of-distribution
+                                                                     data) during training for higher performance, for clarity and a
+                                                                     strictly fair comparison, we conduct our experiments without the
+       m            m           m
+    E(wdynamic ) = wstatic , r(wdynamic , ℓ(f m )) ≤ 0.   (10)       help of additional data.
+
+                                                                 5
+                                      Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+  Algorithm 1 Training Pseudo Code of Quality-aware Multimodal Fusion (QMF)
+  Input : Multimodal training dataset Dtrain , the number of sampling T, hyperparameters λ, temperature parameters
+           {T m }M                               m    M
+                  m=1 , unimodal predictors {f (·)}i=m ;
+  Output : The multimodal classifier f ;
+1 for each iteration do
+2     Obtain training sample (xi , yi ) from dataset Dtrain and the decisions on each modality f m (x);
+3     Calculate uncertainty-aware fusion weights [wi1 , · · · , wim ] defined in Eq. 9;
+4     Update the average training loss κm  i of each modalities;
+5     Obtain the multimodal decision by weighting unimodal predictions dynamically according to Eq. 11;
+6     Update model parameters of each unimodal predictor by minimizing Loverall in Eq. 18.
+7 end
+
+
+
+
+ losses constantly reduce to zero during training. Inspired              where λ is a hyperparamter which controls the strength of
+ by recent works in Bayesian learning (Maddox et al., 2019)              regularization, LCE and Lreg are the cross-entropy loss and
+ and uncertainty estimation (Moon et al., 2020; Han et al.,              reguralization term respectively. The whole training process
+ 2022a), we propose to leverage the information from his-                is shown in Algorithm 1.
+ torical training trajectory to regularize the fusion weights.
+                                                                         Intuitive explanation of the effectiveness of QMF. With-
+ Specifically, given the m-th modality of a sample (xi , yi ),
+                                                                         out loss of generality, we assume modality xA is clean
+ the training average loss for xmi is calculated as:                     and modality xB is noisy due to unknown environmental
+                         sT +T                                           factors or sensor failure. At this time, xA is in the distri-
+                       1 X                                               bution of clean training data but xB deviates significantly
+                κm
+                 i =       ℓ(yi , fθmt (xi )),                (14)
+                       T                                                 from it. Accordingly, we have u(xA ) ≤ u(xB ) and thus
+                          t=Ts
+                                                                         wA ≥ wB . Therefore, for our QMF, the multimodal deci-
+ where fθmt is the unimodal classifier on each iteration epoch           sion will tend to more rely on the high-quality modality xA
+ t with parameters θt . After training Ts − 1 epochs, we                 than the other modality xB . By dynamically determining
+ sample T times and calculate the average training loss.                 the fusion weights of each modality, the influence of the
+                                                                         unreliable modalities can be alleviated.
+ Empirically, recent works (Geifman et al., 2019) shown
+ that easy-to-classify samples are learned earlier during train-
+ ing compared to hard-to-classify samples (e.g., noise sam-
+                                                                         5. Experiment
+ ples (Arazo et al., 2019)). It is desirable to regularize a             In this section, we conduct experiments on multiple datasets
+ dynamic fusion model by learning the following relation-                of diverse applications 2 . The main questions to be verified
+ ship during training                                                    are highlighted here:
+
+                κm    m     m    m
+                 i ≥ κj ⇐⇒ wi ≤ wj .                          (15)          • Q1 Effectiveness I. Does the proposed method has bet-
+                                                                              ter generalization ability than its counterparts? (Sup-
+ We now present the full definition of our regularization term                port Theorem 1)
+ as follows
+                                                                            • Q2 Effectiveness II. Under what conditions does
+  Lreg = max(0, g(wim , wjm )(κm     m       m   m
+                               i − κj ) + |wi − wj |),                        uncertainty-aware dynamic multimodal fusion work?
+                                                   (16)                       (Support Theorem 2)
+ where                            m     m                                  • Q3 Reliability. Does the proposed method have an
+                            1 if wi > wj ,
+                            
+                                                                              effective perception for the uncertainty of modality?
+           g(wim , wjm ) = 0 if wim = wjm ,        (17)
+                                                                             (Support Assumption 1)
+                               −1 otherwise.
+                            
+                                                                            • Q4 Ablation study. What is the key factor of perfor-
+ Inspired by multi-task learning, we define the total loss func-              mance improvement in our method?
+ tion as a summation of standard cross-entropy classification
+ losses of multiple modalities and the regularization term               5.1. Experimental Setup
+                                M
+                                X                                        We briefly present the experimental setup here, including
+  Loverall = LCE (y, f (x)) +         LCE (y, f m (xm )) + λLreg ,       the experimental datasets and comparison methods. Please
+                                m=1
+                                                                            2
+                                                              (18)              Code is available at https://github.com/QingyangZhang/QMF.
+
+                                                                     6
+                                   Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+
+
+
+                       (a) NYU Depth V2                                                     (b) SUN RGB-D
+
+Figure 3. Test accuracy and Pearson correlation coefficient achieved by different fusion methods over 10 times random experiments. The
+average and worst-case accuracy are highly consistency with uncertainty estimation ability.
+
+
+refer to Appendix B for more detailed setup.                           ConcatBERT and recent sota MMBT (Kiela et al., 2019).
+Tasks and datasets. We evaluate our method on two
+multimodal classification tasks. ◦ Scenes Recognition:                 5.2. Experimental Results
+NYU Depth V2 (Silberman et al., 2012) and SUN RGB-                     Classification robustness (Q1). To validate the robust-
+D (Song et al., 2015) are two public indoor scenes recogni-            ness of the uncertainty-aware weighting fusion, we evaluate
+tion datasets, which are associated with two modalities, i.e.,         QMF and the compared methods in terms of average and
+RGB and depth images. ◦ Image-text classification: The                 worst-case accuracy under Gaussian noise (for image modal-
+UPMC FOOD101 dataset (Wang et al., 2015) contains (pos-                ity) and blank noise (for text modality) following previous
+sibly noisy) images obtained by Google Image Search and                works (Han et al., 2021; Ma et al., 2021; Verma et al., 2021;
+corresponding textual descriptions. MVSA sentiment anal-               Hu et al., 2019; Xie et al., 2017). More results under dif-
+ysis dataset (Niu et al., 2016) includes a set of image-text           ferent types of noise (e.g. Salt-Pepper Noise) can be found
+pairs with manual annotations collected from social media.             in Appendix C.2. The experimental results are presented in
+Although the datasets above are all under the condition that           Table 1. It is observed that QMF usually performs in the top
+M = 2, it is intuitive and easy to generalize to M ≥ 3.                three in terms of both average and worst-case accuracy. This
+Evaluation metrics. Due to the randomness involved, we                 observation indicates that QMF has better generalization
+report the mean accuracy, standard deviation and worst-case            ability than their counterparts experimentally. It is also note-
+accuracy on NYU Depth V2 and SUN RGB-D over 10 dif-                    worthy that the QMF outperforms the prior state-of-the-art
+ferent seeds. To be consistent with existing works (Han et al.,        methods (i.e., MMBT and TMC) on large-scale benchmark
+2022c; Kiela et al., 2019; Yadav & Vishwakarma, 2023), we              UPMC FOOD101, which illustrates the superiority of the
+repeat experiments over 3 times on UMPC FOOD101 and 5                  proposed method.
+times on MVSA.                                                         Connection to uncertainty estimation (Q2). We fur-
+Compared methods. For scene recognition task, we com-                  ther conduct comparisons with QMF realized by various
+pare the proposed method with three static fusion methods:             uncertainty estimation algorithms, i.e., prediction confi-
+Late fusion, Concatenate-based fusion, Alignment-based                 dence (Hendrycks & Gimpel, 2017) and Dempster-Shafer
+fusion methods (Wang et al., 2016) and two representative              evidence theory (DST) (Han et al., 2021). According to
+dynamic fusion methods, i.e., MMTM (Joze et al., 2020)                 comparison results shown in the Figure 3, it is clear that
+and TMC3 (Han et al., 2021). For image-text classifica-                (i) the generalization ability (i.e., average and worst-case
+tion, we compare against strong unimodal baselines (i.e.,              accuracy) of dynamic fusion methods coincide with their
+Bow, Bert and ResNet-152) as well as sophisticated multi-              uncertainty estimation ability and (ii) our QMF achieves
+modal fusion methods, including Late fusion, ConcatBow,                the best performance in terms of classification accuracy and
+                                                                       uncertainty estimation in the meantime. This comparison
+   3
+     There are two variants in (Han et al., 2021): TMC and ETMC        reveals the underlying reason of why QMF outperforms
+(with additional concatenated-based multimodal fusion strategy).       other fusion methods and supports Theorem 2. We show the
+TMC has comparable performance and is a more fair comparison.
+                                                                       results on NYU Depth V2 and SUN RGB-D under Gaussian
+
+                                                                   7
+                                     Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+
+Table 1. Classification comparison when 50% of the modalities are corrupted with Gaussian noise i.e., zero mean with variance of ϵ. The
+best three results are in bold brown and the best results are highlighted in bold blue. Full results with standard deviation are in Appendix.
+
+
+
+                                                                 ϵ = 0.0              ϵ = 5.0               ϵ = 10.0
+                  Dataset       Dynamic         Method
+                                                               Avg. Worst.          Avg. Worst.           Avg. Worst.
+
+                                    ✗             RGB          63.30     62.54      53.12     50.31      45.46     42.20
+                                    ✗            Depth         62.65     61.01      50.95     42.81      44.13     35.93
+                                    ✗         Late fusion      69.14     68.35      59.63     53.98      51.99     44.95
+                  NYU               ✗            Concat        70.30     69.42      59.97     55.89      53.20     47.71
+                 Depth V2           ✗            Align         70.31     68.50      59.47     56.27      51.74     44.19
+                                    ✓           MMTM           71.04     70.18      60.37     56.73      52.28     46.18
+                                    ✓            TMC           71.06     69.57      61.04     58.72      53.36     49.23
+                                    ✓             Ours         70.09     68.81      61.62     58.87      55.60     51.07
+
+                                    ✗             RGB          56.78     56.51      48.40     47.16      42.94     41.02
+                                    ✗            Depth         52.99     51.32      37.81     35.63      33.07     30.41
+                                    ✗         Late fusion      62.09     60.55      52.44     50.83      47.33     44.60
+                   SUN              ✗            Concat        61.90     61.19      52.69     50.61      45.64     42.95
+                  RGB-D             ✗            Align         61.12     60.12      50.05     47.63      44.19     38.12
+                                    ✓           MMTM           61.72     60.94      51.86     50.80      46.03     44.28
+                                    ✓            TMC           60.68     60.31      51.24     49.45      45.66     41.60
+                                    ✓             Ours         62.09     61.30      53.40     52.07      48.58     47.50
+
+                                    ✗             Bow          82.50     82.32      61.68     60.98      41.95     41.41
+                                    ✗             Img          64.62     64.22      34.72     34.19      33.03     32.67
+                                    ✗             Bert         86.46     86.42      67.38     67.19      43.88     43.56
+                                    ✗         Late fusion      90.69     90.58      68.49     65.05      58.00     55.77
+                   FOOD
+                    101             ✗         ConcatBow        70.77     70.68      38.28     37.95      35.68     34.92
+                                    ✗         ConcatBert       88.20     87.81      61.10     59.25      49.86     47.79
+                                    ✓           MMBT           91.52     91.38      72.32     71.78      56.75     56.21
+                                    ✓            TMC           89.86     89.80      73.93     73.64      61.37     61.10
+                                    ✓             Ours         92.92     92.72      76.03     74.68      62.21     61.76
+
+                                    ✗             Bow          48.79     35.45      42.20     32.56      41.57     32.18
+                                    ✗             Img          64.12     62.04      49.36     45.67      45.00     39.31
+                                    ✗             Bert         75.61     74.76      69.50     65.70      47.41     45.86
+                                    ✗         Late fusion      76.88     74.76      63.46     58.57      55.16     47.78
+                  MVSA              ✗         ConcatBow        64.09     62.04      49.95     45.28      45.40     40.95
+                                    ✗         ConcatBert       65.59     64.74      50.70     44.70      46.12     41.81
+                                    ✓           MMBT           78.50     78.04      71.99     69.94      55.35     52.22
+                                    ✓            TMC           74.88     71.10      66.72     60.12      60.36     53.37
+                                    ✓             Ours         78.07     76.30      73.85     71.10      61.28     57.61
+
+
+
+
+                                                                     8
+                                       Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+
+                 Table 2. Ablation study on NYU Depth V2. Full results with standard deviation are in Appendix C.1.
+
+                                           ϵ = 0.0            ϵ = 5.0               ϵ = 10.0          ϵ = 20.0
+                      UAW       Lreg
+                                         Avg. Worst.        Avg. Worst.           Avg. Worst.       Avg. Worst.
+                        ✗         ✗      69.14   68.35      59.62      53.98     51.94    44.95     43.76    36.85
+                        ✗         ✓      69.68   67.74      61.35      58.26     55.44    51.53     47.32    42.97
+                        ✓         ✗      70.06   69.11      61.59      57.49     55.14    50.15     47.46    42.05
+                        ✓         ✓      70.09    68.81     61.62      58.87     55.81     51.07   48.26     43.73
+
+
+                                                                           For example, in our experiments, we can only achieve mild
+Table 3. Pearson correlation coefficient r between losses and fu-
+                                                                           Pearson’s r on NYU Depth V2 and SUN RGB-D dataset.
+sion weights of test samples (a higher |r| indicates a better uncer-
+tainty estimation).                                                        Therefore, it is important and valuable to explore novel un-
+                                                                           certainty estimation methods in the future work. Secondly,
+                         ϵ = 0.0       ϵ = 5.0   ϵ = 10.0                  though we characterize the generalization error bound of
+          MSP             0.391         0.433      0.486                   the proposed method, our theoretical justifications are based
+       Energy score       0.272         0.429      0.510                   on Assumption 1. However, previous work (Fang et al.,
+         Entropy          0.397         0.420      0.452                   2022) reveals that OOD detection is not learnable under
+        Evidence          0.157         0.136      0.265                   some scenarios. Thus it’s still a challenging open problem
+                                                                           to further characterize the generalization ability of dynamic
+           Ours           0.498         0.652      0.735                   multimodal fusion.
+
+                                                                           7. Conclusions and Future works
+noise with zero mean and variance of 10.
+Reliability of QMF (Q3). We calculate the fusion weights                   Introducing dynamics in multimodal fusion has yielded re-
+defined in Eq. 9 of different modalities in Table 3 on UPMC                markable empirical results in various applications, including
+FOOD-101. It is observed that the fusion weights of QMF                    image classification, object detection and semantic segmen-
+have the most effective perception of modal quality com-                   tation. Many state-of-the-art multimodal models introduce
+pared with other uncertainty estimation methods (in terms                  dynamic fusion strategies, but the inductive bias provided
+of correlation). This observation justifies our expectation of             by this technique is not well understood. In this paper, we
+uncertainty-aware weights in Eq. 9.                                        provide rigorous analysis towards understanding when and
+                                                                           what dynamic multimodal fusion methods are more robust
+Ablation study (Q4). We compare different combinations                     on multimodal data in the wild. These findings demonstrate
+of components (i.e., uncertainty-aware weighting and the                   the connection between uncertainty learning and robust mul-
+regularization term Lreg ). Here we also employ Gaussian                   timodal fusion, which further implies a principle to design
+noise on NYU Depth V2 in Table 2, and more results can                     novel dynamic multimodal fusion methods. Finally, we
+be found in the Appendix C.1. It is easy to conclude that                  perform extensive experiments on multiple benchmarks to
+1) adding Lreg is beneficial to obtaining more reasonable                  support our findings. In the work, the energy-based weight-
+fusion weights; 2) the best performance could be expected                  ing strategy is devised, and other uncertainty estimation
+with the full QMF. Please refer to Table. 4 in Appendix C.1                ways could be explored. Another interesting direction is
+for full results with standard deviation.                                  proving the dynamic fusion under a more general setting.
+In summary, the empirical results can support our theoretical
+findings. These works identify the causes and conditions of                Acknowledgments
+performance gains of dynamic multimodal fusion methods.
+The proposed method can help to improve robustness on                      This work is partially supported by the National Natural
+multiple datasets.                                                         Science Foundation of China (Grant No. 61976151) and
+                                                                           A*STAR Central Research Fund. We gratefully acknowl-
+                                                                           edge the support of MindSpore and CAAI. The authors
+6. Limitations                                                             would like to thank Zhipeng Liang (Hong Kong University
+Even though the proposed method achieves superior per-                     of Science and Technology) for checking on math details
+formance, there are still some potential limitations. Firstly,             and Zongbo Han, Huan Ma (Tianjin University) for their
+the fusion weights of QMF are based on uncertainty esti-                   comments on writing. The authors also appreciate the sug-
+mation, which can be a challenging task in the real world.                 gestions from ICML anonymous peer reviewers.
+
+                                                                       9
+                                  Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+References                                                             Eitel, A., Springenberg, J. T., Spinello, L., Riedmiller, M.,
+                                                                         and Burgard, W. Multimodal deep learning for robust
+Acosta, J. N., Falcone, G. J., Rajpurkar, P., and Topol, E. J.
+                                                                         rgb-d object recognition. In International Conference on
+  Multimodal biomedical ai. Nature Medicine, 28(9):1773–
+                                                                         Intelligent Robots and Systems, 2015.
+ 1784, 2022.
+                                                                       Fang, Z., Li, Y., Lu, J., Dong, J., Han, B., and Liu, F. Is
+Arazo, E., Ortego, D., Albert, P., O’Connor, N., and
+                                                                         out-of-distribution detection learnable? In Advances in
+  McGuinness, K. Unsupervised label noise modeling and
+                                                                         Neural Information Processing Systems, 2022.
+  loss correction. In International Conference on Machine
+  Learning, pp. 312–321. PMLR, 2019.                                   Gal, Y. and Ghahramani, Z. Dropout as a bayesian approxi-
+                                                                         mation: Representing model uncertainty in deep learning.
+Baltrušaitis, T., Ahuja, C., and Morency, L.-P. Multimodal               In International Conference on Machine Learning, 2016.
+  machine learning: A survey and taxonomy. IEEE trans-
+  actions on pattern analysis and machine intelligence, 41             Geifman, Y., Uziel, G., and El-Yaniv, R. Bias-reduced un-
+  (2):423–443, 2018.                                                     certainty estimation for deep neural classifiers. In Inter-
+                                                                         national Conference on Learning Representations, 2019.
+Bartlett, P. L. and Mendelson, S. Rademacher and gaussian
+  complexities: Risk bounds and structural results. Journal            Geng, Y., Han, Z., Zhang, C., and Hu, Q. Uncertainty-aware
+  of Machine Learning Research, 2002.                                    multi-view representation learning. In Proceedings of the
+                                                                         AAAI Conference on Artificial Intelligence, 2021.
+Blundell, C., Cornebise, J., Kavukcuoglu, K., and Wierstra,
+  D. Weight uncertainty in neural network. In International            Guan, D., Cao, Y., Yang, J., Cao, Y., and Yang, M. Y. Fusion
+  Conference on Machine Learning, 2015.                                  of multispectral data through illumination-aware deep
+                                                                         neural networks for pedestrian detection. Information
+Chang, Y., Xue, F., Sheng, F., Liang, W., and Ming, A.                  Fusion, 50:148–157, 2019.
+  Fast road segmentation via uncertainty-aware symmetric
+  network. In International Conference on Robotics and                 Han, Z., Zhang, C., Fu, H., and Zhou, J. T. Trusted multi-
+  Automation, 2022.                                                      view classification. In International Conference on Learn-
+                                                                         ing Representations, 2021.
+Chen, J., Li, Y., Wu, X., Liang, Y., and Jha, S. Atom: Robus-
+  tifying out-of-distribution detection using outlier mining.          Han, Z., Liang, Z., Yang, F., Liu, L., Li, L., Bian, Y.,
+  In Joint European Conference on Machine Learning and                   Zhao, P., Wu, B., Zhang, C., and Yao, J. Umix: Im-
+  Knowledge Discovery in Databases, 2021.                                proving importance weighting for subpopulation shift via
+                                                                         uncertainty-aware mixup. In Advances in Neural Infor-
+Chen, S., Yang, X., Chen, Y., Yu, H., and Cai, H.                        mation Processing Systems, 2022a.
+  Uncertainty-based fusion netwok for automatic skin le-
+  sion diagnosis. In International Conference on Bioinfor-             Han, Z., Yang, F., Huang, J., Zhang, C., and Yao, J. Multi-
+  matics and Biomedicine, 2022a.                                         modal dynamics: Dynamical fusion for trustworthy mul-
+                                                                         timodal classification. In Proceedings of the IEEE/CVF
+Chen, Y.-T., Shi, J., Ye, Z., Mertz, C., Ramanan, D., and                Conference on Computer Vision and Pattern Recognition,
+  Kong, S. Multimodal object detection via probabilistic en-             2022b.
+  sembling. In European Conference on Computer Vision,
+  2022b.                                                               Han, Z., Zhang, C., Fu, H., and Zhou, J. T. Trusted multi-
+                                                                         view classification with dynamic evidential fusion. IEEE
+Deng, J., Dong, W., Socher, R., Li, L.-J., Li, K., and Fei-Fei,          transactions on pattern analysis and machine intelligence,
+  L. Imagenet: A large-scale hierarchical image database.                2022c.
+  In Proceedings of the IEEE conference on computer vi-
+  sion and pattern recognition, 2009.                                  Havasi, M., Jenatton, R., Fort, S., Liu, J. Z., Snoek, J.,
+                                                                         Lakshminarayanan, B., Dai, A. M., and Tran, D. Train-
+Denker, J. and LeCun, Y. Transforming neural-net output                  ing independent subnetworks for robust prediction. In
+  levels to probability distributions. In Advances in Neural             International Conference on Learning Representations,
+  Information Processing Systems, 1990.                                  2021.
+
+Devlin, J., Chang, M.-W., Lee, K., and Toutanova, K. Bert:             He, K., Zhang, X., Ren, S., and Sun, J. Deep residual learn-
+  Pre-training of deep bidirectional transformers for lan-               ing for image recognition. In Proceedings of the IEEE
+  guage understanding. arXiv preprint arXiv:1810.04805,                  conference on computer vision and pattern recognition,
+  2018.                                                                  2016.
+
+                                                                  10
+                                Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+Hendrycks, D. and Gimpel, K. A baseline for detecting               Ma, H., Han, Z., Zhang, C., Fu, H., Zhou, J. T., and Hu,
+  misclassified and out-of-distribution examples in neural           Q. Trustworthy multimodal regression with mixture of
+  networks. In International Conference on Learning Rep-             normal-inverse gamma distributions. In Advances in Neu-
+  resentations, 2017.                                                ral Information Processing Systems, 2021.
+
+Hendrycks, D., Mazeika, M., and Dietterich, T. Deep                 Macaluso, E. Multisensory processing in sensory-specific
+  anomaly detection with outlier exposure. In International          cortical areas. The neuroscientist, 12(4):327–338, 2006.
+  Conference on Learning Representations, 2019.
+                                                                    Mackay, D. J. C. Bayesian methods for adaptive models.
+Hu, Z., Tan, B., Salakhutdinov, R. R., Mitchell, T. M., and          California Institute of Technology, 1992.
+ Xing, E. P. Learning data manipulation for augmenta-
+  tion and weighting. In Advances in Neural Information             Maddox, W. J., Izmailov, P., Garipov, T., Vetrov, D. P., and
+ Processing Systems, 2019.                                           Wilson, A. G. A simple baseline for bayesian uncertainty
+                                                                     in deep learning. In Advances in Neural Information
+Huang, Y., Du, C., Xue, Z., Chen, X., Zhao, H., and Huang,           Processing Systems, 2019.
+  L. What makes multi-modal learning better than single
+  (provably). In Advances in Neural Information Process-            Meinke, A. and Hein, M. Towards neural networks that
+  ing Systems, 2021a.                                                provably know when they don’t know. arXiv preprint
+                                                                     arXiv:1909.12180, 2019.
+Huang, Y., Lin, J., Zhou, C., Yang, H., and Huang, L.
+  Modality competition: What makes joint training of multi-         Ming, Y., Fan, Y., and Li, Y. Poem: Out-of-distribution
+  modal network fail in deep learning?(provably). In Inter-          detection with posterior sampling. In International Con-
+  national Conference on Machine Learning, 2022.                     ference on Machine Learning, 2022.
+
+Huang, Z., Niu, G., Liu, X., Ding, W., Xiao, X., Wu, H., and        Moon, J., Kim, J., Shin, Y., and Hwang, S. Confidence-
+  Peng, X. Learning with noisy correspondence for cross-             aware learning for deep neural networks. In International
+  modal matching. In Advances in Neural Information                  Conference on Machine Learning, 2020.
+  Processing Systems, 2021b.
+                                                                    Neal, R. M. Bayesian learning for neural networks, volume
+Joze, H. R. V., Shaban, A., Iuzzolino, M. L., and Koishida,          118. Springer Science & Business Media, 2012.
+  K. Mmtm: Multimodal transfer module for cnn fusion. In
+  Proceedings of the IEEE/CVF Conference on Computer                Niu, T., Zhu, S., Pang, L., and El Saddik, A. Sentiment
+  Vision and Pattern Recognition, 2020.                               analysis on multi-view social data. In MultiMedia Model-
+                                                                      ing: 22nd International Conference, MMM 2016, Miami,
+Kiela, D., Bhooshan, S., Firooz, H., Perez, E., and Testug-           FL, USA, January 4-6, 2016, Proceedings, Part II 22, pp.
+  gine, D. Supervised multimodal bitransformers for classi-           15–27. Springer, 2016.
+  fying images and text. arXiv preprint arXiv:1909.02950,
+  2019.                                                             Peng, X., Wei, Y., Deng, A., Wang, D., and Hu, D. Balanced
+                                                                      multimodal learning via on-the-fly gradient modulation.
+Lakshminarayanan, B., Pritzel, A., and Blundell, C. Simple            In Proceedings of the IEEE/CVF Conference on Com-
+  and scalable predictive uncertainty estimation using deep           puter Vision and Pattern Recognition, 2022.
+  ensembles. In Advances in Neural Information Process-
+  ing Systems, 2017.                                                Pennington, J., Socher, R., and Manning, C. D. Glove:
+                                                                      Global vectors for word representation. In Proceedings
+Li, B., Han, Z., Li, H., Fu, H., and Zhang, C. Trust-                 of the 2014 conference on empirical methods in natural
+  worthy long-tailed classification. In Proceedings of the            language processing, 2014.
+  IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition, 2022a.                                               Qiu, S., Miller, M. I., Joshi, P. S., Lee, J. C., Xue, C., Ni,
+                                                                      Y., Wang, Y., Anda-Duran, D., Hwang, P. H., Cramer,
+Li, Q., Zhang, C., Hu, Q., Fu, H., and Zhu, P. Confidence-            J. A., et al. Multimodal deep learning for alzheimer’s
+  aware fusion using dempster-shafer theory for multispec-            disease dementia assessment. Nature communications,
+  tral pedestrian detection. IEEE Transactions on Multime-            13(1):1–17, 2022.
+  dia, 2022b.
+                                                                    Scheunders, P. and De Backer, S. Wavelet denoising of mul-
+Liu, W., Wang, X., Owens, J., and Li, Y. Energy-based out-            ticomponent images using gaussian scale mixture models
+  of-distribution detection. Advances in Neural Information           and a noise-free image as priors. IEEE Transactions on
+  Processing Systems, 2020.                                           Image Processing, 2007.
+
+                                                               11
+                                 Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+Schroeder, C. E. and Foxe, J. Multisensory contributions             Wang, X., Kumar, D., Thome, N., Cord, M., and Precioso,
+  to low-level,‘unisensory’processing. Current opinion in             F. Recipe recognition with large multimodal food dataset.
+  neurobiology, 15(4):454–458, 2005.                                  In International Conference on Multimedia & Expo Work-
+                                                                      shops. IEEE, 2015.
+Shafer, G. A mathematical theory of evidence, volume 42.
+  Princeton university press, 1976.                                  Wen, L., Nie, M., Chen, P., Zhao, Y.-n., Shen, J., Wang, C.,
+                                                                      Xiong, Y., Yin, K., and Sun, L. Wearable multimode sen-
+Silberman, N., Hoiem, D., Kohli, P., and Fergus, R. Indoor            sor with a seamless integrated structure for recognition of
+   segmentation and support inference from rgbd images. In            different joint motion states with the assistance of a deep
+  European Conference on Computer Vision, 2012.                       learning algorithm. Microsystems & nanoengineering, 8
+                                                                      (1):1–14, 2022.
+Silva, A., Luo, L., Karunasekera, S., and Leckie, C. Noise-
+   robust learning from multiple unsupervised sources of             Wu, N., Jastrzebski, S., Cho, K., and Geras, K. J. Char-
+   inferred labels. In Proceedings of the AAAI Conference             acterizing and overcoming the greedy nature of learning
+   on Artificial Intelligence, 2022.                                  in multi-modal deep neural networks. In International
+                                                                      Conference on Machine Learning, 2022.
+Song, S., Lichtenberg, S. P., and Xiao, J. Sun rgb-d: A rgb-d
+  scene understanding benchmark suite. In Proceedings                Xiao, Y., Codevilla, F., Gurram, A., Urfalioglu, O., and
+  of the IEEE conference on computer vision and pattern                López, A. M. Multimodal end-to-end autonomous driv-
+  recognition, 2015.                                                   ing. IEEE Transactions on Intelligent Transportation
+                                                                       Systems, 2020.
+Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I.,
+  and Salakhutdinov, R. Dropout: a simple way to prevent             Xie, Z., Wang, S. I., Li, J., Lévy, D., Nie, A., Jurafsky,
+  neural networks from overfitting. The journal of machine             D., and Ng, A. Y. Data noising as smoothing in neural
+  learning research, 15(1):1929–1958, 2014.                            network language models. In International Conference
+                                                                       on Learning Representations, 2017.
+Subedar, M., Krishnan, R., Meyer, P. L., Tickoo, O., and
+  Huang, J. Uncertainty-aware audiovisual activity recog-            Yadav, A. and Vishwakarma, D. K. A deep multi-level at-
+  nition using deep bayesian variational inference. In Pro-            tentive network for multimodal sentiment analysis. ACM
+  ceedings of the IEEE/CVF international conference on                 Transactions on Multimedia Computing, Communica-
+  computer vision, 2019.                                               tions and Applications, 19(1), 2023.
+
+Tellamekala, M. K., Amiriparian, S., Schuller, B. W., André,         Zhang, L., Zhu, X., Chen, X., Yang, X., Lei, Z., and Liu,
+  E., Giesbrecht, T., and Valstar, M. Cold fusion: Calibrated          Z. Weakly aligned cross-modal learning for multispectral
+  and ordinal latent distribution fusion for uncertainty-              pedestrian detection. In Proceedings of the IEEE/CVF
+  aware multimodal emotion recognition. arXiv preprint                 international conference on computer vision, 2019.
+  arXiv:2206.05833, 2022.
+
+Tian, J., Cheung, W., Glaser, N., Liu, Y.-C., and Kira, Z.
+  Uno: Uncertainty-aware noisy-or multimodal fusion for
+  unanticipated input degradation. In International Confer-
+  ence on Robotics and Automation, 2020.
+
+Verma, V., Qu, M., Kawaguchi, K., Lamb, A., Bengio, Y.,
+  Kannala, J., and Tang, J. Graphmix: Improved training
+  of gnns for semi-supervised learning. In Proceedings of
+  the AAAI conference on artificial intelligence, 2021.
+
+Wang, J., Wang, Z., Tao, D., See, S., and Wang, G. Learn-
+ ing common and specific features for rgb-d semantic seg-
+ mentation with deconvolutional networks. In European
+ Conference on Computer Vision, 2016.
+
+Wang, W., Tran, D., and Feiszli, M. What makes training
+ multi-modal classification networks hard? In Proceedings
+ of the IEEE/CVF Conference on Computer Vision and
+ Pattern Recognition, 2020.
+
+                                                                12
+                                  Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+Appendix
+A. Proofs
+A.1. Proof of Theorem 1
+Proof. Let (x, y) ∼ D denotes the multimodal sample, then we have
+                                                                  M
+                                                                  X
+                                            ℓ(f (x), y) = ℓ(            wm f m (x(m) ), y).                                  (19)
+                                                                  m=1
+
+
+Noted that ℓ is a convex logistic loss function, which indicates that
+                                                 M
+                                                 X                              M
+                                                                                X
+                              ℓ(f (x), y) = ℓ(         wm f m (x(m) ), y) ≤          wm ℓ(f m (x(m) ), y).                   (20)
+                                                 m=1                           m=1
+
+Then we take the expectation on both sides of the above equation
+                                                                           M
+                                                                           X
+                                  E(x,y)∼D ℓ(f (x), y) ≤ E(x,y)∼D               wm ℓ(f m (x(m) ), y),                        (21)
+                                                                          m=1
+
+since expectation is a linear operator and the expected value of the product is equal to the product of the expected values
+plus the covariance, we can further decompose the right-hand side of the equation into
+
+
+                                           M
+                                           X
+                     E(x,y)∼D ℓ(f, y) ≤          E(x,y)∼D [wm ℓ(f m , y)]                                                    (22)
+                                           m=1
+                                           M
+                                           X
+                                       =         E(x,y)∼D (wm )E(x,y)∼D (ℓ(f m , y)) + Cov(wm , ℓ(f m , y))                  (23)
+                                           m=1
+
+Next, we recap the Rademacher complexity measure for model complexity. We use complexity-based learning the-
+ory (Bartlett & Mendelson, 2002) (Theorem 8) to quantify the generalization error of unimodal models.
+Let Dtrain = {xi , yi }N                                             m                                      m
+                       i=1 be the training dataset of N samples, Ê(f ) is the unimodal empirical error of f . Then for any
+            m
+hypothesis f in H (i.e., H : X → {−1, 1}, f ∈ H) and 1 > δ > 0, with probability at least 1 − δ, we have
+                                                                             r
+                                                  m        m                    ln(1/δ)
+                                      E(x,y)∼D (f ) ≤ Ê(f ) + Rm (H) +                 ,
+                                                                                  2N
+where Rm (f m ) is the Rademacher complexities.
+Finally, it holds with probability at least 1 − δ that
+                               M
+                                                                                                             r
+                               X
+                                        m         m           m                         m      m                 ln(1/δ)
+               GError(f ) ≤         E(w )Ê(f ) + E(w )Rm (H) + Cov(w , ℓ(f , y)) + M                                    .   (24)
+                              m=1
+                                                                                                                   2N
+
+
+
+A.2. Proof of Theorem 2
+Proof. Let O(GError(fdynamic )), O(GError(fstatic )) be the upper bound of generalization error of multimodal classifier
+using dynamic and static fusion strategy respectively, Ê(f m ) is the unimodal empirical errors of f m on Dtrain defined in
+Theorem. 1. Theoretically, optimizing over the same function class results in the same empirical risk. Therefore
+                                                          m              m
+                                                      Ê(fstatic ) = Ê(fdynamic ).                                          (25)
+
+                                                                   13
+                                  Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+Additionally, the intrinsic complexity of unimodal classifier Rm (f m ) is also invariant
+                                                        m               m
+                                                   Rm (fstatic ) = Rm (fdynamic ).                                      (26)
+
+Thus in this special case, it holds that
+
+                                           M
+                                           X                              M
+                                                                          X
+                                                    m
+                                                 E(wdynamic )Ê(f m ) ≤          m
+                                                                                wstatic Ê(f m ),                       (27)
+                                           m=1                            m=1
+
+and
+                                       M
+                                       X                                  M
+                                                                          X
+                                                m
+                                             E(wdynamic )Rm (f m ) ≤             m
+                                                                                wstatic Rm (f m ),                      (28)
+                                       m=1                                m=1
+
+      m            m
+if E(wdynamic ) = wstatic .
+Since the covariance and correlation coefficient have the same sign, when r(wm , lm ) ≤ 0, the covariance Cov(wm , lm ) is
+also less than or equal to 0. Therefore, it holds that
+
+                                            O(GError(fdynamic )) ≤ O(GError(fstatic ))                                  (29)
+
+with probability at least 1 − δ, if we have
+                                                           m            m
+                                                        E(wdynamic ) = wstatic                                          (30)
+
+and
+                                                          m
+                                                       r(wdynamic , ℓ(f m )) ≤ 0                                        (31)
+for all input modality m.
+
+B. Experimental details
+B.1. Datasets details
+◦ Senses recognition. For NYUD-V2, following the standard split, we reorganize the 27 categories into 10 categories with
+9 usual senes and one "others" category. For SUN RGB-D, following the previous work (Han et al., 2021), we use the 19
+major scene categories of SUN RGB-D, each of which contains at least 80 images.
+◦ Image-text classification. For FOOD-101, following the previous work (Kiela et al., 2019), there are 60101 image-text
+pairs in the training set, 5000 image-text pairs in the validation set, and 21695 image-text pairs in the test set. For MVSA,
+we conduct the division strategy presents in (Kiela et al., 2019). There are 1555 image-text pairs in the training set. The
+validation set contains 518 image-text pairs, and the test set contains 519 image-text pairs.
+
+B.2. Implementation details
+Senses recognition. For senses recognition task, we compare the proposed method with diverse multimodal fusion methods,
+including late fusion, align-based fusion, concatenated-based fusion and recent SOTA MMTM (attention-based fusion).
+Regarding late fusion, align-based fusion, concatenated-based fusion, we adopt the architecture of ResNet (He et al., 2016)
+pretrained on ImageNet (Deng et al., 2009) as the backbone network for each modality. ◦ Concatenate-based fusion
+For concatenate-based fusion, we concatenate the representations extracted from different modalities by ResNet. Then a
+fully connection layer is deployed to map the multimodal representation to the target space. The dimensions of unimodal
+representation and common representation are 128 and 256 respectively. ◦ Align-based fusion The alignment fusion method
+is a re-implementation of (Wang et al., 2016). We deploy cosine distance to measure the similarity of representations. ◦
+MMTM We follow the authors’ implementation, where the squeeze ratio is set to 4. For all compared methods, we use
+Adam optimizer to train all above models with L2 regularization and dropout (Srivastava et al., 2014). The learning rate is
+1e-4 and the dropout rate is 0.1.
+Image-text classification. For image-text classification, we compare the proposed method with diverse multimodal
+fusion methods, including late fusion, concatenated-bow fusion, concatenated-bert fusion and MMTM. For late fusion and
+concatenated-bert fusion, we adopt the architecutre of ResNet (He et al., 2016) pretrained on ImageNet (Deng et al., 2009) as
+
+                                                                  14
+                                   Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+the backbone network for image modality and pre-trained Bert(Devlin et al., 2018) for text modality. For concatenated-Bow
+fusion, we use the Bow (Pennington et al., 2014) to replace BERT for text modality. For the Bert models, we use BertAdam
+and regular Adam for the other models. The learning rate is 1e-4 with a warmup rate of 0.1. We adopt the early stop strategy
+based on validation accuracy.
+For all above experiments, we conduct sampling during the whole training phase (Ts = 1). The hyperparameter λ is set to
+0.1. Temperature parameters {T m }M
+                                  m=1 are set to 1.
+
+
+C. Additional results
+C.1. Full results with standard deviation
+In this section, we present the full results with standard deviation in Tab. 5, and Tab. 4.
+
+C.2. Different type of noise
+We provide more results with different type of noise (i.e., salt-pepper noise with varying noise rate ϵ) in Tab. 6. The results
+validate that the proposed method can improve the performance of multimodal fusion methods under different type of noise.
+
+
+                                         Table 4. Full ablation study on NYU Depth V2.
+                     UAW     Lreg        ϵ = 0.0          ϵ = 5.0          ϵ = 10.0             ϵ = 20.0
+                       ✗       ✗       69.14 ± 0.69    68.35 ± 0.82      59.62 ± 1.17          53.98 ± 1.08
+                       ✗       ✓       69.68 ± 0.39    67.74 ± 0.40      61.35 ± 0.34         58.26 ± 0.1.13
+                       ✓       ✗      70.06 ± 0.1.03   69.11 ± 0.82     61.59 ± 0.0.72         57.49 ± 1.41
+                       ✓       ✓      70.09 ± 0.38     68.81 ± 0.62      61.62 ± 0.31         58.87 ± 0.40
+
+
+
+
+                                                              15
+               Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+
+
+
+Table 5. Full comparison results when 50% of the modalities are corrupted with Gaussian noise.
+ Dataset       Dynamic        Method           ϵ = 0.0          ϵ = 5.0          ϵ = 10.0
+
+                   ✗           RGB          62.65 ± 1.22     50.95 ± 3.38      44.13 ± 3.80
+                   ✗           Depth        63.30 ± 0.48     53.12 ± 1.52      45.46 ± 2.07
+                   ✗        Late fusion     69.14 ± 0.67     59.63 ± 2.44      51.99 ± 3.11
+ NYU               ✗          Concat        70.31 ± 0.80     59.97 ± 2.14      53.20 ± 3.50
+Depth V2           ✗           Align        70.31 ± 1.28     59.47 ± 1.84      51.74 ± 3.41
+                   ✓          MMTM          71.04 ± 0.41     60.37 ± 2.61      52.28 ± 3.77
+                   ✓           TMC          71.06 ± 0.76     61.04 ± 1.66      53.36 ± 2.76
+                   ✓            Ours        70.09 ± 0.97     61.62 ± 1.84      55.60 ± 2.09
+
+                   ✗           RGB          52.99 ± 0.88     37.81 ± 1.14      33.07 ± 1.81
+                   ✗          Depth         56.78 ± 0.19     48.40 ± 1.11      42.94 ± 1.63
+                   ✗        Late fusion     62.00 ± 0.15     52.52 ± 0.67      47.48 ± 1.40
+  SUN              ✗          Concat        62.48 ± 0.50     53.30 ± 0.39      48.01 ± 0.96
+ RGB-D             ✗           Align        61.12 ± 0.61     50.05 ± 1.59      44.19 ± 2.18
+                   ✓          MMTM          61.72 ± 0.67     51.86 ± 1.14      46.03 ± 1.47
+                   ✓           TMC          60.68 ± 0.24     51.24 ± 0.96      45.66 ± 2.06
+                   ✓            Ours        62.09 ± 0.56     53.40 ± 0.89      48.58 ± 0.82
+
+                   ✗            Bow         82.50 ± 0.18     61.68 ± 0.71      41.95 ± 0.54
+                   ✗            Img         64.62 ± 0.40     34.72 ± 0.53      33.03 ± 0.37
+                   ✗            Bert        86.46 ± 0.05     67.38 ± 0.19      43.88 ± 0.32
+ UMPC              ✗        Late fusion     90.69 ± 0.12     68.49 ± 3.37      57.99 ± 1.59
+FOOD101            ✗        Concatbow       70.77 ± 0.09     38.28 ± 0.26      35.68 ± 0.69
+                   ✗        Concatbert      88.20 ± 0.34     61.10 ± 2.02      49.86 ± 2.05
+                   ✓          MMBT          91.52 ± 0.10     72.32 ± 0.34      56.75 ± 0.33
+                   ✓           TMC          89.86 ± 0.07     73.93 ± 0.34      61.37 ± 0.21
+                   ✓            Ours        92.92 ± 0.11     76.03 ± 0.70      62.21 ± 0.25
+
+                   ✗            Bow         48.79 ± 7.05     42.20 ± 6.40      41.57 ± 6.28
+                   ✗            Img         64.12 ± 1.23     49.36 ± 2.02      45.00 ± 2.63
+                   ✗            Bert        75.61 ± 0.53     69.50 ± 1.50      47.41 ± 0.79
+                   ✗        Late fusion     76.88 ± 1.30     63.46 ± 3.46      55.16 ± 3.60
+  MVSA
+                   ✗        ConcatBow       64.08 ± 1.54     49.95 ± 2.29      45.39 ± 3.03
+                   ✗        ConcatBert      65.59 ± 1.33     50.70 ± 2.65      46.12 ± 2.44
+                   ✓          MMBT          78.50 ± 0.40     71.99 ± 1.04      55.34 ± 2.84
+                   ✓           TMC          74.87 ± 2.24     66.72 ± 4.55      60.35 ± 2.79
+                   ✓            Ours        78.07 ± 1.10     73.85 ± 1.42      61.28 ± 2.12
+
+
+
+
+                                             16
+                Provable Dynamic Fusion for Low-Quality Multimodal Data
+
+
+
+
+Table 6. Full comparison results when 50% of the modalities are corrupted with Salt-pepper noise.
+   Dataset      Dynamic        Method           ϵ = 0.0           ϵ = 5.0          ϵ = 10.0
+
+                    ✗            RGB         62.61 ± 1.21      49.14 ± 1.40      34.76 ± 1.59
+                    ✗           Depth        63.32 ± 0.50      50.99 ± 1.41      38.56 ± 2.16
+                    ✗        Late fusion     69.16 ± 0.68      56.27 ± 2.40      41.22 ± 2.78
+  NYU               ✗           Concat       70.44 ± 0.89      57.98 ± 2.08      44.51 ± 2.91
+ Depth V2           ✗           Align        70.31 ± 1.28      57.54 ± 2.50      43.01 ± 2.66
+                    ✓          MMTM          71.04 ± 0.41      59.45 ± 1.38      44.59 ± 2.49
+                    ✓            TMC         71.01 ± 0.75      59.34 ± 1.03      44.65 ± 2.30
+                    ✓            Ours        70.06 ± 0.81      58.50 ± 2.05      45.69 ± 2.79
+
+                    ✗            RGB         52.63 ± 0.89      40.42 ± 0.99      28.15 ± 1.00
+                    ✗          Depth         56.81 ± 0.57      46.36 ± 0.82      35.66 ± 1.44
+                    ✗        Late fusion     61.79 ± 0.57      51.54 ± 2.12      39.35 ± 2.89
+   SUN              ✗           Concat       62.06 ± 0.53      51.09 ± 1.91      38.61 ± 3.07
+  RGB-D             ✗           Align        61.02 ± 0.54      50.45 ± 0.82      38.70 ± 1.46
+                    ✓          MMTM          61.80 ± 0.40      51.09 ± 0.77      38.38 ± 1.56
+                    ✓            TMC         61.02 ± 0.39      50.88 ± 1.28      39.61 ± 2.30
+                    ✓            Ours        61.89 ± 0.49      52.49 ± 1.81      40.53 ± 2.79
+
+                    ✗            Bow         82.43 ± 0.18      60.83 ± 0.54      41.56 ± 0.33
+                    ✗            Img         64.53 ± 0.47      50.75 ± 0.44      36.83 ± 0.92
+                    ✗            Bert        86.44 ± 0.02      67.41 ± 0.20      43.89 ± 0.33
+  UMPC              ✗        Late fusion     90.66 ± 0.16      77.99 ± 0.54      58.75 ± 0.99
+ FOOD101            ✗        Concatbow       70.68 ± 0.12      55.01 ± 0.33      38.81 ± 0.62
+                    ✗         Concatbert     88.22 ± 0.36      72.49 ± 0.75      52.10 ± 0.97
+                    ✓          MMBT          91.51 ± 0.10      76.27 ± 0.22      54.98 ± 0.55
+                    ✓            TMC         89.86 ± 0.07      77.86 ± 0.41      60.22 ± 0.43
+                    ✓            Ours        92.90 ± 0.13      80.87 ± 0.40      61.60 ± 0.20
+
+                    ✗            Bow         48.82 ± 7.08      42.23 ± 6.43      41.60 ± 6.31
+                    ✗            Img         64.12 ± 1.23      56.72 ± 1.92      50.71 ± 3.20
+                    ✗            Bert        75.61 ± 0.53      69.50 ± 1.50      47.41 ± 0.79
+                    ✗        Late fusion     76.88 ± 1.30      67.88 ± 1.87      55.43 ± 1.94
+   MVSA
+                    ✗        ConcatBow       64.08 ± 1.54      56.66 ± 1.73      49.35 ± 2.44
+                    ✗        ConcatBert      65.59 ± 1.33      58.69 ± 2.25      51.16 ± 2.99
+                    ✓          MMBT          78.50 ± 0.40      74.07 ± 1.12      51.26 ± 5.65
+                    ✓            TMC         74.87 ± 2.24      68.02 ± 3.07      56.62 ± 3.67
+                    ✓            Ours        78.07 ± 1.10      73.90 ± 1.89      60.41 ± 2.63
+
+
+
+
+                                               17
+

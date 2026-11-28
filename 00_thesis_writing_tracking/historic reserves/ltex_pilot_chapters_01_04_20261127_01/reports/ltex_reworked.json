@@ -1,0 +1,2656 @@
+{
+  "tool": "LTeX+ CLI",
+  "versions": {
+    "ltex-ls": "19.0.0",
+    "java": "21.0.10"
+  },
+  "language": "en-GB",
+  "network_checker": false,
+  "configuration_sha256": "a671ed8e4d105b4c0aa85b104e9e4c857243e00ed2af66964639f50c394b047f",
+  "configuration": "tools/ltex-client-configuration.json",
+  "input_sha256": {
+    "reworked/tex/01_introduction.tex": "e5eb408aaac60aff84780852b864a10057b40f7a3778e85295a0421feafe40d0",
+    "reworked/tex/02_literature_review.tex": "fe507fb30ed6699591caa69f0f4f82e197095830115215f36bc7526e5947aa3f",
+    "reworked/tex/03_foundations.tex": "cfa03fec8c160afc17c5d159be0105c893762d765116e6b970e7c6dd521ddb94",
+    "reworked/tex/04_methodology.tex": "bbcab1432896b7db221b86500cdb5ab2fbb08330d1b29ad0cb6bf0e54a611c28"
+  },
+  "command": [
+    "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/tools/ltex-ls-plus-19.0.0/bin/ltex-cli-plus",
+    "--verbose",
+    "--client-configuration=/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/tools/ltex-client-configuration.json",
+    "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/01_introduction.tex",
+    "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex",
+    "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex",
+    "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex"
+  ],
+  "started": "2026-11-27T17:08:10.180715+01:00",
+  "finished": "2026-11-27T17:08:28.785729+01:00",
+  "elapsed_seconds": 18.605,
+  "exit_code": 3,
+  "note": "Exit code 3 means diagnostics found; 0 means none. JSON is parsed from preserved raw CLI output; suggestions lists contain only replacements printed by the CLI. No automatic fixes or diagnostic filtering.",
+  "diagnostics": [
+    {
+      "filename": "reworked/tex/01_introduction.tex",
+      "line": 17,
+      "column": 52,
+      "severity": "info",
+      "rule_id": "COMMA_COMPOUND_SENTENCE",
+      "message": "Use a comma before 'or' if it connects two independent clauses (unless they are closely connected and short).",
+      "source_line": "physical process by analysing data collected during or after it",
+      "suggestions": [
+        "', or'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/01_introduction.tex:17:52: info: Use a comma before 'or' if it connects two independent clauses (unless they are closely connected and short). [COMMA_COMPOUND_SENTENCE]",
+        "physical process by analysing data collected during or after it",
+        "                                                   Use ', or'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/01_introduction.tex",
+      "line": 118,
+      "column": 6,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'subquestions': Possible spelling mistake found.",
+      "source_line": "Four subquestions address the main architectural and methodological",
+      "suggestions": [],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/01_introduction.tex:118:6: info: 'subquestions': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "Four subquestions address the main architectural and methodological"
+      ]
+    },
+    {
+      "filename": "reworked/tex/01_introduction.tex",
+      "line": 306,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "source_line": "Chapter~\\ref{ch:methodology} opens with the five research requirements and maps",
+      "suggestions": [],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/01_introduction.tex:306:1: info: Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym. [ENGLISH_WORD_REPEAT_BEGINNING_RULE]",
+        "Chapter~\\ref{ch:methodology} opens with the five research requirements and maps"
+      ]
+    },
+    {
+      "filename": "reworked/tex/01_introduction.tex",
+      "line": 315,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "source_line": "Chapter~\\ref{ch:msm} provides the completed external manufacturing comparison on MSM, including",
+      "suggestions": [],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/01_introduction.tex:315:1: info: Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym. [ENGLISH_WORD_REPEAT_BEGINNING_RULE]",
+        "Chapter~\\ref{ch:msm} provides the completed external manufacturing comparison on MSM, including"
+      ]
+    },
+    {
+      "filename": "reworked/tex/01_introduction.tex",
+      "line": 316,
+      "column": 58,
+      "severity": "info",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "source_line": "target/grouping sensitivities and controlled robustness. Chapter~\\ref{ch:vifailback} examines task-disjoint",
+      "suggestions": [],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/01_introduction.tex:316:58: info: Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym. [ENGLISH_WORD_REPEAT_BEGINNING_RULE]",
+        "target/grouping sensitivities and controlled robustness. Chapter~\\ref{ch:vifailback} examines task-disjoint"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 11,
+      "column": 65,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'characterize'? The spelling 'characterise' is also correct.",
+      "source_line": "approach uses single sensor readings and engineered features to characterise the system's behaviour.",
+      "suggestions": [
+        "'characterize'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:11:65: info: Would you like to use the Oxford spelling 'characterize'? The spelling 'characterise' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "approach uses single sensor readings and engineered features to characterise the system's behaviour.",
+        "                                                                Use 'characterize'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 64,
+      "column": 62,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'organizing'? The spelling 'organising' is also correct.",
+      "source_line": "The taxonomy of \\textcite{Baltrusaitis2019Multimodal} is the organising terminology. The industrial claims are then assessed against the original",
+      "suggestions": [
+        "'organizing'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:64:62: info: Would you like to use the Oxford spelling 'organizing'? The spelling 'organising' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "The taxonomy of \\textcite{Baltrusaitis2019Multimodal} is the organising terminology. The industrial claims are then assessed against the original",
+        "                                                             Use 'organizing'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 78,
+      "column": 78,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MVTec': Possible spelling mistake found.",
+      "source_line": "attention, missing inputs, noise and domain shift. Dataset searches included MVTec AD, MVTec 3D-AD,",
+      "suggestions": [
+        "'Mate'",
+        "'Mater'",
+        "'Mates'",
+        "'Mated'",
+        "'Motel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:78:78: info: 'MVTec': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "attention, missing inputs, noise and domain shift. Dataset searches included MVTec AD, MVTec 3D-AD,",
+        "                                                                             Use 'Mate'",
+        "                                                                             Use 'Mater'",
+        "                                                                             Use 'Mates'",
+        "                                                                             Use 'Mated'",
+        "                                                                             Use 'Motel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 78,
+      "column": 88,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MVTec': Possible spelling mistake found.",
+      "source_line": "attention, missing inputs, noise and domain shift. Dataset searches included MVTec AD, MVTec 3D-AD,",
+      "suggestions": [
+        "'Mate'",
+        "'Mater'",
+        "'Mates'",
+        "'Mated'",
+        "'Motel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:78:88: info: 'MVTec': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "attention, missing inputs, noise and domain shift. Dataset searches included MVTec AD, MVTec 3D-AD,",
+        "                                                                                       Use 'Mate'",
+        "                                                                                       Use 'Mater'",
+        "                                                                                       Use 'Mates'",
+        "                                                                                       Use 'Mated'",
+        "                                                                                       Use 'Motel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 81,
+      "column": 70,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'Crossref': Possible spelling mistake found.",
+      "source_line": "Publisher and repository searches facilitated publication retrieval. Crossref supplied metadata for",
+      "suggestions": [
+        "'Cross ref'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:81:70: info: 'Crossref': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "Publisher and repository searches facilitated publication retrieval. Crossref supplied metadata for",
+        "                                                                     Use 'Cross ref'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 82,
+      "column": 59,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'OpenAlex': Possible spelling mistake found.",
+      "source_line": "identity verification \\parencite{Crossref2020REST}, while OpenAlex supported citation tracing",
+      "suggestions": [
+        "'Open Alex'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:82:59: info: 'OpenAlex': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "identity verification \\parencite{Crossref2020REST}, while OpenAlex supported citation tracing",
+        "                                                          Use 'Open Alex'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 83,
+      "column": 32,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'Zotero': Possible spelling mistake found.",
+      "source_line": "\\parencite{Priem2022OpenAlex}. Zotero was employed to link bibliographic records with PDFs and appraisal",
+      "suggestions": [
+        "'Otero'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:83:32: info: 'Zotero': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "\\parencite{Priem2022OpenAlex}. Zotero was employed to link bibliographic records with PDFs and appraisal",
+        "                               Use 'Otero'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 87,
+      "column": 42,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct.",
+      "source_line": "full-text appraisal. The seminal stacked generalisation paper by \\textcite{Ting1999Issues} was included",
+      "suggestions": [
+        "'generalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:87:42: info: Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "full-text appraisal. The seminal stacked generalisation paper by \\textcite{Ting1999Issues} was included",
+        "                                         Use 'generalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 97,
+      "column": 64,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct.",
+      "source_line": "Transferable work is explicitly identified. Work on multimodal optimisation failure modes,",
+      "suggestions": [
+        "'optimization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:97:64: info: Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Transferable work is explicitly identified. Work on multimodal optimisation failure modes,",
+        "                                                               Use 'optimization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 136,
+      "column": 33,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MVTec': Possible spelling mistake found.",
+      "source_line": "inspection studies use the same MVTec 3D-AD or Eyecandies dataset, so improvements on those",
+      "suggestions": [
+        "'Mate'",
+        "'Mater'",
+        "'Mates'",
+        "'Mated'",
+        "'Motel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:136:33: info: 'MVTec': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "inspection studies use the same MVTec 3D-AD or Eyecandies dataset, so improvements on those",
+        "                                Use 'Mate'",
+        "                                Use 'Mater'",
+        "                                Use 'Mates'",
+        "                                Use 'Mated'",
+        "                                Use 'Motel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 143,
+      "column": 10,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MVTec': Possible spelling mistake found.",
+      "source_line": "The main MVTec 3D-AD table gives 249 normal and 948 anomalous test samples (total 1197)",
+      "suggestions": [
+        "'Mate'",
+        "'Mater'",
+        "'Mates'",
+        "'Mated'",
+        "'Motel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:143:10: info: 'MVTec': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "The main MVTec 3D-AD table gives 249 normal and 948 anomalous test samples (total 1197)",
+        "         Use 'Mate'",
+        "         Use 'Mater'",
+        "         Use 'Mates'",
+        "         Use 'Mated'",
+        "         Use 'Motel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 145,
+      "column": 108,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'NwfDD': Possible spelling mistake found.",
+      "source_line": "training numbers \\parencite[pp.~6708, 6711]{Hua2026Weld}, and the light inspection paper reports different NwfDD values in its main table",
+      "suggestions": [
+        "'Puffed'",
+        "'Ruffed'",
+        "'Cuffed'",
+        "'Buffed'",
+        "'Muffed'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:145:108: info: 'NwfDD': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "training numbers \\parencite[pp.~6708, 6711]{Hua2026Weld}, and the light inspection paper reports different NwfDD values in its main table",
+        "                                                                                                           Use 'Puffed'",
+        "                                                                                                           Use 'Ruffed'",
+        "                                                                                                           Use 'Cuffed'",
+        "                                                                                                           Use 'Buffed'",
+        "                                                                                                           Use 'Muffed'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 163,
+      "column": 70,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MVTec': Possible spelling mistake found.",
+      "source_line": "classification, by contrast, uses labelled fault or quality classes. MVTec AD and MVTec 3D-AD are",
+      "suggestions": [
+        "'Mate'",
+        "'Mater'",
+        "'Mates'",
+        "'Mated'",
+        "'Motel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:163:70: info: 'MVTec': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "classification, by contrast, uses labelled fault or quality classes. MVTec AD and MVTec 3D-AD are",
+        "                                                                     Use 'Mate'",
+        "                                                                     Use 'Mater'",
+        "                                                                     Use 'Mates'",
+        "                                                                     Use 'Mated'",
+        "                                                                     Use 'Motel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 163,
+      "column": 83,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MVTec': Possible spelling mistake found.",
+      "source_line": "classification, by contrast, uses labelled fault or quality classes. MVTec AD and MVTec 3D-AD are",
+      "suggestions": [
+        "'Mate'",
+        "'Mater'",
+        "'Mates'",
+        "'Mated'",
+        "'Motel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:163:83: info: 'MVTec': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "classification, by contrast, uses labelled fault or quality classes. MVTec AD and MVTec 3D-AD are",
+        "                                                                                  Use 'Mate'",
+        "                                                                                  Use 'Mater'",
+        "                                                                                  Use 'Mates'",
+        "                                                                                  Use 'Mated'",
+        "                                                                                  Use 'Motel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 173,
+      "column": 12,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MVTec': Possible spelling mistake found.",
+      "source_line": "brings the MVTec data back in, as training requires image-level anomalous labels, which of course",
+      "suggestions": [
+        "'Mate'",
+        "'Mater'",
+        "'Mates'",
+        "'Mated'",
+        "'Motel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:173:12: info: 'MVTec': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "brings the MVTec data back in, as training requires image-level anomalous labels, which of course",
+        "           Use 'Mate'",
+        "           Use 'Mater'",
+        "           Use 'Mates'",
+        "           Use 'Mated'",
+        "           Use 'Motel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 176,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'ZSG-IAD': Possible spelling mistake found.",
+      "source_line": "ZSG-IAD trains on reports and masks before evaluating on held-out categories or datasets. The",
+      "suggestions": [
+        "'SIAD'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:176:1: info: 'ZSG-IAD': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "ZSG-IAD trains on reports and masks before evaluating on held-out categories or datasets. The",
+        "Use 'SIAD'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 189,
+      "column": 66,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'C-MAPSS': Possible spelling mistake found.",
+      "source_line": "\\textcite{AlDulaimi2019A} look at a hybrid CNN-LSTM on simulated C-MAPSS trajectories using RMSE and an",
+      "suggestions": [
+        "'CLASS'",
+        "'CAMPUS'",
+        "'MASS'",
+        "'CAMPS'",
+        "'MAPS'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:189:66: info: 'C-MAPSS': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "\\textcite{AlDulaimi2019A} look at a hybrid CNN-LSTM on simulated C-MAPSS trajectories using RMSE and an",
+        "                                                                 Use 'CLASS'",
+        "                                                                 Use 'CAMPUS'",
+        "                                                                 Use 'MASS'",
+        "                                                                 Use 'CAMPS'",
+        "                                                                 Use 'MAPS'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 207,
+      "column": 84,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'localization'? The spelling 'localisation' is also correct.",
+      "source_line": "Reference labels have very different evidential roles. Post-build CT provides flaw localisation for",
+      "suggestions": [
+        "'localization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:207:84: info: Would you like to use the Oxford spelling 'localization'? The spelling 'localisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Reference labels have very different evidential roles. Post-build CT provides flaw localisation for",
+        "                                                                                   Use 'localization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 209,
+      "column": 79,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'Operando': Possible spelling mistake found.",
+      "source_line": "density assessments are used to define quality classes in \\textcite{Li2022A}. Operando X-ray",
+      "suggestions": [
+        "'Operand'",
+        "'Operands'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:209:79: info: 'Operando': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "density assessments are used to define quality classes in \\textcite{Li2022A}. Operando X-ray",
+        "                                                                              Use 'Operand'",
+        "                                                                              Use 'Operands'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 241,
+      "column": 71,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'DMAW': Possible spelling mistake found.",
+      "source_line": "Computational delay must also be distinguished from observation time. DMAW uses 20 frames at 37~fps",
+      "suggestions": [
+        "'DRAW'",
+        "'DMA'",
+        "'MAW'",
+        "'DM AW'",
+        "'DMA W'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:241:71: info: 'DMAW': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "Computational delay must also be distinguished from observation time. DMAW uses 20 frames at 37~fps",
+        "                                                                      Use 'DRAW'",
+        "                                                                      Use 'DMA'",
+        "                                                                      Use 'MAW'",
+        "                                                                      Use 'DM AW'",
+        "                                                                      Use 'DMA W'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 270,
+      "column": 47,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'localized'? The spelling 'localised' is also correct.",
+      "source_line": "cross-modal reconstruction or monitoring of a localised process.",
+      "suggestions": [
+        "'localized'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:270:47: info: Would you like to use the Oxford spelling 'localized'? The spelling 'localised' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "cross-modal reconstruction or monitoring of a localised process.",
+        "                                              Use 'localized'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 278,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'GPAD': Possible spelling mistake found.",
+      "source_line": "GPAD combines RGB-depth features with point cloud priors \\parencite[pp.~4--7]{P024}. This is an",
+      "suggestions": [
+        "'PAD'",
+        "'GPA'",
+        "'GLAD'",
+        "'iPad'",
+        "'GRAD'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:278:1: info: 'GPAD': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "GPAD combines RGB-depth features with point cloud priors \\parencite[pp.~4--7]{P024}. This is an",
+        "Use 'PAD'",
+        "Use 'GPA'",
+        "Use 'GLAD'",
+        "Use 'iPad'",
+        "Use 'GRAD'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 332,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MIMII': Possible spelling mistake found.",
+      "source_line": "MIMII deliberately incorporates factory background recordings at a range of signal-to-noise ratios.",
+      "suggestions": [
+        "'MIMIC'",
+        "'MIMI'",
+        "'MIMIR'",
+        "'MIM II'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:332:1: info: 'MIMII': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "MIMII deliberately incorporates factory background recordings at a range of signal-to-noise ratios.",
+        "Use 'MIMIC'",
+        "Use 'MIMI'",
+        "Use 'MIMIR'",
+        "Use 'MIM II'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 335,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'ToyADMOS': Possible spelling mistake found.",
+      "source_line": "ToyADMOS provides miniature machine recordings and an explicit noise-mixing protocol, making it a",
+      "suggestions": [
+        "'Toads'",
+        "'Toyama'",
+        "'Tobaccos'",
+        "'Tornados'",
+        "'Toadies'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:335:1: info: 'ToyADMOS': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "ToyADMOS provides miniature machine recordings and an explicit noise-mixing protocol, making it a",
+        "Use 'Toads'",
+        "Use 'Toyama'",
+        "Use 'Tobaccos'",
+        "Use 'Tornados'",
+        "Use 'Toadies'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 349,
+      "column": 13,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'Synchronization'? The spelling 'Synchronisation' is also correct.",
+      "source_line": "\\subsection{Synchronisation, Correspondence, and Modality Availability}",
+      "suggestions": [
+        "'Synchronization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:349:13: info: Would you like to use the Oxford spelling 'Synchronization'? The spelling 'Synchronisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "\\subsection{Synchronisation, Correspondence, and Modality Availability}",
+        "            Use 'Synchronization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 356,
+      "column": 14,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'synchronization'? The spelling 'synchronisation' is also correct.",
+      "source_line": "require time synchronisation and projection onto a common spatial grid",
+      "suggestions": [
+        "'synchronization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:356:14: info: Would you like to use the Oxford spelling 'synchronization'? The spelling 'synchronisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "require time synchronisation and projection onto a common spatial grid",
+        "             Use 'synchronization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 387,
+      "column": 51,
+      "severity": "info",
+      "rule_id": "SMALL_NUMBER_OF",
+      "message": "Specify a number, remove phrase, use 'a few', or use 'some'",
+      "source_line": "high-capacity sequence model to be estimated from a small number of independent observations.",
+      "suggestions": [
+        "'a few'",
+        "'some'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:387:51: info: Specify a number, remove phrase, use 'a few', or use 'some' [SMALL_NUMBER_OF]",
+        "high-capacity sequence model to be estimated from a small number of independent observations.",
+        "                                                  Use 'a few'",
+        "                                                  Use 'some'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 401,
+      "column": 21,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MVTec': Possible spelling mistake found.",
+      "source_line": "labels and modified MVTec supervision differ significantly from normal-only inspection.",
+      "suggestions": [
+        "'Mate'",
+        "'Mater'",
+        "'Mates'",
+        "'Mated'",
+        "'Motel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:401:21: info: 'MVTec': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "labels and modified MVTec supervision differ significantly from normal-only inspection.",
+        "                    Use 'Mate'",
+        "                    Use 'Mater'",
+        "                    Use 'Mates'",
+        "                    Use 'Mated'",
+        "                    Use 'Motel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 414,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'PatchCore': Possible spelling mistake found.",
+      "source_line": "PatchCore successfully employs pretrained, locally aggregated intermediate CNN features together",
+      "suggestions": [
+        "'Patch Core'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:414:1: info: 'PatchCore': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "PatchCore successfully employs pretrained, locally aggregated intermediate CNN features together",
+        "Use 'Patch Core'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 433,
+      "column": 37,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'localization'? The spelling 'localisation' is also correct.",
+      "source_line": "position prompts and assesses pixel localisation on a further rail domain \\parencite{P031}.",
+      "suggestions": [
+        "'localization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:433:37: info: Would you like to use the Oxford spelling 'localization'? The spelling 'localisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "position prompts and assesses pixel localisation on a further rail domain \\parencite{P031}.",
+        "                                    Use 'localization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 455,
+      "column": 42,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'normalization'? The spelling 'normalisation' is also correct.",
+      "source_line": "investigation, as the prediction target, normalisation, supervision, and aggregation differ.",
+      "suggestions": [
+        "'normalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:455:42: info: Would you like to use the Oxford spelling 'normalization'? The spelling 'normalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "investigation, as the prediction target, normalisation, supervision, and aggregation differ.",
+        "                                         Use 'normalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 457,
+      "column": 68,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'TimeSformer': Possible spelling mistake found.",
+      "source_line": "Video representation learning looks at another temporal structure. TimeSformer and Video Swin model",
+      "suggestions": [
+        "'TimeS former'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:457:68: info: 'TimeSformer': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "Video representation learning looks at another temporal structure. TimeSformer and Video Swin model",
+        "                                                                   Use 'TimeS former'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 457,
+      "column": 90,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'Swin': Possible spelling mistake found.",
+      "source_line": "Video representation learning looks at another temporal structure. TimeSformer and Video Swin model",
+      "suggestions": [
+        "'Win'",
+        "'Skin'",
+        "'Spin'",
+        "'Twin'",
+        "'Swim'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:457:90: info: 'Swin': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "Video representation learning looks at another temporal structure. TimeSformer and Video Swin model",
+        "                                                                                         Use 'Win'",
+        "                                                                                         Use 'Skin'",
+        "                                                                                         Use 'Spin'",
+        "                                                                                         Use 'Twin'",
+        "                                                                                         Use 'Swim'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 465,
+      "column": 41,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'normalization'? The spelling 'normalisation' is also correct.",
+      "source_line": "observation windows, temporal ordering, normalisation, pretraining, and fitting budget.",
+      "suggestions": [
+        "'normalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:465:41: info: Would you like to use the Oxford spelling 'normalization'? The spelling 'normalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "observation windows, temporal ordering, normalisation, pretraining, and fitting budget.",
+        "                                        Use 'normalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 473,
+      "column": 41,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'log-mel': Possible spelling mistake found.",
+      "source_line": "Acoustic representations include MFCCs, log-mel spectra, wavelet maps, GASF transforms and learned",
+      "suggestions": [
+        "'logical'",
+        "'logged'",
+        "'legume'",
+        "'legumes'",
+        "'Rommel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:473:41: info: 'log-mel': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "Acoustic representations include MFCCs, log-mel spectra, wavelet maps, GASF transforms and learned",
+        "                                        Use 'logical'",
+        "                                        Use 'logged'",
+        "                                        Use 'legume'",
+        "                                        Use 'legumes'",
+        "                                        Use 'Rommel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 473,
+      "column": 72,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'GASF': Possible spelling mistake found.",
+      "source_line": "Acoustic representations include MFCCs, log-mel spectra, wavelet maps, GASF transforms and learned",
+      "suggestions": [
+        "'GAS'",
+        "'GAFF'",
+        "'GASH'",
+        "'GASP'",
+        "'GAF'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:473:72: info: 'GASF': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "Acoustic representations include MFCCs, log-mel spectra, wavelet maps, GASF transforms and learned",
+        "                                                                       Use 'GAS'",
+        "                                                                       Use 'GAFF'",
+        "                                                                       Use 'GASH'",
+        "                                                                       Use 'GASP'",
+        "                                                                       Use 'GAF'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 476,
+      "column": 46,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'GASF': Possible spelling mistake found.",
+      "source_line": "The Welding Penetration Network uses VMD and GASF; DMAW uses Transformer representations adapted to",
+      "suggestions": [
+        "'GAS'",
+        "'GAFF'",
+        "'GASH'",
+        "'GASP'",
+        "'GAF'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:476:46: info: 'GASF': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "The Welding Penetration Network uses VMD and GASF; DMAW uses Transformer representations adapted to",
+        "                                             Use 'GAS'",
+        "                                             Use 'GAFF'",
+        "                                             Use 'GASH'",
+        "                                             Use 'GASP'",
+        "                                             Use 'GAF'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 476,
+      "column": 52,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'DMAW': Possible spelling mistake found.",
+      "source_line": "The Welding Penetration Network uses VMD and GASF; DMAW uses Transformer representations adapted to",
+      "suggestions": [
+        "'DRAW'",
+        "'DMA'",
+        "'MAW'",
+        "'DM AW'",
+        "'DMA W'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:476:52: info: 'DMAW': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "The Welding Penetration Network uses VMD and GASF; DMAW uses Transformer representations adapted to",
+        "                                                   Use 'DRAW'",
+        "                                                   Use 'DMA'",
+        "                                                   Use 'MAW'",
+        "                                                   Use 'DM AW'",
+        "                                                   Use 'DMA W'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 487,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MIMII': Possible spelling mistake found.",
+      "source_line": "MIMII and ToyADMOS both go some way to establishing the importance of background composition and",
+      "suggestions": [
+        "'MIMIC'",
+        "'MIMI'",
+        "'MIMIR'",
+        "'MIM II'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:487:1: info: 'MIMII': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "MIMII and ToyADMOS both go some way to establishing the importance of background composition and",
+        "Use 'MIMIC'",
+        "Use 'MIMI'",
+        "Use 'MIMIR'",
+        "Use 'MIM II'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 487,
+      "column": 11,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'ToyADMOS': Possible spelling mistake found.",
+      "source_line": "MIMII and ToyADMOS both go some way to establishing the importance of background composition and",
+      "suggestions": [
+        "'Toads'",
+        "'Toyama'",
+        "'Tobaccos'",
+        "'Tornados'",
+        "'Toadies'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:487:11: info: 'ToyADMOS': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "MIMII and ToyADMOS both go some way to establishing the importance of background composition and",
+        "          Use 'Toads'",
+        "          Use 'Toyama'",
+        "          Use 'Tobaccos'",
+        "          Use 'Tornados'",
+        "          Use 'Toadies'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 490,
+      "column": 65,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'normalization'? The spelling 'normalisation' is also correct.",
+      "source_line": "Together, these studies lead one to consider recording quality, normalisation, and consistent",
+      "suggestions": [
+        "'normalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:490:65: info: Would you like to use the Oxford spelling 'normalization'? The spelling 'normalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Together, these studies lead one to consider recording quality, normalisation, and consistent",
+        "                                                                Use 'normalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 513,
+      "column": 11,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'LightGBM': Possible spelling mistake found.",
+      "source_line": "distilled LightGBM student, though the nature of the teacher features and the timing of the inputs",
+      "suggestions": [
+        "'Light GBM'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:513:11: info: 'LightGBM': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "distilled LightGBM student, though the nature of the teacher features and the timing of the inputs",
+        "          Use 'Light GBM'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 539,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'DMAW': Possible spelling mistake found.",
+      "source_line": "DMAW fuses the image and",
+      "suggestions": [
+        "'DRAW'",
+        "'DMA'",
+        "'MAW'",
+        "'DM AW'",
+        "'DMA W'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:539:1: info: 'DMAW': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "DMAW fuses the image and",
+        "Use 'DRAW'",
+        "Use 'DMA'",
+        "Use 'MAW'",
+        "Use 'DM AW'",
+        "Use 'DMA W'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 564,
+      "column": 56,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct.",
+      "source_line": "Transferable results on the difficulties of multimodal optimisation and on industrial all-channel",
+      "suggestions": [
+        "'optimization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:564:56: info: Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Transferable results on the difficulties of multimodal optimisation and on industrial all-channel",
+        "                                                       Use 'optimization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 576,
+      "column": 57,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct.",
+      "source_line": "Effectiveness depends on feature scale, dimensionality, regularisation, and the quality of the",
+      "suggestions": [
+        "'regularization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:576:57: info: Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Effectiveness depends on feature scale, dimensionality, regularisation, and the quality of the",
+        "                                                        Use 'regularization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 582,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MADFlow': Possible spelling mistake found.",
+      "source_line": "MADFlow also provides a further protocol-specific comparison between alignment and concatenation",
+      "suggestions": [
+        "'Mudflow'",
+        "'MAD Flow'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:582:1: info: 'MADFlow': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "MADFlow also provides a further protocol-specific comparison between alignment and concatenation",
+        "Use 'Mudflow'",
+        "Use 'MAD Flow'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 585,
+      "column": 58,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'DLinear': Possible spelling mistake found.",
+      "source_line": "CFA provides transferable evidence from forecasting. For DLinear on the Energy dataset, the first",
+      "suggestions": [
+        "'Linear'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:585:58: info: 'DLinear': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "CFA provides transferable evidence from forecasting. For DLinear on the Energy dataset, the first",
+        "                                                         Use 'Linear'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 595,
+      "column": 89,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'normalized'? The spelling 'normalised' is also correct.",
+      "source_line": "These results establish concatenation as a valid comparator. It should be appropriately normalised",
+      "suggestions": [
+        "'normalized'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:595:89: info: Would you like to use the Oxford spelling 'normalized'? The spelling 'normalised' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "These results establish concatenation as a valid comparator. It should be appropriately normalised",
+        "                                                                                        Use 'normalized'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 607,
+      "column": 31,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'softmax': Possible spelling mistake found.",
+      "source_line": "fusion. They use separate CNN softmax outputs with weighted Dempster-Shafer aggregation and report a",
+      "suggestions": [
+        "'soft max'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:607:31: info: 'softmax': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "fusion. They use separate CNN softmax outputs with weighted Dempster-Shafer aggregation and report a",
+        "                              Use 'soft max'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 623,
+      "column": 9,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct.",
+      "source_line": "Stacked generalisation provides a scientific basis for learning a second-stage combination from",
+      "suggestions": [
+        "'generalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:623:9: info: Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Stacked generalisation provides a scientific basis for learning a second-stage combination from",
+        "        Use 'generalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 641,
+      "column": 72,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'DMAW': Possible spelling mistake found.",
+      "source_line": "Adaptive integration has also been looked at in an industrial context. DMAW achieved 96.1\\%",
+      "suggestions": [
+        "'DRAW'",
+        "'DMA'",
+        "'MAW'",
+        "'DM AW'",
+        "'DMA W'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:641:72: info: 'DMAW': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "Adaptive integration has also been looked at in an industrial context. DMAW achieved 96.1\\%",
+        "                                                                       Use 'DRAW'",
+        "                                                                       Use 'DMA'",
+        "                                                                       Use 'MAW'",
+        "                                                                       Use 'DM AW'",
+        "                                                                       Use 'DMA W'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 649,
+      "column": 67,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'GCCF-AD': Possible spelling mistake found.",
+      "source_line": "An important evaluation dimension is what governs the allocation. GCCF-AD is described as dynamic",
+      "suggestions": [
+        "'ACCAD'",
+        "'CIFAD'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:649:67: info: 'GCCF-AD': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "An important evaluation dimension is what governs the allocation. GCCF-AD is described as dynamic",
+        "                                                                  Use 'ACCAD'",
+        "                                                                  Use 'CIFAD'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 654,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct.",
+      "source_line": "optimisation rather than any direct measure of input quality at deployment",
+      "suggestions": [
+        "'optimization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:654:1: info: Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "optimisation rather than any direct measure of input quality at deployment",
+        "Use 'optimization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 719,
+      "column": 51,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'I-AUROC': Possible spelling mistake found.",
+      "source_line": "TC-MAF explicitly evaluates unavailable 3D input. I-AUROC drops from .9788 to .9330 and P-AUPRO from",
+      "suggestions": [
+        "'MAURO'",
+        "'DUROC'",
+        "'AURIC'",
+        "'LAURO'",
+        "'SAURON'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:719:51: info: 'I-AUROC': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "TC-MAF explicitly evaluates unavailable 3D input. I-AUROC drops from .9788 to .9330 and P-AUPRO from",
+        "                                                  Use 'MAURO'",
+        "                                                  Use 'DUROC'",
+        "                                                  Use 'AURIC'",
+        "                                                  Use 'LAURO'",
+        "                                                  Use 'SAURON'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 719,
+      "column": 89,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'P-AUPRO': Possible spelling mistake found.",
+      "source_line": "TC-MAF explicitly evaluates unavailable 3D input. I-AUROC drops from .9788 to .9330 and P-AUPRO from",
+      "suggestions": [
+        "'PAULO'",
+        "'MAURO'",
+        "'PAUPER'",
+        "'PAUPERS'",
+        "'TAUPO'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:719:89: info: 'P-AUPRO': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "TC-MAF explicitly evaluates unavailable 3D input. I-AUROC drops from .9788 to .9330 and P-AUPRO from",
+        "                                                                                        Use 'PAULO'",
+        "                                                                                        Use 'MAURO'",
+        "                                                                                        Use 'PAUPER'",
+        "                                                                                        Use 'PAUPERS'",
+        "                                                                                        Use 'TAUPO'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 729,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'ZSG-IAD': Possible spelling mistake found.",
+      "source_line": "ZSG-IAD reports input subset comparisons without fully defining the shared checkpoint and training",
+      "suggestions": [
+        "'SIAD'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:729:1: info: 'ZSG-IAD': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "ZSG-IAD reports input subset comparisons without fully defining the shared checkpoint and training",
+        "Use 'SIAD'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 778,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'OmniFuser': Possible spelling mistake found.",
+      "source_line": "OmniFuser's repeated within-pass images provide a way to construct paired observations rather than",
+      "suggestions": [
+        "'Omnibuses'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:778:1: info: 'OmniFuser': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "OmniFuser's repeated within-pass images provide a way to construct paired observations rather than",
+        "Use 'Omnibuses'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 779,
+      "column": 17,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'synchronization'? The spelling 'synchronisation' is also correct.",
+      "source_line": "directly test a synchronisation failure \\parencite{Petrich2021Multimodal,Chen2023Multisensor,P021}.",
+      "suggestions": [
+        "'synchronization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:779:17: info: Would you like to use the Oxford spelling 'synchronization'? The spelling 'synchronisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "directly test a synchronisation failure \\parencite{Petrich2021Multimodal,Chen2023Multisensor,P021}.",
+        "                Use 'synchronization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 782,
+      "column": 117,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'localization'? The spelling 'localisation' is also correct.",
+      "source_line": "trains on one robot and evaluates on a different robot \\parencite[Table~V]{Thoduka2024Handover}, and there's a rail localisation study that",
+      "suggestions": [
+        "'localization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:782:117: info: Would you like to use the Oxford spelling 'localization'? The spelling 'localisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "trains on one robot and evaluates on a different robot \\parencite[Table~V]{Thoduka2024Handover}, and there's a rail localisation study that",
+        "                                                                                                                    Use 'localization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 794,
+      "column": 93,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct.",
+      "source_line": "Architecture reuse, representation transfer, temporal offset tolerance, and unchanged-model generalisation each require distinct evaluation protocols.",
+      "suggestions": [
+        "'generalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:794:93: info: Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Architecture reuse, representation transfer, temporal offset tolerance, and unchanged-model generalisation each require distinct evaluation protocols.",
+        "                                                                                            Use 'generalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 802,
+      "column": 79,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct.",
+      "source_line": "QMF furnishes a theoretical basis for studying sample-dependent weighting via generalisation upper",
+      "suggestions": [
+        "'generalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:802:79: info: Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "QMF furnishes a theoretical basis for studying sample-dependent weighting via generalisation upper",
+        "                                                                              Use 'generalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 806,
+      "column": 18,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'UDML': Possible spelling mistake found.",
+      "source_line": "The transferable UDML experiments train on controlled Gaussian corruption intensities and recognise",
+      "suggestions": [
+        "'DML'",
+        "'UDL'",
+        "'UDM'",
+        "'UML'",
+        "'UDM L'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:806:18: info: 'UDML': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "The transferable UDML experiments train on controlled Gaussian corruption intensities and recognise",
+        "                 Use 'DML'",
+        "                 Use 'UDL'",
+        "                 Use 'UDM'",
+        "                 Use 'UML'",
+        "                 Use 'UDM L'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 806,
+      "column": 91,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'recognize'? The spelling 'recognise' is also correct.",
+      "source_line": "The transferable UDML experiments train on controlled Gaussian corruption intensities and recognise",
+      "suggestions": [
+        "'recognize'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:806:91: info: Would you like to use the Oxford spelling 'recognize'? The spelling 'recognise' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "The transferable UDML experiments train on controlled Gaussian corruption intensities and recognise",
+        "                                                                                          Use 'recognize'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 821,
+      "column": 28,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MVTec': Possible spelling mistake found.",
+      "source_line": "add-on increases the local MVTec image AUROC from .779 to .800 and, at the same time, reduces the",
+      "suggestions": [
+        "'Mate'",
+        "'Mater'",
+        "'Mates'",
+        "'Mated'",
+        "'Motel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:821:28: info: 'MVTec': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "add-on increases the local MVTec image AUROC from .779 to .800 and, at the same time, reduces the",
+        "                           Use 'Mate'",
+        "                           Use 'Mater'",
+        "                           Use 'Mates'",
+        "                           Use 'Mated'",
+        "                           Use 'Motel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 847,
+      "column": 7,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct.",
+      "source_line": "Fuzzy regularisation works by introducing failures via partial corruption and by replacing the",
+      "suggestions": [
+        "'regularization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:847:7: info: Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Fuzzy regularisation works by introducing failures via partial corruption and by replacing the",
+        "      Use 'regularization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 851,
+      "column": 58,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct.",
+      "source_line": "The investigation provides evidence for controlled input regularisation, with independent physical",
+      "suggestions": [
+        "'regularization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:851:58: info: Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "The investigation provides evidence for controlled input regularisation, with independent physical",
+        "                                                         Use 'regularization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 854,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'OmniFuser': Possible spelling mistake found.",
+      "source_line": "OmniFuser describes dropout and masking without any quantified outage table \\parencite[p.~10]{P021}.",
+      "suggestions": [
+        "'Omnibuses'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:854:1: info: 'OmniFuser': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "OmniFuser describes dropout and masking without any quantified outage table \\parencite[p.~10]{P021}.",
+        "Use 'Omnibuses'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 857,
+      "column": 18,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'CycleGAN': Possible spelling mistake found.",
+      "source_line": "clean depth with CycleGAN output worsens the synthetic robot benchmark's MSE (from $2.1745 \\times",
+      "suggestions": [
+        "'Cycleway'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:857:18: info: 'CycleGAN': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "clean depth with CycleGAN output worsens the synthetic robot benchmark's MSE (from $2.1745 \\times",
+        "                 Use 'Cycleway'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 892,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'Normalization'? The spelling 'Normalisation' is also correct.",
+      "source_line": "Normalisation, feature selection and model parameter optimisation all require an appropriate split",
+      "suggestions": [
+        "'Normalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:892:1: info: Would you like to use the Oxford spelling 'Normalization'? The spelling 'Normalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Normalisation, feature selection and model parameter optimisation all require an appropriate split",
+        "Use 'Normalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 892,
+      "column": 54,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct.",
+      "source_line": "Normalisation, feature selection and model parameter optimisation all require an appropriate split",
+      "suggestions": [
+        "'optimization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:892:54: info: Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Normalisation, feature selection and model parameter optimisation all require an appropriate split",
+        "                                                     Use 'optimization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 908,
+      "column": 34,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'thresholded': Possible spelling mistake found.",
+      "source_line": "Ranking, probability quality and thresholded decisions are three different aspects of a predictor.",
+      "suggestions": [],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:908:34: info: 'thresholded': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "Ranking, probability quality and thresholded decisions are three different aspects of a predictor."
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 913,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'MVTec': Possible spelling mistake found.",
+      "source_line": "MVTec AD shows that useful ranking can exist alongside fairly poor thresholded localisation. The",
+      "suggestions": [
+        "'Mate'",
+        "'Mater'",
+        "'Mates'",
+        "'Mated'",
+        "'Motel'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:913:1: info: 'MVTec': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "MVTec AD shows that useful ranking can exist alongside fairly poor thresholded localisation. The",
+        "Use 'Mate'",
+        "Use 'Mater'",
+        "Use 'Mates'",
+        "Use 'Mated'",
+        "Use 'Motel'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 913,
+      "column": 68,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'thresholded': Possible spelling mistake found.",
+      "source_line": "MVTec AD shows that useful ranking can exist alongside fairly poor thresholded localisation. The",
+      "suggestions": [],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:913:68: info: 'thresholded': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "MVTec AD shows that useful ranking can exist alongside fairly poor thresholded localisation. The"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 913,
+      "column": 80,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'localization'? The spelling 'localisation' is also correct.",
+      "source_line": "MVTec AD shows that useful ranking can exist alongside fairly poor thresholded localisation. The",
+      "suggestions": [
+        "'localization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:913:80: info: Would you like to use the Oxford spelling 'localization'? The spelling 'localisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "MVTec AD shows that useful ranking can exist alongside fairly poor thresholded localisation. The",
+        "                                                                               Use 'localization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 929,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'thresholded': Possible spelling mistake found.",
+      "source_line": "thresholded classification.",
+      "suggestions": [],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:929:1: info: 'thresholded': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "thresholded classification."
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 950,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'estimand': Possible spelling mistake found.",
+      "source_line": "estimand and dependence assumptions are stated explicitly.",
+      "suggestions": [
+        "'estimated'",
+        "'estimate'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:950:1: info: 'estimand': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "estimand and dependence assumptions are stated explicitly.",
+        "Use 'estimated'",
+        "Use 'estimate'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 970,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'ZSG-IAD': Possible spelling mistake found.",
+      "source_line": "ZSG-IAD measures schema validity, language consistency and coarse-to-final-mask overlap",
+      "suggestions": [
+        "'SIAD'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:970:1: info: 'ZSG-IAD': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "ZSG-IAD measures schema validity, language consistency and coarse-to-final-mask overlap",
+        "Use 'SIAD'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 1006,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'TimeSformer': Possible spelling mistake found.",
+      "source_line": "TimeSformer's compute requirements depend on the ImageNet pretraining and the workload it is",
+      "suggestions": [
+        "'TimeS former'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:1006:1: info: 'TimeSformer': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "TimeSformer's compute requirements depend on the ImageNet pretraining and the workload it is",
+        "Use 'TimeS former'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 1009,
+      "column": 32,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'synchronization'? The spelling 'synchronisation' is also correct.",
+      "source_line": "Hardware, batch size, caching, synchronisation and the processing stages included all determine",
+      "suggestions": [
+        "'synchronization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:1009:32: info: Would you like to use the Oxford spelling 'synchronization'? The spelling 'synchronisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Hardware, batch size, caching, synchronisation and the processing stages included all determine",
+        "                               Use 'synchronization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 1031,
+      "column": 22,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'DMAW': Possible spelling mistake found.",
+      "source_line": "monitoring pipeline. DMAW, thermal-vibration diagnosis, HANDOVER and tool wear prediction are all",
+      "suggestions": [
+        "'DRAW'",
+        "'DMA'",
+        "'MAW'",
+        "'DM AW'",
+        "'DMA W'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:1031:22: info: 'DMAW': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "monitoring pipeline. DMAW, thermal-vibration diagnosis, HANDOVER and tool wear prediction are all",
+        "                     Use 'DRAW'",
+        "                     Use 'DMA'",
+        "                     Use 'MAW'",
+        "                     Use 'DM AW'",
+        "                     Use 'DMA W'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 1051,
+      "column": 22,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct.",
+      "source_line": "information. Stacked generalisation motivates learning combinations of the outputs of individual",
+      "suggestions": [
+        "'generalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:1051:22: info: Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "information. Stacked generalisation motivates learning combinations of the outputs of individual",
+        "                     Use 'generalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 1078,
+      "column": 35,
+      "severity": "info",
+      "rule_id": "THIS_NNS",
+      "message": "The singular determiner 'this' may not agree with the plural noun 'calls'. Did you mean 'these'?",
+      "source_line": "image scores also go down. All of this calls into question the notion of an unqualified fusion",
+      "suggestions": [
+        "'these'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:1078:35: info: The singular determiner 'this' may not agree with the plural noun 'calls'. Did you mean 'these'? [THIS_NNS]",
+        "image scores also go down. All of this calls into question the notion of an unqualified fusion",
+        "                                  Use 'these'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 1082,
+      "column": 12,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct.",
+      "source_line": "multimodal optimisation all reinforce this conclusion",
+      "suggestions": [
+        "'optimization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:1082:12: info: Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "multimodal optimisation all reinforce this conclusion",
+        "           Use 'optimization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 1086,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct.",
+      "source_line": "optimisation difficulties, noise, supervision and limited independent sample support. The studies do",
+      "suggestions": [
+        "'optimization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:1086:1: info: Would you like to use the Oxford spelling 'optimization'? The spelling 'optimisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "optimisation difficulties, noise, supervision and limited independent sample support. The studies do",
+        "Use 'optimization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 1092,
+      "column": 51,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'utilize'? The spelling 'utilise' is also correct.",
+      "source_line": "guarantee that a fusion mechanism can effectively utilise that information.",
+      "suggestions": [
+        "'utilize'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:1092:51: info: Would you like to use the Oxford spelling 'utilize'? The spelling 'utilise' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "guarantee that a fusion mechanism can effectively utilise that information.",
+        "                                                  Use 'utilize'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/02_literature_review.tex",
+      "line": 1102,
+      "column": 42,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct.",
+      "source_line": "and treat them as equivalent evidence of generalisation.",
+      "suggestions": [
+        "'generalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/02_literature_review.tex:1102:42: info: Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "and treat them as equivalent evidence of generalisation.",
+        "                                         Use 'generalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 71,
+      "column": 9,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'PekingU': Possible spelling mistake found.",
+      "source_line": "\\texttt{PekingU/rtdetr\\_r18vd} checkpoint. Its weights stayed fixed. Each hand-camera",
+      "suggestions": [
+        "'Peking'",
+        "'Pekings'",
+        "'Peking U'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:71:9: info: 'PekingU': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "\\texttt{PekingU/rtdetr\\_r18vd} checkpoint. Its weights stayed fixed. Each hand-camera",
+        "        Use 'Peking'",
+        "        Use 'Pekings'",
+        "        Use 'Peking U'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 101,
+      "column": 70,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'Swin': Possible spelling mistake found.",
+      "source_line": "comparison between convolution and attention \\parencite{P010}. Video Swin keeps local",
+      "suggestions": [
+        "'Win'",
+        "'Skin'",
+        "'Spin'",
+        "'Twin'",
+        "'Swim'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:101:70: info: 'Swin': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "comparison between convolution and attention \\parencite{P010}. Video Swin keeps local",
+        "                                                                     Use 'Win'",
+        "                                                                     Use 'Skin'",
+        "                                                                     Use 'Spin'",
+        "                                                                     Use 'Twin'",
+        "                                                                     Use 'Swim'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 103,
+      "column": 40,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'TimeSformer': Possible spelling mistake found.",
+      "source_line": "and image crops used \\parencite{P013}. TimeSformer reported an advantage for separate",
+      "suggestions": [
+        "'TimeS former'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:103:40: info: 'TimeSformer': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "and image crops used \\parencite{P013}. TimeSformer reported an advantage for separate",
+        "                                       Use 'TimeS former'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 126,
+      "column": 50,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\textit{Implementation records: \\EvidenceRef{E064}{}, \\EvidenceRef{E065}{}, \\EvidenceRef{E033}{}.}",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:126:50: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\textit{Implementation records: \\EvidenceRef{E064}{}, \\EvidenceRef{E065}{}, \\EvidenceRef{E033}{}.}",
+        "                                                 Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 126,
+      "column": 72,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\textit{Implementation records: \\EvidenceRef{E064}{}, \\EvidenceRef{E065}{}, \\EvidenceRef{E033}{}.}",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:126:72: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\textit{Implementation records: \\EvidenceRef{E064}{}, \\EvidenceRef{E065}{}, \\EvidenceRef{E033}{}.}",
+        "                                                                       Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 126,
+      "column": 94,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Don't put a space before the full stop.",
+      "source_line": "\\textit{Implementation records: \\EvidenceRef{E064}{}, \\EvidenceRef{E065}{}, \\EvidenceRef{E033}{}.}",
+      "suggestions": [
+        "'.'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:126:94: info: Don't put a space before the full stop. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\textit{Implementation records: \\EvidenceRef{E064}{}, \\EvidenceRef{E065}{}, \\EvidenceRef{E033}{}.}",
+        "                                                                                             Use '.'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 184,
+      "column": 29,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'standardized'? The spelling 'standardised' is also correct.",
+      "source_line": "The inputs had already been standardised before entering the model, so internal scaling",
+      "suggestions": [
+        "'standardized'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:184:29: info: Would you like to use the Oxford spelling 'standardized'? The spelling 'standardised' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "The inputs had already been standardised before entering the model, so internal scaling",
+        "                            Use 'standardized'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 234,
+      "column": 50,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\textit{Implementation records: \\EvidenceRef{E031}{}, \\EvidenceRef{E065}{}.",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:234:50: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\textit{Implementation records: \\EvidenceRef{E031}{}, \\EvidenceRef{E065}{}.",
+        "                                                 Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 234,
+      "column": 72,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Don't put a space before the full stop.",
+      "source_line": "\\textit{Implementation records: \\EvidenceRef{E031}{}, \\EvidenceRef{E065}{}.",
+      "suggestions": [
+        "'.'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:234:72: info: Don't put a space before the full stop. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\textit{Implementation records: \\EvidenceRef{E031}{}, \\EvidenceRef{E065}{}.",
+        "                                                                       Use '.'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 269,
+      "column": 43,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'regularized'? The spelling 'regularised' is also correct.",
+      "source_line": "Ridge or logistic regression & What can a regularised model learn from compact features?",
+      "suggestions": [
+        "'regularized'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:269:43: info: Would you like to use the Oxford spelling 'regularized'? The spelling 'regularised' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Ridge or logistic regression & What can a regularised model learn from compact features?",
+        "                                          Use 'regularized'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 281,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct.",
+      "source_line": "regularisation setting from 0.1, 1, and 10 within the training partitions. The F2 fusion",
+      "suggestions": [
+        "'regularization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:281:1: info: Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "regularisation setting from 0.1, 1, and 10 within the training partitions. The F2 fusion",
+        "Use 'regularization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 282,
+      "column": 46,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct.",
+      "source_line": "model also used logistic regression, but its regularisation setting was fixed at 1. Only",
+      "suggestions": [
+        "'regularization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:282:46: info: Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "model also used logistic regression, but its regularisation setting was fixed at 1. Only",
+        "                                             Use 'regularization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 324,
+      "column": 59,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'fusedallthree': Possible spelling mistake found.",
+      "source_line": "PHM combined information at an earlier stage. Its \\texttt{fused\\_all\\_three} model",
+      "suggestions": [],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:324:59: info: 'fusedallthree': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "PHM combined information at an earlier stage. Its \\texttt{fused\\_all\\_three} model"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 327,
+      "column": 65,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'LateFusionRegressor': Possible spelling mistake found.",
+      "source_line": "from the joined features. The software class was called \\texttt{LateFusionRegressor},",
+      "suggestions": [],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:327:65: info: 'LateFusionRegressor': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "from the joined features. The software class was called \\texttt{LateFusionRegressor},"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 390,
+      "column": 36,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct.",
+      "source_line": "Following the principle of stacked generalisation, the study used predictions for",
+      "suggestions": [
+        "'generalization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:390:36: info: Would you like to use the Oxford spelling 'generalization'? The spelling 'generalisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "Following the principle of stacked generalisation, the study used predictions for",
+        "                                   Use 'generalization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 501,
+      "column": 21,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'Recognizing'? The spelling 'Recognising' is also correct.",
+      "source_line": "works as specified. Recognising that six \\textit{present} channels have stopped carrying",
+      "suggestions": [
+        "'Recognizing'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:501:21: info: Would you like to use the Oxford spelling 'Recognizing'? The spelling 'Recognising' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "works as specified. Recognising that six \\textit{present} channels have stopped carrying",
+        "                    Use 'Recognizing'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 502,
+      "column": 59,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'EmbraceNet': Possible spelling mistake found.",
+      "source_line": "useful information is a harder test. Research on ModDrop, EmbraceNet, and missing-input",
+      "suggestions": [
+        "'Embrace Net'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:502:59: info: 'EmbraceNet': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "useful information is a harder test. Research on ModDrop, EmbraceNet, and missing-input",
+        "                                                          Use 'Embrace Net'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 508,
+      "column": 46,
+      "severity": "info",
+      "rule_id": "ENGLISH_WORD_REPEAT_RULE",
+      "message": "Possible typo: you repeated a word.",
+      "source_line": "\\caption{Where the inputs met in each fusion method}",
+      "suggestions": [
+        "'method'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:508:46: info: Possible typo: you repeated a word. [ENGLISH_WORD_REPEAT_RULE]",
+        "\\caption{Where the inputs met in each fusion method}",
+        "\\label{tab:ch3-fusion-interfaces}",
+        "\\small\\singlespacing",
+        "\\setlength{\\tabcolsep}{4pt}",
+        "\\renewcommand{\\arraystretch}{1.15}",
+        "\\begin{tabularx}{\\linewidth}{@{}P{0.26\\linewidth}YY@{}}",
+        "\\toprule",
+        "\\textbf{Method} & \\textbf{Information available at the point of fusion} & \\textbf{What",
+        "                                             Use 'method'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 523,
+      "column": 32,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'logits': Possible spelling mistake found.",
+      "source_line": "REASSEMBLE F4--F6 & Two branch logits, context, and availability flags & Weights that",
+      "suggestions": [
+        "'logics'",
+        "'logins'",
+        "'log its'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:523:32: info: 'logits': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "REASSEMBLE F4--F6 & Two branch logits, context, and availability flags & Weights that",
+        "                               Use 'logics'",
+        "                               Use 'logins'",
+        "                               Use 'log its'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 563,
+      "column": 50,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\textit{Implementation records: \\EvidenceRef{E112}{}, \\EvidenceRef{E114}{}, \\EvidenceRef{E110}{}.}",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:563:50: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\textit{Implementation records: \\EvidenceRef{E112}{}, \\EvidenceRef{E114}{}, \\EvidenceRef{E110}{}.}",
+        "                                                 Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 563,
+      "column": 72,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\textit{Implementation records: \\EvidenceRef{E112}{}, \\EvidenceRef{E114}{}, \\EvidenceRef{E110}{}.}",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:563:72: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\textit{Implementation records: \\EvidenceRef{E112}{}, \\EvidenceRef{E114}{}, \\EvidenceRef{E110}{}.}",
+        "                                                                       Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/03_foundations.tex",
+      "line": 563,
+      "column": 94,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Don't put a space before the full stop.",
+      "source_line": "\\textit{Implementation records: \\EvidenceRef{E112}{}, \\EvidenceRef{E114}{}, \\EvidenceRef{E110}{}.}",
+      "suggestions": [
+        "'.'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/03_foundations.tex:563:94: info: Don't put a space before the full stop. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\textit{Implementation records: \\EvidenceRef{E112}{}, \\EvidenceRef{E114}{}, \\EvidenceRef{E110}{}.}",
+        "                                                                                             Use '.'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 38,
+      "column": 16,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'DMAW': Possible spelling mistake found.",
+      "source_line": "  \\displaynote{DMAW reported 96.1\\% accuracy for fusion and 90.2\\% for",
+      "suggestions": [
+        "'DRAW'",
+        "'DMA'",
+        "'MAW'",
+        "'DM AW'",
+        "'DMA W'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:38:16: info: 'DMAW': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "  \\displaynote{DMAW reported 96.1\\% accuracy for fusion and 90.2\\% for",
+        "               Use 'DRAW'",
+        "               Use 'DMA'",
+        "               Use 'MAW'",
+        "               Use 'DM AW'",
+        "               Use 'DMA W'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 224,
+      "column": 20,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'inspectsample': Possible spelling mistake found.",
+      "source_line": "\\EvidenceRef{E019}{inspect\\_sample, audit\\_split, main}, \\EvidenceRef{E018}{},",
+      "suggestions": [
+        "'inspect sample'",
+        "'inspects ample'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:224:20: info: 'inspectsample': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "\\EvidenceRef{E019}{inspect\\_sample, audit\\_split, main}, \\EvidenceRef{E018}{},",
+        "                   Use 'inspect sample'",
+        "                   Use 'inspects ample'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 224,
+      "column": 37,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'auditsplit': Possible spelling mistake found.",
+      "source_line": "\\EvidenceRef{E019}{inspect\\_sample, audit\\_split, main}, \\EvidenceRef{E018}{},",
+      "suggestions": [
+        "'audit split'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:224:37: info: 'auditsplit': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "\\EvidenceRef{E019}{inspect\\_sample, audit\\_split, main}, \\EvidenceRef{E018}{},",
+        "                                    Use 'audit split'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 224,
+      "column": 75,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\EvidenceRef{E019}{inspect\\_sample, audit\\_split, main}, \\EvidenceRef{E018}{},",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:224:75: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\EvidenceRef{E019}{inspect\\_sample, audit\\_split, main}, \\EvidenceRef{E018}{},",
+        "                                                                          Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 373,
+      "column": 69,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct.",
+      "source_line": "determined how its features contributed to its score. Selecting its regularisation",
+      "suggestions": [
+        "'regularization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:373:69: info: Would you like to use the Oxford spelling 'regularization'? The spelling 'regularisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "determined how its features contributed to its score. Selecting its regularisation",
+        "                                                                    Use 'regularization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 422,
+      "column": 72,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'recognized'? The spelling 'recognised' is also correct.",
+      "source_line": "alarms. Specificity measures how often successful cases were correctly recognised.",
+      "suggestions": [
+        "'recognized'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:422:72: info: Would you like to use the Oxford spelling 'recognized'? The spelling 'recognised' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "alarms. Specificity measures how often successful cases were correctly recognised.",
+        "                                                                       Use 'recognized'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 428,
+      "column": 9,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'averageprecisionscore': Possible spelling mistake found.",
+      "source_line": "\\texttt{average\\_precision\\_score}, which weights each precision value by the",
+      "suggestions": [],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:428:9: info: 'averageprecisionscore': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "\\texttt{average\\_precision\\_score}, which weights each precision value by the"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 509,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'randomization'? The spelling 'randomisation' is also correct.",
+      "source_line": "randomisation procedure also affect the result. HANDOVER, for example, included",
+      "suggestions": [
+        "'randomization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:509:1: info: Would you like to use the Oxford spelling 'randomization'? The spelling 'randomisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "randomisation procedure also affect the result. HANDOVER, for example, included",
+        "Use 'randomization'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 544,
+      "column": 34,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'AdamW': Possible spelling mistake found.",
+      "source_line": "neural models used PyTorch, with AdamW for the relevant fitting steps",
+      "suggestions": [
+        "'Adam'",
+        "'Adams'",
+        "'Ada mW'",
+        "'Adam W'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:544:34: info: 'AdamW': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "neural models used PyTorch, with AdamW for the relevant fitting steps",
+        "                                 Use 'Adam'",
+        "                                 Use 'Adams'",
+        "                                 Use 'Ada mW'",
+        "                                 Use 'Adam W'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 547,
+      "column": 26,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'Ultralytics': Possible spelling mistake found.",
+      "source_line": "PHM image model used the Ultralytics RT-DETR-L prediction procedure to collect",
+      "suggestions": [
+        "'Ultrasonics'",
+        "'Paralytics'",
+        "'Catalytics'",
+        "'Ultraistic'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:547:26: info: 'Ultralytics': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "PHM image model used the Ultralytics RT-DETR-L prediction procedure to collect",
+        "                         Use 'Ultrasonics'",
+        "                         Use 'Paralytics'",
+        "                         Use 'Catalytics'",
+        "                         Use 'Ultraistic'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 572,
+      "column": 60,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\noindent\\textit{Implementation records:} \\EvidenceRef{E064}{}, \\EvidenceRef{E065}{},",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:572:60: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\noindent\\textit{Implementation records:} \\EvidenceRef{E064}{}, \\EvidenceRef{E065}{},",
+        "                                                           Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 572,
+      "column": 82,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\noindent\\textit{Implementation records:} \\EvidenceRef{E064}{}, \\EvidenceRef{E065}{},",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:572:82: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\noindent\\textit{Implementation records:} \\EvidenceRef{E064}{}, \\EvidenceRef{E065}{},",
+        "                                                                                 Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 573,
+      "column": 18,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\EvidenceRef{E067}{}, \\EvidenceRef{E046}{}, \\EvidenceRef{E033}{},",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:573:18: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\EvidenceRef{E067}{}, \\EvidenceRef{E046}{}, \\EvidenceRef{E033}{},",
+        "                 Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 573,
+      "column": 40,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\EvidenceRef{E067}{}, \\EvidenceRef{E046}{}, \\EvidenceRef{E033}{},",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:573:40: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\EvidenceRef{E067}{}, \\EvidenceRef{E046}{}, \\EvidenceRef{E033}{},",
+        "                                       Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 573,
+      "column": 62,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\EvidenceRef{E067}{}, \\EvidenceRef{E046}{}, \\EvidenceRef{E033}{},",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:573:62: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\EvidenceRef{E067}{}, \\EvidenceRef{E046}{}, \\EvidenceRef{E033}{},",
+        "                                                             Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 574,
+      "column": 72,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\EvidenceRef{E004}{P01}. \\textit{Provenance records:} \\EvidenceRef{E111}{},",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:574:72: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\EvidenceRef{E004}{P01}. \\textit{Provenance records:} \\EvidenceRef{E111}{},",
+        "                                                                       Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 575,
+      "column": 18,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\EvidenceRef{E109}{}, \\EvidenceRef{E115}{}, \\EvidenceRef{E116}{}, \\EvidenceRef{E113}{}.",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:575:18: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\EvidenceRef{E109}{}, \\EvidenceRef{E115}{}, \\EvidenceRef{E116}{}, \\EvidenceRef{E113}{}.",
+        "                 Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 575,
+      "column": 40,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\EvidenceRef{E109}{}, \\EvidenceRef{E115}{}, \\EvidenceRef{E116}{}, \\EvidenceRef{E113}{}.",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:575:40: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\EvidenceRef{E109}{}, \\EvidenceRef{E115}{}, \\EvidenceRef{E116}{}, \\EvidenceRef{E113}{}.",
+        "                                       Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 575,
+      "column": 62,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Put a space after the comma, but not before the comma.",
+      "source_line": "\\EvidenceRef{E109}{}, \\EvidenceRef{E115}{}, \\EvidenceRef{E116}{}, \\EvidenceRef{E113}{}.",
+      "suggestions": [
+        "','"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:575:62: info: Put a space after the comma, but not before the comma. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\EvidenceRef{E109}{}, \\EvidenceRef{E115}{}, \\EvidenceRef{E116}{}, \\EvidenceRef{E113}{}.",
+        "                                                             Use ','"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 575,
+      "column": 84,
+      "severity": "info",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Don't put a space before the full stop.",
+      "source_line": "\\EvidenceRef{E109}{}, \\EvidenceRef{E115}{}, \\EvidenceRef{E116}{}, \\EvidenceRef{E113}{}.",
+      "suggestions": [
+        "'.'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:575:84: info: Don't put a space before the full stop. [COMMA_PARENTHESIS_WHITESPACE]",
+        "\\EvidenceRef{E109}{}, \\EvidenceRef{E115}{}, \\EvidenceRef{E116}{}, \\EvidenceRef{E113}{}.",
+        "                                                                                   Use '.'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 580,
+      "column": 18,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'HFU': Possible spelling mistake found.",
+      "source_line": "The project used HFU server resources. The later ViFailback study recorded a single",
+      "suggestions": [
+        "'HF'",
+        "'HFC'",
+        "'HFS'",
+        "'RFU'",
+        "'SFU'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:580:18: info: 'HFU': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "The project used HFU server resources. The later ViFailback study recorded a single",
+        "                 Use 'HF'",
+        "                 Use 'HFC'",
+        "                 Use 'HFS'",
+        "                 Use 'RFU'",
+        "                 Use 'SFU'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 581,
+      "column": 25,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'GiB': Possible spelling mistake found.",
+      "source_line": "NVIDIA Tesla T4 with 16~GiB of device memory. Reusing frozen camera features and compact",
+      "suggestions": [
+        "'GIB'",
+        "'GB'",
+        "'Gig'",
+        "'GI'",
+        "'Gin'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:581:25: info: 'GiB': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "NVIDIA Tesla T4 with 16~GiB of device memory. Reusing frozen camera features and compact",
+        "                        Use 'GIB'",
+        "                        Use 'GB'",
+        "                        Use 'Gig'",
+        "                        Use 'GI'",
+        "                        Use 'Gin'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 584,
+      "column": 52,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'GiB': Possible spelling mistake found.",
+      "source_line": "while REASSEMBLE later released approximately 66.9~GiB of derived caches, retaining",
+      "suggestions": [
+        "'GIB'",
+        "'GB'",
+        "'Gig'",
+        "'GI'",
+        "'Gin'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:584:52: info: 'GiB': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "while REASSEMBLE later released approximately 66.9~GiB of derived caches, retaining",
+        "                                                   Use 'GIB'",
+        "                                                   Use 'GB'",
+        "                                                   Use 'Gig'",
+        "                                                   Use 'GI'",
+        "                                                   Use 'Gin'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 589,
+      "column": 37,
+      "severity": "info",
+      "rule_id": "MORFOLOGIK_RULE_EN_GB",
+      "message": "'checkpointing': Possible spelling mistake found.",
+      "source_line": "including decoding, validation, and checkpointing; this was neither GPU kernel time nor",
+      "suggestions": [
+        "'check pointing'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:589:37: info: 'checkpointing': Possible spelling mistake found. [MORFOLOGIK_RULE_EN_GB]",
+        "including decoding, validation, and checkpointing; this was neither GPU kernel time nor",
+        "                                    Use 'check pointing'"
+      ]
+    },
+    {
+      "filename": "reworked/tex/04_methodology.tex",
+      "line": 602,
+      "column": 1,
+      "severity": "info",
+      "rule_id": "OXFORD_SPELLING_Z_NOT_S",
+      "message": "Would you like to use the Oxford spelling 'synchronization'? The spelling 'synchronisation' is also correct.",
+      "source_line": "synchronisation, preprocessing and inference up to the moment a decision becomes",
+      "suggestions": [
+        "'synchronization'"
+      ],
+      "raw_lines": [
+        "/home/student/Master_Thesis_WS/pi-multimodal-ad/00_thesis_writing_tracking/ltex_pilot_chapters_01_04_20261127_01/reworked/tex/04_methodology.tex:602:1: info: Would you like to use the Oxford spelling 'synchronization'? The spelling 'synchronisation' is also correct. [OXFORD_SPELLING_Z_NOT_S]",
+        "synchronisation, preprocessing and inference up to the moment a decision becomes",
+        "Use 'synchronization'"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+% ============================================================
+% ABSTRACT
+% File: frontmatter/abstract.tex
+% ============================================================
+
+Industrial monitoring increasingly relies on data from cameras, acoustic signals and
+machine sensors. Multimodal learning exploits the benefits of each data type, but simply
+adding more sources does not necessarily improve prediction accuracy or reliability,
+especially when data quality and relevance vary.
+
+A review of 94 full text papers found
+that 46 directly evaluated the value of adding an input, 21 evaluated corrupted inputs
+and 11 evaluated missing inputs at inference. This thesis examines when visual
+information adds value beyond machine sensors alone and whether fusion is reliable when
+either stream is degraded. The initial motivation was robotic welding. An audit of the
+Intel Welding data revealed that acquisition sessions were shared across partitions and
+there was prior development exposure, meaning no independent welding was available to
+validate. Four main studies and a supporting handover study compared engineered sensor
+features, pretrained visual features and patch-based temporal Transformers under
+dataset-specific group splits. They evaluated concatenation, equal averaging, logistic
+stacking, quality conditioned gating and visual weight transfer.
+
+Across the 20 PHM2026
+gear runs, fusing the three sensor groups to predict an unvalidated photographic proxy
+resulted in a mean absolute error of 0.824 percentage points compared to 0.804 for the
+training mean. In the central REASSEMBLE study (4,530 completed actions, 148
+recordings), stacking video and sensor predictions increased the pooled failure average
+precision  from 0.429 for sensors alone to 0.447, although the advantage over equal
+averaging (0.446) was not resolved. Severe sensor noise reduced stacking AP to 0.222.
+External studies did not replicate this gain. Sensor-only logistic regression
+outperformed stacking in all six MSM milling protocols (0.829 vs 0.757 abnormal cutting
+AP on 1,895 primary intervals), with fault-dependent quality gate behaviour. On
+ViFailback (4,382 episodes, 99 held out tasks), class averaged AP was 0.649 for sensors
+versus 0.621--0.629 for stacking across three seeds. Transferring REASSEMBLE visual
+weights produced mixed results that remained below sensor level. On the 151 official
+HANDOVER test trials, sensors again ranked failures above equal averaging. The value of
+multimodal fusion was conditional on the validity of the target, observability of the
+visual stream and sensor strength. Vision helped with failure ranking in assembly but
+not in milling or manipulation under tested protocols. Adaptive weighting offered no
+consistent protection against undetected corruption. These findings relate to
+retrospective condition estimation and completed event classification. Early warning and
+cross-factory deployment will require separate validation.

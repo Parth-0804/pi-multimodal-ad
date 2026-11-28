@@ -1,0 +1,63 @@
+# Verification Triage Report
+
+28 November 2026. This report was written before manuscript edits. Source locators refer to the preserved `source_before/` snapshot, relative to the active LaTeX project. Build locators refer to `LaTeX_Project/build/final_audit_20261128_01/baseline/`. Repository HEAD was `c4ff39b97d41ac1508615dbd7067a141fef145cc`; pre-existing staged and unstaged edits were preserved.
+
+The current baseline builds successfully with the retained XeLaTeX/Biber toolchain: 201 pages, no undefined references/citations, duplicate labels or overfull boxes. The remaining LaTeX warnings are the intentional signing-date reminder and a caption anchor warning. The PDF driver also reports the supplied cover’s PDF version/tag metadata. A successful build does not certify scientific correctness or university compliance.
+
+User decisions: UK English; keep Faculty I acknowledgements; keep and reframe the prompt appendix; generate result plots after the text audit. The AI disclosure remains unnumbered; the prompt record is Appendix I. Original empirical precision, negative/inconclusive findings, draft watermark and placeholder dates are protected.
+
+| Item | Verified Status | Exact File:Line Evidence | Proposed Action |
+|---|---|---|---|
+| A1 | TRUE BUG | appendices/B_datasets.tex:11,38; baseline PDF p.173 | Unscoped small text confirmed in PDF after the table (font size 16 at 1.5 scale versus normal 18). Scope the table. |
+| A2 | FALSE ALARM | appendices/F_reproducibility.tex:130; ltcaption.sty:165; baseline main.log:2247 | longtable* is defined by caption/ltcaption and compiles. Retain it; disable unsupported hypcap locally for its external caption. |
+| A3 | TRUE BUG | appendices/C_implementation.tex:41; main.tex:34; baseline main.aux:2154 | Reference resolves to C.1. Promote Shared RGB Preprocessing to a numbered subsection. |
+| A4 | FALSE ALARM | appendices/I_ai_assistance.tex:29; baseline main.aux:956 | Literature synthesis is Table 2.1, defined by ReviewFollowupTable. Keep reference. |
+| A5a | TRUE BUG | evidence_links.tex:101,111; chapters/03_foundations.tex:128,204,572; chapters/04_methodology.tex:225,568 | Unwrapped EvidenceRef is visible irrespective of draft watermark/review state. Wrap chapter record paragraphs in existing opt-in ev macro. |
+| A5b | TRUE BUG | chapters/09_discussion.tex:242,245; chapters/07_msm.tex:368 | Remove visible raw ID/source filename from explanatory notes; retain traceability in opt-in notes and the audit record. |
+| A5c | FALSE ALARM | evidence_links.tex:101; chapters/08_vifailback.tex:126; post-float ev calls across Ch6–8/AppC,D,H | Unstarred ev defaults to no output, does not start a paragraph and creates no evidence tag. Keep calls; review new PDF for layout. |
+| A6 | STYLE / INTENTIONAL | main.tex:86,89,98; appendices/I_ai_assistance.tex:10; baseline main.aux:2279; chapters/01_introduction.tex:322 | Disclosure is deliberately unnumbered before references; prompt record is Appendix I, not J. Keep approved structure and update structure summary using references. |
+| A7 | FALSE ALARM | baseline main.log and main.blg; chapters/04_methodology.tex:23,24,35,36 | Fresh 201-page build has no undefined citations/references or duplicate labels. Distinct legacy aliases are valid. Keep coded bibliography keys. |
+| A8 | STYLE / FALSE ALARM | main.tex:24; chapters/02_literature_review.tex:254; all included chapter/table floats | No caption-after-content case found. Split prediction-availability caption into concise title and displaynote; do not move already-correct captions. |
+| A9 | FALSE ALARM / AUTHOR CONFIRMED | frontmatter/acknowledgements.tex:7; cover PDF p.1 | Names differ, but user explicitly confirmed Faculty I acknowledgements. Preserve both. |
+| B1a | CONFIRMED LEAK (SOURCE ONLY) | chapters/02_literature_review.tex:1067; chapters/04_methodology.tex:609; chapters/06_reassemble.tex:143 | Remove audit commentary from manuscript source; preserve removed comments and their scientific provenance outside the manuscript. |
+| B1b | CONFIRMED LEAK (SOURCE ONLY) | chapters/09_discussion.tex:164,277,374; tables/evidence_register.tex:149–179 | Remove internal audit blocks; preserve hashes/source links in external audit provenance. Keep functional TeX comments and genuine caveats. |
+| B2 | CONFIRMED LEAK | appendices/G_chronology.tex:11,22,88,96 | Use author-owned account; retain reported-only supervisor agreement, undocumented initial selection rationale, and deliberate stop of unfinished fits. |
+| B3 | STYLE / AUTHOR DECISION | appendices/J_prompt_record.tex:5,10,33,59,65,72; appendices/I_ai_assistance.tex:42 | User chose to keep appendix. Replace imitation chat transcripts with clearly retrospective task summaries; preserve disclosure of AI checks, drafting and unavailable transcripts. |
+| B4 Ch2 | STYLE | chapters/02_literature_review.tex:708 | Describe lack of a per-work crosswalk directly in author-owned review terms; do not imply independent recoding. |
+| B4 Ch3 | STYLE / TRUE CLARITY BUG | chapters/03_foundations.tex:58,110,125,177–187; REASSEMBLE section1_models.py:41–45; PHM model.py:218–265 | State inspected patch count and mask behaviour precisely, preserving source/execution distinction and PHM historical grid uncertainty. |
+| B4 Ch4 | STYLE | chapters/04_methodology.tex:551–557 | Use source-version and reconstruction limitations directly; retain historical commit identity and missing script/settings boundary. |
+| B4 Ch5 | CONFIRMED LEAK / STYLE | chapters/05_phm.tex:39,51,136,239–244,277–284,345–347 | Remove directory/config archaeology from body; preserve v3 target identity, unpinned historical training lineage, raw-overlap uncertainty and unvalidated proxy. |
+| B4 Ch6 | STYLE | chapters/06_reassemble.tex:229,505–506,700–703,762–764 | Move module path to Appendix C. Condense report/validator/metadata prose while retaining differing budgets, ineligibility and correct 26-recording assessment identity. |
+| B4 Ch7 | STYLE | chapters/07_msm.tex:89,214–215,227–233 | Use input-preparation wording and checkpoint eligibility criterion, distinct from QG; condense checks without claiming training reproduction. |
+| B4 Ch8 | STYLE / CONFIRMED LEAK | chapters/08_vifailback.tex:19–27,95–100,356–366 | Keep post-result reporting priority and uncertain inspection chronology; describe AI-assisted visual screen and lack of independent human confirmation; retain per-fit reconstruction limits. |
+| B4 Ch9 | TRUE BUG / STYLE | chapters/09_discussion.tex:270,367,524–526; VIFAILBACK completed_scope_analysis/RESULT_ANALYSIS.md:125 | Report measured split-weighted central runtime estimate (43 days; 47 allowance). Replace audit narrator while retaining evidence scope. |
+| B4 AppD | STYLE | appendices/D_supplementary_results.tex:84,118,133–138 | Define C20; replace internal report sections/M3 shorthand with named experiments and explicit missing visual predictions. |
+| B4 AppE | STYLE | appendices/E_human_review.tex:69–71 | Clarify AI wording examples were not additional clip-level ratings; preserve disclosure and single-reviewer limitation. |
+| B4 AppF | STYLE | appendices/F_reproducibility.tex:22,110–122 | Describe retained data and archive limitations; remove reference to TeX comments, preserve evidence identity and source hashes externally. |
+| B4 AppI | STYLE | appendices/I_ai_assistance.tex:46–47 | State earlier model version was not recorded; do not guess it. |
+| C1 | TRUE BUG / STYLE | frontmatter/abstract.tex:11,17,33 | Restore missing dataset noun; ReviewWorkCount macro; full-text, held-out and class-averaged hyphens. |
+| C2a | STYLE | chapters/01_introduction.tex:91,108,146,298 | Use chapter reference and original research proposal; distinguish four objectives from five derived evaluation requirements. |
+| C2b | STYLE | chapters/01_introduction.tex:220,288–324 | Remove unsupported rubric-style wrap-up; align chapter summaries and include human review, disclosure and prompt appendix. |
+| C3a | STYLE | chapters/02_literature_review.tex:24,26,42,157,169,197,498,685,782,884,956,987,1107 | Remove contractions, second-person commentary and colloquialisms; keep scientific qualifications. |
+| C3b | STYLE | chapters/02_literature_review.tex:74,708,1064–1071,1112 | Use ReviewWorkCount for review denominator and 11 alongside other numeric counts. |
+| C3c | STYLE | chapters/02_literature_review.tex:145,685; references.bib P035/P033 | Use existing author-year citations/method names. Merge short related paragraphs in Sections 2.4–2.7 without merging different scientific claims. |
+| C4 | TRUE BUG / STYLE | chapters/03_foundations.tex:403,427–432 | Promote F3 to subsection; state sum of availability flags >=1 for defined gate denominator. |
+| C5 | STYLE | chapters/04_methodology.tex:29,248,586 | Explain retrospective requirements, VMX9 source identifier and FULL20 twenty-epoch full-CNN condition. |
+| C6a | STYLE | chapters/05_phm.tex:227–229,268–290 | Show 9×(7+1)=72; introduce the recorded 0.15 percentage-point criterion before its result without implying verified preregistration. |
+| C6b | STYLE | chapters/05_phm.tex:136,165,196,227 | Use CIELAB and define DINOv2/AnomalyDINO by function. Identify FM4/NA4/M6A/ALR as source condition-indicator channels; use expansions only when supported. |
+| C7 | TRUE BUG / STYLE | chapters/06_reassemble.tex:339,605–614,715; chapters/03_foundations.tex:365,423 | Use alpha coefficients consistently; remove U1/U2; define frame-count/epoch arm names without conflating their numerical suffixes. |
+| C8a | TRUE BUG | chapters/07_msm.tex:303–308,317–320 | Name both HGB-leading protocols: primary experiment grouping and label-2-excluded calendar-date grouping. |
+| C8b | STYLE / INFERRED EXPLANATION | chapters/07_msm.tex:280–285,341–368 | Discuss reduced influence of weak vision as a possible explanation, not an established causal effect of overfitting. |
+| C8c | STYLE | chapters/07_msm.tex:81,162,240,380; chapters/09_discussion.tex:348 | Gloss MTConnect and DOWN-only; show 6×3×3=54; verify seed-42 AP 0.7554 against saved metrics before adding. |
+| C9 | STYLE | chapters/08_vifailback.tex:72,93,96,139,198,208,223 | Define T/V/C/A before use, remove unused S1/S3 alias sentence, explain B02/task55 and three-view V1 from evidence. |
+| C10 | STYLE | chapters/09_discussion.tex:51,423–424 | Use chapter reference and textcite for Wang et al. |
+| C11 | STYLE | chapters/10_conclusion.tex:4–7,52,94–95 | Lead with thesis-level conditional design/evaluation answer; expand sensor logistic regression/HGB/F2; consistently name PHM2026 in conclusion. |
+| C12a | FALSE ALARM / STYLE | frontmatter/abbreviations.tex:22,67; chapters/03_foundations.tex:340; tables/literature_matrix.tex | CI and SD already distinguish their contexts. Clarify legend/first-use wording; avoid changing published or historical codes. |
+| C12b | STYLE | frontmatter/abbreviations.tex:17–74; chapters/02_literature_review.tex:145,278,432,585,644–657,1000 | Add missing dataset/method entries using original-source names or explicit descriptive identifiers; never guess expansions. Standardise FPS and distinguish ROC area from other AUCs. |
+| C13 | STYLE | appendices/A_literature.tex:48 | Replace remaining 57 with ExpandedPDFCount; earlier uses already have the macro. |
+| D1 | STYLE / AUTHOR APPROVED | Chapters 1–10 and appendices | Use UK English in authored prose, preserving bibliography titles, quotations, identifiers and official cover/declaration wording. |
+| D2 | STYLE | chapters/03_foundations.tex:60,130,320; chapters/04_methodology.tex:22; appendices/F_reproducibility.tex:87 | Use Title Case for authored chapter/section/subsection headings, preserving abbreviations and references. |
+| D3 | STYLE / PARTLY DECLINED | chapters/06_reassemble.tex:397–400; chapters/08_vifailback.tex:208–212,302–318; chapters/09_discussion.tex:54 | Add leading zeros, retaining each empirical value and its existing precision. No global rounding or invented trailing precision. |
+| D4 | STYLE / MIXED | Named tables in Ch5–8/AppB,D,H; chapters/09_discussion.tex:203–229; chapters/02_literature_review.tex:315 | Use booktabs, CI spacing, math signs, thousands commas, quotes and parencite; remove incidental bolding. Relax selected H floats and inspect pagination. Some AppD signs were already correct. |
+| Guardrails | INTENTIONAL | main.tex:17; frontmatter/declaration.tex:5; cover PDF p.1 | Keep draft true, xx November 2026 and xx. November 2026. Final-day reminders only. |
+| Plots | AUTHOR APPROVED | User confirmation during audit | After text fixes, add separate within-study plots for Ch5–8 from verified existing results, with exact source values and metric/uncertainty boundaries. |

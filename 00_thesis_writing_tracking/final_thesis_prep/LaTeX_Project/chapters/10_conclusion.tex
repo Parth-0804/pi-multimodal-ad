@@ -2,15 +2,21 @@
 \label{ch:conclusion}
 
 \section{Answer to the Main Research Question}
+The studies support designing process-aware multimodal monitoring around a valid
+prediction target, complementary observations and strong single-input references,
+then evaluating fusion on group-disjoint cases with matched fitting and reliability
+conditions. Fusion benefits were conditional on the task, and consistent adaptive
+robustness was not established; an independent welding study remains necessary to
+answer the original application-specific question.
 Combining camera and sensor predictions modestly improved completed-action failure
-ranking over logistic sensing in REASSEMBLE. Logistic stacking achieved failure AP
+ranking over sensor-only logistic regression in REASSEMBLE. Logistic stacking achieved failure AP
 0.4473, compared with 0.4294 for sensors and 0.4457 for equal probability averaging.
 Equal averaging scored similarly, and its difference from stacking remained unresolved.
 The result supports a conditional benefit from combining the available observations,
 without establishing that a learned combiner was necessary.
 
 The stacking gain over sensors did not recur in MSM or ViFailback. HANDOVER tested
-averaging on an official split and also favored its sensor component, while unavailable
+averaging on an official split and also favoured its sensor component, while unavailable
 participant identities prevented the planned learned-fusion comparison. Across held-out
 gear experiments, fusion of three sensor groups showed no clear improvement over the
 training mean when predicting the photographic proxy, whose relationship to physical
@@ -49,7 +55,7 @@ probabilities or useful fixed-threshold decisions, and where changing the groupi
 changed the uncertainty attached to the same predictions.
 
 \section{Principal Limitations}
-Each dataset imposes a different evidential limit. PHM lacks an independent
+Each dataset imposes a different evidential limit. PHM2026 lacks an independent
 physical-damage reference, while native outcome definitions and ambiguous robotic events
 constrain what the classification results mean. Incomplete identifiers for tools,
 objects, sessions or participants limit claims of independence beyond the groups
@@ -59,10 +65,10 @@ Several follow-ups reused assessment populations examined during exploratory
 development. Their intervals condition on saved fits and do not capture uncertainty from
 the full selection process. Differences in calibration, training budgets and corruption
 exposure also limit attribution of some contrasts to architecture. Preprocessing before
-the separate four-arm PHM evaluation further compromises that diagnostic's isolation of
+the separate four-arm PHM2026 evaluation further compromises that diagnostic's isolation of
 held-out observations.
 
-Incomplete PHM historical training-source lineage and unavailable ViFailback per-fit
+Incomplete PHM2026 historical training-source lineage and unavailable ViFailback per-fit
 histories limit independent reconstruction beyond the retained configurations and
 results. ViFailback target-CNN adaptation was assessed on one outer fold, with
 inconclusive matched effects, so its consistency across task folds and seeds remains
@@ -74,7 +80,7 @@ should establish weld quality through independent inspection, specify the predic
 horizon before examining outcomes, and reserve complete new welding sessions for
 assessment. Camera and process measurements should cover only the information available
 at that decision time. Warning time, false alarms and end-to-end delay would then
-connect predictive performance to prospective use. For PHM, independent damage
+connect predictive performance to prospective use. For PHM2026, independent damage
 measurements linked to known teeth would separate physical validity from agreement with
 the photographic proxy.
 
@@ -91,8 +97,8 @@ consistently beyond the currently assessed fold. Missing, degraded and temporall
 shifted inputs require a separate corruption study with its own scope and resource
 estimate.
 
-Secondary tests could examine HGB-based stacking in MSM and compare uncalibrated with
-rank-preserving calibrated branch outputs in ViFailback, refitting F2 on each
+Secondary tests could examine stacking with a histogram gradient boosting (HGB) sensor branch in MSM and compare uncalibrated with
+rank-preserving calibrated branch outputs in ViFailback, refitting the logistic stacker (F2) on each
 corresponding training-side prediction bank. These are proposed comparisons with open
 outcomes. Across them, fixed protocols, strong single-input controls and prespecified
 tolerances for clean-performance loss would make any benefit easier to interpret.

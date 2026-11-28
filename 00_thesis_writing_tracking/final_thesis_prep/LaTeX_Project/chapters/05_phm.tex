@@ -25,7 +25,8 @@ target and deployment inputs}{\EvidenceRef{E019}{}}
 The retained population contains EXP-A runs 1--5, EXP-B runs 1--7 and EXP-F runs 1--8:
 twenty nominal run units across three experiments. A run can contain multiple tooth
 photographs, camera-sequence views, high-frequency vibration members, low-frequency
-context measurements and condition-indicator records. An image, a minute-level feature
+context measurements and condition-indicator records \parencite{PHM2026Challenge}.
+An image, a minute-level feature
 row and a run are consequently different observational units. Repeated views and long
 sensor sequences increase the number of stored observations without increasing the
 number of independently acquired experiments to the same extent.
@@ -34,9 +35,8 @@ Experiment and run identifiers are retained through derived manifests. Tooth ide
 and image role define target generation, whereas archive/member identity and measurement
 provenance define sensor features. Their correspondence is principally at run level.
 This supports joining measurements to a post-run proxy, rather than asserting
-hardware-synchronized image/sensor events or prospective image availability. Evidence
-covers these manifests and inspected implementation, with incomplete independent
-reinspection of raw archive contents.\ev{PHM experiments and acquisition
+hardware-synchronised image/sensor events or prospective image availability. These associations are documented in the manifests and implementation; the raw archive
+contents have not been fully rechecked independently.\ev{PHM experiments and acquisition
 sources}{\EvidenceRef{E018}{}}
 
 \subsection{Supervision and Dependence Limits}
@@ -47,15 +47,17 @@ confounded, comparing their candidate-area percentages could mix material differ
 with acquisition differences. The v3 exclusion described below addresses this particular
 problem; it does not independently validate the retained twenty-four teeth.
 
-The organizers reported possible overlap for EXP-A Run-2. A separate analysis addressed
-equality between derived sequences. A tutorial reports equality of 372 feature rows
-across 72 derived spectral features for two runs. That is evidence about its extracted
-representation, not byte-level proof that complete raw archives are identical. Both
-nominal runs remain visible in the historical analysis. The small number of independent
-experiments, unequal run lengths and changing acquisition conditions limit broad
-generalization even when train/test identifiers do not overlap.\ev{Organizer-reported
-overlap in EXP-A}{\EvidenceRef{E018}{}}\ev{Derived spectral
-diagnostic}{\EvidenceRef{E035}{}}
+The organisers reported possible overlap
+between EXP-A Run-2 and Run-1; the reported count of 311 files was not independently
+verified.\ev{Organiser-reported overlap in EXP-A}{\EvidenceRef{E018}{}}
+A separate internal project diagnostic examined equality between derived sequences.
+Its report gives equality of 372 feature rows across 72 derived spectral features for
+two runs. That is evidence about its extracted representation, not byte-level proof
+that complete raw archives are identical.\ev{Internal project spectral
+diagnostic}{\EvidenceRef{E035}{}} Both nominal runs remain visible in the historical
+analysis. The small number of independent experiments, unequal run lengths and changing
+acquisition conditions limit broad generalisation even when train/test identifiers do
+not overlap.
 
 \section{Preparation, Exploratory History, and Target-Version Lineage}
 Preparation distinguished structural eligibility from scientific validity. Source
@@ -66,7 +68,7 @@ narrower historical analysis, not evidence that every later included run receive
 same exploratory scrutiny. Its protected outputs were not rewritten to match the later
 all-run population.
 
-Minute-level representations summarize process and sensor variables instead of passing
+Minute-level representations summarise process and sensor variables instead of passing
 the entire waveform to the principal model. Timestamp and coverage checks support
 sequence assembly, while aggregation can discard transients. The high-frequency tutorial
 has different representation provenance. Duplicate diagnostics, missingness masks and
@@ -86,10 +88,10 @@ measurements track deterioration.
 \caption{Versions of the PHM Condition Proxy}\label{tab:phm-target-lineage}
 \centering\small
 \begin{tabularx}{\textwidth}{@{}P{18mm}YP{18mm}P{23mm}Y@{}}\toprule
-Version & View rule & Teeth/run & Materialized rows & Interpretation\\\midrule
+Version & View rule & Teeth/run & Materialised rows & Interpretation\\\midrule
 v1 & maximum candidate ratio & 1--28 & 560 & superseded ROI/threshold\\
-v2 & maximum candidate ratio & 1--28 & 560 & retained historical artifact\\
-median--28 & median rule in code & 1--28 & none & referenced, not materialized\\
+v2 & maximum candidate ratio & 1--28 & 560 & retained historical artefact\\
+median-28 & median rule in code & 1--28 & none & referenced, not materialised\\
 v3 & one deterministic view & 5--28 & 480 & current retained target\\\bottomrule
 \end{tabularx}
 \displaynote{Each row count refers to tooth--run combinations. The run-level target
@@ -99,7 +101,7 @@ aggregates the three highest tooth values where defined.}
 Version changes alter the quantity being predicted. Changing ROI geometry and a residual
 threshold between v1 and v2 altered the proxy scale by approximately a factor of six
 according to the target-version records. A median-view code state retained the v2 label
-without a corresponding production artifact. Under v3, a canonical tooth view is
+without a corresponding production artefact. Under v3, a canonical tooth view is
 selected where available, otherwise the earliest camera-sequence view by embedded time.
 Identical numerical constants in two versions can arise from unchanged top-three teeth
 and do not prove identical measurement rules.\ev{Versions of the photographic condition
@@ -109,29 +111,29 @@ proxy}{\EvidenceRef{E021}{}}
 The visual investigation has three distinct layers: producing a deterministic target,
 fitting a model to that target, and assessing how closely that target represents
 physical damage. The first two layers can be inspected from code, saved targets and
-prediction artifacts. The third requires external reference evidence. Agreement with a
+prediction artefacts. The third requires external reference evidence. Agreement with a
 heuristic mask is insufficient because it evaluates reproduction of the same rule that
 supplied supervision. This distinction also applies to the detector trained on heuristic
-pseudo-boxes: its localization metrics are defined relative to those boxes, not
+pseudo-boxes: its localisation metrics are defined relative to those boxes, not
 expert-annotated defects. The separate scalar, detector and multitask routes therefore
 remain different experiments with different outputs and comparison units.\ev{Visual
 prediction experiments}{\EvidenceRef{E023}{}}
 
 \subsection{Motivation and Target Definition}
-Without organizer-supplied continuous damage labels, an explicit and reproducible
+Without organiser-supplied continuous damage labels, an explicit and reproducible
 candidate-area statistic offered an engineering starting point. The implementation
 measures dark, horizontally extended regions within a chosen flank ROI. Its percentage
 denominator is the ROI area, so a change in ROI changes the numerical scale even if the
 same pixels are selected. The term ``candidate'' is substantive: reflectance, machining
-texture and acquisition artifacts may satisfy the image rule without being physical
+texture and acquisition artefacts may satisfy the image rule without being physical
 damage. The target can consequently support a study of proxy prediction and measurement
 sensitivity. It cannot by itself support a claim about tooth material loss or
 maintenance necessity.\ev{Candidate measurement
 function}{\EvidenceRef{E033}{measure\_damage\_candidate}}
 
 \subsection{Image Processing and Aggregation}
-The inspected target code converts RGB to Lab luminance, applies CLAHE, estimates a
-smooth background, and obtains a dark residual. Robust standardized residuals define
+The target-construction procedure converts RGB to CIELAB luminance, applies CLAHE, estimates a
+smooth background, and obtains a dark residual. Robust standardised residuals define
 candidate pixels; morphological opening and closing and component-size/aspect criteria
 retain extended regions. Candidate pixels divided by ROI pixels give the per-view
 percentage. Historical v2 view maxima and the v3 deterministic-view rule then produce
@@ -159,7 +161,7 @@ Prediction error measures how well a model reproduces the target on held-out ima
 teeth or runs under the specified split. The separate appearance assessment compares
 selected images with human judgments. A continuous physical-area reference would require
 independent measurements or area annotations. The retained appearance-based and
-AnomalyDINO-style diagnostics are useful for finding conspicuous disagreements, but
+AnomalyDINO-style diagnostics, which compare pretrained DINOv2 visual features for anomaly detection, are useful for finding conspicuous disagreements, but
 their selection and development exposure prevent treating them as an untouched
 validation cohort.
 
@@ -168,7 +170,7 @@ measurements that establish population-wide target accuracy, calibrated area per
 or a defensible damage/no-damage operating threshold. A prediction cannot independently
 resolve ambiguity in the appearance used to construct its training label. These limits
 constrain subsequent interpretation even if a target-emulation score appears
-favorable.\ev{Photographic proxy and appearance diagnostics}{\EvidenceRef{E020}{}}
+favourable.\ev{Photographic proxy and appearance diagnostics}{\EvidenceRef{E020}{}}
 
 \subsection{Target Scaling and Validation Limits}
 The two reported baseline errors refer to different versions of the photographic target.
@@ -190,7 +192,7 @@ visual diagnostic scores}{\EvidenceRef{E022}{}, \EvidenceRef{E034}{}}
 
 The blind appearance report records agreement on 30 of 38 determinate images (78.9\%),
 after four unsure exclusions from 42 proxy-selected extremes. The best of twenty
-DINOv2 configurations agreed on 29 of those 38 (76.3\%). One reviewer, selection of
+DINOv2 self-supervised visual-feature configurations agreed on 29 of those 38 (76.3\%). One reviewer, selection of
 extremes and reuse of the same judgments for configuration comparison preclude
 population-wide validation or a claim of established method superiority.\ev{Selected
 appearance checks}{\EvidenceRef{E020}{}}
@@ -198,7 +200,7 @@ appearance checks}{\EvidenceRef{E020}{}}
 Detector diagnostics report very small attainable recall against dense heuristic boxes
 and a mismatch between predicted-box and pseudo-box scales. Those observations qualify
 this training recipe and supervision geometry. Activation energy near an apparent
-surface region does not independently prove correct localization or identify a unique
+surface region does not independently prove correct localisation or identify a unique
 causal failure mechanism. Likewise, the saved image-regression row included in a later
 summary is explicitly not LOEO and lacks EXP-B predictions. Its assessment population
 therefore differs from that of the twenty-run sensor LOEO comparison. The retained
@@ -215,15 +217,18 @@ that distinction prevents the broad phrase ``multimodal fusion'' from obscuring 
 in experimental question. A successful result would establish prediction of a particular
 proxy under a particular split. A failed result leaves several possible explanations,
 including target noise, acquisition shift, limited independent training support,
-representation loss and optimization limits. The observed comparison alone does not
+representation loss and optimisation limits. The observed comparison alone does not
 identify which explanation dominates.\ev{Sensor and fusion
 implementation}{\EvidenceRef{E030}{}}
 
 \subsection{Inputs and Preprocessing}
 The retained minute-feature configuration names nine base variables: speed, torque,
-temperature, axial RMS, radial RMS, FM4, NA4, M6A and ALR. Seven summaries per base
+temperature, axial RMS, radial RMS, and four organiser-provided condition-indicator
+channels labelled FM4, NA4, M6A and ALR. These channel names identify supplied
+indicators, not independently measured damage labels. Seven summaries per base
 variable---mean, standard deviation, median, minimum, maximum, last value and
-slope---plus missingness indicators yield 72 channels. These are variable-length
+slope---plus one missingness indicator per variable yield
+$9\times(7+1)=72$ channels. These are variable-length
 sequences of engineered features. They are not 72 raw accelerometer channels or a
 raw-waveform Transformer input. A separate spectral analysis constructs a 72-feature
 array from high-frequency vibration.
@@ -233,20 +238,18 @@ a Transformer encoder and masked pooling. Padding and any-valid-time patch masks
 explicit in source. Their existence does not prove historical invariance to batch length
 or resolve earlier patch-grid concerns. The principal LOEO runner fits its transformations within each training fold.
 The feature definition is anchored to the sensor-feature implementation and retained
-fusion configuration. The historical directory name suggests a PatchTST baseline, but its
-provenance command invokes \texttt{train\_late\_fusion.py}; that directory name is not
-evidence of a single-encoder run.\ev{Minute-feature implementation and configuration}
-{\EvidenceRef{E124}{}}\ev{Historical directory mismatch}
+fusion configuration. The historical fixed-split experiment fitted the three-group fusion model.\ev{Minute-feature implementation and configuration}
+{\EvidenceRef{E124}{}}\ev{Historical fixed-split model identity}
 {\EvidenceRef{E025}{}}\ev{Patch and mask
 computation}{\EvidenceRef{E029}{patchify}}
 
 \subsection{Reference Predictors and Model Configurations}
 The training-mean constant is essential because the target scale and between-experiment
-distribution can make a visually plausible prediction uncompetitive. Ridge regression is a supplementary regularized run-summary reference; its historical
+distribution can make a visually plausible prediction uncompetitive. Ridge regression is a supplementary regularised run-summary reference; its historical
 v2 fixed-split result is recorded separately in Appendix~\ref{app:supplementary-results}, Section~\ref{sec:phm-ridge-supplement}.
 It is not an additional row in the principal v3 LOEO comparison. The custom PatchTST scalar path uses width 32,
 two encoder layers, four heads, feed-forward width 64, patch length 16 and stride 8 in
-the inspected configuration. An optional profile head constrains outputs to sorted
+the retained configuration. An optional profile head constrains outputs to sorted
 ascending tooth statistics through positive increments; it does not preserve positional
 tooth identity.
 
@@ -270,13 +273,13 @@ remaining experiment for validation: train F/validate B/test A; train F/validate
 B; train B/validate A/test F. Thus ``leave one experiment out'' does not mean fitting on
 both remaining experiments. Only three experiment identities support this analysis.
 
-The retained runner refits its normalizer on each training experiment; the distinct
-four-arm diagnostic is qualified in Section~\ref{sec:phm-diagnostics}. Recorded fixed-fusion
-and LOEO commits omit their entry points, so saved-prediction verification and inspection
-of current source do not establish complete historical training-code lineage. Although
-the resolved configuration retains stale v2 text, the pinned target identity and saved
-truths identify v3; this reconciliation is documented in the PHM traceability review.
-Missing historical fold records still limit retrospective verification.\ev{Recorded
+The retained runner refits its normaliser on each training experiment; the distinct
+four-arm diagnostic is qualified in Section~\ref{sec:phm-diagnostics}. The complete historical training entry points and some fold records were not preserved
+with the recorded fixed-fusion and LOEO source revisions. Saved predictions therefore
+support result checks but not complete reconstruction of those training runs. The pinned
+target identity and saved target values establish that the principal comparison uses v3.
+For the separate fixed-split comparison, the recorded practical-improvement criterion
+was a reduction of 0.15 percentage points in run-level MAE.\ev{Recorded
 source-lineage gap}{\EvidenceRef{E129}{}, \EvidenceRef{E130}{}}\ev{Principal LOEO
 runner}{\EvidenceRef{E026}{}}\ev{Target provenance}{\EvidenceRef{E021}{}}
 
@@ -285,7 +288,7 @@ For the historical fixed split, the selected three-group model achieved MAE 0.65
 percentage points on eight EXP-F runs, against the v3 training-mean error of 0.7348.
 The observed improvement was 0.0800 percentage points, below the declared 0.15-point
 criterion. The report's paired 95\% interval for model-minus-constant MAE,
-$[-0.548,+0.414]$, spans zero. This single fixed-split comparison remains separate
+$[-0.548, +0.414]$, spans zero. This single fixed-split comparison remains separate
 from the twenty-run LOEO summary below.\ev{Historical fixed-split result}
 {\EvidenceRef{E132}{}, \EvidenceRef{E129}{}}
 
@@ -299,21 +302,32 @@ fold-specific constants, not informative within-fold ranking.
 \centering\small
 \begin{tabular}{lrrrr}\toprule
 Model & MAE & 95\% interval & RMSE & Spearman\\\midrule
-Training-mean constant &0.8042 &[0.5769,1.0360]&0.9608&-0.0354\\
-Single encoder &0.9415 &[0.6754,1.2264]&1.1337&-0.2053\\
-Three-group fusion &0.8238 &[0.5527,1.1015]&1.0332&-0.1046\\\bottomrule
+Training-mean constant &0.8042 &[0.5769, 1.0360]&0.9608& $-0.0354$ \\
+Single encoder &0.9415 &[0.6754, 1.2264]&1.1337& $-0.2053$ \\
+Three-group fusion &0.8238 &[0.5527, 1.1015]&1.0332& $-0.1046$ \\\bottomrule
 \end{tabular}
 \displaynote{The analysis includes 20 nominal run units. Errors are expressed in
 percentage points of provisional candidate area. Run-cluster bootstrap intervals are
 conditional on the fitted models.}
 \end{table}
 
+Figure~\ref{fig:phm-results} shows the retained error estimates and their uncertainty. The learned models do not improve on the training-mean reference in point MAE.
+
+\begin{figure}[htbp]
+\caption{PHM2026 Error Under Leave-One-Experiment-Out Evaluation}\label{fig:phm-results}
+\centering
+\includegraphics[width=\linewidth]{figures/results_20261128_01/vector/phm_results.pdf}
+\displaynote{Points show MAE on 20 nominal run units across three experiments; bars are the retained 95\% run-cluster bootstrap intervals, conditional on the fitted models. These are individual-score intervals, not paired-difference intervals. The target is provisional image-derived candidate area, not independently validated damage.}
+\end{figure}
+
+\begin{samepage}
 The observed difference in mean absolute error between three-group fusion and the
 training mean was $+0.0196$ percentage points across the twenty runs. The mean of the
 paired run-bootstrap differences was $+0.0177$ percentage points, with a 95\% interval
-of $[-0.1962,0.2278]$. The interval allows lower error for either predictor. The study
+of $[-0.1962, 0.2278]$. The interval allows lower error for either predictor. The study
 used no prespecified equivalence margin.\ev{Observed errors and paired
 bootstrap}{\EvidenceRef{E024}{}}
+\par\end{samepage}
 
 \subsection{Interpretation and Limitations}
 The retained learned predictors do not establish an improvement over the constant under
@@ -339,12 +353,11 @@ replacing the principal comparison. The HF/spectral tutorial reports MAE 1.2203 
 full 72-feature model against a v2 constant MAE 0.6797 on eight EXP-F runs.
 Reduced-feature variants performed better than that full model but none beat its
 constant. Repeatedly inspecting feature subsets on the same test split makes this a
-development diagnostic, not independent confirmation of the selected subset. Its strong
-causal language about overfitting or complete archive duplication exceeds what feature
-tables alone establish and is not adopted here.
+development diagnostic, not independent confirmation of the selected subset. The feature tables do not isolate overfitting as the cause of the result or establish
+byte-level duplication of complete raw archives.
 
 The four-arm study compares group regressors, concatenation, affine late fusion and
-context-conditioned embeddings, but fits its normalizer before rotating the folds.
+context-conditioned embeddings, but fits its normaliser before rotating the folds.
 This preprocessing leak prevents treating it as an isolated LOEO assessment or merging
 its scores with the principal results. Raw-vibration and tooth-sector screens, AnomalyDINO
 sweeps, odd/even views, synthetic controls, teacher/oracle constructions and monotonic
@@ -364,7 +377,7 @@ constant predictor's error on a fixed split. The comparison therefore challenges
 inference that adding sensor representations improves prediction of this proxy across
 experiments.
 
-Optimizing a predictor for physical damage would first require checking the proxy
+Optimising a predictor for physical damage would first require checking the proxy
 against independent damage measurements or expert area annotations. Until then, the
 error estimates quantify agreement with the photographic rule. The study also leaves
 advance warning, remaining useful life and response to natural sensor failure
@@ -383,7 +396,7 @@ welding classifier or establish that visual and vibration information are genera
 uninformative.
 
 The design lesson is to establish the target, observation horizon and independent
-evaluation units before optimizing fusion complexity. For PHM, a physical damage
+evaluation units before optimising fusion complexity. For PHM, a physical damage
 measurement would establish what the proxy represents. The error of the constant
 predictor provides a reference for interpreting model performance under degradation. The
 subsequent study compares combined pipelines with their single-input reference models

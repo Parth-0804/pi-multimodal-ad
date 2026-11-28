@@ -13,15 +13,15 @@ participant-disjoint fitting of the proposed learned fusion model.\ev{HANDOVER s
 interpretation}{\EvidenceRef{E084}{}}
 
 The HANDOVER dataset paper compared video, force/torque and gripper inputs for
-completed-trial failure detection \citep{Thoduka2024Handover}. Its five-class I3D model
+completed-trial failure detection \parencite{Thoduka2024Handover}. Its five-class I3D model
 achieved 69.1\% accuracy with video and force/torque, falling to 67.9\% when the gripper
 input was added. The authors also investigated temporal action modelling with auxiliary
 action supervision. The binary experiment here evaluates a different target and uses AP,
 which precludes a numerical comparison with those five-class accuracies.
 
 \section{Dataset and Common-Support Cohort}
-The source describes successful and failed robot handovers \citep{Thoduka2024Handover}.
-The evaluation uses the pinned Zenodo v1 release \citep{Thoduka2024HandoverData}, with
+The source describes successful and failed robot handovers \parencite{Thoduka2024Handover}.
+The evaluation uses the pinned Zenodo v1 release \parencite{Thoduka2024HandoverData}, with
 589 native trials involving Toyota HSR and Kinova Gen3 and 17 participants reported by
 its datasheet. Native outcomes are success, no approach, outcome~2, and drop. Outcome~2
 means no grasp for robot-to-human handover or no release for human-to-robot handover.
@@ -83,12 +83,12 @@ replication.
 \caption{HANDOVER Test Performance on the Common Set of Trials}\label{tab:handover-clean}
 \centering\small
 
-\begin{tabular}{lrr}\hline Model&Mean AP&Seed SD\\\hline
+\begin{tabular}{lrr}\toprule Model&Mean AP&Seed SD\\\midrule
 Training-prior predictor&0.728477&0.000000\\
 Visual&0.771647&0.006411\\
 Sensor logistic&0.823624&0.000000\\
 Sensor HGB&0.906319&0.000000\\
-Averaging&0.803102&0.013458\\\hline
+Averaging&0.803102&0.013458\\\bottomrule
 \end{tabular}
 \displaynote{Failure is the positive class. All models use the same 151 trials.}
 \end{table}
@@ -116,7 +116,7 @@ methods was fitted.
 
 The missing participant mapping also prevents estimation of a participant-cluster
 interval. A trial bootstrap would treat repeated observations from the same person as
-independent. The variation across seeds describes optimization on a fixed set of test
+independent. The variation across seeds describes optimisation on a fixed set of test
 trials. Participant independence is reported for the official split by the dataset
 authors, but could not be checked from trial-level identities.\ev{HANDOVER grouping
 restriction}{\EvidenceRef{E082}{}}

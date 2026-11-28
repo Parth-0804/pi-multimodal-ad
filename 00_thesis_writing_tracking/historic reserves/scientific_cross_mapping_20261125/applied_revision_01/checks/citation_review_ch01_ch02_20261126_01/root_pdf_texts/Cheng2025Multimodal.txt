@@ -1,0 +1,717 @@
+5000                                                         IEEE TRANSACTIONS ON INDUSTRIAL INFORMATICS, VOL. 21, NO. 6, JUNE 2025
+
+
+
+
+       Multimodal Industrial Anomaly Detection via
+           Uni-Modal and Cross-Modal Fusion
+                                     Hao Cheng , Jiaxiang Luo , and Xianyong Zhang
+
+
+   Abstract—Constructing comprehensive multimodal fea-                                                   I. INTRODUCTION
+ture representations from RGB images (RGB) and point
+                                                                                     EEP learning-based 2D–3D multimodal anomaly detec-
+clouds (PT) in 2D–3D multimodal anomaly detection (MAD)
+methods is very important to reveal various types of in-
+dustrial anomalies. For multimodal representations, most
+                                                                              D      tion (MAD) has been developed, capable of accurately
+                                                                              revealing a broad range of anomalies [1], [2]. Specifically,
+of the existing MAD methods often consider the explicit                       texture and color anomalies are usually pronounced in 2-D RGB
+spatial correspondence between the modality-specific fea-
+tures extracted from RGB and PT through space-aligned                         images (RGB), and structural and size anomalies are evident
+fusion, while overlook the implicit interaction relationships                 in 3-D point clouds (PT) [3], [4]. With both RGB and PT
+between them. In this study, we propose a uni-modal and                       data, it is possible to train a powerful detection model that is
+cross-modal fusion (UCF) method, which comprehensively                        proven to have a high generalization error upper bound in the
+incorporates the implicit relationships within and between                    latent feature space [5]. Therefore, MAD methods have shown
+modalities in multimodal representations. Specifically, UCF
+first establishes uni-modal and cross-modal embeddings                        superior performance in several industrial applications, such as
+to capture intramodal and intermodal relationships through                    rail inspection [6], concrete structure defect detection [7], and
+uni-modal reconstruction and cross-modal mapping. Then,                       surface examination, of various industrial products [4].
+an adaptive nonequal fusion method is proposed to de-                            MAD methods are committed to constructing complete mul-
+velop fusion embeddings, with the aim of preserving the                       timodal feature representations of normalcy, so that in either
+primary features and reducing interference of the uni-modal
+and cross-modal embeddings. Finally, uni-modal, cross-                        modality, normal samples have small intra-class distances and
+modal, and fusion embeddings are all collaborated to re-                      exhibit significant differences from anomalies. The multimodal
+veal anomalies existing in different modalities. Experiments                  representations are often established by simple concatenation of
+conducted on the MVTec 3D-AD benchmark and the real-                          the RGB and PT features based on the explicit spatial correspon-
+world surface mount inspection demonstrate that the pro-                      dence [8], [9], [10], [11]. In particular, Asymmetric Student-
+posed UCF outperforms existing approaches, particularly
+in precise anomaly localization.                                              Teacher Network (AST) [8] concatenates the depth of PT at the
+                                                                              pixel positions of RGB and projects them to a normal distribu-
+  Index Terms—Anomaly localization, industrial anomaly                        tion. Shape-guided dual-memory [10] and Multi-3D-Memory
+detection, multimodal fusion, unsupervised learning.
+                                                                              (M3DM) [9] concatenate the deep features extracted from the
+                                                                              RGB and PT in local regions and low-dimensional space, re-
+                                                                              spectively. In some cases, we observe that such multimodal
+                                                                              representations may worsen the detection performance. As il-
+                                                                              lustrated in Fig. 1(a), “contamination” anomalies of “cookie” in
+   Received 17 January 2025; revised 10 February 2025; accepted 26
+February 2025. Date of publication 3 April 2025; date of current ver-
+                                                                              MVTec 3D-AD benchmark show weak classifiability in RGB
+sion 23 May 2025. This work was supported in part by the National             and relatively significant differences in PT. It has been found
+Natural Science Foundation of China under Grant 62271214, in part             in the experiments that the space-aligned concatenation based
+by Natural Science Foundation of Guangdong Province under Grant
+2024A1515011466, and in part by Science and Technology Program of
+                                                                              fusion will weaken the anomalies rather than enhancing them.
+Guangzhou under Grant 2023B01J0037. Paper no. TII-25-0411. (Cor-              This phenomenon is manifested in mistakenly focusing on the
+responding author: Jiaxiang Luo.)                                             confused normal RGB regions of black spot and interfering
+   Hao Cheng is with the School of Automation Science and Engi-
+neering, South China University of Technology, Guangzhou 510640,
+                                                                              with the representation of PT, as evidenced by the visualized
+China, and also with the Engineering Research Centre for Precision            discrepancy maps DRGB and DPT in Fig. 1(a). In addition to
+Electronic Manufacturing Equipments, Ministry of Education, South             the inherent spatial correspondence, the implicit interaction
+China University of Technology, Guangzhou 510640, China (e-mail:
+auhaocheng@mail.scut.edu.cn).
+                                                                              relationships among the modality-specific features of RGB and
+   Jiaxiang Luo is with the School of Automation Science and Engi-            PT are often overlooked. Constructing representations with the
+neering, South China University of Technology, Guangzhou 510640,              interaction relationships holds potential for addressing the afore-
+China, and also with the Key Laboratory of Autonomous Systems and
+Networked Control, Ministry of Education, South China University of
+                                                                              mentioned phenomena, as additional relational constraints can
+Technology, Guangzhou 510640, China (e-mail: luojx@scut.edu.cn).              further enhance anomalies beyond such constraints.
+   Xianyong Zhang is with the School of Automation, Guangdong                    In this study, we propose uni-modal and cross-modal fusion
+Polytechnic Normal University, Guangzhou 510180, China (e-mail:
+zhangxianyong@gpnu.edu.cn).
+                                                                              (UCF) to achieve precise detection and localization. Our main
+   Digital Object Identifier 10.1109/TII.2025.3552723                         objective is to establish relatively complete multimodal repre-
+
+1941-0050 © 2025 IEEE. All rights reserved, including rights for text and data mining, and training of artificial intelligence and similar technologies.
+   Personal use is permitted, but republication/redistribution requires IEEE permission. See https://www.ieee.org/publications/rights/index.html
+                                                                 for more information.
+
+   Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+CHENG et al.: MULTIMODAL INDUSTRIAL ANOMALY DETECTION VIA UNI-MODAL AND CROSS-MODAL FUSION                                                           5001
+
+
+
+                                                                                  3) A discrepancy-guided fusion (DGF) module is proposed
+                                                                                     to develop adaptive fusion embeddings of uni-modal and
+                                                                                     cross-modal embeddings, with the aim of preserving pri-
+                                                                                     mary features and reducing interference of them.
+                                                                                  4) Extensive experiments on public benchmarks have val-
+                                                                                     idated the superior performance of the UCF in MAD.
+                                                                                     Specifically, on the MVTec 3D-AD benchmark, our UCF
+                                                                                     achieves an image-level AUROC of 0.963 and pixel-level
+                                                                                     AUPRO of 0.975 and 0.471 at false positive rates (FPR) of
+                                                                                     0.3 and 0.01, respectively. In addition, practical industrial
+                                                                                     experiments in precision surface mount inspection further
+                                                                                     validate the effectiveness of our UCF.
+
+
+                                                                                                        II. RELATED WORK
+                                                                                 Visual anomaly detection has achieved remarkable progress
+                                                                              in its development, forming a mainstream binary classifica-
+                                                                              tion framework based on unsupervised learning. Within this
+                                                                              framework, image anomaly detection (IAD) focuses on learning
+Fig. 1. Comparison between the previous space-aligned concatena-
+tion and our proposed UCF. (a) Previous methods fuse two indepen-             representations of normal RGB images, thereby highlighting the
+dent pre-trained features through spatial alignment and concatenation.        significant differences of anomalies [12]. Unlike IAD, MAD
+(b) Our UCF learns uni-modal, cross-modal, and fusion embeddings              places a greater focus on how to construct multimodal feature
+to build comprehensive representations. DRGB and DPT represent the
+discrepancy maps of RGB and PT, respectively.                                 representations of RGB and PT to enhance detection capabili-
+                                                                              ties [4]. In this section, we will review the development of IAD
+                                                                              and MAD, with a particular emphasis on the challenges posed
+                                                                              by establishing multimodal representations.
+
+sentations that present large discrepancies to various types of
+anomalies and stabilizing small discrepancies to normal regions.              A. Image Anomaly Detection
+As shown in Fig. 1(b), UCF establishes the implicit interaction                  IAD mainly extracts features through pre-trained backbones
+relationships through uni-modal reconstruction and cross-modal                and represents these normal features using four main schemes:
+mapping (URCM) to obtain uni-modal and cross-modal em-                        reconstruction [13], knowledge distillation [14], distribution
+beddings. These embeddings provide additional relational con-                 mapping [15], and memory banks [16]-based methods. The
+straints as supplements to multimodal representations. Further-               reconstruction-based methods rebuild abnormal sample into a
+more, UCF employs adaptive nonequal fusion of the uni-modal                   normal state, enabling the model to produce significant er-
+and cross-modal embeddings. This fusion further focuses on re-                rors for anomalies. These methods primarily focus on address-
+vealing the anomalies and reducing noise in normal regions due                ing the constant mapping in the reconstruction of anomalies
+to the interference of uni-modal and cross-modal embeddings.                  and have subsequently developed into a series of strategies:
+Finally, the discrepancies of uni-modal, cross-modal, and fusion              in-painting [17], deep feature reconstruction [13], and diffu-
+embeddings of the original RGB and PT features are commonly                   sion model [18]. To reduce over-generalization, knowledge
+utilized to detect anomalies. As shown in Fig. 1(b), the final                distillation-based methods regress the output of the student
+anomaly map demonstrates precise anomaly localization of our                  model to that of the teacher model [19]. The teacher and student
+UCF for the “contamination” anomaly. The visualized DRGB                      models are typically implemented as pretrained and untrained
+and DPT also illustrate that UCF enhances the anomalies in both               feature extractors, respectively [20], [21]. Unlike the first two
+modalities, benefiting from our multimodal representations with               methods in the feature space, distribution mapping-based meth-
+additional interaction relationships. In summary, the contribu-               ods, represented by normalizing flows, project the pretrained
+tions of the proposed UCF are as follows.                                     features to a normal distribution in the latent space [15]. This
+    1) Unlike previous fusion methods based on explicit spatial               distribution is robust to noise but insufficient for fine-grained
+       correspondence, we propose UCF to build more complete                  localization [22]. Essentially, the aforementioned three meth-
+       multimodal representations. Our UCF comprehensively                    ods can be summarized as implicitly storing normality into
+       incorporates the establishment and fusion of both implicit             the parameters of the model. In contrast, memory bank-based
+       intramodal and intermodal relationships of RGB and PT                  methods store normal features explicitly in extra space, iden-
+       features.                                                              tifying test samples through searching in this memory space
+    2) To establish implicit interaction relationships, we propose            based on distance metrics [23]. To enhance performance and
+       URCM to obtain the uni-modal and cross-modal embed-                    search efficiency, PatchCore adopts local aggregation and core-
+       dings. These embeddings serve as additional relational                 set subsampling to store and sparsify the representative features,
+       constraints to supplement the multimodal representations.              respectively [16].
+
+    Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+5002                                                                      IEEE TRANSACTIONS ON INDUSTRIAL INFORMATICS, VOL. 21, NO. 6, JUNE 2025
+
+
+
+
+Fig. 2.   UCF framework. (a) Training. (b) Inference.
+
+
+   Although the IAD approaches can be simply expanded to the                   correspondence, the interaction relationships of the modality-
+MAD approaches through simple input dimension adaptation,                      specific features of RGB and PT are often overlooked in terms
+the performance from this expansion are limited by the hetero-                 of their impact on fusion. Moreover, Cross-Modal Feature Map-
+geneity of multimodal input data and the complexity of modal                   ping method (CFM) [29] builds the cross-modal relationships
+relationships [4].                                                             between the deep features of normal RGB and PT, thus reveal-
+                                                                               ing anomalies beyond these relationships. Inspired by this, we
+                                                                               propose the UCF method, which aims to optimize multimodal
+B. Multimodal Anomaly Detection                                                representations by emphasizing the fusion that takes into account
+   Compared with IAD, MAD concentrates on building multi-                      the interaction relationships of RGB and PT features.
+modal representations of heterogeneous features of RGB and
+PT to enhance detection performance rather than developing
+new methods for modeling normal samples. Therefore, existing                                                 III. METHOD
+MAD methods will be reviewed from two aspects: modality-                       A. Framework
+specific feature extraction and fused representation. In modality-
+specific feature extraction, RGB features are primarily deep                      In order to develop multimodal representations with implicit
+features extracted by pretrained models [24], [25], while PT                   interaction relationships, the overall framework of the UCF
+features are obtained by handcrafted feature descriptors [11],                 is designed as a symmetric dual-branch structure with cross
+[26], pretrained 3-D feature extractors [27], or a combination                 interactions. As shown in Fig. 2, it mainly includes pre-trained
+of them [28]. The modality-specific features have demonstrated                 encoders, URCM, as well as DGF. Particularly, the pretrained
+good discriminability in anomaly detection within either RGB                   encoders are used to obtain source features for RGB and PT. The
+or PT. However, how to fuse them to enhance detection perfor-                  URCM learns the embeddings of uni-modal and cross-modal
+mance is challenging, as it is difficult to adaptively select ef-              relations of the source features through URCM. To maximize
+fective features for revealing anomalies under the unsupervised                the primary features of these embeddings, the DGF is designed
+paradigm. An intuitive method is to concatenate the features                   to adaptively fuse them, guided by their respective unequal dif-
+after aligning them according to the intrinsic spatial relationship            ferences to the source features. As indicated in Fig. 2, RGB-uni
+between RGB and PT. For example, AST [8] concatenates                          and RGB-cro are designed to learn the uni-modal embeddings of
+raw data to build RGB-D type normal samples and trains an                      RGB and the cross-modal embeddings derived from PT, which
+asymmetric student-teacher framework. In feature space,Back to                 are fused by RGB-DGF. Accordingly, the modules for PT adopt
+Feature method (BTF) [11] straightforwardly concatenates deep                  the same design.
+RGB features and handcrafted PT features, and shape-guided                        The training and inference stages are shown in Fig. 2. Specif-
+dual-memory [10] extracts local shape of PT features and their                 ically, the format of the multimodal data consists of pairs
+spatially corresponding RGB features. Both of shape-guided                     of RGB image (RGB) and PT {xrgb , xpt }. Correspondingly,
+                                                                                                          rgb     pt
+dual-memory and BTF store these features into memory banks to                  their source features {fsrc    , fsrc } are obtained from modality-
+detect anomalies. For learning-based feature fusion, M3DM [9]                  specific pretrained extractors. The proposed UCF aims to es-
+employs contrastive learning to enhance RGB and PT features                    tablish multimodal representations by learning three distinct
+at the matched locations and weaken them at mismatched loca-                   types of embeddings by URCM and DGF. As the training
+                                                                                                           rgb          pt
+tions.                                                                         stage in Fig. 2(a), the fsrc      and fsrc  can be transformed into
+                                                                                          rgb  pt→rgb  rgb                    pt    rgb→pt    pt
+   Essentially, most of aforementioned fusion methods can be                   R = {funi , fcro , fdgf } and R = {funi
+                                                                                 rgb                                    pt
+                                                                                                                                  , fcro     , fdgf }, re-
+summarized as concatenations of modality-specific features                     spectively. Here, the three embeddings in the R and Rpt are
+                                                                                                                                       rgb
+
+based on spatial alignment. However, in addition to spatial                    uni-modal embeddings, cross-modal embeddings, and fusion
+
+    Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+CHENG et al.: MULTIMODAL INDUSTRIAL ANOMALY DETECTION VIA UNI-MODAL AND CROSS-MODAL FUSION                                                            5003
+
+
+
+                                                                                                      pt→rgb        rgb→pt
+                                                                               respectively, while fcro      and fcro      denote the CMM from
+                                                                               PT to RGB and from RGB to PT, respectively.
+                                                                                  The UMR module comprises multiple linear layers and incor-
+                                                                               porates Gaussian Error Linear Unit (GELU) activation functions
+                                                                               between adjacent layers, which is illustrated in Fig. 3(a). The first
+                                                                               layer and the final linear layer are designed to match the number
+                                                                               of channels of the input and output, while the intermediate layers
+                                                                               have fewer channels to obtain reconstructed low-dimensional
+                                                                                               rgb       pt                          rgb    pt
+                                                                               features The fsrc   and fsrc are reconstructed as {funi   , funi } that
+                                                                               are dimensionally consistent with the inputs. The pixel-level
+                                                                               uni-modal loss is expressed as
+                                                                                                       rgb
+                                                                                                      fsrc,i · f rgb      f pt · f pt
+                                                                                         Luni = 2 −         uni,i  −  src,i uni,i 
+                                                                                                     rgb  rgb   pt  pt                            (1)
+                                                                                                    fsrc,i funi,i  fsrc,i funi,i 
+                                                                               where i represents the pixel position.
+                                                                                  The CMM module adopts a structure similar to that of
+Fig. 3.   Uni-modal reconstruction and cross-modal mapping.                    the UMR. Considering the adaptability to the varying chan-
+                                                                               nel dimensions of the two modalities. Therefore, the outputs
+                                                                                  pt→rgb    rgb→pt
+                                                                               {fcro     , fcro    } of CMM modules are dimensionally matched
+                                                                               of RGB and PT. The pixel-level cross-modal loss is defined as
+embeddings, respectively. The UCF is optimized by minimizing
+                                                                                                    rgb      pt→rgb
+the similarity distance between the embeddings and the source                                      fsrc,i · fcro         f pt · f rgb→pt
+features across all normal samples. In the inference stage, the                       Lcro = 2 −                  −  src,i cro,i  .
+                                                                                                  rgb  pt→rgb   pt  rgb→pt                        (2)
+test RGB and PT are first fed into a pre-trained encoders to obtain                              fsrc,i fcro,i  fsrc,i fcro,i 
+                                        rgb          pt
+their corresponding source features fsrc,test  and fsrc,test , which
+are then transformed into multimodal representations Rtest    rgb
+                                                                  and          C. Discrepancy-Guided Fusion
+  pt
+Rtest through pretrained URCM and DGF modules. Finally, the                       To preserve primary features and avoid interference of uni-
+discrepancy maps between source features and their multimodal                  modal and cross-modal embeddings, the DGF module is de-
+representations are fused to final anomaly map. Each component                 signed to establish a fused representation of them. This adaptive
+of the proposed UCF will be described in detail below.                         fusion is achieved by measuring discrepancies between the two
+                                                                               embeddings compared to the source features, and evaluating
+                                                                               their complementarities accordingly. To emphasize the primary
+B. Uni-Modal Reconstruction and Cross-Modal Mapping
+                                                                               features within uni-modal and cross-modal embeddings, pixel-
+   Unlike the transformation matrix of spatial correspondences,                wise addition of these embeddings is employed as input to
+the interaction relationships of the features of RGB and PT are                obtain the fusion embeddings. Specifically, the DGF aims to
+                                                                                         rgb    pt→rgb                                    rgb
+modeled through uni-modal reconstruction (UMR) of RGB and                      fuse {funi    , fcro    } into the fusion embeddings fdgf       of RGB
+PT features, as well as cross-modal mapping (CMM) from RGB                              pt     rgb→pt         pt
+                                                                               and {funi   , fcro     } into fdgf of PT, respectively. Since the fusion
+to PT features and vice versa.                                                 process is symmetric for RGB and PT, the uni-modal, cross-
+     1) Multimodal Feature Extraction: Two pretrained encoders                 modal, and the fusion embeddings are succinctly expressed
+extract source features from RGB and PT. Given paired sam-                     without superscripts funi , fcro and fdgf , respectively. In particular,
+ples {xrgb ∈ RH×W ×3 , xpt ∈ RNp ×3 }, the source features are                 the DGF module is designed from three parts: fusion network,
+    rgb
+        ∈ Rh×w×C , fsrc   pt
+                             ∈ Rnp ×C }. Here, (H, W, 3), (Np , 3),
+                    rgb                  pt
+{fsrc                                                                          discrepancy measurement, and complementarity rating, which
+(h, w, C rgb ), and (np , C pt ) represent their corresponding sizes.          are detailed as below.
+                                   rgb
+To align these features [29], fsrc     is scaled to H × W by bilinear             1) Fusion Network: The fusion network is designed as a
+                        pt
+interpolation, and fsrc is interpolated to Np using a weighted                 lightweight convolutional network. As shown in Fig. 4, the
+sum of the three nearest neighbors. The PT features are then                   network consists of two convolutional layers of size 3 × 3
+projected onto the RGB plane using camera parameters, with                     activated by GELU functions. The pixel-wise addition of funi
+unmatched pixel positions set to 0.                                            and fcro is employed as input of DGF to obtain fdgf . The fusion
+     2) Reconstruction and Mapping: Since the pretrained fea-                  network measures the differences D(funi , fsrc ) and D(fcro , fsrc )
+ture extractors have extracted local and global features [25],                 between the two embeddings and the source features to assess
+[29], URCM is implemented as lightweight multilayer percep-                    their respective contributions to the normal representation. Their
+trons (MLPs) with distinct optimization objectives. As shown in                distributions are adjusted through the temperature hyperparam-
+                                            rgb       pt
+Fig. 3, the aligned source features fsrc         and fsrc are transformed      eter t and their respective complementarity scores Suni and Scro
+                                             rgb   pt
+into the uni-modal embeddings {funi , funi } and cross-modal                   through a Softmax function. The loss function is defined as the
+                  pt→rgb     rgb→pt                                rgb
+embeddings {fcro          , fcro    } by the MLPs. Here, funi          and     weighted distance using complementary scores between fdgf and
+  pt
+funi represent the reconstruction features for the RGB and PT,                 funi , as well as between fdgf and fcro .
+
+     Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+5004                                                                      IEEE TRANSACTIONS ON INDUSTRIAL INFORMATICS, VOL. 21, NO. 6, JUNE 2025
+
+
+
+
+                                                                                 Algorithm 1: UCF Framework.
+                                                                                  // Training stage
+                                                                                  Input: Train data {xrgb , xpt }; Moudules of MRGB , MP T ,
+                                                                                   MU RCM , MDGF ;
+                                                                                                                          rgb    pt→rgb    rgb
+                                                                                  Output: RGB embeddings {funi                , fcro     , fdgf } and PT
+                                                                                                       pt    rgb→pt     pt
+                                                                                   embeddings {funi , fcro            , fdgf };
+                                                                                  1: Initialize MRGB and MP T with pretrained weights;
+                                                                                  // Training stage 1
+                                                                                  2: Initialize MU RCM with random weights;
+                                                                                       rgb     pt
+                                                                                  3: fsrc  , fsrc  = MRGB (xrgb ), MP T (xpt );
+                                                                                        rgb      pt→rgb                       rgb
+                                                                                  4: {funi , fcro        } = MU RCM (fsrc          );
+                                                                                        pt     rgb→pt                       pt
+                                                                                  5: {funi  , fcro     } = MU RCM (fsrc         );
+                                                                                  6: Caculate the loss using (6);
+                                                                                  // Training stage 2
+Fig. 4.   Discrepancy-guided fusion.                                              7: Initialize MDGF with random weights;
+                                                                                       rgb                  rgb    pt→rgb
+                                                                                  8: fdgf    = MDGF (funi       , fcro       );
+                                                                                       pt                  pt    rgb→pt
+                                                                                  9: fdgf = MDGF (funi , fcro             );
+    2) Discrepancy Measurement: To quantify the distinct con-
+                                                                                 10: Caculate the loss using (5);
+tributions of the two embeddings in the fusion process, dis-
+                                                                                  // Inference stage
+crepancy measurement is designed to measure the differences
+                                                                                  Input: Test data {xrgb , xpt }test , Pretrained UCF;
+in uni-modal and cross-modal embedding relative to source
+                                                                                  Output: Anomaly scores for {xrgb , xpt }test ;
+features. Specifically, 2 -normalization is adopted to normalize
+                                                                                 11: Caculate test RGB and PT embeddings using pretrained
+the individual feature vectors of all features. In addition, the
+                                                                                     UCF;
+Euclidean distance is employed to measure the discrepancies.
+                                                                                 12: Caculate Euclidean distance between test embeddings
+In general, the pixel-level discrepancy measurement can be
+                                                                                     and source features;
+represented as
+                                                                               13: Caculate anomaly map using (7).
+                                  funi,i        fsrc,i 
+           D(funi,i , fsrc,i ) = 
+                                  funi,i 2 −            
+                                                fsrc,i 2 2
+                                                             (3)             primary features from the embeddings that are closer to the
+                                  fcro,i        f         
+           D(fcro,i , fsrc,i ) =                                             original features. Thus, the pixel-level loss function is defined
+                                                   src,i
+                                  fcro,i 2 − fsrc,i 2 
+                                                             2                 as
+where funi,i , fcro,i and fsrc,i are the uni-modal embeddings,                                   LDGF = Scro · Muni + Suni · Mcro                        (5)
+cross-modal embeddings, and the source feature at the ith pixel
+position, respectively.                                                        where Muni and Mcro are the mean squared error loss between
+    3) Complementarity Rating: After discrepancy measure-                      funi and fdgf , as well as between fcro and fdgf , respectively.
+ment, the complementarity rating employs the discrepancies
+ratio of uni-modal and cross-modal embeddings relative to the                  D. Training and Inference
+source features as scores. Embeddings with larger discrepancies                   1) Two-Stage Training: A two-stage training approach is em-
+have higher complementarity scores, indicating a need for sup-                 ployed by the proposed UCF to optimize the entire model.
+plementation from the other embeddings. The Softmax function                   The two training objectives are to learn distinct embeddings
+is employed for complementarity rating, which is expressed as                  and fusion embeddings of uni-modal and cross-modal relations,
+                                  exp(Duni,i )                                 respectively. In the first stage, the URCM module obtains uni-
+                 Suni,i =                                                      modal and cross-modal embeddings, which are optimized by
+                            exp(Duni,i ) + exp(Dcro,i )
+                                                                        (4)                             LURCM = Luni + Lcro                              (6)
+                                exp(Dcro,i )
+                 Scro,i =
+                          exp(Duni,i ) + exp(Dcro,i )                          where the Luni and the Lcro are the loss functions for reconstruc-
+                                                                               tion and mapping, corresponding to (1) and (2), respectively.
+where Duni,i = D(funi,i , fsrc,i )/t, Dcro,i = D(fcro,i , fsrc,i )/t.
+                                                                                  In the second stage, the pixel-wise addition of uni-imodal and
+Here, t is a temperature hyperparameter that adjusts the smooth-
+                                                                               cross-modal embeddings are taken as inputs to the DGF module
+ness of the distribution of complementarity scores. Suni and Scro
+                                                                               and then optimized by (5).
+are employed in pixel-level fusion loss to adaptively control the
+                                                                                   2) Multidiscrepancy Fusion Inference: To leverage the
+contributions of these two embeddings.
+                                                                               strengths of each feature, the discrepancies between the uni-
+    4) Loss Function: The loss function is designed to facil-
+                                                                               modal, cross-modal, and fusion features relative to the source
+itate an adaptive fusion of uni-modal and cross-modal em-
+                                                                               features are collectively fused into final anomaly map
+beddings. Specifically, embeddings with low complementarity
+                                                                                       rgb                 pt                  rgb    pt
+scores dominate the loss, thereby encouraging the fusion to learn                A = (Duni + Dcro
+                                                                                              pt→rgb
+                                                                                                     ) · (Duni + Dcro
+                                                                                                                  rgb→pt
+                                                                                                                         ) · (Ddgf + Ddgf ) (7)
+
+    Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+CHENG et al.: MULTIMODAL INDUSTRIAL ANOMALY DETECTION VIA UNI-MODAL AND CROSS-MODAL FUSION                                                           5005
+
+
+
+                                                              TABLE I
+                              PERFORMANCE COMPARISON (I-AUROC/P-AUPRO0.3 ) OF ANOMALY DETECTION METHODS
+
+
+
+
+              rgb    pt→rgb         rgb                                                                  TABLE II
+where the Duni    , Dcro    , and Ddgf    are the uni-modal, cross-
+                                                                                 PRECISE LOCATION PERFORMANCE COMPARISON (P-AUPRO0.01 ) OF
+modal, and fusion discrepancy maps of RGB, respectively.                                        ANOMALY DETECTION METHODS
+                         pt     rgb→pt         pt
+Correspondingly, the Duni    , Dcro    , and Ddgf are the uni-modal,
+cross-modal, and fusion discrepancy maps of PT, respectively.
+The global anomaly score is taken as the maximum value of the
+anomaly map with uni-modal and cross-modal discrepancies,
+which is employed to image-level anomaly detection. The entire
+algorithmic flow of proposed UCF is shown in Algorithm 1.
+
+
+                          IV. EXPERIMENT
+A. Experiment Settings
+   1) Datasets: MVTec 3D-AD is a benchmark that contains
+10 categories of industrial objects. It has a total of 2656 training
+samples, 294 validation samples, and 1197 test samples. It pro-
+                                                                              B. Quantitative Comparison
+vides RGB images alongside pixel-registered 3-D information
+for each sample. This means that for each pixel in the image,                    To evaluate the performance of the proposed methods, UCF
+there is corresponding 3-D information available, typically in                is comprehensively compared with 10 MAD methods on the
+the form of (x, y, z) coordinates.                                            MVTec 3D-AD benchmark. These comparative MAD meth-
+   2) Implementation Details: The image and PT feature extrac-                ods include six baseline models that directly utilize depth and
+tors use Transformer-based models: DINO ViT-B/8 [25] trained                  voxel data to construct Generating Adversarial Network (GAN),
+on ImageNet and Point-MAE [27] trained on ShapeNet. These                     Autoencoder (AE), and Variation Model (VM) models [4], as
+extractors capture both global and local features of industrial               well as the state-of-the-art (SOTA) models, namely, BTF [11],
+samples [9], [29]. For PT preprocessing, points with a distance               AST [8], M3DM [9], and CFM [29]. In addition, these methods
+less than 0.005 from a RANSAC-fitted plane [9], [29] are                      cover the typical approaches in categories, such as distribution
+considered background. The URCM uses five linear layers for                   mapping, reconstruction, and memory bank.
+reconstruction and three for mapping, while the DGF uses two                      1) Universal Detection and Localization Performance: As
+3×3 convolutional layers. All layers are activated by GELU.                   listed in Table I, our proposed UCF outperforms competitors
+The URCM and DGF are trained for 250 and 30 epochs, respec-                   in both anomaly detection and localization by achieving the
+tively, with a learning rate of 0.001 using the Adam optimizer.               highest average I-AUROC and P-AUPRO0.3 . Compared to the
+Experiments were conducted on a single NVIDIA GeForce RTX                     previous SOTA model CFM, UCF improves the I-AUROC and
+4090.                                                                         P-AUPRO0.3 by 0.1 and 0.04, respectively. In addition, UCF
+   3) Evaluation Metrics: The performance of the proposed                     exhibits the best or near-best performance in all 10 categories.
+UCF and the comparative methods is evaluated by two standard                      2) Precise Localization Performance: Table II shows the P-
+metrics, which are the image-level area under receiver operating              AUPRO0.01 for accurate anomaly localization. The low FPR of
+characteristic curve (I-AUROC) and the pixel-level area under                 P-AUPRO is crucial for precision industrial inspection and better
+the per-region overlap (P-AUPRO). The I-AUROC assesses                        reflects differences in localization performance. Quantitatively,
+the instance-level detection performance, while the P-AUPRO                   UCF achieves the highest average P-AUPRO0.01 of 0.471, out-
+evaluates the localization capacity. In addition, P-AUPRO is                  performing the SOTA CFM method by 0.16. Qualitatively, the
+further divided into P-AUPRO0.3 and P-AUPRO0.01 , which are                   visualization of localization results in Fig. 5 corroborates that
+used to evaluate the localization performance at FPR of 0.3 and               the anomaly maps have minimal noise in normal areas, which is
+0.01, respectively.                                                           highly beneficial for precise localization.
+
+
+    Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+5006                                                                      IEEE TRANSACTIONS ON INDUSTRIAL INFORMATICS, VOL. 21, NO. 6, JUNE 2025
+
+
+
+                                                                                                            TABLE IV
+                                                                                           ABLATION STUDY ON DIFFERENT MODULES OF UCF
+
+
+
+
+Fig. 5.   Visualization localization results.
+
+                                                                               Fig. 6. Ablation visualization results. (a) “Contamination” anomaly on
+                                                                               the “peach” is visible in both the RGB image and PT (indicated by red
+                          TABLE III
+                                                                               dotted circles), while a normal dark spot is also marked in RGB image
+  MEMORY OCCUPANCY AND INFERENCE SPEED OF ANOMALY DETECION
+                                                                               (indicated by green dotted circles). (b) “Color” anomaly in “foam” exists
+                 METHODS ON MVTEC 3D-AD
+                                                                               only in RGB image (indicated by red dotted circle and local enlarge-
+                                                                               ment).
+
+
+
+                                                                                   1) URCM: As listed in Case A of Table IV, the I-AUROC,
+                                                                               P-AUPRO0.3 and P-AUPRO0.01 are 0.883, 0.967, and 0.435,
+                                                                               respectively, when only UMR is available. In addition, Fig. 6(a)
+                                                                               shows that UMR is good at detecting anomalies that are signif-
+                                                                               icantly present in both modalities. Compared to Case A, Case
+    3) Computational Efficiency Analysis: In order to assess the               B demonstrates superior detection performance using CMM,
+efficiency of the detection methods, Table III lists the compari-              with scores of 0.953, 0.971, and 0.453. This improvement is
+son results of different detection methods in terms of memory oc-              attributed to the fact that CMM is more sensitive to anomalies
+cupancy and inference speed. In a multimodal scenario, M3DM                    whether they exist in a single modality or in both modalities.
+achieves the highest memory occupancy of 6526.1 MB and the                     As shown in “CMM” of Fig. 6(a) and (b), CMM consistently
+lowest processing speed of 0.509 FPS because of multiple mem-                  assigns high anomaly scores to abnormal areas. However, the
+ory banks. The lightweight CFM achieves the highest inference                  high sensitivity of CMM also introduce noisy anomaly scores to
+speed, while BTF obtains a smaller memory footprint due to                     normal areas. As shown in the RGB of Fig. 6(a), the normal
+the manually designed PT features. Despite a slight increase                   dark spot (indicated by green dotted circle) on the “peach,”
+in the computational complexity, our UCF remains comparable                    which are extremely similar to “contamination” (indicated by
+to these methods. In general, UCF can achieve better detection                 red dotted circle), is also assigned high anomaly score. In Case C
+performance with moderate memory occupancy of 585.6 MB                         of Table IV, the URCM achieves an optimal I-AUROC of 0.963
+and higher inference efficiency of 5.147 FPS.                                  because it can detect high-score anomalies present in either
+                                                                               UMR or CMM. However, compared to Cases A and B, Case
+                                                                               C shows limited improvement in localization accuracy. While
+C. Ablation Experiment                                                         URCM enhances the anomalies, it also introduces noise to harm
+   In this section, ablation studies have been conducted to assess             localization performance, as visualized in “URCM” of Fig. 6.
+the specific contribution of each module within the proposed                       2) DGF: As shown in “URCM+DGF” of Fig. 6, DGF signif-
+method to the overall performance. Table IV and Fig. 6 provide                 icantly reduces the noise compared to the URCM, regardless of
+the quantitative results and corresponding visualization results in            whether the anomaly exists in a single modality or both modal-
+the ablation experiment, respectively. It is particularly important            ities. After utilizing DGF, the P-AUPRO0.3 and P-AUPRO0.01
+to note that we evaluated both the overall URCM module and                     of the entire model reaches 0.975 and 0.471, which are listed in
+its submodules of UMR and CMM. This is done to explore                         Case D of Table IV. Especially, there is a significant improve-
+their respective contributions to constructing a comprehensive                 ment of 0.013 of P-AUPRO0.01 , indicating that noise reduction
+multimodal representation.                                                     by the DGF benefits precise localization performance.
+
+    Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+CHENG et al.: MULTIMODAL INDUSTRIAL ANOMALY DETECTION VIA UNI-MODAL AND CROSS-MODAL FUSION                                                           5007
+
+
+
+                         TABLE V
+ PERFORMANCE OF ANOMALY DETECTION METHODS UNDER DIFFERENT
+                        MODALITIES
+
+
+
+
+D. Influence of Different Modalities on Performance
+   To analyze the impact of different modalities on anomaly
+detection performance, Table V presents a performance compar-
+ison of various detection methods under RGB images (RGB),
+PT, and both (RGB+PT). The comparison methods include
+RGB expert models (Patchcore [16], CDO [19]), and PT expert
+models (FPFH [26] and CPMF [28]), which are specifically
+designed for uni-modal anomaly detection. In addition, mul-
+timodal models (M3DM [9], CFM [29], and our UCF) are also
+used for evaluation, where the subscripts RGB and PT indicate
+that only the RGB or PT components of these models are used
+for training and testing, respectively. It is worth noting that the
+RGB or PT components of our UCF are constructed by UMR.
+                                                                              Fig. 7. Visualization and statistics of mean and standard deviation
+As illustrated in “RGB+PT” of Table V, the average I-AUROC                    of anomaly scores under different strategies. (a) Concatenation. (b)
+and P-AUPRO0.3 of multimodal methods reach above 0.945                        URCM. (c) URCM+DGF. DRGB and DPT represent the discrepancy maps
+and 0.964, respectively. Compared with either “RGB” or “PT,”                  of RGB and PT.
+the performance of the multimodal method almost surpasses
+that of the uni-modal methods, whether they are expert models
+or uni-modal components. In addition, our UCF demonstrate                     deviation assigned to abnormal areas by URCM increase to 0.60
+balanced performance in both single modalities, with the best                 and 0.12, respectively. Moreover, the overlap between the scores
+performance under “RGB+PT.”                                                   of abnormal and normal regions is reduced, indicating better
+                                                                              classifiability. However, relatively high scores with a mean of
+E. Impact of Different Multimodal Representations                             0.12 and a standard deviation of 0.08 are still rated by URCM in
+                                                                              normal areas. As depicted in Fig. 7(c), DGF further optimizes
+   To evaluate the specific improvements of multimodal repre-                 the representation, with low-noise normal regions having a mean
+sentations by our UCF over traditional representations based                  score of 0.06 and a standard deviation of 0.11.
+on space-aligned concatenation, we have conducted a statistical
+analysis and visualization of anomaly scores in both normal
+and abnormal areas. The statistical analysis of mean and stan-                F. Performance Variations Under Different Discrepancy
+dard deviation has been performed on 103 anomaly samples                      Fusion Strategies and Hyperparameter Settings
+of “Cookie.” These samples contain many anomalies that are                       To demonstrate the effectiveness of our proposed multidif-
+easily confused with normal patterns. As illustrated in Fig. 7(a),            ferential fusion in the UCF, we have conducted experiment by
+space-aligned concatenation mistakenly focuses on confused                    comparing it with four fusion strategies. As shown in Fig. 8(a),
+normal RGB regions of black spots in DRGB and interferes with                 URCMadd and URCMmul are performed by pixel-wise addition
+DPT . Among the 103 samples, the concatenation method assigns                 and multiplication of the discrepancies from the URCM module.
+abnormal areas an average score of 0.30 with a standard devia-                URCMadd +DGF and URCMmul +DGF are realized by multiply-
+tion of 0.05, and normal regions an average score of 0.15 with                ing URCMadd and URCMmul with discrepancies from the DGF
+a standard deviation of 0.09. Our URCM module further learns                  module, respectively. Particularly, URCMmul performs better in
+complete multimodal representations. As shown in Fig. 7(b),                   localization accuracy than URCMadd . After incorporating the
+URCM reveals complete abnormal regions in both DRGB and                       DGF module, the P-AUPRO0.01 of URCMadd and URCMmul
+DPT . Compared to concatenation, the mean score and standard                  have been improved by 0.014 and 0.005, respectively. Compared
+
+    Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+5008                                                                     IEEE TRANSACTIONS ON INDUSTRIAL INFORMATICS, VOL. 21, NO. 6, JUNE 2025
+
+
+
+
+                                                                              Fig. 9. (a) Multimodal inspection system for surface mount technology.
+                                                                              (b) Images and PT of collected normal and abnormal samples. (c)
+                                                                              Detection performance and FLOPs of the UCF. (d) Visualization results.
+
+
+Fig. 8. Performance variations of the UCF. (a) Different discrepancy
+fusion strategies. (b) Different temperature settings.
+
+
+
+
+to other fusion strategies, our multidiscrepancy fusion achieves
+best performance with the scores of 0.975, 0.964, and 0.471.                  Fig. 10.   Localization result of “missing part.”
+   To explore the performance variations under diffierent temper-
+ature settings, we have performed the hyperparameter sensitivity
+experiment. As shown in Fig. 8(b), the UCF remains almost con-                varying computational complexity, which is achieved by adjust-
+stant performance under different temperature parameters and                  ing the size of the feature maps. As the size varies, the I-AUROC
+reaches best P-AUPRO0.3 and P-AUPRO0.01 of 0.975 and 0.471                    and P-AUROC remain above 0.930 and 0.912, except for a
+at the temperature of 0.5. Therefore, the default temperature                 significant drop at 28x28 pixels. At the size of 56×56 pixels,
+hyperparameter is set to 0.5 for MVTec 3D-AD benchmark.                       the UCF strikes a balance between performance and complexity,
+Furthermore, the adjustment of the temperature hyperparameter                 with values of 0.942, 0.912, and 19.73 G. The visualization
+aims to shape the data distribution, making it either steep or                results are displayed in Fig. 9(d).
+smooth.
+                                                                              H. Discussion and Limitation
+G. Application to Automotive Surface Mount Inspection                            Extensive experiments have demonstrated that our proposed
+   To evaluate the industrial applicability of our UCF, we have               UCF exhibits great performance in MAD. Specifically, in public
+applied our UCF to surface mount detection on printed circuit                 benchmark, the UCF method has shown great detection capa-
+boards. A industrial dataset has been collected by using mul-                 bilities compared to existing methods, particularly in precise
+timodal inspection system, as shown in Fig. 9(a). This dataset                localization. The analysis of multimodal representations further
+comprises 20 images with corresponding PT for training, and 10                indicates that, in addition to inherent spatial correspondences,
+normal and 50 defective samples for testing. The images have                  leveraging implicit interaction relationships to establish more
+a resolution of 512× 512 pixels, along with corresponding PT                  comprehensive multimodal representations helps enhance de-
+from structured light scans. Some of the normal and defective                 tection performance. Moreover, the UCF holds potential in terms
+samples are illustrated in Fig. 9(b). Besides the performance                 of industrial applicability, such as lightweight implementation.
+experiments on the industrial dataset, lightweight tests have been            Although the UCF can detect many types of anomalies accu-
+also performed. The detection, localization, and complexity                   rately, it is limited in precisely locating “missing part.” As shown
+of the UCF method are assessed using I-AUROC, P-AUROC,                        in Fig. 10, it is difficult to detect the complete shape of the “miss-
+and floating-point operations (FLOPs), respectively. Fig. 9(c)                ing part” because our UCF fails to establish a relationship for
+illustrates the performance changes of our UCF method under                   the absent multimodal data. In the future, this type of anomalies
+
+   Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+CHENG et al.: MULTIMODAL INDUSTRIAL ANOMALY DETECTION VIA UNI-MODAL AND CROSS-MODAL FUSION                                                                     5009
+
+
+
+is expected to be accurately detected by introducing enhanced                       [14] P. Bergmann, M. Fauser, D. Sattlegger, and C. Steger, “Uninformed
+logical relationships with generative models.                                            students: Student-teacher anomaly detection with discriminative latent
+                                                                                         embeddings,” in Proc. IEEE Conf. Comput. Vis. Pattern Recognit., 2020,
+                                                                                         pp. 4182–4191.
+                                                                                    [15] M. Rudolph, B. Wandt, and B. Rosenhahn, “Same same but differnet:
+                             V. CONCLUSION                                               Semi-supervised defect detection with normalizing flows,” in Proc. IEEE
+                                                                                         Winter Conf. Appl. Comput. Vis., 2021, pp. 1906–1915.
+   In conclusion, this article proposes a novel UCF method                          [16] K. Roth, L. Pemula, J. Zepeda, B. Schölkopf, T. Brox, and P. Gehler,
+to construct relatively comprehensive multimodal representa-                             “Towards total recall in industrial anomaly detection,” in Proc. IEEE Conf.
+tions for reliable anomaly detection. The UCF method con-                                Comput. Vis. Pattern Recognit., 2022, pp. 14298–14308.
+                                                                                    [17] V. Zavrtanik, M. Kristan, and D. Skočaj, “Reconstruction by inpaint-
+siders not only the explicit spatial correspondence between                              ing for visual anomaly detection,” Pattern Recognit., vol. 112, 2021,
+modality-specific features but also incorporate the implicit in-                         Art. no. 107706.
+teraction relationships within and between modalities. The im-                      [18] H. He et al., “A diffusion-based framework for multi-class anomaly
+                                                                                         detection,” in Proc. AAAI Conf. Artif. Intell., 2024, pp. 8472–8480.
+plicit interaction relationships are represented as uni-modal                       [19] Y. Cao, X. Xu, Z. Liu, and W. Shen, “Collaborative discrepancy optimiza-
+and cross-modal embeddings. These embeddings are adaptively                              tion for reliable image anomaly localization,” IEEE Trans. Ind. Informat.,
+fused to preserve the primary features while reducing interfer-                          vol. 19, no. 11, pp. 10674–10683, Nov. 2023.
+                                                                                    [20] H. Deng and X. Li, “Anomaly detection via reverse distillation from one-
+ence. The collaboration of uni-modal, cross-modal, and fusion                            class embedding,” in Proc. IEEE Conf. Comput. Vis. Pattern Recognit.,
+embeddings effectively reveals anomalies existing in different                           2022, pp. 9727–9736.
+modalities. Comprehensive experiments conducted on public                           [21] Y. Cai, D. Liang, D. Luo, X. He, X. Yang, and X. Bai, “A discrepancy aware
+                                                                                         framework for robust anomaly detection,” IEEE Trans. Ind. Informat.,
+benchmark have confirmed the superiority of UCF in MAD and                               vol. 20, no. 3, pp. 3986–3995, Mar. 2024.
+localization. In addition, the UCF method has also shown good                       [22] H. Yao et al., “Dual-attention transformer and discriminative flow for
+performance in surface mount inspection. However, our method                             industrial visual anomaly detection,” IEEE Trans. Autom. Sci. Eng., vol. 21,
+                                                                                         no. 4, pp. 6126–6140, Oct. 2024.
+is still challenged by low-quality and incomplete multimodal                        [23] T. Defard, A. Setkov, A. Loesch, and R. Audigier, “PaDiM: A patch
+data. In the future, we will strive to explore robust anomaly                            distribution modeling framework for anomaly detection and localization,”
+detection methods under complex conditions.                                              in Proc. Int. Conf. Pattern Recognit., 2021, pp. 475–489.
+                                                                                    [24] K. He, X. Zhang, S. Ren, and J. Sun, “Deep residual learning for image
+                                                                                         recognition,” in Proc. IEEE Conf. Comput. Vis. Pattern Recognit., 2016,
+                                                                                         pp. 770–778.
+                               REFERENCES                                           [25] M. Caron et al., “Emerging properties in self-supervised vision transform-
+                                                                                         ers,” in Proc. IEEE Int. Conf. Comput. Vis., 2021, pp. 9630–9640.
+ [1] Z. Sun et al., “BRAS: Bidirectional reflectance adjustment strategy for 3-D
+                                                                                    [26] R. B. Rusu, N. Blodow, and M. Beetz, “Fast point feature histograms
+     reconstruction of mirror-like surface,” IEEE Trans. Ind. Informat., vol. 19,
+                                                                                         (FPFH) for 3D registration,” in Proc. IEEE Int. Conf. Robot. Autom, 2009,
+     no. 11, pp. 10775–10785, Nov. 2023.
+                                                                                         pp. 3212–3217.
+ [2] M. Niu, K. Song, L. Huang, Q. Wang, Y. Yan, and Q. Meng, “Un-
+                                                                                    [27] Y. Pang, W. Wang, F. E. Tay, W. Liu, Y. Tian, and L. Yuan, “Masked
+     supervised saliency detection of rail surface defects using stereoscopic
+                                                                                         autoencoders for point cloud self-supervised learning,” in Proc. Eur. Conf.
+     images,” IEEE Trans. Ind. Informat., vol. 17, no. 3, pp. 2271–2281,
+                                                                                         Comput. Vis., 2022, pp. 604–621.
+     Mar. 2021.
+                                                                                    [28] Y. Cao, X. Xu, and W. Shen, “Complementary pseudo multimodal feature
+ [3] J. Wang, K. Song, D. Zhang, M. Niu, and Y. Yan, “Collaborative learning
+                                                                                         for point cloud anomaly detection,” Pattern Recognit., vol. 156, 2024,
+     attention network based on RGB image and depth image for surface defect
+                                                                                         Art. no. 110761.
+     inspection of no-service rail,” IEEE-ASME Trans. Mechatron., vol. 27,
+                                                                                    [29] A. Costanzino, P. Z. Ramirez, G. Lisanti, and L. Di Stefano, “Multimodal
+     no. 6, pp. 4874–4884, Dec. 2022.
+                                                                                         industrial anomaly detection by crossmodal feature mapping,” in Proc.
+ [4] P. Bergmann, X. Jin, D. Sattlegger., and C. Steger, “The MVTec 3D-ad
+                                                                                         IEEE Conf. Comput. Vis. Pattern Recognit., 2024, pp. 17234–17243.
+     dataset for unsupervised 3D anomaly detection and localization,” in Proc.
+     Int. Joint Conf. Comput. Vis. Imag. Comput. Graph. Theory Appl., 2022,
+     pp. 202–213.
+ [5] Y. Huang, C. Du, Z. Xue, X. Chen, H. Zhao, and L. Huang, “What makes
+     multi-modal learning better than single (provably),” in Proc. Adv. Neural
+     Inf. Process. Syst., 2021, pp. 10944–10956.
+ [6] J et al., “Deep learning and laser-based 3-D pixel-level rail surface de-
+     fect detection method,” IEEE Trans. Instrum. Meas., vol. 72, pp. 1–12,
+     May 2023.
+ [7] D. Marchisotti and E. Zappa, “Feasibility study of drone-based 3-D mea-
+     surement of defects in concrete structures,” IEEE Trans. Instrum. Meas.,
+     vol. 71, pp. 1–11, Apr. 2022.
+ [8] M. Rudolph, T. Wehrbein, B. Rosenhahn, and B. Wandt, “Asymmetric
+     student-teacher networks for industrial anomaly detection,” in Proc. IEEE
+     Winter Conf. Appl. Comput. Vis., 2023, pp. 2592–2602.
+ [9] Y. Wang, J. Peng, J. Zhang, R. Yi, Y. Wang, and C. Wang, “Multimodal
+     industrial anomaly detection via hybrid fusion,” in Proc. IEEE Conf.
+     Comput. Vis. Pattern Recognit., 2023, pp. 8032–8041.                                                     Hao Cheng received the B.E. degree in mea-
+[10] Y.-M. Chu, C. Liu, T.-I. Hsieh, H.-T. Chen, and T.-L. Liu, “Shape-guided                                 surement and control technology and instru-
+     dual-memory learning for 3D anomaly detection,” in Proc. Int. Conf. Mach.                                mentation, and the M.S. degree in control sci-
+     Learn., 2023, pp. 6185–6194.                                                                             ence and engineering from Beijing University of
+[11] E. Horwitz and Y. Hoshen, “Back to the feature: Classical 3D features                                    Chemical Technology, Beijing, China, in 2018
+     are (almost) all you need for 3D anomaly detection,” in Proc. IEEE Conf.                                 and 2021, respectively. He is currently working
+     Comput. Vis. Pattern Recognit. Workshop, Jun. 2023, pp. 2968–2977.                                       toward the Ph.D. degree in control science and
+[12] P. Bergmann, M. Fauser, D. Sattlegger, and C. Steger, “MVTec ad–A                                        engineering at South China University of Tech-
+     comprehensive real-world dataset for unsupervised anomaly detection,” in                                 nology, Guangzhou, China.
+     Proc. IEEE Conf. Comput. Vis. Pattern Recognit., 2019, pp. 9584–9592.                                       His main research interests include computer
+[13] Y. Shi, J. Yang, and Z. Qi, “Unsupervised anomaly segmentation via deep                                  vision, deep learning, and defect detection.
+     feature reconstruction,” Neurocomputing, vol. 424, pp. 9–22, 2021.
+
+
+     Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+5010                                                                     IEEE TRANSACTIONS ON INDUSTRIAL INFORMATICS, VOL. 21, NO. 6, JUNE 2025
+
+
+
+                        Jiaxiang Luo received the Ph.D. degree in sys-                                  Xianyong Zhang received the Ph.D. degree in
+                        tem engineering from Northeastern University,                                   control theory and application from the South
+                        Shenyang, China, in 2007.                                                       China University of Technology, Guangzhou,
+                          She is currently a Professor with the School                                  China, in 2007.
+                        of Automation Science and Engineering, South                                       He is a Professor with the School of Automa-
+                        China University of Technology, Guangzhou,                                      tion, Guangdong Polytechnic Normal University,
+                        China. Her current research interests include                                   Guangzhou. His research interests include new
+                        computer vision, deep learning, optimization                                    energy, power delivery, control theory, and con-
+                        methods, and process monitoring.                                                trol engineering.
+
+
+
+
+   Authorized licensed use limited to: Hochschule HS Furtwangen. Downloaded on November 17,2026 at 17:41:18 UTC from IEEE Xplore. Restrictions apply.
+

@@ -13,8 +13,8 @@
 
 \section{Context and Motivation}
 
-Industrial monitoring means tracking the state and behavior of a
-physical process by analyzing data collected during or after it
+Industrial monitoring means tracking the state and behaviour of a
+physical process by analysing data collected during or after it
 runs. Industrial and robotic systems produce many types of data,
 such as visual observations, acoustic signals, force measurements,
 vibration, and other sensor signals
@@ -38,7 +38,7 @@ acoustic data for weld assessment \parencite{P003,Hua2026Weld}.
 The primary architectural challenge extends beyond welding.
 Industrial monitoring systems require data representations that
 capture task-relevant information, fusion methods that effectively
-utilize complementary data from multiple sources, and evaluation
+utilise complementary data from multiple sources, and evaluation
 protocols that assess whether predictions remain reliable when some
 data are missing or of low quality. Therefore, this research
 investigates multimodal fusion architectures across a range of
@@ -79,7 +79,7 @@ the prediction target, how the data is aligned over time, training
 methods, calibration, and whether the test data is independent
 \parencite{P017,P004,Guo2017Calibration,P008}. Differences in any of
 these areas can make it hard to know if performance gains are
-generalizable.
+generalisable.
 
 This thesis addresses this gap by investigating the added predictive
 value and robustness of multimodal fusion under fair, task-specific
@@ -88,7 +88,7 @@ representation, complementary information, and fusion method
 interact, and whether observed benefits in one context are
 transferable to other industrial and robotic monitoring tasks.
 
-Chapter~2 reviews existing research to lay out the scientific
+Chapter~\ref{ch:literature} reviews existing research to lay out the scientific
 background and highlight the unresolved comparisons that define
 this research gap.
 
@@ -105,7 +105,7 @@ monitoring and anomaly detection. It examines how using specific
 data representations and different fusion methods affects prediction,
 robustness, and practical usefulness.
 
-The first version of the expos\'{e} set out this main research
+The original research proposal set out the main research
 question:
 
 \begin{quote}
@@ -148,7 +148,9 @@ the suitability of specific data representations, investigating
 various fusion strategies, testing robustness to input degradation,
 and assessing the appropriateness of selected evaluation methods
 for multimodal monitoring systems. Broader architectural questions
-persist, despite changes in the original application scope.
+persist, despite changes in the original application scope. The five evaluation
+requirements in Chapter~\ref{ch:methodology} translate these four objectives into
+criteria for interpreting the studies; they are not additional research questions.
 
 
 % ============================================================
@@ -217,9 +219,6 @@ architectures across datasets.
 
 \end{itemize}
 
-Implementation records, literature comparison tables, and
-experimental artifacts all provide clear support for these
-contributions.
 
 
 % ============================================================
@@ -287,38 +286,25 @@ completed empirical scope of this work.
 
 \section{Structure of the Thesis}
 
-Chapter~\ref{ch:literature} is the literature review, setting out the scientific
-basis, existing architectural approaches, and remaining research
-questions in the area of multimodal industrial monitoring.
+Chapter~\ref{ch:literature} reviews representations, fusion methods, reliability and
+assessment practices in industrial and robotic monitoring.
+Chapter~\ref{ch:foundations} explains the representations, prediction models and fusion
+mechanisms investigated here. Chapter~\ref{ch:methodology} relates the five evaluation
+requirements to the studies and describes dataset qualification, experimental design
+and evaluation.
 
-Chapter~\ref{ch:foundations} covers the technical underpinnings of the investigated
-representation models, the prediction components, and the fusion
-mechanisms.
+Chapters~\ref{ch:phm}--\ref{ch:vifailback} present the PHM2026, REASSEMBLE, MSM and
+ViFailback studies, respectively. They examine photographic proxy prediction,
+completed-action fusion and robustness, milling sensitivities, and task-disjoint
+representation transfer. Chapter~\ref{ch:discussion} relates their findings to the
+literature and research questions. Chapter~\ref{ch:conclusion} states the supported
+conclusions, limitations and priorities for future work.
 
-Chapter~\ref{ch:methodology} opens with the five research requirements and maps
-them to the empirical studies in Section~\ref{sec:ch4-design}. It then covers
-dataset qualification, experimental design, and evaluation procedures.
-
-Chapter~\ref{ch:phm} looks at condition-target construction and prediction
-using PHM2026. Chapter~\ref{ch:reassemble} is the main REASSEMBLE chapter, covering
-representation comparisons, multimodal fusion, robustness
-experiments, and controlled architectural follow-up investigations.
-
-Chapter~\ref{ch:msm} provides the completed external manufacturing comparison on MSM, including
-target/grouping sensitivities and controlled robustness. Chapter~\ref{ch:vifailback} tests whether visual features learned on REASSEMBLE
-transfer to held-out ViFailback tasks and reports a one-fold target-CNN fine-tuning
-comparison. Appendix~\ref{app:handover} retains HANDOVER's
-unimodal and fixed-average evidence; missing participant identities prevented the
-required participant-safe OOF fitting of learned fusion.
-
-Chapter~\ref{ch:discussion} brings the empirical findings together
-with the relevant literature, answers the research sub-questions,
-and looks at the scientific implications across the datasets
-considered.
-
-Chapter~\ref{ch:conclusion} covers the supported contributions,
-the remaining research questions and the priorities for future work.
-
-The other appendices contain the literature appraisal, dataset
-documentation, implementation details, experimental analysis,
-research timeline, and reproducibility records.
+The unnumbered AI Assistance Disclosure precedes the references.
+Appendices~\ref{app:literature}--\ref{app:supplementary-results} contain the literature
+appraisal, dataset inventories, implementation details and supplementary results.
+Appendix~\ref{app:human-review} documents the human review;
+Appendices~\ref{app:reproducibility} and~\ref{app:chronology} cover reproducibility and
+the research chronology. Appendix~\ref{app:handover} presents the supporting HANDOVER
+study, and Appendix~\ref{app:prompt-record} summarises implementation and revision tasks
+for which AI assistance was used.

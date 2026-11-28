@@ -1,0 +1,751 @@
+                             This CVPR paper is the Open Access version, provided by the Computer Vision Foundation.
+                                          Except for this watermark, it is identical to the accepted version;
+                                    the final published version of the proceedings is available on IEEE Xplore.
+
+
+
+
+                  Multimodal Industrial Anomaly Detection via Hybrid Fusion
+
+           Yue Wang1 *, Jinlong Peng2 *, Jiangning Zhang2 , Ran Yi1†, Yabiao Wang2 , Chengjie Wang2,1
+                  1
+                    Shanghai Jiao Tong University, Shanghai, China; 2 Youtu Lab, Tencent
+     1
+         {imwangyue,ranyi}@sjtu.edu.cn 2 {jeromepeng,vtzhang,caseywang,jasoncjwang}@tencent.com
+
+
+
+                             Abstract                                               Colored
+                                                                                  Point Clouds
+
+
+   2D-based Industrial Anomaly Detection has been widely
+                                                                                  Point Clouds
+discussed, however, multimodal industrial anomaly detec-
+tion based on 3D point clouds and RGB images still has
+many untouched fields. Existing multimodal industrial                             RGB Image
+
+anomaly detection methods directly concatenate the mul-
+timodal features, which leads to a strong disturbance be-                         PatchCore
+tween features and harms the detection performance. In this                        + FPFH
+
+
+paper, we propose Multi-3D-Memory (M3DM), a novel
+multimodal anomaly detection method with hybrid fusion                               Ours
+
+scheme: firstly, we design an unsupervised feature fusion
+with patch-wise contrastive learning to encourage the in-                           Ground
+                                                                                     Truth
+teraction of different modal features; secondly, we use a
+decision layer fusion with multiple memory banks to avoid                                        Bagel   Cookie   Potato   Dowel   Foam   Tire
+
+
+loss of information and additional novelty classifiers to                    Figure 1. Illustrations of MVTec-3D AD dataset [3]. The second
+make the final decision. We further propose a point fea-                     and third rows are the input point cloud data and the RGB data.
+ture alignment operation to better align the point cloud and                 The fourth and fifth rows are prediction results, and according to
+RGB features. Extensive experiments show that our multi-                     the ground truth, our prediction has more accurate prediction re-
+modal industrial anomaly detection model outperforms the                     sults than the previous method.
+state-of-the-art (SOTA) methods on both detection and seg-
+mentation precision on MVTec-3D AD dataset. Code at                          3D shape information is important and essential for correct
+github.com/nomewang/M3DM.                                                    detection. As shown in Fig. 1, for cookie and potato, it is
+                                                                             hard to identify defects from the RGB image alone. With
+                                                                             the development of 3D sensors, recently MVTec-3D AD
+1. Introduction                                                              dataset [3] (Fig. 1) with both 2D images and 3D point cloud
+                                                                             data has been released and facilitates the research on multi-
+    Industrial anomaly detection aims to find the abnormal                   modal industrial anomaly detection.
+region of products and plays an important role in industrial                    The core idea for unsupervised anomaly detection is
+quality inspection. In industrial scenarios, it’s easy to ac-                to find out the difference between normal representations
+quire a large number of normal examples, but defect exam-                    and anomalies. Current 2D industrial anomaly detec-
+ples are rare. Current industrial anomaly detection methods                  tion methods can be categorized into two categories: (1)
+are mostly unsupervised methods, i.e., only training on nor-                 Reconstruction-based methods. Image reconstruction tasks
+mal examples, and testing on detect examples only during                     are widely used in anomaly detection methods [2, 9, 14,
+inference. Moreover, most existing industrial anomaly de-                    22, 34, 35] to learn normal representation. Reconstruction-
+tection methods [2,9,25,34] are based on 2D images. How-                     based methods are easy to implement for a single modal
+ever, in the quality inspection of industrial products, human                input (2D image or 3D point cloud). But for multimodal in-
+inspectors utilize both the 3D shape and color characteris-                  puts, it is hard to find a reconstruction target. (2) Pretrained
+tics to determine whether it is a defective product, where                   feature extractor-based methods. An intuitive way to uti-
+    * Equal contributions. This work was done when Yue Wang was a intern
+                                                                             lize the feature extractor is to map the extracted feature to
+at Tencent Youtu Lab.                                                        a normal distribution and find the out-of-distribution one as
+    † Corresponding author.                                                  an anomaly. Normalizing flow-based methods [15, 27, 33]
+
+
+
+                                                                           8032
+use an invertible transformation to directly construct nor-        2. Related Works
+mal distribution, and memory bank-based methods [8, 25]
+store some representative features to implicitly construct the         For most anomaly detection methods, the core idea is
+feature distribution. Compared with reconstruction-based           to find out good representations of the normal data. Tra-
+methods, directly using a pretrained feature extractor does        ditional anomaly detection has developed several different
+not involve the design of a multimodal reconstruction tar-         roads. Probabilistic-based methods use empirical cumula-
+get and is a better choice for the multimodal task. Besides        tive distribution functions [7,17] of normal samples to make
+that, current multimodal industrial anomaly detection meth-        decisions. The position of representation space neighbors
+ods [16, 27] directly concatenate the features of the two          can also be used, and it can be done with several clus-
+modalities together. However, when the feature dimension           ter methods, for example, k-NN [1, 24], correlation inte-
+is high, the disturbance between multimodal features will          gral [21] and histogram [13]. Outlier ensembles use a se-
+be violent and cause performance reduction.                        ries of decision models to detect anomaly data, the most
+   To address the above issues, we propose a novel mul-            famous outlier ensembles method is Isolation Forest [18].
+timodal anomaly detection scheme based on RGB images               The linear model can also be used in anomaly detection,
+and 3D point cloud, named Multi-3D-Memory (M3DM).                  for example simply using the properties of principal com-
+Different from the existing methods that directly concate-         ponent analysis [30] or one-class support vector machine
+nate the features of the two modalities, we propose a hy-          (OCSVM) [28]. The traditional machine learning method
+brid fusion scheme to reduce the disturbance between mul-          relies on less training data than deep learning, so we cap-
+timodal features and encourage feature interaction. We pro-        ture this advantage and design a decision layer fusion mod-
+pose Unsupervised Feature Fusion (UFF) to fuse multi-              ule based on OCSVM and stochastic gradient descent.
+modal features, which is trained using a patch-wise con-               2D Industrial Anomaly Detection Industrial anomaly
+trastive loss to learn the inherent relation between multi-        detection is usually under an unsupervised setting. The
+modal feature patches at the same position. To encourage           MVTec AD dataset is widely used for industrial anomaly
+the anomaly detection model to keep the single domain in-          detection [2] research, and it only contains good cases in
+ference ability, we construct three memory banks separately        the training dataset but contains both good and bad cases
+for RGB, 3D and fused features. For the final decision, we         in the testing dataset. Industrial anomaly detection needs to
+construct Decision Layer Fusion (DLF) to consider all of           extract image features for decision, and the features can be
+the memory banks for anomaly detection and segmentation.           used either implicitly or explicitly. Implicit feature meth-
+   Anomaly detection needs features that contain both              ods utilize some image reconstruction model, for exam-
+global and local information, where the local information          ple, auto-encoder [2, 14, 35] and generative adversarial net-
+helps detect small defects, and global information focuses         work [22]; Reconstruction methods could not recover the
+on the relationship among all parts. Based on this obser-          anomaly region, and comparing the generated image and
+vation, we utilize a Point Transformer [20, 36] for the 3D         the original image could locate the anomaly and make de-
+feature and Vision Transformer [5, 11] for the RGB feature.        cisions. Some data augmentation methods [34] were pro-
+We further propose a Point Feature Alignment (PFA) opera-          posed to improve the anomaly detection performance, in
+tion to better align the 3D and 2D features.                       which researchers manually add some pseudo anomaly to
+   Our contributions are summarized as follows:                    normal samples and the training goal is to locate pseudo
+                                                                   anomaly. Explicit feature methods rely on the pretrained
+   • We propose M3DM, a novel multimodal industrial                feature extractor, and additional detection modules learn to
+     anomaly detection method with hybrid feature fusion,          locate the abnormal area with the learned feature or repre-
+     which outperforms the state-of-the-art detection and          sentation. Knowledge distillation methods [9] aim to learn
+     segmentation precision on MVTec-3D AD.                        a student network to reconstruct images or extract the fea-
+                                                                   ture, the difference between the teacher network and stu-
+   • We propose Unsupervised Feature Fusion (UFF) with             dent network can represent the anomaly. Normalizing flow
+     patch-wise contrastive loss to encourage interaction          [15, 33] utilizes an invertible transformation to convert the
+     between multimodal features.                                  image feature to Normal distribution, and the anomaly fea-
+   • We design Decision Layer Fusion (DLF) utilizing mul-          ture would fall on the edge of the distribution. Actually,
+     tiple memory banks for robust decision-making.                all of the above methods try to store feature information in
+                                                                   the parameters of deep networks, recent work shows that
+   • We explore the feasibility of the Point Transformer           simply using a memory bank [25] can get a total recall on
+     in multimodal anomaly detection and propose Point             anomaly detection. There are many similarities between 2D
+     Feature Alignment (PFA) operation to align the                and 3D anomaly detection, we extend the memory bank
+     Point Transformer feature to a 2D plane for high-             method to 3D and multimodal settings and get an impres-
+     performance 3D anomaly detection.                             sive result.
+
+
+
+                                                                 8033
+                                                                                                                                           (1) 𝑷𝒐𝒊𝒏𝒕 𝑭𝒆𝒂𝒕𝒖𝒓𝒆 𝑨𝒍𝒊𝒈𝒏𝒎𝒆𝒏𝒕
+
+
+                         FPS                                                                                                                  𝑝𝑟𝑜𝑗𝑒𝑐𝑡𝑖𝑜𝑛
+                                                          …   ℱ𝑝𝑡      …                              𝑖𝑛𝑡𝑒𝑟𝑝𝑜𝑙𝑎𝑡𝑖𝑜𝑛
+
+
+
+
+                                                                                                                    (2) 𝑼𝒏𝒔𝒖𝒑𝒆𝒓𝒗𝒊𝒔𝒆𝒅 𝑭𝒆𝒂𝒕𝒖𝒓𝒆 𝑭𝒖𝒔𝒊𝒐𝒏
+
+
+                                                          …   ℱ𝑟𝑔𝑏 …                 𝜒𝑟𝑔𝑏            𝜎𝑟             ℒ𝑐𝑜𝑛           𝜎𝑝        𝜒𝑝𝑡                  …
+
+
+
+
+      Test                   𝐴𝑛𝑜𝑚𝑎𝑙𝑦
+     Sample                   𝑠𝑐𝑜𝑟𝑒             𝒟𝑎
+                                                                            𝜙, 𝜓 ℳ𝑟𝑔𝑏           𝒫         𝜙, 𝜓 ℳ𝑓𝑠                     𝒫     𝜙, 𝜓 ℳ𝑝𝑡               𝒫
+     Ground
+      Truth                                     𝒟𝑠
+                                                                                                                                              (3) 𝑫𝒆𝒄𝒊𝒔𝒊𝒐𝒏 𝑳𝒂𝒚𝒆𝒓 𝑭𝒖𝒔𝒊𝒐𝒏
+                                                                                                                                                             Data Stream Only
+         Pretrained Module             Learnable Module         Operation       Memory Bank         Concatenating        Point Group         Data Stream
+                                                                                                                                                               for Training
+
+
+Figure 2. The pipeline of Multi-3D-Memory (M3DM). Our M3DM contains three important parts: (1) Point Feature Alignment (PFA)
+converts Point Group features to plane features with interpolation and project operation, FPS is the farthest point sampling and Fpt is
+a pretrained Point Transformer; (2) Unsupervised Feature Fusion (UFF) fuses point feature and image feature together with a patch-
+wise contrastive loss Lcon , where Frgb is a Vision Transformer, χrgb , χpt are MLP layers and σr , σp are single fully connected layers;
+(3) Decision Layer Fusion (DLF) combines multimodal information with multiple memory banks and makes the final decision with 2
+learnable modules Da , Ds for anomaly detection and segmentation, where Mrgb , Mf s , Mpt are memory banks, ϕ, ψ are score function
+for single memory bank detection and segmentation, and P is the memory bank building algorithm.
+
+
+    3D Industrial Anomaly Detection The first public 3D                                       extractors, DINO [5] for RGB and PointMAE [20] for point
+industrial anomaly detection dataset is MVTec-3D [3] AD                                       clouds, to extract color and 3D representations respectively.
+dataset, which contains both RGB information and point                                           As shown in Fig. 2, M3DM consists of three important
+position information for the same instance. Inspired by                                       parts: (1) Point Feature Alignment (PFA in Sec. 3.2): to
+medical anomaly detection voxel auto-encoder and gener-                                       solve the position information mismatch problem of the
+ative adversarial network [3] were first explored in 3D in-                                   color feature and 3D feature, we propose Point Feature
+dustrial anomaly detection, but those methods lost much                                       Alignment to align the 3D feature to 2D space, which
+spacial structure information and get a poor results. Af-                                     helps simplify multimodal interaction and promotes detec-
+ter that, a 3D student-teacher network [4] was proposed to                                    tion performance. (2) Unsupervised Feature Fusion (UFF in
+focus on local point clouds geometry descriptor with ex-                                      Sec. 3.3): since the interaction between multimodal features
+tra data for pretraining. Memory bank method [16] has also                                    can generate new representations helpful to anomaly detec-
+been explored in 3D anomaly detection with geometry point                                     tion [16, 27], we propose an Unsupervised Feature Fusion
+feature and a simple feature concatenation. Knowledge dis-                                    module to help unify the distribution of multimodal features
+tillation method [27] further improved the pure RGB and                                       and learn the inherent connection between them. (3) Deci-
+multimodal anomaly detection results with Depth informa-                                      sion Layer Fusion (DLF in Sec. 3.4): although UFF helps
+tion. Our method is based on memory banks, and in contrast                                    improve the detection performance, we found that informa-
+to previous methods, we propose a novel pipeline to utilize                                   tion loss is unavoidable and propose Decision Layer Fusion
+a pretrained point transformer and a hybrid feature fusion                                    to utilize multiple memory banks for the final decision.
+scheme for more precise detection.
+                                                                                              3.2. Point Feature Alignment
+3. Method
+                                                                                                 Point Feature Extraction. We utilize a Point Trans-
+3.1. Overview
+                                                                                              former (Fpt ) [36] to extract the point clouds feature. The
+   Our Multi-3D-Memory (M3DM) method takes a 3D                                               input point cloud p is a point position sequence with N
+point cloud and an RGB image as inputs and conducts 3D                                        points. After the farthest point sampling (FPS) [23], the
+anomaly detection and segmentation. We propose a hybrid                                       point cloud is divided into M groups, each with S points.
+fusion scheme to promote cross-domain information inter-                                      Then the points in each group are encoded into a feature
+action and maintain the original information of every single                                  vector, and the M vectors are input into the Point Trans-
+domain at the same time. We utilize two pretrained feature                                    former. The output g from the Point Transformer are M
+
+
+
+                                                                                        8034
+   𝑇𝑟𝑎𝑖𝑛𝑖𝑛𝑔 𝑠𝑒𝑡
+                                                                              Unsupervised Feature Fusion (UFF) module. We propose a
+        …              𝑃𝐹𝐴                                                    patch-wise contrastive loss to train the feature fusion mod-
+                                             𝜒𝑝𝑡
+       …                                                                      ule: given RGB features frgb and point clouds feature fpt ,
+       …                                                                      we aim to encourage the features from different modalities
+       …               ℱ𝑟𝑔𝑏                   𝜎𝑝                              at the same position to have more corresponding informa-
+                                                                              tion, while the features at different positions have less cor-
+                                                                              responding information.
+                                                                                                                               (i,j)  (i,j)
+                                                            𝑓𝑓𝑠                   We denote the features of a patch as {frgb , fpt },
+                                                                              where i is the index of the training sample and j is the index
+           𝜒𝑟𝑔𝑏             𝜎𝑟                              𝐶𝑜𝑛𝑡𝑟𝑎𝑠𝑡𝑖𝑣𝑒
+                                                              𝑀𝑎𝑡𝑟𝑖𝑥
+                                                                              of the patch. We conduct multilayer perceptron (MLP) lay-
+                                                                              ers {χrgb , χpt } to extract interaction information between
+                                                                              two modals and use fully connected layers {σrgb , σpt } to
+                                                                              map processed feature to query or key vectors. We denote
+                                                                                                           (i,j)  (i,j)
+Figure 3. UFF architecture. UFF is a unified module trained with              the mapped features as {hrgb , hpt }. Then we adopt In-
+all training data of MVTec-3D AD. The patch-wise contrastive                  foNCE [19] loss for the contrastive learning:
+loss Lcon encourages the multimodal patch features in the same
+                                                                                                               (i,j)   (i,j)
+position to have the most mutual information, i.e., the diagonal el-                                   hrgb · hpt T
+ements of the contrastive matrix have the biggest values.                                  Lcon = PN PNp (t,k) (t,k) ,                         (2)
+                                                                                                                        T
+                                                                                                         k=1 hrgb · hpt
+                                                                                                     b
+                                                                                                   t=1
+point features, which are then organized as point feature                     where Nb is the batch size and Np is the nonzero patch num-
+groups: each group has a single point feature, which can                      ber. UFF is a unified module trained with all categories’
+be seen as the feature of the center point.                                   training data of the MVTec-3D AD, and the architecture of
+   Point Feature Interpolation. Since after the farthest                      UFF is shown in Fig. 3.
+point sampling (FPS), the point center points are not evenly                      During the inference stage, we concatenate the MLP lay-
+distributed in space, which leads to a unbalance density of                                                                    (i,j)
+                                                                              ers outputs as a fused patch feature denoted as ff s :
+point features. We propose to interpolate the feature back
+to the original point cloud. Given M point features gi as-                                    (i,j)            (i,j)           (i,j)
+                                                                                            ff s      = χrgb (frgb ) ⊕ χpt (fpt ).             (3)
+sociated with M group center points ci , we use inverse
+distance weight to interpolate the feature to each point pj                   3.4. Decision Layer Fusion
+(j ∈ {1, 2, ..., N }) in the input point clouds. The process                      As shown in Fig. 1, a part of industrial anomaly only ap-
+can be described as:                                                          pears in a single domain (e.g., the protruding part of potato),
+           M                                     1                            and the correspondence between multimodal features may
+                                           ∥ci −pj ∥2 +ϵ
+           X
+   p′j =          αi gi ,        αi = PM PN              1
+                                                                ,     (1)     not be extremely obvious. Moreover, although Feature Fu-
+            i=1                        k=1    t=1 ∥ck −pt ∥2 +ϵ               sion promotes the interaction between multimodal features,
+                                                                              we still found that some information has been lost during
+where ϵ is a fairly small constant to avoid 0 denominator.
+                                                                              the fusion process.
+    Point Feature Projection. After interpolation, we
+                                                                                  To solve the above problem, we propose to utilize mul-
+project p′j onto the 2D plane using the point coordinate and
+                                                                              tiple memory banks to store the original color feature, po-
+camera parameters, and we denote the projected points as
+                                                                              sition feature and fusion feature. We denote the three kind
+p̂. We noticed that the point clouds could be sparse, if a
+                                                                              of memory banks as Mrgb , Mpt , Mf s respectively. We re-
+2D plane position doesn’t match any point, we simply set
+                                                                              fer PatchCore [25] to build these three memory banks, and
+the position as 0. We denote the projected feature map as
+                                                                              during inference, each memory bank is used to predict an
+{p̂x,y |(x, y) ∈ D} (D is the 2D plane region of the RGB
+                                                                              anomaly score and a segmentation map. Then we use two
+image), which has the same size as the input RGB image.
+                                                                              learnable One-Class Support Vector Machines (OCSVM)
+Finally, we use an average pooling operation to get the patch
+                                                                              [28] Da and Ds to make the final decision for both anomaly
+feature on the 2D plane feature map.
+                                                                              score a and segmentation map S. We call the above process
+3.3. Unsupervised Feature Fusion                                              Decision Layer Fusion (DLF), which can be described as:
+
+   The interaction between multimodal features can create                      a = Da (ϕ(Mrgb , frgb ), ϕ(Mpt , fpt ), ϕ(Mf s , ff s )), (4)
+new information that is helpful for industrial anomaly de-                         S = Ds (ψ(Mrgb , frgb ), ψ(Mpt , fpt ), ψ(Mf s , ff s )),   (5)
+tection. For example, in Fig. 1, we need to combine both
+                                                                              where ϕ, ψ are the score functions introduced by [25],
+the black color and the shape depression to detect the hole
+                                                                              which can be formulated as:
+on the cookie. To learn the inherent relation between the
+two modalities that exists in training data, we design the                                     ϕ(M, f ) = η∥f (i,j),∗ − m∗ ∥2 ,                (6)
+
+
+
+                                                                            8035
+         ψ(M, f ) = { min ∥f (i,j) − m∥2 f (i,j) ∈ f },           (7)     also reduces the background disturbance for anomaly de-
+                       m∈M
+                                                                          tection. Finally, we resize both the position tensor and the
+  f (i,j),∗ , m∗ = arg max arg min ∥f (i,j) − m∥2 ,               (8)     RGB image to 224 × 224 size, which is matched with the
+                        f (i,j) ∈f    m∈M
+                                                                          feature extractor input size.
+where M ∈ {Mrgb , Mpt , Mf s }, f ∈ {frgb , fpt , ff s } and                  Feature Extractors. We use 2 Transformer-based fea-
+η is a re-weight parameter.                                               ture extractors to separately extract the RGB feature and
+   We propose a two-stage training procedure: in the first                point clouds feature: 1) For the RGB feature, we use a Vi-
+stage we construct memory banks, and in the second stage                  sion Transformer (ViT) [11] to directly extract each patch
+we train the decision layer. The pseudo-code of DLF is                    feature, and in order to adapt to the anomaly detection task,
+shown as Algorithm 1.                                                     we use a ViT-B/8 architecture for both efficiency and de-
+                                                                          tection grain size; For higher performance, we use the ViT-
+ Algorithm 1: Decision Layer Fusion Training                              B/8 pretrained on ImageNet [10] with DINO [5], and this
+   Input: Memory bank building algorithm P [25], decision layer           pretrained model recieves a 224 × 224 image and outputs
+           {Da , Ds }, OCSVM loss function Loc [28]                       totally 784 patches feature for each image; Since previous
+   Data: Training set features {Frgb , Fpt , Ff s }.                      research shows that ViT concentrated on both global and
+   Output: Multimodal memory banks {Mrgb , Mpt , Mf s },
+                                                                          local information on each layer, we use the output of the fi-
+             decision layer parameters {ΘDa , ΘDs }.
+   for modal ∈ {rgb, pt, f s} do                                          nal layer with 768 dimensions for anomaly detection. 2) For
+        for fmodal ∈ Fmodal do                                            the point cloud feature, we use a Point Transformer [20,36],
+             Mmodal ← fmodal                                              which is pretrained on ShapeNet [6] dataset, as our 3D fea-
+        end
+        Mmodal ← P(Mmodal )                                               ture extractor, and use the {3, 7, 11} layer output as our 3D
+   end                                                                    feature; Point Transformer firstly encodes point cloud to
+   for frgb ∈ Frgb , fpt ∈ Fpt , ff s ∈ Ff s do                           point groups which are similar with patches of ViT and each
+              optim
+         ΘDa ←− Loc (Da ; ΘDa )                                           group has a center point for position and neighbor numbers
+              optim
+         ΘDs ←− Loc (Ds ; ΘDs )                                           for group size. As described in Sec. 3.2, we separately test
+   end                                                                    the setting M = 784, S = 64 and M = 1024, S = 128 for
+                                                                          our experiments. In the PFA operation, we separately pool
+                                                                          the point feature to 28 × 28 and 56 × 56 for testing.
+4. Experiments                                                                Learnable Module Details. M3DM has 2 learnable
+                                                                          modules: the Unsupervised Feature Fusion module and the
+4.1. Experimental Details                                                 Decision Layer Fusion module. 1) For UFF, the χrgb , χpc
+                                                                          are 2 two-layer MLPs with 4× hidden dimension as in-
+   Dataset. 3D industrial anomaly detection is in the be-
+                                                                          put feature; We use AdamW optimizer, set learning rate as
+ginning stage. The MVTec-3D AD dataset is the first 3D
+                                                                          0.003 with cosine warm-up in 250 steps and batch size as
+industrial anomaly detection dataset. Our experiments were
+                                                                          256, we report the best anomaly detection results under 750
+performed on the MVTec-3D dataset.
+                                                                          UFF training steps. 2) For DLF, we use two linear OCSVMs
+   MVTec-3D AD [3] dataset consists of 10 categories, a
+                                                                          with SGD optimizers, the learning rate is set as 1×10−4 and
+total of 2656 training samples, and 1137 testing samples.
+                                                                          train 1000 steps for each class.
+The 3D scans were acquired by an industrial sensor us-
+                                                                              Evaluation Metrics. All evaluation metrics are exactly
+ing structured light, and position information was stored
+                                                                          the same as in [3]. We evaluate the image-level anomaly de-
+in 3 channel tensors representing x, y and z coordinates.
+                                                                          tection performance with the area under the receiver oper-
+Those 3 channel tensors can be single-mapped to the cor-
+                                                                          ator curve (I-AUROC), and higher I-AUROC means better
+responding point clouds. Additionally, the RGB informa-
+                                                                          image-level anomaly detection performance. For segmen-
+tion is recorded for each point. Because all samples in the
+                                                                          tation evaluation, we use the per-region overlap (AUPRO)
+dataset are viewed from the same angle, the RGB informa-
+                                                                          metric, which is defined as the average relative overlap of
+tion of each sample can be stored in a single image. Totally,
+                                                                          the binary prediction with each connected component of
+each sample of the MVTec-3D AD dataset contains a col-
+                                                                          the ground truth. Similar to I-AUROC, the receiver oper-
+ored point cloud.
+                                                                          ator curve of pixel level predictions can be used to calculate
+   Data Preprocess. Different from 2D data, 3D ones are
+                                                                          P-AUROC for evaluating the segmentation performance.
+easier to remove the background information. Following
+[16], we estimate the background plane with RANSAC [12]
+                                                                          4.2. Anomaly Detection on MVTec-3D AD
+and any point within 0.005 distance is removed. At the same
+time, we set the corresponding pixel of removed points in                    We compare our method with several 3D, RGB and RGB
+the RGB image as 0. This operation not only accelerates                   + 3D multimodal methods on MVTec-3D, Tab. 1 shows
+the 3D feature processing during training and inference but               the anomaly detection results record with I-AUROC, Tab. 2
+
+
+
+                                                                        8036
+                                             Cable
+             Method                  Bagel           Carrot   Cookie   Dowel    Foam    Peach    Potato   Rope     Tire    Mean
+                                             Gland
+             Depth GAN [3]           0.530   0.376   0.607    0.603    0.497    0.484   0.595    0.489    0.536   0.521    0.523
+             Depth AE [3]            0.468   0.731   0.497    0.673    0.534    0.417   0.485    0.549    0.564   0.546    0.546
+             Depth VM [3]            0.510   0.542   0.469    0.576    0.609    0.699   0.450    0.419    0.668   0.520    0.546
+             Voxel GAN [3]           0.383   0.623   0.474    0.639    0.564    0.409   0.617    0.427    0.663   0.577    0.537
+             Voxel AE [3]            0.693   0.425   0.515    0.790    0.494    0.558   0.537    0.484    0.639   0.583    0.571
+  3D
+
+
+
+
+             Voxel VM [3]            0.750   0.747   0.613    0.738    0.823    0.693   0.679    0.652    0.609   0.690    0.699
+             3D-ST [4]               0.862   0.484   0.832    0.894    0.848    0.663   0.763    0.687    0.958   0.486    0.748
+             FPFH [16]               0.825   0.551   0.952    0.797    0.883    0.582   0.758    0.889    0.929   0.653    0.782
+             AST [27]                0.881   0.576   0.965    0.957    0.679    0.797   0.990    0.915    0.956   0.611    0.833
+             Ours                    0.941   0.651   0.965    0.969    0.905    0.760   0.880    0.974    0.926   0.765    0.874
+             DifferNet [26]          0.859   0.703   0.643    0.435    0.797    0.790   0.787    0.643    0.715   0.590    0.696
+             PADiM [8]               0.975   0.775   0.698    0.582    0.959    0.663   0.858    0.535    0.832   0.760    0.764
+             PatchCore [25]          0.876   0.880   0.791    0.682    0.912    0.701   0.695    0.618    0.841   0.702    0.770
+  RGB
+
+
+
+
+             STFPM [32]              0.930   0.847   0.890    0.575    0.947    0.766   0.710    0.598    0.965   0.701    0.793
+             CS-Flow [29]            0.941   0.930   0.827    0.795    0.990    0.886   0.731    0.471    0.986   0.745    0.830
+             AST [27]                0.947   0.928   0.851    0.825    0.981    0.951   0.895    0.613    0.992   0.821    0.880
+             Ours                    0.944   0.918   0.896    0.749    0.959    0.767   0.919    0.648    0.938   0.767    0.850
+             Depth GAN [3]           0.538   0.372   0.580    0.603    0.430    0.534   0.642    0.601    0.443   0.577    0.532
+             Depth AE [3]            0.648   0.502   0.650    0.488    0.805    0.522   0.712    0.529    0.540   0.552    0.595
+             Depth VM [3]            0.513   0.551   0.477    0.581    0.617    0.716   0.450    0.421    0.598   0.623    0.555
+  RGB + 3D
+
+
+
+
+             Voxel GAN [3]           0.680   0.324   0.565    0.399    0.497    0.482   0.566    0.579    0.601   0.482    0.517
+             Voxel AE [3]            0.510   0.540   0.384    0.693    0.446    0.632   0.550    0.494    0.721   0.413    0.538
+             Voxel VM [3]            0.553   0.772   0.484    0.701    0.751    0.578   0.480    0.466    0.689   0.611    0.609
+             3D-ST [4]               0.950   0.483   0.986    0.921    0.905    0.632   0.945    0.988    0.976   0.542    0.833
+             PatchCore + FPFH [16]   0.918   0.748   0.967    0.883    0.932    0.582   0.896    0.912    0.921   0.886    0.865
+             AST [27]                0.983   0.873   0.976    0.971    0.932    0.885   0.974    0.981    1.000   0.797    0.937
+             Ours                    0.994   0.909   0.972    0.976    0.960    0.942   0.973    0.899    0.972   0.850    0.945
+
+Table 1. I-AUROC score for anomaly detection of all categories of MVTec-3D AD. Our method clearly outperforms other methods in 3D
+and 3D + RGB setting; For pure 3D setting, our method reaches 0.874 mean I-AUROC score, and for 3D + RGB setting, we get 0.945
+mean I-AUROC score. The results of baselines are from the [3, 16, 27, 37].
+
+shows the segmentation results report with AUPRO and we                   PatchCore + FPFH method gets a high P-AUROC score, its
+report the P-AUROC in supplementary materials. 1) On                      I-AUROC is much lower than the other two. Besides, AST
+pure 3D anomaly detection we get the highest I-AUROC                      gets a worse P-AUROC score than the other two methods,
+and outperform AST [27] 4.1%, which shows our method                      which means the AST is weak in locating anomalies.
+has much better detection performance than the previous
+method, and with our PFA, the Point Transformer is the                    4.3. Ablation Study
+better 3D feature extractor for this task; for segmentation,
+                                                                             We conduct an ablation study on a multimodal setting,
+we get the second best result with AUPRO as 0.906, since
+                                                                          and to demonstrate our contributions to multimodal fusion,
+our 3D domain segmentation is based on the point cloud,
+                                                                          we analyze our method in Tab. 4 with the following set-
+we find there is a bias between point clouds and ground
+                                                                          tings: 1) Only Point Clouds (Mpt ) information; 2) Only
+truth label and discuss this problem in Sec. 4.7. 2) On
+                                                                          RGB (Mrgb ) information; 3) Single memory bank (Mf s )
+RGB anomaly detection, the difference between our method
+                                                                          directly concatenating Point Transformer feature and RGB
+and Patchcore [25] is that we use a Transformer based fea-
+                                                                          feature together; 4) Single memory bank (Mf s ) using
+ture extractor instead of a Wide-ResNet one and remove the
+                                                                          UFF to fuse multimodal features; 5) Building two mem-
+pooling operation before building the memory bank; Our
+                                                                          ory banks (Mrgb , Mpt ) separately and directly adding the
+I-AUROC in RGB domain is 8.0% higher than the orig-
+                                                                          scores together; 6) Building two memory banks separately
+inal PatchCore results and get the highest AUPRO score
+                                                                          (Mrgb , Mpt ) and using DLF for the final result; 7) Build-
+for segmentation, which is 7.6% higher than the second
+                                                                          ing three memory banks (Mrgb , Mpt , Mf s ) (Ours). Com-
+best one. 3) On RGB + 3D multimodel anomaly detec-
+                                                                          paring row 3 and 4 in Tab. 4, we can find that adding UFF
+tion, our method gets the best results on both I-AUROC and
+                                                                          greatly improves the results on all three metrics (I-AUROC
+AUPRO scores, we get 0.8% better I-AUROC than the AST
+                                                                          4.1% ↑, AURPO 1.2% ↑ and P-AUROC 0.3% ↑), which
+and 0.5% better AUPRO than the PatchCore + FPFH [16];
+                                                                          shows UFF plays an important role for multimodal interac-
+These results are contributed by our fusion strategy and the
+                                                                          tion and helps unify the feature distribution; Compare row
+high-performance 3D anomaly detection results. The previ-
+                                                                          5 and 6, we demonstrate that DLF model helps improve
+ous method couldn’t have great detection and segmentation
+                                                                          both anomaly detection and segmentation performance (I-
+performance at the same time, as shown in Tab. 3. Since the
+                                                                          AUROC 0.3% ↑, AURPO 0.6% ↑ and P-AUROC 0.3% ↑).
+AST [27] didn’t report the AUPRO results, we compare the
+                                                                          Our full set is shown in row 7 in Tab. 4, and compared with
+segmentation performance with P-AUROC here. Although
+                                                                          row 6 we have 1.3% I-AUROC and 0.5% AUPRO improve-
+
+
+
+                                                                       8037
+                                                     Cable
+              Method                     Bagel                   Carrot         Cookie   Dowel    Foam     Peach    Potato   Rope      Tire    Mean
+                                                     Gland
+              Depth GAN [3]              0.111       0.072           0.212      0.174    0.160    0.128    0.003    0.042    0.446    0.075     0.143
+              Depth AE [3]               0.147       0.069           0.293      0.217    0.207    0.181    0.164    0.066    0.545    0.142     0.203
+              Depth VM [3]               0.280       0.374           0.243      0.526    0.485    0.314    0.199    0.388    0.543    0.385     0.374
+              Voxel GAN [3]              0.440       0.453           0.875      0.755    0.782    0.378    0.392    0.639    0.775    0.389     0.583
+   3D
+
+
+
+
+              Voxel AE [3]               0.260       0.341           0.581      0.351    0.502    0.234    0.351    0.658    0.015    0.185     0.348
+              Voxel VM [3]               0.453       0.343           0.521      0.697    0.680    0.284    0.349    0.634    0.616    0.346     0.492
+              FPFH [16]                  0.973       0.879           0.982      0.906    0.892    0.735    0.977    0.982    0.956    0.961     0.924
+              Ours                       0.943       0.818           0.977      0.882    0.881    0.743    0.958    0.974     0.95    0.929     0.906
+              CFlow [15]                 0.855       0.919           0.958      0.867    0.969    0.500    0.889    0.935    0.904    0.919     0.871
+   RGB
+
+
+
+
+              PatchCore [25]             0.901       0.949           0.928      0.877    0.892    0.563    0.904    0.932    0.908    0.906     0.876
+              PADiM [8]                  0.980       0.944           0.945      0.925    0.961    0.792    0.966    0.940    0.937    0.912     0.930
+              Ours                       0.952       0.972           0.973      0.891    0.932    0.843     0.97    0.956    0.968    0.966     0.942
+              Depth GAN [3]              0.421       0.422           0.778      0.696    0.494    0.252    0.285    0.362    0.402    0.631     0.474
+              Depth AE [3]               0.432       0.158           0.808      0.491    0.841    0.406    0.262    0.216    0.716    0.478     0.481
+              Depth VM [3]               0.388       0.321           0.194      0.570    0.408    0.282    0.244    0.349    0.268    0.331     0.335
+   RGB + 3D
+
+
+
+
+              Voxel GAN [3]              0.664       0.620           0.766      0.740    0.783    0.332    0.582    0.790    0.633    0.483     0.639
+              Voxel AE [3]               0.467       0.750           0.808      0.550    0.765    0.473    0.721    0.918    0.019    0.170     0.564
+              Voxel VM [3]               0.510       0.331           0.413      0.715    0.680    0.279    0.300    0.507    0.611    0.366     0.471
+              3D-ST [4]                  0.950       0.483           0.986      0.921    0.905    0.632    0.945    0.988    0.976    0.542     0.833
+              PatchCore + FPFH [16]      0.976       0.969           0.979      0.973    0.933    0.888    0.975    0.981    0.950    0.971     0.959
+              Ours                       0.970       0.971           0.979      0.950    0.941    0.932    0.977    0.971    0.971    0.975     0.964
+
+Table 2. AUPRO score for anomaly segmentation of all categories of MVTec-3D. Our method outperforms other methods on RGB and
+RGB + 3D settings. for the RGB setting, our method reaches 0.942 mean AUPRO score, and for the RGB + 3D setting, our method reaches
+0.964 mean AUPRO score. The results of baselines are from the [3, 16, 37].
+
+
+                 Method                    I-AUROC       P-AUROC                            sampling. The number of groups decides how many fea-
+                 PatchCore + FPFH [16]       0.865           0.992                          tures will be extracted by the Point Transformer and the
+                 AST [27]                    0.937           0.976
+                 Ours                        0.945           0.992
+                                                                                            groups’ size is equal to the concept of the receptive field.
+                                                                                            As shown in Tab. 5, the model with 1,024 point groups and
+Table 3. Mean I-AUROC and P-AUROC score for anomaly detec-                                  128 points per group performs better in this task, which we
+tion of all categories of MVTec-3D. Our method performance well                             think is because more feature vectors help the model find re-
+on both anomaly detection and segmentation.                                                 fined representation and a suitable neighbor number would
+                                                                                            give more local position information. 2) To verify the PFA
+ Method                Memory bank         I-AUROC       AUPRO           P-AUROC
+                                                                                            operation, we conduct another 3D anomaly detection exper-
+ Only PC                  Mpt                0.874           0.906           0.970          iment with the original point groups feature: a point group
+ Only RGB                 Mrgb               0.850           0.942           0.987
+                                                                                            can be seen as a patch, and the memory bank store point
+ w/o UFF                   Mf s              0.857           0.944           0.987
+ w/ UFF                    Mf s              0.898           0.956           0.990          groups feature here; The detection method is as same as the
+ w/o DLF               Mrgb , Mpt            0.929           0.953           0.987          patch-based one, and to get the segmentation predictions,
+ w/ DLF                Mrgb , Mpt            0.932           0.959           0.990          we first project point group feature to a 2D plane and use
+ Ours               Mrgb , Mpt , Mf s        0.945           0.964           0.992          an inverse distance interpolation to get every pixel value;
+                                                                                            As shown in Tab. 5 row 2, the group-based method has bet-
+Table 4. Ablation study on fusion block. M is the number of mem-
+                                                                                            ter performance than its peer in row 4, however, when the
+ory banks used. Compared with directly concatenating feature,
+with UFF, the single memory bank method get better performance.                             patch-size gets smaller, the PFA-based method gets the best
+With DLF, the anomaly detection and segmentation performance                                result on three metrics.
+gets great improvement.
+                                                                                            4.5. Analysis of Multimodal Feature distribution
+                                                                                                We visualize the feature distribution with histogram and
+ment, which further demonstrates that UFF activates the in-                                 t-SNE [31]. The original point cloud features have two dis-
+teraction between two modals and creates a new feature for                                  connected regions in the t-SNE map (Fig. 4b), and it is
+anomaly detection.                                                                          caused by the pooling operation on the edge between the
+                                                                                            non-point region and the point cloud region. The two fused
+4.4. Analysis of PFA Hyper-parameter
+                                                                                            features have similar distribution (in the Fig. 4a), and these
+   Since we are the first to use Point Transformer for 3D                                   properties make the concatenated feature more suitable for
+anomaly detection, we conduct a series of exploring exper-                                  memory bank building and feature distance calculation. The
+iments on the Point Transformer setting. 1) We first explore                                original features have a more complex distribution, which
+two important hyper-parameters of Point Transformer: the                                    is helpful for single-domain anomaly detection. Our hybrid
+number of groups and the groups’ size during farthest point                                 fusion scheme integrates the advantage of both original fea-
+
+
+
+                                                                                         8038
+  S.G    N.G          Sampling        I-AUROC      AUPRO      P-AUROC
+  64     784        point group        0.793        0.813       0.922
+  128    1024       point group        0.841        0.896       0.960
+  64     784      28 × 28 patches      0.805        0.879       0.963
+  128    1024     28 × 28 patches      0.819        0.896       0.967
+  128    1024     56 × 56 patches      0.874        0.906       0.970
+
+
+Table 5. Exploring Point Transformer setting on the pure 3D set-                RGB Image   Point clouds   RGB   PC        M     Ground Truth
+ting. S.G means the point number per group, and N.G means the
+total number of point groups. We get the best performance with             Figure 5. Properties of the MVTec-3D AD. PC is short for point
+1024 point groups per sample and each point group contains 128             cloud prediction, and M is short for multimodal prediction. With
+points; Compared with directly calculating anomaly and segmen-             3D information on the point cloud, the anomaly is accurately lo-
+tation scores on point groups, the method based on a 2D plane              cated in row 1. The label bias causes inaccurate segmentation, for
+patch needs a small patch size towards high performance.                   the model hard to focus on the missing area.
+
+                                                                           will cause inaccurate segmentation. As shown in Fig. 5, the
+                                                                           cookie of row 2 has some cuts, and the anomaly label is an-
+                                                                           notated on the missing area. However, for the pure point
+                                                                           clouds method, the non-point region will not be reported,
+                                                                           instead, the cut edge will be reported as an anomaly region,
+                                                                           the phenomenon can be seen in the PC prediction of cookie
+     (a) Statistic distribution.               (b) T-SNE distribution.     in the Fig. 5. Because of this kind of bias between 3D point
+                                                                           clouds and the 2D ground truth, the 3D version has a lower
+Figure 4. Distribution of bagel multimodal features. The fused             AUPRO score than the RGB one in Tab. 2. with the RGB
+point feature has a smaller variance in distribution and has a closer      information, the missing region will be more correctly re-
+distribution with the fused RGB feature.                                   ported as an anomaly. Although we successfully predict
+                                                                           more anomaly areas with multimodal data, there is still a
+            Method          I-AUROC    AUPRO        P-AUROC                gap between the prediction map and the ground truth. We
+            5-shot            0.796     0.927         0.981                will focus on resolving this problem in future research.
+            10-shot           0.821     0.939         0.985
+            50-shot           0.903     0.953         0.988
+            Full dataset      0.945     0.964         0.992                5. Conclusion
+Table 6. Few-shot setting results. On 10-shot or 5-shot setting, our          In this paper, we propose a multimodal industrial
+method still has good segmentation performance and outperforms             anomaly detection method with point clouds and RGB im-
+most Non-few-shot methods.                                                 ages. Our method is based on multiple memory banks and
+                                                                           we propose a hybrid feature fusion scheme to process the
+                                                                           multimodal data. In detail, we propose a patch-wise con-
+tures and fused features and thus has a better performance                 trastive loss-based Unsupervised Feature Fusion to promote
+than the single memory bank method.                                        multimodal interaction and unify the distribution, and then
+4.6. Few-shot Anomaly detection                                            we propose Decision Layer Fusion to fuse multiple mem-
+                                                                           ory bank outputs. Moreover, we utilize pretrained Point
+   We evaluate our method on Few-shot settings, and the                    Transformer and Vision Transformer as our feature extrac-
+results are illustrated in Tab. 6. We randomly select 10 and               tors, and to align the above two feature extractors to the
+5 images from each category as training data and test the                  same spatial position, we propose Point Feature Alignment
+few-shot model on the full testing dataset. We find that our               to convert 3D features to a 2D plane. Our method outper-
+method in a 10-shot or 5-shot setting still has a better seg-              forms the SOTA results on MVTec-3D AD datasets and we
+mentation performance than some non-few-shot methods.                      hope our work be helpful for further research.
+                                                                           Acknowledgements. This work was supported by Na-
+4.7. Discussion about the MVTec-3D AD
+                                                                           tional Natural Science Foundation of China (72192821,
+   In this section, we discuss some properties of the                      61972157, 62272447), Shanghai Municipal Science and
+MVTec-3D AD dataset. 1) The 3D information helps de-                       Technology Major Project (2021SHZDZX0102), Shang-
+tect more kinds of anomalies. In the first row of Fig. 5, we               hai Science and Technology Commission (21511101200),
+can find that the model fails to detect the anomaly with RGB               Shanghai Sailing Program (22YF1420300, 23YF1410500),
+information, but with the point cloud, the anomaly is accu-                CCF-Tencent Open Research Fund (RAGR20220121) and
+rately predicted. This indicates that 3D information indeed                Young Elite Scientists Sponsorship Program by CAST
+plays an important role in this dataset. 2) The label bias                 (2022QNRC001).
+
+
+
+                                                                         8039
+References                                                                   image analysis and automated cartography. Communications
+                                                                             of the ACM, 24(6):381–395, 1981. 5
+ [1] Fabrizio Angiulli and Clara Pizzuti. Fast outlier detection in     [13] Markus Goldstein and Andreas Dengel. Histogram-based
+     high dimensional spaces. In European conference on princi-              outlier score (hbos): A fast unsupervised anomaly detection
+     ples of data mining and knowledge discovery, pages 15–27.               algorithm. KI-2012: poster and demo track, 9, 2012. 2
+     Springer, 2002. 2                                                  [14] Dong Gong, Lingqiao Liu, Vuong Le, Budhaditya Saha,
+ [2] Paul Bergmann, Michael Fauser, David Sattlegger, and                    Moussa Reda Mansour, Svetha Venkatesh, and Anton
+     Carsten Steger. Mvtec ad–a comprehensive real-world                     van den Hengel. Memorizing normality to detect anomaly:
+     dataset for unsupervised anomaly detection. In Proceedings              Memory-augmented deep autoencoder for unsupervised
+     of the IEEE/CVF conference on computer vision and pattern               anomaly detection. In Proceedings of the IEEE/CVF Inter-
+     recognition, pages 9592–9600, 2019. 1, 2                                national Conference on Computer Vision, pages 1705–1714,
+ [3] Paul Bergmann, Xin Jin, David Sattlegger, and Carsten Ste-              2019. 1, 2
+     ger. The mvtec 3d-ad dataset for unsupervised 3d anomaly           [15] Denis Gudovskiy, Shun Ishizaka, and Kazuki Kozuka.
+     detection and localization. In Giovanni Maria Farinella,                Cflow-ad: Real-time unsupervised anomaly detection with
+     Petia Radeva, and Kadi Bouatouch, editors, Proceedings of               localization via conditional normalizing flows. In Proceed-
+     the 17th International Joint Conference on Computer Vision,             ings of the IEEE/CVF Winter Conference on Applications of
+     Imaging and Computer Graphics Theory and Applications,                  Computer Vision, pages 98–107, 2022. 1, 2, 7
+     VISIGRAPP 2022, Volume 5: VISAPP, Online Streaming,                [16] Eliahu Horwitz and Yedid Hoshen. An empirical investi-
+     February 6-8, 2022, pages 202–213. SCITEPRESS, 2022.                    gation of 3d anomaly detection and segmentation. arXiv
+     1, 3, 5, 6, 7                                                           preprint arXiv:2203.05550, 2022. 2, 3, 5, 6, 7
+ [4] Paul Bergmann and David Sattlegger. Anomaly detection              [17] Zheng Li, Yue Zhao, Xiyang Hu, Nicola Botta, Cezar
+     in 3d point clouds using deep geometric descriptors. arXiv              Ionescu, and George Chen. Ecod: Unsupervised outlier
+     preprint arXiv:2202.11660, 2022. 3, 6, 7                                detection using empirical cumulative distribution functions.
+ [5] Mathilde Caron, Hugo Touvron, Ishan Misra, Hervé Jégou,               IEEE Transactions on Knowledge and Data Engineering,
+     Julien Mairal, Piotr Bojanowski, and Armand Joulin. Emerg-              2022. 2
+     ing properties in self-supervised vision transformers. In          [18] Fei Tony Liu, Kai Ming Ting, and Zhi-Hua Zhou. Isolation
+     Proceedings of the IEEE/CVF International Conference on                 forest. In 2008 eighth ieee international conference on data
+     Computer Vision, pages 9650–9660, 2021. 2, 3, 5                         mining, pages 413–422. IEEE, 2008. 2
+ [6] Angel X Chang, Thomas Funkhouser, Leonidas Guibas,                 [19] Aaron van den Oord, Yazhe Li, and Oriol Vinyals. Repre-
+     Pat Hanrahan, Qixing Huang, Zimo Li, Silvio Savarese,                   sentation learning with contrastive predictive coding, 2018.
+     Manolis Savva, Shuran Song, Hao Su, et al. Shapenet:                    4
+     An information-rich 3d model repository. arXiv preprint            [20] Yatian Pang, Wenxiao Wang, Francis E. H. Tay, Wei Liu,
+     arXiv:1512.03012, 2015. 5                                               Yonghong Tian, and Li Yuan. Masked autoencoders for point
+ [7] Teri Crosby. How to detect and handle outliers, 1994. 2                 cloud self-supervised learning, 2022. 2, 3, 5
+                                                                        [21] Spiros Papadimitriou, Hiroyuki Kitagawa, Phillip B Gib-
+ [8] Thomas Defard, Aleksandr Setkov, Angelique Loesch, and
+                                                                             bons, and Christos Faloutsos. Loci: Fast outlier detec-
+     Romaric Audigier. Padim: a patch distribution modeling
+                                                                             tion using the local correlation integral. In Proceedings
+     framework for anomaly detection and localization. In Inter-
+                                                                             19th international conference on data engineering (Cat. No.
+     national Conference on Pattern Recognition, pages 475–489.
+                                                                             03CH37405), pages 315–326. IEEE, 2003. 2
+     Springer, 2021. 2, 6, 7
+                                                                        [22] Pramuditha Perera, Ramesh Nallapati, and Bing Xiang. Oc-
+ [9] Hanqiu Deng and Xingyu Li. Anomaly detection via reverse                gan: One-class novelty detection using gans with constrained
+     distillation from one-class embedding. In Proceedings of                latent representations. In Proceedings of the IEEE/CVF Con-
+     the IEEE/CVF Conference on Computer Vision and Pattern                  ference on Computer Vision and Pattern Recognition, pages
+     Recognition, pages 9737–9746, 2022. 1, 2                                2898–2906, 2019. 1, 2
+[10] Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li,             [23] Charles Ruizhongtai Qi, Li Yi, Hao Su, and Leonidas J
+     and Li Fei-Fei. Imagenet: A large-scale hierarchical image              Guibas. Pointnet++: Deep hierarchical feature learning on
+     database. In 2009 IEEE conference on computer vision and                point sets in a metric space. Advances in neural information
+     pattern recognition, pages 248–255. Ieee, 2009. 5                       processing systems, 30, 2017. 3
+[11] Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov,             [24] Sridhar Ramaswamy, Rajeev Rastogi, and Kyuseok Shim.
+     Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner,                     Efficient algorithms for mining outliers from large data sets.
+     Mostafa Dehghani, Matthias Minderer, Georg Heigold, Syl-                In Proceedings of the 2000 ACM SIGMOD international
+     vain Gelly, Jakob Uszkoreit, and Neil Houlsby. An image                 conference on Management of data, pages 427–438, 2000.
+     is worth 16x16 words: Transformers for image recognition                2
+     at scale. In 9th International Conference on Learning Rep-         [25] Karsten Roth, Latha Pemula, Joaquin Zepeda, Bernhard
+     resentations, ICLR 2021, Virtual Event, Austria, May 3-7,               Schölkopf, Thomas Brox, and Peter Gehler. Towards to-
+     2021. OpenReview.net, 2021. 2, 5                                        tal recall in industrial anomaly detection. In Proceedings of
+[12] Martin A Fischler and Robert C Bolles. Random sample                    the IEEE/CVF Conference on Computer Vision and Pattern
+     consensus: a paradigm for model fitting with applications to            Recognition, pages 14318–14328, 2022. 1, 2, 4, 5, 6, 7
+
+
+
+
+                                                                      8040
+[26] Marco Rudolph, Bastian Wandt, and Bodo Rosenhahn. Same
+     same but differnet: Semi-supervised defect detection with
+     normalizing flows. In IEEE Winter Conference on Applica-
+     tions of Computer Vision, WACV 2021, Waikoloa, HI, USA,
+     January 3-8, 2021, pages 1906–1915. IEEE, 2021. 6
+[27] Marco Rudolph, Tom Wehrbein, Bodo Rosenhahn, and Bas-
+     tian Wandt. Asymmetric student-teacher networks for indus-
+     trial anomaly detection. In Proceedings of the IEEE/CVF
+     Winter Conference on Applications of Computer Vision,
+     pages 2592–2602, 2023. 1, 2, 3, 6, 7
+[28] Bernhard Schölkopf, John C Platt, John Shawe-Taylor,
+     Alex J Smola, and Robert C Williamson. Estimating the sup-
+     port of a high-dimensional distribution. Neural computation,
+     13(7):1443–1471, 2001. 2, 4, 5
+[29] Hao Shi, Yifan Zhou, Kailun Yang, Xiaoting Yin, and Kai-
+     wei Wang. Csflow: Learning optical flow via cross strip cor-
+     relation for autonomous driving. In 2022 IEEE Intelligent
+     Vehicles Symposium (IV), pages 1851–1858. IEEE, 2022. 6
+[30] Mei-Ling Shyu, Shu-Ching Chen, Kanoksri Sarinnapakorn,
+     and LiWu Chang. A novel anomaly detection scheme based
+     on principal component classifier. Technical report, Miami
+     Univ Coral Gables Fl Dept of Electrical and Computer Engi-
+     neering, 2003. 2
+[31] Laurens Van der Maaten and Geoffrey Hinton. Visualiz-
+     ing data using t-sne. Journal of machine learning research,
+     9(11), 2008. 7
+[32] Guodong Wang, Shumin Han, Errui Ding, and Di Huang.
+     Student-teacher feature pyramid matching for anomaly de-
+     tection. In 32nd British Machine Vision Conference 2021,
+     BMVC 2021, Online, November 22-25, 2021, page 306.
+     BMVA Press, 2021. 6
+[33] Jiawei Yu, Ye Zheng, Xiang Wang, Wei Li, Yushuang Wu,
+     Rui Zhao, and Liwei Wu. Fastflow: Unsupervised anomaly
+     detection and localization via 2d normalizing flows. arXiv
+     preprint arXiv:2111.07677, 2021. 1, 2
+[34] Vitjan Zavrtanik, Matej Kristan, and Danijel Skočaj. Draem-
+     a discriminatively trained reconstruction embedding for sur-
+     face anomaly detection. In Proceedings of the IEEE/CVF
+     International Conference on Computer Vision, pages 8330–
+     8339, 2021. 1, 2
+[35] Vitjan Zavrtanik, Matej Kristan, and Danijel Skočaj. Recon-
+     struction by inpainting for visual anomaly detection. Pattern
+     Recognition, 112:107706, 2021. 1, 2
+[36] Hengshuang Zhao, Li Jiang, Jiaya Jia, Philip HS Torr, and
+     Vladlen Koltun. Point transformer. In Proceedings of the
+     IEEE/CVF International Conference on Computer Vision,
+     pages 16259–16268, 2021. 2, 3, 5
+[37] Ye Zheng, Xiang Wang, Yu Qi, Wei Li, and Liwei Wu.
+     Benchmarking unsupervised anomaly detection and localiza-
+     tion, 2022. 6, 7
+
+
+
+
+                                                                     8041
+
