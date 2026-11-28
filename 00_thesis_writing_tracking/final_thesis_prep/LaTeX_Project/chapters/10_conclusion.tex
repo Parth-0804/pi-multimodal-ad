@@ -1,0 +1,98 @@
+\chapter{Conclusion and Future Work}
+\label{ch:conclusion}
+
+\section{Answer to the Main Research Question}
+Combining camera and sensor predictions modestly improved completed-action failure
+ranking over logistic sensing in REASSEMBLE. Logistic stacking achieved failure AP
+0.4473, compared with 0.4294 for sensors and 0.4457 for equal probability averaging.
+Equal averaging scored similarly, and its difference from stacking remained unresolved.
+The result supports a conditional benefit from combining the available observations,
+without establishing that a learned combiner was necessary.
+
+The stacking gain over sensors did not recur in MSM or ViFailback. HANDOVER tested
+averaging on an official split and also favored its sensor component, while unavailable
+participant identities prevented the planned learned-fusion comparison. Across held-out
+gear experiments, fusion of three sensor groups showed no clear improvement over the
+training mean when predicting the photographic proxy, whose relationship to physical
+tooth damage remained unvalidated.
+Chapter~\ref{ch:discussion} gives the detailed contrasts and their study-specific
+boundaries.
+
+Together, the studies support evaluating each stream and simple fusion baselines before
+adding adaptive weighting. Consistent adaptive benefit under degraded but present inputs
+remained unresolved. The evidence concerns condition estimation and retrospective
+assessment of completed events. It does not establish prospective weld-quality
+decisions, which require an independently verified outcome and observations available
+at a prespecified decision time.
+
+\section{Supported Contributions}
+\textbf{SQ1 --- Representation comparison.} The thesis compared statistical sensor
+summaries, temporal encoders and visual representations under explicit task and fitting
+conditions. It identified useful combinations of sensor representations and promising
+visual pooling choices, while separating those findings from claims about learned
+temporal order or universal encoder superiority.
+
+\textbf{SQ2 --- Incremental fusion value.} The thesis estimated what fusion added over
+single-input predictors and equal averaging on common assessment observations. The
+contrasting assembly and external results show why a fusion claim depends on its
+comparator, target and evaluation protocol.
+
+\textbf{SQ3 --- Reliability under input failure.} The experiments distinguished
+programmed fallback for a declared missing stream from adaptation to degraded inputs
+that remained present. Matched-exposure comparisons tested whether learned weighting
+added value beyond static fusion, leaving consistent adaptive benefit unresolved.
+
+\textbf{SQ4 --- Interpretation beyond accuracy.} The evaluation combined ranking,
+probability error, class-specific decisions, operating thresholds and grouped
+uncertainty. This exposed cases in which better ranking did not imply better
+probabilities or useful fixed-threshold decisions, and where changing the grouping
+changed the uncertainty attached to the same predictions.
+
+\section{Principal Limitations}
+Each dataset imposes a different evidential limit. PHM lacks an independent
+physical-damage reference, while native outcome definitions and ambiguous robotic events
+constrain what the classification results mean. Incomplete identifiers for tools,
+objects, sessions or participants limit claims of independence beyond the groups
+actually checked.
+
+Several follow-ups reused assessment populations examined during exploratory
+development. Their intervals condition on saved fits and do not capture uncertainty from
+the full selection process. Differences in calibration, training budgets and corruption
+exposure also limit attribution of some contrasts to architecture. Preprocessing before
+the separate four-arm PHM evaluation further compromises that diagnostic's isolation of
+held-out observations.
+
+Incomplete PHM historical training-source lineage and unavailable ViFailback per-fit
+histories limit independent reconstruction beyond the retained configurations and
+results. ViFailback target-CNN adaptation was assessed on one outer fold, with
+inconclusive matched effects, so its consistency across task folds and seeds remains
+unknown. Robustness to corrupted ViFailback inputs was not measured.
+
+\section{Priorities for Future Research}
+An independent welding study is the most direct next test of the original question. It
+should establish weld quality through independent inspection, specify the prediction
+horizon before examining outcomes, and reserve complete new welding sessions for
+assessment. Camera and process measurements should cover only the information available
+at that decision time. Warning time, false alarms and end-to-end delay would then
+connect predictive performance to prospective use. For PHM, independent damage
+measurements linked to known teeth would separate physical validity from agreement with
+the photographic proxy.
+
+For REASSEMBLE, a prespecified comparison on untouched recordings should test
+last-quarter visual pooling, the same-sensor hybrid and anchored fusion separately and
+in combination. Matched controls should preserve the relevant fitting, calibration and
+corruption-exposure conditions to estimate their individual and joint effects. These
+choices were promising in separate exploratory studies; their joint benefit has not
+been established.
+
+For ViFailback, extending matched fine-tuning across the remaining task folds and seeds
+would test whether target-CNN adaptation changes visual ranking and fusion performance
+consistently beyond the currently assessed fold. Missing, degraded and temporally
+shifted inputs require a separate corruption study with its own scope and resource
+estimate.
+
+Secondary tests could examine HGB-based stacking in MSM and compare uncalibrated with
+rank-preserving calibrated branch outputs in ViFailback, refitting F2 on each
+corresponding training-side prediction bank. These are proposed comparisons with open
+outcomes. Across them, fixed protocols, strong single-input controls and prespecified
+tolerances for clean-performance loss would make any benefit easier to interpret.

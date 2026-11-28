@@ -13,10 +13,19 @@ The subsequent [chapter reconciliation](../../chapter_reconciliation_20261127_01
 merged the external chapter wording with the current working tree. Chapter 2 remains an
 independent critical literature review; the requirements and five-study mapping now open
 Chapter 4. The complete, 189-page thesis was rebuilt from this directory with XeLaTeX,
-Biber and latexmk. The [current compiled thesis](build/chapter_reconciliation_20261127_01/thesis/main.pdf)
+Biber and latexmk. The [reconciliation thesis](build/chapter_reconciliation_20261127_01/thesis/main.pdf)
 and its [150 dpi review previews](build/chapter_reconciliation_20261127_01/previews/)
 belong to this reconciliation. The review editions and historical delivery PDFs were not
 regenerated.
+
+The later [literature-visual integration](../../literature_visual_integration_20261127_01/INTEGRATION_REPORT.md)
+adds the author's seven-topic appraisal figure before the Chapter 2 research-gap discussion
+and consolidates the closing synthesis and follow-up questions into one table.
+The [current compiled thesis](build/figures/literature_review_integration_20261127_01/thesis/main.pdf)
+has 191 pages: Figure 2.2 is on PDF page 44 (printed page 32), and Table 2.1 is on
+PDF pages 46–47 (printed pages 34–35). The editable source is
+[figures/review_figure_table.tex](figures/review_figure_table.tex), loaded in embedded mode
+through the shared preamble. The original upload is not a build dependency.
 
 Use XeLaTeX and Biber. All editions read the same chapter sources.
 
@@ -49,4 +58,5 @@ activate notes in previously reviewed chapters. Appendix F remains the full
 register. [Consolidation validation](../../consolidation_20261126/VALIDATION.md)
 records the earlier build tooling and checks. The
 [reconciliation report](../../chapter_reconciliation_20261127_01/MERGE_REPORT.md)
-records the current main build and preservation checks.
+records that earlier build and preservation checks; the literature-visual integration
+record above documents the current main build.

@@ -1,0 +1,249 @@
+% !TeX program = xelatex
+% Compile from the thesis root for a standalone proof.
+%
+% To use the objects independently in the thesis, put these two lines in
+% the shared preamble before \begin{document} (adjust the input path if needed):
+%   \newcommand{\ThesisLiteratureEmbedded}{}
+%   \input{figures/review_figure_table.tex}
+% Then place \ReviewDepthFigure and \ReviewFollowupTable at their respective
+% locations in Chapter 2. Cross-references: fig:review-depth, tab:literature-synthesis.
+% The thesis already loads fontspec, geometry, setspace, array, tabularx,
+% booktabs, float, caption and biblatex. Its caption and font settings apply.
+%
+% The values describe the original appraisal records. Changing the question
+% to coverage in the full papers would require recoding before using it here.
+\ifdefined\ThesisLiteratureEmbedded\else
+  \documentclass[12pt,a4paper,oneside]{report}
+  \usepackage{fontspec}
+  \usepackage[margin=1in]{geometry}
+  \usepackage{setspace,array,tabularx,longtable,booktabs,float,caption}
+  \captionsetup{labelfont=bf,textfont=it,labelsep=newline,
+    justification=raggedright,singlelinecheck=false,position=top}
+  % Use neutral preview numbering. The thesis supplies its own numbers.
+  \pagestyle{empty}
+\fi
+\input{figures/tikz_style.tex}
+% The 9 bp annotation size needs supported script sizes for TikZ's math setup.
+\DeclareMathSizes{9bp}{9bp}{7pt}{5pt}
+
+% DATA -----------------------------------------------------------------------
+% Arguments: topic ID, label, direct test, used/discussed, no record, unclear.
+% One status per topic per appraisal; a work can contribute to several topics.
+% The figure and table both read this block.
+\newcommand{\ReviewAppraisalN}{94}
+\newcommand{\ReviewTopics}[1]{%
+  #1{inputs}{Adding an input}{46}{15}{30}{3}%
+  #1{rule}{Choice of fusion rule}{37}{28}{29}{0}%
+  #1{training}{Training strategy}{28}{60}{4}{2}%
+  #1{noise}{Corrupted inputs at test}{21}{22}{50}{1}%
+  #1{encoding}{Input representation}{15}{67}{7}{5}%
+  #1{absent}{Missing inputs at inference}{11}{15}{68}{0}%
+  #1{shift}{Transfer across settings}{11}{30}{52}{1}%
+}
+\newcommand{\ReviewPercent}[1]{%
+  \begingroup
+  \pgfmathparse{100*(#1)/\ReviewAppraisalN}%
+  \pgfmathprintnumber[fixed,precision=1,fixed zerofill]{\pgfmathresult}\%%
+  \endgroup}
+\newcommand{\ReviewCheckRow}[6]{%
+  \ifnum\numexpr #3+#4+#5+#6\relax=\ReviewAppraisalN\relax\else
+    \PackageError{review-visuals}{Counts for #1 must sum to \ReviewAppraisalN}%
+      {Check the four status counts in the ReviewTopics block.}%
+  \fi}
+\ReviewTopics{\ReviewCheckRow}
+
+% Native author-year citations in the thesis; the stand-alone proof prints
+% the same work identities without needing references.bib or a Biber run.
+\newcommand{\ReviewCite}[2]{%
+  \ifcsname parencite\endcsname\parencite{#1}\else(#2)\fi}
+\newcommand{\ReviewNote}[1]{%
+  \par\smallskip\begingroup\small\raggedright\noindent\textit{Note.} #1\par\endgroup}
+
+% FIGURE ---------------------------------------------------------------------
+% Coordinates are fractions of the current text width; row spacing is in cm.
+% Greyscale fills and hatching remain distinguishable in monochrome print.
+\newcount\ReviewRowIndex
+\newcommand{\ReviewBarRow}[6]{%
+  \advance\ReviewRowIndex by 1\relax
+  \pgfmathsetmacro{\ReviewY}{-0.72*\the\ReviewRowIndex}%
+  \pgfmathsetmacro{\ReviewA}{\ReviewLeft+\ReviewWidth*(#3)/\ReviewAppraisalN}%
+  \pgfmathsetmacro{\ReviewB}{\ReviewLeft+\ReviewWidth*(#3+#4)/\ReviewAppraisalN}%
+  \pgfmathsetmacro{\ReviewC}{\ReviewLeft+\ReviewWidth*(#3+#4+#5)/\ReviewAppraisalN}%
+  \node[anchor=west] at (0,\ReviewY) {#2};
+  \path[fill=black!76] (\ReviewLeft,{\ReviewY-.18}) rectangle (\ReviewA,{\ReviewY+.18});
+  \path[fill=black!36] (\ReviewA,{\ReviewY-.18}) rectangle (\ReviewB,{\ReviewY+.18});
+  \path[fill=white] (\ReviewB,{\ReviewY-.18}) rectangle (\ReviewC,{\ReviewY+.18});
+  \ifnum#6>0\relax
+    \begin{scope}
+      \clip (\ReviewC,{\ReviewY-.18}) rectangle (\ReviewRight,{\ReviewY+.18});
+      \pgfmathtruncatemacro{\ReviewHatches}{ceil((\ReviewRight-\ReviewC)/.008)+3}%
+      \foreach \j in {0,...,\ReviewHatches} {
+        \draw[black!75,line width=.28pt]
+          ({\ReviewC-.020+.008*\j},{\ReviewY-.18}) --
+          ({\ReviewC+.002+.008*\j},{\ReviewY+.18});
+      }
+    \end{scope}
+    \draw[black!55,line width=.25pt] (\ReviewC,{\ReviewY-.18}) -- (\ReviewC,{\ReviewY+.18});
+  \fi
+  \draw[black!65,line width=.3pt] (\ReviewLeft,{\ReviewY-.18}) rectangle (\ReviewRight,{\ReviewY+.18});
+  \node at (.745,\ReviewY) {#3}; \node at (.818,\ReviewY) {#4};
+  \node at (.889,\ReviewY) {#5}; \node at (.958,\ReviewY) {#6};
+}
+\newcommand{\ReviewKey}[1]{%
+  \tikz[baseline=-.5ex,x=1pt,y=1pt]{%
+    \ifcase#1\relax\or \fill[black!76] (0,0) rectangle (11,6);
+    \or \fill[black!36] (0,0) rectangle (11,6);
+    \or \fill[white] (0,0) rectangle (11,6);
+    \or \begin{scope}\clip (0,0) rectangle (11,6);
+      \foreach \j in {-6,-3,0,3,6,9}{\draw[line width=.3pt] (\j,0)--++(6,6);}
+    \end{scope}\fi
+    \draw[black!65,line width=.3pt] (0,0) rectangle (11,6);}}
+\newcommand{\ReviewDepthFigure}{%
+  \begin{figure}[H]
+    \centering\singlespacing
+    \caption{Depth of investigation recorded in the \ReviewAppraisalN{} literature appraisals}
+    \label{fig:review-depth}
+    \begingroup\fontsize{9bp}{11bp}\selectfont
+    \begin{tabular}{@{}l@{\hspace{2em}}l@{}}
+      \ReviewKey{1}\enspace Direct test recorded &
+      \ReviewKey{2}\enspace Used or discussed only\\[2pt]
+      \ReviewKey{3}\enspace No treatment recorded &
+      \ReviewKey{4}\enspace Unclear from appraisal
+    \end{tabular}\par\medskip
+    \begin{tikzpicture}[x=\linewidth,y=1cm,
+      every node/.style={thesis label,inner sep=0pt,outer sep=0pt}]
+      \path[use as bounding box] (0,-5.36) rectangle (1,.78);
+      \def\ReviewLeft{.300}\def\ReviewWidth{.388}\def\ReviewRight{.688}
+      \node[anchor=west,thesis panel label] at (0,.53) {Topic};
+      \node[thesis panel label] at (.494,.53) {Share of appraisals};
+      \node[thesis panel label] at (.854,.53) {Number of appraisals};
+      \foreach \tick in {0,25,50,75,100}{
+        \pgfmathsetmacro{\xx}{\ReviewLeft+\ReviewWidth*\tick/100}
+        \node[thesis annotation] at (\xx,.05) {\tick\%};
+        \draw[black!20,line width=.25pt] (\xx,-.20) -- (\xx,-5.36);
+      }
+      \node[thesis annotation] at (.745,.05) {Test};
+      \node[thesis annotation] at (.818,.05) {Use};
+      \node[thesis annotation] at (.889,.05) {None};
+      \node[thesis annotation] at (.958,.05) {Unclear};
+      \ReviewRowIndex=0\relax
+      \ReviewTopics{\ReviewBarRow}
+    \end{tikzpicture}
+    \endgroup
+    \ReviewNote{Each topic uses all \ReviewAppraisalN{} appraisals as its denominator.
+      A paper can contribute to several topics. A direct test requires a recorded
+      comparison or intervention. ``No treatment recorded'' describes what the
+      author's appraisal documents; it does not establish that the paper omitted
+      the topic. The four categories record the depth documented in the appraisals.}
+  \end{figure}}
+
+% TABLE ----------------------------------------------------------------------
+% Each topic has two editable cells: recorded finding and author-proposed
+% follow-up. Citation keys in the first argument of ReviewCite are those used
+% in the thesis bibliography. The second argument is the stand-alone fallback.
+\newcommand{\ReviewText}[3]{%
+  \expandafter\def\csname ReviewFinding#1\endcsname{#2}%
+  \expandafter\def\csname ReviewQuestion#1\endcsname{#3}}
+\ReviewText{inputs}
+  {Image and audio fusion gained 5.9 percentage points over image alone in four-state
+   welding classification. In weld penetration, each single input tied fusion on the
+   clean test. Adding gripper state reduced accuracy in handover
+   \ReviewCite{P003,Hua2026Weld,Thoduka2024Handover}{Fan et al., 2026; Hua et al., 2026; Thoduka et al., 2024}.
+   Each contrast applies to its own outcome, inputs and assessment cases.}
+  {Does a second input improve on the strongest single input when both are tested on the same held-out runs?}
+\ReviewText{rule}
+  {An RGB--3D inspection study compared a static mean with a learned gate using complete inputs
+   \ReviewCite{P026}{Deng et al., 2026}. A gated unit outperformed concatenation on a
+   movie-genre task. Some alternative multimodal tool-wear pipelines were weaker
+   than the visual reference, although the proposed model improved on it
+   \ReviewCite{P006,P045}{Arevalo et al., 2017; Zhang et al., 2026}.
+   Differences in encoders or fitting can change the ranking. The genre result has
+   no direct industrial validation.}
+  {Under which faults does a learned rule outperform a static rule after both receive the same exposure during training?}
+\ReviewText{training}
+  {Both models had 1.02\% error on clean digits. With two quadrants missing, modality-dropout training reduced error from 35.91\% to 7.19\%
+   \ReviewCite{P005}{Neverova et al., 2015}. This controlled digit comparison tests
+   exposure to specified absence patterns, not performance under industrial outages.}
+  {How much of a gain under corruption comes from training exposure, and how much from the fusion rule?}
+\ReviewText{noise}
+  {One bearing study compared fusion rules at 0~dB. Another reported the proposed model's accuracy when one input was degraded
+   \ReviewCite{Huang2026Rolling,P046}{Huang \& Tong, 2026; Sun et al., 2026}.
+   Their corruption conditions and controls differ; the proposed model's corrupted
+   accuracy alone does not establish incremental fusion benefit.}
+  {At the same fault severity, does fusion outperform both the intact input and a static combination?}
+\ReviewText{encoding}
+  {Hand-crafted geometry can support 3D inspection, temporal patches retain useful
+   information for forecasting, and learned video features address action recognition
+   \ReviewCite{Horwitz2023Back,Nie2023PatchTST,P013}{Horwitz \& Hoshen, 2023; Nie et al., 2023; Liu et al., 2022}.
+   The tasks and supervision differ. These studies do not rank the representations
+   on the same target.}
+  {Which encoding adds complementary information when the target, observation window and fitting budget are fixed?}
+\ReviewText{absent}
+  {A pressure-only student was trained for single-input deployment; modality-resilient
+   inspection and RGB--geometry inspection also examine incomplete inputs
+   \ReviewCite{Li2025PGMTKD,Xu2025ModalityResilient,P026}{Li et al., 2025; Xu et al., 2025; Deng et al., 2026}.
+   A planned input restriction leaves performance under sudden loss or partial
+   corruption open. Simulated dropout and inference-time absence require distinct
+   assessment conditions.}
+  {Does a policy trained for a known missing stream also cope with an unexpected outage during operation?}
+\ReviewText{shift}
+  {Handover was tested across robots. A bearing study used target-domain validation during transfer
+   \ReviewCite{Thoduka2024Handover,Huang2026Rolling}{Thoduka et al., 2024; Huang \& Tong, 2026}.
+   Inspection methods were reapplied to Eyecandies with target-specific normal memories
+   \ReviewCite{P026,P033}{Deng et al., 2026; Xu et al., 2026}.
+   Rebuilding those memories uses target data. Performance of an unchanged predictor
+   at a new installation remains a separate question.}
+  {How much fusion benefit persists on a new machine or site when access to target data is controlled?}
+\ReviewText{credibility}
+  {Participant-disjoint assessment tests performance on held-out people. Selection
+   and calibration also affect what a reported score measures
+   \ReviewCite{Thoduka2024Handover,P004,Guo2017Calibration}{Thoduka et al., 2024; Varma \& Simon, 2006; Guo et al., 2017}.
+   Independence depends on the physical grouping. Accuracy alone gives neither
+   failure ranking nor probability quality.}
+  {Does the apparent benefit persist with appropriate grouping, training-side selection
+   and calibration, and assessment of ranking and probability quality?}
+\newcommand{\ReviewTableRow}[6]{%
+  \textbf{#2} &
+  \csname ReviewFinding#1\endcsname & \csname ReviewQuestion#1\endcsname\tabularnewline
+  \addlinespace[.45em]}
+\newcommand{\ReviewFollowupTable}{%
+    \begingroup\small\singlespacing
+    \setlength{\tabcolsep}{4.5pt}
+    \renewcommand{\arraystretch}{1.04}
+    \begin{longtable}{@{}>{\raggedright\arraybackslash}p{.18\linewidth}
+      >{\raggedright\arraybackslash}p{.47\linewidth}
+      >{\raggedright\arraybackslash}p{.31\linewidth}@{}}
+      \caption{Findings, limits and follow-up questions from the literature review}
+      \label{tab:literature-synthesis}\\
+      \toprule
+      \textbf{Topic or question} & \textbf{Published finding and its limit}
+        & \textbf{Follow-up question}\\
+      \midrule
+      \endfirsthead
+      \caption[]{Findings, limits and follow-up questions from the literature review (continued)}\\
+      \toprule
+      \textbf{Topic or question} & \textbf{Published finding and its limit}
+        & \textbf{Follow-up question}\\
+      \midrule
+      \endhead
+      \midrule
+      \multicolumn{3}{r@{}}{\footnotesize Continued on the next page}\\
+      \endfoot
+      \bottomrule
+      \endlastfoot
+      \ReviewTopics{\ReviewTableRow}
+      \textbf{How credible is the estimate?} &
+      \ReviewFindingcredibility & \ReviewQuestioncredibility\tabularnewline
+    \end{longtable}
+    \endgroup
+}
+
+% Stand-alone preview only. In the thesis, each object is placed by its macro.
+\ifdefined\ThesisLiteratureEmbedded
+  \expandafter\endinput
+\fi
+\begin{document}
+\ReviewDepthFigure
+\clearpage
+\ReviewFollowupTable
+\end{document}

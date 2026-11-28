@@ -2,7 +2,7 @@
 \label{ch:foundations}
 
 In the failed insertion shown in Chapter~\ref{ch:reassemble}, the first camera frame carried the same
-weight as the last. The attempt lasted 15.233 seconds. From that recording, the visual
+weight as the last. From that recording, the visual
 model took 16 frames and averaged their features into a single description of the
 action. Reading the frames in reverse order would have given exactly the same
 description. For an insertion, this matters. A change near the point of contact may be
@@ -21,7 +21,7 @@ gear condition from machine measurements. Photographs taken after a run supplied
 target for the main sensor study. A photograph used to define what a model should
 predict has a different role from a camera frame supplied to a model when it makes a
 prediction. That distinction affects what can be claimed from the fusion experiments in
-this chapter.
+Chapters~\ref{ch:phm} and~\ref{ch:reassemble}.
 
 \section{What the models predicted}
 
@@ -531,20 +531,18 @@ coefficients for each observation \\
 \section{What the experiments can establish}
 
 The main REASSEMBLE comparison used a frozen camera backbone, a statistical sensor
-model, and fusion rules that combined their predictions. The statistical sensor branch
-was selected for fusion after the initial representation results were available. This
-was an exploratory choice. PatchTST remained a separate sensor-only comparison in the
-core study, and its performance under a limited training budget leaves open what longer
+model, and fusion rules that combined their predictions. PatchTST remained a separate
+sensor-only comparison on the same sensor measurements in the core study, and its
+performance under a limited training budget leaves open what longer
 training might achieve. Appendix~\ref{app:implementation} records the configurations,
 and Appendix~\ref{app:reproducibility} identifies which prediction paths were actually
 run.
 
 The original research question also included sound. An Audio Spectrogram Transformer was
-a possible way to represent it \parencite{P011}. In REASSEMBLE, the checks could not
-establish a reliable common time reference between the audio and the labelled action.
-There were also concerns that information about the outcome could enter the audio
-prediction process. The study therefore left audio out of the predictive experiment. Its
-value for these actions remains open.
+a possible way to represent it \parencite{P011}. Action-level audio prediction requires
+reliable alignment between the sound and the labelled action. Chapter~\ref{ch:reassemble}
+explains the decision to exclude audio from the predictive experiment. Its value for
+these actions remains open.
 
 The recorded insertion illustrates the boundary of the chapter’s claims. The model had
 access to the whole action, so it could use visual evidence near the end. The sensor

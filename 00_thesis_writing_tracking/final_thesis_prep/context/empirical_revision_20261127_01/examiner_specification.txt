@@ -1,0 +1,223 @@
+Below is the critical examiner assessment of my empirical Chapters 5–8 (and Chapter 4 alignment). Use this exact review as the specification to guide verification and subsequent chapter revisions.
+
+---
+
+## Overall Verdict
+
+This empirical sequence has unusually strong methodological discipline for a master's thesis—its group-disjoint protocols, refusal to cherry-pick favorable splits, and honest reporting of null, negative, and unfinished work are major scientific assets. Structurally, however, Chapters 5–8 suffer from three problems that weaken the thesis's argument:
+
+1. **A miscalibrated hierarchy of the external studies** that undersells MSM (the most complete external test) while over-framing ViFailback (which is incomplete on SQ3 and partial on adaptation).
+2. **Defensive audit-log prose** in which repeated boilerplate disclaimers crowd out basic quantitative evidence—leaving several explicitly introduced baselines, controls, and sensitivities without reported numbers.
+3. **Uneven presentation and duplication with Chapter 4**, especially in Chapters 5, 7, and 8.
+
+The core empirical order (PHM → REASSEMBLE → MSM → ViFailback) is sound and does not need a cosmetic reshuffle, but targeted structural tightening, clearer evidence tables, and sharper separation from Chapters 4 and 9 are essential before submission.
+
+*Review scope note:* This assessment is based on Chapters 4–8 and the two traceability documents (`THESIS_CODE_MAP.md` and PHM `THESIS_CODE_TRACEABILITY.md`). Chapters 1–3, Chapter 9, Appendices D/F/G/H, raw result tables, and rendered figures were not supplied; claims depending on those materials are flagged explicitly for verification rather than assumed verified.
+
+---
+
+## 1. Assessment of Each Dataset's Scientific Role
+
+The proposed hierarchy needs one substantive correction: **MSM and ViFailback are currently framed backwards relative to the evidence they actually deliver.**
+
+- **REASSEMBLE (Chapter 6) — Correctly identified as the central empirical study.** It is the only dataset that evaluates all four sub-questions (SQ1–SQ4) in full depth: unimodal representation hierarchy, six fusion families, systematic corruption and missingness stress tests, and targeted mechanistic follow-ups (training budget, temporal pooling, spatial encoder, fine-tuning, anchored adaptation, and exposure-matched corruption training) on a common 4,530-action cohort. Its evidence justifies anchoring the thesis here.
+- **MSM (Chapter 7) — Currently undersold; its actual scientific role is the primary completed cross-domain (manufacturing) generalization and robustness test.** Calling MSM merely "a completed manufacturing comparison" and titling Chapter 7 *Dataset Adaptation and Evaluation Feasibility* makes it sound like a preliminary screening exercise (akin to REBOOT or Intel Welding). In fact, MSM is the *only* study outside REASSEMBLE that completed multi-seed clean evaluation, six target- and group-sensitivity protocols, **and** controlled SQ3 corruption/quality-gate experiments. Moreover, it returns directly to industrial manufacturing (metal cutting) and supplies the thesis's clearest counterexample to assuming multimodal stacking helps when a strong numerical baseline already exists.
+- **ViFailback (Chapter 8) — Currently overstated as "the major extension"; its actual scientific role is a robotic task-generalization and representation-transfer extension (SQ1–SQ2, with partial adaptation and unexecuted SQ3).** ViFailback adds genuine scientific value that MSM cannot: multi-view robotics (three cameras), extreme majority-failure prevalence requiring both-class AP, task-disjoint generalization across 99 canonical tasks, and the thesis's *only* completed learned-representation transfer comparison (`DONOR20` vs. `FROZEN20`). However, its primary comparison was specified partly retrospectively (30 October 2026), target-CNN adaptation (`FULL20`/`FULL100`) covers only one outer fold and single-role pilots with inconclusive intervals, and SQ3 corruption testing was never run. Framing it as a **focused transfer and task-generalization study with bounded adaptation evidence** matches the completed record far better than "the major extension."
+- **PHM2026 (Chapter 5) — Substantive investigation of target validity, proxy construction, and multi-source sensor fusion (R1/SQ4, SQ1, partial SQ2).** The proposed role for PHM is accurate, with one necessary sharpening: examiners will naturally ask why a study with *no inference-time image branch* sits in a multimodal vision–sensor thesis. Frame PHM explicitly as establishing **R1 (target validity and modality correspondence) and multi-source sensor-feature fusion under cross-experiment shift**, rather than letting it look like a failed visual–sensor fusion chapter. Its placement as Chapter 5 works well because its target-validity and constant-baseline lessons motivate why REASSEMBLE's native outcomes and paired inference modalities were needed next.
+
+---
+
+## 2. Chapter-by-Chapter Assessment of the Current Flow
+
+### Front-loading major findings across Chapters 5–8
+
+Introducing a brief orientation takeaway at the start of each chapter **helps an examiner** in a multi-dataset thesis where targets, units, and metrics shift every chapter. However, the current implementation is **inconsistent and disrupts motivation in Chapters 7–8**:
+- Chapters 5 and 6 place the headline result in two unheaded opening paragraphs before §x.1.
+- Chapters 7 and 8 put the headline result as sentence 1 *inside* §7.1 (*Motivation and Intended Comparison*) and §8.1 (*Motivation and Replication Objectives*), which states the empirical verdict before explaining why the study was conducted.
+- All four drop raw decimal metrics (e.g., `0.8238`, `0.4473`) before defining the task unit or positive class.
+
+Standardize on a **3–4 sentence unheaded chapter overview** before §x.1 stating the study's role, directional finding (qualitatively or with a single self-explanatory anchor), and scope boundary—then let §x.1 open cleanly with motivation and questions.
+
+### Chapter 5 — PHM2026
+- **What works:** The conceptual separation between deterministic target construction, target emulation, and physical damage validation (§5.6) is unusually sharp. Keeping v1/v2/median-28/v3 separate in Table `tab:phm-target-lineage` and explaining the three-experiment LOEO rotation clearly prevents common reviewer misunderstandings.
+- **What fails:**
+  - **Misleading opening figure:** `fig:phm-route` sits before §5.1 and depicts the secondary, latency-confounded RT-DETR-L scalar image-regression pipeline rather than the chapter's principal sensor pipeline or target-construction workflow.
+  - **Missing quantitative results for introduced experiments:** §5.7.3 defines the historical fixed split and §5.6.4 states its v3 constant MAE (`0.7348`), yet the fixed-split fusion result (`0.6548` vs. `0.7348`, CI `[-0.548, +0.414]`, below the `0.15` pp criterion) is never reported. Similarly, §5.7.2 introduces Ridge regression (with its alpha grid), §5.6 discusses scalar regression, detection, multitask, and blind/DINOv2 diagnostics, and §5.8 discusses the four-arm study—yet almost none of their actual numbers appear in the chapter.
+  - **Repetition of caveats:** The four-arm normalizer-leakage caveat is repeated four times across §4.6.1, §5.7.1, §5.7.3, §5.8, and §5.9.
+  - **Unflagged evidence discrepancy:** §5.7.1 cites `E027` for "Minute-feature configuration," whereas the traceability records flag that `E027` is a misnamed directory whose provenance actually executed `train_late_fusion.py`.
+
+### Chapter 6 — REASSEMBLE
+- **What works:** Best-structured chapter in the thesis. The progression from Cohort/Preparation → Exp A (Unimodal) → Exp B (Fusion) → Exp C (Robustness) → Follow-ups → Synthesis directly mirrors SQ1–SQ4, and §6.10 synthesizes what was and was not combined without overclaiming.
+- **What fails:**
+  - **Experiment C (§6.8) lacks a results table and drops defined operators:** §6.8.2 defines seven corruption operators (pixel noise, blur, frame removal; sensor noise, channel removal, temporal block removal, stuck force/torque), but §6.8.4 reports numerical outcomes only for pixel noise, sensor noise, and blur in prose.
+  - **Section 6.9 (Follow-ups) is an unnavigable wall of text:** Six dense subsections mix full-cohort (4,530 actions), Fold-0 subset (753 actions), 16-frame vs. 32-frame, and 2/20/100-epoch protocols with zero summary tables. An examiner cannot easily track which follow-up used which population or control.
+  - **Dangling method in §6.5:** Nineteen structured label-shift permutations are specified in §6.5 ("smallest plus-one probability of 0.05"), yet no permutation result appears anywhere in Chapter 6.
+  - **Redundancy with Chapter 4:** The 753-action / 26-recording reconciliation (§6.4.1), stacker OOF bank dependency (§6.4.5), and AP/pooled-AP definitions (§6.5) duplicate §§4.6.2–4.8.2.
+
+### Chapter 7 — MSM
+- **What works:** Preparation and alignment (§7.4) are crisp and scientifically compelling—the VMX9 `+49.73 s` vs. `+16.04 s` alignment check, 3:8 SAR letterboxing, and label-2 semantic boundary genuinely explain *why* data engineering matters for multimodal validity. Table `tab:msm-support` cleanly documents the six sensitivity protocols.
+- **What fails:**
+  - **Title misrepresents the chapter:** *Dataset Adaptation and Evaluation Feasibility* implies an inconclusive feasibility check rather than a completed SQ1–SQ4 evaluation.
+  - **Collapsed results section (§7.8):** Clean primary scores, six-protocol sensitivities, five-date bootstrap intervals, corruption stresses, fallback behavior, seed-42 Brier/F1 trade-offs, and visual generalization limits are all compressed into one unstructured section with a single clean-AP table (`tab:msm-clean`).
+  - **Unsubstantiated claims in prose:** §7.8 asserts logistic sensing beat F2 across all six protocols (giving numbers for only two), mentions a "substantial visual training–assessment gap" without reporting the training score, and lists seven corruption families while giving numbers for only two.
+  - **No closing transition:** Chapter 7 ends abruptly on visual-annotation speculation, without explaining how MSM's outcome motivates Chapter 8 (ViFailback).
+  - **Misplaced literature comparison:** The `\citet{P045}` tool-wear comparison in §7.1 interrupts the chapter's motivation; it belongs in Related Work or Chapter 9.
+
+### Chapter 8 — ViFailback
+- **What works:** Candid disclosure of the 30 October 2026 retrospective specification, the 24 November 2026 stopping cutoff, the distinction between completed (`FROZEN20`/`DONOR20`), partial (`FULL20`/`FULL100`), and unexecuted (`SQ3`) scope (`tab:vif-status`), and why high failure prevalence (`85.65%`) mandates both-class macro AP (`tab:vif-bothclass`).
+- **What fails:**
+  - **Completed controls without reported numbers:** §8.7.1 and §8.7.5 introduce the completed 36-fit high-camera control, the original clean quality gate, and its availability-only control—but report zero scores for them.
+  - **Split results layout (§8.7 vs. §8.8):** Most results appear inside §8.7.1–§8.7.3, yet §8.8 unexpectedly drops extra fold-0 metrics (Brier `0.1539`, balanced accuracy `0.5` at threshold `0.5`) and an unelaborated finding about **negative sigmoid calibrator slopes reversing episode rankings**.
+  - **Zero figures:** Despite having the most complex multi-camera input (3 views × 16 timestamps) and multi-protocol training matrix (20-epoch nested OOF vs. 100-epoch single-role pilot), ViFailback has no embedded figure.
+  - **Cross-study leakage in §8.9:** Summarizing MSM, ViFailback, and HANDOVER together duplicates Chapter 9's synthesis.
+
+---
+
+## 3. Concrete Keep / Clarify / Add / Move / Verify Recommendations
+
+Priority tags distinguish **[Essential]** corrections from **[Optional]** improvements.
+
+### Chapter 4 — Shared Methodology (boundary with Chapters 5–8)
+- **Keep** §§4.6.2, 4.7, 4.8, and 4.9 as the single authoritative explanation of OOF stacker dependency (`fig:stacker-recording-flow`), pooled vs. mean-fold AP, `average_precision_score` vs. PR-AUC, known-absence fallback vs. unnoticed corruption, and conditional bootstrap limits.
+- **Move [Optional]:** Shorten dataset-specific micro-details in Chapter 4 that belong inside their case-study chapters—specifically the 28-to-26 recording fix in §4.6.3 (keep a 1-sentence cross-reference to Ch. 6) and the VMX9 `+49.73 s` offset in §4.4 (keep as a brief illustration or point directly to §7.4.1)—so Chapters 5–8 can cite Chapter 4 once instead of repeating definitions.
+
+### Chapter 5 — PHM2026
+- **Add [Essential]:** Report the historical fixed-split fusion result (`0.6548` vs. v3 training-mean `0.7348`, paired CI `[-0.548, +0.414]`, observed gain `~0.0800` pp below the `0.15` pp criterion) in §5.7.4 (clearly separated from principal LOEO `tab:phm-loeo`), because §5.7.3 already sets up the fixed split and §5.6.4 already cites `0.7348`.
+- **Add [Essential]:** In §5.6.4, report the concrete bounded numbers for the visual experiments already described in prose—specifically scalar regression v2 MAE (image `~0.894`, run `~1.347`), detector operating-point failure (`TP=0, FP=0, FN=9,883` at threshold `0.60`), multitask v2 MAE (image `0.7330`, run `1.6273`), and blind visual inspection vs. DINOv2 (`30/38 = 78.9%` vs. `29/38 = 76.3%`)—explicitly labeled as separate v2/selected-subset diagnostics.
+- **Clarify / Verify [Essential]:** Resolve the `E027` citation in §5.7.1: `THESIS_CODE_MAP.md` and `THESIS_CODE_TRACEABILITY.md` document that `E027` points to a misnamed `phm2026_patchtst_baseline` directory whose provenance actually ran `train_late_fusion.py`. Either re-anchor the minute-feature citation to the verified feature-configuration resource or explicitly preserve `E027` with its provenance caveat.
+- **Clarify / Verify [Essential]:** §5.7.2 specifies Ridge regression with alpha grid `{0.01, 0.1, 1, 10, 100}`, yet no Ridge score appears in Chapter 5. Either add Ridge's fixed-split/LOEO score (if verified in saved records) or remove the hyperparameter grid from §5.7.2 and point to Appendix D.
+- **Clarify [Essential]:** Explicitly state the source-lineage gap documented in `THESIS_CODE_TRACEABILITY.md` (principal LOEO and fixed-fusion recorded commits omit their entry points; resolved config retains stale `v2` text while pinned hashes/saved truths confirm `v3`) in a concise sentence in §5.7.3 rather than implying full training-code lineage.
+- **Move [Essential]:** Relocate `fig:phm-route` out of the chapter opening into §5.6.2 (where RT-DETR-L scalar regression is discussed).
+- **Clarify [Optional]:** Consolidate the four-arm preprocessing-leakage caveat into §5.8 (with a single pointer in §5.7.3), and report the four-arm three-seed MAEs (`0.8288`, `0.9074`, `0.9643` vs. `0.8042`) only if clearly fenced off as a leaky diagnostic, or defer the numbers entirely to Appendix D.
+
+### Chapter 6 — REASSEMBLE
+- **Add [Essential]:** Add a compact summary table to §6.8 (Experiment C) covering all seven corruption operators defined in §6.8.2 (or explicitly state in §6.8.4 which operators are tabulated in main text vs. Appendix D), reporting high-severity AP, Brier/ECE, and the intact unimodal reference.
+- **Add [Essential]:** Add a structured summary table to §6.9 (Follow-up Investigations) mapping each of the six follow-up studies to its exact cohort (`4,530` vs. `753` actions), matched control, key AP contrast + 95% CI, and completion status.
+- **Verify / Clarify [Essential]:** Either report the results of the nineteen structured label-shift permutations introduced in §6.5 (referencing their saved artifact), or remove that sentence from §6.5 if those permutation results are kept exclusively in Appendix D.
+- **Move [Optional]:** Move `fig:reassemble-example` from the pre-§6.1 opening into §6.2 or §6.4.2 where the 16 uniform sampled frames are explained.
+- **Clarify [Optional]:** Trim verbatim repetition of AP definitions (§6.5) and stacker OOF bank mechanics (§6.4.5) to crisp 2–3 sentence summaries pointing back to §§4.6.2 and 4.8.1.
+
+### Chapter 7 — MSM
+- **Clarify [Essential]:** Rename the chapter title from *Dataset Adaptation and Evaluation Feasibility* to something reflecting its completed scientific contribution, e.g., *MSM Case Study: Cross-Domain Manufacturing Fusion, Sensitivity, and Robustness*.
+- **Move / Restructure [Essential]:** Break the overloaded §7.8 into distinct subsections matching Experiments A–C: (a) Clean Unimodal & Fusion Results, (b) Target & Grouping Sensitivity Analyses, (c) Input Degradation & Missingness Robustness, (d) Metric Trade-offs & Limitations, plus a brief closing bridge to Chapter 8.
+- **Add [Essential]:** Include a compact sensitivity/robustness table (or two small tables) substantiating the prose claims that logistic sensing beat F2 across all six protocols and showing representative high-severity corruption scores alongside intact-branch references.
+- **Verify / Add [Essential]:** Support the "substantial visual training–assessment gap" claim (§7.3, §7.8) with the actual recorded training-set visual AP (or point to the specific Appendix D table where it is recorded).
+- **Move [Optional]:** Move the `\citet{P045}` tool-wear comparison out of §7.1 into Chapter 2 (Related Work) or Chapter 9 (Discussion).
+- **Clarify [Optional]:** Trim repeated AP/pooled-AP definitions in §7.7 by cross-referencing §4.8, and standardize decimal precision in `tab:msm-clean` (4 decimals, matching Ch. 5–6, unless 6 decimals are deliberately justified).
+
+### Chapter 8 — ViFailback
+- **Verify / Clarify [Essential]:** Explain and verify the negative sigmoid calibrator slope finding in §8.8 ("Some fitted sigmoid calibrators reversed the ranking of episodes within a fit because their slopes were negative"). State *which* branch/arm exhibited negative slopes, whether this affected `FROZEN20`/`DONOR20` inputs to F2, and what raw vs. calibrated AP showed.
+- **Add / Verify [Essential]:** Report the outcomes (or give a one-sentence directional takeaway + explicit Appendix D pointer) for the completed high-camera control (`36` fits), original clean quality gate, and availability-only control introduced in §8.7.1 and §8.7.5.
+- **Clarify [Essential]:** Clarify in §8.1 what early results had already been observed prior to the 30 October 2026 primary-comparison specification, so the boundary between exploratory development and confirmatory assessment is transparent.
+- **Move [Essential]:** Fold the stray fold-0 metrics and calibrator-slope analysis from §8.8 into the relevant investigation subsections (§8.7.2 / §8.7.3) or a dedicated *Calibration, Thresholds, and Metric Behavior* subsection, leaving §8.8 focused cleanly on synthesis and study-wide limitations.
+- **Move [Optional]:** Trim §8.9 (*Relationship to the Earlier Case Studies*) so it connects ViFailback back to REASSEMBLE and MSM without preempting Chapter 9's cross-study synthesis (in particular, move the HANDOVER summary out of §8.9 into Chapter 9 / Appendix H).
+- **Add [Optional/Recommended]:** Add one concise visual/protocol figure (see Section 6 below) so ViFailback is not the sole text-only empirical chapter.
+
+---
+
+## 4. Recommended Common Chapter Structure (With Justified Exceptions)
+
+Common macro-template for Chapters 5–8:
+1. **Unheaded Chapter Overview** (3–4 sentences: scientific role, qualitative main takeaway, scope boundary).
+2. **Study Motivation and Research-Question Mapping** (why this dataset, which SQs/Rs it answers, what it does *not* test).
+3. **Dataset, Prediction Task, and Challenges** (cohort, native vs. proxy target, observation horizon, physical/alignment constraints).
+4. **Preparation, Cohort Construction, and Pre-Checks** (exclusions, temporal/modality alignment, input contracts, group definitions).
+5. **Models, Adaptations, and Evaluation Protocol** (inputs, exact executed paths, baselines/controls, splits, metrics, uncertainty—cross-referencing Ch. 4 for shared mechanics).
+6. **Empirical Investigations** (one subsection per investigation, following the internal micro-arc: **Input → Processing/Model → Output → Evaluation → Supported Finding → Limitation**).
+7. **Synthesis, Limitations, and Transition to the Next Study** (what is established vs. unresolved, and the conceptual—not invented historical—link forward).
+
+**Justified dataset-specific exceptions:**
+- **Chapter 5 (PHM):** Keep *Target-Version History and Image-Derived Proxy Construction* as Investigation A before Sensor Prediction (Investigation B) and Diagnostics (Investigation C), rather than burying target construction inside Preparation.
+- **Chapter 6 (REASSEMBLE):** Keep **Experiments A, B, and C as top-level sections**, followed by a dedicated **Follow-up Investigations** section with a master summary table.
+- **Chapter 7 (MSM):** Keep **Implementation Checks / Bounded Development Run** as a brief subsection inside *Models and Evaluation Protocol* rather than a standalone top-level section.
+- **Chapter 8 (ViFailback):** Keep the **Scope & Completion Status table (`tab:vif-status`)** near the top of the Empirical Investigations section so completed, partial, and unexecuted arms are clear upfront.
+
+---
+
+## 5. Proposed Section Order for Each Chapter
+
+### Chapter 5 — PHM2026: Target Construction, Proxy Validity, and Sensor-Group Fusion
+- *Unheaded Overview* (role, null principal LOEO takeaway, proxy boundary)
+- **5.1 Study Objectives and Research-Question Mapping**
+- **5.2 Dataset, Acquisition Structure, and Supervision Challenges** *(merges current §§5.2–5.3)*
+- **5.3 Preparation, Exploratory History, and Target-Version Lineage** *(combines current §§5.4–5.5 with `tab:phm-target-lineage`)*
+- **5.4 Investigation A: Photographic Proxy Construction and Visual Diagnostics** *(absorbs `fig:phm-route` in §5.4.2; adds bounded scalar/detector/multitask/blind-inspection numbers)*
+- **5.5 Investigation B: Sensor-Based Condition Prediction and Feature Fusion** *(Inputs & Preprocessing; Models & Baselines; Fixed-Split & Principal LOEO Protocols; Fixed-Split & LOEO Results + Uncertainty; Interpretation & Lineage Limits)*
+- **5.6 Supplementary Diagnostics and Evaluation Sensitivity** *(HF/spectral, four-arm leaky comparison, raw-vibration/sector screens, monotonic/synthetic controls—briefly summarized with pointers to Appendix D)*
+- **5.7 Synthesis, Limitations, and Motivation for Native-Outcome Paired Studies** *(merges current §§5.9–5.10)*
+
+### Chapter 6 — REASSEMBLE: Central Study of Representation, Fusion, and Robustness
+- *Unheaded Overview* (central role, modest static F2 gain with second-stage-fit & F1-unresolved qualification, negative original gates, exploratory follow-ups)
+- **6.1 Study Objectives and Research-Question Mapping**
+- **6.2 Dataset, Native Outcomes, and Modality Constraints** *(merges current §§6.2–6.3; places `fig:reassemble-example` here or in §6.3)*
+- **6.3 Cohort Preparation, Alignment, and Evaluation Protocol** *(condenses current §§6.4–6.5 by cross-referencing Ch. 4 for AP and stacker OOF bank details; clarifies or removes the dangling permutation test)*
+- **6.4 Experiment A: Unimodal Representations** *(current §6.6 + `tab:reassemble-unimodal`)*
+- **6.5 Experiment B: Multimodal Fusion Strategies** *(current §6.7 + `tab:reassemble-fusion` + saved-prediction fold check)*
+- **6.6 Experiment C: Missing and Degraded Modalities** *(current §6.8 + new corruption summary table covering defined operators)*
+- **6.7 Controlled Follow-up Investigations** *(current §6.9 + new master follow-up comparison table separating 4,530-action vs. 753-action studies)*
+- **6.8 Synthesis, Remaining Questions, and Bridge to External Datasets** *(current §6.10 + brief conceptual transition to MSM)*
+
+### Chapter 7 — MSM: Cross-Domain Manufacturing Fusion, Sensitivity, and Robustness
+- *Unheaded Overview* (role as primary completed external/manufacturing SQ1–SQ4 study; logistic sensor outperforms F2; unresolved QG-clean gain; corruption trade-offs)
+- **7.1 Motivation and Research-Question Mapping** *(removes headline result from sentence 1 and moves `\citet{P045}` to Ch. 2/9)*
+- **7.2 Dataset, Cutting-Label Semantics, and Domain Challenges** *(merges current §§7.2–7.3)*
+- **7.3 Preparation, Timing Alignment, and Cohort Support** *(current §7.4 + `tab:msm-support` + `fig:msm-example`)*
+- **7.4 Architecture Reuse, Adaptations, and Evaluation Protocol** *(merges current §§7.5–7.7, demoting bounded dev check to one paragraph and cross-referencing Ch. 4 for AP definitions)*
+- **7.5 Investigation A: Clean Unimodal and Fusion Comparison** *(extracts clean results + `tab:msm-clean` + visual train/test gap evidence)*
+- **7.6 Investigation B: Target-Definition and Grouping Sensitivities** *(new compact 6-protocol summary table + 5-date bootstrap CIs + failed DOWN-only support gate)*
+- **7.7 Investigation C: Input Degradation, Quality Gates, and Fallback** *(new compact corruption table + intact-branch comparisons + fallback distinction)*
+- **7.8 Metric Trade-offs, Limitations, and Transition to ViFailback** *(seed-42 Brier/F1 vs. AP trade-offs, optical-visibility/alignment hypotheses, and bridge to ViFailback via MSM's unmeasured `R` donor-transfer condition)*
+
+### Chapter 8 — ViFailback: Task-Disjoint Robotic Generalization and Representation Transfer
+- *Unheaded Overview* (role as robotic task-generalization and donor-transfer extension; logistic sensor > F2; mixed donor effects; partial adaptation and unexecuted SQ3)
+- **8.1 Motivation, Replication Scope, and Reporting Cutoff** *(moves headline verdict to overview; states 30 Oct retrospective specification and 24 Nov cutoff transparently)*
+- **8.2 Dataset, Episode Labels, and Cohort Construction** *(merges current §§8.2–8.3)*
+- **8.3 Preparation, Three-View Inputs, and Pre-Checks** *(current §8.4 + new input/protocol figure)*
+- **8.4 Models, Transfer/Adaptation Regimes, and Evaluation Protocol** *(merges current §§8.5–8.6, contrasting 20-epoch nested OOF vs. 100-epoch single-role pilot)*
+- **8.5 Empirical Investigations** *(opens with `tab:vif-status`)*
+  - *8.5.1 Unimodal References and Original Fusion* (`tab:vif-bothclass`, plus high-camera & original gate summary/pointer)
+  - *8.5.2 Matched Frozen vs. REASSEMBLE-Donor Transfer* (`tab:vif-matched`, paired donor contrasts, 100-epoch frozen/donor pilots)
+  - *8.5.3 Partial Target-CNN Adaptation* (`tab:vif-adaptation`, explicit protocol boundary between 20- and 100-epoch meta banks)
+  - *8.5.4 Calibration, Threshold Behavior, and Unfinished Robustness Scope* *(integrates fold-0 Brier/balanced-accuracy findings, clarified negative calibrator slopes, and unexecuted SQ3 list)*
+- **8.6 Synthesis, Limitations, and Role in the Thesis** *(replaces current §8.8–§8.9; focuses on what ViFailback adds to REASSEMBLE and MSM without duplicating Chapter 9's HANDOVER/cross-study synthesis)*
+
+---
+
+## 6. Concise Figure and Table Plan
+
+| # | Item (Type) | Comprehension Problem Solved | Proposed Location | Exact Content | Reuse Existing Material? | Required Evidence / Assets |
+|---|---|---|---|---|---|---|
+| 1 | **PHM Dual-Path Pipeline & Target Diagram** (Figure) | Readers conflate PHM's photographic proxy construction, secondary image regression (`fig:phm-route`), and principal sensor-only three-group fusion. | Ch. 5, §5.4 or §5.5 (and move `fig:phm-route` to §5.4.2) | Two separated lanes: (Top) Post-run tooth photos → ROI/CLAHE/residual mask → v3 top-3 run proxy (supervision only); (Bottom) 9 sensor vars → 72 minute-feature channels → 3 group PatchTST encoders → concatenation → run proxy (inference path). | Keep `fig:phm-route` in §5.4.2; create one clean schematic for the principal route. | Verified architecture/target specs in `E023`, `E027`/`E124`, `E031`, `E035`. |
+| 2 | **REASSEMBLE Experiment C Corruption Summary** (Table) | §6.8.2 defines 7 corruption operators, but §6.8.4 scatters only 3 in prose; readers cannot see AP vs. Brier/ECE collapse against intact unimodal branches. | Ch. 6, §6.6 (current §6.8.4) | Rows: key high-severity visual & sensor operators + known single-stream absence. Columns: Intact survivor AP, F2 AP / Brier / ECE, F5 AP, F6 AP (with explicit note pointing to Appendix D for intermediate severities). | No existing table in Ch. 6. | Saved robustness outputs `E049`, `E055`. |
+| 3 | **REASSEMBLE Follow-up Comparison Map** (Table) | §6.9 spans 6 heterogeneous follow-ups across 4,530-action and 753-action cohorts with different controls; prose alone makes cross-comparison error-prone. | Ch. 6, §6.7 (top of current §6.9) | Columns: Investigation, Cohort ($N$ actions / recordings), Control baseline, Focal result & 95% CI (AP), Status / Key caveat (e.g., not combined, single fold, unresolved). | No existing table in Ch. 6. | Saved follow-up records `E038`–`E042`, `E058`–`E062`. |
+| 4 | **MSM Six-Protocol Sensitivity & Key Corruption Summary** (Table, or 2 compact tables) | §7.8 claims logistic sensing > F2 across all 6 protocols and reports partial corruption numbers in prose without structured evidence. | Ch. 7, §§7.6–7.7 (split from current §7.8) | Part A: 6 target/grouping protocols × mean AP for Vision, Sensor LR, Sensor HGB, F2, QG-clean. Part B: Selected high-severity sensor/visual corruptions + fallback for Intact survivor, F2, QG-aug, Sensor HGB. | Expands on `tab:msm-support` and `tab:msm-clean`. | Saved MSM evaluation & robustness tables `E076`, `E080`, `E081`. |
+| 5 | **ViFailback Multi-View Input & Split/Protocol Schematic** (Figure) | ViFailback has zero figures yet combines 3 cameras × 16 timestamps, 28 observation channels, and two incompatible fusion-fitting protocols (20-epoch 3-inner OOF vs. 100-epoch 788-episode pilot). | Ch. 8, §8.3 or §8.4 | Top panel: 3-camera illustrative frame strip (clearly labeled illustrative, not validation) + 280-stat sensor summary. Bottom panel: visual contrast of `FROZEN20`/`DONOR20`/`FULL20` (3,275 inner OOF) vs. `100`-epoch pilot (788 meta, 1,107 outer), highlighting completed vs. unfinished cells. | No existing figure in Ch. 8. | Verified episode visual sample (if permissible under dataset terms) + protocol specs `E088`, `E094`, `E098`, `E115`–`E116`. |
+
+*Existing figures to retain:* `fig:stacker-recording-flow` (Ch. 4 §4.6.2), `fig:reassemble-example` (relocated into Ch. 6 §6.2 or §6.3), and `fig:msm-example` (Ch. 7 §7.3, current §7.4.4).
+
+---
+
+## 7. Claims Requiring Qualification or Additional Evidence
+
+- **PHM `E027` provenance mismatch (§5.7.1):** Citing `E027` as "Minute-feature configuration" conflicts with `THESIS_CODE_MAP.md` and `THESIS_CODE_TRACEABILITY.md`, which establish that `E027` is a misnamed `phm2026_patchtst_baseline` directory whose provenance executed `train_late_fusion.py`. Qualify or correct the reference.
+- **PHM unverified execution-commit lineage (§5.7.3):** Distinguish *saved-prediction verification + current-source inspection* from *complete historical execution-byte provenance*, since the historical recorded commits for fixed fusion (`8c4ae311...`) and principal LOEO (`c699cbd9...`) omit those entry points from their Git trees.
+- **PHM omitted Ridge and fixed-split results (§5.7.2–§5.7.4):** Add the verified fixed-split fusion comparison (`0.6548` vs. `0.7348`, CI `[-0.548, +0.414]`) and either report Ridge or remove its alpha grid from the main text.
+- **REASSEMBLE unreferenced permutation test (§6.5):** Either report the outcome of the nineteen structured label-shift permutations or remove the specification from main text.
+- **REASSEMBLE core robustness coverage (§6.8.2 vs. §6.8.4):** Tabulate all seven declared corruption operators or explicitly cross-reference the full appendix table.
+- **REASSEMBLE F2-vs-sensor attribution (§6.7.4, §6.7.6):** Ensure the chapter opener retains the qualification that F2 combines both visual information and an extra second-stage logistic fit, and did not outperform simple averaging (`F1`).
+- **MSM "substantial visual training–assessment gap" (§7.3, §7.8) and "all six prespecified protocols" (§7.8):** Add the six-protocol table and cite the training visual score (or its appendix location).
+- **ViFailback negative sigmoid calibrator slopes (§8.8):** Verify from saved records which models/folds experienced negative slopes, whether calibrated outputs fed F2 in `FROZEN20`/`DONOR20`, and how raw vs. calibrated macro AP compare.
+- **ViFailback omitted completed controls (§8.7.1, §8.7.5):** Add summary scores or a clear directional takeaway pointing to Appendix D for the high-camera (`36` fits), original clean quality gate, and availability-only controls.
+- **ViFailback retrospective specification (§8.1):** Clarify briefly what preliminary outcomes were seen prior to 30 October 2026.
+- **Cross-study framing of HANDOVER (§4.1, §4.2, §4.6, §8.9):** Ensure Chapters 1–3 and 9 explicitly explain why HANDOVER resides in Appendix H (supporting unimodal/fixed-average evidence without participant-safe OOF groups for learned fusion).
+
+---
+
+## 8. Prioritized Revision Sequence
+
+1. **Lock the cross-chapter narrative and titles (Essential):** Recalibrate the framing of MSM vs. ViFailback in Chapter 4 (and Chapters 1/9), rename Chapter 7's title to remove "Evaluation Feasibility," and standardize the 3–4 sentence unheaded overview format across Chapters 5–8.
+2. **Close factual and reporting gaps before moving paragraphs (Essential):** Verify and assemble the missing numbers from saved records/Appendix D: (a) PHM fixed-split fusion, Ridge status, visual/blind-inspection numbers, and `E027` resolution; (b) REASSEMBLE 19-permutation status and full 7-operator Experiment C table; (c) MSM 6-protocol table, visual training score, and corruption summary; (d) ViFailback negative calibrator-slope diagnosis and high-camera/original-gate numbers.
+3. **Restructure Chapters 7 and 8 first, then Chapter 5 (Essential):** Split MSM's monolithic §7.8 into Investigations A–C + transition; consolidate ViFailback's split §8.7/§8.8 results and trim §8.9; relocate PHM's `fig:phm-route` while tightening §§5.2–5.3 and §§5.9–5.10.
+4. **Add the high-leverage tables and figures (Essential for Tables 2–4; Recommended for Figures 1 & 5):** Insert REASSEMBLE's Experiment C and Follow-up master tables, MSM's sensitivity/robustness table, PHM's dual-path diagram, and ViFailback's multi-view/protocol schematic.
+5. **De-duplicate against Chapter 4 and trim defensive prose (Optional → High-impact polish):** Replace repeated boilerplate definitions (AP, pooled AP, fallback vs. corruption, stacker OOF dependency, four-arm normalizer leak) with concise pointers to Chapter 4, and convert repetitive paragraph-ending disclaimers into clear, dedicated *Limitations* blocks at the end of each investigation.
+6. **Final consistency pass (Optional):** Harmonize decimal precision across tables (e.g., 4 decimals in main tables unless 6 are needed for tiny deltas), verify every `\EvidenceRef` against Appendix F (`E018`–`E133`), and check all cross-references against Chapters 1–3, Chapter 9, and Appendices D/F/G/H.

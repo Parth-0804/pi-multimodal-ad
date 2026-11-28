@@ -1,0 +1,21 @@
+% Draft-only document setup; the manuscript preamble is not modified.
+\usepackage{fix-cm}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype,setspace,graphicx,booktabs,array,tabularx,caption}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\ifdefined\DraftUseBibliography
+\usepackage[backend=biber,style=apa,natbib=true,sortcites=true]{biblatex}
+\addbibresource{references.bib}
+\addbibresource{references_additions.bib}
+\fi
+\usepackage[hidelinks]{hyperref}
+\captionsetup{hypcap=false,labelfont=bf,textfont=it,labelsep=newline,justification=raggedright,singlelinecheck=false,position=top}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+\singlespacing
+\newcommand{\displaynote}[1]{\par\smallskip\begingroup\raggedright\fontsize{9bp}{11bp}\selectfont\textit{Note.}
+#1\par\endgroup}
+\input{figures/draft_chapters_01_02/draft_captions.tex}

@@ -1,0 +1,69 @@
+% Shared thesis typography. Author-requested editorial layout, 26 November 2026.
+% University formatting requirements have not been independently verified.
+% Document class, fonts, paper, margins and APA bibliography style stay in the roots.
+\RequirePackage{etoolbox}
+
+\onehalfspacing
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{6mm}
+\newcommand{\apaprose}{%
+  \onehalfspacing\raggedright
+  \setlength{\parindent}{6mm}\setlength{\parskip}{0pt}}
+\AtBeginEnvironment{longtable}{\singlespacing}
+
+% Moderate, positive physical gaps. Keep report.cls fonts, numbering and
+% no-break behavior. Its negative before-skip convention suppresses first-
+% paragraph indentation; it does not place text in a negative vertical gap.
+\makeatletter
+\newcommand{\ThesisSpacingPatchFailed}{%
+  \PackageError{thesis-formatting}{Unexpected report.cls heading definition}%
+    {Check the shared heading-spacing patches against the document class.}}
+\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{\vspace*{24\p@}}{}{\ThesisSpacingPatchFailed}
+\patchcmd{\@makechapterhead}{\vskip 20\p@}{\vskip 12\p@}{}{\ThesisSpacingPatchFailed}
+\patchcmd{\@makechapterhead}{\vskip 40\p@}{\vskip 24\p@}{}{\ThesisSpacingPatchFailed}
+\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{\vspace*{24\p@}}{}{\ThesisSpacingPatchFailed}
+\patchcmd{\@makeschapterhead}{\vskip 40\p@}{\vskip 24\p@}{}{\ThesisSpacingPatchFailed}
+\patchcmd{\section}{-3.5ex \@plus -1ex \@minus -.2ex}%
+  {-2.5ex \@plus -.8ex \@minus -.2ex}{}{\ThesisSpacingPatchFailed}
+\patchcmd{\section}{2.3ex \@plus.2ex}%
+  {1.4ex \@plus.2ex}{}{\ThesisSpacingPatchFailed}
+\patchcmd{\subsection}{-3.25ex\@plus -1ex \@minus -.2ex}%
+  {-2.25ex\@plus -.8ex \@minus -.2ex}{}{\ThesisSpacingPatchFailed}
+\patchcmd{\subsection}{1.5ex \@plus .2ex}%
+  {1ex \@plus .2ex}{}{\ThesisSpacingPatchFailed}
+\patchcmd{\subsubsection}{-3.25ex\@plus -1ex \@minus -.2ex}%
+  {-2ex\@plus -.8ex \@minus -.2ex}{}{\ThesisSpacingPatchFailed}
+\patchcmd{\subsubsection}{1.5ex \@plus .2ex}%
+  {.8ex \@plus .2ex}{}{\ThesisSpacingPatchFailed}
+
+% A centered abstract heading shared by all editions; no negative offsets.
+\newcommand{\ThesisAbstractHeading}{%
+  \begingroup
+  \renewcommand{\@makeschapterhead}[1]{%
+    \vspace*{12\p@}%
+    {\parindent\z@\centering\normalfont\interlinepenalty\@M
+     \Huge\bfseries ##1\par\nobreak\vskip18\p@}}%
+  \chapter*{Abstract}%
+  \endgroup}
+\makeatother
+
+% Float contents and footnotes retain setspace's single-spacing behavior.
+% Keep figure/table definitions and caption typography unchanged.
+\setlength{\textfloatsep}{14pt plus 2pt minus 4pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+\setlength{\floatsep}{10pt plus 2pt minus 2pt}
+
+% Avoid isolated first/last paragraph lines without changing authored text.
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+
+% Permit a readable large float to share a page with surrounding prose.
+\renewcommand{\topfraction}{.85}
+\renewcommand{\bottomfraction}{.75}
+\renewcommand{\textfraction}{.1}
+\renewcommand{\floatpagefraction}{.7}
+
+% Editable literature-review objects shared by the thesis and review editions.
+\newcommand{\ThesisLiteratureEmbedded}{}
+\input{figures/review_figure_table.tex}

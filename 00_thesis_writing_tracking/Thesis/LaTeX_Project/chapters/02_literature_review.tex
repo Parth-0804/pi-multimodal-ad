@@ -1060,6 +1060,14 @@ The consistent finding across the reviewed studies is a conditional benefit unde
 evaluation regimes, rather than universal superiority of any single representation or fusion
 architecture.
 
+Figure~\ref{fig:review-depth} distinguishes a recorded direct test from the use or discussion of a
+topic. Training strategy illustrates this distinction: 60 of the 94 appraisals described or used the
+training strategy without a recorded direct test, while 28 (29.8\%) recorded a direct test. These
+counts describe the depth documented in the appraisals; low frequency alone does not establish
+research priority.
+
+\ReviewDepthFigure
+
 \subsection{Unresolved Questions and Research Gap}
 
 The evidence reviewed also contains significant negative and, indeed, conflicting findings.
@@ -1097,27 +1105,4 @@ and treat them as equivalent evidence of generalisation.
 
 The 94 appraised works support a conditional benefit from multimodal monitoring. In four-state welding classification, combining image and audio raised accuracy from 90.2\% for the stronger single input to 96.1\%. In weld-penetration classification, both individual inputs and their combination reached 100\% on the clean test set \parencite{P003,Hua2026Weld}. In human--robot handover, adding gripper state to video and force/torque reduced five-class accuracy \parencite{Thoduka2024Handover}. Taken together, these comparisons locate the architectural question more precisely: for a given target and observation window, when does a second input retain complementary information, and when does a learned fusion rule use it more effectively than a strong single predictor or a fixed combination under the same fitting and reliability conditions?
 
-\begingroup
-\small
-\begin{longtable}{@{}P{.19\textwidth}P{.36\textwidth}P{.39\textwidth}@{}}
-\caption{Findings and limits of the reviewed evidence}
-\label{tab:literature-synthesis}\\
-\toprule
-\textbf{Question} & \textbf{Finding supported by the reviewed studies} & \textbf{Limits of that finding} \\
-\midrule
-\endfirsthead
-\caption[]{Findings and limits of the reviewed evidence (continued)}\\
-\toprule
-\textbf{Question} & \textbf{Finding supported by the reviewed studies} & \textbf{Limits of that finding} \\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-Which representation retains the signal? & Hand-crafted geometry can support 3D inspection, and temporal patches retain useful information for forecasting \parencite{Horwitz2023Back,Nie2023PatchTST}. & The tasks and supervision differ. Neither comparison ranks the two representations on the same target. \\[5pt]
-What does a second input add? & Image and audio improved four-state welding classification. Adding gripper state reduced accuracy in handover \parencite{P003,Thoduka2024Handover}. & Each contrast applies to its own outcome, inputs and assessment cases. \\[5pt]
-When does the fusion rule matter? & A gated unit outperformed concatenation on a movie-genre task. Some multimodal tool-wear pipelines were weaker than the visual reference \parencite{P006,P045}. & Differences in encoders or fitting can change the ranking. The genre result has no direct industrial validation. \\[5pt]
-What happens when an input fails? & RGB--geometry inspection was evaluated with 3D absent. A pressure-only student was trained for single-input deployment \parencite{P026,Li2025PGMTKD}. & A planned input restriction leaves performance under sudden loss or partial corruption open. \\[5pt]
-How far does a result transfer? & Inspection methods were reapplied to Eyecandies with target-specific normal memories \parencite{P026,P033}. & Rebuilding those memories uses target data. Performance of an unchanged predictor at a new installation remains a separate question. \\[5pt]
-How credible is the estimate? & Participant-disjoint assessment tests performance on held-out people. Selection and calibration also affect what a reported score measures \parencite{Thoduka2024Handover,P004,Guo2017Calibration}. & Independence depends on the physical grouping. Accuracy alone gives neither failure ranking nor probability quality. \\[5pt]
-\end{longtable}
-\endgroup
+\ReviewFollowupTable
