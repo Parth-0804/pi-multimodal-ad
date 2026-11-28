@@ -7,17 +7,17 @@ The [root README](README.md) is the academic entry point. Use the [thesis-to-cod
 | Location | Role |
 |---|---|
 | [00_thesis_writing_tracking/](00_thesis_writing_tracking/README.md) | Canonical thesis navigation and state |
-| [Thesis/LaTeX_Project/](00_thesis_writing_tracking/Thesis/LaTeX_Project/README.md) | Sole authoritative working manuscript; `main.tex`, `review.tex`, `manav_review.tex` and chapter-preview entry points |
+| [final_thesis_prep/LaTeX_Project/](00_thesis_writing_tracking/final_thesis_prep/LaTeX_Project/README.md) | Sole active manuscript; compile `main.tex`. Historical figures, supporting files and release records remain separate. |
 | [Thesis/PDFs/](00_thesis_writing_tracking/Thesis/PDFs/) | Working/historical PDF outputs; use the state record to identify their version |
 | [review_submissions/2026-11-26/](00_thesis_writing_tracking/review_submissions/2026-11-26/README.md) | Immutable 71-page combined source PDF for the submitted extracts |
-| [scientific_cross_mapping_20261125/](00_thesis_writing_tracking/scientific_cross_mapping_20261125/README.md) | Scientific mapping, chronology, F2 checks and the complete historical `applied_revision_01` package |
-| [Historical baseline](00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/baseline/LaTeX_Project/) | Preserved November 20 manuscript; not a current working copy |
-| [Applied revision working snapshot](00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/) | Preserved revision provenance; current editing belongs in the canonical project above |
+| [scientific_cross_mapping_20261125/](00_thesis_writing_tracking/scientific_cross_mapping_20261125/README.md) | Scientific mapping, chronology, F2 checks and retained historical `applied_revision_01` assets; removed manuscript sources are recoverable through the cleanup record |
+| [Historical baseline](00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/baseline/LaTeX_Project/) | Retained November 20 supporting assets; removed manuscript sources are recoverable from the cleanup checkpoint |
+| [Applied revision working snapshot](00_thesis_writing_tracking/scientific_cross_mapping_20261125/applied_revision_01/working/LaTeX_Project/) | Retained revision assets and provenance; removed manuscript sources are recoverable from the cleanup checkpoint |
 | [Thesis/revision_pipeline/](00_thesis_writing_tracking/Thesis/revision_pipeline/) | Current state navigation alongside dated revision records |
 | [Thesis/References/](00_thesis_writing_tracking/Thesis/References/) | Local reference/provenance material; redistribution of downloaded publications requires separate review |
 | [consolidation_20261126/](00_thesis_writing_tracking/consolidation_20261126/) | Relocation receipt, hash/link checks and publication-content decisions; no commit or tag implied |
 
-Appendix F and its [evidence source index](00_thesis_writing_tracking/Thesis/LaTeX_Project/tables/evidence_source_index.csv) retain the existing E-identifiers. The code map is a browsing layer, not a replacement evidence register. Historical manifests retain original paths and hashes; use the migration receipt to interpret relocated names.
+Appendix F and its [evidence source index](00_thesis_writing_tracking/final_thesis_prep/LaTeX_Project/tables/evidence_source_index.csv) retain the existing E-identifiers. The code map is a browsing layer, not a replacement evidence register. Historical manifests retain original paths and hashes; use the migration receipt to interpret relocated names and the [source cleanup record](00_thesis_writing_tracking/final_thesis_prep/SOURCE_CLEANUP_20261128.json) for removed manuscript sources.
 
 ## Dataset and implementation navigation
 

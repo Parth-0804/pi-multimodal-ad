@@ -1,0 +1,53 @@
+% Native LaTeX fragment. Four columns preserve readable boundaries at thesis width.
+% R1--R5 are proposed analytical requirements, not additional original SQs.
+\begingroup
+\singlespacing
+\fontsize{9bp}{11.5bp}\selectfont
+\setlength{\tabcolsep}{4bp}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{73bp}>{\raggedright\arraybackslash}p{111bp}>{\raggedright\arraybackslash}p{100bp}>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Requirement / SQ} & \textbf{Methodological realization} & \textbf{Empirical
+coverage} & \textbf{Principal evidence boundary} \\
+\midrule
+\textbf{R1 Target validity and correspondence}\par SQ1--SQ4 &
+Label provenance, prediction unit, observation window and modality correspondence checks. &
+PHM2026, REASSEMBLE, MSM, ViFailback and HANDOVER; task-specific definitions. &
+PHM's photographic proxy lacks independent damage validation. Technical alignment alone
+does not prove synchronization or event visibility. \\
+\addlinespace[7bp]
+\textbf{R2 Representation suitability}\par SQ1 &
+CNN features, sensor statistics and scratch-trained patch encoders; fitting-budget,
+aggregation and adaptation comparisons. &
+Controlled REASSEMBLE comparisons; PHM representation studies and external recipes. &
+Ablation coverage differs. Predictive audio and pretrained time-series weight transfer
+are unevaluated; no universal encoder ranking follows. \\
+\addlinespace[7bp]
+\textbf{R3 Incremental fusion value}\par SQ2 &
+Eligible unimodal references, concatenation, averaging, stacking and gates on common
+assessment examples. &
+REASSEMBLE; MSM and ViFailback static fusion; HANDOVER averaging; separate PHM
+sensor-feature fusion. &
+Controls are not uniformly matched. F2 changes within-fold ordering; pooled attribution
+remains qualified. Learned HANDOVER stacking was blocked. PHM combines same-sensor
+representations. \\
+\addlinespace[7bp]
+\textbf{R4 Reliability-aware comparison}\par SQ3 &
+Known-absence routing, controlled corruption and quality conditioning; exposure-matched
+static controls where available. &
+REASSEMBLE and MSM learned-fusion comparisons; HANDOVER baseline stress tests. &
+ViFailback stress evaluation was not completed. Known-absence fallback does not
+establish adaptive reliability estimation. Natural faults and general adaptive
+superiority remain unresolved. \\
+\addlinespace[7bp]
+\textbf{R5 Validity and bounded external interpretation}\par SQ4; supports SQ1--SQ3 &
+Grouped assessment, fitting/calibration roles, class-specific metrics, paired
+uncertainty and resource accounting where available. &
+All five evaluated studies, with different groups, targets and available checks;
+explicit external protocols. &
+Group limitations, repeated assessment exposure and fixed-fit uncertainty restrict
+inference. Architecture reuse and supervised parameter transfer do not establish
+unchanged-model generalization. \\
+\bottomrule
+\end{tabularx}
+\endgroup

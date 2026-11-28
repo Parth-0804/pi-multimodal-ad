@@ -1,16 +1,18 @@
 # Thesis manuscript and retained versions
 
-[LaTeX_Project](LaTeX_Project/README.md) is the sole authoritative working source,
-promoted on 26 November 2026 from the verified applied-revision snapshot.
-Use `main.tex` for the full thesis, `review.tex` for Abstract and Chapters 1–10,
-or `manav_review.tex` for Abstract and Chapters 1–4.
-See [current state](revision_pipeline/THESIS_STATE.md).
+The sole active manuscript is
+[final_thesis_prep/LaTeX_Project/main.tex](../final_thesis_prep/LaTeX_Project/main.tex).
+This directory retains historical releases, reference provenance and supporting files.
+The former [LaTeX project](LaTeX_Project/README.md) is historical; its loose manuscript
+sources were removed during the 28 November cleanup. See
+[current state](revision_pipeline/THESIS_STATE.md) for the recovery checkpoint.
 
 The [26 November review copy](../review_submissions/2026-11-26/README.md) is a
 preserved submission source and must not be overwritten by later builds.
 The [historical applied-revision package](../scientific_cross_mapping_20261125/applied_revision_01/)
-retains its complete snapshot, verification records and source ZIP unchanged.
-Its nested `working/LaTeX_Project` is historical provenance, not a second working source.
+retains dated verification records, supporting assets and its source ZIP.
+Its nested `working/LaTeX_Project` is historical provenance; removed loose manuscript
+`.tex` files remain recoverable from the cleanup checkpoint.
 
 ## November 20 baseline
 

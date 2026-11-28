@@ -1,0 +1,77 @@
+--- starting-tree/chapters/06_reassemble.tex
++++ reconciled/chapters/06_reassemble.tex
+@@ -611,6 +611,10 @@
+ 0.2307. Last-quarter minus mean AP is 0.0885 $[.0424,.1293]$; the protocol's
+ simultaneous lower bound across five AP contrasts remains positive at 0.0301.
+ 
++The last-quarter and whole-action means use equally sized fitted heads, so additional
++head parameters cannot explain their contrast. Concentrated outcome cues or less
++dilution are plausible explanations, but neither mechanism was isolated.
++
+ This supports selected temporal aggregation changes, not a general recurrent-model
+ advantage or an isolated causal effect of temporal order. The GRU changes capacity and
+ inductive bias, while bin concatenation changes classifier inputs. The selected
+@@ -733,37 +737,32 @@
+ times}{\EvidenceRef{E060}{}}\ev{Sample allocation by fitting role}{\EvidenceRef{E058}{}}
+ 
+ \section{Synthesis, Remaining Questions, and Bridge to External Datasets}
+-The follow-ups distinguish representation suitability, complementary information and
+-fusion effectiveness. Longer PatchTST training improves AP by .0297 (95\%
+-recording-bootstrap CI [.0122, .0451]) but remains .1441 below statistics. Insufficient
+-training therefore contributes to the initial gap without fully explaining it under this
+-recipe. Yet their same-sensor combination improves on statistics by .0110 [.0054,
+-.0181]. A weaker standalone representation can retain useful complementary predictions;
+-this is not fusion of two sensing modalities.
+-
+-Last-quarter visual pooling raises AP by .0885 [.0424, .1293] with the same fitted head
+-size as whole-action pooling. Additional head parameters cannot explain that contrast.
+-Concentrated outcome cues or reduced dilution are plausible explanations, but neither
+-was isolated, and the observation still extends to completion. The selected pooling
+-variant also improves its separate F2 comparison by .0461 [.0260, .0632]. The
+-spatial-encoder and matched adaptation studies show that additional processing or
+-updated weights need not improve the downstream combination; inconclusive adaptation
+-intervals do not establish equivalence.
+-
+-Core F2 includes verified within-fold visual ordering gains, while its advantage over
+-averaging remains unresolved. Anchored adjustment improves clean AP over its anchor and
+-a constant-adjustment control, but lower recall and higher calibration error qualify the
+-gain. Matched corruption exposure leaves the principal adaptive robustness effects
+-unresolved. Changing coefficients therefore does not establish recognition of unreliable
+-inputs. Known absence is separate: the common routing rule fixes the surviving
+-prediction.
+-
+-These interventions were assessed separately on an already examined population. No run
+-combines boundary pooling, the same-sensor hybrid and anchored adaptation. Their
+-strongest individual results do not define an evaluated final architecture. New
+-recordings, natural faults, earlier prediction horizons and uncertainty beyond the fixed
+-fits remain open.\ev{Controlled follow-ups and uncertainty}{\EvidenceRef{E040}{},
+-\EvidenceRef{E042}{}, \EvidenceRef{E062}{}, \EvidenceRef{E113}{}}
++F2 improved failure ranking over sensor statistics, while its advantage over equal
++averaging remained unresolved. The saved-score audit identifies beneficial within-fold
++ordering changes from the visual term; the absent matched sensor-only second-stage
++control still limits attribution of the full pooled gain. The original gates showed no
++general advantage. Known absence returned the surviving branch's prediction; useful
++responses to corruption remained a separate, unresolved problem.
++
++The favorable follow-ups changed different parts of the pipeline. Longer PatchTST
++training partly closed the gap to sensor statistics without eliminating it; combining
++the two representations improved AP within the same sensing modality. Last-quarter
++pooling used the end of the completed action. Anchored adaptation improved ranking over
++its anchor and constant-adjustment control, but reduced recall and increased calibration
++error relative to the anchor. The spatial-encoder and fine-tuning comparisons showed
++that added processing or updated weights need not improve fusion; inconclusive tuning
++intervals do not establish equivalence. The augmentation-matched and quality-interaction
++comparisons left their primary robustness contrasts unresolved.
++
++No run combined boundary pooling, the same-sensor hybrid and anchored adaptation.
++Choosing these components after comparing their results on the same recordings could
++compound selection bias: the choices may reflect that cohort's particular
++characteristics. A joint pipeline would need to be fixed before evaluation on untouched
++recordings. Natural faults and shifts, independently adjudicated labels, new seeds,
++predictions before action completion and uncertainty beyond the fixed fits remain
++open.\ev{Controlled follow-ups and uncertainty}{\EvidenceRef{E038}{},
++\EvidenceRef{E039}{}, \EvidenceRef{E040}{}, \EvidenceRef{E042}{},
++\EvidenceRef{E062}{}, \EvidenceRef{E113}{}}
+ 
+ The next study returns to manufacturing with native cutting-interval labels. MSM tests
+ whether the representation and fusion procedures remain useful after dataset-specific

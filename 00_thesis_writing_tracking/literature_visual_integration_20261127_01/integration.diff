@@ -1,0 +1,344 @@
+diff --git a/00_thesis_writing_tracking/Thesis/LaTeX_Project/README.md b/00_thesis_writing_tracking/Thesis/LaTeX_Project/README.md
+index 8a79eb2a7..4a19000c9 100644
+--- a/00_thesis_writing_tracking/Thesis/LaTeX_Project/README.md
++++ b/00_thesis_writing_tracking/Thesis/LaTeX_Project/README.md
+@@ -13,11 +13,20 @@ The subsequent [chapter reconciliation](../../chapter_reconciliation_20261127_01
+ merged the external chapter wording with the current working tree. Chapter 2 remains an
+ independent critical literature review; the requirements and five-study mapping now open
+ Chapter 4. The complete, 189-page thesis was rebuilt from this directory with XeLaTeX,
+-Biber and latexmk. The [current compiled thesis](build/chapter_reconciliation_20261127_01/thesis/main.pdf)
++Biber and latexmk. The [reconciliation thesis](build/chapter_reconciliation_20261127_01/thesis/main.pdf)
+ and its [150 dpi review previews](build/chapter_reconciliation_20261127_01/previews/)
+ belong to this reconciliation. The review editions and historical delivery PDFs were not
+ regenerated.
+ 
++The later [literature-visual integration](../../literature_visual_integration_20261127_01/INTEGRATION_REPORT.md)
++adds the author's seven-topic appraisal figure before the Chapter 2 research-gap discussion
++and consolidates the closing synthesis and follow-up questions into one table.
++The [current compiled thesis](build/figures/literature_review_integration_20261127_01/thesis/main.pdf)
++has 191 pages: Figure 2.2 is on PDF page 44 (printed page 32), and Table 2.1 is on
++PDF pages 46–47 (printed pages 34–35). The editable source is
++[figures/review_figure_table.tex](figures/review_figure_table.tex), loaded in embedded mode
++through the shared preamble. The original upload is not a build dependency.
++
+ Use XeLaTeX and Biber. All editions read the same chapter sources.
+ 
+ | Main document | Contents |
+@@ -49,4 +58,5 @@ activate notes in previously reviewed chapters. Appendix F remains the full
+ register. [Consolidation validation](../../consolidation_20261126/VALIDATION.md)
+ records the earlier build tooling and checks. The
+ [reconciliation report](../../chapter_reconciliation_20261127_01/MERGE_REPORT.md)
+-records the current main build and preservation checks.
++records that earlier build and preservation checks; the literature-visual integration
++record above documents the current main build.
+diff --git a/00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/I_ai_assistance.tex b/00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/I_ai_assistance.tex
+index 1930dba57..673bb57a9 100644
+--- a/00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/I_ai_assistance.tex
++++ b/00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/I_ai_assistance.tex
+@@ -27,6 +27,9 @@ used AI assistance to match their titles and DOIs to Zotero records and check th
+ corresponding PDF attachments. AI tools also supported numerical consistency checks,
+ bibliography processing, APA citation editing, figure preparation, LaTeX editing and
+ compilation, and the extraction of chapter text.
++OpenAI Codex also helped prepare Figure~\ref{fig:review-depth} and
++Table~\ref{tab:literature-synthesis}; the literature appraisals and their
++interpretation are the author's.
+ 
+ The manuscript revision drew on existing publications, implementation records, and saved
+ experimental outputs, without new model training or inference on raw data. The thesis
+diff --git a/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapter-preview.tex b/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapter-preview.tex
+index 4017ed5dd..05b8fe119 100644
+--- a/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapter-preview.tex
++++ b/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapter-preview.tex
+@@ -512,6 +512,16 @@ PDF pp. 18, 22, Tables 1–3)}
+ \PreviewCitation{parencite}{}{}{Zhang2023QMF}{(Q. Zhang et al., 2023)}
+ \PreviewCitation{parencite}{}{}{Zhao2024RTDETR}{(Y. Zhao et al., 2024)}
+ \PreviewCitation{parencite}{}{}{Zotero2026}{(Corporation for Digital Scholarship, 2026)}
++% Citation groups added from the 27 November literature-integration main build.
++\PreviewCitation{parencite}{}{}{P003,Hua2026Weld,Thoduka2024Handover}{(Fan et al., 2026; Hua et al., 2026; Thoduka et al., 2024b)}
++\PreviewCitation{parencite}{}{}{P006,P045}{(Arevalo et al., 2017; X. Zhang et al., 2026)}
++\PreviewCitation{parencite}{}{}{Huang2026Rolling,P046}{(Huang \& Tong, 2026; Sun et al., 2026)}
++\PreviewCitation{parencite}{}{}{Horwitz2023Back,Nie2023PatchTST,P013}{(Horwitz \& Hoshen, 2023; Liu et al., 2022; Nie et al., 2023)}
++\PreviewCitation{parencite}{}{}{Li2025PGMTKD,Xu2025ModalityResilient,P026}{(Deng et al., 2026; C. Li et al., 2025; J. Xu et al., 2025)}
++\PreviewCitation{parencite}{}{}{Thoduka2024Handover,Huang2026Rolling}{(Huang \& Tong, 2026; Thoduka et al., 2024b)}
++\PreviewCitation{parencite}{}{}{P026,P033}{(Deng et al., 2026; J. Xu et al., 2026)}
++\PreviewCitation{parencite}{}{}{Thoduka2024Handover,P004,Guo2017Calibration}{(Guo et al., 2017; Thoduka et al., 2024b; Varma \& Simon, 2006)}
++\PreviewLabel{fig:review-depth}{2.2}{32}
+ % Full-master numbers and pages.
+ \PreviewLabel{ch:introduction}{1}{1}
+ \PreviewLabel{ch:literature}{2}{8}
+diff --git a/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/02_literature_review.tex b/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/02_literature_review.tex
+index e3a2b96a8..fd374ced3 100644
+--- a/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/02_literature_review.tex
++++ b/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/02_literature_review.tex
+@@ -1060,6 +1060,14 @@ The consistent finding across the reviewed studies is a conditional benefit unde
+ evaluation regimes, rather than universal superiority of any single representation or fusion
+ architecture.
+ 
++Figure~\ref{fig:review-depth} distinguishes a recorded direct test from the use or discussion of a
++topic. Training strategy illustrates this distinction: 60 of the 94 appraisals described or used the
++training strategy without a recorded direct test, while 28 (29.8\%) recorded a direct test. These
++counts describe the depth documented in the appraisals; low frequency alone does not establish
++research priority.
++
++\ReviewDepthFigure
++
+ \subsection{Unresolved Questions and Research Gap}
+ 
+ The evidence reviewed also contains significant negative and, indeed, conflicting findings.
+@@ -1097,27 +1105,4 @@ and treat them as equivalent evidence of generalisation.
+ 
+ The 94 appraised works support a conditional benefit from multimodal monitoring. In four-state welding classification, combining image and audio raised accuracy from 90.2\% for the stronger single input to 96.1\%. In weld-penetration classification, both individual inputs and their combination reached 100\% on the clean test set \parencite{P003,Hua2026Weld}. In human--robot handover, adding gripper state to video and force/torque reduced five-class accuracy \parencite{Thoduka2024Handover}. Taken together, these comparisons locate the architectural question more precisely: for a given target and observation window, when does a second input retain complementary information, and when does a learned fusion rule use it more effectively than a strong single predictor or a fixed combination under the same fitting and reliability conditions?
+ 
+-\begingroup
+-\small
+-\begin{longtable}{@{}P{.19\textwidth}P{.36\textwidth}P{.39\textwidth}@{}}
+-\caption{Findings and limits of the reviewed evidence}
+-\label{tab:literature-synthesis}\\
+-\toprule
+-\textbf{Question} & \textbf{Finding supported by the reviewed studies} & \textbf{Limits of that finding} \\
+-\midrule
+-\endfirsthead
+-\caption[]{Findings and limits of the reviewed evidence (continued)}\\
+-\toprule
+-\textbf{Question} & \textbf{Finding supported by the reviewed studies} & \textbf{Limits of that finding} \\
+-\midrule
+-\endhead
+-\bottomrule
+-\endfoot
+-Which representation retains the signal? & Hand-crafted geometry can support 3D inspection, and temporal patches retain useful information for forecasting \parencite{Horwitz2023Back,Nie2023PatchTST}. & The tasks and supervision differ. Neither comparison ranks the two representations on the same target. \\[5pt]
+-What does a second input add? & Image and audio improved four-state welding classification. Adding gripper state reduced accuracy in handover \parencite{P003,Thoduka2024Handover}. & Each contrast applies to its own outcome, inputs and assessment cases. \\[5pt]
+-When does the fusion rule matter? & A gated unit outperformed concatenation on a movie-genre task. Some multimodal tool-wear pipelines were weaker than the visual reference \parencite{P006,P045}. & Differences in encoders or fitting can change the ranking. The genre result has no direct industrial validation. \\[5pt]
+-What happens when an input fails? & RGB--geometry inspection was evaluated with 3D absent. A pressure-only student was trained for single-input deployment \parencite{P026,Li2025PGMTKD}. & A planned input restriction leaves performance under sudden loss or partial corruption open. \\[5pt]
+-How far does a result transfer? & Inspection methods were reapplied to Eyecandies with target-specific normal memories \parencite{P026,P033}. & Rebuilding those memories uses target data. Performance of an unchanged predictor at a new installation remains a separate question. \\[5pt]
+-How credible is the estimate? & Participant-disjoint assessment tests performance on held-out people. Selection and calibration also affect what a reported score measures \parencite{Thoduka2024Handover,P004,Guo2017Calibration}. & Independence depends on the physical grouping. Accuracy alone gives neither failure ranking nor probability quality. \\[5pt]
+-\end{longtable}
+-\endgroup
++\ReviewFollowupTable
+diff --git a/00_thesis_writing_tracking/Thesis/LaTeX_Project/thesis-formatting.tex b/00_thesis_writing_tracking/Thesis/LaTeX_Project/thesis-formatting.tex
+index 3fb25716b..0b71606e0 100644
+--- a/00_thesis_writing_tracking/Thesis/LaTeX_Project/thesis-formatting.tex
++++ b/00_thesis_writing_tracking/Thesis/LaTeX_Project/thesis-formatting.tex
+@@ -63,3 +63,7 @@
+ \renewcommand{\bottomfraction}{.75}
+ \renewcommand{\textfraction}{.1}
+ \renewcommand{\floatpagefraction}{.7}
++
++% Editable literature-review objects shared by the thesis and review editions.
++\newcommand{\ThesisLiteratureEmbedded}{}
++\input{figures/review_figure_table.tex}
+
+--- uploaded/review_figure_table.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/figures/review_figure_table.tex
+@@ -1,13 +1,12 @@
+ % !TeX program = xelatex
+-% Compile this file on its own for a two-page proof.
++% Compile from the thesis root for a standalone proof.
+ %
+-% To use the objects independently in the thesis, put these three lines in
+-% main.tex before \begin{document} (adjust the input path if needed):
+-%   \usepackage{tikz}
++% To use the objects independently in the thesis, put these two lines in
++% the shared preamble before \begin{document} (adjust the input path if needed):
+ %   \newcommand{\ThesisLiteratureEmbedded}{}
+-%   \input{review_figure_table.tex}
++%   \input{figures/review_figure_table.tex}
+ % Then place \ReviewDepthFigure and \ReviewFollowupTable at their respective
+-% locations in Chapter 2. Cross-references: fig:review-depth, tab:review-followup.
++% locations in Chapter 2. Cross-references: fig:review-depth, tab:literature-synthesis.
+ % The thesis already loads fontspec, geometry, setspace, array, tabularx,
+ % booktabs, float, caption and biblatex. Its caption and font settings apply.
+ %
+@@ -17,12 +16,15 @@
+   \documentclass[12pt,a4paper,oneside]{report}
+   \usepackage{fontspec}
+   \usepackage[margin=1in]{geometry}
+-  \usepackage{setspace,array,tabularx,booktabs,float,caption,tikz}
++  \usepackage{setspace,array,tabularx,longtable,booktabs,float,caption}
+   \captionsetup{labelfont=bf,textfont=it,labelsep=newline,
+     justification=raggedright,singlelinecheck=false,position=top}
+   % Use neutral preview numbering. The thesis supplies its own numbers.
+   \pagestyle{empty}
+ \fi
++\input{figures/tikz_style.tex}
++% The 9 bp annotation size needs supported script sizes for TikZ's math setup.
++\DeclareMathSizes{9bp}{9bp}{7pt}{5pt}
+ 
+ % DATA -----------------------------------------------------------------------
+ % Arguments: topic ID, label, direct test, used/discussed, no record, unclear.
+@@ -101,7 +103,7 @@
+     \centering\singlespacing
+     \caption{Depth of investigation recorded in the \ReviewAppraisalN{} literature appraisals}
+     \label{fig:review-depth}
+-    \begingroup\footnotesize
++    \begingroup\fontsize{9bp}{11bp}\selectfont
+     \begin{tabular}{@{}l@{\hspace{2em}}l@{}}
+       \ReviewKey{1}\enspace Direct test recorded &
+       \ReviewKey{2}\enspace Used or discussed only\\[2pt]
+@@ -109,26 +111,30 @@
+       \ReviewKey{4}\enspace Unclear from appraisal
+     \end{tabular}\par\medskip
+     \begin{tikzpicture}[x=\linewidth,y=1cm,
+-      every node/.style={inner sep=0pt,outer sep=0pt,font=\footnotesize}]
++      every node/.style={thesis label,inner sep=0pt,outer sep=0pt}]
++      \path[use as bounding box] (0,-5.36) rectangle (1,.78);
+       \def\ReviewLeft{.300}\def\ReviewWidth{.388}\def\ReviewRight{.688}
+-      \node[anchor=west,font=\footnotesize\bfseries] at (0,.53) {Topic};
+-      \node[font=\footnotesize\bfseries] at (.494,.53) {Share of appraisals};
+-      \node[font=\footnotesize\bfseries] at (.854,.53) {Number of appraisals};
++      \node[anchor=west,thesis panel label] at (0,.53) {Topic};
++      \node[thesis panel label] at (.494,.53) {Share of appraisals};
++      \node[thesis panel label] at (.854,.53) {Number of appraisals};
+       \foreach \tick in {0,25,50,75,100}{
+         \pgfmathsetmacro{\xx}{\ReviewLeft+\ReviewWidth*\tick/100}
+-        \node[font=\scriptsize] at (\xx,.05) {\tick\%};
++        \node[thesis annotation] at (\xx,.05) {\tick\%};
+         \draw[black!20,line width=.25pt] (\xx,-.20) -- (\xx,-5.36);
+       }
+-      \node at (.745,.05) {Test}; \node at (.818,.05) {Use};
+-      \node at (.889,.05) {None}; \node at (.958,.05) {Unclear};
++      \node[thesis annotation] at (.745,.05) {Test};
++      \node[thesis annotation] at (.818,.05) {Use};
++      \node[thesis annotation] at (.889,.05) {None};
++      \node[thesis annotation] at (.958,.05) {Unclear};
+       \ReviewRowIndex=0\relax
+       \ReviewTopics{\ReviewBarRow}
+     \end{tikzpicture}
+     \endgroup
+-    \ReviewNote{Each bar counts all \ReviewAppraisalN{} appraisals. A direct test requires
+-      a recorded comparison or intervention. The same work may address several topics.
+-      The figure is based on the author's literature appraisals. OpenAI Codex assisted with organising
+-      the records, calculating the percentages and preparing the figure.}
++    \ReviewNote{Each topic uses all \ReviewAppraisalN{} appraisals as its denominator.
++      A paper can contribute to several topics. A direct test requires a recorded
++      comparison or intervention. ``No treatment recorded'' describes what the
++      author's appraisal documents; it does not establish that the paper omitted
++      the topic. The four categories record the depth documented in the appraisals.}
+   \end{figure}}
+ 
+ % TABLE ----------------------------------------------------------------------
+@@ -139,60 +145,98 @@
+   \expandafter\def\csname ReviewFinding#1\endcsname{#2}%
+   \expandafter\def\csname ReviewQuestion#1\endcsname{#3}}
+ \ReviewText{inputs}
+-  {Image and audio fusion gained 5.9 percentage points over image alone in four-state welding classification.
+-   In weld penetration, each single input tied fusion on the clean test
+-   \ReviewCite{fan_dmaw_2026,hua_anti-interference_2026}{Fan et al., 2026; Hua et al., 2026}.}
++  {Image and audio fusion gained 5.9 percentage points over image alone in four-state
++   welding classification. In weld penetration, each single input tied fusion on the
++   clean test. Adding gripper state reduced accuracy in handover
++   \ReviewCite{P003,Hua2026Weld,Thoduka2024Handover}{Fan et al., 2026; Hua et al., 2026; Thoduka et al., 2024}.
++   Each contrast applies to its own outcome, inputs and assessment cases.}
+   {Does a second input improve on the strongest single input when both are tested on the same held-out runs?}
+ \ReviewText{rule}
+   {An RGB--3D inspection study compared a static mean with a learned gate using complete inputs
+-   \ReviewCite{deng_tc-maf_2026}{Deng et al., 2026}.}
++   \ReviewCite{P026}{Deng et al., 2026}. A gated unit outperformed concatenation on a
++   movie-genre task. Some alternative multimodal tool-wear pipelines were weaker
++   than the visual reference, although the proposed model improved on it
++   \ReviewCite{P006,P045}{Arevalo et al., 2017; Zhang et al., 2026}.
++   Differences in encoders or fitting can change the ranking. The genre result has
++   no direct industrial validation.}
+   {Under which faults does a learned rule outperform a static rule after both receive the same exposure during training?}
+ \ReviewText{training}
+   {Both models had 1.02\% error on clean digits. With two quadrants missing, modality-dropout training reduced error from 35.91\% to 7.19\%
+-   \ReviewCite{neverova_moddrop_2015}{Neverova et al., 2015}.}
++   \ReviewCite{P005}{Neverova et al., 2015}. This controlled digit comparison tests
++   exposure to specified absence patterns, not performance under industrial outages.}
+   {How much of a gain under corruption comes from training exposure, and how much from the fusion rule?}
+ \ReviewText{noise}
+   {One bearing study compared fusion rules at 0~dB. Another reported the proposed model's accuracy when one input was degraded
+-   \ReviewCite{huang_rolling_2026,P046}{Huang \& Tong, 2026; Sun et al., 2026}.}
++   \ReviewCite{Huang2026Rolling,P046}{Huang \& Tong, 2026; Sun et al., 2026}.
++   Their corruption conditions and controls differ; the proposed model's corrupted
++   accuracy alone does not establish incremental fusion benefit.}
+   {At the same fault severity, does fusion outperform both the intact input and a static combination?}
+ \ReviewText{encoding}
+-  {Handcrafted geometry and learned video features were evaluated on different targets
+-   \ReviewCite{horwitz_back_2023,liu_video_2021}{Horwitz \& Hoshen, 2023; Liu et al., 2021}.}
++  {Hand-crafted geometry can support 3D inspection, temporal patches retain useful
++   information for forecasting, and learned video features address action recognition
++   \ReviewCite{Horwitz2023Back,Nie2023PatchTST,P013}{Horwitz \& Hoshen, 2023; Nie et al., 2023; Liu et al., 2022}.
++   The tasks and supervision differ. These studies do not rank the representations
++   on the same target.}
+   {Which encoding adds complementary information when the target, observation window and fitting budget are fixed?}
+ \ReviewText{absent}
+-  {The appraisals distinguish planned single-input operation, simulated dropout and missing 3D data
+-   \ReviewCite{li_pgmtkd_2025,xu_modality-resilient_2025,deng_tc-maf_2026}{Li et al., 2025; Xu et al., 2025; Deng et al., 2026}.}
++  {A pressure-only student was trained for single-input deployment; modality-resilient
++   inspection and RGB--geometry inspection also examine incomplete inputs
++   \ReviewCite{Li2025PGMTKD,Xu2025ModalityResilient,P026}{Li et al., 2025; Xu et al., 2025; Deng et al., 2026}.
++   A planned input restriction leaves performance under sudden loss or partial
++   corruption open. Simulated dropout and inference-time absence require distinct
++   assessment conditions.}
+   {Does a policy trained for a known missing stream also cope with an unexpected outage during operation?}
+ \ReviewText{shift}
+   {Handover was tested across robots. A bearing study used target-domain validation during transfer
+-   \ReviewCite{thoduka_multimodal_2024,huang_rolling_2026}{Thoduka et al., 2024; Huang \& Tong, 2026}.}
++   \ReviewCite{Thoduka2024Handover,Huang2026Rolling}{Thoduka et al., 2024; Huang \& Tong, 2026}.
++   Inspection methods were reapplied to Eyecandies with target-specific normal memories
++   \ReviewCite{P026,P033}{Deng et al., 2026; Xu et al., 2026}.
++   Rebuilding those memories uses target data. Performance of an unchanged predictor
++   at a new installation remains a separate question.}
+   {How much fusion benefit persists on a new machine or site when access to target data is controlled?}
++\ReviewText{credibility}
++  {Participant-disjoint assessment tests performance on held-out people. Selection
++   and calibration also affect what a reported score measures
++   \ReviewCite{Thoduka2024Handover,P004,Guo2017Calibration}{Thoduka et al., 2024; Varma \& Simon, 2006; Guo et al., 2017}.
++   Independence depends on the physical grouping. Accuracy alone gives neither
++   failure ranking nor probability quality.}
++  {Does the apparent benefit persist with appropriate grouping, training-side selection
++   and calibration, and assessment of ranking and probability quality?}
+ \newcommand{\ReviewTableRow}[6]{%
+-  \textbf{#2}\newline #3/\ReviewAppraisalN{} (\ReviewPercent{#3}) &
++  \textbf{#2} &
+   \csname ReviewFinding#1\endcsname & \csname ReviewQuestion#1\endcsname\tabularnewline
+   \addlinespace[.45em]}
+ \newcommand{\ReviewFollowupTable}{%
+-  \begin{table}[H]
+-    \centering\singlespacing
+-    \caption{Recorded findings and follow-up questions from the literature review}
+-    \label{tab:review-followup}
+-    \begingroup\small
++    \begingroup\small\singlespacing
+     \setlength{\tabcolsep}{4.5pt}
+     \renewcommand{\arraystretch}{1.04}
+-    \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.207\linewidth}
+-      >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
++    \begin{longtable}{@{}>{\raggedright\arraybackslash}p{.18\linewidth}
++      >{\raggedright\arraybackslash}p{.47\linewidth}
++      >{\raggedright\arraybackslash}p{.31\linewidth}@{}}
++      \caption{Findings, limits and follow-up questions from the literature review}
++      \label{tab:literature-synthesis}\\
+       \toprule
+-      \textbf{Topic and coverage} & \textbf{Evidence recorded in the appraisal}
+-        & \textbf{Follow-up questions suggested by the review}\\
++      \textbf{Topic or question} & \textbf{Published finding and its limit}
++        & \textbf{Follow-up question}\\
+       \midrule
++      \endfirsthead
++      \caption[]{Findings, limits and follow-up questions from the literature review (continued)}\\
++      \toprule
++      \textbf{Topic or question} & \textbf{Published finding and its limit}
++        & \textbf{Follow-up question}\\
++      \midrule
++      \endhead
++      \midrule
++      \multicolumn{3}{r@{}}{\footnotesize Continued on the next page}\\
++      \endfoot
++      \bottomrule
++      \endlastfoot
+       \ReviewTopics{\ReviewTableRow}
+-      \bottomrule
+-    \end{tabularx}
++      \textbf{How credible is the estimate?} &
++      \ReviewFindingcredibility & \ReviewQuestioncredibility\tabularnewline
++    \end{longtable}
+     \endgroup
+-    \ReviewNote{Coverage gives the number and share of the \ReviewAppraisalN{} appraisals
+-      recording a direct test. The last column gives the author's interpretation of the
+-      cited comparisons. OpenAI Codex assisted with preparing the table.}
+-  \end{table}}
++}
+ 
+ % Stand-alone preview only. In the thesis, each object is placed by its macro.
+ \ifdefined\ThesisLiteratureEmbedded

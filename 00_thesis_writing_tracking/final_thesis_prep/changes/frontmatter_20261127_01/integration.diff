@@ -1,0 +1,240 @@
+--- before/LaTeX_Project/main.tex
++++ after/LaTeX_Project/main.tex
+@@ -48,18 +48,8 @@
+   \pagenumbering{arabic}
+ \else
+ \hypersetup{pageanchor=false}
+-\begin{titlepage}
+-\centering
+-\vspace*{17mm}
+-{\large Master's Thesis\par}
+-\vspace{17mm}
+-{\LARGE\bfseries \thesistitle\par}
+-\vspace{23mm}
+-{\Large Parth Ravaliya\par}
+-\vfill
+-{\large 18 November 2026\par}
+-\vspace{8mm}
+-\end{titlepage}
++\input{frontmatter/titlepage.tex}
++\input{frontmatter/declaration.tex}
+ \pagenumbering{roman}\hypersetup{pageanchor=true}
+ \fi
+ \ThesisAbstractHeading\addcontentsline{toc}{chapter}{Abstract}
+@@ -72,6 +62,10 @@
+ \endgroup
+ \clearpage
+ \ifdefined\ThesisReviewCopy\else
++\begingroup\apaprose
++\input{frontmatter/acknowledgements.tex}
++\par\endgroup
++\clearpage
+ \tableofcontents\listoffigures\listoftables
+ \clearpage\pagenumbering{arabic}
+ \fi
+--- before/README.md
++++ after/README.md
+@@ -14,7 +14,10 @@
+   a suggested first message.
+ - [Copy manifest](COPY_MANIFEST.json): original paths, sizes and SHA-256 hashes
+   for every copied file, plus the source Git revision.
+-- [Validation](VALIDATION.json): copy integrity and static dependency checks.
++- [Initial copy validation](VALIDATION.json): copy integrity and static dependency checks
++  recorded before the front-matter update.
++- [Front-matter update](changes/frontmatter_20261127_01/README.md): supplied title
++  page and declaration, acknowledgements, integration diff and build checks.
+ - [Source Git status](SOURCE_GIT_STATUS.txt): changes already present before copying.
+ 
+ `LaTeX_Project/` includes all source and supporting files outside `build/` and
+@@ -23,7 +26,10 @@
+ figure assets retain their existing names and status; they are not newly approved
+ for use. `context/` contains selected dated writing/review records.
+ 
+-All copied source bytes are preserved. The copied project README, context notes,
++The initial copy identities are preserved in `COPY_MANIFEST.json`. The prepared
++`main.tex` now includes the supplied front matter; its before/after identities are
++recorded in the front-matter update. Original source files remain unchanged.
++The copied project README, context notes,
+ scripts and evidence indexes retain their original wording and original path
+ conventions. For inherited links outside the copied project, use the original
+ source path in the manifest; the links in this README and the handoff are the
+@@ -39,11 +45,21 @@
+ latexmk -xelatex -interaction=nonstopmode -halt-on-error -outdir=build/final_prep main.tex
+ ```
+ 
+-This command is provided for the next editing session; no compilation was run
+-for this copy task. The full thesis source is newer than the source identities in
+-the last literature-integration build manifest, so an older PDF must not be treated
+-as a rendering of this exact snapshot. Full-thesis PDFs and build caches were not
+-copied. The DRAFT watermark and existing title/date remain unchanged.
++The initial copy task did not compile the thesis. The later front-matter update
++records its own compilation and preview checks in the linked update report. The
++[current compiled PDF](LaTeX_Project/build/frontmatter_20261127_01/main.pdf)
++has 194 pages. Older
++PDFs must not be treated as renderings of the current prepared source. The DRAFT
++watermark remains enabled. The supplied title page and declaration retain their
++`xx November 2026` submission/signing placeholders; fill those before submission.
++
++The full edition uses this order: title page, declaration, abstract,
++acknowledgements, contents, lists of figures/tables, then Chapters 1–10.
++The declaration is unnumbered; Roman page numbering starts at the abstract.
++Acknowledgements appear in the contents. The review editions keep their existing
++abstract/chapter scope. This ordering is an editorial choice, not a verified
++university requirement. The current abstract leaves its keywords on a second
++page; this inherited layout issue is recorded for the final editing pass.
+ 
+ ## Repository evidence and boundaries
+ 
+--- before/NEW_CHAT_HANDOFF.md
++++ after/NEW_CHAT_HANDOFF.md
+@@ -3,7 +3,10 @@
+ The complete preparation project is [LaTeX_Project](LaTeX_Project/main.tex).
+ Its contents were copied from the current working tree, rather than an older
+ release, external chapter upload or historical revision snapshot. Original files
+-were preserved. The copy manifest identifies each source and its exact bytes.
++were preserved. The copy manifest identifies the initial source snapshot.
++The subsequent [front-matter update](changes/frontmatter_20261127_01/README.md)
++adds the supplied title/declaration pages and acknowledgements to the prepared
++`main.tex`, retaining its own before/after identities and build record.
+ 
+ ## Suggested opening message
+ 
+@@ -31,10 +34,10 @@
+ 
+ ## Dated context and remaining cautions
+ 
+-- **VERIFIED for this copy:** current source and copy hashes match. The current
++- **VERIFIED at initial copy time:** source and copy hashes matched. The copied
+   `main.tex` and `chapter-preview.tex` differ from their identities in the prior
+-  literature-integration manifest. This task did not compile a new PDF or validate
+-  the scientific content.
++  literature-integration manifest. The initial copy task did not compile a new PDF or validate
++  the scientific content. Later front-matter validation is recorded separately.
+ - **REPORTED in the November 27 records:** the empirical revision and chapter
+   reconciliation were incorporated into the original working draft. Read the
+   [empirical verification](context/empirical_revision_20261127_01/VERIFICATION.md),
+@@ -66,6 +69,18 @@
+   provides additional evidence-navigation context. Copying it does not independently
+   verify its claims or authorize publication.
+ 
++## Front matter added on 27 November 2026
++
++The full edition includes the supplied title page and declaration before the
++abstract, and the author's acknowledgements between the abstract and contents.
++The declaration wording and acknowledgement prose are preserved as supplied.
++Submission/signing dates remain `xx November 2026`; the signature line is blank.
++No university-template or declaration-compliance check is implied. Review
++editions remain scoped to the abstract and their selected chapters. The full
++prepared thesis now compiles to 194 pages; PDF pages 1–6 were visually inspected.
++The abstract's keywords occupy a separate page (Roman ii), which remains a
++layout item for the final editing pass. No abstract prose or spacing was changed.
++
+ ## Proposed first completion pass
+ 
+ Inventory each chapter, abstract, discussion, conclusion and appendix against the
+--- /dev/null
++++ after/LaTeX_Project/frontmatter/titlepage.tex
+@@ -0,0 +1,47 @@
++% Include in place of the existing titlepage environment in main.tex.
++\begin{titlepage}
++\begingroup
++% Replace only this value with the actual submission date.
++\def\HFUSubmissionDate{xx November 2026}
++\def\HFUPlaceholderDate{xx November 2026}
++\ifx\HFUSubmissionDate\HFUPlaceholderDate
++  \PackageWarningNoLine{HFU front matter}{Fill in the submission date in titlepage.tex}
++\fi
++\thispagestyle{empty}
++\centering
++\renewcommand{\baselinestretch}{1}\normalsize
++\setlength{\parindent}{0pt}
++\setlength{\parskip}{0pt}
++\vspace*{\stretch{1}}
++{\LARGE\bfseries
++  Physics-Informed Multi-Modal Transformer Architectures for Robust
++  Anomaly Detection in Industrial and Robotic Processes\par}
++
++\vspace{\stretch{2}}
++{\Large\bfseries Master Thesis\par}
++\bigskip
++Submitted in partial fulfilment for the degree of\par
++\medskip
++{\large\bfseries Master of Science\par}
++\medskip
++in Artificial Intelligence and Data Science for Digital Business Management\par
++\smallskip
++at the Faculty of Computer Science and Applications\par
++\smallskip
++Hochschule Furtwangen University\par
++
++\vspace{\stretch{2}}
++Submitted by\par
++\medskip
++{\large\bfseries PARTH NAGABHAI RAVALIYA\par}
++
++\vspace{\stretch{2}}
++\begin{tabular}{@{}l@{\quad}l@{}}
++Supervisors: & Prof. Christoph Reich \\
++             & M. Manav Madan
++\end{tabular}\par
++\bigskip
++\HFUSubmissionDate\par
++\vspace*{\stretch{1}}
++\endgroup
++\end{titlepage}
+--- /dev/null
++++ after/LaTeX_Project/frontmatter/declaration.tex
+@@ -0,0 +1,41 @@
++% Include where the signed declaration belongs in the thesis.
++\clearpage
++\begingroup
++% Replace only this value with the actual signing date.
++\def\HFUSigningDate{xx November 2026}
++\def\HFUPlaceholderDate{xx November 2026}
++\ifx\HFUSigningDate\HFUPlaceholderDate
++  \PackageWarningNoLine{HFU front matter}{Fill in the signing date in declaration.tex}
++\fi
++\thispagestyle{empty}
++\renewcommand{\baselinestretch}{1}\normalsize
++\raggedright
++\setlength{\parindent}{0pt}
++\setlength{\parskip}{0.7\baselineskip}
++{\Large\bfseries Declaration on honest academic work\par}
++\medskip
++
++With this document I, PARTH NAGABHAI RAVALIYA, declare that I have drafted and created the piece of work in hand myself. I declare that I have only used such aids as are permissible and used no other sources or aids than the ones declared. I furthermore assert that any passages used, be that verbatim or paraphrased, have been cited in accordance with current academic citation rules and such passages have been marked accordingly.
++
++Additionally, I declare that I have laid open and stated all and any use of any aids such as AI-based chatbots (e.g. ChatGPT), translation (e.g. Deepl), paraphrasing (e.g. Quillbot) or programming (e.g. Github Copilot) devices and have marked any relevant passages accordingly.
++
++I am aware that the use of machine-generated texts is not a guarantee in regard of the quality of their content or the text as a whole. I assert that I used text-generating AI-tools merely as an aid and that the piece of work in hand is, for the most part, the result of my creative input. I am entirely responsible for the use of any machine-generated passages of text I used.
++
++I also confirm that I have taken note of the document “Satzung der Hochschule Furtwangen (HFU) zur Sicherung guter wissenschaftlicher Praxis” dated October 27, 2022 and that I have followed the statements there.
++
++I am aware that my work may be examined to determine whether any non-permissible aids or plagiarism were used. I also acknowledge that a breach of §~10 or §~11 section 4 and 5 of HFU’s study and examination regulations’ general part may lead to a grade of 5 or «nicht ausreichend» (not sufficient) for the work in question and / or the exclusion from any further examinations.
++
++\vspace{2\baselineskip}
++\noindent
++\begin{minipage}[b]{0.47\linewidth}
++  Augsburg, \HFUSigningDate\par
++  \nointerlineskip\smallskip\hrule\smallskip
++  {\small place, date\par}
++\end{minipage}\hfill
++\begin{minipage}[b]{0.43\linewidth}
++  \hrule\smallskip
++  {\small signature\par}
++\end{minipage}
++\par
++\clearpage
++\endgroup
+--- /dev/null
++++ after/LaTeX_Project/frontmatter/acknowledgements.tex
+@@ -0,0 +1,9 @@
++\chapter*{Acknowledgements}
++\addcontentsline{toc}{chapter}{Acknowledgements}
++\markboth{Acknowledgements}{Acknowledgements}
++
++I would like to thank Prof. Dr. Christoph Reich for supervising this thesis and for his support with both its research and administrative aspects. I am especially grateful to Manav Madan for his continuous guidance throughout the project; our discussions were particularly valuable when interpreting experimental results and deciding on subsequent steps.
++
++I also thank Alexander Scheurer and the Faculty I IT team at Furtwangen University for providing access to the GPU-enabled virtual machine used for the experiments. In addition, I am grateful to Waltraud Bianchi and her colleagues in the Faculty I Dean's Office for their assistance with the thesis registration process.
++
++Finally, I thank my family and friends for their patience and encouragement. Knowing I could rely on their support meant a great deal during the more demanding stages of this work.

@@ -1,0 +1,232 @@
+--- pre_revision/06_reassemble.tex
++++ current/06_reassemble.tex
+@@ -1,25 +1,14 @@
+ \chapter{REASSEMBLE Case Study: Representation, Fusion, and Robustness}
+-On 4,530 completed robotic actions, the logistic stacker ranked failures better than the
+-statistical sensor predictor (average precision 0.4473 versus 0.4294). Its advantage
+-over equal averaging (0.4457) remained unresolved, and none of the original
+-context-conditioned gates showed a consistent advantage. REASSEMBLE's paired video,
+-machine signals and recorded outcomes made it possible to compare these methods on the
+-same actions. Later experiments examined alternative representations and fusion rules on
+-the same cohort.
+-
+-The core experiment compared fusion models on a common prediction bank. The exploratory
+-extensions and later visual studies used their own fitted models and assessed each
+-change separately.\ev{Core study evidence}{\EvidenceRef{E044}{}}\ev{Visual fine-tuning
+-experiments}{\EvidenceRef{E056}{}}
+-
+-\begin{figure}[p]
+-\caption{Sampled Frames From a Completed REASSEMBLE Insertion}\label{fig:reassemble-example}
+-\centering\includegraphics[width=\textwidth,height=.70\textheight,keepaspectratio]{figures/reassemble_example_frames.png}
+-\displaynote{The extractor selected 16 frames from recording 2025-01-13-16-45-31,
+-segment 21 (15.233 s). The saved failure label accompanies this example. Frame selection
+-illustrates temporal coverage. Source: Saved data-preparation example.}
+-\end{figure}
+-\ev{Illustrative frame source}{\EvidenceRef{E061}{}}
++\label{ch:reassemble}
++REASSEMBLE is the central study of completed-action failure classification, comparing
++representations, fusion and controlled robustness on paired camera and sensor inputs.
++Static F2 improved failure ranking over its statistical sensor component, but combines
++visual information with an additional logistic fitting stage and did not establish an
++advantage over equal averaging. The original gates did not establish consistent clean
++or robustness superiority. Later representation and adaptation studies retain their own
++controls and assessment populations; their best results were not combined into one
++model.\ev{Core and follow-up scope}{\EvidenceRef{E044}{}, \EvidenceRef{E040}{}}
++
+ \section{Study Objectives and Research-Question Mapping}
+ SQ1 concerns implemented visual and temporal representations relative to engineered
+ sensor statistics. SQ2 concerns early, late and adaptive fusion under shared recording
+@@ -40,7 +29,7 @@
+ \parencite{Sliwowski2025REASSEMBLE}.\ev{Action targets and assessment
+ cohort}{\EvidenceRef{E046}{}}
+ 
+-\section{Dataset Overview and Native Outcome Annotations}
++\section{Dataset, Native Outcomes, and Modality Constraints}
+ The inventory contains 149 recordings; the retained common cohort contains 4,530
+ eligible actions from 148 recordings. A failure is one minus the native success
+ indicator. There are 509 failures, giving positive-class prevalence 0.1124. Failure
+@@ -57,7 +46,7 @@
+ accordingly used for outer splitting and uncertainty resampling.\ev{Population and class
+ counts}{\EvidenceRef{E046}{}}
+ 
+-\section{Dataset Challenges and Modality Availability}
++\subsection{Modality Availability and Grouping Limits}
+ The retained modalities are hand-camera images and machine-sensor measurements: three
+ force channels, three torque channels, two gripper channels, seven joint-effort channels
+ and seven joint-velocity channels. These twenty-two channels include operating state as
+@@ -74,7 +63,7 @@
+ objects or sites and hardware-clock synchronization remain untested.\ev{Audio alignment
+ and object-group feasibility}{\EvidenceRef{E044}{}}
+ 
+-\section{Preparation and Pre-Checks}
++\section{Cohort Preparation, Alignment, and Evaluation Protocol}
+ Preparation established a common cohort before comparing architecture outputs. Required
+ information included native action boundaries and outcomes, valid camera correspondence,
+ sufficient sensor coverage, and a recording-group identity. These checks support
+@@ -117,6 +106,15 @@
+ parts of this problem, without converting the task into online warning.\ev{Input
+ construction}{\EvidenceRef{E064}{}}\ev{Boundary-aware follow-up}{\EvidenceRef{E042}{}}
+ 
++\begin{figure}[p]
++\caption{Sampled Frames From a Completed REASSEMBLE Insertion}\label{fig:reassemble-example}
++\centering\includegraphics[width=\textwidth,height=.70\textheight,keepaspectratio]{figures/reassemble_example_frames.png}
++\displaynote{The extractor selected 16 frames from recording 2025-01-13-16-45-31,
++segment 21 (15.233 s). The saved failure label accompanies this example. Frame selection
++illustrates temporal coverage. Source: Saved data-preparation example.}
++\end{figure}
++\ev{Illustrative frame source}{\EvidenceRef{E061}{}}
++
+ \subsection{Missing, Invalid, and Inconsistent Observations}
+ Sensor extraction requires at least 0.89 finite coverage per channel and avoids
+ extrapolation and interpolation across long gaps. Accepted residual missing values are
+@@ -157,39 +155,28 @@
+ recording counts are 26, 31, 32, 29 and 30. Summing the assessment rows recovers all
+ 4,530 actions, 509 failures and 148 recordings exactly.
+ 
+-Within each outer training set, the visual and sensor branches supplied out-of-fold
+-(OOF) predictions for training the logistic stacker. Each branch predicted an action
+-using a fit that excluded its recording. During inner validation of the stacker,
+-however, every split reused this bank. Some rows used to train the stacker could
+-therefore come from branch fits that had seen recordings assigned to the stacker's inner
+-validation split. This indirect dependency affects internal model and threshold
+-assessment. It does not extend to the outer test: those recordings were excluded from
+-branch fitting, calibration, stacker training and threshold selection. Fully independent
+-inner validation would require rebuilding the branch prediction bank within every
+-stacker-validation split, including repeated branch fits and calibration across all five
+-outer folds. This additional nesting was beyond the training budget, so the outer scores
+-evaluate the procedure that reused the outer-training bank.\ev{Dependencies in stacker
+-validation}{\EvidenceRef{E004}{section 15.4}}
+-
+-\section{Task Formulation, Model Inputs, and Shared Evaluation Protocol}
+-The positive class is failure. The principal ranking measure is average precision (AP),
+-computed by the average-precision implementation rather than trapezoidal integration of
+-a precision--recall curve. AUROC, balanced accuracy, macro-F1, failure recall and
+-precision, Brier score and fifteen-bin equal-width expected calibration error (ECE)
+-describe other aspects of performance. Precision--recall reporting is particularly
+-important at the observed minority-class prevalence
+-\parencite{Saito2015PrecisionRecall}.
+-
+-Unless a later subsection states otherwise, reported core scores pool each action's
+-outer-held-out probability across the five folds. Pooled AP is not the arithmetic mean
+-of five fold AP values. Training-only selection and sigmoid logistic calibration use
++Within each outer training set, recording-held-out branch predictions supplied the
++stacker's OOF bank. Reusing that bank inside stacker validation creates the indirect
++dependency explained in Section~\ref{sec:ch4-assessment}; outer-test recordings remain
++excluded from branch fitting, calibration, stacker training and threshold selection.
++The reported outer scores assess this bank-reuse procedure.\ev{Stacker validation
++dependency}{\EvidenceRef{E004}{section 15.4}}
++
++\subsection{Metrics, Calibration, and Conditional Uncertainty}
++Failure is positive. Core scores pool the disjoint outer predictions for all 4,530
++actions; AP, AUROC, Brier score and fifteen-bin equal-width ECE follow
++Section~\ref{sec:ch4-metrics}. Balanced accuracy, macro-F1, failure recall and precision
++summarize the selected decisions. Training-only selection and sigmoid logistic calibration use
+ appropriate inner outputs. Hard-decision thresholds maximize inner balanced accuracy
+ over 0.01--0.99, with ties resolved toward 0.5. Calibration and threshold selection are
+ separate operations. Two thousand paired recording-cluster bootstrap resamples quantify
+ uncertainty conditional on the retained fitted models; they do not refit the entire
+ procedure or estimate all training-seed uncertainty. Nineteen structured label-shift
+ permutations preserve recording/action structure under their conditional exchangeability
+-assumption, giving a smallest plus-one probability of 0.05.\ev{Metrics and inference
++assumption, giving a smallest plus-one probability of 0.05. The saved controls give observed AP
++0.2307 against null AP 0.1435--0.1784 for vision and 0.2416 against 0.1548--0.1876
++for PatchTST. Each plus-one probability is 0.05. These conditional controls do not rule
++out scene/object shortcuts or replace the paired comparison against action identity.\ev{Metrics and inference
+ definitions}{\EvidenceRef{E046}{}}
+ 
+ \section{Experiment A: Unimodal Representations}
+@@ -492,6 +479,36 @@
+ dropout}{\EvidenceRef{E045}{}}
+ 
+ \subsection{Predictive Performance and Calibration Under Degradation}
++
++Table~\ref{tab:reassemble-corruption} reports every declared operator at its strongest
++severity and the two known single-stream absence cases. All rows use the same core
++cohort and fixed clean models; intermediate severities remain in E049.
++
++\begin{table}[htbp]
++\caption{REASSEMBLE High-Severity Corruption and Known Absence}
++\label{tab:reassemble-corruption}
++\centering\small\setlength{\tabcolsep}{3pt}
++\begin{tabular}{lrrrrrr}\toprule
++Condition & Intact AP & F2 AP & Brier & ECE & F5 AP & F6 AP\\\midrule
++Pixel noise ($\sigma=.10$) & 0.4294 & 0.3963 & 0.2968 & 0.4368 & 0.1288 & 0.1275\\
++Blur ($\sigma=4$) & 0.4294 & 0.4099 & 0.0816 & 0.0146 & 0.4061 & 0.4179\\
++Frame removal (8/16) & 0.4294 & 0.4455 & 0.0786 & 0.0149 & 0.4392 & 0.4381\\
++Sensor noise ($1\,\mathrm{SD}$) & 0.2307 & 0.2222 & 0.4798 & 0.5251 & 0.1753 & 0.1788\\
++Channel removal (11/22) & 0.2307 & 0.3198 & 0.0899 & 0.0164 & 0.3183 & 0.3014\\
++Temporal block (50\%) & 0.2307 & 0.3490 & 0.0918 & 0.0421 & 0.3543 & 0.3267\\
++Stuck force/torque (6) & 0.2307 & 0.4396 & 0.0822 & 0.0237 & 0.4230 & 0.4211\\
++Vision absent & 0.4294 & 0.4294 & 0.0804 & 0.0174 & 0.4294 & 0.4294\\
++Sensors absent & 0.2307 & 0.2307 & 0.0943 & 0.0070 & 0.2307 & 0.2307\\
++\bottomrule\end{tabular}
++\displaynote{Pooled failure-positive AP on 4,530 actions (509 failures). Brier and ECE
++refer to F2; smaller values indicate less probability error. Intact AP is statistical
++sensing for visual faults and vision for sensor faults. Known absence routes all three
++fusion methods to that survivor. The stochastic realization protocol is the original
++core protocol, distinct from later augmentation studies.}
++\end{table}
++\ev{Saved core robustness summary and revision arithmetic}{\EvidenceRef{E138}{},
++\EvidenceRef{E141}{}, \EvidenceRef{E055}{}}
++
+ Under strongest pixel Gaussian noise, F2 retains AP 0.3963, while F5 and F6 fall to
+ 0.1288 and 0.1275. The intact sensor baseline remains at AP 0.4294. F2's Brier score
+ nevertheless rises to 0.2968 and ECE to 0.4368, compared with clean sensor values 0.0804
+@@ -532,7 +549,38 @@
+ receiving a favorable interpretation from the model's name.\ev{Tested missingness and
+ corruption conditions}{\EvidenceRef{E044}{}}
+ 
+-\section{Follow-up Investigations}
++\section{Controlled Follow-up Investigations}
++\label{sec:reassemble-followups}
++Table~\ref{tab:reassemble-followups} maps the follow-ups to their assessment population
++and matched control. Rows with different fitting recipes or populations are not a
++leaderboard. The subsections retain the full definitions and qualifications.
++
++\begin{table}[p]
++\caption{REASSEMBLE Follow-up Populations, Controls, and Outcomes}
++\label{tab:reassemble-followups}
++\centering\footnotesize\setlength{\tabcolsep}{3pt}
++\begin{tabularx}{\linewidth}{@{}P{.18\linewidth}P{.12\linewidth}YP{.27\linewidth}Y@{}}\toprule
++Investigation & Actions / recordings & Matched control & AP contrast [95\% interval] & Status and scope\\\midrule
++Sensor budget & 4,530 / 148 & Short-budget PatchTST & Long minus short: $+.0297$ [$+.0122,+.0451$] & Completed; remains below statistics\\\addlinespace
++Sensor hybrid & 4,530 / 148 & Statistics & Hybrid minus statistics: $+.0110$ [$+.0054,+.0181$] & Completed; same sensing modality\\\addlinespace
++Temporal pooling & 4,530 / 148 & Whole-action mean F2 & Last-quarter F2 minus control: $+.0461$ [$+.0260,+.0632$] & Completed; 16 frames; selected same-cohort follow-up\\\addlinespace
++Spatial encoder & 4,530 / 148 & CNN-only F2 & Hybrid-encoder F2 minus CNN F2: $-.0158$ [$-.0248,-.0058$] & Completed; 16 frames; five-epoch heads\\\addlinespace
++Two-epoch tuning & 4,530 / 148 & Frozen32 F2 & Tuned32 minus frozen32, seed 42: $-.0008$ [$-.0064,+.0061$] & Two seeds completed; both F2 contrasts unresolved\\\addlinespace
++Twenty-epoch CNN & 4,530 / 148 & No completed matched F2 & Visual AP .3121; no paired F2 interval & One seed completed; two seeds deferred; F2 unexecuted\\\addlinespace
++Hundred-epoch screen & 753 / 26 & Matched frozen100 F2 & Full100 minus frozen100: $+.0141$ [$-.0008,+.0291$] & One seed/role; unresolved; resource account below\\\addlinespace
++Anchored adaptation & 4,530 / 148 & Matched F2 anchor & Adaptive minus anchor: $+.0210$ [$+.0015,+.0419$] & Completed; independent of pooling changes\\\addlinespace
++Matched augmentation & 4,530 / 148 & Augmented static F2 & Adaptive minus static, mean conditions: $+.0097$ [$-.0034,+.0228$] & Completed; primary effect unresolved\\\addlinespace
++Quality-interaction pilot & 753 / 26 & Exposure-matched static A & C minus A, mean Gaussian AP: $+.0030$ [$-.0267,+.0322$] & Completed single-fold pilot; unresolved\\\bottomrule
++\end{tabularx}
++\displaynote{Intervals are paired and conditional on fixed fitted models. Ordinary
++rows use pooled failure AP; the two corruption rows average condition-specific APs,
++with their own realization protocols. Frames and fitting budgets differ. Resource
++screens and fine-tuning rows describe separate scopes, not a completed common matrix.}
++\end{table}
++\ev{Follow-up controls and scopes}{\EvidenceRef{E038}{}, \EvidenceRef{E039}{},
++\EvidenceRef{E040}{}, \EvidenceRef{E042}{}, \EvidenceRef{E058}{}, \EvidenceRef{E059}{},
++\EvidenceRef{E062}{}}
++
+ Three exploratory comparisons on the same cohort yielded higher average precision under
+ their respective protocols. Last-quarter visual pooling with static stacking reached
+ 0.4934, anchored adaptation reached 0.4683, and combining long-budget PatchTST with
+@@ -684,7 +732,7 @@
+ the corresponding predictions.\ev{Measured training and process
+ times}{\EvidenceRef{E060}{}}\ev{Sample allocation by fitting role}{\EvidenceRef{E058}{}}
+ 
+-\section{Study Synthesis and Remaining Questions}
++\section{Synthesis, Remaining Questions, and Bridge to External Datasets}
+ The follow-ups distinguish representation suitability, complementary information and
+ fusion effectiveness. Longer PatchTST training improves AP by .0297 (95\%
+ recording-bootstrap CI [.0122, .0451]) but remains .1441 below statistics. Insufficient
+@@ -716,3 +764,8 @@
+ recordings, natural faults, earlier prediction horizons and uncertainty beyond the fixed
+ fits remain open.\ev{Controlled follow-ups and uncertainty}{\EvidenceRef{E040}{},
+ \EvidenceRef{E042}{}, \EvidenceRef{E062}{}, \EvidenceRef{E113}{}}
++
++The next study returns to manufacturing with native cutting-interval labels. MSM tests
++whether the representation and fusion procedures remain useful after dataset-specific
++fitting, and whether the same intact-branch comparisons clarify their robustness under
++a different acquisition process.

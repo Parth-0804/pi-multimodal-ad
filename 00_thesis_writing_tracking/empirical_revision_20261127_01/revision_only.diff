@@ -1,0 +1,1374 @@
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/02_literature_review.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/02_literature_review.tex
+@@ -1349,11 +1349,12 @@
+         weighting under matched corruption exposure.\\
+     MSM (Ch.~7)
+       & Video and machine telemetry
+-      & R1--R5. The comparison covers cutting intervals observed in the
+-        laboratory during acquisition.\\
++      & R1--R5. Completed external manufacturing comparison, including
++        target/grouping sensitivity and controlled corruption.\\
+     ViFailback (Ch.~8)
+       & Video features and robot state
+-      & R1--R3, R5. The planned corruption stress test (R4) was unexecuted.\\
++      & R1--R3, R5. Task-disjoint assessment and donor transfer; bounded
++        target adaptation. The corruption stress test (R4) was unexecuted.\\
+     HANDOVER (App.~\ref{app:handover})
+       & Video and force--torque measurements
+       & R1--R5 with fixed averaging. The missing participant-to-trial mapping
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/06_reassemble.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/06_reassemble.tex
+@@ -1,25 +1,14 @@
+ \chapter{REASSEMBLE Case Study: Representation, Fusion, and Robustness}
+-On 4,530 completed robotic actions, the logistic stacker ranked failures better than the
+-statistical sensor predictor (average precision 0.4473 versus 0.4294). Its advantage
+-over equal averaging (0.4457) remained unresolved, and none of the original
+-context-conditioned gates showed a consistent advantage. REASSEMBLE's paired video,
+-machine signals and recorded outcomes made it possible to compare these methods on the
+-same actions. Later experiments examined alternative representations and fusion rules on
+-the same cohort.
+-
+-The core experiment compared fusion models on a common prediction bank. The exploratory
+-extensions and later visual studies used their own fitted models and assessed each
+-change separately.\ev{Core study evidence}{\EvidenceRef{E044}{}}\ev{Visual fine-tuning
+-experiments}{\EvidenceRef{E056}{}}
+-
+-\begin{figure}[p]
+-\caption{Sampled Frames From a Completed REASSEMBLE Insertion}\label{fig:reassemble-example}
+-\centering\includegraphics[width=\textwidth,height=.70\textheight,keepaspectratio]{figures/reassemble_example_frames.png}
+-\displaynote{The extractor selected 16 frames from recording 2025-01-13-16-45-31,
+-segment 21 (15.233 s). The saved failure label accompanies this example. Frame selection
+-illustrates temporal coverage. Source: Saved data-preparation example.}
+-\end{figure}
+-\ev{Illustrative frame source}{\EvidenceRef{E061}{}}
++\label{ch:reassemble}
++REASSEMBLE is the central study of completed-action failure classification, comparing
++representations, fusion and controlled robustness on paired camera and sensor inputs.
++Static F2 improved failure ranking over its statistical sensor component, but combines
++visual information with an additional logistic fitting stage and did not establish an
++advantage over equal averaging. The original gates did not establish consistent clean
++or robustness superiority. Later representation and adaptation studies retain their own
++controls and assessment populations; their best results were not combined into one
++model.\ev{Core and follow-up scope}{\EvidenceRef{E044}{}, \EvidenceRef{E040}{}}
++
+ \section{Study Objectives and Research-Question Mapping}
+ SQ1 concerns implemented visual and temporal representations relative to engineered
+ sensor statistics. SQ2 concerns early, late and adaptive fusion under shared recording
+@@ -40,7 +29,7 @@
+ \parencite{Sliwowski2025REASSEMBLE}.\ev{Action targets and assessment
+ cohort}{\EvidenceRef{E046}{}}
+ 
+-\section{Dataset Overview and Native Outcome Annotations}
++\section{Dataset, Native Outcomes, and Modality Constraints}
+ The inventory contains 149 recordings; the retained common cohort contains 4,530
+ eligible actions from 148 recordings. A failure is one minus the native success
+ indicator. There are 509 failures, giving positive-class prevalence 0.1124. Failure
+@@ -57,7 +46,7 @@
+ accordingly used for outer splitting and uncertainty resampling.\ev{Population and class
+ counts}{\EvidenceRef{E046}{}}
+ 
+-\section{Dataset Challenges and Modality Availability}
++\subsection{Modality Availability and Grouping Limits}
+ The retained modalities are hand-camera images and machine-sensor measurements: three
+ force channels, three torque channels, two gripper channels, seven joint-effort channels
+ and seven joint-velocity channels. These twenty-two channels include operating state as
+@@ -74,7 +63,7 @@
+ objects or sites and hardware-clock synchronization remain untested.\ev{Audio alignment
+ and object-group feasibility}{\EvidenceRef{E044}{}}
+ 
+-\section{Preparation and Pre-Checks}
++\section{Cohort Preparation, Alignment, and Evaluation Protocol}
+ Preparation established a common cohort before comparing architecture outputs. Required
+ information included native action boundaries and outcomes, valid camera correspondence,
+ sufficient sensor coverage, and a recording-group identity. These checks support
+@@ -117,6 +106,15 @@
+ parts of this problem, without converting the task into online warning.\ev{Input
+ construction}{\EvidenceRef{E064}{}}\ev{Boundary-aware follow-up}{\EvidenceRef{E042}{}}
+ 
++\begin{figure}[p]
++\caption{Sampled Frames From a Completed REASSEMBLE Insertion}\label{fig:reassemble-example}
++\centering\includegraphics[width=\textwidth,height=.70\textheight,keepaspectratio]{figures/reassemble_example_frames.png}
++\displaynote{The extractor selected 16 frames from recording 2025-01-13-16-45-31,
++segment 21 (15.233 s). The saved failure label accompanies this example. Frame selection
++illustrates temporal coverage. Source: Saved data-preparation example.}
++\end{figure}
++\ev{Illustrative frame source}{\EvidenceRef{E061}{}}
++
+ \subsection{Missing, Invalid, and Inconsistent Observations}
+ Sensor extraction requires at least 0.89 finite coverage per channel and avoids
+ extrapolation and interpolation across long gaps. Accepted residual missing values are
+@@ -157,39 +155,28 @@
+ recording counts are 26, 31, 32, 29 and 30. Summing the assessment rows recovers all
+ 4,530 actions, 509 failures and 148 recordings exactly.
+ 
+-Within each outer training set, the visual and sensor branches supplied out-of-fold
+-(OOF) predictions for training the logistic stacker. Each branch predicted an action
+-using a fit that excluded its recording. During inner validation of the stacker,
+-however, every split reused this bank. Some rows used to train the stacker could
+-therefore come from branch fits that had seen recordings assigned to the stacker's inner
+-validation split. This indirect dependency affects internal model and threshold
+-assessment. It does not extend to the outer test: those recordings were excluded from
+-branch fitting, calibration, stacker training and threshold selection. Fully independent
+-inner validation would require rebuilding the branch prediction bank within every
+-stacker-validation split, including repeated branch fits and calibration across all five
+-outer folds. This additional nesting was beyond the training budget, so the outer scores
+-evaluate the procedure that reused the outer-training bank.\ev{Dependencies in stacker
+-validation}{\EvidenceRef{E004}{section 15.4}}
+-
+-\section{Task Formulation, Model Inputs, and Shared Evaluation Protocol}
+-The positive class is failure. The principal ranking measure is average precision (AP),
+-computed by the average-precision implementation rather than trapezoidal integration of
+-a precision--recall curve. AUROC, balanced accuracy, macro-F1, failure recall and
+-precision, Brier score and fifteen-bin equal-width expected calibration error (ECE)
+-describe other aspects of performance. Precision--recall reporting is particularly
+-important at the observed minority-class prevalence
+-\parencite{Saito2015PrecisionRecall}.
+-
+-Unless a later subsection states otherwise, reported core scores pool each action's
+-outer-held-out probability across the five folds. Pooled AP is not the arithmetic mean
+-of five fold AP values. Training-only selection and sigmoid logistic calibration use
++Within each outer training set, recording-held-out branch predictions supplied the
++stacker's OOF bank. Reusing that bank inside stacker validation creates the indirect
++dependency explained in Section~\ref{sec:ch4-assessment}; outer-test recordings remain
++excluded from branch fitting, calibration, stacker training and threshold selection.
++The reported outer scores assess this bank-reuse procedure.\ev{Stacker validation
++dependency}{\EvidenceRef{E004}{section 15.4}}
++
++\subsection{Metrics, Calibration, and Conditional Uncertainty}
++Failure is positive. Core scores pool the disjoint outer predictions for all 4,530
++actions; AP, AUROC, Brier score and fifteen-bin equal-width ECE follow
++Section~\ref{sec:ch4-metrics}. Balanced accuracy, macro-F1, failure recall and precision
++summarize the selected decisions. Training-only selection and sigmoid logistic calibration use
+ appropriate inner outputs. Hard-decision thresholds maximize inner balanced accuracy
+ over 0.01--0.99, with ties resolved toward 0.5. Calibration and threshold selection are
+ separate operations. Two thousand paired recording-cluster bootstrap resamples quantify
+ uncertainty conditional on the retained fitted models; they do not refit the entire
+ procedure or estimate all training-seed uncertainty. Nineteen structured label-shift
+ permutations preserve recording/action structure under their conditional exchangeability
+-assumption, giving a smallest plus-one probability of 0.05.\ev{Metrics and inference
++assumption, giving a smallest plus-one probability of 0.05. The saved controls give observed AP
++0.2307 against null AP 0.1435--0.1784 for vision and 0.2416 against 0.1548--0.1876
++for PatchTST. Each plus-one probability is 0.05. These conditional controls do not rule
++out scene/object shortcuts or replace the paired comparison against action identity.\ev{Metrics and inference
+ definitions}{\EvidenceRef{E046}{}}
+ 
+ \section{Experiment A: Unimodal Representations}
+@@ -492,6 +479,36 @@
+ dropout}{\EvidenceRef{E045}{}}
+ 
+ \subsection{Predictive Performance and Calibration Under Degradation}
++
++Table~\ref{tab:reassemble-corruption} reports every declared operator at its strongest
++severity and the two known single-stream absence cases. All rows use the same core
++cohort and fixed clean models; intermediate severities remain in E049.
++
++\begin{table}[htbp]
++\caption{REASSEMBLE High-Severity Corruption and Known Absence}
++\label{tab:reassemble-corruption}
++\centering\small\setlength{\tabcolsep}{3pt}
++\begin{tabular}{lrrrrrr}\toprule
++Condition & Intact AP & F2 AP & Brier & ECE & F5 AP & F6 AP\\\midrule
++Pixel noise ($\sigma=.10$) & 0.4294 & 0.3963 & 0.2968 & 0.4368 & 0.1288 & 0.1275\\
++Blur ($\sigma=4$) & 0.4294 & 0.4099 & 0.0816 & 0.0146 & 0.4061 & 0.4179\\
++Frame removal (8/16) & 0.4294 & 0.4455 & 0.0786 & 0.0149 & 0.4392 & 0.4381\\
++Sensor noise ($1\,\mathrm{SD}$) & 0.2307 & 0.2222 & 0.4798 & 0.5251 & 0.1753 & 0.1788\\
++Channel removal (11/22) & 0.2307 & 0.3198 & 0.0899 & 0.0164 & 0.3183 & 0.3014\\
++Temporal block (50\%) & 0.2307 & 0.3490 & 0.0918 & 0.0421 & 0.3543 & 0.3267\\
++Stuck force/torque (6) & 0.2307 & 0.4396 & 0.0822 & 0.0237 & 0.4230 & 0.4211\\
++Vision absent & 0.4294 & 0.4294 & 0.0804 & 0.0174 & 0.4294 & 0.4294\\
++Sensors absent & 0.2307 & 0.2307 & 0.0943 & 0.0070 & 0.2307 & 0.2307\\
++\bottomrule\end{tabular}
++\displaynote{Pooled failure-positive AP on 4,530 actions (509 failures). Brier and ECE
++refer to F2; smaller values indicate less probability error. Intact AP is statistical
++sensing for visual faults and vision for sensor faults. Known absence routes all three
++fusion methods to that survivor. The stochastic realization protocol is the original
++core protocol, distinct from later augmentation studies.}
++\end{table}
++\ev{Saved core robustness summary and revision arithmetic}{\EvidenceRef{E138}{},
++\EvidenceRef{E141}{}, \EvidenceRef{E055}{}}
++
+ Under strongest pixel Gaussian noise, F2 retains AP 0.3963, while F5 and F6 fall to
+ 0.1288 and 0.1275. The intact sensor baseline remains at AP 0.4294. F2's Brier score
+ nevertheless rises to 0.2968 and ECE to 0.4368, compared with clean sensor values 0.0804
+@@ -532,7 +549,38 @@
+ receiving a favorable interpretation from the model's name.\ev{Tested missingness and
+ corruption conditions}{\EvidenceRef{E044}{}}
+ 
+-\section{Follow-up Investigations}
++\section{Controlled Follow-up Investigations}
++\label{sec:reassemble-followups}
++Table~\ref{tab:reassemble-followups} maps the follow-ups to their assessment population
++and matched control. Rows with different fitting recipes or populations are not a
++leaderboard. The subsections retain the full definitions and qualifications.
++
++\begin{table}[p]
++\caption{REASSEMBLE Follow-up Populations, Controls, and Outcomes}
++\label{tab:reassemble-followups}
++\centering\footnotesize\setlength{\tabcolsep}{3pt}
++\begin{tabularx}{\linewidth}{@{}P{.18\linewidth}P{.12\linewidth}YP{.27\linewidth}Y@{}}\toprule
++Investigation & Actions / recordings & Matched control & AP contrast [95\% interval] & Status and scope\\\midrule
++Sensor budget & 4,530 / 148 & Short-budget PatchTST & Long minus short: $+.0297$ [$+.0122,+.0451$] & Completed; remains below statistics\\\addlinespace
++Sensor hybrid & 4,530 / 148 & Statistics & Hybrid minus statistics: $+.0110$ [$+.0054,+.0181$] & Completed; same sensing modality\\\addlinespace
++Temporal pooling & 4,530 / 148 & Whole-action mean F2 & Last-quarter F2 minus control: $+.0461$ [$+.0260,+.0632$] & Completed; 16 frames; selected same-cohort follow-up\\\addlinespace
++Spatial encoder & 4,530 / 148 & CNN-only F2 & Hybrid-encoder F2 minus CNN F2: $-.0158$ [$-.0248,-.0058$] & Completed; 16 frames; five-epoch heads\\\addlinespace
++Two-epoch tuning & 4,530 / 148 & Frozen32 F2 & Tuned32 minus frozen32, seed 42: $-.0008$ [$-.0064,+.0061$] & Two seeds completed; both F2 contrasts unresolved\\\addlinespace
++Twenty-epoch CNN & 4,530 / 148 & No completed matched F2 & Visual AP .3121; no paired F2 interval & One seed completed; two seeds deferred; F2 unexecuted\\\addlinespace
++Hundred-epoch screen & 753 / 26 & Matched frozen100 F2 & Full100 minus frozen100: $+.0141$ [$-.0008,+.0291$] & One seed/role; unresolved; resource account below\\\addlinespace
++Anchored adaptation & 4,530 / 148 & Matched F2 anchor & Adaptive minus anchor: $+.0210$ [$+.0015,+.0419$] & Completed; independent of pooling changes\\\addlinespace
++Matched augmentation & 4,530 / 148 & Augmented static F2 & Adaptive minus static, mean conditions: $+.0097$ [$-.0034,+.0228$] & Completed; primary effect unresolved\\\addlinespace
++Quality-interaction pilot & 753 / 26 & Exposure-matched static A & C minus A, mean Gaussian AP: $+.0030$ [$-.0267,+.0322$] & Completed single-fold pilot; unresolved\\\bottomrule
++\end{tabularx}
++\displaynote{Intervals are paired and conditional on fixed fitted models. Ordinary
++rows use pooled failure AP; the two corruption rows average condition-specific APs,
++with their own realization protocols. Frames and fitting budgets differ. Resource
++screens and fine-tuning rows describe separate scopes, not a completed common matrix.}
++\end{table}
++\ev{Follow-up controls and scopes}{\EvidenceRef{E038}{}, \EvidenceRef{E039}{},
++\EvidenceRef{E040}{}, \EvidenceRef{E042}{}, \EvidenceRef{E058}{}, \EvidenceRef{E059}{},
++\EvidenceRef{E062}{}}
++
+ Three exploratory comparisons on the same cohort yielded higher average precision under
+ their respective protocols. Last-quarter visual pooling with static stacking reached
+ 0.4934, anchored adaptation reached 0.4683, and combining long-budget PatchTST with
+@@ -684,7 +732,7 @@
+ the corresponding predictions.\ev{Measured training and process
+ times}{\EvidenceRef{E060}{}}\ev{Sample allocation by fitting role}{\EvidenceRef{E058}{}}
+ 
+-\section{Study Synthesis and Remaining Questions}
++\section{Synthesis, Remaining Questions, and Bridge to External Datasets}
+ The follow-ups distinguish representation suitability, complementary information and
+ fusion effectiveness. Longer PatchTST training improves AP by .0297 (95\%
+ recording-bootstrap CI [.0122, .0451]) but remains .1441 below statistics. Insufficient
+@@ -716,3 +764,8 @@
+ recordings, natural faults, earlier prediction horizons and uncertainty beyond the fixed
+ fits remain open.\ev{Controlled follow-ups and uncertainty}{\EvidenceRef{E040}{},
+ \EvidenceRef{E042}{}, \EvidenceRef{E062}{}, \EvidenceRef{E113}{}}
++
++The next study returns to manufacturing with native cutting-interval labels. MSM tests
++whether the representation and fusion procedures remain useful after dataset-specific
++fitting, and whether the same intact-branch comparisons clarify their robustness under
++a different acquisition process.
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/09_discussion.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/09_discussion.tex
+@@ -17,6 +17,15 @@
+ photograph-derived measure corresponded to gear damage. Each comparison used the same
+ target and held-out observations within its study. Extending the comparison to welding
+ requires welds reserved for assessment and an independently measured quality outcome.
++
++The studies carry different evidential weight. REASSEMBLE is the central controlled
++study; MSM is the completed external manufacturing test of fusion, target/grouping
++sensitivity and prescribed corruption. ViFailback adds a task-disjoint robotic
++comparison and explicit learned-weight transfer, with limited adaptation coverage and
++no executed corruption assessment. These are dataset-specific fitted evaluations;
++only the donor arms test transfer of learned parameters, and none is a zero-shot
++cross-dataset test. HANDOVER remains supporting evidence in Appendix~\ref{app:handover}
++because its mandatory participant-safe learned-fusion gate could not be met.
+ 
+ \section{Representation Suitability --- Answer to SQ1}
+ In PHM, the image-regression experiment extracted detector features during a full
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/08_vifailback.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/08_vifailback.tex
+@@ -1,20 +1,30 @@
+-\chapter{ViFailback Case Study: Application to a Further Dataset}
++\chapter{ViFailback Case Study: Task-Disjoint Evaluation and Representation Transfer}
+ \label{ch:vifailback}
+ 
+-\section{Motivation and Replication Objectives}
+-On held-out ViFailback manipulation tasks, the logistic sensor model ranked episode
+-outcomes more accurately than the fitted combination of video and sensor scores. The
+-dataset provides three camera views and robot observations for complete episodes
+-\citep{Zeng2026ViFailback}. The study compared the two branch predictions and their
+-combination on the same tasks (SQ1 and SQ2). A separate comparison isolated the choice
+-between a generic frozen visual encoder and one initialized from a REASSEMBLE
+-checkpoint, with a new prediction head fitted in each case.
++ViFailback extends the robotic studies to complete episodes on held-out manipulation
++tasks and to learned-representation transfer from REASSEMBLE. The completed frozen and
++donor comparisons favored logistic sensing over F2, while donor effects varied across
++target seeds. Target-CNN adaptation has only bounded single-fold evidence, with
++inconclusive matched effects. The study contributes clean-input representation, fusion
++and metric analyses; its planned corruption evaluation was not executed.
++
++\section{Motivation, Replication Scope, and Reporting Cutoff}
++Three cameras and robot observations provide a different test of the relation between
++visual representations and completed manipulation outcomes \citep{Zeng2026ViFailback}.
++The study asks whether the original fusion procedure adds value on task-disjoint
++episodes, and whether a REASSEMBLE-learned CNN helps after fitting a new target head.
+ 
+ The primary replication contrasts original frozen vision, logistic sensing, averaging
+ and F2. HGB supplied a stronger numerical reference, while camera ablations and donor
+-transfer tested visual representations. The primary comparison was specified on 30
+-October 2026 after some early results had been observed. Its interpretation is therefore
+-partly retrospective.
++transfer tested visual representations. The 30 October 2026 priority note reframed the primary comparison after frozen-branch
++outer predictions were available; it explicitly describes a reporting clarification,
++not prospective preregistration. The 29 October report snapshot already contained
++original frozen three-view and high-camera results, logistic/HGB sensor references,
++averaging, F2 and clean gate comparisons. Thus the weak visual ranking and the original
++fusion-versus-sensor direction were available before this clarification. The exact
++sequence of human inspection is not independently established. The note retained the
++cohort, splits, recipes and budgets; it did not create a fresh confirmatory holdout.\ev{Dated
++priority clarification and preceding snapshot}{\EvidenceRef{E142}{}, \EvidenceRef{E143}{}}
+ 
+ The reporting cutoff for this revision is extended through the completed-scope analysis
+ of 24 November 2026. In addition to the frozen and donor comparisons, FULL20 completed
+@@ -24,7 +34,7 @@
+ concern intact inputs.\ev{Original and extended scope}{\EvidenceRef{E102}{},
+ \EvidenceRef{E096}{}, \EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
+ 
+-\section{Dataset Overview and Prediction Task}
++\section{Dataset, Episode Labels, and Cohort Construction}
+ The native source contains 5,202 episodes with 4,545 failure and 657 no-failure
+ annotations across 100 canonical tasks and 109 source directories. The evaluation pins
+ both the original release and its converted LeRobot representation
+@@ -47,7 +57,7 @@
+ annotation, or advance warning before a failure occurs.\ev{Native and final ViFailback
+ labels}{\EvidenceRef{E087}{}}
+ 
+-\section{Dataset Challenges and Cohort Construction}
++\subsection{Exclusions and Independence Limits}
+ The provisional core contained 4,384 episodes after 818 unique exclusions or
+ quarantines. Full three-camera quality checks then identified two defective camera
+ streams: episode~2071's right wrist and episode~4784's left wrist. Their source bytes
+@@ -65,7 +75,7 @@
+ limiting the independence claim to the grouping actually checked.\ev{Cohort validity and
+ remaining dependence}{\EvidenceRef{E093}{}}
+ 
+-\section{Preparation and Pre-Checks}
++\section{Preparation, Three-View Inputs, and Pre-Checks}
+ Sixteen uniform, matching frame indices are selected in each of three cameras. These are
+ sixteen temporal positions and 48 images, not 48 distinct timestamps. The source image
+ processor resizes to $640\times640$, divides RGB values by 255 and does not apply
+@@ -89,7 +99,7 @@
+ preprocessing}{\EvidenceRef{E088}{}}\ev{Scope of independent
+ checks}{\EvidenceRef{E092}{}}
+ 
+-\section{Reused Components and Dataset-Specific Adaptations}
++\section{Models, Transfer/Adaptation Regimes, and Evaluation Protocol}
+ The original visual branch loaded the ResNet18-vd CNN backbone inside the pretrained
+ RT-DETR-R18vd checkpoint \citep{Zhao2024RTDETR}. The extractor stopped at the CNN
+ feature maps, before the hybrid Transformer encoder, detection decoder, and box heads.
+@@ -104,6 +114,14 @@
+ stacking; HGB is a stronger separate reference and never replaces the sensor input
+ inside original F2. Consequently, a gain over vision or logistic sensing cannot be
+ reported as a gain over the strongest available unimodal method.
++
++HGB uses 200 iterations, learning rate 0.05, L2 penalty 0.1 and minimum leaf size
++twenty; leaves 7, 15 and 31 are selected on V macro AP, followed by C-only calibration.
++Its search is real candidate selection, unlike the fixed MSM recipe or a claim that
++every parameter was optimized. It remains secondary and does not change the prespecified
++F2 input after its favorable assessment.
++
++\ev{Exploratory HGB recipe}{\EvidenceRef{E094}{}}
+ 
+ The donor arms transferred compatible CNN tensors from a completed source checkpoint and
+ fitted a fresh ViFailback head, scaler, calibrator and fusion model. The FROZEN and
+@@ -114,7 +132,7 @@
+ supervised target-head fitting on a transferred frozen representation.\ev{Matched model
+ definitions}{\EvidenceRef{E097}{}}
+ 
+-\section{Evaluation Protocol}
++\subsection{Task Partitions, Calibration, and Fitting Budgets}
+ The original protocol uses three outer task-disjoint folds and three inner OOF
+ assessments within each outer-training pool. Each branch separates gradient-fitting T,
+ checkpoint-selection V, calibration C and assessment A task groups. A final branch is
+@@ -138,7 +156,7 @@
+ a full nested three-fold hundred-epoch experiment.\ev{Original evaluation
+ contract}{\EvidenceRef{E094}{}}\ev{Matched training contract}{\EvidenceRef{E098}{}}
+ 
+-\section{Experimental Investigations}
++\section{Empirical Investigations}
+ The original study evaluated the frozen visual branch, its high-camera control, sensor
+ models and clean fusion. By 24 November, the matched study had 79 completed fits of 111
+ planned: 36 each for FROZEN20 and DONOR20, four for FULL20, and one for each
+@@ -170,7 +188,7 @@
+ \end{table}
+ \ev{Matched fit coverage}{\EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
+ 
+-\subsection{Unimodal Reference Models}
++\subsection{Unimodal References and Original Fusion}
+ The original frozen visual head completed all 36 planned fits, as did its
+ high-camera-only control. The logistic sensor branch is deterministic under the fixed
+ partitions. S1 and S3 denote the same fitted recipe. HGB supplies a stronger numerical
+@@ -193,11 +211,33 @@
+ \end{table}
+ \ev{Original both-class scores}{\EvidenceRef{E089}{}}
+ 
++\begin{table}[htbp]
++\caption{Completed Original ViFailback Controls}\label{tab:vif-controls}
++\centering\small
++\begin{tabular}{lrrr}\toprule
++Model & Seed 42 & Seed 123 & Seed 20261023\\\midrule
++Three-view V1 & 0.4952 & 0.4964 & 0.4844\\
++High-camera control & 0.4908 & 0.4915 & 0.4915\\
++Clean quality gate & 0.6340 & 0.6363 & 0.6359\\
++Availability-only gate & 0.6375 & 0.6431 & 0.6397\\
++Logistic sensor & 0.6490 & 0.6490 & 0.6490\\
++\bottomrule\end{tabular}
++\displaynote{Reported both-class macro AP, pooling all 4,382 outer-held-out episodes
++per seed under the original study. The high-camera head completed 36 fits, as did
++three-view V1. The two gates use intact inputs; these scores do not test corruption
++adaptation.}
++\end{table}
++\ev{Original controls}{\EvidenceRef{E089}{}, \EvidenceRef{E090}{}}
++The high-camera control did not consistently improve on three-view pooling. The clean
++quality gate scored below its availability-only control and logistic sensing at each
++seed (Table~\ref{tab:vif-controls}); these point comparisons do not establish a
++reliability mechanism or statistical equivalence.
++
+ The completed target-CNN comparisons are assessed against their matched frozen controls
+ below. Their existence does not imply completion of the three-fold, three-seed
+ adaptation matrix.
+ 
+-\subsection{Original Fusion-Procedure Comparison}
++\paragraph{Original fusion comparison.}
+ In the original frozen comparison, F2 improves over vision and averaging but has lower
+ pooled macro AP than the logistic sensor branch for all three seeds: 0.628787, 0.625400
+ and 0.621067 against 0.648974. The sensor HGB point score is higher still. These results
+@@ -205,6 +245,7 @@
+ improve weak visual prediction, but adding the visual branch does not improve the
+ strongest component used in F2.
+ 
++\subsection{Matched Frozen Versus REASSEMBLE-Donor Transfer}
+ The later matched twenty-epoch comparison also favored the numerical reference.
+ Table~\ref{tab:vif-matched} lists every seed's pooled score after all three outer
+ assessments complete. Despite small fold-specific differences around logistic sensing,
+@@ -229,7 +270,7 @@
+ \end{table}
+ \ev{Matched complete outer comparisons}{\EvidenceRef{E096}{}}
+ 
+-\subsection{Representation-Transfer Comparison}
++\paragraph{Transferred parameters and paired contrasts.}
+ Following donor feature extraction, DONOR20 completed 36 target-head fits. Its source
+ completed 100 epochs and selected epoch~47; 115 compatible CNN tensors are loaded,
+ without source head, scaler, calibrator or F2 coefficients. This establishes an executed
+@@ -253,7 +294,7 @@
+ pilot updated the target CNN.\ev{Donor identity and pilot fit
+ provenance}{\EvidenceRef{E098}{}, \EvidenceRef{E099}{}, \EvidenceRef{E100}{}}
+ 
+-\paragraph{Completed target-CNN adaptation.}
++\subsection{Partial Target-CNN Adaptation}
+ On the same 1,107 outer-fold-0 episodes, FULL20 achieved visual macro AP .492370 and F2
+ .697858; FULL100 achieved .544332 and .699260. The corresponding sensor LR and HGB
+ references were .707996 and .757878. Table~\ref{tab:vif-adaptation} reports the paired
+@@ -278,7 +319,56 @@
+ \end{table}
+ \ev{Completed adaptation results and recorded independent arithmetic}{\EvidenceRef{E115}{}}
+ 
+-\subsection{Scope of the Robustness Evaluation}
++\subsection{Calibration, Threshold Behavior, and Unfinished Robustness Scope}
++In outer fold~0, FROZEN20 seed~42 F2 had macro AP 0.7071 and Brier score 0.1539,
++yet balanced accuracy was 0.5 at threshold 0.5. Ranking and probability metrics thus
++need not imply useful decisions at the fixed operating threshold; tuning it on these
++assessment episodes would bias decision-performance estimates.\ev{Matched secondary
++metrics}{\EvidenceRef{E095}{}, \EvidenceRef{E096}{}}
++
++The retained source implements calibration as $p=\sigma(a s+b)$ on the branch's raw
++failure logit $s$, with $a$ and $b$ fitted on C only. Under this convention a negative
++$a$ reverses within-fit ranking. The saved matched-study report attributes negative
++visual slopes to outer fold~0 in every FROZEN20 and DONOR20 seed, and to FULL20
++seed~42. Table~\ref{tab:vif-calibration} gives those reported coefficients and paired
++raw/calibrated visual macro APs. FROZEN20 and DONOR20 outer folds~1 and~2, and all
++three hundred-epoch pilots, have positive reported slopes.
++
++\begin{table}[htbp]
++\caption{Reported ViFailback Visual Ranking Reversals in Outer Fold 0}
++\label{tab:vif-calibration}\centering\small
++\begin{tabular}{llrrr}\toprule
++Arm & Seed & Slope $a$ & Raw macro AP & Calibrated macro AP\\\midrule
++FROZEN20 & 42 & -0.0335 & 0.5179 & 0.4874\\
++FROZEN20 & 123 & -0.0592 & 0.5332 & 0.4743\\
++FROZEN20 & 20261023 & -0.0442 & 0.5228 & 0.4834\\
++FULL20 & 42 & -0.1219 & 0.5133 & 0.4924\\
++DONOR20 & 42 & -0.0567 & 0.5498 & 0.4632\\
++DONOR20 & 123 & -0.0532 & 0.5395 & 0.4702\\
++DONOR20 & 20261023 & -0.0641 & 0.5447 & 0.4664\\
++\bottomrule\end{tabular}
++\displaynote{The same 1,107 outer episodes per row; raw AP uses the uncalibrated
++failure scores, not a new model fit. Values are retained report results. Individual
++calibrator and keyed prediction files were unavailable in the local revision workspace,
++so this revision verified the equation and report correspondence, not a fresh numerical
++reconstruction of each fitted map.}
++\end{table}
++\ev{Raw/calibrated ranking and F2 input definition}{\EvidenceRef{E139}{}}
++
++The inspected training path saves calibrated \texttt{probability} values, and the F2
++path consumes that column in both the inner meta bank and outer assessment. This is
++consistent with the report that FROZEN20/DONOR20 F2 used calibrated visual inputs,
++rather than raw-score controls; the missing per-fit artifacts prevent a new verification
++of execution for every fit. The outer-fold report does not establish the signs of every
++inner-fit or sensor calibrator. Negative visual slopes describe an inverse relationship
++fitted on C; they do not identify whether weak representation, calibration-sample
++variation or another mechanism caused it. With different maps across folds, even
++positive slopes can alter pooled ordering. For example, FROZEN20 seed~42 pooled visual
++macro AP was 0.5088 raw and 0.5079 calibrated; DONOR20 was 0.5166 and 0.4914.
++These are descriptive diagnostics, not permission to revise calibration after observing
++outer performance.
++
++\paragraph{Unfinished robustness scope.}
+ ViFailback contributes clean-input comparisons to SQ1 and SQ2. The SQ3 corruption study
+ remained unexecuted at the extended reporting cutoff. The specified visual interventions
+ included missing frames or windows, blur, occlusion, camera loss, JPEG degradation and
+@@ -293,33 +383,8 @@
+ drift between hardware clocks.\ev{Specified corruption and fallback
+ conditions}{\EvidenceRef{E091}{}}
+ 
+-\subsection{Additional Exploratory Baselines}
+-HGB uses 200 iterations, learning rate 0.05, L2 penalty 0.1 and minimum leaf size
+-twenty; leaves 7, 15 and 31 are selected on V macro AP, followed by C-only calibration.
+-Its search is real candidate selection, unlike the fixed MSM recipe or a claim that
+-every parameter was optimized. It remains secondary and does not change the prespecified
+-F2 input after its favorable assessment.
+-
+-The high-camera control fitted a new head on sixteen high-view frames under the original
+-cohort and split rules. The original frozen study also evaluated a clean
+-quality-conditioned gate and its availability-only control. Estimating the effect of
+-corruption exposure would require the deferred augmented and stress
+-comparisons.\ev{Original controls and fixed recipes}{\EvidenceRef{E094}{},
+-\EvidenceRef{E090}{}, \EvidenceRef{E091}{}}
+-
+-\section{Results, Interpretation, and Limitations}
+-In the original comparison, F2 ranked failures (AP near 0.95) more accurately than
+-successes (Table~\ref{tab:vif-bothclass}). In outer fold~0 of the matched FROZEN20
+-comparison, seed~42 gave F2 macro AP of 0.707118 and a Brier score of 0.153928, yet
+-balanced accuracy was 0.5 at the fixed threshold. Selecting a threshold on those same
+-assessment episodes would bias the estimate of decision performance.\ev{Saved matched
+-secondary metrics}{\EvidenceRef{E095}{}}
+-
+-Some fitted sigmoid calibrators reversed the ranking of episodes within a fit because
+-their slopes were negative. Even positive slopes can change the ordering of episodes
+-from different folds when the fitted maps differ. Comparing raw and calibrated rankings
+-helps interpret differences between pooled AP and mean-fold AP.
+-
++
++\section{Synthesis, Limitations, and Role in the Thesis}
+ The three donor-minus-frozen visual contrasts had task-cluster intervals spanning zero.
+ These paired intervals used 2,000 draws and held the fitted models, donor and split
+ assignments fixed. They omit uncertainty from refitting, donor selection and possible
+@@ -333,18 +398,9 @@
+ inconclusive paired effects. The rest of the adaptation matrix remains unfinished, and
+ no completed matched corruption comparison establishes robustness.
+ 
+-\section{Relationship to the Earlier Case Studies}
+-In MSM, the logistic sensor model achieved higher abnormal-cutting AP, averaged over
+-seed-specific pooled predictions, than the original stacker. In ViFailback, it achieved
+-higher macro-AP in both the original comparison and the later matched frozen comparison.
+-In HANDOVER, the logistic sensor model also outperformed averaging. Missing participant
+-identities precluded a learned-fusion comparison. The direction of the effect can be
+-compared across these tasks, although their absolute AP values refer to different
+-outcomes.
+-
+-Transferring the donor CNN produced mixed effects across target seeds. For complete
+-ViFailback episodes under the task-disjoint protocol, the logistic sensor predictor
+-ranked outcomes more accurately than F2 in the matched twenty-epoch comparison. The
+-completed adaptation contrasts do not establish a change in that conclusion, but cannot
+-resolve adaptation across the full cohort. Effects of input degradation remain
+-unmeasured.
++ViFailback adds held-out-task assessment and a completed learned-representation
++transfer comparison to the earlier studies. It supplies the donor condition unavailable
++in MSM, but does not replace MSM's completed corruption and sensitivity evidence.
++The transferred CNN gave mixed effects across target seeds; the bounded adaptation
++contrasts leave full-cohort adaptation unresolved. Chapter~\ref{ch:discussion} compares
++the studies' implications, including HANDOVER's restricted learned-fusion eligibility.
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/03_foundations.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/03_foundations.tex
+@@ -38,6 +38,11 @@
+ meant that a prediction was close to the indicator derived from the photographs.
+ Establishing how closely that indicator measured actual tooth damage would require an
+ independent physical measurement.
++
++HANDOVER supplies supporting unimodal and fixed-average results in
++Appendix~\ref{app:handover}. Its missing participant-to-trial mapping prevented the
++mandatory participant-safe OOF construction for learned fusion, so the presence of
++paired modalities alone did not make a fitted stacker eligible.
+ 
+ For the REASSEMBLE insertion, let \(p_v\) be the failure probability estimated from
+ video and \(p_s\) the probability estimated from sensors. Both estimates refer to the
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/07_msm.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/07_msm.tex
+@@ -1,11 +1,18 @@
+-\chapter{MSM Case Study: Dataset Adaptation and Evaluation Feasibility}
++\chapter{MSM Case Study: Manufacturing Fusion, Sensitivity, and Robustness}
+ \label{ch:msm}
+ 
+-\section{Motivation and Intended Comparison}
+-In MSM milling, the logistic sensor model ranked abnormal intervals more accurately than
+-the stacker (F2) that combined its predictions with video. Both models predicted the
+-same labelled intervals under the same grouping rules. Moving from assembly to milling
+-changed the measurements, prediction interval and target.
++MSM provides the principal completed external manufacturing evaluation of the
++representation, fusion and controlled-robustness questions. Each prediction concerns a
++completed cutting interval, with native abnormal cutting as the positive class. Across
++the tested target and grouping protocols, the logistic sensor branch ranked these
++intervals better than F2, while quality-gate behavior depended on the input condition.
++The models were fitted on MSM; this study tests applicability in another domain, not
++zero-shot transfer from REASSEMBLE.
++
++\section{Motivation and Research-Question Mapping}
++Moving from robotic assembly to milling changes the measurements, observation interval
++and target. The question is whether a camera adds useful information beyond the milling
++machine's numerical measurements under a new, explicitly grouped assessment.
+ 
+ The study connects the original questions in a controlled sequence. The frozen CNN and
+ interval statistics test a lightweight representation choice (SQ1); averaging, original
+@@ -22,15 +29,7 @@
+ held-out intervals that met the timing and input-coverage criteria.\ev{MSM experimental
+ design}{\EvidenceRef{E079}{}}
+ 
+-A close manufacturing comparator illustrates why the unimodal reference is essential.
+-The tool-wear study in \citet{P045} combines post-pass tool photographs with acoustic
+-information and reports its proposed MAE below a visual baseline, while other multimodal
+-architectures perform substantially worse than that same visual baseline. Its
+-wear-regression task, observation schedule and incompletely reported tool-split coverage
+-differ from MSM. It motivates testing the contribution of a second stream; it does not
+-supply a transferable numerical expectation of improvement.
+-
+-\section{Dataset Overview and Target Semantics}
++\section{Dataset, Cutting-Label Semantics, and Domain Challenges}
+ The source dataset combines laboratory and industrial metal-cutting observations
+ \citep{Kim2026MSM}. It is a data descriptor, rather than a published
+ unimodal-versus-fusion benchmark. Its streams have different sampling and refresh rates,
+@@ -57,13 +56,13 @@
+ Neither the whole interval nor its final label is shortened into a prediction horizon
+ that would establish advance warning.
+ 
+-\section{Dataset Challenges}
++\subsection{Visibility and Independence Limits}
+ Milling video can show the machine and process context while coolant, enclosure geometry
+ and occlusion conceal the tool--workpiece interaction. Successful decoding is therefore
+ insufficient evidence that the labeled abnormality is optically observable. A visual
+ classifier may respond to operating context, lighting or experiment-specific appearance
+-rather than the underlying cutting event. The substantial visual training--assessment
+-gap reported below is compatible with this concern, but does not identify its cause.
++rather than the underlying cutting event. The visual training--assessment
++gap quantified in Section~\ref{sec:msm-clean} is compatible with this concern, but does not identify its cause.
+ 
+ The machine stream is also an observation of the process rather than direct,
+ instantaneous ground truth. Aggregated electrical, load and vibration-related
+@@ -74,7 +73,7 @@
+ limits motivate both the technical gates and the stricter grouping sensitivities.\ev{MSM
+ validation limits}{\EvidenceRef{E075}{}}
+ 
+-\section{Preparation and Pre-Checks}
++\section{Preparation, Timing Alignment, and Cohort Support}
+ Preparation admits examples only when both modalities meet a fixed input contract. The
+ dominant exclusion is lack of validated acoustic timing support, followed by rejected or
+ insufficient alignment and numerical gaps. These are technical exclusions, not removals
+@@ -175,7 +174,7 @@
+ \end{figure}
+ \ev{Illustrative input and identity source}{\EvidenceRef{E071}{}, \EvidenceRef{E072}{},
+ \EvidenceRef{E073}{data row 5}}
+-\section{Architecture Reuse and Dataset-Specific Adaptations}
++\section{Architecture Reuse, Adaptations, and Evaluation Protocol}
+ The pretrained condition (P) used the ResNet18-vd CNN backbone inside the RT-DETR-R18vd
+ checkpoint \citep{Zhao2024RTDETR}. The extractor stopped at the CNN feature maps, before
+ the hybrid Transformer encoder, detection decoder, and box heads. Spatial means from the
+@@ -211,7 +210,7 @@
+ study. Architecture reuse, generic pretraining and transfer of task-learned weights
+ retain separate provenance.
+ 
+-\section{Implementation Checks and Bounded Development Runs}
++\subsection{Implementation Checks and Bounded Development Run}
+ The bounded development exercise was an engineering check: its two-epoch,
+ at-most-24-interval design restricted head updates and CNN frame forwards and prohibited
+ outer-assessment predictions. It could expose shape, gradient, memory or reload errors,
+@@ -227,7 +226,7 @@
+ cannot alone certify that every training step would recur in another environment.\ev{MSM
+ implementation and reproduction scope}{\EvidenceRef{E078}{}}
+ 
+-\section{Evaluation Protocol and Conditions Without Estimates}
++\subsection{Evaluation Protocol and Conditions Without Estimates}
+ The completed matrix uses three outer and two inner StratifiedGroupKFold partitions,
+ fixed split seeds and training seeds 42, 123 and 20261023. Inner fits produce branch OOF
+ probabilities for learned fusion; outer assessments remain excluded from fitting. The
+@@ -236,21 +235,19 @@
+ 
+ The main visual head runs for ten fixed epochs and the gate for forty. The assessment
+ uses a fixed threshold of 0.5, with no assessment-selected epoch or fitted primary
+-calibrator. Scikit-learn computes average precision as a weighted mean of precision
+-values, with each weight equal to the increase in recall
+-\citep{Pedregosa2011ScikitLearn}. This differs from trapezoidal integration of the
+-precision--recall curve. F2 denotes the fusion model in this study. Primary results pool
+-the disjoint outer predictions separately for each seed, then summarize the three APs.
+-An arithmetic mean of fold APs answers a different question because fold prevalences and
+-cross-fold score scales differ.
++calibrator. The definitions in Section~\ref{sec:ch4-metrics} apply: AP is average precision,
++not trapezoidal PR area, and F2 names the stacker. Each seed's disjoint outer predictions
++are pooled before AP is computed; the three seed-specific APs are then summarized.
++These are not mean-fold APs.
+ 
+ Conditions with a missing source checkpoint, inadequate class support or insufficient
+ temporal coverage yielded no estimate. The results below cover the conditions that met
+ the original criteria.\ev{MSM fixed evaluation protocol}{\EvidenceRef{E070}{}}
+ 
+-\section{Findings, Limitations, and Implications}
++\section{Investigation A: Clean Unimodal and Fusion Comparison}
++\label{sec:msm-clean}
+ On intact inputs, F2 had lower AP than its logistic sensor component at all three seeds.
+-The mean paired difference was $-0.071737$ (Table~\ref{tab:msm-clean}). F2 ranked
++The mean paired difference was $-0.0717$ (Table~\ref{tab:msm-clean}). F2 ranked
+ abnormal intervals more accurately than the visual branch or equal averaging. Sensor HGB
+ had the highest mean AP of the models compared.
+ 
+@@ -259,51 +256,111 @@
+ \centering\small
+ 
+ \begin{tabular}{lrr}\hline Model&Mean AP&Seed SD\\\hline
+-Visual&0.298901&0.010853\\
+-Sensor logistic&0.828616&0.000000\\
+-Sensor HGB&0.901299&0.000000\\
+-Averaging&0.735594&0.015942\\
+-F2&0.756879&0.011082\\
+-F2-aug&0.760170&0.009783\\
+-QG-clean&0.837418&0.013389\\
+-QG-aug&0.826521&0.016168\\\hline
++Visual&0.2989&0.0109\\
++Sensor logistic&0.8286&0.0000\\
++Sensor HGB&0.9013&0.0000\\
++Averaging&0.7356&0.0159\\
++F2&0.7569&0.0111\\
++F2-aug&0.7602&0.0098\\
++QG-clean&0.8374&0.0134\\
++QG-aug&0.8265&0.0162\\\hline
+ \end{tabular}
+ \displaynote{Entries summarize pooled average precision across three fixed seeds as the
+ mean and sample standard deviation.}
+ \end{table}
+ \ev{MSM primary results}{\EvidenceRef{E076}{}}
+ 
++The visual training diagnostic averaged AP 0.9807 across the nine outer fits
++(three folds by three seeds; range 0.9634--0.9994), compared with mean seed-specific
++pooled held-out AP 0.2989. The training score is an in-sample mean on overlapping training
++sets, not a second pooled assessment score. These predictions did not enter F2.
++The gap is consistent with overfitting or acquisition shift, but does not isolate
++visibility, alignment or representation quality as its cause.\ev{Visual training and
++held-out diagnostics}{\EvidenceRef{E137}{}}
++
++\section{Investigation B: Target-Definition and Grouping Sensitivities}
+ Logistic sensing had higher mean AP than F2 in all six prespecified protocols. Excluding
+-label~2 and grouping by calendar date gave 0.521826 for F2 and 0.891656 for logistic
++label~2 and grouping by calendar date gave 0.5218 for F2 and 0.8917 for logistic
+ sensing. That sensitivity analysis changes the target. Under the primary definition,
+-pooled prevalence was $336/1895=0.177309$ and outer-fold prevalences ranged from
++pooled prevalence was $336/1895=0.1773$ and outer-fold prevalences ranged from
+ approximately 0.051 to 0.277. The fold-specific training-prior baseline had pooled AP
+-0.145395 because the fitted prior could vary across folds.
+-
+-The paired 95\% calendar-date bootstrap interval for F2 minus logistic sensing was
+-wholly negative, $[-0.100356,-0.051477]$. It used five date clusters, held fits and
++0.1454 because the fitted prior could vary across folds.
++
++
++\begin{table}[htbp]
++\caption{MSM Clean Performance Across All Six Protocols}\label{tab:msm-sensitivity}
++\centering\small
++\setlength{\tabcolsep}{4pt}
++\begin{tabular}{lrrrrr}\toprule
++Target and grouping & Vision & Sensor LR & HGB & F2 & QG-clean\\\midrule
++Primary, experiment & 0.2989 & 0.8286 & 0.9013 & 0.7569 & 0.8374\\
++Primary, machine/date & 0.5359 & 0.8922 & 0.8250 & 0.7389 & 0.8715\\
++Primary, calendar date & 0.5444 & 0.8859 & 0.8386 & 0.8196 & 0.8521\\
++Exclude 2, experiment & 0.3164 & 0.9403 & 0.8965 & 0.8235 & 0.9308\\
++Exclude 2, machine/date & 0.3396 & 0.9265 & 0.9098 & 0.8562 & 0.7372\\
++Exclude 2, calendar date & 0.4009 & 0.8917 & 0.9062 & 0.5218 & 0.6757\\
++\bottomrule\end{tabular}
++\displaynote{Mean of three seed-specific pooled abnormal-cutting APs. Primary protocols
++use 1,895 intervals; label-2 exclusion leaves 1,770. All retain 336 positives.
++Protocols reuse observations and change the fitting/assessment groups; they are
++sensitivity analyses, not independent replications.}
++\end{table}
++\ev{All-protocol saved results}{\EvidenceRef{E135}{}, \EvidenceRef{E081}{}}
++
++For the primary experiment-grouped protocol, the paired 95\% calendar-date bootstrap
++interval for F2 minus logistic sensing was wholly negative, $[-0.1004,-0.0515]$. It used five date clusters, held fits and
+ split assignments fixed and could not account for unidentified equipment reuse. QG-clean
+-averaged $+0.008802$ AP above logistic sensing, with one negative seed and an interval
+-of $[-0.097085,+0.056426]$. The interval admits gains and losses and leaves equivalence
++averaged $0.0088$ AP above logistic sensing, with one negative seed and an interval
++of $[-0.0971,0.0564]$. The interval admits gains and losses and leaves equivalence
+ unresolved.\ev{Milling results across evaluation protocols}{\EvidenceRef{E081}{}}
+ 
+-At the highest sensor-noise level, QG-aug reached 0.298636 mean AP, close to intact
+-vision at 0.298901. F2 reached 0.206863 and noisy sensor HGB reached 0.606157. Under the
+-strongest image blur, QG-aug achieved 0.682784, below F2 at 0.771420 and intact logistic
+-sensing at 0.828616. The comparison therefore depends on which stream deteriorates and
++\section{Investigation C: Input Degradation, Quality Gates, and Fallback}
++Table~\ref{tab:msm-robustness} covers the strongest declared severity of all seven
++corruption families. F2-aug and QG-aug have matched augmentation exposure; this control
++separates quality conditioning from additional corruption training.
++
++At the highest sensor-noise level, QG-aug reached 0.2986 mean AP, close to intact
++vision at 0.2989. F2 reached 0.2069 and noisy sensor HGB reached 0.6062. Under the
++strongest image blur, QG-aug achieved 0.6828, below F2 at 0.7714 and intact logistic
++sensing at 0.8286. The comparison therefore depends on which stream deteriorates and
+ which predictor remains available. The tests also covered brightness and contrast
+ changes, occlusion, frame omission, zeroed channels and explicitly missing channels.
+ 
++
++\begin{table}[htbp]
++\caption{MSM High-Severity Corruption and Known Absence}\label{tab:msm-robustness}
++\centering\small\setlength{\tabcolsep}{4pt}
++\begin{tabular}{lrrrrr}\toprule
++Condition & Intact & F2 & F2-aug & QG-aug & HGB\\\midrule
++Blur ($\sigma=4$) & 0.8286 & 0.7714 & 0.7712 & 0.6828 & 0.9013\\
++Brightness/contrast (0.2) & 0.8286 & 0.7700 & 0.7688 & 0.6787 & 0.9013\\
++Occlusion (40\%) & 0.8286 & 0.7708 & 0.7709 & 0.8332 & 0.9013\\
++Frame omission (12/16) & 0.8286 & 0.7604 & 0.7654 & 0.8331 & 0.9013\\
++Sensor noise ($1\,\mathrm{SD}$) & 0.2989 & 0.2069 & 0.2062 & 0.2986 & 0.6062\\
++Zeroed channels (50\%) & 0.2989 & 0.4198 & 0.4188 & 0.4754 & 0.6466\\
++Missing channels (50\%) & 0.2989 & 0.4477 & 0.4469 & 0.5115 & 0.5460\\
++Vision absent & 0.8286 & 0.8286 & 0.8286 & 0.8286 & 0.9013\\
++Sensors absent & 0.2989 & 0.2989 & 0.2989 & 0.2989 & --\\
++\bottomrule\end{tabular}
++\displaynote{Mean seed-specific pooled AP on the primary cohort. Intact denotes
++logistic sensing for visual faults and vision for sensor faults. HGB receives the
++same sensor condition; it is unavailable when all sensors are absent. Known absence
++uses the programmed survivor route. Intermediate severities remain in the saved
++robustness report (E080).}
++\end{table}
++\ev{All seven stress families}{\EvidenceRef{E136}{}, \EvidenceRef{E080}{}}
++
+ Whole-modality absence invokes a separately programmed surviving-branch fallback:
+-0.828616 AP without vision and 0.298901 without sensors. Equal fallback scores across
++0.8286 AP without vision and 0.2989 without sensors. Equal fallback scores across
+ fusion methods are imposed behavior, not adaptive recovery learned from data.
+ Differences in augmentation exposure between a gate and its static control would
+ confound the effect of quality conditioning.\ev{MSM input perturbation and fallback
+ results}{\EvidenceRef{E080}{}}
+ 
+-For seed~42, F2 had lower AP than logistic sensing but a lower Brier score (0.056091
+-versus 0.061724) and higher F1 (0.820438 versus 0.811268). QG-clean had higher AP than
+-F2, a worse Brier score of 0.064406 and a lower F1 of 0.786421. Thus the ranking
++\section{Metric Trade-offs, Limitations, and Transition to ViFailback}
++For seed~42, F2 had lower AP than logistic sensing but a lower Brier score (0.0561
++versus 0.0617) and higher F1 (0.8204 versus 0.8113). QG-clean had higher AP than
++F2, a worse Brier score of 0.0644 and a lower F1 of 0.7864. Thus the ranking
+ comparison favored logistic sensing, whereas probability error and fixed-threshold
+ decisions favored F2 for this seed. The relative performance of the gates depended on
+ the input condition.
+@@ -313,3 +370,9 @@
+ experiment-specific appearance could each contribute. Independent annotations of event
+ visibility and a matched representation comparison on the same groups would help
+ distinguish these explanations.
++
++MSM therefore supplies a completed external comparison of representations, fusion,
++target/grouping sensitivity and controlled robustness. Its unavailable R condition
++leaves learned-weight transfer unanswered. Chapter~\ref{ch:vifailback} addresses that
++separate question with a specified REASSEMBLE donor and task-disjoint robotic episodes,
++while retaining its narrower adaptation coverage and unexecuted corruption study.
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/04_methodology.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/04_methodology.tex
+@@ -28,14 +28,16 @@
+ camera predict failure on its own? How well could the sensors predict it? Did combining
+ the two improve on the stronger individual predictor?
+ 
+-The other studies tested related questions under different conditions. In PHM, the model
+-combined groups of machine measurements to predict a gear-condition indicator. In MSM,
+-the question was whether video added information about abnormal cutting beyond what the
+-milling machine’s own measurements already provided. ViFailback tested complete
+-manipulation episodes on held-out tasks. It also examined whether visual features
+-learned on REASSEMBLE remained useful for a different robot dataset. HANDOVER supplied
+-video and force–torque measurements from human–robot trials. Its official test split
+-supported a comparison of the two individual predictors and their fixed average.
++The other studies tested related questions under different conditions. PHM established
++target-validity and modality-correspondence limits while combining sensor groups to
++predict a photographic proxy. MSM supplied the primary completed external manufacturing
++comparison: locally fitted visual, sensor and fusion models, six target/grouping
++sensitivities, and controlled corruption tests. ViFailback added task-disjoint robotic
++assessment and transfer of a specified REASSEMBLE-learned visual representation; target-CNN
++adaptation remained partial and its corruption study was unexecuted. HANDOVER's official
++test split supported unimodal models and fixed averaging, while missing participant
++identities prevented the required participant-safe OOF fits for learned fusion. That
++supporting study is retained in Appendix~\ref{app:handover}.
+ 
+ The five research requirements guided how these tests were read. \textbf{R1} concerned
+ the target and the pairing of observations. \textbf{R2} concerned how each input was
+@@ -130,11 +132,9 @@
+ evidence still need separate consideration.
+ 
+ Sensor preparation included checking channel order, units, timestamps, repeated entries,
+-and missing values. Pairing was especially important in MSM. For one milling recording,
+-VMX9, the accepted offset placed video time 49.73 seconds ahead of sensor time. An
+-earlier candidate offset of 16.04 seconds was rejected (Chapter~\ref{ch:msm}). Using the
+-wrong offset would still produce a readable video clip. It would show a different part
+-of the cut from the one described by the sensor measurements and interval label.
++and missing values. MSM illustrates why a readable clip is insufficient: choosing the
++wrong timing offset pairs a cutting label with a different visual interval.
++Chapter~\ref{ch:msm} gives the VMX9 correction and the accepted alignment support.
+ 
+ In ViFailback, duplicate or invalid telemetry records and unreadable video affected
+ which episodes could enter the comparison. Removing an episode also removes its outcome
+@@ -203,12 +203,9 @@
+ Reusing evaluation results to select a configuration can make its reported performance
+ look too favourable \parencite{P004}.
+ 
+-The PHM records contain a concrete example. The principal sensor experiment fitted its
+-normaliser again inside each training fold. A separate four-model diagnostic fitted the
+-normaliser before the program changed which gear experiment was held out. In that
+-diagnostic, measurements from the held-out experiment could affect scaling. The two
+-procedures are reported separately. Measuring how much this changed the diagnostic
+-result would require running it again with scaling fitted inside each fold.
++The separate PHM four-arm diagnostic illustrates this risk;
++Section~\ref{sec:phm-diagnostics} distinguishes its shared normalizer from the
++fold-local preprocessing of the principal sensor comparison.
+ 
+ A frozen image encoder presents a different case. If its weights were learned from an
+ external dataset and its feature extraction uses no target labels or statistics from the
+@@ -254,19 +251,11 @@
+ 
+ \subsection{Checking which actions entered each comparison}
+ 
+-The original five outer partitions together covered 4,530 completed actions from 148
+-recordings, including 509 failures. One later study used 753 actions from a single
+-previously examined partition. An earlier summary assigned these actions to 28
+-recordings. Checking the actual action and recording identifiers gave \textbf{26
+-recordings}. The corrected count matters because recordings were the units kept together
+-during assessment.
+-
+-Those 753 actions provided a common set of cases for a follow-up comparison. They did
+-not provide a fresh external test. Even when a later model excluded every assessment
+-recording during fitting, earlier results on those recordings had helped determine which
+-experiment to try next.
+-
+-\noindent\textit{Assessment population record:} \EvidenceRef{E052}{}.
++Assessment identities take precedence over shorthand metadata. The REASSEMBLE
++follow-ups include a previously examined 753-action subset from 26 recordings;
++Section~\ref{sec:reassemble-followups} and Appendix~\ref{app:supplementary-results}
++retain the reconciliation and study-specific controls. Sharing assessment cases permits
++paired comparisons, but does not make an exploratory follow-up a fresh external test.
+ 
+ \section{Fitting models, adjusting probabilities, and choosing thresholds}
+ \label{sec:ch4-fitting}
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/05_phm.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/05_phm.tex
+@@ -1,28 +1,16 @@
+-\chapter{PHM Case Study: Target Construction and Condition Prediction}
+-Across twenty gear runs in three held-out experiments, combining three groups of sensor
+-features gave a mean absolute error of 0.8238 percentage points against a photographic
+-condition proxy. A predictor that returned the training mean gave an error of 0.8042.
+-Both errors measure agreement with an image-processing rule applied to post-run tooth
+-photographs. The records contain no independent measurement of the damaged area against
+-which to validate that rule.
+-
+-PHM provides a diagnostic case of target validity and limited predictive benefit. It was
+-not designed as a negative control with an independently known null effect. Even a
+-reduction in prediction error would need independent validation before it could be
+-interpreted as better damage measurement. The study therefore distinguishes changes in
+-the target from changes in the predictor. Image-only and supplementary experiments had
+-different targets or assessment populations. Under the official challenge protocol,
+-periodic photographs were available during training, whereas deployment relied on sensor
+-measurements \citep{PHM2026Challenge}.
+-
+-\begin{figure}[htbp]
+-\caption{PHM Scalar Regression From Post-Run Photographs}\label{fig:phm-route}
+-\centering\includegraphics[width=\textwidth]{figures/phm_executed_route.png}
+-\displaynote{The extraction code adds latency to the 768 image features, producing a
+-769-dimensional input to regression.}
+-\end{figure}
++\chapter{PHM Case Study: Target Construction, Proxy Validity, and Sensor-Group Fusion}
++\label{ch:phm}
++PHM establishes the target-validity problem that precedes the paired vision--sensor
++studies: machine measurements predict a proxy constructed from post-run tooth
++photographs. The principal held-out-experiment comparison did not establish lower error
++for three-group sensor fusion than for a training-mean constant. Photographs supply
++supervision rather than an inference-time image branch in that comparison. Separate
++visual diagnostics examine target emulation and appearance agreement without an
++independent physical-damage reference.
++
+ \section{Study Objective and Relationship to the Research Questions}
+-For SQ1, the image and sensor experiments assessed whether frozen visual features and
++The study addresses R1 by separating target validity from the correspondence and
++availability of the prediction inputs. For SQ1, the image and sensor experiments assessed whether frozen visual features and
+ temporal sensor representations could reproduce a specified target. For SQ2, the
+ principal fusion comparison combined context, root-mean-square (RMS) vibration and
+ condition indicators, all available at inference. It did not test joint image--sensor
+@@ -33,7 +21,7 @@
+ damage. That question requires a physical reference independent of the rule.\ev{PHM
+ target and deployment inputs}{\EvidenceRef{E021}{}}
+ 
+-\section{Dataset Overview and Acquisition Structure}
++\section{Dataset, Acquisition Structure, and Supervision Challenges}
+ The retained population contains EXP-A runs 1--5, EXP-B runs 1--7 and EXP-F runs 1--8:
+ twenty nominal run units across three experiments. A run can contain multiple tooth
+ photographs, camera-sequence views, high-frequency vibration members, low-frequency
+@@ -51,7 +39,7 @@
+ reinspection of raw archive contents.\ev{PHM experiments and acquisition
+ sources}{\EvidenceRef{E020}{}}
+ 
+-\section{Dataset Challenges and Supervision Limitations}
++\subsection{Supervision and Dependence Limits}
+ The target depends on acquisition geometry, illumination, texture and image-processing
+ choices as well as possible surface damage. In EXP-A and EXP-B, tooth indices 1--4 and
+ 5--28 had different image-role coverage. Because tooth identity and view role were
+@@ -69,7 +57,7 @@
+ overlap in EXP-A}{\EvidenceRef{E020}{}}\ev{Derived spectral
+ diagnostic}{\EvidenceRef{E037}{}}
+ 
+-\section{Preparation, Exploratory Analysis, and Pre-Checks}
++\section{Preparation, Exploratory History, and Target-Version Lineage}
+ Preparation distinguished structural eligibility from scientific validity. Source
+ manifests retained experiment, run, tooth and image identities; sensor inspection
+ considered channel presence, units, finite values, temporal coverage and operating-state
+@@ -86,7 +74,7 @@
+ define a different dataset from that which generated the historical predictions.\ev{PHM
+ domain implementation}{\EvidenceRef{E034}{}}
+ 
+-\section{Task Formulation and Target-Version History}
++\subsection{Target Definition and Version History}
+ The current-end-of-run target is a percentage of a fixed visible-flank region classified
+ as candidate area. It is not remaining useful life, a native failure class, or a
+ calibrated physical spall-area measurement. A run-level target aggregates the largest
+@@ -159,6 +147,13 @@
+ implementation}{\EvidenceRef{E033}{extract\_features}}\ev{Image features and latency
+ covariate}{\EvidenceRef{E024}{}}
+ 
++\begin{figure}[htbp]
++\caption{PHM Scalar Regression From Post-Run Photographs}\label{fig:phm-route}
++\centering\includegraphics[width=\textwidth]{figures/phm_executed_route.png}
++\displaynote{The extraction code adds latency to the 768 image features, producing a
++769-dimensional input to regression.}
++\end{figure}
++
+ \subsection{Assessment Procedure and Available Reference Evidence}
+ Prediction error measures how well a model reproduces the target on held-out images,
+ teeth or runs under the specified split. The separate appearance assessment compares
+@@ -181,6 +176,21 @@
+ percentage points for v2 and 0.7348 for v3. The difference follows target construction,
+ not scalar-versus-profile aggregation: the top-three mean of the mean sorted training
+ profile equals the corresponding scalar training mean by linearity.
++
++The separate v2 EXP-F scalar regression achieved image MAE 0.8939 on 224 images
++and raw top-three run MAE 1.3474 on eight runs. The multitask experiment achieved
++0.7330 and 1.6273 on those respective units. At confidence 0.60 and IoU 0.50,
++the detector returned TP=0, FP=0 and FN=9,883 against the heuristic boxes on 224 test
++images; this operating-point failure is distinct from low-confidence ranked detection
++AP. These are v2 visual diagnostics, not paired v3 sensor-LOEO results.\ev{Separate
++visual diagnostic scores}{\EvidenceRef{E024}{}, \EvidenceRef{E036}{}}
++
++The blind appearance report records agreement on 30 of 38 determinate images (78.9\%),
++after four unsure exclusions from 42 proxy-selected extremes. The best of twenty
++DINOv2 configurations agreed on 29 of those 38 (76.3\%). One reviewer, selection of
++extremes and reuse of the same judgments for configuration comparison preclude
++population-wide validation or a claim of established method superiority.\ev{Selected
++appearance checks}{\EvidenceRef{E022}{}}
+ 
+ Detector diagnostics report very small attainable recall against dense heuristic boxes
+ and a mismatch between predicted-box and pseudo-box scales. Those observations qualify
+@@ -218,17 +228,20 @@
+ The custom PHM model forms shared channel-wise patches and applies positional encoding,
+ a Transformer encoder and masked pooling. Padding and any-valid-time patch masks are
+ explicit in source. Their existence does not prove historical invariance to batch length
+-or resolve earlier patch-grid concerns. Train-only transformations are supported for the
+-principal LOEO runner; an audit-reported normalizer fitted before a different four-arm
+-loop is a separate limitation.\ev{Minute-feature
+-configuration}{\EvidenceRef{E027}{}}\ev{Patch and mask
++or resolve earlier patch-grid concerns. The principal LOEO runner fits its transformations within each training fold.
++The feature definition is anchored to the sensor-feature implementation and retained
++fusion configuration. E027's directory name suggests a PatchTST baseline, but its
++provenance command invokes \texttt{train\_late\_fusion.py}; that directory name is not
++evidence of a single-encoder run.\ev{Minute-feature implementation and configuration}
++{\EvidenceRef{E126}{}}\ev{Historical directory mismatch}
++{\EvidenceRef{E027}{}}\ev{Patch and mask
+ computation}{\EvidenceRef{E031}{patchify}}
+ 
+ \subsection{Reference Predictors and Model Configurations}
+ The training-mean constant is essential because the target scale and between-experiment
+-distribution can make a visually plausible prediction uncompetitive. Ridge regression
+-supplies a regularized non-temporal reference, with the retained configuration searching
+-alpha values 0.01, 0.1, 1, 10 and 100. The custom PatchTST scalar path uses width 32,
++distribution can make a visually plausible prediction uncompetitive. Ridge regression is a supplementary regularized run-summary reference; its historical
++v2 fixed-split result is recorded separately in Appendix~\ref{app:supplementary-results}, Section~\ref{sec:phm-ridge-supplement}.
++It is not an additional row in the principal v3 LOEO comparison. The custom PatchTST scalar path uses width 32,
+ two encoder layers, four heads, feed-forward width 64, patch length 16 and stride 8 in
+ the inspected configuration. An optional profile head constrains outputs to sorted
+ ascending tooth statistics through positive increments; it does not preserve positional
+@@ -254,15 +267,25 @@
+ B; train B/validate A/test F. Thus ``leave one experiment out'' does not mean fitting on
+ both remaining experiments. Only three experiment identities support this analysis.
+ 
+-The retained runner refits its normalizer on each training experiment. This is a
+-materially stronger isolation claim than can be made for the distinct four-arm
+-diagnostic whose preprocessing was fitted outside its changing fold loop. The analysis
+-identified the target version from the selection settings, target hashes and source
+-arrays because some configuration labels referred to an earlier version. Missing
+-historical fold records limit retrospective verification.\ev{Principal LOEO
++The retained runner refits its normalizer on each training experiment; the distinct
++four-arm diagnostic is qualified in Section~\ref{sec:phm-diagnostics}. Recorded fixed-fusion
++and LOEO commits omit their entry points, so saved-prediction verification and inspection
++of current source do not establish complete historical training-code lineage. Although
++the resolved configuration retains stale v2 text, the pinned target identity and saved
++truths identify v3; this reconciliation is documented in the PHM traceability review.
++Missing historical fold records still limit retrospective verification.\ev{Recorded
++source-lineage gap}{\EvidenceRef{E131}{}, \EvidenceRef{E132}{}}\ev{Principal LOEO
+ runner}{\EvidenceRef{E028}{}}\ev{Target provenance}{\EvidenceRef{E023}{}}
+ 
+ \subsection{Results and Uncertainty}
++For the historical fixed split, the selected three-group model achieved MAE 0.6548
++percentage points on eight EXP-F runs, against the v3 training-mean error of 0.7348.
++The observed improvement was 0.0800 percentage points, below the declared 0.15-point
++criterion. The report's paired 95\% interval for model-minus-constant MAE,
++$[-0.548,+0.414]$, spans zero. This single fixed-split comparison remains separate
++from the twenty-run LOEO summary below.\ev{Historical fixed-split result}
++{\EvidenceRef{E134}{}, \EvidenceRef{E131}{}}
++
+ Table~\ref{tab:phm-loeo} reports the retained twenty-run summary on the provisional
+ target scale. Lower MAE and RMSE are preferable; rank correlation addresses ordering
+ rather than calibration. The constant's nonzero pooled rank statistic reflects changing
+@@ -306,7 +329,8 @@
+ which hypothesis it actually challenges.\ev{PHM comparison and target
+ validity}{\EvidenceRef{E106}{}}
+ 
+-\section{Additional Diagnostic Experiments and Evaluation Sensitivity}
++\section{Supplementary Diagnostics and Evaluation Sensitivity}
++\label{sec:phm-diagnostics}
+ Supplementary analyses investigate why the original routes were insufficient, without
+ replacing the principal comparison. The HF/spectral tutorial reports MAE 1.2203 for its
+ full 72-feature model against a v2 constant MAE 0.6797 on eight EXP-F runs.
+@@ -317,16 +341,19 @@
+ tables alone establish and is not adopted here.
+ 
+ The four-arm study compares group regressors, concatenation, affine late fusion and
+-context-conditioned embeddings, but its preprocessing-isolation concern prevents merging
+-its results with principal LOEO. Raw-vibration and tooth-sector screens, AnomalyDINO
++context-conditioned embeddings, but fits its normalizer before rotating the folds.
++This preprocessing leak prevents treating it as an isolated LOEO assessment or merging
++its scores with the principal results. Raw-vibration and tooth-sector screens, AnomalyDINO
+ sweeps, odd/even views, synthetic controls, teacher/oracle constructions and monotonic
+ rescoring address separate uncertainties. An oracle or target-derived synthetic feature
+-can demonstrate pipeline capacity without demonstrating deployable information. Detailed
+-diagnostic tables belong in Appendix D with their own target and exposure labels.\ev{HF
++can demonstrate pipeline capacity without demonstrating deployable information. The
++study-specific records retain these diagnostics with their own target and exposure
++definitions; Appendix~\ref{app:supplementary-results}, Section~\ref{sec:phm-fourarm-supplement},
++retains the four-arm values separately from the principal comparison.\ev{HF
+ diagnostic report}{\EvidenceRef{E037}{}}\ev{Four-arm
+ implementation}{\EvidenceRef{E029}{}}
+ 
+-\section{What the PHM Study Establishes and Leaves Unresolved}
++\section{Synthesis, Limitations, and Motivation for Native-Outcome Paired Studies}
+ Neither the single sensor encoder nor the three-group model improved on the training
+ mean in the observed run-level comparison. The paired interval for three-group fusion
+ included both lower and higher error. Changing the photographic target also changed the
+@@ -338,12 +365,10 @@
+ against independent damage measurements or expert area annotations. Until then, the
+ error estimates quantify agreement with the photographic rule. The study also leaves
+ advance warning, remaining useful life and response to natural sensor failure
+-unresolved. Differences in targets, prediction units and preprocessing, including the
+-four-arm experiment's shared normalizer, prevent a direct comparison across all PHM
+-fusion models.\ev{Photographic target versions}{\EvidenceRef{E023}{}}\ev{PHM experiment
++unresolved. Differences in targets, prediction units and preprocessing prevent a direct comparison
++across all PHM fusion models.\ev{Photographic target versions}{\EvidenceRef{E023}{}}\ev{PHM experiment
+ configurations}{\EvidenceRef{E025}{}}
+ 
+-\section{Implications for Subsequent Dataset and Architecture Choices}
+ PHM was undertaken within the architecture programme motivated by robotic welding,
+ rather than as a prespecified feasibility stage designed around its eventual negative
+ result. The subsequent move to REASSEMBLE responded to supervision and comparison
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/01_introduction.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/chapters/01_introduction.tex
+@@ -312,10 +312,12 @@
+ representation comparisons, multimodal fusion, robustness
+ experiments, and controlled architectural follow-up investigations.
+ 
+-Chapters~7 and~8 examine the application of the investigated
+-approaches to MSM milling and ViFailback robotic manipulation.
+-Appendix~\ref{app:handover} provides the supplementary HANDOVER
+-evaluation.
++Chapter~7 provides the completed external manufacturing comparison on MSM, including
++target/grouping sensitivities and controlled robustness. Chapter~8 examines task-disjoint
++ViFailback episodes and learned-representation transfer, with bounded target-CNN
++adaptation and unexecuted corruption tests. Appendix~\ref{app:handover} retains HANDOVER's
++unimodal and fixed-average evidence; missing participant identities prevented the
++required participant-safe OOF fitting of learned fusion.
+ 
+ Chapter~\ref{ch:discussion} brings the empirical findings together
+ with the relevant literature, answers the research sub-questions,
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/F_reproducibility.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/F_reproducibility.tex
+@@ -85,6 +85,22 @@
+ training replication would require a separate run.\ev{Diagnostic replay
+ scope}{\EvidenceRef{E062}{}, \EvidenceRef{E115}{}, \EvidenceRef{E116}{}}
+ 
++\section{27 November Empirical-Chapter Revision Checks}
++The revision independently recalculated failure-positive AP, Brier score and fifteen-bin
++ECE from the retained core REASSEMBLE arrays for clean inputs, all seven strongest
++corruptions and both known-absence conditions. All 32 model rows matched the saved
++summary within $6.2\times10^{-16}$; labels and fold vectors matched across conditions.
++This was a saved-score calculation, without new model fitting or inference, and did not
++repeat bootstrap intervals or independently reconstruct recording identities.
++For MSM, all sixty clean summary means matched the means of their three saved pooled
++seed APs; the visual in-sample diagnostic averaged nine saved fit scores.
++PHM additions were checked against retained metric tables and reports, with historical
++source gaps preserved. ViFailback calibration coefficients and control scores remain
++attributed to the retained reports: individual matched prediction/calibrator files were
++not locally available for a new reconstruction. The earlier November checks above
++retain their own dates and access scope.\ev{Revision checks and inputs}
++{\EvidenceRef{E135}{}, \EvidenceRef{E137}{}, \EvidenceRef{E139}{}, \EvidenceRef{E141}{}}
++
+ \section{Project Evidence File Register}
+ \label{sec:evidence-files}
+ Each identifier refers to one source file or dated copy. Evidence footnotes link to
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/J_prompt_record.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/J_prompt_record.tex
+@@ -77,3 +77,15 @@
+ retaining the original chapter structure, questions and registered title. It prohibited
+ new training and restarting literature discovery. This paragraph summarizes the request;
+ it is not a verbatim transcript or an independent validation of the resulting text.
++
++\section{Examiner-Guided Empirical Revision, 27 November 2026}
++The researcher supplied an examiner assessment of Chapters~4--8 and instructed Codex to
++use that review as the specification for evidence checks and subsequent revision.
++The full supplied text is preserved as \path{examiner_specification.txt} in
++\path{00_thesis_writing_tracking/empirical_revision_20261127_01/}.
++The task covered study-role framing, missing quantitative results, chapter structure,
++evidence tables, cross-references and duplication. Codex revised the working LaTeX
++sources and checked saved results without training or new model inference. The revision
++record preserves the pre-existing manuscript edits, checked source identities, exact
++diff and unresolved verification limits. Compilation and rendered layout inspection
++were unavailable in the local environment; no new PDF is claimed by this revision.
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/D_supplementary_results.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/D_supplementary_results.tex
+@@ -142,3 +142,28 @@
+ importance. The reduced map retains jointly fitted parameters; it is not a refitted
+ sensor-only comparator.\ev{Audit inputs, source identities and reproducible
+ calculation}{\EvidenceRef{E113}{}, \EvidenceRef{E122}{}}
++
++\section{Historical PHM Ridge Reference and Target Boundary}
++\label{sec:phm-ridge-supplement}
++The retained Ridge run-summary predictor has raw top-three target MAE 5.0151 percentage
++points on eight EXP-F runs in the historical EXP-B/EXP-A/EXP-F fixed split. Its
++causal-monotonic target row instead gives 4.9357; those outcomes are not interchangeable.
++The target-version study identifies this as the v2 comparison, whose training-mean
++reference was 0.6797. The run's saved metric rows verify the reported numbers; they do
++not establish a v3 LOEO Ridge result or complete training-source lineage. The main
++chapter therefore keeps the Ridge recipe supplementary and omits its configuration-only
++alpha grid.\ev{Saved Ridge metrics and target history}{\EvidenceRef{E140}{},
++\EvidenceRef{E023}{}}
++
++\section{PHM Four-Arm Diagnostic With Preprocessing Exposure}
++\label{sec:phm-fourarm-supplement}
++The separate v3 four-arm report gives three-seed mean run-level MAEs of 0.8288 for
++modular scalar fusion, 0.9074 for process-conditioned gating and 0.9643 for
++concatenation, against a fold-specific training-mean reference of 0.8042 percentage
++points. These are retained reported diagnostics. As explained in
++Section~\ref{sec:phm-diagnostics}, preprocessing was fitted before rotating the folds,
++allowing held-out EXP-B measurements to influence scaling. These values therefore do
++not constitute an isolated LOEO comparison and are not combined with the principal
++fold-local result in Table~\ref{tab:phm-loeo}. They do not establish that the sensors
++contain no predictive information.\ev{Reported four-arm values and preprocessing scope}
++{\EvidenceRef{E131}{}, \EvidenceRef{E029}{}}
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/tables/evidence_register.tex
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/tables/evidence_register.tex
+@@ -135,3 +135,13 @@
+ \EvidenceFile{E131}{PHM traceability}{THESIS_CODE_TRACEABILITY.md}||
+ \EvidenceFile{E132}{PHM traceability}{THESIS_SAVED_EVIDENCE_VERIFICATION_20261126.json}||
+ \EvidenceFile{E133}{PHM traceability}{verify_thesis_saved_evidence.py}||
++\EvidenceFile{E134}{PHM fixed split}{late_fusion_summary.json}||
++\EvidenceFile{E135}{MSM sensitivities}{clean_seed_summary.csv}||
++\EvidenceFile{E136}{MSM assessment}{pooled_heldout_metrics.csv}||
++\EvidenceFile{E137}{MSM training diagnostic}{training_diagnostic_AP.csv}||
++\EvidenceFile{E138}{REASSEMBLE robustness}{results.json}||
++\EvidenceFile{E139}{ViFailback calibration}{08_STATIC_SENSOR_AND_F2_RESULTS.md}||
++\EvidenceFile{E140}{PHM Ridge reference}{metrics.csv}||
++\EvidenceFile{E141}{Revision arithmetic}{reassemble_arithmetic.json}||
++\EvidenceFile{E142}{ViFailback chronology}{PRIMARY_REPLICATION_PRIORITY.md}||
++\EvidenceFile{E143}{ViFailback chronology}{06_UNIMODAL_BASELINE_RESULTS.md}||
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/tables/evidence_source_index.csv
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/tables/evidence_source_index.csv
+@@ -132,3 +132,13 @@
+ E131,PHM traceability,repo:implementations/PHM2026/docs/studies/THESIS_CODE_TRACEABILITY.md,,0,implementations/PHM2026/docs/studies/THESIS_CODE_TRACEABILITY.md,8a5108a3be986b1af3adb26c8d4753b89152d7371a4a98e55f9d7914744b7455,,,,,Browsing/source identity is not proof of historical execution. Consult the PHM investigation map and run provenance.,Awaiting reviewed publication commit; no final permalink
+ E132,PHM traceability,repo:implementations/PHM2026/docs/studies/THESIS_SAVED_EVIDENCE_VERIFICATION_20261126.json,,0,implementations/PHM2026/docs/studies/THESIS_SAVED_EVIDENCE_VERIFICATION_20261126.json,63bb426a73e17d1ae6b18fbc4ea98215c248374c79bfc2af95500d128ea00cf5,,,,,Browsing/source identity is not proof of historical execution. Consult the PHM investigation map and run provenance.,Awaiting reviewed publication commit; no final permalink
+ E133,PHM traceability,repo:implementations/PHM2026/docs/studies/verify_thesis_saved_evidence.py,,0,implementations/PHM2026/docs/studies/verify_thesis_saved_evidence.py,a8415ecaf076dc70c032b898c3a73e7c0920f17f28be03e0c8632a20a6b6cb4f,,,,,Browsing/source identity is not proof of historical execution. Consult the PHM investigation map and run provenance.,Awaiting reviewed publication commit; no final permalink
++E134,PHM fixed split,repo:implementations/PHM2026/results/runs/phm2026_fusion_latefusion/20260912T054016807597Z-e1911d4f/reports/late_fusion_summary.json,,1,implementations/PHM2026/results/runs/phm2026_fusion_latefusion/20260912T054016807597Z-e1911d4f/reports/late_fusion_summary.json,c3d90513038986cf3b337e1292435144b91fb255ba686ea7efd4dc5b57680805,,,,,Inspected for 27 November empirical revision; retained result/report or source identity is not training reproduction. See revision VERIFICATION.md for scope.,Local retained evidence; public permalink not verified
++E135,MSM sensitivities,repo:implementations/MSM/results/06_evaluation_results/metrics/clean_seed_summary.csv,,1,implementations/MSM/results/06_evaluation_results/metrics/clean_seed_summary.csv,c66c7bdccf9ac8b29cc2831d3185226eea0ed29973d1f72ee9751578f63cd7b1,,,,,Inspected for 27 November empirical revision; retained result/report or source identity is not training reproduction. See revision VERIFICATION.md for scope.,Local retained evidence; public permalink not verified
++E136,MSM assessment,repo:implementations/MSM/results/06_evaluation_results/metrics/pooled_heldout_metrics.csv,,1,implementations/MSM/results/06_evaluation_results/metrics/pooled_heldout_metrics.csv,1785af19dc5d135e8d855366b0ae978eeafff312fef5b3e271ddf03237685a8c,,,,,Inspected for 27 November empirical revision; retained result/report or source identity is not training reproduction. See revision VERIFICATION.md for scope.,Local retained evidence; public permalink not verified
++E137,MSM training diagnostic,repo:implementations/MSM/results/06_evaluation_results/metrics/training_diagnostic_AP.csv,,1,implementations/MSM/results/06_evaluation_results/metrics/training_diagnostic_AP.csv,114c6963514471a6b1a03e14b9b415fb9623f5b93d23672d3cda6203f5bc2a30,,,,,Inspected for 27 November empirical revision; retained result/report or source identity is not training reproduction. See revision VERIFICATION.md for scope.,Local retained evidence; public permalink not verified
++E138,REASSEMBLE robustness,repo:implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/results.json,,1,implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/results.json,4e2e94cbc258ee4bc554321edb7e8b73cccaeb2d7599b8bff39d2c3d36c4d76d,,,,,Inspected for 27 November empirical revision; retained result/report or source identity is not training reproduction. See revision VERIFICATION.md for scope.,Local retained evidence; public permalink not verified
++E139,ViFailback calibration,repo:implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/14_final_research_reports/08_STATIC_SENSOR_AND_F2_RESULTS.md,,1,implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/14_final_research_reports/08_STATIC_SENSOR_AND_F2_RESULTS.md,9fdeecfe4b483d67d61222c53e15aa8b9617da394208caf9b0a70b7b42a0de40,,,,,Inspected for 27 November empirical revision; retained result/report or source identity is not training reproduction. See revision VERIFICATION.md for scope.,Local retained evidence; public permalink not verified
++E140,PHM Ridge reference,repo:implementations/PHM2026/results/runs/phm2026_patchtst_baseline/20260814T121641338050Z-433d4154/tables/metrics.csv,,1,implementations/PHM2026/results/runs/phm2026_patchtst_baseline/20260814T121641338050Z-433d4154/tables/metrics.csv,00189e91a0b09b5c721cd7e56788d0e39e229e8a2449bcf36822022e2b551031,,,,,Inspected for 27 November empirical revision; retained result/report or source identity is not training reproduction. See revision VERIFICATION.md for scope.,Local retained evidence; public permalink not verified
++E141,Revision arithmetic,repo:00_thesis_writing_tracking/empirical_revision_20261127_01/reassemble_arithmetic.json,,1,00_thesis_writing_tracking/empirical_revision_20261127_01/reassemble_arithmetic.json,0e4a5dd607ded4107b80ecc988040946110348c49fc0403aec3458c093a9bc92,,,,,Inspected for 27 November empirical revision; retained result/report or source identity is not training reproduction. See revision VERIFICATION.md for scope.,Local retained evidence; public permalink not verified
++E142,ViFailback chronology,repo:implementations/VIFAILBACK/10_final_research_reports/researcher_handoff/20261030_RESEARCH_PRIORITY_CORRECTION/PRIMARY_REPLICATION_PRIORITY.md,,1,implementations/VIFAILBACK/10_final_research_reports/researcher_handoff/20261030_RESEARCH_PRIORITY_CORRECTION/PRIMARY_REPLICATION_PRIORITY.md,19f5624dcc5be3704283b17adf9020093b6f1ea47d494d1f8f3c4f3a18c890f4,,,,,Inspected for 27 November empirical revision; retained result/report or source identity is not training reproduction. See revision VERIFICATION.md for scope.,Local retained evidence; public permalink not verified
++E143,ViFailback chronology,repo:implementations/VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T222104629514Z/06_UNIMODAL_BASELINE_RESULTS.md,,1,implementations/VIFAILBACK/10_final_research_reports/report_snapshots/20261029T004900Z/20261029T222104629514Z/06_UNIMODAL_BASELINE_RESULTS.md,400879939289bc700b64d997fd8202918583a916f379e36df38916ba8c38d2a6,,,,,Inspected for 27 November empirical revision; retained result/report or source identity is not training reproduction. See revision VERIFICATION.md for scope.,Local retained evidence; public permalink not verified
+--- baseline/docs/THESIS_CODE_MAP.md
++++ docs/THESIS_CODE_MAP.md
+@@ -1,6 +1,6 @@
+ # Thesis-to-code map
+ 
+-This is the short route from the [working manuscript](../00_thesis_writing_tracking/Thesis/LaTeX_Project/README.md) to implementation, configuration and saved evidence. [Appendix F](../00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/F_reproducibility.tex) remains the comprehensive register; its [source index](../00_thesis_writing_tracking/Thesis/LaTeX_Project/tables/evidence_source_index.csv) supplies the existing E-identifiers. Section names/numbers refer to the current chapter sources; no empirical chapter was rewritten for this map.
++This is the short route from the [working manuscript](../00_thesis_writing_tracking/Thesis/LaTeX_Project/README.md) to implementation, configuration and saved evidence. [Appendix F](../00_thesis_writing_tracking/Thesis/LaTeX_Project/appendices/F_reproducibility.tex) remains the comprehensive register; its [source index](../00_thesis_writing_tracking/Thesis/LaTeX_Project/tables/evidence_source_index.csv) supplies the existing E-identifiers. Section names/numbers below follow the 27 November examiner-guided source revision. The [revision record](../00_thesis_writing_tracking/empirical_revision_20261127_01/VERIFICATION.md) records checks and limitations; historical deep-map section numbers remain those of their original dated review.
+ 
+ **Reading the source column:** linked files are current browsing locations. An execution record is required before treating their approach as executed. **VERIFIED** below means source/artifact inspection or saved-result arithmetic within the stated scope; **REPORTED** attributes a study's existing report; **UNKNOWN** marks missing correspondence. This navigation does not reproduce training. Conditions, cohorts, metrics and stopping gates must be read with the linked report.
+ 
+@@ -21,12 +21,12 @@
+ 
+ | Thesis chapter and section | Investigation | Executed implementation | Configuration | Evaluation | Results and evidence | Git commit |
+ |---|---|---|---|---|---|---|
+-| §5.1–5.4 objective, dataset and preparation | Data selection, measurement structure, EDA and supervision limitations | [Protected initial EDA](../implementations/PHM2026/experiments/exp_a_initial_eda_r1_r3_r5/); [current PHM source](../implementations/PHM2026/src/phm2026/) | [Dataset selection](../implementations/PHM2026/configs/dataset.yaml); [written scope](active_scope.md) | [Dataset description](../implementations/PHM2026/experiments/dataset_description/README.md) and historical reports; lifecycle/run index is not ground truth | E020–E025; [research history](../implementations/PHM2026/docs/research_history/). Initial selection rationale is not fully recoverable; do not invent a negative-control design | Historical artifacts span revisions; see PHM deep map. Current layout is a later browsing revision |
+-| §5.5–5.6 target versions and visual investigations | Photograph-derived candidate-area targets v1/v2/v3 | [image_damage.py](../implementations/PHM2026/src/phm2026/targets/image_damage.py), `measure_damage_candidate`, `aggregate_targets` | [Target ledger](../implementations/PHM2026/docs/studies/TARGET_VERSION_LEDGER.md); [v3 effective config](../implementations/PHM2026/results/runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/config/resolved_config.yaml) | Deterministic view/tooth selection, per-tooth and top-three run aggregation; independent recomputation is documented in the deep map | E023, E035; [v3 run](../implementations/PHM2026/results/runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/). Photographic proxy, not independent physical damage | v3 record: `246024367e8b8a0b2463274115d760fb579ef50c`; historical namespace differs. Earlier targets have separate identities |
+-| §5.6 image assessment | Frozen-feature regression, heuristic pseudo-box detection and multitask learning — distinct executed paths | [Regression](../implementations/PHM2026/src/phm2026/models/rtdetr/regression.py), `extract_features`, `train_head`; [pseudo boxes](../implementations/PHM2026/src/phm2026/targets/pseudo_boxes.py); [detection](../implementations/PHM2026/src/phm2026/models/rtdetr/detection.py); [multitask](../implementations/PHM2026/src/phm2026/models/rtdetr/multitask.py) | [Separate RT-DETR experiment configs](../implementations/PHM2026/configs/experiments/) | [Training/evaluation entry points](../implementations/PHM2026/scripts/training/); [scalar regression defect record](../implementations/PHM2026/experiments/walkthrough/01_rtdetr_scalar_regression/KNOWN_IMPLEMENTATION_ISSUES.md) | E024, E033, E036; [visual report](../implementations/PHM2026/docs/tutorials/final_baseline_rtdetr/REPORT.md). Preserve the latency-feature defect, pseudo-label limits and image/run metric distinction | Records cite `d3ce4808abfa8abb0aaad58d7b458defd0c7c5d0` with dirty source; not sufficient to identify all executed bytes |
+-| §5.7 sensor prediction | Statistical features, conventional references, PatchTST and fixed-split sensor-group feature fusion | [Sensor features](../implementations/PHM2026/src/phm2026/features/sensor_minutes.py); [PatchTST](../implementations/PHM2026/src/phm2026/models/patchtst/model.py), `patchify`; [regression](../implementations/PHM2026/src/phm2026/models/patchtst/regression.py); [LateFusionRegressor](../implementations/PHM2026/src/phm2026/fusion/late_fusion.py) | [Fixed-fusion config](../implementations/PHM2026/configs/experiments/phm2026_fusion_latefusion.yaml); train B, select A, assess F | [train_late_fusion.py](../implementations/PHM2026/scripts/training/train_late_fusion.py); training-mean and ridge controls | E027, E031–E032; [initial study](../implementations/PHM2026/docs/studies/TARGET_AND_FUSION_INITIAL_STUDY.md); [fixed-fusion run](../implementations/PHM2026/results/runs/phm2026_fusion_latefusion/20260912T054016807597Z-e1911d4f/). A fixed-split point gain is not the principal LOEO conclusion | Recorded `8c4ae3111c83d8f263c44496bb64a0b04c0fae60` lacks the fusion script/source in its tree. Later containing `2425b22db553ab464a48c349caa77398aa78850f` is not verified executed lineage |
+-| §5.7–5.9 principal assessment | Three held-out-experiment assessments; training-mean, single model and feature fusion | [loeo_evaluation.py](../implementations/PHM2026/scripts/results/loeo_evaluation.py); [fold-local normalizer](../implementations/PHM2026/src/phm2026/preprocessing/timeseries.py) | [LOEO run config](../implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/config/) | One experiment trains, another validates, third assesses; saved-prediction run bootstrap, conditional on fixed fits | E026, E028; [run reports](../implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/), [prediction/summary tables](../implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/). No established improvement over training mean; 13-image diagnostic rows are not LOEO | Recorded `c699cbd9727ed33f34f1785172db163eb74b071f` lacks the LOEO script. Later containing `a2172ae2b286aad5245239b35b98b6526d501c4e` is not proof of exact earlier source |
+-| §5.8 diagnostics; §5.10 subsequent choices | Four-arm/context fusion, profile/monotonicity, raw-vibration, human/photo and synthetic diagnostics; abandoned conditional work | [sq2_sq3_fusion.py](../implementations/PHM2026/scripts/results/sq2_sq3_fusion.py); [modality_fusion.py](../implementations/PHM2026/src/phm2026/fusion/modality_fusion.py); [diagnostic scripts](../implementations/PHM2026/scripts/results/); [raw-vibration scripts](../implementations/PHM2026/scripts/rawvib/) | [Study-specific configs](../implementations/PHM2026/configs/experiments/) and frozen diagnostic records | The four-arm path fits its normalizer before rotating folds; keep this preprocessing-isolation concern separate from principal LOEO. Synthetic signal controls and selected extreme-photo checks have distinct units | E029–E030, E037; [study reports](../implementations/PHM2026/docs/studies/) and full PHM map. Scripts/preregistration do not establish execution of stopped distillation or later gates | Multiple historical revisions; unresolved per-study correspondence is explicit in the deep map, not replaced with one current HEAD |
++| §5.1–5.3 objective, dataset and preparation | Data selection, measurement structure, EDA and supervision limitations | [Protected initial EDA](../implementations/PHM2026/experiments/exp_a_initial_eda_r1_r3_r5/); [current PHM source](../implementations/PHM2026/src/phm2026/) | [Dataset selection](../implementations/PHM2026/configs/dataset.yaml); [written scope](active_scope.md) | [Dataset description](../implementations/PHM2026/experiments/dataset_description/README.md) and historical reports; lifecycle/run index is not ground truth | E020–E025; [research history](../implementations/PHM2026/docs/research_history/). Initial selection rationale is not fully recoverable; do not invent a negative-control design | Historical artifacts span revisions; see PHM deep map. Current layout is a later browsing revision |
++| §5.3–5.4 target versions and visual investigations | Photograph-derived candidate-area targets v1/v2/v3 | [image_damage.py](../implementations/PHM2026/src/phm2026/targets/image_damage.py), `measure_damage_candidate`, `aggregate_targets` | [Target ledger](../implementations/PHM2026/docs/studies/TARGET_VERSION_LEDGER.md); [v3 effective config](../implementations/PHM2026/results/runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/config/resolved_config.yaml) | Deterministic view/tooth selection, per-tooth and top-three run aggregation; independent recomputation is documented in the deep map | E023, E035; [v3 run](../implementations/PHM2026/results/runs/phm2026_image_target/20260912T052857044116Z-c936a4e3/). Photographic proxy, not independent physical damage | v3 record: `246024367e8b8a0b2463274115d760fb579ef50c`; historical namespace differs. Earlier targets have separate identities |
++| §5.4 image assessment | Frozen-feature regression, heuristic pseudo-box detection and multitask learning — distinct executed paths | [Regression](../implementations/PHM2026/src/phm2026/models/rtdetr/regression.py), `extract_features`, `train_head`; [pseudo boxes](../implementations/PHM2026/src/phm2026/targets/pseudo_boxes.py); [detection](../implementations/PHM2026/src/phm2026/models/rtdetr/detection.py); [multitask](../implementations/PHM2026/src/phm2026/models/rtdetr/multitask.py) | [Separate RT-DETR experiment configs](../implementations/PHM2026/configs/experiments/) | [Training/evaluation entry points](../implementations/PHM2026/scripts/training/); [scalar regression defect record](../implementations/PHM2026/experiments/walkthrough/01_rtdetr_scalar_regression/KNOWN_IMPLEMENTATION_ISSUES.md) | E024, E033, E036; [visual report](../implementations/PHM2026/docs/tutorials/final_baseline_rtdetr/REPORT.md). Preserve the latency-feature defect, pseudo-label limits and image/run metric distinction | Records cite `d3ce4808abfa8abb0aaad58d7b458defd0c7c5d0` with dirty source; not sufficient to identify all executed bytes |
++| §5.5 sensor prediction | Statistical features, conventional references, PatchTST and fixed-split sensor-group feature fusion | [Sensor features](../implementations/PHM2026/src/phm2026/features/sensor_minutes.py); [PatchTST](../implementations/PHM2026/src/phm2026/models/patchtst/model.py), `patchify`; [regression](../implementations/PHM2026/src/phm2026/models/patchtst/regression.py); [LateFusionRegressor](../implementations/PHM2026/src/phm2026/fusion/late_fusion.py) | [Fixed-fusion config](../implementations/PHM2026/configs/experiments/phm2026_fusion_latefusion.yaml); train B, select A, assess F | [train_late_fusion.py](../implementations/PHM2026/scripts/training/train_late_fusion.py); training-mean and ridge controls | E027, E031–E032; [initial study](../implementations/PHM2026/docs/studies/TARGET_AND_FUSION_INITIAL_STUDY.md); [fixed-fusion run](../implementations/PHM2026/results/runs/phm2026_fusion_latefusion/20260912T054016807597Z-e1911d4f/). A fixed-split point gain is not the principal LOEO conclusion | Recorded `8c4ae3111c83d8f263c44496bb64a0b04c0fae60` lacks the fusion script/source in its tree. Later containing `2425b22db553ab464a48c349caa77398aa78850f` is not verified executed lineage |
++| §5.5 principal assessment | Three held-out-experiment assessments; training-mean, single model and feature fusion | [loeo_evaluation.py](../implementations/PHM2026/scripts/results/loeo_evaluation.py); [fold-local normalizer](../implementations/PHM2026/src/phm2026/preprocessing/timeseries.py) | [LOEO run config](../implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/config/) | One experiment trains, another validates, third assesses; saved-prediction run bootstrap, conditional on fixed fits | E026, E028; [run reports](../implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/reports/), [prediction/summary tables](../implementations/PHM2026/results/runs/phm2026_loeo_evaluation/20260912T110848985882Z-e1911d4f/tables/). No established improvement over training mean; 13-image diagnostic rows are not LOEO | Recorded `c699cbd9727ed33f34f1785172db163eb74b071f` lacks the LOEO script. Later containing `a2172ae2b286aad5245239b35b98b6526d501c4e` is not proof of exact earlier source |
++| §5.6 diagnostics; §5.7 subsequent choices | Four-arm/context fusion, profile/monotonicity, raw-vibration, human/photo and synthetic diagnostics; abandoned conditional work | [sq2_sq3_fusion.py](../implementations/PHM2026/scripts/results/sq2_sq3_fusion.py); [modality_fusion.py](../implementations/PHM2026/src/phm2026/fusion/modality_fusion.py); [diagnostic scripts](../implementations/PHM2026/scripts/results/); [raw-vibration scripts](../implementations/PHM2026/scripts/rawvib/) | [Study-specific configs](../implementations/PHM2026/configs/experiments/) and frozen diagnostic records | The four-arm path fits its normalizer before rotating folds; keep this preprocessing-isolation concern separate from principal LOEO. Synthetic signal controls and selected extreme-photo checks have distinct units | E029–E030, E037; [study reports](../implementations/PHM2026/docs/studies/) and full PHM map. Scripts/preregistration do not establish execution of stopped distillation or later gates | Multiple historical revisions; unresolved per-study correspondence is explicit in the deep map, not replaced with one current HEAD |
+ 
+ **E027 correction:** its retained path says `phm2026_patchtst_baseline`, but the corresponding provenance command invokes `train_late_fusion.py`. This is a historical output-directory mistake. Preserve the evidence identifier and explain the mismatch; do not use the directory name as proof of a single-encoder PatchTST run.
+ 
+@@ -34,14 +34,14 @@
+ 
+ | Thesis chapter and section | Investigation | Executed implementation | Configuration | Evaluation | Results and evidence | Git commit |
+ |---|---|---|---|---|---|---|
+-| §6.2–6.6 data and Experiment A | Core REASSEMBLE visual, statistical sensor and PatchTST branches | [section1_features.py](../implementations/REASSEMBLE/src/reassemble/section1_features.py), `load_visual`, `extract`; [section1_models.py](../implementations/REASSEMBLE/src/reassemble/section1_models.py), `VisualHead`, `SensorHead`; [splits.py](../implementations/REASSEMBLE/src/reassemble/splits.py) | [section1.json](../implementations/REASSEMBLE/configs/section1.json) | Recording-disjoint outer/inner assessment; executed visual path is the RT-DETR checkpoint's CNN backbone, not its detector encoder/decoder | E046, E053, E064–E065, E067; [unimodal run](../implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/); [Section 1 handoff](../implementations/REASSEMBLE/results/artifacts/reports/SECTION_1_UNIMODAL_HANDOFF.md) | Run [provenance](../implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/provenance.json) records `6721414bb969386e642bd7d405699ab3bc489bb1`; later evidence/finalization commits are distinct |
+-| §6.7 admissibility and Experiment B | Incremental F2 and comparison of static, concatenation, process and quality gates | [section1b.py](../implementations/REASSEMBLE/src/reassemble/section1b.py); [section2.py](../implementations/REASSEMBLE/src/reassemble/section2.py); [section2_models.py](../implementations/REASSEMBLE/src/reassemble/section2_models.py) | [section1b.json](../implementations/REASSEMBLE/configs/section1b.json); [section2.json](../implementations/REASSEMBLE/configs/section2.json) | Nested branch cross-fitting and training-side calibration; F2 is fitted logistic probability stacking, not causal importance weights | E047–E048, E054, E066, E112–E114, E122; [F2 run](../implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/), [fusion run](../implementations/REASSEMBLE/results/runs/fusion_method_comparison/); [saved F2 verification](../00_thesis_writing_tracking/scientific_cross_mapping_20261125/F2_VERIFICATION.md) | Section 1B provenance records `30ec281a64274f83f9f32d6f3abb8021db52e4fd`; Section 2 records **parent_commit** `4089b02715df59b72a58d88743e8f1ccc2aca913`. Neither current layout nor parent alone certifies exact executed bytes |
+-| §6.8 Experiment C | Corruption, missingness fallback and modality dropout | [section3_evaluate.py](../implementations/REASSEMBLE/src/reassemble/section3_evaluate.py); [core source](../implementations/REASSEMBLE/src/reassemble/) | [section3_corruptions.json](../implementations/REASSEMBLE/configs/section3_corruptions.json); [completion.json](../implementations/REASSEMBLE/configs/completion.json) | Fixed clean fits/thresholds; raw-input perturbation, conditional paired recording bootstrap; missingness routing separated from adaptation | E044–E045, E049, E055; [robustness run](../implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/); [final handoff](../implementations/REASSEMBLE/results/artifacts/reports/FINAL_REASSEMBLE_HANDOFF.md), §§H–J. Audio timing gate failed; no audio model result | Handoff §Z lists preregistration and downstream implementation commits separately; consult run manifests before attributing a single source revision |
+-| §6.9 representation and adaptive follow-ups | Additional sensor/visual pooling, spatial-encoder comparison and one-fold adaptive pilot | [additional models](../implementations/REASSEMBLE/src/reassemble/additional_improvements/models.py); [encoder study](../implementations/REASSEMBLE/experiments/additional/rt_detr_encoder_comparison/); [adaptive study](../implementations/REASSEMBLE/experiments/additional/adaptive_fusion_robustness/) | [Additional execution config](../implementations/REASSEMBLE/configs/additional_improvements/execution.json); [encoder config](../implementations/REASSEMBLE/experiments/additional/rt_detr_encoder_comparison/config.json); adaptive run's [protocol](../implementations/REASSEMBLE/experiments/additional/adaptive_fusion_robustness/results/run_01/PROTOCOL.md) | Separate matched cohorts and assessment budgets; adaptive pilot covers one outer fold, not all five | E038–E043, E063; [extension closure](../implementations/REASSEMBLE/results/artifacts/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md); study-local result/provenance indexes. The one-fold adaptive comparison is inconclusive | Study-local frozen source/hash records take precedence; no universal source revision assigned |
+-| §6.9 fine-tuning and budget limits | Later CNN training regimes, seed/budget comparisons and static sensor F2 | [CNN seed-stability workspaces](../implementations/REASSEMBLE/experiments/cnn_seed_stability/); [CNN100 F2 source](../implementations/REASSEMBLE/experiments/core/cnn100_static_sensor_f2_comparison/src/) | [CNN100 experiment definition](../implementations/REASSEMBLE/experiments/core/cnn100_static_sensor_f2_comparison/01_experiment_definition/); study-local frozen configs | [Cohort reconciliation](../implementations/cross_dataset/results/reassemble_cohort_reconciliation/README.md); full/final-stage/frozen CNN conditions must remain distinct | E052, E056–E062; [CNN100 report](../implementations/REASSEMBLE/experiments/core/cnn100_static_sensor_f2_comparison/10_final_research_report/); [reproducibility](../implementations/REASSEMBLE/experiments/core/cnn100_static_sensor_f2_comparison/09_reproducibility/). Unfinished fits do not become negative results | Frozen originals now reside in [phase-one feedback](../implementations/REASSEMBLE/experiments/cnn_seed_stability/phase1_feedback/) and [bootstrap studies](../implementations/REASSEMBLE/experiments/bootstrap/00_experimentation/). Their manifests retain the historical `26.10.2026_feedback_experiments/` and `parth_ws_bootstrap/` identities; these sources remain separate from the current core implementation |
++| §6.2–6.4 data and Experiment A | Core REASSEMBLE visual, statistical sensor and PatchTST branches | [section1_features.py](../implementations/REASSEMBLE/src/reassemble/section1_features.py), `load_visual`, `extract`; [section1_models.py](../implementations/REASSEMBLE/src/reassemble/section1_models.py), `VisualHead`, `SensorHead`; [splits.py](../implementations/REASSEMBLE/src/reassemble/splits.py) | [section1.json](../implementations/REASSEMBLE/configs/section1.json) | Recording-disjoint outer/inner assessment; executed visual path is the RT-DETR checkpoint's CNN backbone, not its detector encoder/decoder | E046, E053, E064–E065, E067; [unimodal run](../implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/); [Section 1 handoff](../implementations/REASSEMBLE/results/artifacts/reports/SECTION_1_UNIMODAL_HANDOFF.md) | Run [provenance](../implementations/REASSEMBLE/results/runs/unimodal_baselines_visual_sensor/provenance.json) records `6721414bb969386e642bd7d405699ab3bc489bb1`; later evidence/finalization commits are distinct |
++| §6.5 admissibility and Experiment B | Incremental F2 and comparison of static, concatenation, process and quality gates | [section1b.py](../implementations/REASSEMBLE/src/reassemble/section1b.py); [section2.py](../implementations/REASSEMBLE/src/reassemble/section2.py); [section2_models.py](../implementations/REASSEMBLE/src/reassemble/section2_models.py) | [section1b.json](../implementations/REASSEMBLE/configs/section1b.json); [section2.json](../implementations/REASSEMBLE/configs/section2.json) | Nested branch cross-fitting and training-side calibration; F2 is fitted logistic probability stacking, not causal importance weights | E047–E048, E054, E066, E112–E114, E122; [F2 run](../implementations/REASSEMBLE/results/runs/sensor_controls_f2_nested_stacking/), [fusion run](../implementations/REASSEMBLE/results/runs/fusion_method_comparison/); [saved F2 verification](../00_thesis_writing_tracking/scientific_cross_mapping_20261125/F2_VERIFICATION.md) | Section 1B provenance records `30ec281a64274f83f9f32d6f3abb8021db52e4fd`; Section 2 records **parent_commit** `4089b02715df59b72a58d88743e8f1ccc2aca913`. Neither current layout nor parent alone certifies exact executed bytes |
++| §6.6 Experiment C | Corruption, missingness fallback and modality dropout | [section3_evaluate.py](../implementations/REASSEMBLE/src/reassemble/section3_evaluate.py); [core source](../implementations/REASSEMBLE/src/reassemble/) | [section3_corruptions.json](../implementations/REASSEMBLE/configs/section3_corruptions.json); [completion.json](../implementations/REASSEMBLE/configs/completion.json) | Fixed clean fits/thresholds; raw-input perturbation, conditional paired recording bootstrap; missingness routing separated from adaptation | E044–E045, E049, E055; [robustness run](../implementations/REASSEMBLE/results/runs/missing_degraded_modality_robustness/); [final handoff](../implementations/REASSEMBLE/results/artifacts/reports/FINAL_REASSEMBLE_HANDOFF.md), §§H–J. Audio timing gate failed; no audio model result | Handoff §Z lists preregistration and downstream implementation commits separately; consult run manifests before attributing a single source revision |
++| §6.7 representation and adaptive follow-ups | Additional sensor/visual pooling, spatial-encoder comparison and one-fold adaptive pilot | [additional models](../implementations/REASSEMBLE/src/reassemble/additional_improvements/models.py); [encoder study](../implementations/REASSEMBLE/experiments/additional/rt_detr_encoder_comparison/); [adaptive study](../implementations/REASSEMBLE/experiments/additional/adaptive_fusion_robustness/) | [Additional execution config](../implementations/REASSEMBLE/configs/additional_improvements/execution.json); [encoder config](../implementations/REASSEMBLE/experiments/additional/rt_detr_encoder_comparison/config.json); adaptive run's [protocol](../implementations/REASSEMBLE/experiments/additional/adaptive_fusion_robustness/results/run_01/PROTOCOL.md) | Separate matched cohorts and assessment budgets; adaptive pilot covers one outer fold, not all five | E038–E043, E063; [extension closure](../implementations/REASSEMBLE/results/artifacts/reports/ADDITIONAL_IMPROVEMENTS_STATUS.md); study-local result/provenance indexes. The one-fold adaptive comparison is inconclusive | Study-local frozen source/hash records take precedence; no universal source revision assigned |
++| §6.7 fine-tuning and budget limits | Later CNN training regimes, seed/budget comparisons and static sensor F2 | [CNN seed-stability workspaces](../implementations/REASSEMBLE/experiments/cnn_seed_stability/); [CNN100 F2 source](../implementations/REASSEMBLE/experiments/core/cnn100_static_sensor_f2_comparison/src/) | [CNN100 experiment definition](../implementations/REASSEMBLE/experiments/core/cnn100_static_sensor_f2_comparison/01_experiment_definition/); study-local frozen configs | [Cohort reconciliation](../implementations/cross_dataset/results/reassemble_cohort_reconciliation/README.md); full/final-stage/frozen CNN conditions must remain distinct | E052, E056–E062; [CNN100 report](../implementations/REASSEMBLE/experiments/core/cnn100_static_sensor_f2_comparison/10_final_research_report/); [reproducibility](../implementations/REASSEMBLE/experiments/core/cnn100_static_sensor_f2_comparison/09_reproducibility/). Unfinished fits do not become negative results | Frozen originals now reside in [phase-one feedback](../implementations/REASSEMBLE/experiments/cnn_seed_stability/phase1_feedback/) and [bootstrap studies](../implementations/REASSEMBLE/experiments/bootstrap/00_experimentation/). Their manifests retain the historical `26.10.2026_feedback_experiments/` and `parth_ws_bootstrap/` identities; these sources remain separate from the current core implementation |
+ | §7.2–7.8 MSM | Primary three-seed milling comparison, robustness and failed stricter sensitivity | [Dataset adapter](../implementations/MSM/src/); shared [models.py](../implementations/cross_dataset/src/external_eval/models.py), [features.py](../implementations/cross_dataset/src/external_eval/features.py) | E068–E070: [experiment_config.json](../implementations/MSM/results/04_experiment_protocol/experiment_config.json); [split protocol](../implementations/MSM/results/04_experiment_protocol/split_protocol.md) | [evaluate.py](../implementations/cross_dataset/src/external_eval/evaluate.py); [validate_results.py](../implementations/cross_dataset/src/external_eval/validate_results.py); primary target class 1 versus 0+2; direction excluded from main predictors | E074–E081; [assessment](../implementations/MSM/results/06_evaluation_results/), [robustness](../implementations/MSM/results/07_robustness_experiments/), [handoff](../implementations/MSM/results/09_final_reports/REVIEW_HANDOFF.md). Primary evaluation completed; DOWN-only label-2-excluded sensitivity fails support | Exact per-fit source/config/checkpoint hashes are described in [reproducibility](../implementations/MSM/results/09_final_reports/REPRODUCIBILITY.md). A single experiment-producing commit is UNKNOWN in this map; later browsing source must not substitute |
+-| §8.2–8.8 ViFailback original study | Frozen visual and sensor references, high-camera control and clean fusion | [Original source](../implementations/VIFAILBACK/src/vifailback/) | E094: [protocol.json](../implementations/VIFAILBACK/configs/protocol.json) | Original task-group protocol and original [verification](../implementations/VIFAILBACK/10_final_research_reports/10_INDEPENDENT_VERIFICATION.md) | E087–E094; [original reports](../implementations/VIFAILBACK/10_final_research_reports/). Source reuse is independent dataset-specific fitting unless a donor condition explicitly transfers weights | Original reports/manifests hold the lineage; do not substitute matched-study commits for original fits |
+-| §8.5–8.8 matched training study | FROZEN20/DONOR20, partial FULL20 and distinct hundred-epoch pilots | [training.py](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/training.py); [model_runtime.py](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/model_runtime.py) | [Matched protocol](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/protocol.json) | [fusion_evaluation.py](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/fusion_evaluation.py); 20-epoch nested OOF versus separate 100-epoch pilot meta bank; both-class macro AP | E095–E105, E115–E116, E123; [completed-scope analysis](../implementations/VIFAILBACK/latest_results/RESULT_ANALYSIS.md), [closure status](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/FINAL_STATUS.json). Stopped partial coverage; no completed corruption study | [GIT_COMMITS.json](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/GIT_COMMITS.json) records initial `47e16d3120fb4ae905118b16f40dee4000ec3592` and admission `2a51688af2fc4a355607716e9bb9ab3b01e23f91`; per-fit receipts/snapshots bind later executed bytes |
++| §8.2–8.5 ViFailback original study | Frozen visual and sensor references, high-camera control and clean fusion | [Original source](../implementations/VIFAILBACK/src/vifailback/) | E094: [protocol.json](../implementations/VIFAILBACK/configs/protocol.json) | Original task-group protocol and original [verification](../implementations/VIFAILBACK/10_final_research_reports/10_INDEPENDENT_VERIFICATION.md) | E087–E094; [original reports](../implementations/VIFAILBACK/10_final_research_reports/). Source reuse is independent dataset-specific fitting unless a donor condition explicitly transfers weights | Original reports/manifests hold the lineage; do not substitute matched-study commits for original fits |
++| §8.4–8.5 matched training study | FROZEN20/DONOR20, partial FULL20 and distinct hundred-epoch pilots | [training.py](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/training.py); [model_runtime.py](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/model_runtime.py) | [Matched protocol](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/01_protocol_and_source_evidence/protocol.json) | [fusion_evaluation.py](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/src/matched_vifailback/fusion_evaluation.py); 20-epoch nested OOF versus separate 100-epoch pilot meta bank; both-class macro AP | E095–E105, E115–E116, E123; [completed-scope analysis](../implementations/VIFAILBACK/latest_results/RESULT_ANALYSIS.md), [closure status](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/18_fit_stop_and_analysis_20261124T1955Z/FINAL_STATUS.json). Stopped partial coverage; no completed corruption study | [GIT_COMMITS.json](../implementations/VIFAILBACK/experiments/matched_cnn_20_100_f2_20261111/13_reproducibility/GIT_COMMITS.json) records initial `47e16d3120fb4ae905118b16f40dee4000ec3592` and admission `2a51688af2fc4a355607716e9bb9ab3b01e23f91`; per-fit receipts/snapshots bind later executed bytes |
+ | Appendix H §§H.2–H.7 | HANDOVER common-support unimodal/fixed averaging; learned-fusion exclusion | [Dataset adapters](../implementations/HANDOVER/src/); shared [models.py](../implementations/cross_dataset/src/external_eval/models.py) | [Common-support config](../implementations/HANDOVER/experiments/common_support_v2/04_experiment_protocol/experiment_config.json); [split protocol](../implementations/HANDOVER/experiments/common_support_v2/04_experiment_protocol/split_protocol.md) | [Shared evaluator](../implementations/cross_dataset/src/external_eval/evaluate.py); participant-safe OOF mandatory; no in-sample/trial-group replacement | E082–E086; [common-support assessment](../implementations/HANDOVER/experiments/common_support_v2/06_evaluation_results/); [handoff](../implementations/HANDOVER/results/09_final_reports/REVIEW_HANDOFF.md). F2/F2_aug/QG_clean/QG_aug skipped; not negative fitted results | [Reproducibility record](../implementations/HANDOVER/results/09_final_reports/REPRODUCIBILITY.md) distinguishes the amendment and preserved audit. Exact experiment-producing commit UNKNOWN in this map; retain source/hash receipts |
+ 
+ ## Historical investigations, feasibility and synthesis
+@@ -49,7 +49,7 @@
+ | Thesis chapter and section | Investigation | Executed implementation | Configuration | Evaluation | Results and evidence | Git commit |
+ |---|---|---|---|---|---|---|
+ | Chapter 1 / Appendix G chronology | Intel Welding: original application, earlier work and later foundation audit | [01_inventory.py](../implementations/INTEL_WELDING/scripts/01_inventory.py), [02_label_audit.py](../implementations/INTEL_WELDING/scripts/02_label_audit.py), [03_make_split.py](../implementations/INTEL_WELDING/scripts/03_make_split.py), [04_foundations.py](../implementations/INTEL_WELDING/scripts/04_foundations.py) | E018: [foundations.json](../implementations/INTEL_WELDING/configs/foundations.json) | Integrity, intended-label semantics, session overlap, holdout exposure, timing and class-support gates | E019, E120: [results review](../implementations/INTEL_WELDING/docs/RESULTS_REVIEW.md); [legacy study](../implementations/INTEL_WELDING/experiments/legacy/README.md). Later foundation pass trained no new model; do not erase earlier work or call failed prerequisites negative model scores | Audit provenance retained under [results](../implementations/INTEL_WELDING/results/); exact executed-source correspondence not newly certified here |
+-| §5.10 / Appendix G chronology | PADERBORN ARCH-VAL-PB bearing-mechanism gates | [extract_features.py](../implementations/PADERBORN/scripts/extract_features.py), [parse_factsheets.py](../implementations/PADERBORN/scripts/parse_factsheets.py), [gate1_sanity.py](../implementations/PADERBORN/scripts/gate1_sanity.py), [gate2_signal.py](../implementations/PADERBORN/scripts/gate2_signal.py) | [Preregistration](../implementations/PADERBORN/docs/ARCHITECTURE_VALIDATION_PREREGISTRATION.md); report's protocol fork | Bearing-held-out assessment fails the reported primary Gate 2; requested condition-only protocol has a different outcome | E117: [run 20260926T224859Z report](../implementations/PADERBORN/docs/ARCHITECTURE_VALIDATION_RESULTS.md). Gates 1/2 executed; Gate 3 not run despite retained `gate3*` code | Exact executed-source identity UNKNOWN here; use report/run lineage, not the current file commit as execution proof |
++| §5.7 / Appendix G chronology | PADERBORN ARCH-VAL-PB bearing-mechanism gates | [extract_features.py](../implementations/PADERBORN/scripts/extract_features.py), [parse_factsheets.py](../implementations/PADERBORN/scripts/parse_factsheets.py), [gate1_sanity.py](../implementations/PADERBORN/scripts/gate1_sanity.py), [gate2_signal.py](../implementations/PADERBORN/scripts/gate2_signal.py) | [Preregistration](../implementations/PADERBORN/docs/ARCHITECTURE_VALIDATION_PREREGISTRATION.md); report's protocol fork | Bearing-held-out assessment fails the reported primary Gate 2; requested condition-only protocol has a different outcome | E117: [run 20260926T224859Z report](../implementations/PADERBORN/docs/ARCHITECTURE_VALIDATION_RESULTS.md). Gates 1/2 executed; Gate 3 not run despite retained `gate3*` code | Exact executed-source identity UNKNOWN here; use report/run lineage, not the current file commit as execution proof |
+ | Appendix G chronology | REBOOT released-label, timing, identity and visibility feasibility | [source_audit.py](../implementations/REBOOT/src/source_audit.py), [investigate_original_sources_v2.py](../implementations/REBOOT/src/investigate_original_sources_v2.py), [validate_feasibility.py](../implementations/REBOOT/src/validate_feasibility.py) | [Pinned specification/inventory](../implementations/REBOOT/results/00_dataset_overview/); native labels retained | Target/grouping and independent visibility gates; bounded source/timing investigations, not a classifier evaluation | E118: [V2 decision](../implementations/REBOOT/results/07_research_decision/REBOOT_RESEARCH_DECISION_V2.md), run `20261028T192832Z-research-blockers-v2`. Supervised fusion NO-GO; independent visual review pending at that snapshot | Investigation manifests remain under [retained investigation runs](../implementations/REBOOT/runs/); no model-producing commit because no model fitting occurred |
+ | Chapter 7 history / Appendix G | Earlier MSM and other dataset screening | [Legacy MSM workspace](../implementations/MSM/experiments/legacy/README.md); [dataset research](../implementations/general/docs/dataset_research/README.md) | Study-local protocols and selection criteria | Earlier feasibility/visibility and alignment work precedes the completed primary MSM comparison | E119, E121: [dataset recommendation](../implementations/general/docs/dataset_research/NEW_DATASET_SELECTION_20261028/FINAL_DATASET_RECOMMENDATION.md). Candidate datasets are not automatically additional evaluated studies | Dated source/decision records; no common execution commit |
+ | Chapter 9 / Appendix F | Cross-study interpretation and reproducibility | [Shared external evaluator](../implementations/cross_dataset/src/external_eval/); [implementation support](../implementations/general/scripts/thesis/) | Study-specific configurations above | Preserve target, class prevalence, grouping, fitting budget, AP aggregation and eligibility differences | E106–E111; [cross-study handoff](../implementations/cross_dataset/results/REVIEW_HANDOFF.md); [historical model/source map](../00_thesis_writing_tracking/Thesis/Release/). No common leaderboard or universal-fusion inference | Historical snapshot hashes and each study's lineage; consolidation publication commit pending |
+@@ -59,3 +59,7 @@
+ Keep new link roles concise: implementation, configuration, generated targets, evaluation, saved predictions and report. Existing `\ev` / `\EvidenceRef` identifiers remain the common mechanism. Prepared Chapter 5 links belong to the PHM traceability document until the chapter-specific review authorizes insertion. Activating previously suppressed evidence footnotes in Chapters 1–4 is a separate layout change, not an incidental consequence of publication.
+ 
+ The [publication manifest and migration checks](../00_thesis_writing_tracking/consolidation_20261126/) distinguish included candidates, exclusions and manual-review items. A relative link may work locally while its target is still ignored or unpublished. No training, inference, refitting or dataset restoration is authorized by a link or a historical reproduction command.
++
++## 27 November empirical revision
++
++E134–E143 add the fixed-split PHM summary, MSM sensitivity/pooled/training tables, core REASSEMBLE robustness summary and arithmetic receipt, ViFailback calibration report, PHM Ridge metrics, and dated ViFailback priority/snapshot records. They retain local source hashes without invented publication URLs. The revision verifies saved evidence only; missing fitted ViFailback artifacts and unavailable LaTeX tooling remain explicit.
+--- baseline/00_thesis_writing_tracking/Thesis/LaTeX_Project/README.md
++++ 00_thesis_writing_tracking/Thesis/LaTeX_Project/README.md
+@@ -2,6 +2,13 @@
+ # Authoritative thesis manuscript
+ 
+ Updated 26 November 2026 with the author's Abstract and Chapters 1–4, the Chapter 1–2 citation corrections, and the integrated figures and tables. The accompanying delivery package contains the full thesis, the abstract-through-conclusion edition, and `Manav_review_Abstract_Chapters_1-4.pdf`.
++
++On 27 November 2026, Chapters 5–8 were revised against the supplied examiner assessment,
++with matching framing changes in Chapters 1–4 and 9 and evidence additions in Appendices
++D/F/J. The [revision and verification record](../../empirical_revision_20261127_01/VERIFICATION.md)
++separates independent saved-score checks from retained reports. These are source changes;
++no updated PDF was built in the revision environment. The existing delivery PDFs remain
++their earlier versions.
+ 
+ Use XeLaTeX and Biber. All editions read the same chapter sources.
+ 

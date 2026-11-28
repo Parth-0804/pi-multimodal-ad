@@ -1,0 +1,29 @@
+--- starting-tree/chapters/03_foundations.tex
++++ reconciled/chapters/03_foundations.tex
+@@ -1,7 +1,7 @@
+ \chapter{Technical Foundations and Possible Models}
+ \label{ch:foundations}
+ 
+-In the failed insertion shown in Chapter~6, the first camera frame carried the same
++In the failed insertion shown in Chapter~\ref{ch:reassemble}, the first camera frame carried the same
+ weight as the last. The attempt lasted 15.233 seconds. From that recording, the visual
+ model took 16 frames and averaged their features into a single description of the
+ action. Reading the frames in reverse order would have given exactly the same
+@@ -88,7 +88,7 @@
+ frames. The resulting 896 values would not tell the prediction head which pattern had
+ occurred.
+ 
+-This limitation led to a specific comparison in Chapter~6. The main model averaged
++This limitation led to a specific comparison in Chapter~\ref{ch:reassemble}. The main model averaged
+ frames across the whole action. A later experiment pooled features from the last four of
+ the sixteen sampled frames, giving the final part of the movement its own
+ representation. Both models answered a question about a completed action. Testing an
+@@ -239,7 +239,7 @@
+ 
+ In REASSEMBLE, an insertion and a placement did not carry the same risk of failure. The
+ retained data contained 243 failures in 1,156 insertions and 22 failures in 1,088
+-placements (Chapter~6). A predictor that knew only the action type could therefore
++placements (Chapter~\ref{ch:reassemble}). A predictor that knew only the action type could therefore
+ assign a higher failure score to an insertion before using a single frame or force
+ reading. This is why an action-only reference matters. It measures how much can already
+ be predicted from the task the robot was asked to perform.

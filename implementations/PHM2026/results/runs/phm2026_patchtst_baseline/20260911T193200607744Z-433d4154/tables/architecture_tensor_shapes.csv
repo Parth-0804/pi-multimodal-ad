@@ -1,0 +1,7 @@
+stage,shape,detail
+input,B x T x C,variable verified minute sequence
+patching,B x C x N x P,"P=16, stride=8"
+projection,(B*C) x N x D,D=32
+transformer,(B*C) x N x D,"layers=2, heads=4"
+mask_pool,B x C x D,padding-excluding mean over valid patches
+regression,B,scalar current end-of-run damage state

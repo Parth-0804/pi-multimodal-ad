@@ -1,0 +1,46 @@
+# Shared thesis figure style. See VISUAL_STYLE.md for canvas sizes and roles.
+font.family: serif
+font.serif: Latin Modern Roman, cmr10, DejaVu Serif
+font.size: 10
+text.usetex: False
+text.color: 222222
+mathtext.fontset: cm
+
+axes.titlesize: 11
+axes.titleweight: bold
+axes.labelsize: 10
+axes.labelcolor: 222222
+axes.edgecolor: 222222
+axes.linewidth: 0.8
+axes.formatter.use_mathtext: True
+xtick.labelsize: 9
+ytick.labelsize: 9
+xtick.color: 222222
+ytick.color: 222222
+xtick.major.width: 0.8
+ytick.major.width: 0.8
+legend.fontsize: 9
+legend.title_fontsize: 9
+legend.frameon: False
+
+# Vision, sensor, context, fusion/proposed, baseline, highlight.
+# Audio, thermal imagery, depth/geometry, vibration, force/torque.
+# The paired dashes and markers distinguish series in grayscale.
+axes.prop_cycle: cycler('color', ['0072B2', '009E73', '56B4E9', 'CC79A7', '595959', 'E69F00', '882255', 'D55E00', '332288', '117733', '999933']) + cycler('linestyle', ['-', '--', ':', '-.', '--', ':', '--', '-.', ':', '-', '-.']) + cycler('marker', ['o', 's', 'v', 'D', 'x', '^', 'P', '>', 'p', 'h', '<'])
+lines.linewidth: 1.4
+lines.markersize: 4
+patch.linewidth: 0.8
+axes.axisbelow: True
+axes.grid: False
+grid.color: D9D9D9
+grid.linewidth: 0.5
+
+figure.facecolor: white
+axes.facecolor: white
+figure.constrained_layout.use: True
+savefig.format: pdf
+savefig.facecolor: white
+savefig.bbox: standard
+savefig.transparent: False
+pdf.fonttype: 42
+pdf.use14corefonts: False
