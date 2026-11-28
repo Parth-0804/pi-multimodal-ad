@@ -1,0 +1,117 @@
+{
+  "assurance": {
+    "C": "Producing source inspected; no model execution by this manuscript task.",
+    "L": "Saved historical output/report inspected; not a newly reproduced experiment.",
+    "A": "Current handoff documents an earlier source/artifact audit; attributed to that audit."
+  },
+  "remote_root": "student@10.150.26.34:/home/student/Master_Thesis_WS/pi-multimodal-ad",
+  "snapshot": "implementation_source_snapshot.json",
+  "phm_visual_scalar": {
+    "source": "src/phm2026/models/rtdetr/regression.py::extract_features/train_head; experiments/phm2026/README.md",
+    "assurance": "C; historical run details L",
+    "checkpoint": "Frozen COCO-pretrained Ultralytics RT-DETR-L",
+    "executed": "Full model.predict path with hooks at layers 21, 24 and 27; each feature map spatial-mean pooled (256 dimensions each).",
+    "input": "640x640 RGB, divided by 255; image-derived target supervision.",
+    "descriptor": "768 visual features; historical head selector also admitted feature_latency_ms, giving 769 actual inputs. This is a known implementation confound, not an intended visual feature.",
+    "task": "Provisional candidate-area percentage, not independently verified physical damage.",
+    "protocol": "EXP-B training / EXP-A validation / EXP-F assessment; separate from principal sensor LOEO."
+  },
+  "phm_sensor": {
+    "source": "src/phm2026/models/patchtst/model.py; src/phm2026/models/patchtst/regression.py; scripts/phm2026/results/loeo_evaluation.py",
+    "assurance": "C; outcomes L",
+    "input": "Variable-length minute-feature sequences: 9 base variables x 7 summaries plus 9 missingness indicators = 72 channels. Separate HF spectral tutorial also has 72 features, with different provenance.",
+    "patching": "Custom channel-shared Transformer; default patch length 16, stride 8, width 32, 2 layers, 4 heads, FF width 64; any-valid-time patch mask and masked pooling.",
+    "target_profile": "Sorted ascending order statistics through positive softplus increments. Tooth identity discarded; not positional tooth regression.",
+    "fusion": "Context/RMS/condition-indicator source-group encoders. The later four-arm audit has a separate preprocessing-isolation limitation. No image branch at sensor inference.",
+    "normalization": "Principal LOEO runner fits each training experiment independently. Do not transfer that assurance to the separate four-arm loop.",
+    "LOEO": "Train F / validate B / test A; train F / validate A / test B; train B / validate A / test F. Not fitting on both remaining experiments."
+  },
+  "reassemble_visual_core": {
+    "source": "src/reassemble/section1_features.py::extract; src/reassemble/section1_models.py::VisualHead",
+    "assurance": "C; recorded fit selections L",
+    "checkpoint": "PekingU/rtdetr_r18vd, revision ac77a11ff0170a41b771c03264987f8ce2b0d753",
+    "executed": "RTDetrForObjectDetection.from_pretrained(...).model.backbone.model only. CNN feature maps; no hybrid encoder, detection decoder or detections.",
+    "input": "16 deterministic distinct frames over the completed action; bilinear 640x640 RGB; /255; no ImageNet mean/std normalization.",
+    "descriptor": "Three spatial means concatenate to 896 dimensions per frame; whole-action frame mean.",
+    "head": "896 -> 128 ReLU/dropout 0.1 -> 1; 114945 trainable parameters; CNN frozen.",
+    "fit": "AdamW lr 0.001, decay 0.001, batch 128, weighted BCE, gradient clipping 1; inner candidates 5/10 epochs; outer budgets [5,5,10,10,5]."
+  },
+  "reassemble_sensor_core": {
+    "source": "src/reassemble/section1_features.py::statistics; src/reassemble/section1_models.py::SensorHead/logistic_fit/neural_fit",
+    "assurance": "C; recorded selections L",
+    "input": "512 normalized action-progress positions x 22 channels: force 3, torque 3, gripper 2, efforts 7, velocities 7. Not 512 Hz.",
+    "statistical": "Mean, population SD, median, min, max, q25, q75, range, RMS, progress slope per channel = 220 features, not 192.",
+    "statistics_fit": "Training standardizer; balanced L2 logistic C in [0.1,1,10] selected by mean inner AP; selected-C group-OOF raw logits calibrate unweighted C1 sigmoid.",
+    "PatchTST": "Scratch HF implementation; context 512, channels 22, patch 32, stride 16, width 32, layers 2, heads 4, FF 64; internal scaling disabled; layer norm; dropout 0.1; do_mask_input False.",
+    "mask": "Training channel standardization and mean fill; past_observed_mask passed but does not implement attention suppression in retained configuration.",
+    "head": "Mean patch pool, concatenate channels, 128 projection and binary output; 109505 trainable parameters.",
+    "fit": "3/6 epoch inner candidates; selected 6 in every outer fold."
+  },
+  "reassemble_fusion_core": {
+    "source": "src/reassemble/section2_models.py; src/reassemble/section1b.py; artifacts/reassemble/reports/SECTION_2_FUSION_HANDOFF.md",
+    "assurance": "C; numeric results L",
+    "F1": "(p_visual + p_sensor)/2 using calibrated probabilities.",
+    "F2": "sigmoid(b + a_visual*p_visual + a_sensor*p_sensor), fixed C1 L2 logistic, three scalar parameters, unweighted objective, no post-stacker calibrator. Signed coefficients are not convex weights.",
+    "F3": "128-D visual projection and 220 sensor statistics -> separate 128-D projections -> concat + layer norm -> hidden width 32 or 64 -> output. Weighted BCE; candidate 10/20 epochs; sigmoid calibration.",
+    "F4": "Action one-hot 4 + availability 2 -> gate hidden width 8/16 -> masked softmax over calibrated branch logits.",
+    "F5": "Quality 36 + availability 2 -> same gate family.",
+    "F6": "Action 4 + quality 36 + availability 2 -> same gate family.",
+    "gate_link": "p = sigmoid(sum_m softmax(h(u) + availability_mask)_m * logit(p_m)); no final intercept correction or post-gate calibration.",
+    "gate_fit": "Unweighted BCE; 40 epochs, lr 0.003, decay 0.001; seeds 20260927/28/29, average probabilities.",
+    "quality_limit": "16 constant quality fields and 1562 undefined gripper-MAD outlier rows; training mean imputation. Descriptors may encode process content.",
+    "fallback": "Known visual absence -> exact sensor probability and native threshold; known sensor absence -> visual. Both absent error, no tested abstention.",
+    "dropout": "F6: 0.15 visual absent, 0.15 sensor absent, 0.70 both present; never both absent. Single-branch softmax is structurally fixed."
+  },
+  "anchored_adaptation": {
+    "source": "src/reassemble/additional_improvements/; artifacts/reassemble/reports/ADDITIONAL_IMPROVEMENTS_EXECUTED_HANDOFF.md",
+    "assurance": "C/L; exploratory intervention",
+    "formula": "sigmoid(b + sum_m a_m*(1+tanh(h_m(u)))*p_m)",
+    "network": "42 -> 16 -> 2, zero final-layer initialization; frozen proper-training F2 anchor; constant two-adjustment control.",
+    "fit": "penalties [0.01,0.1,1], AdamW lr .003, decay .001, max100/min10/patience12; mean inner AP of three-seed probabilities.",
+    "caveat": "Different function class from original convex-logit gates; threshold protocol differs from historical F2."
+  },
+  "metrics": {
+    "positive_class": "Failure = 1 - native success",
+    "AP": "average_precision_score; not trapezoidal PR area. Pooled OOF AP differs from mean fold AP.",
+    "population": "Core4530 actions,509 failures,148 recordings. Later753 is original outer fold0,77 failures,26 recordings.",
+    "uncertainty": "Core2000 paired recording-cluster resamples conditional on saved fits; PHM10000 run-cluster resamples. Not full refit or seed uncertainty.",
+    "human_review": "64 clips,one reviewer;57/59 determinate agreement,2 disagreement,5 indeterminate. No adjudication or relabeling."
+  },
+  "later_visual_protocols": {
+    "source": "docs/thesis_review_handoff/REASSEMBLE_FINETUNING_CURRENT_STATUS_20261110_02/",
+    "assurance": "A: current source/artifact handoff and configuration inventory, no new model execution.",
+    "matched2": "Same 32 frames and two epochs within each of two seeds, complete 4530 assessment population. 75 new + 25 reused fits; fixed-C sensor recipe AP .42080289 distinct from original selected-C .42939187.",
+    "C20": "25 completed fits for seed42:20 inner +5 outer,20epochs each, selected outer epochs19/20/19/20/20. Other50 fits deferred; actual C20 F2 not executed.",
+    "CNN100": "One selected training job, one outer fold, seed42; frozen and full CNN restart independently from pretrained weights and fresh heads;100epochs each, selected14/47. Outer assessment753 is original fold0, not new holdout.",
+    "roles": {
+      "training": [
+        1752,
+        198,
+        60
+      ],
+      "validation": [
+        419,
+        44,
+        15
+      ],
+      "calibration_C": [
+        686,
+        93,
+        19
+      ],
+      "inner_F2_bank": [
+        920,
+        97,
+        28
+      ],
+      "assessment_E": [
+        753,
+        77,
+        26
+      ]
+    },
+    "role_units": "Each list = actions, failures, recordings. All five roles mutually disjoint; inner bank trains F2 and is not outer evaluation.",
+    "stale_metadata": "PHASE1_SELECTED_JOB prediction_recordings lists28 inner-bank groups; actual saved keys and outer_E_recordings identify26 outer assessment groups.",
+    "donor_conflict": "Current validator expects25 source epochs and rejects20epoch checkpoint compatibility. A configuration conflict does not invalidate completed training."
+  }
+}
